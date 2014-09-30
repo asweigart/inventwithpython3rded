@@ -1,0 +1,1 @@
+The "text" folder contains text files for the chapter contents, not the formatting. These file will be used for copy editing, and then sent to Word or InDesign for layout.
