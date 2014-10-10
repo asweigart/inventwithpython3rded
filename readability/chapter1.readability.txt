@@ -1,35 +1,35 @@
 readability grades:
-    Kincaid:                     8.48
-    ARI:                        11.41
-    Coleman-Liau:               10.8
-    FleschReadingEase:          71.29
-    GunningFogIndex:            12.35
-    LIX:                        41.17
-    SMOGIndex:                  10.93
-    RIX:                         4.24
+    Kincaid:                     7.47
+    ARI:                        10.02
+    Coleman-Liau:               10.56
+    FleschReadingEase:          73.63
+    GunningFogIndex:            11.03
+    LIX:                        38.06
+    SMOGIndex:                  10.19
+    RIX:                         3.61
 sentence info:
-    characters_per_word:         4.77
-    syll_per_word:               1.35
-    words_per_sentence:         20.78
+    characters_per_word:         4.76
+    syll_per_word:               1.36
+    words_per_sentence:         18.03
     sentences_per_paragraph:         1.95
-    characters:               7131
-    syllables:                2024
-    words:                    1496
+    characters:               6182
+    syllables:                1763
+    words:                    1298
     sentences:                  72
     paragraphs:                 37
-    long_words:                305
-    complex_words:             151
+    long_words:                260
+    complex_words:             124
 word usage:
-    tobeverb:                   47
-    auxverb:                    33
-    conjunction:                42
-    pronoun:                   149
-    preposition:               197
-    nominalization:              9
+    tobeverb:                   42
+    auxverb:                    26
+    conjunction:                38
+    pronoun:                   127
+    preposition:               164
+    nominalization:              8
 sentence beginnings:
     pronoun:                     7
     interrogative:               3
-    article:                     3
-    subordination:               1
-    conjunction:                 1
-    preposition:                 7
+    article:                     4
+    subordination:               0
+    conjunction:                 0
+    preposition:                 5
