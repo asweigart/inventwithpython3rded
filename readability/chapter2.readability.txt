@@ -1,23 +1,23 @@
 readability grades:
-    Kincaid:                    15.52
-    ARI:                        19.36
-    Coleman-Liau:               10.71
-    FleschReadingEase:          51.23
-    GunningFogIndex:            20.92
-    LIX:                        59.29
-    SMOGIndex:                  15.81
-    RIX:                         8.11
+    Kincaid:                     8.45
+    ARI:                        10.27
+    Coleman-Liau:                9.95
+    FleschReadingEase:          69.66
+    GunningFogIndex:            13.69
+    LIX:                        41.12
+    SMOGIndex:                  12.26
+    RIX:                         4.22
 sentence info:
-    characters_per_word:         4.64
+    characters_per_word:         4.63
     syll_per_word:               1.38
-    words_per_sentence:         37.87
-    sentences_per_paragraph:        45
-    characters:               7908
-    syllables:                2360
-    words:                    1704
-    sentences:                  45
-    paragraphs:                  1
-    long_words:                365
+    words_per_sentence:         19.74
+    sentences_per_paragraph:         1.95
+    characters:               7868
+    syllables:                2351
+    words:                    1698
+    sentences:                  86
+    paragraphs:                 44
+    long_words:                363
     complex_words:             246
 word usage:
     tobeverb:                   49

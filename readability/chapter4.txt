@@ -1,120 +1,222 @@
 In this chapter, you’re going to make a “Guess the Number” game. The computer will think of a random number from 1 to 20, and ask you to guess it. You only get six guesses, but the computer will tell you if each guess is too high or too low. You win if you guess the number within six tries.
+
 This is a good game to start with because it uses random numbers, loops, and input from the user in a fairly short program. As you write this game, you’ll learn how to convert values to different data types (and why you would need to do this). Since this program is a game, we’ll call the user the player, but the word “user” would be correct too.
+
 Here’s what the game looks like to the player when the program is run. The text that the player types in is in bold.
+
 Enter this code exactly as it appears here, and then save it by clicking on the File ► Save As. Give it a file name like guess.py then run it by pressing the F5 key. Don’t worry if you don’t understand the code now, I'll explain it step by step.
-Guess the Number's Source Code
+
 Here’s the source code for the “Guess the Number” game. When you enter this code into the file editor, be sure to pay attention to the spacing at the front of some of the lines. Some lines have four or eight spaces in front. After you’ve typed in the code, save the file as guess.py. You can run the program from the file editor by pressing F5. If you see an error message, check that you’ve typed the program in exactly as written.
+
 IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
+
 This code can be downloaded from http://invpy.com/guess.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/guess.
-guess.py
+
 Take look at each line of code in turn to see how this program works.
+
 The first line is a comment. Remember that Python will ignore everything after the # sign. This just reminds us what this program does.
+
 The second line is an import statement. Statements are not functions; neither import nor random has parentheses after its name. Remember, statements are instructions that perform some action but do not evaluate to a value like expressions do. You have already seen statements: assignment statements store a value into a variable (but the statement itself doesn’t evaluate to anything).
+
 While Python includes many built-in functions, some functions exist in separate programs called modules. Modules are Python programs that contain additional functions. We use the functions of these modules by bringing them into our programs with the import statement. In this case, we’re importing the module random.
+
 The import statement is made up of the import keyword followed by the module name. Together, the keyword and module name make up the statement. Line 2 then is an import statement that imports the module named random which contains several functions related to random numbers. (We’ll use one of these functions later to have the computer come up with a random number for us to guess.)
+
 This line creates a new variable named guessesTaken. We’ll store the number of guesses the player makes in this variable. Since the player hasn’t made any guesses so far, we store the integer 0 here.
+
 Lines 6 and 7 are the same as the lines in the Hello World program that we saw in Chapter 3. Programmers often reuse code from their other programs to save themselves work.
+
 Line 6 is a function call to the print() function. Remember that a function is like a mini-program that our program runs, and when our program calls a function it runs this mini-program. The code inside the print() function displays the string you passed it inside the parentheses on the screen.
+
 When these two lines finish executing, the string that is the player’s name will be stored in the myName variable. (Remember, the string might not really be the player’s name. It’s just whatever string the player typed in. Computers are dumb and just follow their programs no matter what.)
+
 In Line 9 we call a new function named randint(), and then store the return value in a variable named number. Remember that function calls are expressions because they evaluate to a value. We call this value the function call's return value.
+
 Because the randint() function is provided by the random module, we precede it with random. (don’t forget the period!) to tell our program that the function randint() is in the random module.
+
 The randint() function will return a random integer between (and including) the two integers we give it. Here, we give it the integers 1 and 20 between the parentheses that follow the function name (separated by a comma). The random integer that randint() returns is stored in a variable named number; this is the secret number the player is trying to guess.
+
 Just for a moment, go back to the interactive shell and enter import random to import the random module. Then enter random.randint(1, 20) to see what the function call evaluates to. It will return an integer between 1 and 20. Now enter the same code again and the function call will probably return a different integer. This is because each time the randint() function is called, it returns some random number, just as when you roll dice you’ll get a random number each time.
+
 Whenever we want to add randomness to our games, we can use the randint() function. And we use randomness in most games. (Think of how many board games use dice.)
+
 You can also try out different ranges of numbers by changing the arguments. For example, enter random.randint(1, 4) to only get integers between 1 and 4 (including both 1 and 4). Or try random.randint(1000, 2000) to get integers between 1000 and 2000. Below is an example of calling the random.randint() function and seeing what values it returns. The results you get when you call the random.randint() function will probably be different (it is random, after all).
+
 We can change the game's code slightly to make the game behave differently. Try changing line 9 and 10 from this:
+
 And now the computer will think of an integer between 1 and 100. Changing line 9 will change the range of the random number, but remember to change line 10 so that the game also tells the player the new range instead of the old one.
-Calling Functions that are Inside Modules
+
 By the way, be sure to enter random.randint(1, 20) and not just randint(1, 20), or Python won’t know to look in the random module for the randint() function and you’ll get an error like this:
+
 Remember, your program needs to run import random before it can call the random.randint() function. This is why import statements usually go at the beginning of the program.
-Passing Arguments to Functions
+
 The integer values between the parentheses in the random.randint(1, 20) function call are called arguments. Arguments are the values that are passed to a function when the function is called. Just as the player’s input changes how our program behaves, arguments are inputs for functions.
+
 Some functions require arguments when you call them. For example, look at these function calls:
+
 The input() function requires no arguments but the print() function call requires one. The randint() function call requires two. When there’s more than one argument, separate each one with commas, like in randint(1, 20). Programmers say that arguments are delimited (that is, separated) by commas. This is how Python knows where one argument ends and another begins.
+
 If you pass too many or too few arguments in a function call, Python will display an error message. In the following example, randint() gets called with only one argument (too few), and then called randint() with three arguments (too many).
+
 The error message says we passed 2 and 4 arguments instead of 1 and 3 because Python always passes an extra, invisible argument called self. This argument is beyond the scope of this book, so you don’t have to worry about it.
+
 Lines 10 and 12 greets the player and tells them about the game, and then starts letting the player guess the secret number. Line 10 is fairly simple, but line 12 introduces a useful concept called a loop.
+
 In Line 10 the print() function welcomes the player by name, and tells them that the computer is thinking of a random number.
+
 But wait – doesn’t the print() function takes only one string? It may look like there’s more than one string there, but look at the line carefully. The plus signs concatenate the three strings to evaluate down to one string, and that is the one string the print() function prints. It might look like the commas are separating the strings, but if you look closely you see that the commas are inside the quotes, and part of the strings themselves.
-Loops
+
 Line 12 is a while statement, which indicates the beginning of a while loop. Loops let you execute code over and over again. However, you need to learn a few other concepts first before learning about loops. Those concepts are blocks, Booleans, comparison operators, conditions, and the while statement.
+
 Several lines of code can group together in a block. A block of code has the same minimum amount of indentation. You can tell where a block begins and ends by looking at the line's indentation, that is, the number of spaces in front of the line.
+
 A block begins when a line’s indentation increases (usually by four spaces). Any following line also indented by four spaces is part of the block. The block ends when there is a line of code with the same indentation before the block started. Blocks can exist within other blocks.
+
 Figure 4-1 is a diagram of the code with the blocks outlined and numbered. The spaces have black squares filled in to make them easier to count.
+
 In Figure 4-1, line 12 has an indentation of zero spaces and isn’t inside any block. Line 13 has an indentation of four spaces. Since this indentation is larger than the previous line's indentation, a new block has started. This block is labeled (1) in Figure 4-1. This block will continue until a line with zero spaces (the original indentation before the block began). Blank lines are ignored.
+
 Line 20 has an indentation of eight spaces. Eight spaces is more than four spaces, which starts a new block. This block is labeled (2) in Figure 4-1. This block is inside of another block.
+
 Line 22 only has four spaces. Because the indentation has decreased, we know that block has ended. Line 20 is the only line in that block. Line 22 is in the same block as the other lines with four spaces.
+
 Line 23 increases the indentation to eight spaces, so again a new block has started. It is labeled (3) in Figure 4-1.
+
 To recap, line 12 isn’t in any block. Lines 13 to 23 all in one block (marked with the circled 1). Line 20 is in a block in a block (marked with a circled 2). And line 23 is the only line in another block in a block (marked with a circled 3).
+
 The Boolean data type has only two values: True or False. These values are case-sensitive and they are not string values; in other words, you do not put a ' quote character around them. We will use Boolean values (also called bools) with comparison operators to form conditions. (Explained later after Comparison Operators.)
+
 The data types that have been introduced so far are integers, floats, strings, and now bools.
+
 In line 12 of our program, the line of code containing the while statement:
+
 The expression that follows the while keyword (the guessesTaken < 6 part) contains two values (the value in the variable guessesTaken, and the integer value 6) connected by an operator (the < sign, the “less than” sign). The < sign is called a comparison operator.
+
 The comparison operator is used to compare two values and evaluate to a True or False Boolean value. A list of all the comparison operators is in Table 4-1.
+
 You’ve already read about the +, -, *, and / math operators. Like any operator, the comparison operators combine with values to form expressions such as guessesTaken < 6.
+
 A condition is an expression that combines two values with a comparison operator (such as < or >) and evaluates to a Boolean value. A condition is just another name for an expression that evaluates to True or False.
+
 For example, the condition in our code, guessesTaken < 6 asks, “is the value stored in guessesTaken less than the number 6?” If so, then the condition evaluates to True. If not, the condition evaluates to False.
+
 In the case of the “Guess the Number” program, in line 4 we stored the value 0 in guessesTaken. Because 0 is less than 6, this condition evaluates to the Boolean value of True. The evaluation would look like this:
-Experiment with Booleans, Comparison Operators, and Conditions
+
 Enter the following expressions in the interactive shell to see their Boolean results:
+
 The condition 0 < 6 returns the Boolean value True because the number 0 is less than the number 6. But because 6 isn’t less than 0, the condition 6 < 0 evaluates to False. 50 isn’t less than 10, so 50 < 10 is False. 10 is less than 11, so 10 < 11 is True.
+
 Notice that 10 < 10 evaluates to False because the number 10 isn’t smaller than the number 10. They are exactly the same size. If Alice were the same height as Bob, you wouldn't say that Alice is taller than Bob or that Alice is shorter than Bob. Both of those statements would be false.
+
 Now try entering these expressions into the interactive shell:
+
 Try not to confuse the assignment operator (=) and the “equal to” comparison operator (==). The equal sign (=) is used in assignment statements to store a value to a variable, while the equal-equal sign (==) is used in expressions to see whether two values are equal. It’s easy to accidentally use one when you meant to use the other.
+
 Just remember that the “equal to” comparison operator (==) has two characters in it, just as the “not equal to” comparison operator (!=) has two characters in it.
+
 String and integer values will not be equal to each other. For example, try entering the following into the interactive shell:
+
 The while statement marks the beginning of a loop. Loops can execute the same code repeatedly. When the execution reaches a while statement, it evaluates the condition next to the while keyword. If the condition evaluates to True, the execution moves inside the while-block. (In our program, the while-block begins on line 13.) If the condition evaluates to False, the execution moves all the way past the while-block. (In “Guess the Number”, the first line after the while-block is line 28.)
+
 A while statement always has a colon (the : sign) after the condition.
+
 Figure 4-2 shows how the execution flows depending on the condition. If the condition evaluates to True (which it does the first time, because the value of guessesTaken is 0), execution will enter the while-block at line 13 and keep going down. Once the program reaches the end of the while-block, instead of going down to the next line, the execution loops back up to the while statement’s line (line 12) and re-evaluates the condition. As before, if the condition is True the execution enters the while-block again. Each time the execution goes through the loop is called an iteration.
+
 This is how the loop works. As long as the condition is True, the program keeps executing the code inside the while-block repeatedly until the first time the condition is False. Think of the while statement as saying, “while this condition is true, keep iterating through the code in this block”.
+
 The code inside the while-block handles accepting a guess from the player and checking if it is greater than, less than, or equal to the secret number. You can change the game’s difficulty by changing the number of guesses the player gets. To give the player only four guesses, change this line:
+
 Code later in the while-block increases the guessesTaken variable by 1 on each iteration. By setting the condition to guessesTaken < 4, you ensure that the code inside the loop only runs four times instead of six. This makes the game much more difficult. To make the game easier, set the condition to guessesTaken < 8 or guessesTaken < 10, which will cause the loop to run a few more times than before and accept more guesses from the player.
+
 Of course, if we removed line 17 (guessesTaken = guessesTaken + 1) altogether then the guessesTaken would never increase and the condition would always be True. This would give the player an unlimited number of guesses. The player might like this, but the programmer would probably consider this a bug.
-The Player Guesses
+
 Lines 13 to 17 ask the player to guess what the secret number is and lets them enter their guess. We store this guess in a variable, and then convert that string value into an integer value.
+
 The program now asks us for a guess. We type in our guess and that number is stored in a variable named guess.
-Converting Strings to Integers with the int() function
+
 In line 15, we call a new function called int(). The int() function takes one argument and returns an integer value form that argument.
+
 Python considers the string '5' and the integer 5 to be different values. The int() function will take the string value we give it and return the integer value form of it. Try entering the following into the interactive shell:
+
 You can see that the int('42') call will return (that is, evaluate to) the integer value 42, and that int(42) will do the same (though it is kind of pointless to get an integer value form of an integer value). However, even though you can pass a string to the int() function, you cannot just pass any string. Passing 'forty-two' to int() will result in an error. The string you pass to int() must be made up of numbers.
+
 That said, the int() function is slightly forgiving; if our string has spaces on either side, it will still run without error. This is why the int(' 42 ') call works.
+
 The 3 + int('2') line shows an expression that uses the return value of int() as part of an expression. It evaluates to the integer value 5:
+
 Remember, the input() function returns a string of text the player typed. If the player enters 5 as their guess, the input() function will return the string value '5' and not the integer value 5. But Python cannot use the < and > comparison operators to compare a string and an integer value:
+
 On line 15 the guess variable originally held the string value of what the player typed. Line 16 overwrites the string value stored in guess with the integer value returned by the int() function. This is because you will compare the player’s guess with the random number, and only two integer values can be compared to see if one is greater (that is, higher) or less (that is, lower) than the other. Python cannot compare a string value with an integer value to see if one is greater or less than the other, even if that string value is numeric such as '5'.
+
 In this “Guess the Number” game, if the player types in something that isn’t a number, then the function call int() will result in an error and the program will crash. Later games in this book will have code to check for invalid input like this and give the player another chance to enter a correct response.
+
 One last thing: Calling int(guess) doesn’t change the value in the guess variable. The code int(guess) is an expression that evaluates to the integer value form of the string stored in the guess variable. What changes guess is the assignment statement: guess = int(guess)
+
 Once the player has taken a guess, the number of guesses should be increased by one.
+
 On the first iteration of the loop, guessesTaken has the value of 0. Python will take this value and add 1 to it. 0 + 1 is 1. Then Python will store the new value of 1 to guessesTaken. Think of line 17 as meaning, “the guessesTaken variable should be one more than what it already is”.
+
 Adding one to a variable’s integer or float value is incrementing the variable. Subtracting one from a variable’s integer or float value is decrementing the variable. The next time the loop block loops around, guessesTaken will have the value of 1 and will be incremented to the value 2.
-if statements
+
 Lines 19 and 20 check if the number that the player guessed is less than the secret random number that the computer came up with. If so, then the program prints a message telling the player this. An if statement will run the code in the following block only if the condition evaluates to True. Using if statements, you can make the program only run certain code when you want it to.
+
 Line 19 begins an if statement with the keyword, if. Next to the if keyword is the condition. Line 20 starts a new block (you can tell because the indentation has increased from line 19 to line 20.) The block that follows the if keyword is called an if-block. Line 20 will only execute if the guess < number condition evaluates to True. If the condition is False, then the code in the if-block is skipped.
+
 The if statement works almost the same as a while statement, too. But unlike the while-block, execution doesn’t jump back to the if statement at the end of the if-block. It just continues down to the next line. In other words, if statements won’t loop.
+
 Lines 22 and 25 check if the player’s guess is too big or exactly equal to the secret number.
+
 If the player’s guess is larger than the random integer, the execution enters the if-block that follows the if statement. The print() function call tells the player that their guess is too big.
+
 Leaving Loops Early with the break statement
+
 The if statement on line 25 checks if the guess is equal to the random integer. If it is, the program execution enters the if-block that follows it.
+
 Line 26 is a break statement that tells the program to jump immediately out of the while-block to the first line after the end of the while-block. (The break statement doesn’t bother rechecking the while loop's condition, it just breaks out immediately.)
+
 The break statement is just the break keyword by itself, with no condition or colon.
+
 If the player’s guess isn’t equal to the random integer, the execution reaches the bottom of the while-block. This means the execution will loop back to the top and recheck the condition (guessesTaken < 6). Remember after the guessesTaken = guessesTaken + 1 line of code executed, the new value of guessesTaken is 1. Because 1 is less than 6, the execution enters the loop again.
+
 If the player keeps guessing too low or too high, the value of guessesTaken will change to 2, then 3, then 4, then 5, then 6. If the player guessed the number correctly, the condition in the if guess == number statement would be True, and the break statement would move the execution out of and after the loop. Otherwise, it keeps looping. But when guessesTaken has the number 6 stored in it, the while statement’s condition is False, since 6 isn’t less than 6. Because the while statement’s condition is False, the execution jumps to the end of the while-block.
+
 The remaining lines of code run when the player has finished guessing, either because the player guessed the correct number or run out of guesses).
+
 Line 28 has no indentation, which means the while-block has ended and this is the first line after the while-block. When the execution left the while-block, we did so either because the while statement’s condition was False (when the player runs out of guesses) or if we executed the break statement (when the player guesses the number correctly). With line 28, check again to see if the player guessed correctly. If so, we enter the if-block that follows.
+
 Lines 29 and 30 are inside the if-block. They only execute if the condition in the if statement on line 28 was True (that is, if the player correctly guessed the computer's number).
+
 In line 29 we call the new function str(), which returns the string form of an argument. We use this function because we want to change the integer value in guessesTaken into its string version because we can only concatenate strings together, not strings and integers.
+
 Line 29 tells the player they have won and how many guesses it took them. Notice in this line that we change the guessesTaken value into a string because we can only add (that is, concatenate) strings to other strings. If we were to try to add a string to an integer, the Python interpreter would display an error.
+
 In Line 32, we use the comparison operator != with the if statement’s condition to mean “is not equal to.” If the value of the player’s guess is lower or higher than (and therefore, not equal to) the number chosen by the computer, then this condition evaluates to True, and we enter the block that follows this if statement on line 33.
+
 Lines 33 and 34 are inside the if-block, and only execute if the condition is True.
+
 In this block, we tell the player what the number is because they failed to guess correctly. But first we have to store the string version of number as the new value of number.
+
 This line is also inside the if-block, and only executes if the condition was True. At this point, we have reached the end of the code, and the program terminates.
+
 Congratulations! We've just programmed our first real game!
+
 In previous chapters, the program execution started at the top instruction in program and went straight down, executing each instruction in order. But with the while, if, else, and break statements, you can cause the execution to loop and skip instructions based on conditions. The name for these kinds of statements is flow control statement, since they change the “flow” of the program execution as it moves around your program.
+
 If someone asked you, “What exactly is programming anyway?” what could you say to them? Programming is just the action of writing code for programs, that is, creating programs that can be executed by a computer.
+
 “But what exactly is a program?” When you see someone using a computer program (for example, playing our “Guess the Number” game), all you see is some text appearing on the screen. The program decides what exact text to show on the screen (the program’s output), based on its instructions and on the text that the player typed on the keyboard (the program’s input). A program is just a collection of instructions that act on the user’s input.
+
 “What kind of instructions?” There are only a few different kinds of instructions, really.
+
 1.  Expressions. Expressions are values connected by operators. Expressions are all evaluated down to a single value, as 2 + 2 evaluates to 4 or 'Hello' + ' ' + 'World' evaluates to 'Hello World'. When expressions are next to the if and while keywords, we also call them conditions.
+
 2.  Assignment statements. Assignment statements store values in variables so you can remember the values later in the program.
+
 3.  The if, while, and break flow control statements. Flow control statements can cause the flow to skip instructions, loop over instructions, or break out of loops. Function calls also change the flow of execution by jumping to the start of a function.
+
 4.  The print() and input() functions. These functions display text on the screen and get text from the keyboard. This is called I/O (pronounced like the letters, “eye-oh”), because it deals with the Input and Output of the program.
+
 And that’s it, just those four things. Of course, there are many details about those four types of instructions. In this book you’ll learn about new data types and operators, new flow control statements, and many other functions that come with Python. There are also different types of I/O such as input from the mouse or outputting sound and graphics instead of just text.
+
 For the person using your programs, they only care about that last type, I/O. The user types on the keyboard and then sees things on the screen or hears things from the speakers. But for the computer to figure out what sights to show and what sounds to play, it needs a program, and programs are just a bunch of instructions you, the programmer, have written.
+

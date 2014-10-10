@@ -1,37 +1,72 @@
 Hello! This book teaches you how to program by making video games. Once you learn how the games in this book work, you’ll be able to create your own games. All you’ll need is a computer, some software called the Python interpreter, and this book. The Python interpreter is free to download from the Internet.
+
 When I was a kid, a book like this one taught me how to write my first programs and games. It was fun and easy. Now as an adult, I still have fun programming and I get paid for it. But even if you don’t become a computer programmer when you grow up, programming is a useful and fun skill to have.
+
 Computers are incredible machines, and learning to program them is easy. If you can read this book, you can program a computer. A computer program is a bunch of instructions that the computer can understand, just like a storybook is a bunch of sentences understood by the reader.
+
 These instructions are like the turn-by-turn instructions you might get for walking to a friend's house. (Turn left at the light, walk two blocks, keep walking until you find the first blue house on the right.) The computer follows each instruction you give it in the order you give it. Video games are themselves nothing but computer programs, so they are also made up of instructions.
+
 To instruct a computer, you write a program in a language the computer understands. This book teaches a programming language named Python. There are many different programming languages including BASIC, Java, JavaScript, PHP, and C++.
+
 When I was a kid BASIC was a common first language to learn. However, new programming languages, such as Python, have been invented since then. Python is even easier to learn than BASIC while still a serious programming language used by professional programmers. Many adults use Python in their work and when programming for fun.
+
 The games you’ll create from this book seem simple compared to the games you might have played on the Xbox, Playstation, or Wii. They don’t have fancy graphics or music but that’s because they’re meant to teach you the basics of coding. They’re purposely simple so you can focus on learning to program. Games don’t have to be complicated to be fun.
+
 Before you can begin programming, you’ll need to install software called the Python interpreter. The interpreter program understands the instructions you’ll write in the Python language. I’ll just refer to “the Python interpreter software” as “Python” from now on.
+
 Download a version 3 Python, such as Python 3.4, from the official website of the Python programming language, http://www.python.org. You’ll also need to download the 32-bit version of Python for your operating system, even if you have a 64-bit computer. Pygame currently runs only on 32-bit Python.
+
 Important Note! Be sure to install Python 3, and not Python 2. The programs in this book use Python 3, and you’ll get errors if you try to run them with Python 2. It is so important, I’ve added a cartoon penguin in Figure 1-1 to tell you to install Python 3 so you do not miss this message.
+
 IDLE stands for Interactive DeveLopment Environment. The development environment is like word processing software except for writing Python programs. Starting IDLE is different on each operating system.
+
 On Windows, you should be able to run Python by clicking the Start button in the lower left corner, type “IDLE” and select IDLE (Python GUI).
+
 On Mac OS X, start IDLE by opening the Finder window and click on Applications, then click Python 3.4, then click the IDLE icon.
+
 On Ubuntu or Linux, start IDLE by opening a terminal window and then type idle3. You may also be able to click on Applications at the top of the screen, and then select Programming and then IDLE 3.
+
 The window that appears when you first run IDLE is the interactive shell. A shell is a program that lets you type instructions into the computer. You can enter Python instructions into the interactive shell and it will send those instructions to the Python interpreter to perform. The interpreter will return any results for the interactive shell to display to you.
+
 Most chapters begin with a sample run of the featured program. This sample run shows you what the program’s output looks like, with what the user types in shown as bold print. This will give you an idea of what the complete game will look like when you’ve entered the code and run it.
+
 Type the code for the program into IDLE’s file editor yourself, rather than downloading it. You’ll remember programming better if you type the code in rather than copy and pasting it from the book’s website at http://inventwithpython.com.
+
 When entering the source code yourself, do not type the line numbers appear at the beginning of each line. For example, if you see this in the book:
+
 You do not need to type the “9.” on the left side, or the one space immediately following it. Just type it like this:
+
 Those numbers are only used so this book can refer to specific lines in the code. They are not a part of the actual program.
+
 Aside from the line numbers, enter the code exactly as it appears. Notice that some of the lines don’t begin at the leftmost edge of the page, but are indented by four or eight spaces. Since each character in IDLE is the same width, you can count the number of spaces by counting the number of characters above or below the line you're looking at.
+
 For example, you can see the second line is indented by four spaces because the four characters (“whil”) on the line above are over the indented space. The third line’s indentation has another four spaces (the four characters, “if n” are above the third line's indented space). In this example, the spaces are marked with a ▪ black square:
-while guesses < 10:
+
 Some lines of code are too long to fit on one line on the page, and the text of the code will wrap around to the next line. When you type these lines into the file editor, enter the code all on one line without pressing Enter. You can tell when a new line starts by looking at the line numbers on the left side of the code. For example, the code below has only two lines of code, even though the first line wraps around:
+
 This book’s website is at http://inventwithpython.com. You can find several different resources related to this book there. Several links in this book use the invpy.com domain name for shortened URLs.
+
 The subreddit web site at http://reddit.com/r/inventwithpython is a great place to ask programming questions related to this book. You can post general questions about Python to the LearnProgramming and LearnPython subreddits at http://reddit.com/r/learnprogramming and http://reddit.com/r/learnpython, respectively.
+
 You can also email me, the author, your programming questions at al@inventwithpython.com.
+
 But keep in mind there are smart ways to ask programming questions that help others help you. Be sure to read the Frequently Asked Questions sections these websites have about the proper way to post questions. When asking programming questions, remember the following:
+
 •   If you are typing out the programs in this book but getting an error, first check for typos with the online diff tool at http://invpy.com/diff. You can copy and paste your code into the diff tool to find any differences from the book’s code in your program.
+
 •   Explain what you are trying to do when you explain what you did that caused the error. This will let your helper know if you are on the wrong path.
+
 •   Copy and paste the entire error message and your code.
+
 •   Search the Web to see whether someone else has already asked (and answered) your question.
+
 •   Explain what you’ve already tried to do to solve your problem. This tells people you’ve already put in some work to try to figure things out on your own.
+
 •   Be polite, and do not demand help or pressure your helpers to respond quickly.
+
 Tracing a program means to step through the code one line at a time, in the same way a computer would execute it. You can visit http://invpy.com/traces to see a trace through of each programs in this book. The traces web page has notes and helpful reminders at each step of the trace to explain what the program is doing, so it can help you better understand why these programs work the way they do.
+
 This chapter has helped you get started with the Python software by showing you the python.org website where you can download it for free. After installing and starting the Python IDLE software, we will be ready to learn programming starting in the next chapter.
+
 This book’s website at http://inventwithpython.com has more information on each of the chapters, including an online tracing website and diff tool can help you understand the programs in this book. 
+
