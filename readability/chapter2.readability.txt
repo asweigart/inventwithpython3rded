@@ -1,35 +1,35 @@
 readability grades:
-    Kincaid:                     8.45
-    ARI:                        10.27
-    Coleman-Liau:                9.95
-    FleschReadingEase:          69.66
-    GunningFogIndex:            13.69
-    LIX:                        41.12
-    SMOGIndex:                  12.26
-    RIX:                         4.22
+    Kincaid:                     7.37
+    ARI:                         9.22
+    Coleman-Liau:               10.25
+    FleschReadingEase:          72.05
+    GunningFogIndex:            12.63
+    LIX:                        39.09
+    SMOGIndex:                  11.63
+    RIX:                         3.74
 sentence info:
-    characters_per_word:         4.63
-    syll_per_word:               1.38
-    words_per_sentence:         19.74
-    sentences_per_paragraph:         1.95
-    characters:               7868
-    syllables:                2351
-    words:                    1698
-    sentences:                  86
-    paragraphs:                 44
-    long_words:                363
-    complex_words:             246
+    characters_per_word:         4.73
+    syll_per_word:               1.39
+    words_per_sentence:         16.74
+    sentences_per_paragraph:         1.98
+    characters:               6415
+    syllables:                1888
+    words:                    1356
+    sentences:                  81
+    paragraphs:                 41
+    long_words:                303
+    complex_words:             201
 word usage:
-    tobeverb:                   49
-    auxverb:                    44
-    conjunction:                44
-    pronoun:                   126
-    preposition:               214
-    nominalization:             25
+    tobeverb:                   40
+    auxverb:                    37
+    conjunction:                38
+    pronoun:                    86
+    preposition:               162
+    nominalization:             22
 sentence beginnings:
-    pronoun:                    11
+    pronoun:                     9
     interrogative:               4
-    article:                     7
-    subordination:               5
+    article:                     9
+    subordination:               3
     conjunction:                 0
-    preposition:                 7
+    preposition:                 5
