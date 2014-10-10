@@ -1,214 +1,147 @@
-Chapter 2 - The Interactive Shell
-
+    Chapter 2
+    THE INTERACTIVE SHELL
 Topics Covered In This Chapter:
-
-Integers and Floating Point Numbers
-Expressions
-Values
-Operators
-Evaluating Expressions
-Storing Values in Variables
-Overwriting variables
-Before we start writing computer games, we should learn some basic programming concepts first. These concepts are values, operators, expressions, and variables. We won't start programming in this chapter, but knowing these concepts and the names of things will make learning to program much easier. This is because most programming is built on only a few simple concepts combined together to make advanced programs.
-
-Let's start by learning how to use Python's interactive shell.
-
+•   Integers and Floating Point Numbers
+•   Expressions
+•   Values
+•   Operators
+•   Evaluating Expressions
+•   Storing Values in Variables
+•   Overwriting variables
+Before you can start programming computer games, you need to learn a few basic programming concepts first. You won't make games in this chapter, but knowing these concepts will make learning to program much easier. You can start by learning how to use Python’s interactive shell.
 Some Simple Math Stuff
+Open IDLE using the steps in Chapter 1, then get Python to solve some simple math stuff. The interactive shell can work just like a calculator. Type 2 + 2 into the interactive shell and press the ENTER key on your keyboard. (On some keyboards, this is the RETURN key.) Figure 2-1 shows how the IDLE responds with the number 4.
 
-To open IDLE on Windows, click on Start, then Programs, then Python 3.1, then IDLE (Python GUI). With IDLE open, let's do some simple math with Python. The interactive shell can work just like a calculator. Type 2+2 into the shell and press the Enter key on your keyboard. (On some keyboards, this is the Return key.) As you can see in Figure 2-1, the computer should respond with the number 4; the sum of 2+2.
-
-
-Figure 2-1: Type 2+2 into the shell.
-
-As you can see, we can use the Python shell just like a calculator. This isn't a program by itself because we are just learning the basics right now. The + sign tells the computer to add the numbers 2 and 2. To subtract numbers use the - sign, and to multiply numbers use an asterisk (*), like so:
-
+Figure 2-1: Enter 2+2 into the interactive shell.
+This math problem is a simple programming instruction. The + sign tells the computer to add the numbers 2 and 2. Table 2-1 lists the other math symbols available in Python. The - sign will subtract numbers, the * asterisk will multiply numbers, and the / slash will divide numbers.
 Table 2-1: The various math operators in Python.
-2+2 addition
-2-2 subtraction
-2*2 multiplication
-2/2 division
-When used in this way, +, -, *, and / are called operators because they tell the computer to perform the specified operation on the numbers surrounding them.
+Operator    Operation
++   addition
+-   subtraction
+*   multiplication
+/   division
 
+When used in this way, +, -, *, and / are called operators because they tell Python which mathematical operation on the numbers surrounding them.
 Integers and Floating Point Numbers
-
-In programming (and also in mathematics), whole numbers like 4, 0, and 99 are called integers. Numbers with fractions or decimal points (like 3.5 and 42.1 and 5.0) are not integers. In Python, the number 5 is an integer, but if we wrote it as 5.0 it would not be an integer. Numbers with a decimal point are called floating point numbers. In mathematics, 5.0 is still considered an integer and the same as the number 5, but in computer programming the computer considers any number with a decimal point as not an integer.
-
+In programming, integers or ints are whole numbers such as 4, 99, and 0. Floating point numbers or floats are fractions or numbers with decimal points like 3.5, 42.1 and 5.0.. In Python, the number 5 is an integer, but 5.0 is a float.
 Expressions
-
-Try typing some of these math problems into the shell, pressing Enter key after each one.
-
+These math problems are examples of expressions. Computers can solve millions of these problems in seconds. Expressions are made up of values (the numbers) connected by operators (the math signs). Let’s learn exactly what values and operators are. Try entering some of these math problems into the interactive shell, pressing ENTER key after each one.
 2+2+2+2+2
 8*6
 10-5+6
 2  +       2
-Figure 2-2 is what the interactive shell in IDLE will look like after you type in the instructions above.
-
+After you type in the above instructions, the interactive shell will look like Figure 2-2.
 
 Figure 2-2: What the IDLE window looks like after entering instructions.
 
-
 Figure 2-3: An expression is a made up of values and operators.
-These math problems are called expressions. Computers can solve millions of these problems in seconds. Expressions are made up of values (the numbers) connected by operators (the math signs). Let's learn exactly what values and operators are.
-
-As you can see with the last expression in the above example, you can put any amount of spaces in between the integers and these operators. (But be sure to always start at the very beginning of the line, with no spaces in front.)
-
-Numbers are a type of value. Integers are a type of number. But, even though integers are numbers, not all numbers are integers. (For example, fractions and numbers with decimal points like 2.5 are numbers that are not integers.)
-
-This is like how a cat is a type of pet, but not all pets are cats. Someone could have a pet dog or a pet hermit crab. An expression is made up of values (such as integers like 8 and 6) connected by an operator (such as the * multiplication sign). A single value by itself is also considered an expression.
-
-In the next chapter, we will learn about working with text in expressions. Python isn't limited to just numbers. It's more than just a fancy calculator!
-
+Integers and floats are examples of values in programming. An expression is made up of values (such as integers like 8 and 6) connected by an operator (such as the * multiplication sign). A single value by itself is also considered an expression. In the 2  +       2 example, notice that you can put any amount of spaces in between the values and operators. However, be sure to always start at the beginning of the line with no spaces in front.
+In the next chapter, we will learn about working with text in expressions. Python isn’t limited to just numbers; it’s more than just a fancy calculator!
 Evaluating Expressions
-
-When a computer solves the expression 10 + 5 and gets the value 15, we say it has evaluated the expression. Evaluating an expression reduces the expression to a single value, just like solving a math problem reduces the problem to a single number: the answer.
-
-The expressions 10 + 5 and 10 + 3 + 2 have the same value, because they both evaluate to 15. Even single values are considered expressions: The expression 15 evaluates to the value 15.
-
-However, if you just type 5 + into the interactive shell, you will get an error message.
-
+When a computer solves the expression 10 + 5 and gets the value 15, it has evaluated the expression. Evaluating an expression reduces the expression to a single value, just like solving a math problem reduces the problem to a single number: the answer.
+The expressions 10 + 5 and 10 + 3 + 2 have the same value, because they both evaluate to 15. Even single values are expressions: The expression 15 evaluates to the value 15.
+Expressions can be of any size, but they will always evaluate down to a single value. For example, the expression 8 * 3 / 2 + 2 + 7 - 9 will evaluate down to the value 12.0 through the following steps:
+8 * 3 / 2 + 2 + 7 – 9
+                  ▼
+   24 / 2 + 2 + 7 – 9
+                  ▼
+     12.0 + 2 + 7 – 9
+                  ▼
+         14.0 + 7 – 9
+                  ▼
+             21.0 – 9
+                  ▼
+                 12.0
+You don’t see all of these steps. If you enter this expression into the interactive shell, you’ll just see the results:
+>>> 8 * 3 / 2 + 2 + 7 - 9
+12.0
+Notice that the / division operator evaluates to a float value, as in 24 / 2 evaluating to 12.0. Also, that math operations with float values also evaluate to float values, as in 12.0 + 2 evaluating to 14.0.
+Syntax Errors
+If you enter 5 + into the interactive shell, you’ll get an error message.
 >>> 5 +
 SyntaxError: invalid syntax
-This error happened because 5 + is not an expression. Expressions have values connected by operators, but the + operator always expects to connect two things in Python. We have only given it one. This is why the error message appeared. A syntax error means that the computer does not understand the instruction you gave it because you typed it incorrectly. Python will always display an error message if you enter an instruction that it cannot understand.
-
-This may not seem important, but a lot of computer programming is not just telling the computer what to do, but also knowing exactly how to tell the computer to do it.
-
-Expressions Inside Other Expressions
-
-Expressions can also contain other expressions. For example, in the expression 2 + 5 + 8, the 2 + 5 part is its own expression. Python evaluates 2 + 5 to 7, so the original expression becomes 7 + 8. Python then evaluates this expression to 15.
-
-Think of an expression as being a stack of pancakes. If you put two stacks of pancakes together, you still have a stack of pancakes. And a large stack of pancakes can be made up of smaller stacks of pancakes that were put together. Expressions can be combined together to form larger expressions in the same way. But no matter how big an expression is it also evaluates to a single answer, just like 2 + 5 + 8 evaluates to 15.
-
+This error happened because 5 + isn’t an expression. Expressions have values connected by operators, but the + operator always expects to connect two things in Python. We have only given it one. This is why the error message appeared. A syntax error means Python doesn’t understand the instruction you gave it because you typed it incorrectly. Python will always display an error message if you enter an instruction it cannot understand. A lot of computer programming isn’t just telling the computer what to do, but also knowing exactly how to tell the computer to do it.
+Don’t worry about making mistakes though. Causing errors won’t damage your computer at all. Just retype the instruction correctly into the interactive shell at the next >>> prompt.
 Storing Values in Variables
-
-When we program, we will often want to save the values that our expressions evaluate to so we can use them later in the program. We can store values in variables.
-
-Think of variables like a box that can hold values. You can store values inside variables with the = sign (called the assignment operator). For example, to store the value 15 in a variable named "spam", enter spam = 15 into the shell:
-
+You’ll often want to save the value an expression evaluates to so you can use it later in the program. You can store values in variables. Think of variables like a box that can hold values. An assignment statement instruction will store a value (or the value an expression evaluates to) inside a variable. Make up a name for the variable, followed by the = sign (called the assignment operator), and then the value to store in the variable. For example, to store the integer value 15 in a variable named “spam”, enter spam = 15 into the interactive shell:
 >>> spam = 15
 >>>
 
 Figure 2-4: Variables are like boxes that can hold values in them.
-You can think of the variable like a box with the value 15 inside of it (as shown in Figure 2-4). The variable name "spam" is the label on the box (so we can tell one variable from another) and the value stored in it is like a small note inside the box.
-
-When you press Enter you won't see anything in response, other than a blank line. Unless you see an error message, you can assume that the instruction has been executed successfully. The next >>> prompt will appear so that you can type in the next instruction.
-
-This instruction (called an assignment statement) creates the variable spam and stores the value 15 in it. Unlike expressions, statements are instructions that do not evaluate to any value, which is why there is no value displayed on the next line in the shell.
-
-It might be confusing to know which instructions are expressions and which are statements. Just remember that if the instruction evaluates to a single value, it's an expression. If the instruction does not, then it's a statement.
-
-An assignment statement is written as a variable, followed by the = equal sign, followed by an expression. The value that the expression evaluates to is stored inside the variable. The value 15 by itself is an expression. Expressions made up of a single value by itself are easy to evaluate. These expressions just evaluate to the value itself. For example, the expression 15 evaluates to 15!
-
-Remember, variables store values, not expressions. For example, if we had the statement, spam = 10 + 5, then the expression 10 + 5 would first be evaluated to 15 and then the value 15 would be stored in the variable, spam.
-
-The first time you store a value inside a variable by using an assignment statement, Python will create that variable. Each time after that, an assignment statement will only replace the value stored in the variable.
-
-Now let's see if we've created our variable properly. If we type spam into the shell by itself, we should see what value is stored inside the variable spam.
-
+You can think of the variable like a box with the value 15 inside of it (as shown in Figure 2-4). The variable name “spam” is the label on the box (so you can tell one variable from another) and the value stored in it is like a small note inside the box.
+When you press ENTER you won't see anything in response. In Python, you can assume the instruction executed successfully if no error message appears. The next >>> prompt will appear so you can type in the next instruction.
+The assignment statement creates the variable spam and stores the value 15 in it. Unlike expressions, statements are instructions that do not evaluate to any value, which is why there is no value displayed on the next line in the interactive shell.
+It might be confusing to know which instructions are expressions and which are statements. Just remember that expressions evaluate to a single value. Any other kind of instruction is a statement.
+Variables store values, not expressions. For example, the statement spam = 10 + 5 and spam = 10 + 7 - 2 both evaluate the expression to 15 and then store the value 15 in the variable spam.
+The first time you store a value inside a variable by using an assignment statement, Python will create that variable. Each time after, an assignment statement only replaces the value stored in the variable.
+To check what value is in a variable, type the variable name by itself into the interactive shell:
 >>> spam = 15
 >>> spam
 15
->>>
-Now, spam evaluates to the value inside the variable, 15.
-
-And here's an interesting twist. If we now enter spam + 5 into the shell, we get the integer 20, like so.
-
+The expression spam evaluates to the value inside the spam variable, 15. And here’s an interesting twist. If you enter spam + 5 into the interactive shell, you get the integer 20:
 >>> spam = 15
 >>> spam + 5
 20
->>>
-That may seem odd but it makes sense when we remember that we set the value of spam to 15. Because we've set the value of the variable spam to 15, writing spam + 5 is like writing the expression 15 + 5.
-
-If you try to use a variable before it has been created, Python will give you an error because no such variable would exist yet. This also happens if you mistype the name of the variable.
-
-We can change the value stored in a variable by entering another assignment statement. For example, try the following:
-
+You’ve set the value of the variable spam to 15, so writing spam + 5 is like writing the expression 15 + 5.
+If you try to use a variable before it is created, Python will give you an error because no such variable would exist yet. This also happens if you mistype the name of the variable:
+>>> spam = 15
+>>> spma
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    spma
+NameError: name 'spma' is not defined
+You can change the value stored in a variable by entering another assignment statement. For example, try the following:
 >>> spam = 15
 >>> spam + 5
 20
 >>> spam = 3
 >>> spam + 5
 8
->>>
-The first time we enter spam + 5, the expression evaluates to 20, because we stored the value 15 inside the variable spam. But when we enter spam = 3, the value 15 is replaced, or overwritten, with the value 3. Now, when we enter spam + 5, the expression evaluates to 8 because the value of spam is now 3.
-
-To find out what the current value is inside a variable, just enter the variable name into the shell.
-
-Now here's something interesting. Because a variable is only a name for a value, we can write expressions with variables like this:
-
+The first time you enter spam + 5, the expression evaluates to 20, because we stored the value 15 inside the variable spam. However, when you enter spam = 3, the value 15 is replaced, or overwritten, with the value 3. Now, when you enter spam + 5, the expression evaluates to 8 because the value of spam is now 3.
+Because a variable is only a name for a value, you can write expressions with variables like this:
 >>> spam = 15
 >>> spam + spam
 30
 >>> spam - spam
 0
->>>
-When the variable spam has the integer value 15 stored in it, entering spam + spam is the same as entering 15 + 15, which evaluates to 30. And spam - spam is the same as 15 - 15, which evaluates to 0. The expressions above use the variable spam twice. You can use variables as many times as you want in expressions. Remember that Python will evaluate a variable name to the value that is stored inside that variable, each time the variable is used.
-
-We can even use the value in the spam variable to assign spam a new value:
-
+When the variable spam has the integer value 15 stored in it, entering spam + spam is the same as entering 15 + 15, which evaluates to 30. And spam - spam is the same as 15 - 15, which evaluates to 0. These expressions use the variable spam twice. You can use variables as many times as you want in expressions. Remember that Python will evaluate a variable name to the value that is stored inside that variable, each time the variable is used.
+You can even use the value in the spam variable to assign spam a new value:
 >>> spam = 15
 >>> spam = spam + 5
 20
->>>
-The assignment statement spam = spam + 5 is like saying, "the new value of the spam variable will be the current value of spam plus five." Remember that the variable on the left side of the = sign will be assigned the value that the expression on the right side evaluates to. We can also keep increasing the value in spam by 5 several times:
-
+The assignment statement spam = spam + 5 is like saying, “the new value of the spam variable will be the current value of spam plus five.” Remember that the variable on the left side of the = sign will be assigned the value that the expression on the right side evaluates to. You can keep increasing the value in spam by 5 several times:
 >>> spam = 15
 >>> spam = spam + 5
 >>> spam = spam + 5
 >>> spam = spam + 5
 >>> spam
 30
->>>
 Using More Than One Variable
-
-When we program we won't always want to be limited to only one variable. Often we'll need to use multiple variables.
-
-For example, let's assign different values to two variables named eggs and fizz, like so:
-
+You can create as many variables as you need. For example, let’s assign different values to two variables named eggs and fizz, like so:
 >>> fizz = 10
 >>> eggs = 15
 Now the fizz variable has 10 inside it, and eggs has 15 inside it.
 
-
-Figure 2-5: The "fizz" and "eggs" variables have values stored in them.
-
-Without changing the value in our spam variable, let's try assigning a new value to the spam variable. Enter spam = fizz + eggs into the shell then enter spam into the shell to see the new value of spam. Can you guess what it will be?
-
+Figure 2-5: The “fizz” and “eggs” variables have values stored in them.
+Try assigning a new value to spam. Enter spam = fizz + eggs into the interactive shell then enter spam into the interactive shell to see the new value of spam.
 >>> fizz = 10
 >>> eggs = 15
 >>> spam = fizz + eggs
 >>> spam
 25
->>>
 The value in spam is now 25 because when we add fizz and eggs we are adding the values stored inside fizz and eggs.
-
-Overwriting Variables
-
-Changing the value stored inside a variable is easy. Just perform another assignment statement with the same variable. Look what happens when you enter the following code into the interactive shell:
-
->>> spam = 42
->>> print(spam)
-42
->>> spam = 'Hello'
->>> print(spam)
-Hello
-Initially, the spam variable had the integer 42 placed inside of it. This is why the first print(spam) prints out 42. But when we execute spam = 'Hello', the 42 value is tossed out of the variable and forgotten as the new 'Hello' string value is placed inside the spam variable.
-
-Replacing the value in a variable with a new value is called overwriting the value. It is important to know that the old value is permanently forgotten. If you want to remember this value so you can use it later in your program, store it in a different variable before overwriting the value:
-
+Overwriting
+Replacing the value in a variable with a new value is overwriting the value. It is important to know that the old value is permanently forgotten. If you want to remember this value so you can use it later in your program, store it in a different variable before overwriting the value:
 >>> spam = 42
 >>> print(spam)
 42
 >>> oldSpam = spam
->>> spam = 'Hello'
+>>> spam = 86
 >>> print(spam)
-Hello
+86
 >>> print(oldSpam)
 42
-In the above example, before overwriting the value in spam, we copy that value to a variable named oldSpam. At that point, both spam and oldSpam store the value 42. On the next line, the string 'Hello' is stored in spam but oldSpam is left untouched.
-
+In the above example, before overwriting the value in spam, we copy that value to a variable named oldSpam. At that point, both spam and oldSpam store the value 42. On the next line, 86 is stored in spam but oldSpam is left untouched.
 Summary
-
-In this chapter you learned the basics about writing Python instructions. Python needs you to tell it exactly what to do in a strict way, because computers don't have common sense and only understand very simple instructions. You have learned that Python can evaluate expressions (that is, reduce the expression to a single value), and that expressions are values (such as 2 or 5) combined with operators (such as + or -). You have also learned that you can store values inside of variables so that your program can remember them in order to use them later on.
-
-In the next chapter, we will go over some more basic concepts, and you will write your first program!
-
+In this chapter, you learned the basics about writing Python instructions. Python needs you to tell it exactly what to do in a strict way, because computers don’t have common sense and only understand simple instructions. You have learned that Python can evaluate expressions (that is, reduce the expression to a single value), and that expressions are values (such as 2 or 5) combined with operators (such as + or -). You have also learned that you can store values inside of variables so that your program can remember them in order to use them later on.
+There are many other types of operators and values in Python. In the next chapter, we will go over some more basic concepts, and you’ll write your first program!
