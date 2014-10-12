@@ -1,35 +1,35 @@
 readability grades:
-    Kincaid:                     8.51
-    ARI:                        11.55
-    Coleman-Liau:               10.32
-    FleschReadingEase:          73.17
-    GunningFogIndex:            13.41
-    LIX:                        43.42
-    SMOGIndex:                  11.73
-    RIX:                         4.71
+    Kincaid:                     8.31
+    ARI:                        11.32
+    Coleman-Liau:               10.25
+    FleschReadingEase:          73.86
+    GunningFogIndex:            13.35
+    LIX:                        42.75
+    SMOGIndex:                  11.74
+    RIX:                         4.57
 sentence info:
-    characters_per_word:         4.67
-    syll_per_word:               1.32
-    words_per_sentence:         21.94
+    characters_per_word:         4.66
+    syll_per_word:               1.31
+    words_per_sentence:         21.56
     sentences_per_paragraph:         1.98
-    characters:              22757
-    syllables:                6414
-    words:                    4871
-    sentences:                 222
-    paragraphs:                112
-    long_words:               1046
-    complex_words:             564
+    characters:              20716
+    syllables:                5833
+    words:                    4442
+    sentences:                 206
+    paragraphs:                104
+    long_words:                941
+    complex_words:             525
 word usage:
-    tobeverb:                  171
-    auxverb:                    83
-    conjunction:               145
-    pronoun:                   338
-    preposition:               552
-    nominalization:            177
+    tobeverb:                  149
+    auxverb:                    80
+    conjunction:               131
+    pronoun:                   291
+    preposition:               509
+    nominalization:            161
 sentence beginnings:
-    pronoun:                    10
-    interrogative:               1
-    article:                    23
-    subordination:               8
-    conjunction:                 3
-    preposition:                18
+    pronoun:                    11
+    interrogative:               0
+    article:                    20
+    subordination:               6
+    conjunction:                 2
+    preposition:                15

@@ -1,80 +1,66 @@
-In this chapter, you’re going to make a “Guess the Number” game. The computer will think of a random number from 1 to 20, and ask you to guess it. You only get six guesses, but the computer will tell you if each guess is too high or too low. You win if you guess the number within six tries.
+In this chapter, you’re going to make a “Guess the Number” game. The computer will think of a random number from 1 to 20, and ask you to guess it. The computer will tell you if each guess is too high or too low. You win if you guess the number within six tries.
 
-This is a good game to start with because it uses random numbers, loops, and input from the user in a fairly short program. As you write this game, you’ll learn how to convert values to different data types (and why you would need to do this). Since this program is a game, we’ll call the user the player, but the word “user” would be correct too.
+This is a good game to code because it uses random numbers, loops, and input from the user in a fairly short program. You’ll learn how to convert values to different data types (and why you would need to do this). Since this program is a game, we’ll call the user the player, but “user” would be correct too.
 
-Here’s what the game looks like to the player when the program is run. The text that the player types in is in bold.
+Here’s what the program looks like to the player when run. The text that the player types in is in bold.
 
-Enter this code exactly as it appears here, and then save it by clicking on the File ► Save As. Give it a file name like guess.py then run it by pressing the F5 key. Don’t worry if you don’t understand the code now, I'll explain it step by step.
+Enter this code exactly as it appears here, and then save it by clicking on File ► Save As. Give it the filename guess.py. Then press F5 to run the program. Don’t worry if you don’t understand the code now, I'll explain it step by step.
 
-Here’s the source code for the “Guess the Number” game. When you enter this code into the file editor, be sure to pay attention to the spacing at the front of some of the lines. Some lines have four or eight spaces in front. After you’ve typed in the code, save the file as guess.py. You can run the program from the file editor by pressing F5. If you see an error message, check that you’ve typed the program in exactly as written.
+Here’s the source code for the “Guess the Number” game. When you enter this code into the file editor, be sure to pay attention to the spacing at the front of some of the lines. Some lines have four or eight spaces of indentation.
 
 IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
 
-This code can be downloaded from http://invpy.com/guess.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/guess.
+You can download this code from http://invpy.com/guess.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/guess.
 
 Take look at each line of code in turn to see how this program works.
 
 The first line is a comment. Remember that Python will ignore everything after the # sign. This just reminds us what this program does.
 
-The second line is an import statement. Statements are not functions; neither import nor random has parentheses after its name. Remember, statements are instructions that perform some action but do not evaluate to a value like expressions do. You have already seen statements: assignment statements store a value into a variable (but the statement itself doesn’t evaluate to anything).
+The second line is an import statement. Remember, statements are instructions that perform some action but don’t evaluate to a value like expressions do. You’ve already seen statements: assignment statements store a value into a variable (but the statement itself doesn’t evaluate to anything).
 
-While Python includes many built-in functions, some functions exist in separate programs called modules. Modules are Python programs that contain additional functions. We use the functions of these modules by bringing them into our programs with the import statement. In this case, we’re importing the module random.
+While Python includes many built-in functions, some functions exist in separate programs called modules. Modules are Python programs that contain additional functions. We use the functions of these modules by bringing them into our programs with an import statement.
 
-The import statement is made up of the import keyword followed by the module name. Together, the keyword and module name make up the statement. Line 2 then is an import statement that imports the module named random which contains several functions related to random numbers. (We’ll use one of these functions later to have the computer come up with a random number for us to guess.)
+The import statement has the import keyword followed by the module name. Line 2 imports the module named random. The random module contains several functions related to random numbers. One of these functions will come up with the random number for the user to guess.
 
-This line creates a new variable named guessesTaken. We’ll store the number of guesses the player makes in this variable. Since the player hasn’t made any guesses so far, we store the integer 0 here.
+This line creates a new variable named guessesTaken. You’ll store the number of guesses the player has made in this variable. Since the player hasn’t made any guesses so far, store the integer 0 here.
 
-Lines 6 and 7 are the same as the lines in the Hello World program that we saw in Chapter 3. Programmers often reuse code from their other programs to save themselves work.
+Lines 6 and 7 are the same as the lines in the Hello World program that you saw in Chapter 3. Programmers often reuse code from their other programs to save themselves work.
 
-Line 6 is a function call to the print() function. Remember that a function is like a mini-program that our program runs, and when our program calls a function it runs this mini-program. The code inside the print() function displays the string you passed it inside the parentheses on the screen.
+Line 6 is a function call to the print() function. Remember that a function is like a mini-program that our program runs, and when our program calls a function it runs this mini-program. The code inside the print() function displays on the screen the string argument you passed it.
 
-When these two lines finish executing, the string that is the player’s name will be stored in the myName variable. (Remember, the string might not really be the player’s name. It’s just whatever string the player typed in. Computers are dumb and just follow their programs no matter what.)
+Line 7 lets the user type in their name and stores it in the myName variable. (Remember, the string might not really be the player’s name. It’s just whatever string the player typed. Computers are dumb and just follow their programs no matter what.)
 
-In Line 9 we call a new function named randint(), and then store the return value in a variable named number. Remember that function calls are expressions because they evaluate to a value. We call this value the function call's return value.
+Line 9 calls a new function named randint() and stores the return value in number. Remember, function calls can be part of expressions because they evaluate to a value.
 
-Because the randint() function is provided by the random module, we precede it with random. (don’t forget the period!) to tell our program that the function randint() is in the random module.
+Because the randint() function is provided by the random module, precede it with random. (don’t forget the period!) to tell Python that the function randint() is in the random module.
 
-The randint() function will return a random integer between (and including) the two integers we give it. Here, we give it the integers 1 and 20 between the parentheses that follow the function name (separated by a comma). The random integer that randint() returns is stored in a variable named number; this is the secret number the player is trying to guess.
+The randint() function will return a random integer between (and including) the two integer arguments you pass to it. Line 9 passes 1 and 20 between the parentheses that follow the function name (separated by a comma). The random integer that randint() returns is stored in a variable named number; this is the secret number the player is trying to guess.
 
-Just for a moment, go back to the interactive shell and enter import random to import the random module. Then enter random.randint(1, 20) to see what the function call evaluates to. It will return an integer between 1 and 20. Now enter the same code again and the function call will probably return a different integer. This is because each time the randint() function is called, it returns some random number, just as when you roll dice you’ll get a random number each time.
+Just for a moment, go back to the interactive shell and enter import random to import the random module. Then enter random.randint(1, 20) to see what the function call evaluates to. It will return an integer between 1 and 20. Repeat the code again and the function call will probably return a different integer. The randint() function returns some random integer each time, just as rolling dice you’ll get a random number each time.
 
-Whenever we want to add randomness to our games, we can use the randint() function. And we use randomness in most games. (Think of how many board games use dice.)
+Use the randint() function when you want to add randomness to our games. And you’ll use randomness in most games. Think of how many board games use dice.
 
-You can also try out different ranges of numbers by changing the arguments. For example, enter random.randint(1, 4) to only get integers between 1 and 4 (including both 1 and 4). Or try random.randint(1000, 2000) to get integers between 1000 and 2000. Below is an example of calling the random.randint() function and seeing what values it returns. The results you get when you call the random.randint() function will probably be different (it is random, after all).
+You can also try out different ranges of numbers by changing the arguments. For example, enter random.randint(1, 4) to only get integers between 1 and 4 (including both 1 and 4). Or try random.randint(1000, 2000) to get integers between 1000 and 2000. For example, enter the following into the interactive shell. The results you get when you call the random.randint() function will probably be different (it is random, after all).
 
-We can change the game's code slightly to make the game behave differently. Try changing line 9 and 10 from this:
+You can change the game’s code slightly to make the game behave differently. Try changing line 9 and 10 from this:
 
-And now the computer will think of an integer between 1 and 100. Changing line 9 will change the range of the random number, but remember to change line 10 so that the game also tells the player the new range instead of the old one.
-
-By the way, be sure to enter random.randint(1, 20) and not just randint(1, 20), or Python won’t know to look in the random module for the randint() function and you’ll get an error like this:
-
-Remember, your program needs to run import random before it can call the random.randint() function. This is why import statements usually go at the beginning of the program.
-
-The integer values between the parentheses in the random.randint(1, 20) function call are called arguments. Arguments are the values that are passed to a function when the function is called. Just as the player’s input changes how our program behaves, arguments are inputs for functions.
-
-Some functions require arguments when you call them. For example, look at these function calls:
-
-The input() function requires no arguments but the print() function call requires one. The randint() function call requires two. When there’s more than one argument, separate each one with commas, like in randint(1, 20). Programmers say that arguments are delimited (that is, separated) by commas. This is how Python knows where one argument ends and another begins.
-
-If you pass too many or too few arguments in a function call, Python will display an error message. In the following example, randint() gets called with only one argument (too few), and then called randint() with three arguments (too many).
-
-The error message says we passed 2 and 4 arguments instead of 1 and 3 because Python always passes an extra, invisible argument called self. This argument is beyond the scope of this book, so you don’t have to worry about it.
+And now the computer will think of an integer between 1 and 100 instead of 1 and 20. Changing line 9 will change the range of the random number, but remember to change line 10 so that the game also tells the player the new range instead of the old one.
 
 Lines 10 and 12 greets the player and tells them about the game, and then starts letting the player guess the secret number. Line 10 is fairly simple, but line 12 introduces a useful concept called a loop.
 
 In Line 10 the print() function welcomes the player by name, and tells them that the computer is thinking of a random number.
 
-But wait – doesn’t the print() function takes only one string? It may look like there’s more than one string there, but look at the line carefully. The plus signs concatenate the three strings to evaluate down to one string, and that is the one string the print() function prints. It might look like the commas are separating the strings, but if you look closely you see that the commas are inside the quotes, and part of the strings themselves.
+It may look like there’s more than one string argument in line 10, but look at the line carefully. The plus signs concatenate the three strings to evaluate down to one string. And that is the one string argument passed to the print() function. It might look like the commas are separating the strings, but if you look closely you see that the commas are inside the quotes, and part of the strings themselves.
 
 Line 12 is a while statement, which indicates the beginning of a while loop. Loops let you execute code over and over again. However, you need to learn a few other concepts first before learning about loops. Those concepts are blocks, Booleans, comparison operators, conditions, and the while statement.
 
-Several lines of code can group together in a block. A block of code has the same minimum amount of indentation. You can tell where a block begins and ends by looking at the line's indentation, that is, the number of spaces in front of the line.
+Several lines of code can group together in a block. A block of code has the same minimum amount of indentation. You can tell where a block begins and ends by looking at the line’s indentation, that is, the Snumber of spaces in front of the line.
 
 A block begins when a line’s indentation increases (usually by four spaces). Any following line also indented by four spaces is part of the block. The block ends when there is a line of code with the same indentation before the block started. Blocks can exist within other blocks.
 
 Figure 4-1 is a diagram of the code with the blocks outlined and numbered. The spaces have black squares filled in to make them easier to count.
 
-In Figure 4-1, line 12 has an indentation of zero spaces and isn’t inside any block. Line 13 has an indentation of four spaces. Since this indentation is larger than the previous line's indentation, a new block has started. This block is labeled (1) in Figure 4-1. This block will continue until a line with zero spaces (the original indentation before the block began). Blank lines are ignored.
+In Figure 4-1, line 12 has an indentation of zero spaces and isn’t inside any block. Line 13 has an indentation of four spaces. Since this indentation is larger than the previous line’s indentation, a new block has started. This block is labeled (1) in Figure 4-1. This block will continue until a line with zero spaces (the original indentation before the block began). Blank lines are ignored.
 
 Line 20 has an indentation of eight spaces. Eight spaces is more than four spaces, which starts a new block. This block is labeled (2) in Figure 4-1. This block is inside of another block.
 
@@ -120,6 +106,8 @@ The while statement marks the beginning of a loop. Loops can execute the same co
 
 A while statement always has a colon (the : sign) after the condition.
 
+Figure 4-2: The while loop’s condition.
+
 Figure 4-2 shows how the execution flows depending on the condition. If the condition evaluates to True (which it does the first time, because the value of guessesTaken is 0), execution will enter the while-block at line 13 and keep going down. Once the program reaches the end of the while-block, instead of going down to the next line, the execution loops back up to the while statement’s line (line 12) and re-evaluates the condition. As before, if the condition is True the execution enters the while-block again. Each time the execution goes through the loop is called an iteration.
 
 This is how the loop works. As long as the condition is True, the program keeps executing the code inside the while-block repeatedly until the first time the condition is False. Think of the while statement as saying, “while this condition is true, keep iterating through the code in this block”.
@@ -164,15 +152,11 @@ Line 19 begins an if statement with the keyword, if. Next to the if keyword is t
 
 The if statement works almost the same as a while statement, too. But unlike the while-block, execution doesn’t jump back to the if statement at the end of the if-block. It just continues down to the next line. In other words, if statements won’t loop.
 
-Lines 22 and 25 check if the player’s guess is too big or exactly equal to the secret number.
-
 If the player’s guess is larger than the random integer, the execution enters the if-block that follows the if statement. The print() function call tells the player that their guess is too big.
-
-Leaving Loops Early with the break statement
 
 The if statement on line 25 checks if the guess is equal to the random integer. If it is, the program execution enters the if-block that follows it.
 
-Line 26 is a break statement that tells the program to jump immediately out of the while-block to the first line after the end of the while-block. (The break statement doesn’t bother rechecking the while loop's condition, it just breaks out immediately.)
+Line 26 is a break statement that tells the program to jump immediately out of the while-block to the first line after the end of the while-block. (The break statement doesn’t bother rechecking the while loop’s condition, it just breaks out immediately.)
 
 The break statement is just the break keyword by itself, with no condition or colon.
 
@@ -184,7 +168,7 @@ The remaining lines of code run when the player has finished guessing, either be
 
 Line 28 has no indentation, which means the while-block has ended and this is the first line after the while-block. When the execution left the while-block, we did so either because the while statement’s condition was False (when the player runs out of guesses) or if we executed the break statement (when the player guesses the number correctly). With line 28, check again to see if the player guessed correctly. If so, we enter the if-block that follows.
 
-Lines 29 and 30 are inside the if-block. They only execute if the condition in the if statement on line 28 was True (that is, if the player correctly guessed the computer's number).
+Lines 29 and 30 are inside the if-block. They only execute if the condition in the if statement on line 28 was True (that is, if the player correctly guessed the computer’s number).
 
 In line 29 we call the new function str(), which returns the string form of an argument. We use this function because we want to change the integer value in guessesTaken into its string version because we can only concatenate strings together, not strings and integers.
 
