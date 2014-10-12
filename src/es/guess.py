@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Esta es una conjetura el juego número.
 import random
 
