@@ -98,7 +98,7 @@ def obtenerLaConjetura(alreadyGuessed):
             return guess
 
 def juegueOtraVez():
-    # This function returns True if the player wants to play again, otherwise it returns False.
+    # Esta función devuelve True si el jugador quiere volver a jugar, de lo contrario, devuelve False.
     print('¿Quiere jugar otra vez? (sí o no)')
     return input().lower().startswith('s')
 
@@ -106,7 +106,7 @@ def juegueOtraVez():
 print('V E R D U G O')
 letrasIncorrectas = ''
 letrasCorrectas = ''
-palabraSecreta = obtenerPalabraAlAzar(words)
+palabraSecreta = obtenerPalabraAzar(words)
 juegoTerminó = False
 
 while True:
@@ -142,6 +142,6 @@ while True:
             letrasIncorrectas = ''
             letrasCorrectas = ''
             juegoTerminó = False
-            palabraSecreta = obtenerPalabraAlAzar(words)
+            palabraSecreta = obtenerPalabraAzar(words)
         else:
             break
