@@ -34,3 +34,5 @@ First, thank you for helping with the translation of "Invent with Python". Here 
 3. Save the .py files of the programs with UTF-8 encoding. (This is the default encoding the Python 3 expects source files to be in.)
 
 4. Make notes of any cultural differences that would require more than just a straight translation to the translations/README.txt file.
+
+5. All of the files for a translation go into the translations/<language code> folder. This includes the text files, figure image files, and source code .py files.
