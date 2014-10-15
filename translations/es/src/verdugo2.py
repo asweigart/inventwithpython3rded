@@ -56,12 +56,20 @@ imágenesVerdugo = ['''
  / \  |
       |
 =========''']
-palabras = 'hormiga babuino tejón murciélago oso castor camello gato almeja cobra puma coyote cuervo ciervo perro burro pato águila hurón zorro rana cabra ganso halcón león lagarto llama topo mono alce ratón mula tritón nutria búho panda loro paloma pitón conejo carnero rata cuervo rinoceronte salmón sello tiburón oveja mofeta pereza serpiente araña cigüeña cisne tigre sapo trucha pavo tortuga comadreja ballena lobo wombat cebra'.split()
+palabras = {'Colores':'rojo naranja amarillo verde azul añil violeta blanco negro marrón'.split(),
+'Formas':'cuadrado triángulo rectángulo círculo elipse rombo trapazoid galón pentágono hexágono heptágono octogon'.split(),
+'Frutas':'manzana naranja limón pera sandía pomelo cereza cantalope plátano fresa tomate'.split(),
+'Animales':'murciélago oso castor gato puma cangrejo ciervos perro burro pato águila peces ranas cabra sanguijuela león lagarto mono alces el ratón la nutria el búho panda pitón conejo rata tiburones ovejas mofeta calamar tigre pavo tortuga comadreja ballena lobo wombat cebra'.split()}
 
-def obtenerPalabraAzar(listaPalabras):
-    # Esta función devuelve una cadena aleatoria de la lista aprobada de cadenas.
-    índicePalabra = random.randint(0, len(listaPalabras) - 1)
-    return listaPalabras[índicePalabra]
+def obtenerPalabraAzar(diccionarioPalabra):
+    # This function returns a random string from the passed dictionary of lists of strings, and the key also.
+    # First, randomly select a key from the dictionary:
+    palabrasClave = random.choice(list(diccionarioPalabra.keys()))
+
+    # Second, randomly select a word from the key's list in the dictionary:
+    índicePalabra = random.randint(0, len(diccionarioPalabra[palabrasClave]) - 1)
+
+    return [diccionarioPalabra[palabrasClave][índicePalabra], palabrasClave]
 
 def mostrarLaJunta(imágenesVerdugo, letrasIncorrectas, letrasCorrectas, palabraSecreta):
     print(imágenesVerdugo[len(letrasIncorrectas)])
@@ -106,10 +114,11 @@ def juegueOtraVez():
 print('V E R D U G O')
 letrasIncorrectas = ''
 letrasCorrectas = ''
-palabraSecreta = obtenerPalabraAzar(palabras)
+palabraSecreta, claveSecreta = obtenerPalabraAzar(palabras)
 juegoTerminó = False
 
 while True:
+    print('La palabra secreta es en la categoría: ' + palabrasSecreta)
     mostrarLaJunta(imágenesVerdugo, letrasIncorrectas, letrasCorrectas, palabraSecreta)
 
     # Dejar que el jugador escribe en una letra.
