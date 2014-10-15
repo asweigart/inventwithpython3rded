@@ -1,5 +1,7 @@
 This folder contains translation work of the chapter from the "text" folder. The _example folder shows an example of what types of files are expected for each language translaiton.
 
+A list of translators and their contact information is in the SPECIAL_THANKS_TO.txt file, if you wish to collaborate with others or avoid duplicating work.
+
 Write down any notes for translators about cultural/translation issues they should keep in mind when translating each chapter:
 
 
