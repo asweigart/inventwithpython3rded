@@ -29,10 +29,22 @@ First, thank you for helping with the translation of "Invent with Python". Here 
 
 2. Read the translations/README.txt file to note any special parts of the book
 
-2. Translate the programs first. Do not change the order or position of the code, as that will require tedious updating of line numbers in the book.
+2. Translate the programs first. Do not change the order or position of the code, as that will require tedious updating of line numbers in the book. Long lines of code are fine.
 
 3. Save the .py files of the programs with UTF-8 encoding. (This is the default encoding the Python 3 expects source files to be in.)
 
 4. Make notes of any cultural differences that would require more than just a straight translation to the translations/README.txt file.
 
 5. All of the files for a translation go into the translations/<language code> folder. This includes the text files, figure image files, and source code .py files.
+
+6. Add spaces to line up the columns for tables to make it obvious which text is in which cell. For example:
+
+Table 2-1: The various math operators in Python.
+Operator      Operation
++             addition
+-             subtraction
+*             multiplication
+/             division
+
+7. Translations for text in the figure images can go in the *_chapterN.figures.txt file. Not all chapters have figures, and not all figures have text that needs to be translated.
+
