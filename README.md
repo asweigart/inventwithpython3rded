@@ -18,7 +18,7 @@ As the copyright holder, I commercially sell "Invent with Python" on Amazon. I a
 
 I make similar donations to the EFF, Tor Project, and Creative Commons nonprofits from sales of my other book, "Hacking Secret Ciphers with Python". I publicly post an accounting of these donations at http://inventwithpython.com/hacking/proceeds/
 
-All translators will get attribution credit in the book and on the website.
+All translators will get attribution credit on the book cover, in the PDF, and on the website.
 
 I appreciate the efforts of the translators to bring programming knowledge outside of the English-speaking world. I want them to know that I do not plan to personally profit off of their labor.
 
@@ -39,14 +39,7 @@ First, thank you for helping with the translation of "Invent with Python". Here 
 
 5. All of the files for a translation go into the translations/<language code> folder. This includes the text files, figure image files, and source code .py files.
 
-6. Add spaces to line up the columns for tables to make it obvious which text is in which cell. For example:
-
-Table 2-1: The various math operators in Python.
-Operator      Operation
-+             addition
--             subtraction
-*             multiplication
-/             division
+6. Add spaces to line up the columns for tables to make it obvious which text is in which cell.
 
 7. Translations for text in the figure images can go in the *_chapterN.figures.txt file. Not all chapters have figures, and not all figures have text that needs to be translated.
 
