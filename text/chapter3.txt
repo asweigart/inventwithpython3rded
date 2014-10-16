@@ -1,6 +1,9 @@
     Chapter 3
+
     WRITING PROGRAMS
+
 Topics Covered In This Chapter:
+
 •   Flow of execution
 •   Strings
 •   String concatenation
@@ -12,15 +15,23 @@ Topics Covered In This Chapter:
 •   Comments
 •   Capitalizing variables
 •   Case-sensitivity
-That’s enough of integers and math for now. Python is more than just a calculator. Now let’s see what Python can do with text. In this chapter, you’ll learn how to store text in variables, combine text together, and display them on the screen. Almost all programs use text to display information to the user, and the user will enter text into your programs through the keyboard. You’ll also make your first program, which displays the greeting, “Hello World!” and asks for your name.
+
+That’s enough math for now. Python is more than just a calculator. Now let’s see what Python can do with text. In this chapter, you’ll learn how to store text in variables, combine text together, and display text on the screen. Almost all programs display text to the user, and the user enters text into your programs through the keyboard. You’ll also make your first program. This program displays the greeting, “Hello World!” and asks for your name.
+
 Strings
-In Python, text values are called strings. You can store string values inside variables just like you can with number values. The text of a string value is in between two single quotes ('), like this:
+
+In Python, text values are called strings. Strings values can be used just like integer or float values. You can store strings in variables. In code, string values start and end with a single quote ('). Try entering this code into the interactive shells:
+
 >>> spam = 'hello'
-The single quotes are there only to tell Python where the string begins and ends. They are not part of the string value. Now, if you type spam into the interactive shell, you should see the contents of the spam variable (the 'hello' string.) This is because Python will evaluate a variable to the value stored inside the variable (in this case, the string 'Hello').
+
+The single quotes tell Python where the string begins and ends. They are not part of the string value. Now, if you type spam into the interactive shell, you will see the contents of the spam variable (the 'hello' string.) Remember, Python evaluates variables to the value stored inside the variable. In this case, this is the string 'Hello':
+
 >>> spam = 'hello'
 >>> spam
 'hello'
-Strings can have almost any keyboard character in them. (Strings can’t have single quotes inside of them without using escape characters. The section describing escape characters is later.) These are all examples of strings:
+
+Strings can have any keyboard character in them. These are all examples of strings:
+
 'hello'
 'Hi there!'
 'KITTENS'
@@ -28,51 +39,91 @@ Strings can have almost any keyboard character in them. (Strings can’t have si
 'Anything not pertaining to elephants is irrelephant.'
 'A long time ago in a galaxy far, far away...'
 'O*&#wY%*&OCfsdYO*&gfC%YO*&%3yc8r2'
-As we did with numerical values in the previous chapter, we can also combine string values together with operators to make expressions.
+
+String values can combine with operators to make expressions, just like integers and floats do.
+
 String Concatenation
-An expression can be made up of two string values combined with the + operator. This is string concatenation. Try entering 'Hello' + 'World!' into the interactive shell:
+
+Try combining two strings with the + operator. This is string concatenation. Try entering 'Hello' + 'World!' into the interactive shell:
+
 >>> 'Hello' + 'World!'
 'HelloWorld!'
+
 The expression evaluates to a single string value, 'HelloWorld!'. To keep the words separate, put a space at the end of the 'Hello' string, before the single quote, like this:
+
 >>> 'Hello ' + 'World!'
 'Hello World!'
-The + operator works differently on string and integer values because they are values of different data types. All values have a data type. The data type of the value 'Hello' is a string. The data type of the value 5 is an integer. The data type of the data that tells Python what kind of data the value is, and what operators should do when evaluating expressions. The + operator will concatenate two string values but add two integer (or float) values.
-Writing Programs in IDLE's File Editor
-Until now we have been typing instructions one at a time into the interactive shell. When we write programs though, we type in several instructions and have them run all at once. Let’s write our first program!
-The name of the program that provides the interactive shell is IDLE, the Interactive DeveLopement Environment. IDLE also has another part called the file editor.
-Click on the File menu at the top of the Python Shell window, and select New Window. A new blank window will appear for us to type our program in. This window is the file editor.
+
+The + operator works differently on string and integer values because they are different data types. All values have a data type. The data type of the value 'Hello' is a string. The data type of the value 5 is an integer. The data type tells Python what operators should do when evaluating expressions. The + operator will concatenate two string values but add two integer (or float) values.
+
+Writing Programs in IDLE’s File Editor
+
+Until now, you’ve been typing instructions into IDLE’s interactive shell one at a time. When you write programs though, you type in several instructions and have them run all at once. Let’s write your first program!
+
+IDLE has another part called the file editor. Click on the File menu at the top of the Python Shell window. Then select New Window. A blank window will appear for you to type your program’s code into.
+
+
 
 Figure 3-1: The file editor window.
+
+The two windows look similar, but just remember this: The interactive shell window will have the >>> prompt. The file editor window will not.
+
 Hello World!
+
 It’s traditional for programmers to make their first program display “Hello world!” on the screen. You’ll create your own Hello World program now.
-When you enter your program, don’t enter the numbers at the left side of the code. They’re there so we can refer to each line by number in our explanation. If you look at the bottom-right corner of the file editor window, it will tell you what line the blinking cursor is on currently.
+
+When you enter your program, don’t enter the numbers at the left side of the code. They’re there so this book can refer to code by line number. The bottom-right corner of the file editor window will tell you where the blinking cursor is. Figure 3-2 shows an example of where the cursor is according to the text in the corner.
+
+
 
 Figure 3-2: The bottom right of the file editor window tells you what line the cursor is on.
-Enter the following text into the new file editor window. We call this text the program’s source code because it contains the instructions Python will follow to determine exactly how the program should behave. (Remember, don’t type in the line numbers!)
-IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
+
 hello.py
-This code can be downloaded from http://invpy.com/hello.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/hello.
+
+Enter the following text into the new file editor window. This is the program’s source code. It contains the instructions Python will follow when the program is run. (Remember, don’t type in the line numbers!)
+
+IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
+
 1. # This program says hello and asks for my name.
 2. print('Hello world!')
 3. print('What is your name?')
 4. myName = input()
 5. print('It is good to meet you, ' + myName)
-The IDLE program will give different types of instructions different colors. After you are done typing this code in, the window should look like this:
+
+The IDLE program will write different types of instructions with different colors. After you’re done typing the code, the window should look like this:
+
+
 
 Figure 3-3: The file editor window will look like this after you type in the code.
+
 Saving Your Program
-Once you’ve entered your source code, save it by choosing the File menu at the top of the File Editor window, and then click on Save As. The Save As window that looks like Figure 3-4 will open. Enter hello.py in the File name text field then click Save. Or press Ctrl-S to save with a keyboard shortcut.
+
+Once you’ve entered your source code, save it by clicking the File menu at the top of the File Editor window. Then click on Save As. Figure 3-4 shows the Save As window that will open. Enter hello.py in the File name text field then click Save. Or press Ctrl-S to save with a keyboard shortcut.
+
+
 
 Figure 3-4: Saving the program.
+
 You should save your programs while you type them. That way, if the computer crashes or you accidentally exit from IDLE you won’t lose much work.
+
 Opening The Programs You’ve Saved
-To load a saved program, choose File ► Open. Do that now, and in the window that appears choose hello.py and press the Open button. Your saved hello.py program should open in the File Editor window.
-Now it’s time to run our program. From the File menu, choose Run ► Run Module or just press the F5 key on your keyboard. Your program should run in the interactive shell window that appeared when you first started IDLE. Remember, you have to press F5 from the file editor's window, not the interactive shell's window.
-When your program asks for your name, go ahead and enter it as shown in Figure 3-5:
+
+To load a saved program, click File ► Open. Choose hello.py in the window that appears and click the Open button. Your saved hello.py program will open in the File Editor window.
+
+Now it’s time to run the program. Click File ► Run ► Run Module or just press F5 from the file editor window. Your program will run in the interactive shell window.
+
+Enter your name when the program asks for it. This will look like Figure 3-5:
+
+
 
 Figure 3-5: The interactive shell after running hello.py.
-Now, when you push ENTER, the program should greet you (the user) by name. Congratulations! You’ve written your first program and are now a computer programmer. You can run this program again if you like by pressing F5 in the file editor window.
+
+When you type your name and push ENTER, the program will greet you by name. Congratulations! You’ve written your first program and are now a computer programmer. Press F5 again and enter another name.
+
+If you got an error, compare your code to this book’s code with the online diff tool at http://invpy.com/diff/hello.
+
 If you get an error that looks like this:
+
 Hello world!
 What is your name?
 Albert
@@ -81,60 +132,105 @@ Traceback (most recent call last):
     myName = input()
   File "<string>", line 1, in <module>
 NameError: name 'Albert' is not defined
-...then this means you are running the program with Python 2, instead of Python 3. Install a version of Python 3 and re-run the program with it.
+
+...then this means you are using Python 2, instead of Python 3. Install a version of Python 3 from http://python.org. Then, re-run the program with Python 3.
+
 How the “Hello World” Program Works
-Each line that you entered is an instruction interpreted by Python in a way that the computer will understand. A computer program is a lot like a recipe. Do the first step first, then the second, and so on until you reach the end. Each instruction executes in order, beginning from the top of the program and working down the list of instructions. After the program executes the first line of instructions, it moves on and executes the second line, then the third, and so on.
-The program’s following of instructions step-by-step is the flow of execution, or just the execution for short. It is common to say that the program’s execution moves through the lines of code as they are executed.
-Take a look at our program’s lines of code to see what it’s doing, beginning with line number 1.
+
+Each line of code is an instruction interpreted by Python. These instructions make up the program. A computer program’s instructions is like the steps in a cake recipe. Each instruction executes in order, beginning from the top of the program and working down the list of instructions.
+
+What step Python is in the program’s recipe is called the flow of execution, or just the execution for short. When the program starts, the execution is at the first line. Then it goes down to the next instruction.
+
+Let’s look at each line of code to see what it’s doing. We’ll begin with line number 1.
+
 Comments
+
 1. # This program says hello and asks for my name.
-This line is a comment. Any text following a # sign (called the pound sign) is a comment. Comments are not for the Python, but for you, the programmer. Python ignores them. Comments are notes about what the code does for you or any other programmer who is examining the source code. To make it easier to read the source code, this book prints comments in a light gray-colored text.
+
+This line is a comment. Any text following a # sign (called the pound sign) is a comment. Comments are not for the Python, but for you, the programmer. Python ignores comments. Comments are notes about what the code does for you or any other programmer who is examining the source code. To make it easier to read the source code, this book prints comments in a light gray-colored text.
+
 Programmers usually put a comment at the top of their code to give their program a title. The IDLE program displays comments in red text to help them stand out.
+
 Functions
-A function is kind of like a mini-program inside your program. It contains instructions to execute when the function is called. Python provides some built-in functions that we can use. The great thing about functions is that we only need to know what the function does, but not how it does it. (For example, you need to know that the print() function prints text on the screen, but you don’t need to know how it does this.)
-A function call is a piece of code that tells our program to run the code inside a function. For example, your program can call the print() function whenever you want to display a string on the screen. The print() function takes the string you type in between the parentheses as input and displays the text on the screen. In order to display Hello world! on the screen, type the print function name, followed by an opening parenthesis, followed by the 'Hello world!' string and a closing parenthesis.
+
+A function is kind of like a mini-program inside your program. It contains instructions to execute when the function is called. Python provides some built-in functions already. Two functions, print() and input(), are described next. The great thing about functions is that you only need to know what the function does, but not how it does it.
+
+A function call is a piece of code that tells Python to run the code inside a function. For example, your program calls the print() function to display a string on the screen. The print() function takes the string you type in between the parentheses as input and displays the text on the screen. In order to display Hello world! on the screen, type the print function name, followed by an opening parenthesis, followed by the 'Hello world!' string and a closing parenthesis.
+
 The print() function
+
 2. print('Hello world!')
 3. print('What is your name?')
-This line is a call to the print() function (with the string to be printed going inside the parentheses). A value between the parentheses in a function call is an argument. This is passing the argument to the print() function.
-In this book the end of function names have parentheses to make it clear that we’re referring to a function named print(), not a variable named print. The parentheses at the end of the function let us know we are talking about a function, much like the quotes around the number '42' tell us that we are talking about the string '42' and not the integer 42.
-Line 3 is another print() function call. This call makes Python print, “What is your name?”
+
+Lines 2 and 3 are calls to the print() function. A value between the parentheses in a function call is an argument. The argument on line 2’s print() function call is 'Hello world!'. The argument on line 3’s print() function call is 'What is your name?'. This is called passing the argument to the print() function.
+
+In this book function names have parentheses at the end. This makes it clear that the book means a function named print(), not a variable named print. This is like the quotes around the number '42' tell Python that you are talking about the string '42' and not the integer 42.
+
 The input() function
+
 4. myName = input()
-This line has an assignment statement with a variable (myName) and a function call (input()). When input() is called, the program waits for input; for the user to enter text. The text string that the user enters (your name) becomes the function's output value.
-Like expressions, function calls evaluate to a single value. The value that the function call evaluates to is the return value. (In fact, we can also use the word “returns” to mean the same thing as “evaluates”.) In this case, the return value of the input() function is the string that the user typed in-their name. If the user typed in Albert, the input() function call evaluates to the string 'Albert' , making the assignment statement look like this:
+
+This line has an assignment statement with a variable (myName) and a function call (input()). When input() is called, the program waits for the user to enter text. The text string that the user enters becomes the value that the function call evaluates to. Function calls can be used in expressions anywhere a value can be used.
+
+The value that the function call evaluates to is the return value. (In fact, “the value a function call returns” means the same thing as “the value a function call evaluates to”.) In this case, the return value of the input() function is the string that the user typed in-their name. If the user typed in “Albert”, the input() function call evaluates to the string 'Albert'. This evaluation looks like this:
+
 myName = input()
             ▼
 myName = 'Albert'
+
+This is how the string value 'Albert' gets stored in the myName variable.
+
 Using Expressions in Function Calls
+
 5. print('It is good to meet you, ' + myName)
-The last line is another print() function call. This time, the expression 'It is good to meet you, ' + myName is passed to print(). However, arguments are always single values. Python will evaluate this expression and then pass the value as the argument. If the user typed “Albert”, this line of code evaluates like this:
+
+The last line is another print() function call. The expression 'It is good to meet you, ' + myName is passed to print(). However, arguments are always single values. Python will first evaluate this expression and then pass the value as the argument. If 'Albert' is stored in myName, the evaluation looks like this:
+
 print('It is good to meet you, ' + myName)
                          ▼
 print('It is good to meet you, ' + 'Albert')
                          ▼
 print('It is good to meet you, Albert')
-This is how the program greets the user by the name they typed in.
+
+This is how the program greets the user by name.
+
 Ending the Program
-Once the program executes the last line, it terminates or exits and stops running. Python forgets all of the variables, including the string stored in myName. If you run the program again with a different name, the program will think that’s your name.
+
+Once the program executes the last line, it terminates or exits. This means the program stops running. Python forgets all of the variables, including the string stored in myName. If you run the program again with a different name, the program will think that different string is your name.
+
 Hello world!
 What is your name?
 Carolyn
 It is good to meet you, Carolyn
-Remember, the computer only does exactly what you program it to do. Computers are dumb. The program doesn’t care if you type in your name, someone else's name, or just something silly. You can type in anything you want and the computer will treat it the same way:
+
+Remember, the computer does exactly what you program it to do. Computers are dumb. The computer doesn’t care if you type in your name, someone else’s name, or just something silly. Type in anything you want. The computer will treat it the same way:
+
 Hello world!
 What is your name?
 poop
 It is good to meet you, poop
+
 Variable Names
-Python doesn’t care what you name your variables, but you should. Giving variables descriptive names makes it easier to understand what a program does. Imagine if you were moving and all of your moving boxes were labeled “Stuff”. That wouldn’t be helpful at all!
-Instead of myName, we could have called this variable abrahamLincoln or nAmE. The computer will run the program the same (as long as you consistently use abrahamLincoln or nAmE).
-Variable names (as well as everything else in Python) are case-sensitive. Case-sensitive means the same variable name in a different case is considered an entirely separate variable name. So spam, SPAM, Spam, and sPAM are considered four different variables in Python. They each can contain their own separate values.
+
+Giving variables descriptive names makes it easier to understand what a program does. Imagine if you were moving to a new house and you labeled every moving box “Stuff”. That wouldn’t be helpful at all!
+
+Instead of myName, you could have called this variable abrahamLincoln or nAmE. Python doesn’t care. It will run the program just the same.
+
+Variable names are case-sensitive. Case-sensitive means the same variable name in a different case is a different variable. So spam, SPAM, Spam, and sPAM are four different variables in Python. They each contain their own separate values.
+
 It’s a bad idea to have differently cased variables in your program. If you stored your first name in the variable name and your last name in the variable NAME, it would be confusing when you read your code weeks after you first wrote it. Did name mean first and NAME mean last, or the other way around?
-If you accidentally switch the name and NAME variables, then your program will still run (that is, it won't have any syntax errors) but it will run incorrectly. This type of flaw in your code is called a bug. It is common to accidentally make bugs in your programs while you write them. This is why it is important that the variable names you choose make sense.
-Capitalizing each word after the first in variable names makes the name easier to read. If you store a string of what you had for breakfast in a variable, the variable name whatIHadForBreakfastThisMorning is much easier to read than whatihadforbreakfastthismorning (although a short name like todaysBreakfast is even better). This is a convention: an optional but standard way of doing things) in Python programming.
-This book commonly uses variable names like spam, eggs, ham, and bacon for its examples. This is because the variable names in these examples don’t matter. However, the programs in this book all use descriptive names.
+
+Variable names are usually lowercase. If there is more than one word in the variable name, capitalize each word after the first. This makes your code more readable. For example, the variable name whatIHadForBreakfastThisMorning is much easier to read than whatihadforbreakfastthismorning. This is a convention: an optional but standard way of doing things) in Python programming.
+
+This book’s interactive shell examples use variable names like spam, eggs, ham, and bacon. This is because the variable names in these examples don’t matter. However, this book’s programs all use descriptive names. Your programs should also use descriptive variable names.
+
 Summary
-Now that you’ve learned how to deal with text, you can start making programs that interact with users. This is important because text is the main way the user and the computer will communicate with each other. The user will enter text to the program through the keyboard with the input() function, and the computer will display text on the screen with the print() function.
-Strings are just a different data type that we can use in our programs. The + operator can concatenate strings together. Using the + operator to concatenate two strings together to form a new string is just like using the + operator to add two integers to form a new integer (the sum): both are expressions that evaluate to a single new value.
-In the next chapter, you’ll learn more about variables so that your program will remember the text and numbers the user enters into the program. Once you’ve learned how to use text, numbers, and variables, you’ll be ready to start creating games. 
+
+Once you learn about strings and functions, you can start making programs that interact with users. This is important because text is the main way the user and the computer will communicate with each other. The user enters text through the keyboard with the input() function, and the computer will display text on the screen with the print() function.
+
+Strings are just values of a new data type. All values have a data type, and there are many data types in Python. The + operator can concatenate strings together.
+
+Variables let you remember values to use in later parts of the program. Functions are used to carry out some complicated instruction as part of your program. Python has many built-in functions that you’ll learn about in this book. Variables and function calls can be used in expressions anywhere a value is used.
+
+The instruction in your program that Python is currently following is the execution. In the next chapter, you’ll learn more about making the execution move in ways other than just straight down the program. Once you learn this, you’ll be ready to create games.
+
