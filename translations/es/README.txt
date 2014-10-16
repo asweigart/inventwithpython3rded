@@ -1,1 +1,0 @@
-It is recommended to follow the general vocabulary style of this tutorial: http://docs.python.org.ar/tutorial/
