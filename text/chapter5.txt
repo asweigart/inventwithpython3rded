@@ -97,12 +97,12 @@ He flew away in a green\teal helicopter.
 Table 5-1 is a list of escape characters in Python.
 
 Table 5-1: Escape Characters
-Escape Character    What Is Actually Printed
-\\  Backslash (\)
-\'  Single quote (')
-\"  Double quote (")
-\n  Newline
-\t  Tab
+Escape Character        What Is Actually Printed
+\\                      Backslash (\)
+\'                      Single quote (')
+\"                      Double quote (")
+\n                      Newline
+\t                      Tab
 
 
 

@@ -25,11 +25,11 @@ Figure 2-1: Enter 2+2 into the interactive shell.
 This math problem is a simple programming instruction. The + sign tells the computer to add the numbers 2 and 2. Table 2-1 lists the other math symbols available in Python. The - sign will subtract numbers. The * asterisk will multiply numbers. The / slash will divide numbers.
 
 Table 2-1: The various math operators in Python.
-Operator  Operation
-+ addition
-- subtraction
-* multiplication
-/ division
+Operator      Operation
++             addition
+-             subtraction
+*             multiplication
+/             division
 
 
 

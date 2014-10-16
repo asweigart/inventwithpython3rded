@@ -210,21 +210,21 @@ Truth Tables
 If you ever forget how the Boolean operators work, you can look at these charts, which are called truth tables:
 
 Table 6-1: The and operator's truth table.
-A   and B   is  Entire statement
-True    and True    is  True
-True    and False   is  False
-False   and True    is  False
-False   and False   is  False
+A       and     B       is  Entire statement
+True    and     True    is  True
+True    and     False   is  False
+False   and     True    is  False
+False   and     False   is  False
 
 Table 6-2: The or operator's truth table.
-A   or  B   is  Entire statement
+A       or  B       is  Entire statement
 True    or  True    is  True
 True    or  False   is  True
 False   or  True    is  True
 False   or  False   is  False
 
 Table 6-3: The not operator's truth table.
-not A   is  Entire statement
+not A       is  Entire statement
 not True    is  False
 not False   is  True
 Getting the Player's Input

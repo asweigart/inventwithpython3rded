@@ -214,13 +214,13 @@ The expression that follows the while keyword (the guessesTaken < 6 part) contai
 Comparison operators compare two values and evaluate to a True or False Boolean value. A list of all the comparison operators is in Table 4-1.
 
 Table 4-1: Comparison operators.
-Operator Sign   Operator Name
-<   Less than
->   Greater than
-<=  Less than or equal to
->=  Greater than or equal to
-==  Equal to
-!=  Not equal to
+Operator Sign       Operator Name
+<                   Less than
+>                   Greater than
+<=                  Less than or equal to
+>=                  Greater than or equal to
+==                  Equal to
+!=                  Not equal to
 
 You’ve already read about the +, -, *, and / math operators. Like any operator, the comparison operators combine with values to form expressions such as guessesTaken < 6.
 
