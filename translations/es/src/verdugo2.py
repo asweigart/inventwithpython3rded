@@ -71,6 +71,7 @@ def obtenerPalabraAzar(diccionarioPalabra):
 
     return [diccionarioPalabra[palabrasClave][índicePalabra], palabrasClave]
 
+
 def mostrarLaJunta(imágenesVerdugo, letrasIncorrectas, letrasCorrectas, palabraSecreta):
     print(imágenesVerdugo[len(letrasIncorrectas)])
     print()

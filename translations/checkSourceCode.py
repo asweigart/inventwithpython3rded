@@ -51,6 +51,8 @@ def getAspects(filename):
 
         for functionAspect in FUNCTION_ASPECTS:
             if functionAspect + '(' in line:
+                if 'Word(' in line:
+                    continue # hack
                 aspects['function'].append(functionAspect)
 
         for anyAspect in ANY_ASPECTS:
@@ -80,17 +82,20 @@ class TestSpanish(unittest.TestCase):
     def _compareTwoPrograms(self, origProgram, lang, translatedProgram):
         translatedAspects = getAspects(os.path.join(lang, 'src', translatedProgram + '.py'))
         for line in ORIG[origProgram].keys():
-            self.assertEqual((line, ORIG[origProgram][line]['blank']), (line, translatedAspects[line]['blank']))
-            self.assertEqual((line, ORIG[origProgram][line]['whole']), (line, translatedAspects[line]['whole']))
-            self.assertEqual((line, ORIG[origProgram][line]['function']), (line, translatedAspects[line]['function']))
-            self.assertEqual((line, ORIG[origProgram][line]['any']), (line, translatedAspects[line]['any']))
+            stamp = (translatedProgram, line)
+            self.assertEqual((stamp, ORIG[origProgram][line]['blank']), (stamp, translatedAspects[line]['blank']))
+            self.assertEqual((stamp, ORIG[origProgram][line]['whole']), (stamp, translatedAspects[line]['whole']))
+            self.assertEqual((stamp, ORIG[origProgram][line]['function']), (stamp, translatedAspects[line]['function']))
+            self.assertEqual((stamp, ORIG[origProgram][line]['any']), (stamp, translatedAspects[line]['any']))
 
 
     def test_programs(self):
         LANG = 'es'
         programs = {'hello': 'hola',
                     'guess': 'adivinaElNúmero',
-                    'dragon': 'dragón'}
+                    'dragon': 'dragón',
+                    'hangman': 'verdugo',
+                    'hangman2': 'verdugo2',}
 
         for original, translated in programs.items():
             self._compareTwoPrograms(original, LANG, translated)
