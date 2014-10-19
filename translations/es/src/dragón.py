@@ -1,45 +1,45 @@
 import random
 import time
 
-def introdPantalla():
-    print('Delante de usted, usted ve a dos cuevas. En una cueva,')
-    print('usted ve a dos cuevas. En una cueva, el dragón es amable')
-    print('y compartir su tesoro con usted. El otro dragón')
-    print('es codicioso y hambriento, y te comer en la vista.')
+def mostrarIntroducción():
+    print('Estás en una tierra llena de dragones. Frente a tí')
+    print('hay dos cuevas. En una de ellas, el dragón es generoso y amigable')
+    print('y compartirá su tesoro contigo. El otro dragón')
+    print('es codicioso y está hambriento, y te devorará inmediatamente.')
     print()
 
-def elijaCueva():
+def elegirCueva():
     cueva = ''
     while cueva != '1' and cueva != '2':
-        print('¿Qué cueva va a entrar en? (1 o 2)')
+        print('¿En qué cueva quieres entrar? (1 ó 2)')
         cueva = input()
 
     return cueva
 
-def examineCueva(cuevaSeleccionado):
-    print('Usted acerca a la cueva...')
+def explorarCueva(cuevaElegida):
+    print('Te aproximas a la cueva...')
     time.sleep(2)
     print('Es oscura y espeluznante...')
     time.sleep(2)
-    print('Un gran dragón salta delante de usted! Él abre sus fauces y...')
+    print('¡Un gran dragon aparece súbitamente frente a tí! Abre sus fauces y...')
     print()
     time.sleep(2)
 
-    amableCueva = random.randint(1, 2)
+    cuevaAmigable = random.randint(1, 2)
 
-    if cuevaSeleccionado == str(amableCueva):
-         print('Él le da su tesoro!')
+    if cuevaElegida == str(cuevaAmigable):
+         print('¡Te da su tesoro!')
     else:
-         print('Él te engulle en un bocado!')
+         print('¡Te engulle de un bocado!')
 
 jugarDeNuevo = 'sí'
 while jugarDeNuevo == 'sí' or jugarDeNuevo == 's':
 
-    introdPantalla()
+    mostrarIntroducción()
 
-    númeroCueva = elijaCueva()
+    númeroDeCueva = elegirCueva()
 
-    examineCueva(númeroCueva)
+    explorarCueva(númeroDeCueva)
 
     print('¿Quieres jugar otra vez? (sí or no)')
     jugarDeNuevo = input()
