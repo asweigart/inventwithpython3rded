@@ -43,3 +43,9 @@ First, thank you for helping with the translation of "Invent with Python". Here 
 
 7. Translations for text in the figure images can go in the *_chapterN.figures.txt file. Not all chapters have figures, and not all figures have text that needs to be translated.
 
+Special Thanks
+==============
+
+Here is an inevitably incomplete list of MUCH-APPRECIATED CONTRIBUTORS -- people who have submitted patches, reported bugs, added translations, helped answer newbie questions, and generally made Invent Your Own Computer Games with Python that much better:
+
+Alfredo Carella https://github.com/alfredocarella
