@@ -14,23 +14,29 @@ Finding bugs in a program can be hard, if you even notice them at all! When runn
 
 In fact, from the interactive shell, go ahead and create an infinite loop by typing this code in (you have to type Enter twice to let the interactive shell know you are done typing in code for the loop):
 
-Now press and hold down the Ctrl key and press the C key to stop the program. The interactive shell will look like this:
-
 It can be hard to figure out how your code could be causing a bug.  The lines of code get executed quickly and the values in variables change so often. A debugger is a program that lets you step through your code one line at a time in the same order that Python executes them. The debugger also shows you what values are stored in variables at each step.
 
 A video tutorial on using the debugger that comes with IDLE can be found on this book’s website at http://invpy.com/videos
 
-In IDLE, go ahead and open the Dragon Realm game you made in the last chapter. In the interactive shell, click on File and then Open, and then select dragon.py (or whatever you named the file when you saved it).
+Starting the Debugger
+
+In IDLE, open the Dragon Realm game you made in the last chapter. In the interactive shell, click on File and then Open, and then select dragon.py (or whatever you named the file when you saved it).
 
 After opening the dragon.py file, click on the Debug ► Debugger to make the Debug Control window appear (Figure 7-1).
 
-Now when you run the Dragon Realm game (by pressing F5 or clicking Run ► Run Module in the file editor window's top menu), the debugger program will be activated. This is called running a program “under a debugger”. In the Debug Control window, check the Source and Globals checkboxes. Then run the program by pressing F5 in the file editor window (Figure 7-2).
 
-When you run Python programs with the debugger activated, the program will stop before it executes the first line of code. If you click on the file editor window's title bar (and you’ve checked the Source checkbox in the Debug Control window), the first line of code is highlighted in gray. Also, the Debug Control window shows you are on line 1, which is the import random line.
 
-The debugger lets you execute one line or code at a time (called “stepping”). To execute a single instruction, click the Step button in the Debug Window. Go ahead and click the Step button once. This will cause the Python interpreter to execute the import random instruction, and then stop before it executes the next instruction. The Debug Control window will change to show you are now on line 2, the import time line.
+Now when you run the Dragon Realm game by pressing F5, IDLE’s debugger will activate. This is called running a program “under a debugger”. In the Debug Control window, check the Source and Globals checkboxes.
 
-Here is a summary of what happens when you click the Step button when you run the Dragon Realm game under a debugger.
+ co
+
+When you run Python programs with the debugger activated, the program will stop before it executes the first line of code. If you click on the file editor window's title bar (and you’ve checked the Source checkbox in the Debug Control window), the first line of code is highlighted in gray. The Debug Control window shows the execution is on line 1, which is the import random line.
+
+Stepping
+
+The debugger lets you execute one line of code at a time, called stepping. To execute a single instruction, click the Step button in the Debug Window. Go ahead and do this now. Python will execute the import random instruction, and then stop before it executes the next instruction. The Debug Control window will show that the execution is now on line 2, the import time line. Click the Quit button to terminate the program for now.
+
+Here is a summary of what happens when you click the Step button when you run the Dragon Realm game under a debugger. Press F5 to start running Dragon Realm again, then follow these instructions:
 
 1.  Click the Step button twice to run the two import lines.
 
@@ -40,49 +46,45 @@ Here is a summary of what happens when you click the Step button when you run th
 
 4.  Click Go to run the rest of the program, or click Quit to terminate the program.
 
-Stepping is the process of executing one instruction of the program at a time. Doing this lets you see what happens after running a single line of code, which can help you figure out where a bug first appears in your programs.
+The Debug Control window will show you what line is about to be executed when you click the Step button in the Debug Control window. The debugger skipped line 3 because it is a blank line. Notice you can only step forward with the debugger, you cannot go backwards.
 
-The Debug Control window will show you what line is about to be executed when you click the Step button in the Debug Control window. This window will also tell you what line number it is on and show you the line of code itself.
+The Globals area in the Debug Control window is where all the global variables are stored. Remember, global variables are the variables that are created outside of any functions (that is, in the global scope).
 
-Click the Step button twice to run the two import lines.
+As the three def statements execute and define functions, they will appear in the Globals area of the Debug Control window.
 
-Click the Step button again to run the import time instruction. The debugger will execute this import statment and then move to line 4. The debugger skipped line 3 because it is a blank line. Notice you can only step forward with the debugger, you cannot go backwards.
+The text next to the function names in the Globals area will look like “<function checkCave at 0x012859B0>“. The module names also have confusing looking text next to them, such as “<module 'random' from 'C:\\Python31\\lib\\random.pyc'>“. This is detailed information is useful to advanced Python programmers, but you don’t need to know what it means to debug your programs. Just seeing that the functions and modules are there in the Global area will tell you if the function has been defined or the module has been imported.
 
-Click the Step button three more times to execute the three def statements.
+You can also ignore the __builtins__, __doc__, and __name__ lines in the Global area. (Those are variables that appear in every Python program.)
 
-Click the Step button three more times. This will execute the three def statements to define these functions. As you define these functions, they will appear in the Globals area of the Debug Control window.
+When the playAgain variable is created it will show up in the Global area. Next to the variable name will be the value stored in it, the string 'yes'. The debugger lets you see the values of all the variables in the program as the run program runs. This is useful for fixing bugs in your programs.
 
-The text next to the function names in the Global area will look like “<function checkCave at 0x012859B0>“. The module names also have confusing looking text next to them, such as “<module 'random' from 'C:\\Python31\\lib\\random.pyc'>“. This is detailed information is useful to advanced Python programmers, but you don’t need to know what it means to debug your programs. Just seeing that the functions and modules are there in the Global area will tell you if the function has been defined or the module has been imported. You can also ignore the __builtins__, __doc__, and __name__ lines in the Global area. (Those are variables that appear in every Python program.)
+There is also a Locals area, which shows you the local scope variables and their values. The local area will only have variables in it when the program execution is inside of a function. When the execution is in the global scope, this area is blank.
 
-Click the Step button again to define the playAgain variable.
+If you get tired of clicking the Step button repeatedly and just want the program to run normally, click the Go button at the top of the Debug Control window. This will tell the program to run normally instead of stepping.
 
-The debugger will now be (after clicking Step four times) at line 35, the playAgain = 'yes' line. When you click Step to execute this line, the playAgain variable will be created and will show up in the Global area. Next to it will be the value stored in this variable, which is the string 'yes'. The debugger lets you see the values of all the variables in the program as the run program runs. This can be useful if you need to fix your programs.
-
-The Global area in the Debug Control window is where all the global variables are stored. Remember, global variables are the variables that are created outside of any functions (that is, in the global scope). There is also a Local area, which shows you the local scope variables and their values. The local area will only have variables in it when the program execution is inside of a function. Since we are still in the global scope, this area is blank.
-
-The Python debugger (and almost all debuggers) only lets you step forward in your program. Once you’ve executed an instruction, you cannot step backwards and undo the instruction.
-
-If you get tired of clicking the step button repeatedly, and just want the program to run normally, click the Go button at the top of the Debug Control window. This will tell the program to run as if you didn't have the debugger turned on.
-
-If you ever want to terminate the program while it is running, just click the Quit button at the top of the Debug Control window. The program will exit immediately. This can be handy if you want to stop the program and start debugging it from the beginning again.
+To terminate the program entirely, just click the Quit button at the top of the Debug Control window. The program will exit immediately. This is helpful if you need to start debugging again from the beginning of the program.
 
 Stepping Into, Over, and Out
 
-Start the Dragon Realm program with the debugger, and keep stepping (by clicking the Step button in the Debug Control window) until the debugger is at line 38 (the call to displayIntro() line). When you click Step again, the debugger will jump into this function call and appear on line 5 (the first line in the def-block of the displayIntro() function. The kind of stepping we have been doing is called stepping into, because it will step into function calls.
+Start the Dragon Realm program with the debugger. Keep stepping until the debugger is at line 38. As shown in Figure 7-3, this is the line with displayIntro(). When you click Step again, the debugger will jump into this function call and appear on line 5, the first line in the displayIntro() function. The kind of stepping you have been doing is called stepping into, because the debugger will step into the function when it is called. This is different from stepping over, explained next.
 
-If you click Step a few more times, you’ll see the output of the print() function call appear in the interactive shell window one at a time. When you step over the last print() function call in the displayIntro() function, the debugger will jump back to the first line (line 40) after function call.
+ When the execution is paused at line 5, clicking Step one more time will step into the print() function. The print() function is one of Python’s built-in functions, so it isn’t very useful to step through with the debugger. Python’s own functions such as print(), input(), str(), or random.randint() have been carefully checked for errors. You can assume they’re not the parts causing bugs in your program.
 
-Click Step one more time to step into the chooseCave() function. Keep stepping through the code until you execute the function call input() call. The program will wait until you type a response into the interactive shell, just like when you run the program normally. If you try clicking the Step button now, nothing will happen because the program is waiting for a keyboard response.
+So you don’t want to waste time stepping through the internals of the print() function. So instead of clicking Step to step into the print() function’s code, click Over. This will step over the code inside the print() function. The code inside print() will be executed at normal speed, and then the debugger will pause once the execution returns from print().
 
-Enter a response by clicking back on the interactive shell window and type which cave you want to enter. You have to click on the bottom line in the interactive shell before typing. If you are typing but nothing appears on the screen (and the blinking cursor isn’t below the Which cave will you go into? (1 or 2) text), then you have not clicked on the last line of the interactive shell window.
+Stepping over is a convenient way to skip stepping through code inside a function. The debugger will now be paused at line 40, the line with caveNumber = chooseCave().
 
-Once you press the Enter key to enter your response, the debugger will continue to step lines of code again. Instead of clicking Step, try clicking the Out button on the Debug Control window. This is called stepping out, because it will cause the debugger to step over as many lines as it needs to until it jumps out of the function that it was in. After it jumps out, the execution will be on the line after the line that called the function. For example, if you were inside the displayIntro() function on line 6, clicking Out would have the debugger keep stepping until the function was over and returned to the line after the call to displayIntro(). Stepping out can save you from having to click Step repeatedly to jump out of the function.
+Click Step one more time to step into the chooseCave() function. Keep stepping through the code until line 15, the input() call. The program will wait until you type a response into the interactive shell, just like when you run the program normally. If you try clicking the Step button now, nothing will happen because the program is waiting for a keyboard response.
 
-If you are not inside a function (that is, you are in the global scope) and you click Out, the debugger will execute all the remaining lines in the program (exactly as if you clicked the Go button).
+Click back on the interactive shell window and type which cave you want to enter. The blinking cursor must be on the bottom line in the interactive shell before you can type. Otherwise the text you type will not appear.
 
-The last kind of stepping is done by the Over button in the Debug Control window, and it is for stepping over function calls. Stepping over means that the debugger won’t step into function calls. Instead, the debugger executes all the code inside the function at once and only stop at the line after the function call. This is useful if you do not want to step through every line inside the function. (Think of Stepping Over as the same as Stepping Into and then immediately Stepping Out.)
+Once you press ENTER, the debugger will continue to step lines of code again. Click the Out button on the Debug Control window. This is called stepping out, because it will cause the debugger to step over as many lines as it needs to until execution has returned from the function it is in. After it jumps out, the execution will be on the line after the line that called the function.
 
-You now know what the five buttons at the top of the Debug Control window do. Here's a recap of what each button does:
+For example, clicking Out inside the displayIntro() function on line 6 would step until the function returned to the line after the call to displayIntro(). Stepping out can save you from having to click Step repeatedly to jump out of the function.
+
+If you are not inside a function, clicking Out will cause the debugger will execute all the remaining lines in the program. This is the same behavior as clicking the Go button.
+
+Here's a recap of what each button does:
 
 •   Go - Executes the rest of the code as normal, or until it reaches a break point. (Break points are described later.)
 
@@ -94,59 +96,61 @@ You now know what the five buttons at the top of the Debug Control window do. He
 
 •   Quit - Immediately terminates the program.
 
-Using the debugger is a good way to figure out what is causing bugs in your program. As an example, here is a small program that has a bug in it. The program comes up with a random addition problem for the user to solve. In the interactive shell window, click on File, then New Window to open a new file editor window. Type this program into that window, and save the program as buggy.py.
+The debugger can help you find the cause of bugs in your program. As an example, here is a small program with a bug. The program comes up with a random addition problem for the user to solve. In the interactive shell window, click on File, then New Window to open a new file editor window. Type this program into that window, and save the program as buggy.py.
 
-This program can also be downloaded from http://invpy.com/buggy.py.
+Type the program in exactly as it is above, even if you can already tell what the bug is. Then trying running the program by pressing F5. This is a simple arithmetic quiz that comes up with two random numbers and asks you to add them. Here's what it might look like when you run the program:
 
-Type the program in exactly as it is above, even if you can already tell what the bug is. Then trying running the program by pressing F5. This is a simple arithmetic game that comes up with two random numbers and asks you to add them. Here's what it might look like when you run the program:
+That’s a bug! The program doesn’t crash but it is not working correctly. The program says the user is wrong even if they type the correct answer.
 
-That’s not right! This program has a semantic bug in it. Even if the user types in the correct answer, the program says they are wrong.
+Running the program under a debugger will help find the bug’s cause. At the top of the interactive shell window, click on Debug ► Debugger to display the Debug Control window. In the Debug Control window, check all four checkboxes (Stack, Source, Locals, and Globals). This makes the Debug Control window provide the most information. Then press F5 in the file editor window to run the program. This time it will be run under the debugger.
 
-Looking at code and thinking about where it went wrong works sometimes. But running the program under a debugger will find the bug’s cause sooner. At the top of the interactive shell window, click on Debug ► Debugger (if there is no check already by the Debugger menu item) to display the Debug Control window. In the Debug Control window, make sure the all four checkboxes (Stack, Source, Locals, and Globals) are checked. This makes the Debug Control window provide the most information. Then press F5 in the file editor window to run the program under the debugger.
+The debugger starts at the import random line. Nothing special happens here, so just click Step to execute it. You will see the random module added to the Globals area.
 
-The debugger starts at the import random line. Nothing special happens here, so just click Step to execute it. You should see the random module added to the bottom of the Debug Control window in the Globals area.
+Click Step again to run line 2. A new file editor window will appear with the random.py file. You have stepped inside the randint() function inside the random module. Python’s built-in functions won’t be the source of your bugs, so click Out to step out of the randint() function and back to your program. Then close the random.py file's window.
 
-Click Step again to run line 2. A new file editor window will pop open showing the random.py file. Remember that the randint() function is inside the random module. When you stepped into the function, you stepped into the random module because that is where the randint() function is. The functions that come with Python’s modules almost never have bugs in their code, so you can just click Out to step out of the randint() function and back to your program. After you’ve stepped out, you can close the random module's window.
+Next time, you can click Over to step over the randint() function instead of stepping into it. Line 3 is also a randint() function call. Skip stepping into this code by clicking Over.
 
-Line 3 is also a call to the randint() function. We don’t need to step through this code, so just click Over to step over this function call. The randint() function's code is still executed, it is just executed all at once so that we don’t have to step through it.
+Line 4 is a print() call to show the player the random numbers. You know what numbers the program will print even before it prints them! Just look at the Globals area of the Debug Control window. You can see the number1 and number2 variables, and next to them are the integer values stored in those variables.
 
-Line 4 is a print() call to show the player the random numbers. But since we are using the debugger, we know what numbers the program will print even before it prints them! Just look at the Globals area of the Debug Control window. You can see the number1 and number2 variables, and next to them are the integer values stored in those variables. When I ran the debugger, it looked like Figure 7-4.
+The number1 variable has the value 4 and the number2 variable has the value 8. When you click Step, the program will display the string in the print() call with these values. The str() function will concatenate the string version of these integers. When I ran the debugger, it looked like Figure 7-4. (Your random numbers will probably be different.)
 
-The number1 variable has the value 9 and the number2 variable has the value 10. When you click Step, the program will display the string in the print() call with these values. (Of course, we use the str() function so that we can concatenate the string version of these integers.)
-
-Clicking on Step on line 5 will cause the debugger to wait until the player enters a response. Go ahead and type in the correct answer (in my case, 19) into the interactive shell window. The debugger will resume and move down to line 6.
+Clicking on Step from line 5 will execute input(). The debugger waits until the player enters a response into the program. Enter the correct answer (in my case, 19) into the interactive shell window. The debugger will resume and move down to line 6.
 
 Line 6 is an if statement. The condition is that the value in answer must match the sum of number1 and number2. If the condition is True, then the debugger will move to line 7. If the condition is False, the debugger will move to line 9. Click Step one more time to find out where it goes.
 
-The debugger is now on line 9! What happened? The condition in the if statement must have been False. Take a look at the values for number1, number2, and answer. Notice that number1 and number2 are integers, so their sum would have also been an integer. But answer is a string. That means that the answer == number1 + number2 condition would have evaluated to '19' == 19. A string value and an integer value will always not equal each other, so the condition would have evaluated to False.
+The debugger is now on line 9! What happened? The condition in the if statement must have been False. Take a look at the values for number1, number2, and answer. Notice that number1 and number2 are integers, so their sum would have also been an integer. But answer is a string.
 
-That is the bug in the program. The bug is that we use answer when we should be using int(answer). Go ahead and change line 6 to use int(answer) == number1 + number2 instead of answer == number1 + number2, and run the program again.
+That means that answer == number1 + number2 would have evaluated to '12' == 12. A string value and an integer value will always not equal each other, so the condition evaluated to False.
 
-This time, the program worked correctly. Run it one more time and enter a wrong answer on purpose to make sure the program doesn’t tell us we gave the correct answer. We have now debugged this program. Remember, the computer will run your programs exactly as you type them, even if what you type isn’t what you intend.
+That is the bug in the program. The bug is that we use answer when we should be using int(answer). Change line 6 to use int(answer) == number1 + number2 instead of answer == number1 + number2, and run the program again.
 
-Stepping through the code one line at a time might still be too slow. Often you’ll want the program to run at normal speed until it reaches a certain line. You can do this with break points. A break point is set on a line when you want the debugger to take control once execution reaches that line. So if you think there is a problem with your code on, say, line 17, just set a break point on line 17 (or maybe a few lines before that) and when execution reaches that line, the debugger will stop execution. Then you can step through a few lines to see what is happening. Then you can click Go to let the program execute until it reaches the end (or another break point).
+This time, the program worked correctly. Run it one more time and enter a wrong answer on purpose. This will completely test the program. You’ve now debugged this program! Remember, the computer will run your programs exactly as you type them, even if what you type isn’t what you intend.
 
-To set a break point, right-click on the line you want a break point on and select Set Breakpoint from the menu that appears. The line will be highlighted with yellow to indicate a break point is on that line. You can set break points on as many lines as you want. To remove the break point, click on the line and select Clear Breakpoint from the menu that appears.
+Stepping through the code one line at a time might still be too slow. Often you’ll want the program to run at normal speed until it reaches a certain line. A break point is set on a line when you want the debugger to take control once execution reaches that line. If you think there is a problem with your code on, say, line 17, just set a break point on line 17 (or maybe a few lines before that).
 
-Let’s try debugging a program with break points. Here is a program that simulates coin flips by calling random.randint(0, 1). Each time this function call returns the integer 1, we will consider that “heads” and increment a variable called heads. We will also increment a variable called flips to keep track of how many times we do this “coin flip”.
+When execution reaches that line, the debugger will “break into the debugger”. Then you can step through lines one at a time to see what is happening. Clicking Go will execute the program normally until it reaches another break point or the end of the program.
+
+To set a break point, right-click on the line in the file editor and select Set Breakpoint from the menu that appears. The file editor will highlight that line with yellow. You can set break points on as many lines as you want. To remove the break point, click on the line and select Clear Breakpoint from the menu that appears.
+
+Here is a program that simulates coin flips by calling random.randint(0, 1). The function returning the integer 1 will be “heads” and returning the integer 0 will be “tails”. The  flips variable will track how many coin flips have been done. The heads variable will track how many came up heads.
 
 The program will do “coin flips” one thousand times. This would take a person over an hour to do, but the computer can do it in one second! Type in the following code into the file editor and save it as coinFlips.py. You can also download this code from http://invpy.com/coinFlips.py
 
 If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/coinflips.
 
-The program runs pretty fast. It probably spent more time waiting for the user to press the Enter key than it did doing the coin flips. Let’s say we wanted to see it do coin flips one by one. On the interactive shell's window, click on Debug and then Debugger at the top menu to bring up the Debug Control window. Then press F5 to run the program.
+The program runs pretty fast. It spent more time waiting for the user to press ENTER than doing the coin flips. Let’s say we wanted to see it do coin flips one by one. On the interactive shell's window, click on Debug ► Debugger to bring up the Debug Control window. Then press F5 to run the program.
 
-The program starts in the debugger on line 1. Press Step three times in the Debug Control window to execute the first three lines (that is, lines 1, 2, and 3). You’ll notice the buttons become disabled because the input() function has been called and the interactive shell window is waiting for the player to type something. Click on the interactive shell window and press Enter. (Be sure to click beneath the text in the interactive shell window, otherwise IDLE might not receive your keystrokes.) After entering text for the input() call, the Step buttons will become enabled again.
+The program starts in the debugger on line 1. Press Step three times in the Debug Control window to execute the first three lines (that is, lines 1, 2, and 3). You’ll notice the buttons become disabled because input() was called and the interactive shell window is waiting for the user to type something. Click on the interactive shell window and press ENTER. (Be sure to click beneath the text in the interactive shell window, otherwise IDLE might not receive your keystrokes.)
 
-You can click Step a few more times, but you’ll find that it would take quite a while to get through the entire program. Instead, set a break point on lines 12, 14, and 16 (Figure 7-6).
+You can click Step a few more times, but you’ll find that it would take quite a while to get through the entire program. Instead, set a break point on lines 12, 14, and 16. The file editor will highlight these lines as shown in Figure 7-6.
 
-After setting the breakpoints, click Go in the Debug Control window. The program will run at its normal speed until it reaches the point where flip is set to 100. On that flip, the condition for the if statement on line 13 is True. This causes line 14 (where we have a break point set) to execute, which tells the debugger to stop the program and take over. Look at the Debug Control window in the Globals section to see what the value of flips and heads are.
+After setting the breakpoints, click Go in the Debug Control window. The program will run at normal speed until it reaches the next break point. When flip is set to 100, the condition for the if statement on line 13 is True. This causes line 14 (where we have a break point set) to execute, which tells the debugger to stop the program and take over. Look at the Debug Control window in the Globals section to see what the value of flips and heads are.
 
-Click Go again and the program will continue until it reaches the next break point on line 16. Again, see how the values in flips and heads have changed. You can click Go one more time to continue the execution until it reaches the next break point.
+Click Go again and the program will continue until it reaches the next break point on line 16. Again, see how the values in flips and heads have changed.
 
-And if you click Go again, the execution will continue until the next break point is reached, which is on line 12. You probably noticed that the print() functions on lines 12, 14 and 16 are called in a different order than they appear in the source code. That is because they are called in the order that their if statement’s condition becomes True. Using the debugger can help make it clear why this is.
+If you click Go again, the execution will continue until the next break point is reached, which is on line 12.
 
-Writing programs is only part of the work for making games. The next part is making sure the code we wrote actually works. Debuggers let us step through the code one line at a time, while examining which lines execute (and in what order) and what values the variables contain. When this is too slow, we can set break points and click Go to let the program run normally until it reaches a break point.
+Writing programs is only the first part of programming. The next part is making sure the code you wrote actually works. Debuggers let you step through the code one line at a time. You can examine which lines execute in what order, and what values the variables contain. When this is too slow, you can set break points to stop the debugger only at the lines you want.
 
-Using the debugger is a great way to understand what exactly a program is doing. While this book provides explanations of all the games in it, the debugger can help you find out more on your own.
+Using the debugger is a great way to understand what exactly a program is doing. While this book provides explanations of all the game code in it, the debugger can help you find out more on your own.
 
