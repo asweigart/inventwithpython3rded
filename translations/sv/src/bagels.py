@@ -1,76 +1,76 @@
 import random
-def getSecretNum (numDigits):
-    # Returns a string that is numDigits long, made up of unique random digits.
-    numbers = list(range(10))
-    random.shuffle(numbers)
-    secretNum = ''
-    for i in range(numDigits):
-        secretNum += str(numbers[i])
-    return secretNum
+def hämtaHemligtTal (antalSiffror):
+    # Returnerar en sträng som är antalSiffror lång och som består av unika, framslumpade siffror.
+    siffror = list(range(10))
+    random.shuffle(siffror)
+    hemligtTal = ''
+    for i in range(antalSiffror):
+        hemligtTal += str(siffror[i])
+    return hemligtTal
 
-def getClues(guess, secretNum):
-    # Returns a string with the pico, fermi, bagels clues to the user.
-    if guess == secretNum:
-        return 'You got it!'
+def hämtaLedtrådar(gissning, hemligtTal):
+    # Returnerar en sträng med ledtrådar till användaren.
+    if gissning == hemligtTal:
+        return 'Du kom på det!'
 
-    clue = []
+    ledtråd = []
 
-    for i in range(len(guess)):
-        if guess[i] == secretNum[i]:
-            clue.append('Fermi')
-        elif guess[i] in secretNum:
-            clue.append('Pico')
-    if len(clue) == 0:
+    for i in range(len(gissning)):
+        if gissning[i] == hemligtTal[i]:
+            ledtråd.append('Fermi')
+        elif gissning[i] in hemligtTal:
+            ledtråd.append('Pico')
+    if len(ledtråd) == 0:
         return 'Bagels'
 
-    clue.sort()
-    return ' '.join(clue)
+    ledtråd.sort()
+    return ' '.join(ledtråd)
 
-def isOnlyDigits(num):
-    # Returns True if num is a string made up only of digits. Otherwise returns False.
-    if num == '':
+def ärBaraSiffror(tal):
+    # Returnerar True om tal är en sträng som enbart består av siffror. Annars returneras False.
+    if tal == '':
         return False
 
-    for i in num:
+    for i in tal:
         if i not in '0 1 2 3 4 5 6 7 8 9'.split():
             return False
 
     return True
 
-def playAgain():
-    # This function returns True if the player wants to play again, otherwise it returns False.
-    print('Do you want to play again? (yes or no)')
-    return input().lower().startswith('y')
+def spelaIgen():
+    # Den här funktionen returnerar True om spelaren vill spela igen, annars returnerar den False.
+    print('Vill du spela igen? (ja eller nej)')
+    return input().lower().startswith('j')
 
-NUMDIGITS = 3
-MAXGUESS = 10
+ANTALSIFFROR = 3
+MAX_ANTAL_GISSNINGAR = 10
 
-print('I am thinking of a %s-digit number. Try to guess what it is.' % (NUMDIGITS))
-print('Here are some clues:')
-print('When I say:    That means:')
-print('  Pico         One digit is correct but in the wrong position.')
-print('  Fermi        One digit is correct and in the right position.')
-print('  Bagels       No digit is correct.')
+print('Jag tänker på ett %s-siffrigt tal. Försök att gissa talet.' % (ANTALSIFFROR))
+print('Här får du några ledtrådar:')
+print('När jag säger:    Betyder det:')
+print('  Pico            En siffra är korrekt men på fel position.')
+print('  Fermi           En siffra är korrekt och på rätt position.')
+print('  Bagels          Ingen siffra är korrekt.')
 
 while True:
-    secretNum = getSecretNum(NUMDIGITS)
-    print('I have thought up a number. You have %s guesses to get it.' % (MAXGUESS))
+    hemligtTal = hämtaHemligtTal(ANTALSIFFROR)
+    print('Jag har kommit på ett tal. Du får %s gissningar på dig för att räkna ut det.' % (MAX_ANTAL_GISSNINGAR))
 
-    numGuesses = 1
-    while numGuesses <= MAXGUESS:
-        guess = ''
-        while len(guess) != NUMDIGITS or not isOnlyDigits(guess):
-            print('Guess #%s: ' % (numGuesses))
-            guess = input()
+    antalGissningar = 1
+    while antalGissningar <= MAX_ANTAL_GISSNINGAR:
+        gissning = ''
+        while len(gissning) != ANTALSIFFROR or not ärBaraSiffror(gissning):
+            print('Gissning #%s: ' % (antalGissningar))
+            gissning = input()
 
-        clue = getClues(guess, secretNum)
-        print(clue)
-        numGuesses += 1
+        ledtråd = hämtaLedtrådar(gissning, hemligtTal)
+        print(ledtråd)
+        antalGissningar += 1
 
-        if guess == secretNum:
+        if gissning == hemligtTal:
             break
-        if numGuesses > MAXGUESS:
-            print('You ran out of guesses. The answer was %s.' % (secretNum))
+        if antalGissningar > MAX_ANTAL_GISSNINGAR:
+            print('Du fick slut på gissningar. Svaret var %s.' % (hemligtTal))
 
-    if not playAgain():
+    if not spelaIgen():
         break
