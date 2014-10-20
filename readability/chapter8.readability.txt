@@ -1,35 +1,35 @@
 readability grades:
-    Kincaid:                    11.12
-    ARI:                        15.25
-    Coleman-Liau:                8.4
-    FleschReadingEase:          74.37
-    GunningFogIndex:            14.83
-    LIX:                        46.39
-    SMOGIndex:                   9.23
-    RIX:                         4.39
+    Kincaid:                     7.47
+    ARI:                        10.6
+    Coleman-Liau:                7.91
+    FleschReadingEase:          84.46
+    GunningFogIndex:            11.13
+    LIX:                        36.72
+    SMOGIndex:                   8.18
+    RIX:                         3.04
 sentence info:
-    characters_per_word:         4.27
-    syll_per_word:               1.17
-    words_per_sentence:         33.16
-    sentences_per_paragraph:         1.91
-    characters:               6227
-    syllables:                1704
-    words:                    1459
-    sentences:                  44
-    paragraphs:                 23
-    long_words:                193
-    complex_words:              57
+    characters_per_word:         4.24
+    syll_per_word:               1.16
+    words_per_sentence:         24.1
+    sentences_per_paragraph:         1.92
+    characters:               4907
+    syllables:                1339
+    words:                    1157
+    sentences:                  48
+    paragraphs:                 25
+    long_words:                146
+    complex_words:              43
 word usage:
-    tobeverb:                   44
-    auxverb:                    48
-    conjunction:                38
-    pronoun:                   157
-    preposition:               183
-    nominalization:              3
+    tobeverb:                   36
+    auxverb:                    36
+    conjunction:                29
+    pronoun:                   109
+    preposition:               146
+    nominalization:              2
 sentence beginnings:
     pronoun:                     6
     interrogative:               1
-    article:                     3
-    subordination:               2
+    article:                     5
+    subordination:               3
     conjunction:                 1
-    preposition:                 4
+    preposition:                 3
