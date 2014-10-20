@@ -48,4 +48,6 @@ Special Thanks
 
 Here is an inevitably incomplete list of MUCH-APPRECIATED CONTRIBUTORS -- people who have submitted patches, reported bugs, added translations, helped answer newbie questions, and generally made Invent Your Own Computer Games with Python that much better:
 
+*Spanish Translation:*
+
 Alfredo Carella https://github.com/alfredocarella
