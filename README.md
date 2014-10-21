@@ -27,21 +27,21 @@ Suggested Guidelines for Translators
 
 First, thank you for helping with the translation of "Invent with Python". Here are some helpful guidelines:
 
-1. Look at the AUTHORS.md file to contact other translators working on your language.
+1. Look at the translations/<lang code>/README.md file to contact other translators working on your language.
 
-2. Read the translations/README.txt file to note any special parts of the book
+2. Read this README.md file to note any special parts of the book that may need additional attention. Feel free to add to this file.
 
 2. Translate the programs first. Do not change the order or position of the code, as that will require tedious updating of line numbers in the book. Long lines of code are fine.
 
 3. Save the .py files of the programs with UTF-8 encoding. (This is the default encoding the Python 3 expects source files to be in.)
 
-4. Make notes of any cultural differences that would require more than just a straight translation to the translations/README.txt file.
+4. Make notes of any cultural differences that would require more than just a straight translation to the translations/<lang code>/README.md file.
 
-5. All of the files for a translation go into the translations/<language code> folder. This includes the text files, figure image files, and source code .py files.
+5. All of the files for a translation go into the translations/<lang code> folder. This includes the text files, figure image files, and source code .py files. (Look at the other folders to get an idea of the structure.)
 
 6. Add spaces to line up the columns for tables to make it obvious which text is in which cell.
 
-7. Translations for text in the figure images can go in the *_chapterN.figures.txt file. Not all chapters have figures, and not all figures have text that needs to be translated.
+7. Translations for text in the figure images can go in the <lang code>_chapterN.figures.txt file. Not all chapters have figures, and not all figures have text that needs to be translated.
 
 Special Thanks
 ==============
@@ -51,3 +51,4 @@ Here is an inevitably incomplete list of MUCH-APPRECIATED CONTRIBUTORS -- people
 *Spanish Translation:*
 
 Alfredo Carella https://github.com/alfredocarella
+Alejandro Pernin https://github.com/aleperno
