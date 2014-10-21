@@ -2,3 +2,4 @@ Here is an inevitably incomplete list of MUCH-APPRECIATED CONTRIBUTORS --
 people who have helped with translations, answered questions, and generally
 made Invent with Python that much better:
 
+Alfredo R. Carella - alfredocarella@gmail.com
