@@ -56,7 +56,7 @@ pygame.mixer.music.load('músicaDeFondo.mid')
 # set up images
 playerImage = pygame.image.load('jugador.png')
 playerRect = playerImage.get_rect()
-baddieImage = pygame.image.load('baddie.png')
+baddieImage = pygame.image.load('villano.png')
 
 # show the "Start" screen
 drawText('Dodger', font, windowSurface, (WINDOWWIDTH / 3), (WINDOWHEIGHT / 3))

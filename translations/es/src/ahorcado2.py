@@ -56,12 +56,21 @@ IMÁGENES_AHORCADO = ['''
  / \  |
       |
 =========''']
-palabras = 'hormiga babuino tejon murcielago oso castor camello gato almeja cobra pantera coyote cuervo ciervo perro burro pato aguila huron zorro rana cabra ganso halcon leon lagarto llama topo mono alce raton mula salamandra nutria buho panda loro paloma piton conejo carnero rata cuervo rinoceronte salmon foca tiburon oveja mofeta perezoso serpiente araña cigüeña cisne tigre sapo trucha pavo tortuga comadreja ballena lobo wombat cebra'.split()
+palabras = {'Colores':'rojo naranja amarillo verde azul añil violeta blanco negro marron'.split(),
+'Formas':'cuadrado triangulo rectangulo circulo elipse rombo trapezoide chevron pentagono hexagono heptagono octogono'.split(),
+'Frutas':'manzana naranja limon lima pera sandia uva pomelo cereza banana melon mango fresa tomate'.split(),
+'Animales':'murcielago oso castor gato pantera cangrejo ciervo perro burro pato aguila pez rana cabra sanguijuela leon lagarto mono alce raton nutria buho panda piton conejo rata tiburon oveja mofeta calamar tigre pavo tortuga comadreja ballena lobo wombat cebra'.split()}
 
-def obtenerPalabraAlAzar(listaDePalabras):
-    # Esta función devuelve una cadena al azar de la lista de cadenas pasada como argumento.
-    índiceDePalabras = random.randint(0, len(listaDePalabras) - 1)
-    return listaDePalabras[índiceDePalabras]
+def obtenerPalabraAlAzar(diccionarioDePalabras):
+    # Esta función devuelve una cadena al azar del diccionario de listas de cadenas pasado como argumento. También devuelve la clave.
+    # Primero, elige una clave al azar del diccionario:
+    claveDePalabras = random.choice(list(diccionarioDePalabras.keys()))
+
+    # Segundo, elige una palabra aleatoria de la lista correspondiente a la clave en el diccionario:
+    índiceDePalabra = random.randint(0, len(diccionarioDePalabras[claveDePalabras]) - 1)
+
+    return [diccionarioDePalabras[claveDePalabras][índiceDePalabra], claveDePalabras]
+
 
 def mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta):
     print(IMÁGENES_AHORCADO[len(letrasIncorrectas)])
@@ -106,10 +115,11 @@ def jugarDeNuevo():
 print('A H O R C A D O')
 letrasIncorrectas = ''
 letrasCorrectas = ''
-palabraSecreta = obtenerPalabraAlAzar(palabras)
+palabraSecreta, claveSecreta = obtenerPalabraAlAzar(palabras)
 juegoTerminado = False
 
 while True:
+    print('La palabra secreta pertenece al conjunto: ' + claveSecreta)
     mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta)
 
     # Permite al jugador escribir una letra.
@@ -142,6 +152,6 @@ while True:
             letrasIncorrectas = ''
             letrasCorrectas = ''
             juegoTerminado = False
-            palabraSecreta = obtenerPalabraAlAzar(palabras)
+            palabraSecreta, claveSecreta = obtenerPalabraAlAzar(palabras)
         else:
             break
