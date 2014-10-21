@@ -15,6 +15,7 @@ def ritaBräde(bräde):
         print()
 
 
+
 def tömBräde(bräde):
     # Tömmer brädet som skickats in och återställer startbrickorna.
     for x in range(8):

@@ -6,17 +6,17 @@ import sys
 def ritaBräde(bräde):
     # Denna funktion skriver ut brädet som skickats in. Returnerar inget.
     HRAD = '  +---+---+---+---+---+---+---+---+'
-    # VRAD = '  |   |   |   |   |   |   |   |   |'
+
 
     print('    1   2   3   4   5   6   7   8')
     print(HRAD)
     for y in range(8):
-        # print(VRAD)
+
         print(y+1, end=' ')
         for x in range(8):
             print('| %s' % (bräde[x][y]), end=' ')
         print('|')
-        # print(VRAD)
+
         print(HRAD)
 
 
@@ -131,7 +131,7 @@ def mataInSpelarensBricka():
     # Returnerar en lista med spelarens bricka som första element och datorns bricka som andra.
     bricka = ''
     while not (bricka == 'X' or bricka == 'O'):
-        print('Do you want to be X or O?')
+        print('Vill du vara X eller O ?')
         bricka = input().upper()
 
     # det första elementet i listan är spelarens bricka, det andra är datorns bricka.
