@@ -1,176 +1,168 @@
-This game introduces many new concepts. But don’t worry; we’ll experiment with these programming concepts in the interactive shell first. Some data types such as strings and lists have functions that are associated with their values called methods. We will learn several different methods that can manipulate strings and lists for us. We will also learn about a new type of loop called a for loop and a new type of data type called a dictionary. Once you understand these concepts, it will be much easier to understand the game in this chapter: Hangman.
+This game introduces many new concepts, but don’t worry. You’ll experiment with these programming concepts in the interactive shell first. String and list values have functions associated called methods. You’ll also learn about a new type of loop called a for loop and a new type of data type called a dictionary. Once you understand these concepts, it will be much easier to program Hangman.
 
-You can learn more from Wikipedia: http://en.wikipedia.org/wiki/Hangman_(game)
+This chapter's game is a bit longer than the previous games, but much of it is the ASCII art for the hangman pictures. Enter the following into the file editor and save it as hangman.py.
 
-This chapter's game is a bit longer than our previous games. You can either type in the code below directly into the file editor (which I recommend) or you can obtain the code from this book’s website. To grab the code from the web, in a web browser go to the URL http://invpy.com/chap9 and follow the instructions for downloading the source code.
+The Hangman program is going to randomly select a secret word from a list of secret words. The random module will provide this ability.
 
-You can download this code from http://invpy.com/hangman.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/hangman.
-
-The Hangman program is going to randomly select a secret word from a list of secret words. This means we will need the random module imported.
+...the rest of the code is too big to show here...
 
 This “line” of code is a simple variable assignment, but it actually stretches over several real lines in the source code. The actual “line” doesn’t end until line 58. To help you understand what this code means, you should learn about multi-line strings and lists:
 
-Ordinarily when you write strings in your source code, the string has to be on one line. However, if you use three single-quotes instead of one single-quote to begin and end the string, the string can be on several lines:
+Ordinarily when you write strings in your source code, the string has to be on one line starting and ending with a one quote character. However, if you use three quotes the string can go across several lines:
 
-If you didn't have multi-line strings, you would use the \n escape character to represent the new lines. But that can make the string hard to read in the source code, like in this example:
+These are called multi-line strings. If you didn't have multi-line strings, you would use the \n escape character to represent the new lines. But this is hard to read in the source code:
 
-Multi-line strings do not have to keep the same indentation to remain in the same block. Within the multi-line string, Python ignores the indentation rules it normally has for where blocks end.
+Within the multi-line string, Python ignores the indentation rules it normally has for where blocks end:
 
-You may have noticed that HANGMANPICS's name is in all capitals. This is the programming convention for constant variables. Constants are variables whose values do not change throughout the program. Although we can change HANGMANPICS just like any other variable, the all-caps reminds the programmer to not write code that does so.
+You may have noticed that HANGMANPICS's name is in all capitals. This is the programming convention for constant variables. Constants are variables whose values are not meant to be changed. Although you can change HANGMANPICS (just like any other variable), the all-caps reminds the programmer to not write code that does so.
 
 Constant variables are helpful for describing values that have a special meaning. Since the multi-string value never changes, there is no reason we couldn't copy this multi-line string each time we needed that value. The HANGMANPICS variable never varies. But it is much shorter to type HANGMANPICS than it is to type that large multi-line string.
 
-Also, there are cases where typing the value by itself may not be obvious. If we set a variable eggs = 72, we may forget why we were setting that variable to the integer 72. But if we define a constant variable DOZEN = 12, then we could set eggs = DOZEN * 6 and by just looking at the code know that the eggs variable was set to six dozen.
+Like all conventions, you don’t have to follow it. But doing it this way makes it easier to understand how your variables are used.
 
-Like all conventions, we don’t have to use constant variables, or even put the names of constant variables in all capitals. But doing it this way makes it easier for other programmers to understand how these variables are used. (It even can help you if you are looking at code you wrote a long time ago.)
+A list value can contain several other values inside of itself. Try entering this into the interactive shell: ['apples', 'oranges', 'HELLO WORLD'].
 
-I will now tell you about a new data type called a list. A list value can contain several other values in it. Try entering this into the interactive shell: ['apples', 'oranges', 'HELLO WORLD']. This is a list value that contains three string values. Just like any other value, you can store this list in a variable. Try entering spam = ['apples', 'oranges', 'HELLO WORLD'], and then type spam to view the contents of spam.
+This list value contains three string values. Just like any other value, you can store this list in a variable. The individual values inside of a list are also called items.
 
-Lists are a good way to store several different values into one variable. The individual values inside of a list are also called items. Try entering: animals = ['aardvark', 'anteater', 'antelope', 'albert'] to store various strings into the variable animals. The square brackets can also be used to get an item from a list. Try entering animals[0], or animals[1], or animals[2], or animals[3] into the interactive shell to see what they evaluate to.
+Try entering animals = ['aardvark', 'anteater', 'antelope', 'albert'] into the interactive shell to store a list in the variable animals. The square brackets can also be used to get an item from a list. Try entering animals[0], or animals[1], or animals[2], or animals[3] into the interactive shell to see how they evaluate.
 
-The number between the square brackets is the index. In Python, the first index is the number 0 instead of the number 1. So the first item in the list is at index 0, the second item is at index 1, the third item is at index 2, and so on. Lists are good when we have to store lots and lots of values, but we don’t want variables for each one. Otherwise we would have code like this:
+The number between the square brackets is the index. In Python, the index of the first item in a list is 0. The second item is at index 1, the third item is at index 2, and so on. Lists are good when we have to store several values but don’t want variables for each one. Otherwise, the code would look like this:
 
-This makes working with all the strings as a group hard, especially if you have hundreds or thousands (or even millions) of different strings you want stored in a list. Using the square brackets, you can treat items in the list just like any other value. Try entering animals[0] + animals[2] into the interactive shell:
+This would be hard if you have hundreds or thousands of strings. But a list can easily contain any number of values. Using the square brackets, you can treat items in the list just like any other value. Try entering animals[0] + animals[2] into the interactive shell:
 
-Because animals[0] evaluates to the string 'aardvark' and animals[2] evaluates to the string 'antelope', then the expression animals[0] + animals[2] is the same as 'aardvark' + 'antelope'. This string concatenation evaluates to 'aardvarkantelope'.
-
-What happens if we enter an index that is larger than the list's largest index? Try entering animals[4] or animals[99] into the interactive shell:
-
-If you try accessing an index that is too large, you’ll get an index error.
+If you try accessing an index that is too large, you’ll get an index error that will crash your program. Try entering animals[9999] into the interactive shell:
 
 You can also use the square brackets to change the value of an item in a list. Try entering animals[1] = 'ANTEATER', then type animals to view the list.
 
-The second item in the animals list has been overwritten with a new string.
-
-List Concatenation
+The second item in the animals list has been overwritten with a new string. So animals[1] will not only evaluate to the second item in the list, but you can also use it on the left side of an assignment statement to assign a value as the second item in the list.
 
 You can join lists together into one list with the + operator, just like you can join strings. When joining lists, this is known as list concatenation. Try entering [1, 2, 3, 4] + ['apples', 'oranges'] + ['Alice', 'Bob'] into the interactive shell:
 
-Notice that lists do not have to store values of the same data types. The example above has a list with both integers and strings in it. Remember, when you do list concatenation, you must add together two list values. ['apples'] + ['oranges'] will evaluate to ['apples', 'oranges']. But ['apples'] + 'oranges' will result in an error because you are adding a list value and string value instead of two list values. If you want to add non-list values to a list, use the append() method (which is described later).
+Lists don’t have to store values of the same data type. The example above has a list with both integers and strings in it. Both values must be lists in a list concatenation. ['apples'] + ['oranges'] will evaluate to ['apples', 'oranges']. But ['apples'] + 'oranges' will result in an error because you are adding a list value and string value instead of two list values. If you want to add non-list values to a list, use the append() method (which is described later).
 
-The in operator makes it easy to see if a value is inside a list or not. Expressions that use the in operator return a Boolean value: True if the value is in the list and False if the value isn’t in the list. Try entering 'antelope' in animals into the interactive shell:
+The in operator can find if a value is inside a list or not. Expressions that use the in operator return a Boolean value: True if the value is in the list and False if it isn’t. Try entering 'antelope' in animals into the interactive shell:
 
 The expression 'antelope' in animals returns True because the string 'antelope' can be found in the list, animals. (It is located at index 2.)
 
-But if we type the expression 'ant' in animals, this will return False because the string 'ant' doesn’t exist in the list. We can try the expression 'ant' in ['beetle', 'wasp', 'ant'], and see that it will return True.
+But if we type the expression 'ant' in animals, this will return False because the string 'ant' doesn’t exist in the list.
 
-The in operator also works for both strings and lists. You check if one string exists in another the same way you check if a value exists in a list. Try entering 'hello' in 'Alice said hello to Bob.' into the interactive shell. This expression will evaluate to True.
+The in operator also works for strings. You check if one string exists in another the same way you check if a value exists in a list. Try entering 'hello' in 'Alice said hello to Bob.' into the interactive shell. This expression will evaluate to True.
 
 You can remove items from a list with a del statement. (“del” is short for “delete.”) Try creating a list of numbers by typing: spam = [2, 4, 6, 8, 10] and then del spam[1]. Type spam to view the list's contents:
 
 Notice that when you deleted the item at index 1, the item that used to be at index 2 became the new value at index 1. The item that used to be at index 3 moved to be the new value at index 2. Everything above the item that we deleted moved down one index. We can type del spam[1] again and again to keep deleting items from the list:
 
-Just remember that del is a statement, not a function or an operator. It doesn’t evaluate to any return value.
+Just remember that del is a statement, not a function or an operator. It doesn’t have parentheses or evaluate to a return value.
 
-Lists are a data type that can contain other values as items in the list. But these items can also be other lists. Let’s say you have a list of groceries, a list of chores, and a list of your favorite pies. You can put all three of these lists into another list. Try entering this into the interactive shell:
-
-You could also type the following and get the same values for all four variables:
+Lists are a data type that can contain other values. But these items can also be other lists. Let’s say you have a list of groceries, a list of chores, and a list of your favorite pies. You can put all three of these lists into another list. Try entering this into the interactive shell:
 
 To get an item inside the list of lists, you would use two sets of square brackets like this: listOfLists[1][2] which would evaluate to the string 'go grocery shopping'. This is because listOfLists[1] evaluates to the list ['clean', 'mow the lawn', 'go grocery shopping'][2]. That finally evaluates to 'go grocery shopping'.
 
-Here is another example of a list of lists, along with some of the indexes that point to the items in the list of lists named x. The red arrows point to indexes of the inner lists themselves. The image is also flipped on its side to make it easier to read:
+Figure 9-1 is another example of a list of lists, along with some of the indexes that point to the items. The arrows point to indexes of the inner lists themselves. The image is also flipped on its side to make it easier to read:
 
-Methods are just like functions, but they are always attached to a value. For example, all string values have a lower() method, which returns a copy of the string value in lowercase. You cannot just call lower() by itself and you do not pass a string argument to lower() by itself (as in lower('Hello')). You must attach the method call to a specific string value using a period.
+Methods are just like functions that are attached to a value. For example, all string values have a lower() method, which returns a copy of the string value in lowercase. You cannot just call lower() by itself and you do not pass a string argument to lower() (as in lower('Hello')). You must attach the method call to a specific string value using a period. The next section introduces two string methods as examples.
 
 Try entering 'Hello world!'.lower() into the interactive shell to see an example of this method:
 
+There is also an upper() method for strings, which returns a string with all the characters in uppercase. Try entering 'Hello world'.upper() into the interactive shell:
+
 Because the upper() method returns a string, you can call a method on that string also. Try entering 'Hello world!'.upper().lower() into the interactive shell:
 
-Remember, if a string is stored in a variable, you can call a string method on that variable. Look at this example:
+'Hello world!'.upper() evaluates to the string 'HELLO WORLD!', and then we call that string's lower() method. This returns the string 'hello world!', which is the final value in the evaluation.
+
+The order is important. 'Hello world!'.lower().upper() isn’t the same as 'Hello world!'.upper().lower():
+
+This evaluation looks like this:
+
+If a string is stored in a variable, you can call a string method on that variable. Look at this example:
+
+Note that this does not change the value in spam. The spam variable will still contain 'Hello world!'.
 
 The list data type also has methods. The reverse() method will reverse the order of the items in the list. Try entering spam = [1, 2, 3, 4, 5, 6, 'meow', 'woof'], and then spam.reverse() to reverse the list. Then enter spam to view the contents of the variable.
 
 The most common list method you’ll use is append(). This method will add the value you pass as an argument to the end of the list. Try entering the following into the interactive shell:
 
-Though string and list data types have methods, integers do not happen to have any methods.
-
-You may be wondering why Python has methods, since they seem to act just like functions. Some data types have methods. Methods are functions associated with values of that data type. For example, string methods are functions that can be called on any string. If you have the string value 'Hello', you could call the string method upper() like this: 'Hello'.upper(). Or if the string 'Hello' were stored in a variable named spam, it would look like this: spam.upper()
-
-You cannot call string methods on values of other data types. For example, [1, 2, 'apple'].upper() would cause an error because [1, 2, 'apple'] is a list and upper() is a string method.
-
-The values of data types that have methods are also called objects. Object-oriented programming is a bit advanced for this book, and you don’t need to understand it to make games. Just understand that objects are another name for a values of data types that have methods. For example, all strings and lists are objects.
+Note that integers and floats don’t have any methods.
 
 Line 59 is a long line of code, but it is really just a simple assignment statement. This line also uses the split() method, which is a method for the string data type (just like the lower() and upper() methods).
 
-As you can see, this line is just one long string, full of words separated by spaces. And at the end of the string, we call the split() method. The split() method changes this long string into a list, with each word making up a single list item. The “split” occurs wherever a space occurs in the string. The reason we do it this way, instead of just writing out the list, is that it is easier for us to type as one long string. If we created it as a list to begin with, we would have to type: ['ant', 'baboon', 'badger',... and so on, with quotes and commas for every word.
+This assignment statement has just one long string, full of words separated by spaces. And at the end of the string the split() method. The split() method evaluates to a list with each word in the string as a single list item. The “split” occurs wherever a space occurs in the string.
+
+The reason we do it this way instead of just writing out the list is that it is easier to type. If you created it as a list to begin with, we would have to type: ['ant', 'baboon', 'badger',... and so on, with quotes and commas for every word. The split() method can be useful in other ways, but on line 59 it is just used to save the programmer some tedious typing.
 
 For an example of how the split() string method works, try entering this into the interactive shell:
 
-The result is a list of nine strings, one string for each of the words in the original string. The spaces are dropped from the items in the list. Once we’ve called split(), the words list will contain all the possible secret words that can be chosen by the computer for our Hangman game. You can also add your own words to the string, or remove any you don’t want to be in the game. Just make sure that the words are separated by spaces.
+The result is a list of nine strings, one string for each of the words in the original string. The spaces are not included in any of the items in the list.
 
-Starting on line 61, we define a new function called getRandomWord(), which has a single parameter named wordList. We will call this function when we want to pick a single secret word from a list of secret words.
+You can also add your own words to the string on line 59, or remove any you don’t want to be in the game. Just make sure that the words are separated by spaces.
 
-The function getRandomWord() is passed a list of strings as the argument for the wordList parameter. On line 63, we will store a random index for this list in the wordIndex variable. We do this by calling randint() with two arguments. Remember that arguments in a function call are separated by commas, so the first argument is 0 and the second argument is len(wordList) - 1. The second argument is an expression that is first evaluated. len(wordList) will return the integer size of the list passed to getRandomWord(), and then we subtract one.
+How the Code Works
 
-The reason we need the - 1 is because the indexes for lists start at 0, not 1. If we have a list of three items, the index of the first item is 0, the index of the second item is 1, the index of the third item is 2. The length of this list is 3, but the index 3 is after the last index. This is why we subtract 1 from the length.
+Line 61 defines a the getRandomWord() function, which has a single parameter named wordList. This function will return a single secret word from the list in the wordList parameter.
 
-For example, if we passed ['apple', 'orange', grape'] as an argument to getRandomWord(), then len(wordList) would return the integer 3 and the expression 3 - 1 would evaluate to the integer 2.
+On line 63, we will store a random index for this list in the wordIndex variable. We do this by calling randint() with two arguments. The first argument is 0 and the second argument is len(wordList) - 1. The second argument is an expression that is first evaluated. len(wordList) will return the integer size of the parameter, and then subtract one.
 
-That means that wordIndex would contain the return value of randint(0, 2), which means wordIndex would equal 0, 1, or 2. On line 64, we would return the element in wordList at the integer index stored in wordIndex.
+The reason you need the - 1 is because the indexes for lists start at 0, not 1. If we have a list of three items, the index of the first item is 0, the index of the second item is 1, the index of the third item is 2. The length of this list is 3, but the index 3 would be after the last index. This is why line 63 subtracts 1 from the length.
 
-Let’s pretend we did send ['apple', 'orange', grape'] as the argument to getRandomWord() and that randint(0, 2) returned the integer 2. That would mean that line 64 would become return wordList[2], which would evaluate to return 'grape'. This is how the getRandomWord() returns a random string in the wordList list. The following code entered into the interactive shell demonstrates this:
+The wordIndex variable will be set to a random index for the list passed as the wordlist parameter. On line 64, we would return the element in wordList at the integer index stored in wordIndex.
 
-And remember, we can pass any list of strings we want to the getRandomWord() function, which is what makes it so useful for our Hangman game.
+Let’s pretend ['apple', 'orange', grape'] was passed as the argument to getRandomWord() and that randint(0, 2) returned the integer 2. That would mean that line 64 would become return wordList[2], which would evaluate to return 'grape'. This is how the getRandomWord() returns a random string in the wordList list.
 
-Next we need to create another function which will print the hangman board on the screen, along with how many letters the player has correctly (and incorrectly) guessed.
+So the input to getRandomWord() is a list of strings, and the return value output is a randomly selected string in that list. This will be useful for the Hangman game.
 
-This code defines a new function named displayBoard(). This function has four parameters. This function will implement the code for the “Show the board and blanks to the player” box in our flow chart. Here is what each parameter means:
+Next you need a function which will print the hangman board on the screen. It will also display how many letters the player has correctly (and incorrectly) guessed.
 
-• HANGMANPICS - This is a list of multi-line strings that will display the board as ASCII art. We will always pass the global HANGMANPICS variable as the argument for this parameter.
+This code defines a new function named displayBoard(). This function has four parameters:
 
-• missedLetters - This is a string made up of the letters the player has guessed that are not in the secret word.
+•   HANGMANPICS - A list of multi-line strings that will display the board as ASCII art. (The global HANGMANPICS variable will be passed for this parameter.)
 
-• correctLetters - This is a string made up of the letters the player has guessed that are in the secret word.
+•   missedLetters - A string of the letters the player has guessed that are not in the secret word.
 
-• secretWord - This string is the secret word that the player is trying to guess.
+•   correctLetters - A string of the letters the player has guessed that are in the secret word.
 
-The first print() function call will display the board. HANGMANPICS will be a list of strings for each possible board. HANGMANPICS[0] shows an empty gallows, HANGMANPICS[1] shows the head (this happens when the player misses one letter), HANGMANPICS[2] shows a head and body (this happens when the player misses two letters), and so on until HANGMANPICS[6] when the full hangman is shown and the player loses.
+•   secretWord – A string of the secret word that the player is trying to guess.
 
-The number of letters in missedLetters will tell us how many incorrect guesses the player has made. We can call len(missedLetters) to find out this number. This number can also be used as the index to the HANGMANPICS list, which will allow us to print the correct board for the number of incorrect guesses. So, if missedLetters is 'aetr' then len('aetr') will return 4 and we will display the string HANGMANPICS[4]. This is what HANGMANPICS[len(missedLetters)] evaluates to. This line shows the correct hangman board to the player.
+The first print() function call will display the board. HANGMANPICS will be a list of strings for each possible board. HANGMANPICS[0] shows an empty gallows, HANGMANPICS[1] shows the head (this happens when the player misses one letter), HANGMANPICS[2] shows a head and body (this happens when the player misses two letters), and so on until HANGMANPICS[6] which shows the full hangman.
 
-Line 71 is a new type of loop, called a for loop. A for loop is kind of like a while loop. Line 72 is the entire body of the for loop. The range() function is often used with for loops. I will explain both in the next two sections.
+The number of letters in missedLetters will reflect how many incorrect guesses the player has made. Call len(missedLetters) to find out this number. So, if missedLetters is 'aetr' then len('aetr') will return 4. Printing HANGMANPICS[4] will display the appropriate hangman board for 4 misses. This is what HANGMANPICS[len(missedLetters)] evaluates to.
 
-Remember that the keyword argument end=' ' uses only one = sign (like =), not two (like ==).
+Line 70 prints the string 'Missed letters:' with a space character at the end instead of a newline. Remember that the keyword argument end=' ' uses only one = sign (like =), not two (like ==).
 
-The range() function is easy to understand. You can call it with either one or two integer arguments. When called with one argument, range() will return a range object of integers from 0 up to (but not including) the argument. This range object can be converted to the more familiar list data type with the list() function. Try entering list(range(10)) into the interactive shell:
+Line 71 is a new type of loop, called a for loop. A for loop often uses the range() function. Both are explained in the next two sections.
+
+When called with one argument, range() will return a range object of integers from 0 up to (but not including) the argument. This range object can be converted to the more familiar list data type with the list() function. Try entering list(range(10)) into the interactive shell:
 
 The list() function is similar to the str() or int() functions. It just converts the object it is passed into a list. It’s easy to generate huge lists with the range() function. Try entering in list(range(10000)) into the interactive shell:
 
-The list is so huge, that it won't even all fit onto the screen. But we can save the list into the variable just like any other list by entering this:
+The list is so huge, that it won't even all fit onto the screen. But you can store the list into a variable:
 
 If you pass two arguments to range(), the list of integers it returns is from the first argument up to (but not including) the second argument. Try entering list(range(10, 20)) into the interactive shell:
 
-The range() is a useful function, because we often use it in for loops (which are much like the while loops we have already seen).
+The range() is often used in for loops (which are much like the while loops we have already seen).
 
-The for loop is good at looping over a list of values. This is different from the while loop, which loops as long as a certain condition is True. A for statement begins with the for keyword, followed by a variable name, followed by the in keyword, followed by a sequence (such as a list or string) or a range object (returned by the range() function), and then a colon. Each time the program execution goes through the loop the variable in the for statement takes on the value of the next item in the list.
+The for loop is useful for looping over a list of values. This is different from the while loop, which loops as long as a certain condition is True. A for statement begins with the for keyword, followed by a new variable name, followed by the in keyword, followed by a sequence, and then a colon. The sequence is often a range object returned from range() but can also be a list.
 
-For example, you just learned that the range() function will return a list of integers. We will use this list as the for statement’s list. In the interactive shell, type for i in range(5): and press Enter. Nothing will happen, but the interactive shell will indent the cursor and change the prompt from >>> to ... because it is waiting for you to type in the for-block. Type print(i) and press Enter. Then, to tell the interactive shell you are done typing in the for-block, press Enter again to enter a blank line. The interactive shell will then execute your for statement and block:
+Each time the program execution iterates through the loop the new variable in the for statement takes on the value of the next item in the list.
 
-Notice that with for loops, you do not need to convert the range object returned by the range() function into a list with list(). for loops do this for us automatically.
-
-The for loop executes the code inside the for-block once for each item in the list. Each time it executes the code in the for-block, the variable i is assigned the next value of the next item in the list. If we used the for statement with the list [0, 1, 2, 3, 4] instead of range(5), it would have been the same:
+The range object returned by range(5) is equivalent to a the list [0, 1, 2, 3, 4]. The first time the execution goes through the code in for-block, the variable i will be set to 0. On the next iteration, i will be set to 1, and so on.
 
 The for statement automatically converts the range object returned by range() into a list, so there is no need for list(range(5)) in the for statement. Just use range(5).
 
-Try entering this into the interactive shell: for thing in ['cats', 'pasta', 'programming', 'spam']: and press Enter, then type print('I really like ' + thing) and press Enter, and then press Enter again to tell the interactive shell to end the for-block. The output should look like this:
-
-And remember, strings are also a sequence data type just like lists so you can use them in for statements. This example uses a single character from the string on each iteration:
+Lists and strings are also a sequence data type just like lists so you can use them in for statements. Try entering this into the interactive shell:
 
 The for loop is similar to the while loop, but when you only need to iterate over items in a list, using a for loop is much less code to type. You can make a while loop that acts the same as a for loop by adding extra code:
 
-But using the for statement automatically does all this extra code for us and makes programming easier since we have less to type. Our Hangman game will use for loops so you can see how useful they are in real games.
-
-One more thing about for loops, is that the for statement has the in keyword in it. This isn’t like the in operator in the expression 42 in [0, 42, 67]. The in keyword in for statements is just used to separate the variable and the list it gets its values from.
+But using the for statement automatically does all this extra code for you and makes programming easier since we have less to type.
 
 The rest of the displayBoard() function displays the missed letters and creates the string of the secret word with all the unguessed letters as blanks.
 
-This for loop on line 71 will display all the missed guesses that the player has made. When you play Hangman on paper, you usually write down these letters off to the side so you know not to guess them again. On each iteration of the loop the value of letter will be each letter in missedLetters in turn. Remember that the end=' ' will replace the newline character that is printed after the string with a single space character.
+The for loop on line 71 will iterate over each character in the missedLetters string and print them on the screen. Remember that the end=' ' will replace the newline character that is printed after the string with a single space character.
 
-If missedLetters was 'ajtw' then this for loop would display a j t w.
+For example, if missedLetters was 'ajtw' this for loop would display a j t w.
 
-If we want to get a shorter copy of some of the items in a list, we can use list slicing. Slicing creates a duplicate list out of some or all of the items in another list. In code, we can create a slice of a list by specifying two indexes (the beginning and end) and a colon. For example, type the following into the interactive shell:
+List slicing creates a new list value with a subset of another list’s items. In code, specify two indexes (the beginning and end) and a colon in the square brackets after a list. For example, try entering the following into the interactive shell:
 
-The expression spam[0:2] evaluates to a list that contains all the items from index 0 up to (but not including) index 2 in spam. We store this smaller list in the variable eggs.
+The expression spam[1:3] evaluates to a list that contains all the items from index 1 up to (but not including) index 3 in spam.
 
 If you leave out the first index, Python will automatically think you want to specify index 0 for the first index:
 
@@ -178,55 +170,57 @@ If you leave out the second index, Python will automatically think you want to s
 
 Slicing is a simple way to get a subset of the items in a list. You use slices with strings in the same way you use them with lists. Each character in the string is like an item in the list. Try entering the following into the interactive shell:
 
-Slices are used in the next part of the code we look at.
+The next part of the code in Hangman uses slicing.
 
-So by this point we have shown the player the hangman board and the missed letters. Now we want to print the secret word, except we want blank lines for the letters. We can use the _ character (called the underscore character) for this. But we should print the letters in the secret word that the player has guessed, and use _ characters for the letters the player has not guessed yet. We can first create a string with nothing but one underscore for each letter in the secret word. Then we can replace the blanks for each letter in correctLetters. So if the secret word was 'otter' then the blanked out string would be '_____' (five _ characters). If correctLetters was the string 'rt' then we would want to change the blanked string to '_tt_r'. Here is the code that does that:
+Now you want code to print the secret word, but with blank lines for the letters that have not been guessed. You can use the _ character (called the underscore character) for this. You can first create a string with nothing but one underscore for each letter in the secret word. Then we can replace the blanks for each letter in correctLetters.
 
-Line 75 creates the blanks variable full of _ underscores using string replication. Remember that the * operator can also be used on a string and an integer, so the expression 'hello' * 3 evaluates to 'hellohellohello'. This will make sure that blanks has the same number of underscores as secretWord has letters.
+So if the secret word was 'otter' then the blanked out string would be '_____' (five _ characters). If correctLetters was the string 'rt' you would change the string to '_tt_r'. Here is the code that does that:
 
-Then we use a for loop to go through each letter in secretWord and replace the underscore with the actual letter if it exists in correctLetters. Line 79 may look confusing. It seems that we are using the square brackets with the blanks and secretWord variables. But wait a second, blanks and secretWord are strings, not lists. And the len() function also only takes lists as parameters, not strings. But in Python, many of the things you can do to lists you can also do to strings such as replication, indexing, and slicing.
+Line 75 creates the blanks variable full of _ underscores using string replication. Remember that the * operator can also be used on a string and an integer, so the expression '_' * 5 evaluates to '_____'. This will make sure that blanks has the same number of underscores as secretWord has letters.
 
-Let’s pretend the value of secretWord is 'otter' and the value in correctLetters is 'tr'. Then len(secretWord) will return 5. Then range(len(secretWord)) becomes range(5), which in turn returns the list [0, 1, 2, 3, 4].
+Line 77 has a for loop to go through each letter in secretWord and replace the underscore with the actual letter if that letter exists in correctLetters.
 
-Because the value of i will take on each value in [0, 1, 2, 3, 4], then the for loop code is equivalent to this:
+Pretend the value of secretWord is 'otter' and the value in correctLetters is 'tr'. You would want the string '_tt_r' displayed to the player. Let’s figure out how to create this string.
 
-If you are confused as to what the value of something like secretWord[0] or blanks[3:] is, then look at this picture. It shows the value of the secretWord and blanks variables, and the index for each letter in the string.
+Line 77’s len(secretWord) call would return 5. The range(len(secretWord)) call becomes range(5), which in turn returns the list [0, 1, 2, 3, 4].
 
-If we replace the list slices and the list indexes with the values that they represent, the unrolled loop code would be the same as this:
+Because the value of i will take on each value in [0, 1, 2, 3, 4], then code in the for loop is the same as this:
 
-The above three code examples all do the same thing (at least, they do when secretWord is 'otter' and correctLetters is 'tr'. The first box is the actual code we have in our game. The second box shows code that does the same thing except without a for loop. The third box is the same as the second box, except we have evaluated many of the expressions in the second box.
+If you are confused as to what the value of something like secretWord[0] or blanks[3:] is, then look at Figure 9-2. It shows the value of the secretWord and blanks variables, and the index for each letter in the string.
+
+If you replace the list slices and the list indexes with the values that they represent, the loop code would be the same as this:
+
+The above three code examples all do the same thing when secretWord is 'otter' and correctLetters is 'tr'. The first box is the actual code we have in our game. The second box shows code that does the same thing except without a for loop. The third box is the same as the second box, except we have evaluated many of the expressions from the second box.
 
 The next few lines of code display the new value of blanks with spaces in between each letter.
 
 This for loop will print each character in the string blanks. Remember that by now, blanks may have some of its underscores replaced with the letters in secretWord. The end keyword argument in line 82's print() call makes the print() function put a space character at the end of the string instead of a newline character. This is the end of the displayBoard() function.
 
-The getGuess() function we create next will be called whenever we want to let the player type in a letter to guess. The function returns the letter the player guessed as a string. Further, getGuess() will make sure that the player types a valid letter before returning from the function.
+The getGuess() function will be called when the player types in a letter to guess. The function returns the letter the player guessed as a string. Further, getGuess() will make sure that the player types a valid letter before returning from the function.
 
-The getGuess() function has a string parameter called alreadyGuessed which should be passed a string that contains the letters the player has already guessed, and will ask the player to guess a single letter. This single letter will be the return value for this function.
+The getGuess() function has a string parameter called alreadyGuessed which should be passed a string that contains the letters the player has already guessed. Then it asks the player to guess a single letter. This single letter will be the return value for this function.
 
-We will use a while loop because we want to keep asking the player for a letter until they enter text that is a single letter they have not guessed previously. Notice that the condition for the while loop is simply the Boolean value True. That means the only way execution will ever leave this loop is by executing a break statement (which leaves the loop) or a return statement (which leaves the entire function). Such a loop is called an infinite loop, because it will loop forever (unless it reaches a break statement).
+We will use a while loop because we want to keep asking the player for a letter until they enter text that is a single letter they have not guessed previously. Notice that the condition for the while loop is simply the Boolean value True. That means the only way execution will ever leave this loop is by executing a break statement (which leaves the loop) or a return statement (which leaves the entire function).
 
 The code inside the loop asks the player to enter a letter, which is stored in the variable guess. If the player entered a capitalized letter, it will be converted to lowercase on line 90.
 
-We've seen code like this before and it’s rather simple. If the catName variable is equal to the string 'Fuzzball', then the if statement’s condition is True and we tell the user that her cat is fuzzy. If catName is anything else, then we tell the user her cat isn’t fuzzy.
+If the catName variable is equal to the string 'Fuzzball', then the if statement’s condition is True and we tell the user that her cat is fuzzy. However, if this condition is False, then Python tries the elif (“else if”) statement’s condition next. If catName is 'Spots', then the 'Your cat is spotted.' string is printed to the screen. If both are False, then we tell the user her cat isn’t fuzzy.
 
-But what if we wanted something else besides “fuzzy” and “not fuzzy”? We could put another if and else statement inside the first else-block like this:
+You can think of if-elif-else statements as saying “If this is true, do this. Or else if this next condition is true, do that. Or else if none of them are true, do this last thing.”
 
-But if we wanted more things, then the code starts to have a lot of indentation:
-
-Typing all those spaces means you have more chances of making a mistake with the indentation. So Python has the elif keyword. Using elif, the above code looks like this:
+You can have as many elif statements as you want. the above code looks like this:
 
 If the condition for the if statement is False, then the program will check the condition for the first elif statement (which is catName == 'Spots'). If that condition is False, then the program will check the condition of the next elif statement. If all of the conditions for the if and elif statements are False, then the code in the else-block executes.
 
 But if one of the elif conditions are True, the elif-block code is executed and then execution jumps down to the first line past the else-block. So only one of the blocks in this if-elif-else statement will be executed. You can also leave off the else-block if you don’t need one, and just have an if-else statement.
 
-The guess variable contains the text the player typed in for their letter guess. We need to make sure they typed in one and only one lowercase letter. If they didn't, we should loop back and ask them again. The if statement’s condition checks that the text is one and only letter. If it isn’t, then we execute the if-block code, and then execution jumps down past the else-block. But since there is no more code after this if-elif-else statement, execution loops back to line 87.
+The guess variable contains player’s letter guess. The program needs to make sure they typed in one and only one lowercase letter. If they didn't, Python should loop back and ask them again.
 
-If the condition for the if statement is False, we check the elif statement’s condition on line 93. This condition is True if the letter exists inside the alreadyGuessed variable (remember, this is a string that has every letter the player has already guessed). If this condition is True, then we display the error message to the player, and jump down past the else-block. But then we would be at the end of the while-block, so execution jumps back up to line 87.
+Line 91’s condition checks if guess is not one character long. Line 93’s condition checks if guess already exists inside the alreadyGuessed variable. Line 95’s condition checks if guess is not a lowercase letter.
 
-If the condition for the if statement and the elif statement are both False, then we check the second elif statement’s condition on line 95. If the player typed in a number or a funny character (making guess have a value like '5' or '!'), then guess would not exist in the string 'abcdefghijklmnopqrstuvwxyz'. If this is the case, the elif statement’s condition is True.
+If all of these conditions are False, then the else statement’s block executes and getGuess() returns the value in guess on line 98.
 
-Figure 9-3 is an example of elif statements. Unless these three conditions are all False, the code won’t return and the loop will keep asking for a letter. But when all three of the conditions are False, then the else-block's return statement will run and we will exit this loop and function.
+Remember, only one of the blocks in the if-elif-else statements will be executed.
 
 The playAgain() function has just a print() function call and a return statement. The return statement has an expression that looks complicated, but we can break it down. Once we evaluate this expression to a value, that value will be returned from this function.
 
@@ -244,163 +238,67 @@ On a side note, there is also a endswith(someString) string method that will ret
 
 That’s all the functions we are creating for this game!
 
-• getRandomWord(wordList) will take a list of strings passed to it as a parameter, and return one string from it. That is how we will choose a word for the player to guess.
+•   getRandomWord(wordList) will take a list of strings passed to it as a parameter, and return one string from it. That is how we will choose a word for the player to guess.
 
-• displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord) will show the current state of the board, including how much of the secret word the player has guessed so far and the wrong letters the player has guessed. This function needs four parameters passed to work correctly. HANGMANPICS is a list of strings that hold the ASCII art for each possible hangman board. correctLetters and missedLetters are strings made up of the letters that the player has guessed that are in and not in the secret word. And secretWord is the secret word the player is trying to guess. This function has no return value.
+•   displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord) will show the current state of the board, including how much of the secret word the player has guessed so far and the wrong letters the player has guessed. This function needs four parameters passed to work correctly. HANGMANPICS is a list of strings that hold the ASCII art for each possible hangman board. correctLetters and missedLetters are strings made up of the letters that the player has guessed that are in and not in the secret word. And secretWord is the secret word the player is trying to guess. This function has no return value.
 
-• getGuess(alreadyGuessed) takes a string of letters the player has already guessed and will keep asking the player for a letter that is a letter that he hasn’t already guessed. (That is, a letter that isn’t in alreadyGuessed.) This function returns the string of the acceptable letter the player guessed.
+•   getGuess(alreadyGuessed) takes a string of letters the player has already guessed and will keep asking the player for a letter that is a letter that he hasn’t already guessed. (That is, a letter that isn’t in alreadyGuessed.) This function returns the string of the acceptable letter the player guessed.
 
-• playAgain() is a function that asks if the player wants to play another round of Hangman. This function returns True if the player does and False if the player doesn’t.
+•   playAgain() is a function that asks if the player wants to play another round of Hangman. This function returns True if the player does and False if the player doesn’t.
 
-We’ll now start the code for the main part of the game, which will call the above functions as needed. As a refresher, look back at our flow chart in Figure 9-4.
+We’ll now start the code for the main part of the game, which will call the above functions as needed.
 
-We need to write code that does everything in this flow chart, and does it in the correct order. The main part of the code starts at line 106. Everything previous was just function definitions and a very large variable assignment for HANGMANPICS.
+The main part of the code starts at line 106. Everything previous was just function definitions and a very large variable assignment for HANGMANPICS.
 
-Line 106 is the first actual line that executes in our game. We start by assigning a blank string for missedLetters and correctLetters, because the player has not guessed any missed or correct letters yet. Then we call getRandomWord(words), where words is a variable with the huge list of possible secret words we assigned on line 59. The return value of getRandomWord(words) is one of these words, and we save it to the secretWord variable. Then we also set a variable named gameIsDone to False. We will set gameIsDone to True when we want to signal that the game is over and the program should ask the player if they want to play again.
+Line 106 is the first actual line that executes in our game. Start by assigning a blank string for missedLetters and correctLetters since the player hasn’t guessed any missed or correct letters yet.
 
-Setting the values of these variables is what we do before the player starts guessing letters.
+The getRandomWord(words) call will evaluate to a randomly selects word in the words list value.
 
-The while loop’s condition is always True, which means we will always loop forever until a break statement is encountered. We will execute a break statement when the game is over (either because the player won or the player lost).
+Then we also set a variable named gameIsDone to False. The code will set gameIsDone to True when we want to signal that the game is over and the program should ask the player if they want to play again.
 
-Line 113 calls our displayBoard() function, passing it the list of hangman ASCII art pictures and the three variables we set on lines 107, 108, and 109. The execution moves to the start of displayBoard() at line 66. Based on how many letters the player has correctly guessed and missed, this function displays the appropriate hangman board to the player.
+The while loop’s condition is always True, which means we will always loop forever until a break statement is encountered.
 
-If you look at our flow chart, you see only one arrow going from the “Show the board and the blanks to the player.” box to the “Ask a player to guess a letter.” box. Since we have already written a function to get the guess from the player, let’s call that function. Remember that the function needs all the letters in missedLetters and correctLetters combined, so we will pass as an argument a string that is a concatenation of both of those strings. This argument is needed by getGuess() because the function has code to check if the player types in a letter that they have already guessed.
+Line 113 calls our displayBoard() function, passing it the list of hangman ASCII art pictures and the three variables we set on lines 107, 108, and 109. Based on how many letters the player has correctly guessed and missed, this function displays the appropriate hangman board to the player.
 
-Now let’s see if the single letter in the guess string exists in secretWord. If it does exist, then we should concatenate the letter in guess to the correctLetters string. Next we can check if we have guessed all of the letters and won.
+The getGuess() function needs all the letters in missedLetters and correctLetters combined, so concatenate the strings in these variables and pass the result as the argument. This argument is needed by getGuess() because the function has code to check if the player types in a letter that they have already guessed.
 
-How do we know if the player has guessed every letter in the secret word? Well, correctLetters has each letter that the player correctly guessed and secretWord is the secret word itself. We can’t just check if correctLetters == secretWord because consider this situation: if secretWord was the string 'otter' and correctLetters was the string 'orte', then correctLetters == secretWord would be False even though the player has guessed each letter in the secret word.
+If the guess string exists in secretWord, then concatenate guess to the end of the correctLetters string. This string will be the new value of correctLetters.
 
-The player simply guessed the letters out of order and they still win, but the program would incorrectly think the player hasn’t won yet. Even if they did guess the letters in order, correctLetters would be the string 'oter' because the player can’t guess the letter t more than once. The expression 'otter' == 'oter' would evaluate to False even though the player guessed all the letters.
+How can the program know if the player has guessed every letter in the secret word? Well, correctLetters has each letter that the player correctly guessed and secretWord is the secret word itself. We can’t just check if correctLetters == secretWord because consider this situation: if secretWord was the string 'otter' and correctLetters was the string 'orte', then correctLetters == secretWord would be False even though the player has guessed each letter in the secret word.
 
 The only way we can be sure the player won is to go through each letter in secretWord and see if it exists in correctLetters. If, and only if, every letter in secretWord exists in correctLetters will the player have won.
 
-Note that this is different than checking if every letter in correctLetters is in secretWord. If correctLetters was the string 'ot' and secretWord was 'otter', it would be true that every letter in 'ot' is in 'otter', but that doesn’t mean the player has guessed the secret word and won.
+You can loop through each letter in secretWord and if we find a letter that doesn’t exist in correctLetters, we know that the player has not guessed all the letters. The new variable foundAllLetters is set to True on line 122 before the loop begins. The loop starts out assuming that all the letters in the secret word have been found. But the loop’s code will change foundAllLetters to False the first time it finds a letter in secretWord that isn’t in correctLetters (line 125).
 
-So how can we do this? We can loop through each letter in secretWord and if we find a letter that doesn’t exist in correctLetters, we know that the player has not guessed all the letters. This is why we create a new variable named foundAllLetters and set it to the Boolean value True. We start out assuming that we have found all the letters, but will change foundAllLetters to False when we find a letter in secretWord that isn’t in correctLetters.
+If all letters in the secret word have been found, the player is told they have won and gameIsDone is set to True.
 
-The for loop will go through the numbers 0 up to (but not including) the length of the word. Remember that range(5) will evaluate to a range object that is similar to the list [0, 1, 2, 3, 4]. So on line 123, the program executes all the code inside the for-block five times. The first time it executes with the variable i set to 0, the second time set to 1, then 2, then 3, then finally 4.
+This is the start of the else-block. Remember, the code in this block will execute if the condition was False. But which condition? To find out, point your finger at the start of the else keyword and move it straight up. You’ll see that the else keyword's indentation is the same as the if keyword's indentation on line 118.
 
-We use range(len(secretWord)) so that i can be used to access each letter in the secret word. So if the first letter in secretWord (which is located at secretWord[0]) isn’t in correctLetters, we know we can set foundAllLetters to False. Also, because we don’t have to check the rest of the letters in secretWord, we can just break out of this loop. Otherwise, we loop back to line 123 and check the next letter.
+So if the condition on line 118 (guess in secretWord) was False, then the execution moves into this else-block. Otherwise, it skips down past the else-block to line 140.
 
-If foundAllLetters manages to stay set to True, then it will keep the original True value we gave it. Either way, the value in foundAllLetters is accurate by the time we get past this for loop and run line 127.
+Because the player’s guessed letter was wrong, it is concatenated to the missedLetters string. This is like what you did on line 119 when the player guessed correctly.
 
-This is a simple checks if we found all the letters. If we have found every letter in the secret word, we should tell the player that they have won. We will also set the gameIsDone variable to True. We will check this variable to see if we should let the player guess again or if the player is done guessing.
+Remember that each time the player guesses wrong, the code concatenates the wrong letter to the string in missedLetters. So the length of missedLetters (or, in code, len(missedLetters)) is also the number of wrong guesses.
 
-This is the start of the else-block. Remember, the code in this block will execute if the condition was False. But which condition? To find out, point your finger at the start of the else keyword and move it straight up. You’ll see that the else keyword's indentation is the same as the if keyword's indentation on line 118. So if the condition on line 118 was False, then we will run the code in this else-block. Otherwise, we skip down past the else-block to line 140.
+The HANGMANPICS list has 7 ASCII art strings. So when len(missedLetters) equals 6, we know the player has lost because the hangman picture will be finished. Remember, HANGMANPICS[0] is the first item in the list, and HANGMANPICS[6] is the last one.
 
-Because the player’s guessed letter was wrong, we will add it to the missedLetters string. This is like what we did on line 119 when the player guessed correctly.
+So why is the code on line 134 len(missedLetters) == len(HANGMANPICS) - 1, instead of len(missedLetters) == 6? Pretend that we add another string to the HANGMANPICS list (maybe a picture of the full hangman with a tail, or a third mutant arm). Then the last picture in the list would be at HANGMANPICS[7]. So not only would we have to change the HANGMANPICS list with a new string, but we would also have to remember to change line 134 to len(missedLetters) == 7. Using len(missedLetters) == len(HANGMANPICS) - 1 will work no matter how many ASCII art strings are in HANGMANPICS.
 
-Think about how we know when the player has guessed too many times. When you play Hangman on paper, this is when the drawing of the hangman is finished. We draw the hangman on the screen with print() calls, based on how many letters are in missedLetters. Remember that each time the player guesses wrong, we add (or as a programmer would say, concatenate) the wrong letter to the string in missedLetters. So the length of missedLetters (or, in code, len(missedLetters)) can tell us the number of wrong guesses.
+So, when the length of the missedLetters string is equal to len(HANGMANPICS) - 1, the player has run out of guesses. The secret word is printed and gameIsDone variable is set to True.
 
-At what point does the player run out of guesses and lose? Well, the HANGMANPICS list has 7 pictures (really, they are ASCII art strings). So when len(missedLetters) equals 6, we know the player has lost because the hangman picture will be finished. (Remember that HANGMANPICS[0] is the first item in the list, and HANGMANPICS[6] is the last one. This is because the index of a list with 7 items goes from 0 to 6, not 1 to 7.)
+If the player won or lost after guessing their letter, the game should ask the player if they want to play again. The playAgain() function handles getting a yes or no from the player, so it is called on line 141.
 
-So why do we have len(missedLetters) == len(HANGMANPICS) - 1 as the condition on line 134, instead of len(missedLetters) == 6? Pretend that we add another string to the HANGMANPICS list (maybe a picture of the full hangman with a tail, or a third mutant arm). Then the last picture in the list would be at HANGMANPICS[7]. So not only would we have to change the HANGMANPICS list with a new string, but we would also have to remember to change line 134 to len(missedLetters) == 7. This might not be a big deal for a small program like Hangman, but when you start writing larger programs you may have to change several different lines of code all over your program just to make a single change in the program’s behavior. This way, if we want to make the game harder or easier, we just have to add or remove ASCII art strings to HANGMANPICS and change nothing else.
+If the player does want to play again, the values in missedLetters and correctLetters must be reset to blank strings, gameIsDone to False, and a new secret word for secretWord.
 
-A second reason we user len(HANGMANPICS) - 1 is so that when we read the code in this program later, we know why this program behaves the way it does. If you wrote len(missedLetters) == 6 and then looked at the code two weeks later, you may wonder what is so special about the number 6. You may have forgotten that 6 is the last index in the HANGMANPICS list. Of course, you could write a comment to remind yourself, like:
+This way when the execution loops back to the beginning of the loop on line 112, the board will be back to a fresh game.
 
-if len(missedLetters) == 6: # 6 is the last index in the HANGMANPICS list
+If the player typed in 'no' when asked if they wanted to play again, then line 141’s condition would be False and the else-block executes. The break statement causes the execution to jump to the first line after the loop. But because there is no more code after the loop, the program terminates.
 
-But it is easier to just use len(HANGMANPICS) - 1 instead.
-
-So, when the length of the missedLetters string is equal to len(HANGMANPICS) - 1, we know the player has run out of guesses and has lost the game. We print a long string telling the user what the secret word was, and then set the gameIsDone value to the Boolean value True. This is how we will tell ourselves that the game is done and we should start over.
-
-Remember that when we have \n in a string, that represents the newline character. That is how the one print() call on line 136 displays several lines of text.
-
-If the player won or lost after guessing their letter, then our code would have set the gameIsDone variable to True. If this is the case, we should ask the player if they want to play again. We already wrote the playAgain() function to handle getting a yes or no from the player. This function returns a Boolean value of True if the player wants to play another game of Hangman, and False if they’ve had enough.
-
-If the player does want to play again, we will reset the values in missedLetters and correctLetters to blank strings, set gameIsDone to False, and then choose a new secret word by calling getRandomWord() again, passing it the list of possible secret words.
-
-This way, when we loop back to the beginning of the loop (on line 112) the board will be back to the start (remember we decide which hangman picture to show based on the length of missedLetters, which we just set as the blank string) and the game will be just as the first time we entered the loop. The only difference is we will have a new secret word, because we programmed getRandomWord() to return a randomly chosen word each time we call it.
-
-There is a small chance that the new secret word will be the same as the old secret word, but this is just a coincidence. Let’s say you flipped a coin and it came up heads, and then you flipped the coin again and it also came up heads. Both coin flips were random, it was just a coincidence that they came up the same both times. Accordingly, you may get the same word return from getRandomWord() twice in a row, but this is just a coincidence.
-
-If the player typed in 'no' when asked if they wanted to play again, then they return value of the call to the playAgain() function would be False and the else-block would have executed. This else-block only has one line, a break statement. This causes the execution to jump to the end of the loop that was started on line 112. But because there is no more code after the loop, the program terminates.
-
-This program was much bigger than the Dragon Realm program, but this program is also more sophisticated. It really helps to make a flow chart or small sketch to remember how you want everything to work. Take a look at the flow chart a few pages back in Figure 9-4 and try to find the lines of code that represent each block.
-
-Let’s look at some ways we can improve our Hangman game.
-
-After you’ve played Hangman a few times, you might think that six guesses aren't enough to get many of the words. We can easily give the player more guesses by adding more multi-line strings to the HANGMANPICS list. It’s easy, just change the ] square bracket on line 58 to a ,''' comma and three quotes (see line 57 below). Then add the following:
-
-We have added two new multi-line strings to the HANGMANPICS list, one with the hangman's left ear drawn, and the other with both ears drawn. Because the program will tell the player they have lost when the number of guesses is the same as the number of strings in HANGMANPICS (minus one), this is the only change we need to make.
-
-We can also change the list of words by changing the words on line 59. Instead of animals, we could have colors:
-
-With some modification, we can change our code so that our Hangman game can use all of these words as separate sets. We can tell the player which set the secret word is from (like "animal", "color", "shape", or "fruit"). This way, the player isn’t guessing animals all the time.
-
-To make this change, we will introduce a new data type called a dictionary. A dictionary is a collection of many values much like a list is, but instead of accessing the items in the dictionary with an integer index, you access them with an index (for dictionaries, the indexes are called keys) of any data type (but most often strings).
-
-Try entering the following into the interactive shell:
-
-Those are curly braces { and }. On the keyboard they are on the same key as the square braces [ and ]. We use curly braces to type out a dictionary value in Python. The values in between them are key-value pairs. The keys are the things on the left of the colon and the values are on the right of the colon. You can access the values (which are like items in lists) in the dictionary by using the key (which are like indexes in lists). Try entering into the interactive shell stuff['hello'] and stuff['chat'] and stuff['goodbye']:
-
-You see, instead of putting an integer index in between the square brackets, you put a string key. This will evaluate to the value for that key. You can get the size (that is, how many key-value pairs in the dictionary) with the len() function. Try entering len(stuff) into the interactive shell:
-
-The list version of this dictionary would have only the values, and look like this:
-
-The list doesn’t have any keys, like 'hello' and 'chat' and 'goodbye' in the dictionary. We have to use integer indexes 0, 1, and 2.
-
-Dictionaries are different from lists because they are unordered. The first item in a list named listStuff would be listStuff[0]. But there is no “first” item in a dictionary, because dictionaries do not have any sort of order. Try entering this into the interactive shell:
-
-As you can see, the expression favorites1 == favorites2 evaluates to True because dictionaries are unordered, and they are considered to be the same if they have the same key-value pairs in them. Lists are ordered, so a list with the same values in them but in a different order are not the same. Try entering this into the interactive shell:
-
-As you can see, the two lists listFavs1 and listFavs2 are not considered to be the same because order matters in lists.
-
-You can also use integers as the keys for dictionaries. Dictionaries can have keys of any data type, not just strings. But remember, because 0 and '0' are different values, they will be different keys. Try entering this into the interactive shell:
-
-You might think that using a for loop is hard with dictionaries because they do not have integer indexes. But actually, it’s easy. Try entering the following into the interactive shell. (Here's a hint, in IDLE, you do not have to type spaces to start a new block. IDLE does it for you. To end the block, just insert a blank line by just hitting the Enter key. Or you could start a new file, type in this code, and then press F5 to run the program.)
-
-As you can see, if you just use a dictionary in a for loop, the variable i will take on the values of the dictionary's keys, not its values. But if you have the dictionary and the key, you can get the value as we do above with favorites[i]. But remember that because dictionaries are unordered, you cannot predict which order the for loop will execute in. Above, we typed the 'animal' key as coming before the 'number' key, but the for loop printed out 'number' before 'animal'.
-
-Dictionaries also have two useful methods, keys() and values(). These will return values of a type called dict_keys and dict_values, respectively. Those data types are beyond the scope of this book, but you can easily convert them to lists with the list() function (just like str() converts a value to a string value.) Then you’ll have an ordered list of the key values and the value values in the dictionary value. Try entering the following into the interactive shell:
-
-Using these methods to get a list of the keys and values that are in a dictionary can be helpful. Do not forget to convert the return value of keys() and values() with the list() function first, otherwise you may get errors in your program.
-
-We will make changes to our original Hangman program. These changes can be downloaded from http://invpy.com/hangman2.py
-
-So how can we use dictionaries in our game? First, let’s change the list words into a dictionary whose keys are strings and values are lists of strings. (Remember that the string method split() evaluates to a list.
-
-This code is put across multiple lines in the file, even though the Python interpreter thinks of it as just one “line of code.” (The line of code doesn’t end until the final } curly brace.)
-
-Now we will have to change our getRandomWord() function so that it chooses a random word from a dictionary of lists of strings, instead of from a list of strings. Here is what the function originally looked like:
-
-Change the code in this function so that it looks like this:
-
-Line 61 just changes the name of the parameter to be more descriptive. Now instead of choosing a random word from a list of strings, first we choose a random key from the dictionary and then we choose a random word from the key's list of strings. Line 65 calls a new function in the random module named choice(). The choice() function has one parameter, a list. The return value of choice() is an item randomly selected from this list each time it is called.
-
-Remember that randint(a, b) will return a random integer between (and including) the two integers a and b and choice(a) returns a random item from the list a. Look at these two lines of code, and figure out why they do the same thing:
-
-Line 64 (line 70 in the new code) has also been changed. Now instead of returning the string wordList[wordIndex], we are returning a list with two items. The first item is wordDict[wordKey][wordIndex]. The second item is wordKey. We return a list because we actually want the getRandomWord() to return two values, so putting those two values in a list and returning the list is the easiest way to do this.
-
-wordDict[wordKey][wordIndex] may look kind of complicated, but it is just an expression you can evaluate one step at a time like anything else. First, imagine that wordKey had the value 'Fruits' (which was chosen on line 65) and wordIndex has the value 5 (chosen on line 68). Here is how wordDict[wordKey][wordIndex] would evaluate:
-
-In the above case, the item in the list this function returns would be the string 'watermelon'. (Remember that indexes start at 0, so [5] refers to the 6th item in the list.)
-
-There are just three more changes to make to the program. The first two are on the lines that we call the getRandomWord() function. The function is called on lines 109 and 145 in the original program:
-
-Because the getRandomWord() function now returns a list of two items instead of a string, secretWord will be assigned a list, not a string. We would then have to change the code as follows:
-
-With the above changes, secretWord is first a list of two items. Then we add a new variable named secretKey and set it to the second item in secretWord. Then we set secretWord itself to the first item in the secretWord list. That means that secretWord will then be a string.
-
-But there is an easier way by doing a little trick with assignment statements. Try entering the following into the interactive shell:
-
-The trick is to put the same number of variables (delimited by commas) on the left side of the = sign as are in the list on the right side of the = sign. Python will automatically assign the first item's value in the list to the first variable, the second item's value to the second variable, and so on. But if you do not have the same number of variables on the left side as there are items in the list on the right side, the Python interpreter will give you an error.
-
-So we should change our code in Hangman to use this trick, which will mean the program uses fewer lines of code.
-
-The last change we will make is to add a simple print() call to tell the player which set of words they are trying to guess. This way, when the player plays the game they will know if the secret word is an animal, color, shape, or fruit. Add this line of code after line 112. Here is the original code:
-
-Add the line so your program looks like this:
-
-Now we are done with our changes. Instead of just a single list of words, the secret word will be chosen from many different lists of words. We will also tell the player which set of words the secret word is from. Try playing this new version. You can easily change the words dictionary on line 59 to include more sets of words.
-
-We're done with Hangman. This has been a long chapter, and several new concepts have been introduced. But Hangman has been our most advanced game yet. As your games get more and more complex, it'll be a good idea to sketch out a flow chart on paper of what happens in your program.
+This has been a long chapter, and you’ve been introduced to several new concepts. But Hangman has been our most advanced game yet. As your games get more and more complex, it’ll be a good idea to sketch out a flow chart on paper of what happens in your program.
 
 Methods are just like functions, except that are associated with values. Methods return values just like functions return values.
 
-for loops iterate over the items in a list. The range() function is often used with for loops because it is an easy way to create lists of sequential numbers.
+A for loop iterates over the items in a list. The range() function is often used with for loops because it is an easy way to create lists of sequential numbers.
 
-Else-if statements (which use the elif keyword) will execute their block if their condition is True and the previous if and elif conditions are False
-
-Dictionaries are similar to lists except that they can use any value for an index. The indexes in dictionaries are called keys. Keys can be strings, integers, or any value of any data type.
+The else-if statement will execute its block if their condition is True and the previous if and elif conditions are False.
 

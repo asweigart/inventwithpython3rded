@@ -3,3 +3,4 @@ people who have helped with translations, answered questions, and generally
 made Invent with Python that much better:
 
 Alfredo R. Carella - alfredocarella@gmail.com
+Alejandro Pernin - ale.pernin@gmail.com
