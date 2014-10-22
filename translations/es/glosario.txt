@@ -1,0 +1,3 @@
+computer, computadora
+set, establecer
+get, obtener
