@@ -57,7 +57,7 @@ CHAPTER 8
 CHAPTER 9
 ---------
 
-* No issues so far.
+* ES: The accents have been removed from some words, as it would be unnatural to have different letters like "a"!="á". Also "ñ" has been added to the dictionary string "abc...xyz"
 
 
 CHAPTER 10
