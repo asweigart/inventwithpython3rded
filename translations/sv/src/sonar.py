@@ -6,12 +6,12 @@ import sys
 def ritaBräde(bräde):
     # Rita ut datastrukturen med spelbrädet.
 
-    hlinje = '    ' # inledande tomrum för siffrorna på vänstra sidan av brädet
+    hrad = '    ' # inledande tomrum för siffrorna på vänstra sidan av brädet
     for i in range(1, 6):
-        hlinje += (' ' * 9) + str(i)
+        hrad += (' ' * 9) + str(i)
 
     # skriv ut siffrorna längs med överkanten
-    print(hlinje)
+    print(hrad)
     print('   ' + ('0123456789' * 6))
     print()
 
@@ -27,7 +27,7 @@ def ritaBräde(bräde):
     # skriv ut siffrorna längs med underkanten
     print()
     print('   ' + ('0123456789' * 6))
-    print(hlinje)
+    print(hrad)
 
 
 def hämtaRad(bräde, rad):
