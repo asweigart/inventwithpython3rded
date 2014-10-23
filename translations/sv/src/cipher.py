@@ -1,57 +1,57 @@
 # Caesar Cipher
 
-MAX_KEY_SIZE = 26
+MAX_NYCKEL_STORLEK = 26
 
-def getMode():
+def hämtaRiktning():
     while True:
-        print('Do you wish to encrypt or decrypt a message?')
-        mode = input().lower()
-        if mode in 'encrypt e decrypt d'.split():
-            return mode
+        print('Vill du kryptera eller dekryptera ett meddelande?')
+        riktning = input().lower()
+        if riktning in 'kryptera k dekryptera d'.split():
+            return riktning
         else:
-            print('Enter either "encrypt" or "e" or "decrypt" or "d".')
+            print('Mata in antingen "kryptera", "k", "dekryptera" eller "d"')
 
-def getMessage():
-    print('Enter your message:')
+def hämtaMeddelande():
+    print('Mata in ditt meddelande:')
     return input()
 
-def getKey():
-    key = 0
+def hämtaNyckel():
+    nyckel = 0
     while True:
-        print('Enter the key number (1-%s)' % (MAX_KEY_SIZE))
-        key = int(input())
-        if (key >= 1 and key <= MAX_KEY_SIZE):
-            return key
+        print('Mata in nyckel (1-%s)' % (MAX_NYCKEL_STORLEK))
+        nyckel = int(input())
+        if (nyckel >= 1 and nyckel <= MAX_NYCKEL_STORLEK):
+            return nyckel
 
-def getTranslatedMessage(mode, message, key):
-    if mode[0] == 'd':
-        key = -key
-    translated = ''
+def hämtaÖversattMeddelande(riktning, meddelande, nyckel):
+    if riktning[0] == 'd':
+        nyckel = -nyckel
+    översatt = ''
 
-    for symbol in message:
-        if symbol.isalpha():
-            num = ord(symbol)
-            num += key
+    for tecken in meddelande:
+        if tecken.isalpha():
+            nummer = ord(tecken)
+            nummer += nyckel
 
-            if symbol.isupper():
-                if num > ord('Z'):
-                    num -= 26
-                elif num < ord('A'):
-                    num += 26
-            elif symbol.islower():
-                if num > ord('z'):
-                    num -= 26
-                elif num < ord('a'):
-                    num += 26
+            if tecken.isupper():
+                if nummer > ord('Z'):
+                    nummer -= 26
+                elif nummer < ord('A'):
+                    nummer += 26
+            elif tecken.islower():
+                if nummer > ord('z'):
+                    nummer -= 26
+                elif nummer < ord('a'):
+                    nummer += 26
 
-            translated += chr(num)
+            översatt += chr(nummer)
         else:
-            translated += symbol
-    return translated
+            översatt += tecken
+    return översatt
 
-mode = getMode()
-message = getMessage()
-key = getKey()
+riktning = hämtaRiktning()
+meddelande = hämtaMeddelande()
+nyckel = hämtaNyckel()
 
-print('Your translated text is:')
-print(getTranslatedMessage(mode, message, key))
+print('Din översatta text är:')
+print(hämtaÖversattMeddelande(riktning, meddelande, nyckel))
