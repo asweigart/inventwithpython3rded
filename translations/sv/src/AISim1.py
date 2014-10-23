@@ -43,7 +43,7 @@ def hämtaNyttBräde():
 
 
 def ärKorrektDrag(bräde, bricka, xstart, ystart):
-    # Returnerar False om spelarens drag till ruta xtart,ystart är ogiltigt
+    # Returnerar False om spelarens drag till ruta xstart,ystart är ogiltigt
     # Om det är ett korrekt drag, returnera en lista med rutor
     if bräde[xstart][ystart] != ' ' or not inomBrädet(xstart, ystart):
         return False
@@ -61,7 +61,7 @@ def ärKorrektDrag(bräde, bricka, xstart, ystart):
         x += xriktning # första steget i riktningen
         y += yriktning # första steget i riktningen
         if inomBrädet(x, y) and bräde[x][y] == annanBricka:
-            # Det finns en angränsade bricka som tillhär den andre spelaren.
+            # Det finns en angränsade bricka som tillhör den andre spelaren.
             x += xriktning
             y += yriktning
             if not inomBrädet(x, y):
@@ -114,7 +114,7 @@ def hämtaKorrektaDrag(bräde, bricka):
 
 
 def hämtaBrädetsPoäng(bräde):
-    # Beräkna poängen genom att räkna antalet brickor. Returnera en associerad lista med nycklarna 'X' och 'O'.
+    # Beräkna poängen genom att räkna antalet brickor. Returnera ett dictionary med nycklarna 'X' och 'O'.
     xPoäng = 0
     oPoäng = 0
     for x in range(8):
@@ -127,7 +127,7 @@ def hämtaBrädetsPoäng(bräde):
 
 
 def mataInSpelarensBricka():
-    # Låt spelaren mata in vilken bricka hen vill vara.
+    # Låt spelaren mata in vilken bricka han/hon vill vara.
     # Returnera en lista med spelarens bricka och datorns bricka.
     bricka = ''
     while not (bricka == 'X' or bricka == 'O'):
@@ -186,7 +186,7 @@ def ärEttHörn(x, y):
 
 
 def hämtaSpelarensDrag(bräde, spelarensBricka):
-    # Låt spelaren mata in hens drag.
+    # Låt spelaren mata in sitt drag.
     # Returnerar draget som [x, y] (eller en av strängarna 'ledtrådar' eller 'sluta')
     SIFFROR_1_8 = '1 2 3 4 5 6 7 8'.split()
     while True:
