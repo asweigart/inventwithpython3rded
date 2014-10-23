@@ -1,6 +1,6 @@
 # Caesar Cipher
 
-MAX_NYCKEL_STORLEK = 26
+MAX_NYCKEL_STORLEK = 58
 
 def hämtaRiktning():
     while True:
@@ -22,32 +22,23 @@ def hämtaNyckel():
         nyckel = int(input())
         if (nyckel >= 1 and nyckel <= MAX_NYCKEL_STORLEK):
             return nyckel
-
+            
 def hämtaÖversattMeddelande(riktning, meddelande, nyckel):
     if riktning[0] == 'd':
         nyckel = -nyckel
     översatt = ''
 
+    alfabet = 'abcdefghijklmnopqrstuvwxyzåäöABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ'
+
     for tecken in meddelande:
         if tecken.isalpha():
-            nummer = ord(tecken)
+            nummer = alfabet.index(tecken)
             nummer += nyckel
-
-            if tecken.isupper():
-                if nummer > ord('Z'):
-                    nummer -= 26
-                elif nummer < ord('A'):
-                    nummer += 26
-            elif tecken.islower():
-                if nummer > ord('z'):
-                    nummer -= 26
-                elif nummer < ord('a'):
-                    nummer += 26
-
-            översatt += chr(nummer)
-        else:
-            översatt += tecken
+            nummer = nummer % len(alfabet)
+            tecken = alfabet[nummer]
+        översatt += tecken
     return översatt
+            
 
 riktning = hämtaRiktning()
 meddelande = hämtaMeddelande()
