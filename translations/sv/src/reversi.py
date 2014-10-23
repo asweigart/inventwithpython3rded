@@ -20,13 +20,13 @@ def ritaBräde(bräde):
         print(HRAD)
 
 
-def tömBräde(bräde):
-    # Tömmer brädet som skickats in och återställer startbrickorna.
+def tömBrädet(bräde):
+    # Tömmer brädet förutom de fyra utgångsbrickorna
     for x in range(8):
         for y in range(8):
             bräde[x][y] = ' '
 
-    # Startbrickor:
+    # Utgångsbrickor:
     bräde[3][3] = 'X'
     bräde[3][4] = 'O'
     bräde[4][3] = 'O'
@@ -34,7 +34,7 @@ def tömBräde(bräde):
 
 
 def hämtaNyttBräde():
-    # Skapar ett nytt tomt bräde.
+    # Skapar ett nytt tomt bräde
     bräde = []
     for i in range(8):
         bräde.append([' '] * 8)
@@ -42,13 +42,13 @@ def hämtaNyttBräde():
     return bräde
 
 
-def ärTillåtetDrag(bräde, bricka, xstart, ystart):
-    # Returnerar False om spelaren inte får lägga på rutan xstart,ystart.
-    # Om det är ett korrekt drag, returnera en lista med brickor som blir spelarens om draget utförs.
+def ärKorrektDrag(bräde, bricka, xstart, ystart):
+    # Returnerar False om spelarens drag till ruta xtart,ystart är ogiltigt
+    # Om det är ett korrekt drag, returnera en lista med rutor
     if bräde[xstart][ystart] != ' ' or not inomBrädet(xstart, ystart):
         return False
 
-    bräde[xstart][ystart] = bricka # placera brickan tillfälligt på rutan.
+    bräde[xstart][ystart] = bricka # Placera tillfälligt brickan på brädet.
 
     if bricka == 'X':
         annanBricka = 'O'
@@ -61,7 +61,7 @@ def ärTillåtetDrag(bräde, bricka, xstart, ystart):
         x += xriktning # första steget i riktningen
         y += yriktning # första steget i riktningen
         if inomBrädet(x, y) and bräde[x][y] == annanBricka:
-            # En bricka som tillhör motståndaren är granne.
+            # Det finns en angränsade bricka som tillhär den andre spelaren.
             x += xriktning
             y += yriktning
             if not inomBrädet(x, y):
@@ -69,12 +69,12 @@ def ärTillåtetDrag(bräde, bricka, xstart, ystart):
             while bräde[x][y] == annanBricka:
                 x += xriktning
                 y += yriktning
-                if not inomBrädet(x, y): # hoppa ut ur while-slingan, fortsätt därefter med for-slingan
+                if not inomBrädet(x, y): # lämna while-slingan, fortsätt med for-slingan
                     break
             if not inomBrädet(x, y):
                 continue
             if bräde[x][y] == bricka:
-                # Det finns brickor att vända. Gå i motsatt riktning tills vi når den ursprungliga rutan, kom ihåg rutorna längs vägen.
+                # Det finns brickor att vända. Gå i motsatt riktning till vi når den ursprungliga rutan. Kom ihåg brickorna längs vägen.
                 while True:
                     x -= xriktning
                     y -= yriktning
@@ -82,19 +82,19 @@ def ärTillåtetDrag(bräde, bricka, xstart, ystart):
                         break
                     brickorAttVända.append([x, y])
 
-    bräde[xstart][ystart] = ' ' # Återställ den tomma rutan.
-    if len(brickorAttVända) == 0: # Om inga brickor har vänts, är draget inte tillåtet.
+    bräde[xstart][ystart] = ' ' # återställ den tomma rutan
+    if len(brickorAttVända) == 0: # Om inga brickor vändes, är detta inte ett tillåtet drag.
         return False
     return brickorAttVända
 
 
 def inomBrädet(x, y):
-    # Returnera True om koordinaterna finns på brädet
+    # Returnera True om koordinaterna finns på brädet.
     return x >= 0 and x <= 7 and y >= 0 and y <=7
 
 
-def hämtaBrädeMedKorrektaDrag(bräde, bricka):
-    # Returnerar ett nytt bräde med punkter som markerar de drag spelaren kan utföra.
+def hämtaBrädeMedTillåtnaDrag(bräde, bricka):
+    # Returnerar ett nytt bräde med punkter markerande drag som spelaren kan utföra.
     kopiaAvBräde = hämtaKopiaAvBräde(bräde)
 
     for x, y in hämtaKorrektaDrag(kopiaAvBräde, bricka):
@@ -103,18 +103,18 @@ def hämtaBrädeMedKorrektaDrag(bräde, bricka):
 
 
 def hämtaKorrektaDrag(bräde, bricka):
-    # Returnerar en lista med korrekta drag för spelaren på det givna brädet.
-    korrektaDrag = []
+    # Returnerar en lista med koordinater utgörande tillåtna drag för spelaren på aktuellt bräde.
+    KorrektaDrag = []
 
     for x in range(8):
         for y in range(8):
-            if ärTillåtetDrag(bräde, bricka, x, y) != False:
-                korrektaDrag.append([x, y])
-    return korrektaDrag
+            if ärKorrektDrag(bräde, bricka, x, y) != False:
+                KorrektaDrag.append([x, y])
+    return KorrektaDrag
 
 
 def hämtaBrädetsPoäng(bräde):
-    # Bestäm poängen genom att räkna brickorna. Returnerar en associerad lista med nycklarna 'X' och 'O'.
+    # Beräkna poängen genom att räkna antalet brickor. Returnera en associerad lista med nycklarna 'X' och 'O'.
     xPoäng = 0
     oPoäng = 0
     for x in range(8):
@@ -127,22 +127,22 @@ def hämtaBrädetsPoäng(bräde):
 
 
 def mataInSpelarensBricka():
-    # Låt spelaren ange vilken bricka hen vill ha.
-    # Returnerar en lista med spelarens bricka som första element och datorns bricka som andra.
+    # Låt spelaren mata in vilken bricka hen vill vara.
+    # Returnera en lista med spelarens bricka och datorns bricka.
     bricka = ''
     while not (bricka == 'X' or bricka == 'O'):
         print('Vill du vara X eller O ?')
         bricka = input().upper()
 
-    # det första elementet i listan är spelarens bricka, det andra är datorns bricka.
+    # det första elementet i listan innehåller spelarens bricka, det andra innehåller datorns bricka.
     if bricka == 'X':
         return ['X', 'O']
     else:
         return ['O', 'X']
 
 
-def vemBörjarSpela():
-    # Låt slumpen avgöra vilken spelare som börjar.
+def vemBörjar():
+    # Slumpa vilken spelare som ska börja.
     if random.randint(0, 1) == 0:
         return 'dator'
     else:
@@ -150,15 +150,15 @@ def vemBörjarSpela():
 
 
 def spelaIgen():
-    # Denna funktion returnerar True om spelaren vill spela en gång till, annars False.
-    print('Vill du spela igen? (ja eller nej)')
+    # Denna funktion returnerar True om spelaren vill spela en gång till annars False.
+    print('Vill du spela en gång till ? (ja eller nej)')
     return input().lower().startswith('j')
 
 
-def skapaBräde(bräde, bricka, xstart, ystart):
-    # Placera brickan på brädet på rutan xstart,ystart. Vänd på motståndarens brickor.
-    # Returnerar False om draget inte är tillåtet, True om det är tillåtet.
-    brickorAttVända = ärTillåtetDrag(bräde, bricka, xstart, ystart)
+def utförDrag(bräde, bricka, xstart, ystart):
+    # Placera bricka på brädet på ruta xstart,ystart, samt vänd på motståndarens brickor.
+    # Returnera False om detta är ett ogiltigt drag annars True.
+    brickorAttVända = ärKorrektDrag(bräde, bricka, xstart, ystart)
 
     if brickorAttVända == False:
         return False
@@ -170,7 +170,7 @@ def skapaBräde(bräde, bricka, xstart, ystart):
 
 
 def hämtaKopiaAvBräde(bräde):
-    # Skapa en kopia av brädet och returnera kopian.
+    # Skapa en kopia av brädet och returnera den.
     kopiaAvBräde = hämtaNyttBräde()
 
     for x in range(8):
@@ -186,11 +186,11 @@ def ärEttHörn(x, y):
 
 
 def hämtaSpelarensDrag(bräde, spelarensBricka):
-    # Låt spelaren skriva in sitt drag.
-    # Returnerar draget som [x,y] (eller strängarna 'ledtrådar' eller 'sluta')
+    # Låt spelaren mata in hens drag.
+    # Returnerar draget som [x, y] (eller en av strängarna 'ledtrådar' eller 'sluta')
     SIFFROR_1_8 = '1 2 3 4 5 6 7 8'.split()
     while True:
-        print('Mata in ditt drag, eller mata in sluta för att avsluta spelet, eller ledtrådar för att slå av/på ledtrådar.')
+        print('Mata in ditt drag, eller sluta för att avsluta, eller ledtrådar för att slå av/på ledtrådar.')
         drag = input().lower()
         if drag == 'sluta':
             return 'sluta'
@@ -200,39 +200,39 @@ def hämtaSpelarensDrag(bräde, spelarensBricka):
         if len(drag) == 2 and drag[0] in SIFFROR_1_8 and drag[1] in SIFFROR_1_8:
             x = int(drag[0]) - 1
             y = int(drag[1]) - 1
-            if ärTillåtetDrag(bräde, spelarensBricka, x, y) == False:
+            if ärKorrektDrag(bräde, spelarensBricka, x, y) == False:
                 continue
             else:
                 break
         else:
-            print('Draget är inte tillåtet. Skriv en siffra för kolumn (1-8), därefter en siffra för rad (1-8).')
-            print('Till exempel anger 81 övre högra hörnet.')
+            print('Draget är inte tillåtet. Mata in siffran för x (1-8), därefter siffran för y (1-8).')
+            print('Till exempel, 81 motsvarar övre högra hörnet.')
 
     return [x, y]
 
 
 def hämtaDatornsDrag(bräde, datornsBricka):
-    # Givet ett bräde och datorns bricka, bestäm
-    # draget och returnera draget som en [x,y] lista.
+    # Givet ett bräde och datorns bricka, avgör
+    # dragen och returnera dem som en [x, y] lista.
     möjligaDrag = hämtaKorrektaDrag(bräde, datornsBricka)
 
-    # slumpa de mjöliga dragen
+    # slumpa de möjliga dragens ordning
     random.shuffle(möjligaDrag)
 
-    # välj alltid ett hörn om det är möjligt.
+    # välj alltid ett hörn om möjligt.
     for x, y in möjligaDrag:
         if ärEttHörn(x, y):
             return [x, y]
 
-    # Gå igenom alla möjliga drag och kom ihåg det med högst poäng.
-    högstaPoäng = -1
+    # Gå igenom alla möjliga dra och kom ihåg draget med högst poäng
+    bästaPoäng = -1
     for x, y in möjligaDrag:
         kopiaAvBräde = hämtaKopiaAvBräde(bräde)
-        skapaBräde(kopiaAvBräde, datornsBricka, x, y)
+        utförDrag(kopiaAvBräde, datornsBricka, x, y)
         poäng = hämtaBrädetsPoäng(kopiaAvBräde)[datornsBricka]
-        if poäng > högstaPoäng:
+        if poäng > bästaPoäng:
             bästaDrag = [x, y]
-            högstaPoäng = poäng
+            bästaPoäng = poäng
     return bästaDrag
 
 
@@ -248,18 +248,18 @@ print('Välkommen till Reversi!')
 while True:
     # Nollställ brädet och spelet.
     huvudBräde = hämtaNyttBräde()
-    tömBräde(huvudBräde)
+    tömBrädet(huvudBräde)
     spelarensBricka, datornsBricka = mataInSpelarensBricka()
     visaLedtrådar = False
-    itur = vemBörjarSpela()
-    print(itur + 'n börjar spela.')
+    iTur = vemBörjar()
+    print('' + iTur + 'n börjar spela.')
 
     while True:
-        if itur == 'spelare':
-            # Spelarens drag.
+        if iTur == 'spelare':
+            # Spelarens tur.
             if visaLedtrådar:
-                brädeMedKorrektaDrag = hämtaBrädeMedKorrektaDrag(huvudBräde, spelarensBricka)
-                ritaBräde(brädeMedKorrektaDrag)
+                korrektaDragBräde = hämtaBrädeMedTillåtnaDrag(huvudBräde, spelarensBricka)
+                ritaBräde(korrektaDragBräde)
             else:
                 ritaBräde(huvudBräde)
             visaPoäng(spelarensBricka, datornsBricka)
@@ -271,27 +271,27 @@ while True:
                 visaLedtrådar = not visaLedtrådar
                 continue
             else:
-                skapaBräde(huvudBräde, spelarensBricka, drag[0], drag[1])
+                utförDrag(huvudBräde, spelarensBricka, drag[0], drag[1])
 
             if hämtaKorrektaDrag(huvudBräde, datornsBricka) == []:
                 break
             else:
-                itur = 'dator'
+                iTur = 'dator'
 
         else:
-            # Datorns drag.
+            # Datorns tur.
             ritaBräde(huvudBräde)
             visaPoäng(spelarensBricka, datornsBricka)
-            input('Tryck på Retur-tangenten för att se datorns drag.')
+            input("Tryck på Retur för att se datorns drag.")
             x, y = hämtaDatornsDrag(huvudBräde, datornsBricka)
-            skapaBräde(huvudBräde, datornsBricka, x, y)
+            utförDrag(huvudBräde, datornsBricka, x, y)
 
             if hämtaKorrektaDrag(huvudBräde, spelarensBricka) == []:
                 break
             else:
-                itur = 'spelare'
+                iTur = 'spelare'
 
-    # Visa den slutliga poängen.
+    # Visa slutlig poäng.
     ritaBräde(huvudBräde)
     poäng = hämtaBrädetsPoäng(huvudBräde)
     print('X fick %s poäng. O fick %s poäng.' % (poäng['X'], poäng['O']))
