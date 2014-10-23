@@ -43,6 +43,7 @@ def obtenerNuevoTablero():
 
 
 def esJugadaValida(tablero, baldosa, comienzox, comienzoy):
+    # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida
     # Si es una jugada válida, devuelve una lista de espacios al que el jugador se podría mover.
     if tablero[comienzox][comienzoy] != ' ' or not estaEnTablero(comienzox, comienzoy):
         return False
