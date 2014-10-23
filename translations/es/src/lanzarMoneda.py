@@ -1,47 +1,20 @@
 import random
-print('I will flip a coin 1000 times. Guess how many times it will come up heads. (Press enter to begin)')
+print('Lanzaré una moneda 1000 veces. Adivina cuantas veces caerá Cara. (Presiona enter para comenzar)')
 input()
-flips = 0
-heads = 0
-while flips < 1000:
+lanzamientos = 0
+caras = 0
+while lanzamientos < 1000:
     if random.randint(0, 1) == 1:
-        heads = heads + 1
-    flips = flips + 1
+        caras = caras + 1
+    lanzamientos = lanzamientos + 1
 
-    if flips == 900:
-        print('900 flips and there have been ' + str(heads) + ' heads.')
-    if flips == 100:
-        print('At 100 tosses, heads has come up ' + str(heads) + ' times so far.')
-    if flips == 500:
-        print('Half way done, and heads has come up ' + str(heads) + ' times.')
+    if lanzamientos == 900:
+        print('900 lanzamientos y hubo ' + str(caras) + ' caras.')
+    if lanzamientos == 100:
+        print('En 100 lanzamientos, cara salió ' + str(caras) + ' veces.')
+    if lanzamientos == 500:
+        print('La mitad de los lanzamientos y cara salió ' + str(caras) + ' veces.')
 
 print()
-print('Out of 1000 coin tosses, heads came up ' + str(heads) + ' times!')
-print('Were you close?')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print('De 1000 lanzamientos, al final cara salió ' + str(caras) + ' veces!')
+print('¿Estuviste cerca?')
