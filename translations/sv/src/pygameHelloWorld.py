@@ -1,61 +1,61 @@
 import pygame, sys
 from pygame.locals import *
 
-# set up pygame
+# skapa pygame
 pygame.init()
 
-# set up the window
-windowSurface = pygame.display.set_mode((500, 400), 0, 32)
-pygame.display.set_caption('Hello world!')
+# skapa fönstret
+fönsterYta = pygame.display.set_mode((500, 400), 0, 32)
+pygame.display.set_caption('Hej Sverige!')
 
-# set up the colors
-BLACK = (0, 0, 0)
-WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
+# skapa färgerna
+SVART = (0, 0, 0)
+VIT = (255, 255, 255)
+RÖD = (255, 0, 0)
+GRÖN = (0, 255, 0)
+BLÅ = (0, 0, 255)
 
-# set up fonts
-basicFont = pygame.font.SysFont(None, 48)
+# skapa fonter
+basFont = pygame.font.SysFont(None, 48)
 
-# set up the text
-text = basicFont.render('Hello world!', True, WHITE, BLUE)
-textRect = text.get_rect()
-textRect.centerx = windowSurface.get_rect().centerx
-textRect.centery = windowSurface.get_rect().centery
+# skapa texten
+text = basFont.render('Hej Sverige!', True, VIT, BLÅ)
+textRektangel = text.get_rect()
+textRektangel.centerx = fönsterYta.get_rect().centerx
+textRektangel.centery = fönsterYta.get_rect().centery
 
-# draw the white background onto the surface
-windowSurface.fill(WHITE)
+# rita den vita bakgrunden på ytan
+fönsterYta.fill(VIT)
 
-# draw a green polygon onto the surface
-pygame.draw.polygon(windowSurface, GREEN, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
+# rita en grön polygon på ytan
+pygame.draw.polygon(fönsterYta, GRÖN, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
 
-# draw some blue lines onto the surface
-pygame.draw.line(windowSurface, BLUE, (60, 60), (120, 60), 4)
-pygame.draw.line(windowSurface, BLUE, (120, 60), (60, 120))
-pygame.draw.line(windowSurface, BLUE, (60, 120), (120, 120), 4)
+# rita några blå linjer på ytan
+pygame.draw.line(fönsterYta, BLÅ, (60, 60), (120, 60), 4)
+pygame.draw.line(fönsterYta, BLÅ, (120, 60), (60, 120))
+pygame.draw.line(fönsterYta, BLÅ, (60, 120), (120, 120), 4)
 
-# draw a blue circle onto the surface
-pygame.draw.circle(windowSurface, BLUE, (300, 50), 20, 0)
+# rita en blå cirkel på ytan
+pygame.draw.circle(fönsterYta, BLÅ, (300, 50), 20, 0)
 
-# draw a red ellipse onto the surface
-pygame.draw.ellipse(windowSurface, RED, (300, 250, 40, 80), 1)
+# rita en röd ellips på ytan
+pygame.draw.ellipse(fönsterYta, RÖD, (300, 250, 40, 80), 1)
 
-# draw the text's background rectangle onto the surface
-pygame.draw.rect(windowSurface, RED, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
+# rita textens bakgrundsrektangel på ytan
+pygame.draw.rect(fönsterYta, RÖD, (textRektangel.left - 20, textRektangel.top - 20, textRektangel.width + 40, textRektangel.height + 40))
 
-# get a pixel array of the surface
-pixArray = pygame.PixelArray(windowSurface)
-pixArray[480][380] = BLACK
-del pixArray
+# hämta en pixelmatris från ytan
+pixelMatris = pygame.PixelArray(fönsterYta)
+pixelMatris[480][380] = SVART
+del pixelMatris
 
-# draw the text onto the surface
-windowSurface.blit(text, textRect)
+# rita texten på ytan
+fönsterYta.blit(text, textRektangel)
 
-# draw the window onto the screen
+# rita fönstret på skärmen
 pygame.display.update()
 
-# run the game loop
+# kör spelslingan
 while True:
     for event in pygame.event.get():
         if event.type == QUIT:

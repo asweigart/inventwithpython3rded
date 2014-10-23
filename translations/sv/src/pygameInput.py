@@ -1,110 +1,110 @@
 import pygame, sys, random
 from pygame.locals import *
 
-# set up pygame
+# initiera pygame
 pygame.init()
-mainClock = pygame.time.Clock()
+huvudKlocka = pygame.time.Clock()
 
-# set up the window
-WINDOWWIDTH = 400
-WINDOWHEIGHT = 400
-windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
-pygame.display.set_caption('Input')
+# initiera fönstret
+FÖNSTER_BREDD = 400
+FÖNSTER_HÖJD = 400
+fönsterYta = pygame.display.set_mode((FÖNSTER_BREDD, FÖNSTER_HÖJD), 0, 32)
+pygame.display.set_caption('Inmatning')
 
-# set up the colors
-BLACK = (0, 0, 0)
-GREEN = (0, 255, 0)
-WHITE = (255, 255, 255)
+# skapa färgkonstanter
+SVART = (0, 0, 0)
+GRÖN = (0, 255, 0)
+VIT = (255, 255, 255)
 
-# set up the player and food data structure
-foodCounter = 0
-NEWFOOD = 40
-FOODSIZE = 20
-player = pygame.Rect(300, 100, 50, 50)
-foods = []
+# skapa spelaren och matbitarnas datastruktur
+matbitsRäknare = 0
+NY_MATBIT = 40
+MATBIT_STORLEK = 20
+spelare = pygame.Rect(300, 100, 50, 50)
+matbitar = []
 for i in range(20):
-    foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
+    matbitar.append(pygame.Rect(random.randint(0, FÖNSTER_BREDD - MATBIT_STORLEK), random.randint(0, FÖNSTER_HÖJD - MATBIT_STORLEK), MATBIT_STORLEK, MATBIT_STORLEK))
 
-# set up movement variables
-moveLeft = False
-moveRight = False
-moveUp = False
-moveDown = False
+# skapa rörelsevariabler
+flyttaVänster = False
+flyttaHöger = False
+flyttaUpp = False
+flyttaNer = False
 
-MOVESPEED = 6
+HASTIGHET = 6
 
 
-# run the game loop
+# kör spelslingan
 while True:
-    # check for events
+    # kontrollera händelser
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
         if event.type == KEYDOWN:
-            # change the keyboard variables
+            # uppdatera tangentbordsvariablerna
             if event.key == K_LEFT or event.key == ord('a'):
-                moveRight = False
-                moveLeft = True
+                flyttaHöger = False
+                flyttaVänster = True
             if event.key == K_RIGHT or event.key == ord('d'):
-                moveLeft = False
-                moveRight = True
+                flyttaVänster = False
+                flyttaHöger = True
             if event.key == K_UP or event.key == ord('w'):
-                moveDown = False
-                moveUp = True
+                flyttaNer = False
+                flyttaUpp = True
             if event.key == K_DOWN or event.key == ord('s'):
-                moveUp = False
-                moveDown = True
+                flyttaUpp = False
+                flyttaNer = True
         if event.type == KEYUP:
             if event.key == K_ESCAPE:
                 pygame.quit()
                 sys.exit()
             if event.key == K_LEFT or event.key == ord('a'):
-                moveLeft = False
+                flyttaVänster = False
             if event.key == K_RIGHT or event.key == ord('d'):
-                moveRight = False
+                flyttaHöger = False
             if event.key == K_UP or event.key == ord('w'):
-                moveUp = False
+                flyttaUpp = False
             if event.key == K_DOWN or event.key == ord('s'):
-                moveDown = False
+                flyttaNer = False
             if event.key == ord('x'):
-                player.top = random.randint(0, WINDOWHEIGHT - player.height)
-                player.left = random.randint(0, WINDOWWIDTH - player.width)
+                spelare.top = random.randint(0, FÖNSTER_HÖJD - spelare.height)
+                spelare.left = random.randint(0, FÖNSTER_BREDD - spelare.width)
 
         if event.type == MOUSEBUTTONUP:
-            foods.append(pygame.Rect(event.pos[0], event.pos[1], FOODSIZE, FOODSIZE))
+            matbitar.append(pygame.Rect(event.pos[0], event.pos[1], MATBIT_STORLEK, MATBIT_STORLEK))
 
-    foodCounter += 1
-    if foodCounter >= NEWFOOD:
-        # add new food
-        foodCounter = 0
-        foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
+    matbitsRäknare += 1
+    if matbitsRäknare >= NY_MATBIT:
+        # addera mera matbitar
+        matbitsRäknare = 0
+        matbitar.append(pygame.Rect(random.randint(0, FÖNSTER_BREDD - MATBIT_STORLEK), random.randint(0, FÖNSTER_HÖJD - MATBIT_STORLEK), MATBIT_STORLEK, MATBIT_STORLEK))
 
-    # draw the black background onto the surface
-    windowSurface.fill(BLACK)
+    # rita svart bakgrund på ytan
+    fönsterYta.fill(SVART)
 
-    # move the player
-    if moveDown and player.bottom < WINDOWHEIGHT:
-        player.top += MOVESPEED
-    if moveUp and player.top > 0:
-        player.top -= MOVESPEED
-    if moveLeft and player.left > 0:
-        player.left -= MOVESPEED
-    if moveRight and player.right < WINDOWWIDTH:
-        player.right += MOVESPEED
+    # flytta spelaren
+    if flyttaNer and spelare.bottom < FÖNSTER_HÖJD:
+        spelare.top += HASTIGHET
+    if flyttaUpp and spelare.top > 0:
+        spelare.top -= HASTIGHET
+    if flyttaVänster and spelare.left > 0:
+        spelare.left -= HASTIGHET
+    if flyttaHöger and spelare.right < FÖNSTER_BREDD:
+        spelare.right += HASTIGHET
 
-    # draw the player onto the surface
-    pygame.draw.rect(windowSurface, WHITE, player)
+    # rita spelaren på ytan
+    pygame.draw.rect(fönsterYta, VIT, spelare)
 
-    # check if the player has intersected with any food squares.
-    for food in foods[:]:
-        if player.colliderect(food):
-            foods.remove(food)
+    # kontrollera om spelaren överlappar med någon matbit.
+    for matbit in matbitar[:]:
+        if spelare.colliderect(matbit):
+            matbitar.remove(matbit)
 
-    # draw the food
-    for i in range(len(foods)):
-        pygame.draw.rect(windowSurface, GREEN, foods[i])
+    # rita matbitarna
+    for i in range(len(matbitar)):
+        pygame.draw.rect(fönsterYta, GRÖN, matbitar[i])
 
-    # draw the window onto the screen
+    # rita fönstret på skärmen
     pygame.display.update()
-    mainClock.tick(40)
+    huvudKlocka.tick(40)
