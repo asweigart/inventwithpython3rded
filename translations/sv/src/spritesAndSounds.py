@@ -1,127 +1,127 @@
 import pygame, sys, time, random
 from pygame.locals import *
 
-# set up pygame
+# initiera pygame
 pygame.init()
-mainClock = pygame.time.Clock()
+huvudKlocka = pygame.time.Clock()
 
-# set up the window
-WINDOWWIDTH = 400
-WINDOWHEIGHT = 400
-windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
-pygame.display.set_caption('Sprites and Sound')
+# initiera fönstret
+FÖNSTER_BREDD = 400
+FÖNSTER_HÖJD = 400
+fönsterYta = pygame.display.set_mode((FÖNSTER_BREDD, FÖNSTER_HÖJD), 0, 32)
+pygame.display.set_caption('Sprajtar och Ljud')
 
-# set up the colors
-BLACK = (0, 0, 0)
+# skapa färgkonstanter
+SVART = (0, 0, 0)
 
-# set up the block data structure
-player = pygame.Rect(300, 100, 40, 40)
-playerImage = pygame.image.load('player.png')
-playerStretchedImage = pygame.transform.scale(playerImage, (40, 40))
-foodImage = pygame.image.load('cherry.png')
-foods = []
+# initiera blockets datastruktur
+spelare = pygame.Rect(300, 100, 40, 40)
+spelarBild = pygame.image.load('player.png')
+skaladSpelarBild = pygame.transform.scale(spelarBild, (40, 40))
+matBild = pygame.image.load('cherry.png')
+matbitar = []
 for i in range(20):
-    foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - 20), random.randint(0, WINDOWHEIGHT - 20), 20, 20))
+    matbitar.append(pygame.Rect(random.randint(0, FÖNSTER_BREDD - 20), random.randint(0, FÖNSTER_HÖJD - 20), 20, 20))
 
-foodCounter = 0
-NEWFOOD = 40
+matbitsRäknare = 0
+NY_MATBIT = 40
 
-# set up keyboard variables
-moveLeft = False
-moveRight = False
-moveUp = False
-moveDown = False
+# skapa tangenbordsvariabler
+flyttaVänster = False
+flyttaHöger = False
+flyttaUpp = False
+flyttaNer = False
 
-MOVESPEED = 6
+HASTIGHET = 6
 
-# set up music
-pickUpSound = pygame.mixer.Sound('pickup.wav')
+# Skapa musik
+plockaUppLjud = pygame.mixer.Sound('pickup.wav')
 pygame.mixer.music.load('background.mid')
 pygame.mixer.music.play(-1, 0.0)
-musicPlaying = True
+musikSpelas = True
 
-# run the game loop
+# kör spelslingan
 while True:
-    # check for the QUIT event
+    # kontrollera om händelsen QUIT inträffat
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
         if event.type == KEYDOWN:
-            # change the keyboard variables
+            # uppdatera tangentbordsvariablerna
             if event.key == K_LEFT or event.key == ord('a'):
-                moveRight = False
-                moveLeft = True
+                flyttaHöger = False
+                flyttaVänster = True
             if event.key == K_RIGHT or event.key == ord('d'):
-                moveLeft = False
-                moveRight = True
+                flyttaVänster = False
+                flyttaHöger = True
             if event.key == K_UP or event.key == ord('w'):
-                moveDown = False
-                moveUp = True
+                flyttaNer = False
+                flyttaUpp = True
             if event.key == K_DOWN or event.key == ord('s'):
-                moveUp = False
-                moveDown = True
+                flyttaUpp = False
+                flyttaNer = True
         if event.type == KEYUP:
             if event.key == K_ESCAPE:
                 pygame.quit()
                 sys.exit()
             if event.key == K_LEFT or event.key == ord('a'):
-                moveLeft = False
+                flyttaVänster = False
             if event.key == K_RIGHT or event.key == ord('d'):
-                moveRight = False
+                flyttaHöger = False
             if event.key == K_UP or event.key == ord('w'):
-                moveUp = False
+                flyttaUpp = False
             if event.key == K_DOWN or event.key == ord('s'):
-                moveDown = False
+                flyttaNer = False
             if event.key == ord('x'):
-                player.top = random.randint(0, WINDOWHEIGHT - player.height)
-                player.left = random.randint(0, WINDOWWIDTH - player.width)
+                spelare.top = random.randint(0, FÖNSTER_HÖJD - spelare.height)
+                spelare.left = random.randint(0, FÖNSTER_BREDD - spelare.width)
             if event.key == ord('m'):
-                if musicPlaying:
+                if musikSpelas:
                     pygame.mixer.music.stop()
                 else:
                     pygame.mixer.music.play(-1, 0.0)
-                musicPlaying = not musicPlaying
+                musikSpelas = not musikSpelas
 
         if event.type == MOUSEBUTTONUP:
-            foods.append(pygame.Rect(event.pos[0] - 10, event.pos[1] - 10, 20, 20))
+            matbitar.append(pygame.Rect(event.pos[0] - 10, event.pos[1] - 10, 20, 20))
 
-    foodCounter += 1
-    if foodCounter >= NEWFOOD:
-        # add new food
-        foodCounter = 0
-        foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - 20), random.randint(0, WINDOWHEIGHT - 20), 20, 20))
+    matbitsRäknare += 1
+    if matbitsRäknare >= NY_MATBIT:
+        # addera mera matbitar
+        matbitsRäknare = 0
+        matbitar.append(pygame.Rect(random.randint(0, FÖNSTER_BREDD - 20), random.randint(0, FÖNSTER_HÖJD - 20), 20, 20))
 
-    # draw the black background onto the surface
-    windowSurface.fill(BLACK)
+    # rita svart bakgrund på ytan
+    fönsterYta.fill(SVART)
 
-    # move the player
-    if moveDown and player.bottom < WINDOWHEIGHT:
-        player.top += MOVESPEED
-    if moveUp and player.top > 0:
-        player.top -= MOVESPEED
-    if moveLeft and player.left > 0:
-        player.left -= MOVESPEED
-    if moveRight and player.right < WINDOWWIDTH:
-        player.right += MOVESPEED
+    # flytta spelaren
+    if flyttaNer and spelare.bottom < FÖNSTER_HÖJD:
+        spelare.top += HASTIGHET
+    if flyttaUpp and spelare.top > 0:
+        spelare.top -= HASTIGHET
+    if flyttaVänster and spelare.left > 0:
+        spelare.left -= HASTIGHET
+    if flyttaHöger and spelare.right < FÖNSTER_BREDD:
+        spelare.right += HASTIGHET
 
 
-    # draw the block onto the surface
-    windowSurface.blit(playerStretchedImage, player)
+    # rita blocket på ytan
+    fönsterYta.blit(skaladSpelarBild, spelare)
 
-    # check if the block has intersected with any food squares.
-    for food in foods[:]:
-        if player.colliderect(food):
-            foods.remove(food)
-            player = pygame.Rect(player.left, player.top, player.width + 2, player.height + 2)
-            playerStretchedImage = pygame.transform.scale(playerImage, (player.width, player.height))
-            if musicPlaying:
-                pickUpSound.play()
+    # kontrollera om blocket överlappar någon matbit.
+    for matbit in matbitar[:]:
+        if spelare.colliderect(matbit):
+            matbitar.remove(matbit)
+            spelare = pygame.Rect(spelare.left, spelare.top, spelare.width + 2, spelare.height + 2)
+            skaladSpelarBild = pygame.transform.scale(spelarBild, (spelare.width, spelare.height))
+            if musikSpelas:
+                plockaUppLjud.play()
 
-    # draw the food
-    for food in foods:
-        windowSurface.blit(foodImage, food)
+    # rita matbitarna
+    for matbit in matbitar:
+        fönsterYta.blit(matBild, matbit)
 
-    # draw the window onto the screen
+    # rita fönstret på skärmen
     pygame.display.update()
-    mainClock.tick(40)
+    huvudKlocka.tick(40)
