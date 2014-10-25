@@ -1,0 +1,2 @@
+Fig 1-1:
+Soyez sûr d'installer Python 3, et non pas Python 2 !
