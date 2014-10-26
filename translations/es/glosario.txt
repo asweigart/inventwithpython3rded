@@ -1,5 +1,7 @@
 computer, computadora
+input, entrada
 get, obtener
+loop, bucle
 run, ejecutar
 set, establecer
 set up, configurar
