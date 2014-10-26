@@ -1,3 +1,5 @@
 computer, computadora
-set, establecer
 get, obtener
+run, ejecutar
+set, establecer
+set up, configurar
