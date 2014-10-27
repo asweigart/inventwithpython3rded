@@ -1,0 +1,208 @@
+  Chapitre 2
+
+  LE MODE INTERACTIF
+
+Les Sujets Traités dans ce Chapitre :
+
+• Nombres Entiers et à Virgules
+• Expressions
+• Valeurs
+• Operateurs
+• Evaluer des Expressions
+• Stocker des Valeurs dans des Variables
+• Ecraser des Variables
+
+Avant de pouvoir faire des jeux, vous avez besoin d'apprendre les concepts de base de la programmation. Vous ne ferez pas de jeu dans ce chapitre, mais apprendre ces concepts est le premier pas pour programmer des jeux vidéos. Commençons par apprendre à utiliser le mode interactif de Python.
+
+Simples Calculs Mathématiques
+
+Ouvrez IDLE en utilisant les étapes du Chapitre 1, ensuite faites résoudre à Python quelques problèmes simples de mathématique. Le mode interactif peut être utilisé comme une simple calculatrice. Tapez 2 + 2 dans la console et appuyez sur la touche Entrée. La Figure 2-1 montre comment IDLE réponds avec le nombre 4.
+
+
+
+Figure 2-1: Entrez 2+2 dans le mode interactif.
+
+Ce problème de math est une simple instruction de programmation. Le signe + demande à l'ordinateur d'additionner les nombres 2 et 2. La Table 2-1 liste les symboles mathématiques disponibles dans Python. Le signe - soustrait des nombres. Le signe * mutiplie des nombres. Le signe / divise des nombres.
+
+Table 2-1: Les divers opérateurs mathématique dans Python.
+Opérateur     Opération
++             addition
+-             soustraction
+*             multiplication
+/             division
+
+
+
+Utilisé de cette manière, +, -, *, et / sont appelés opérateurs. Les opérateurs disent à Python quelle opération mathématique appliquée aux nombres les entourant.
+
+Les Nombres Entiers et à Virgules
+
+En programmation, les entiers sont des nombres sans décimale comme 4, 99, et 0. Les nombres à virgules sont des fractions ou nombres avec décimales comme 3.5, 42.1 et 5.0.. En Python, Le nombre 5 est un entier, et le nombre 5.0 est un nombre à virgules.
+
+Expressions
+
+Ces problèmes de math sont des exemples d'expressions. Les ordinateurs peuvent résoudre des millions de ces problèmes en une seconde. Les expressions sont faites de valeurs (les nombres) connectées par des opérateurs (les signes mathématiques). Maintenant, apprenons exactement ce que sont valeurs et opérateurs. Essayez d'entrer des problèmes mathématiques dans IDLE, et appuyez sur Entrée pour chacune d'elle.
+
+2+2+2+2+2
+8*6
+10-5+6
+2  +       2
+
+Après avoir tapez les instructions précédentes, La console du mode interactif ressemblera à la Figure 2-2.
+
+
+
+Figure 2-2: A quoi ressemble la fenêtre IDLE après avoir entré les instructions.
+
+
+
+Figure 2-3: Une expression est faire de valeurs et d'opérateurs.
+
+Une expression est constituée de valeurs (comme des entiers, par exemple 8 et 6) liées par un opérateur (comme le signe * pour la multiplication). Une valeur seule est aussi une expression. Dans l'exemple 2  +       2, notez qu'il peut y avoir de nombreux espaces entre les valeurs et les opérateurs. Cependant, ne placez pas d'espaces en début de ligne quand vous saisissez des instructions dans la console du mode interactif.
+
+Dans le chapitre suivant, vous apprendrez à travailler avec des chaînes dans les expressions. Python n'est pas limité aux nombres; il peut être plus qu'une calculatrice !
+
+Evaluer les Expressions
+
+Quand l'ordinateur résoue l'expression 10 + 5 et trouve la valeur 15, il a évalué l'expression. Evaluer une expression l'a réduit à une simple valeur, comme rédoudre un problème mathématique réduit le problème à un simple nombre : la réponse.
+
+L'expression 10 + 5 et 10 + 3 + 2 ont la même valeur. Elles sont évaluées à 15.
+
+Les expressions peuvent être de toutes les tailles, mais elles s'évaluent toujours en une seule valeur. Même les simples valauers sont des expressions : L'expression 15 s'évalue par la valeur 15. Par exemple, l'expression 8 * 3 / 2 + 2 + 7 - 9 sera évaluée à la valeur 12.0 selon les étapes suivantes :
+
+8 * 3 / 2 + 2 + 7 – 9
+                  ▼
+   24 / 2 + 2 + 7 – 9
+                  ▼
+     12.0 + 2 + 7 – 9
+                  ▼
+         14.0 + 7 – 9
+                  ▼
+             21.0 – 9
+                  ▼
+                 12.0
+
+Vous ne verrez pas toutes ces étapes dans la console du mode interactif. La console les effectue et affiche juste le résultat :
+
+>>> 8 * 3 / 2 + 2 + 7 - 9
+12.0
+
+Notez que l'opérateur de division / s'évalue vers des nombres à virgules, ainsi in 24 / 2 s'évalue à 12.0. De même, , les opérateurs mathématiques contenant des nombres à virgules s'évaluent par un nombre à virgule, ainsi 12.0 + 2 est évaluée à 14.0.
+
+Les Erreurs de Syntaxes
+
+Si vous entrez 5 + dans la console interactive, vous obtenez un message d'erreur.
+
+>>> 5 +
+SyntaxError: invalid syntax
+
+Cette erreur apparait parce que 5 + n'est pas une expression valide. Les expressions ont des valeurs liées par des opérateurs. L'opérateur + attend une valeur après le signe +. Un message d'erreur apparait si cette valeur manque.
+
+SyntaxError signifie que Python ne comprend pas l'instruction parce que vous l'avez mal saisie. La programmation d'un ordinateur ne consiste pas juste à lui dire quoi faire, mais surtout lui dire de la bonne manière.
+
+Ne vous inquietez pas trop des erreurs. Les erreurs n'endommagent pas votre ordinateur. Retapez juste l'instruction correctemment dans la console sur la ligne suivante.
+
+Stocker des Valeurs dans des Variables
+
+Vous voulez souvent stocker la valeur d'une expression afin de pouvoir la réutiliser plus tard dans votre programme. Vous allez pouvoir stocker ces valeurs dans des variables. Pensez à ces variables comme des boîtes qui contiennent des valeurs.
+
+Une instruction d'affectation va stocker une valeur (ou la valeur du résultat d'une expression) dans une variable. Choisissez un nom pour la variable, suivi du signe = (appelé l'opérateur d'affectation), et enfin la valeur à stocker dans la variable. Par exemple, entrez spam = 15 dans la console :
+
+>>> spam = 15
+>>>
+
+
+
+Figure 2-4: Les variables sont comme des boîtes pouvant contenir des valeurs.
+
+La boîte de la variable spam contiendra la valeur 15, comme le montre la Figure 2-4. Le nom «spam» est le libellé sur la boîte (Python peut ainsi distinguer les variables entre elles) et la valeur sur une note à l'intérieur de la boîte.
+
+Quand vous appuyez sur la touche Entrée vous ne verrez rien apparaître en réponse. En Python, considérez que l'instruction s'est exécutée correcement si aucun message d'erreur n'apparait. L'invite de commande >>> apparaitra afin que vous puissez saisir une autre instruction.
+
+Contraitement aux expressions, les déclarations sont des instructions qui s'évalue en aucune valeur, c'est la raison pour laquelle aucune valeur n'est affichée sur la ligne qui suit dans la console. Ça peut être déroutant de connaître les instructions qui sont des expressions et celles qui sont des déclarations. Rappelez vous juste qu'une expression s'évalue en une unique valeur. Toutes les autres instructions sont des déclarations.
+
+Les variables stockent des valeurs, et non pas des expressions. Par exemple, considérez l'expressions spam = 10 + 5 et spam = 10 + 7 - 2. Elles s'évaluent toutes les deux à 15. Le résultat final est le même : La valeur 15 sera stockée dans la variable spam.
+
+La première fois qu'il y a une instruction d'affectation de variable, Python va créer cette variable. Pour vérifier quelle valeur contient une variable, tapez juste son nom dans la console intéractive :
+
+>>> spam = 15
+>>> spam
+15
+
+L'expression spam est évaluée par la valeur contenue dans la variable spam : 15. Vous pouvez utilisez les variables dans les expressions. Essayez d'entrer ce qui suit dans la console intéractive :
+
+>>> spam = 15
+>>> spam + 5
+20
+
+Vous avez affecté la valeur 15 à la variable spam, ainsi écrire spam + 5 équivaut à écrire l'expression 15 + 5.
+
+Vous ne pouvez pas utiliser une variable avant de l'avoir déclarée par une instruction d'affectation qui va ainsi la créer. Python vous donnera une erreur parce que la variable n'existe pas encore. Mal saisir un nom de variable cause aussi cette erreur :
+
+>>> spam = 15
+>>> spma
+
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    spma
+NameError: name 'spma' is not defined
+
+Cette erreur apparait parce qu'il existe une variable spam et non pas spma.
+
+Vous pouvez changer la valeur stockée dans une variable en entrant une nouvelle instruction d'affectation. Par exemple, essayez l'instruction suivante :
+
+>>> spam = 15
+>>> spam + 5
+20
+>>> spam = 3
+>>> spam + 5
+8
+
+Quand vous entrez la première fois spam + 5, l'expression est évaluée à 20 parce que vous avez stocké 15 dans spam. Cependant, quand vous entrezspam = 3, la valeur 15 est remplacée, ou écrasée, par la valeur 3. Maintenant, quand vous entrez spam + 5, l'expression est évaluée à 8 parce que la valeur de spam est maintenant 3.
+
+Vous pouvez même utiliser la valeur de la variable spam pour affectée uen nouvelle valeur à spam :
+
+>>> spam = 15
+>>> spam = spam + 5
+20
+
+L'instruction d'affectation spam = spam + 5 est équivalente à dire , «la nouvelle valeur de spam est se valeur courante plus 5.» Continuez d'augmenter la valeur de spam par 5 plusieurs fois :
+
+>>> spam = 15
+>>> spam = spam + 5
+>>> spam = spam + 5
+>>> spam = spam + 5
+>>> spam
+30
+
+Utilisez plus d'une Variable
+
+Créez autant de variables que vous avez beson dans vos programmes. Par exemple, affectons différentes valeurs à 2 varaibles nommées eggs et fizz, ainsi :
+
+>>> fizz = 10
+>>> eggs = 15
+
+Maintenant la variable fizz vaut 10, et eggs vaut 15.
+
+
+
+Figure 2-5: Les variables “fizz” et “eggs” contiennent des valeurs.
+
+Essayez d'entrer spam = fizz + eggs dans la console intéractive, et vérifiez la valeur de spam :
+
+>>> fizz = 10
+>>> eggs = 15
+>>> spam = fizz + eggs
+>>> spam
+25
+
+La valeur de spam est maintenant 25. Quand vous ajoutez fizz et eggs, vous additionnez leurs valeurs, qui sont, respectivement 10 et 15.
+
+Résumé
+
+Dans ce chapitre, vous avez appris les bases pour apprendre à écrire des instruction en Python. Python a besoin que vous lui disiez exactement quoi faire de la bonne manière. Les ordinateurs n'ont pas d'imagination et comprennent uniquement certaines instructions.
+
+Les expressions sont des valeurs (comme 2 ou 5) combinées avec des opérateurs (comme + ou -). Python peut évaluer les expressions (les réduire à une simple valeur). Vous pouvez stocker les valeurs dans des variables afin des les réutiliser plus tard dans votre programme.
+
+Il y de nombreux autres types d'opérateurs et de valeurs dans Python. Dans le chapitre suivant, vous allez découvrir de nouveaux concepts de base et écrirez votre premier programme !
+

@@ -1,2 +1,14 @@
 Fig 1-1:
 Soyez sûr d'installer Python 3, et non pas Python 2 !
+
+Fig 2-3:
+valeur
+opérateur
+expression
+
+Fig 2-4:
+spam
+
+Fig 2-5:
+eggs
+fizz
