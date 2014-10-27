@@ -1,3 +1,9 @@
 computer, computadora
-set, establecer
+input, entrada
 get, obtener
+loop, bucle
+move (noun), movida
+run, ejecutar
+set, establecer
+set up, configurar
+show, mostrar

@@ -123,7 +123,7 @@ def getScoreOfBoard(board):
 
 
 def enterPlayerTile():
-    # Let's the player type which tile they want to be.
+    # Lets the player type which tile they want to be.
     # Returns a list with the player's tile as the first item, and the computer's tile as the second.
     tile = ''
     while not (tile == 'X' or tile == 'O'):
