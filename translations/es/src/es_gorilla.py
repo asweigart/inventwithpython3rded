@@ -581,192 +581,192 @@ def ubicarGorilas(coordsEdif):
     """Usando el valor de coordsEdif devuelto por crearPaisajeUrbano(), queremos ubicar los gorilas a los lados
     izquierdo y derecho de la pantalla sobre el segundo y el tercer edificio desde el borde."""
 
-    gorPos = [] # item 0 is for (left, top) of player one, item 1 is for player two.
-    xAdj = int(GOR_ABAJO_SUP.get_rect().width / 2)
-    yAdj = GOR_ABAJO_SUP.get_rect().height
+    posGor = [] # el ítem 0 es para (izq, arriba) del jugador uno, el ítem 1 es para el jugador dos.
+    xAj = int(GOR_ABAJO_SUP.get_rect().width / 2)
+    yAj = GOR_ABAJO_SUP.get_rect().height
 
-    for i in range(0,2): # place first and then second player
+    for i in range(0,2): # ubicar al primer jugador y luego al segundo
 
-        # place gorillas on second or third building from the edge.
+        # ubicar a los gorilas en el segundo y tercer edificio desde el borde.
         if i == 0:
-            buildNum = random.randint(1,2)
+            númEdif = random.randint(1,2)
         else:
-            buildNum = random.randint(len(coordsEdif)-3, len(coordsEdif)-2)
+            númEdif = random.randint(len(coordsEdif)-3, len(coordsEdif)-2)
 
-        buildWidth = coordsEdif[buildNum + 1][0] - coordsEdif[buildNum][0]
-        gorPos.append( (coordsEdif[buildNum][0] + int(buildWidth / 2) - xAdj, coordsEdif[buildNum][1] - yAdj - 1) )
+        anchoEdif = coordsEdif[númEdif + 1][0] - coordsEdif[númEdif][0]
+        posGor.append( (coordsEdif[númEdif][0] + int(anchoEdif / 2) - xAj, coordsEdif[númEdif][1] - yAj - 1) )
 
-    # The format of the gorPos list is [(p1 x, p1 y), (p2 x, p2 y)]
-    return gorPos
+    # El formato de la lista posGor es [(j1 x, j1 y), (j2 x, j2 y)]
+    return posGor
 
-def waitForPlayerToPressKey():
-    """Calling this function will pause the program until the user presses a key. The key is returned."""
+def esperarEntradaDelTeclado():
+    """Llamar a esta función pondrá el programa en pausa hasta que el usuario presione una tecla. Se devuelve la tecla."""
     while True:
-        key = checkForKeyPress()
-        if key:
-            return key
+        tecla = comprobarTeclaPulsada()
+        if tecla:
+            return tecla
 
-def checkForKeyPress():
-    """Calling this function will check if a key has recently been pressed. If so, the key is returned.
-    If not, then False is returned. If the Esc key was pressed, then the program terminates."""
-    for event in pygame.event.get():
-        if event.type == QUIT:
+def comprobarTeclaPulsada():
+    """Llamar a esta función comprobará si se ha pulsado una tecla recientemente. Si es así, se devuelve esa tecla.
+    Si no, se devuelve False. Si la tecla Esc fue presionada, el programa termina."""
+    for evento in pygame.event.get():
+        if evento.type == QUIT:
             terminar()
-        if event.type == KEYUP:
-            if event.key == K_ESCAPE: # pressing escape quits
+        if evento.type == KEYUP:
+            if evento.key == K_ESCAPE: # presionando Esc se sale del programa
                 terminar()
-            return event.key
+            return evento.key
     return False
 
-def showStartScreen(screenSurf):
-    """Draws the starting introductory screen to screenSurf, with red stars rotating around the border. This screen
-    remains until the user presses a key."""
-    vertAdj = 0
-    horAdj = 0
-    while not checkForKeyPress():
-        screenSurf.fill(COLOR_NEGRO)
+def mostrarPantallaInicio(supPant):
+    """Dibuja la pantalla inicial introductoria sobre supPant, con estrellas rojas rotando alrededor del borde. Esta pantalla
+    permanece hasta que el usuario presione una tecla."""
+    ajVert = 0
+    ajHor = 0
+    while not comprobarTeclaPulsada():
+        supPant.fill(COLOR_NEGRO)
 
-        drawStars(screenSurf, vertAdj, horAdj)
-        vertAdj += 1
-        if vertAdj == 4: vertAdj = 0
-        horAdj += 12
-        if horAdj == 84: horAdj = 0
-        """The stars on the sides of the screen move 1 pixel each iteration through this loop and reset every 4
-        pixels. The stars on the top and bottom of the screen move 12 pixels each iteration and reset every 84 pixels."""
+        dibujarEstrellas(supPant, ajVert, ajHor)
+        ajVert += 1
+        if ajVert == 4: ajVert = 0
+        ajHor += 12
+        if ajHor == 84: ajHor = 0
+        """Las estrellas a los lados de la pantalla se mueven 1 píxel por cada iteración de este bucle y se reinician cada 4
+        píxeles. Las estrellas en los bordes superior e inferior se mueven 12 píxels cada iteración y se reinician cada 84 píxeles."""
 
-        dibujarTexto('P  y  t  h  o  n     G  O  R  I  L  L  A  S', screenSurf, ANCHO_PNT / 2, 50, COLOR_BLANCO, COLOR_NEGRO, pos='centro')
-        dibujarTexto('Your mission is to hit your opponent with the exploding', screenSurf, ANCHO_PNT / 2, 110, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-        dibujarTexto('banana by varying the angle and power of your throw, taking', screenSurf, ANCHO_PNT / 2, 130, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-        dibujarTexto('into account wind speed, gravity, and the city skyline.', screenSurf, ANCHO_PNT / 2, 150, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-        dibujarTexto('The wind speed is shown by a directional arrow at the bottom', screenSurf, ANCHO_PNT / 2, 170, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-        dibujarTexto('of the playing field, its length relative to its strength.', screenSurf, ANCHO_PNT / 2, 190, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-        dibujarTexto('Press any key to continue', screenSurf, ANCHO_PNT / 2, 300, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-
-        pygame.display.update()
-        RELOJ_JUEGO.tick(FPS)
-
-def showGameOverScreen(screenSurf, p1name, p1score, p2name, p2score):
-    """Draws the game over screen to screenSurf, showing the players' names and scores. This screen has rotating
-    red stars too, and hangs around until the user presses a key."""
-    p1score = str(p1score)
-    p2score = str(p2score)
-    vertAdj = 0
-    horAdj = 0
-    while not checkForKeyPress():
-        screenSurf.fill(COLOR_NEGRO)
-
-        drawStars(screenSurf, vertAdj, horAdj)
-        vertAdj += 1
-        if vertAdj == 4: vertAdj = 0
-        horAdj += 12
-        if horAdj == 84: horAdj = 0
-        """The stars on the sides of the screen move 1 pixel each iteration through this loop and reset every 4
-        pixels. The stars on the top and bottom of the screen move 12 pixels each iteration and reset every 84 pixels."""
-
-        dibujarTexto('GAME OVER!', screenSurf, ANCHO_PNT / 2, 120, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-        dibujarTexto('Score:', screenSurf, ANCHO_PNT / 2, 155, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-        dibujarTexto(p1name, screenSurf, 225, 170, COLOR_GRIS, COLOR_NEGRO)
-        dibujarTexto(p1score, screenSurf, 395, 170, COLOR_GRIS, COLOR_NEGRO)
-        dibujarTexto(p2name, screenSurf, 225, 185, COLOR_GRIS, COLOR_NEGRO)
-        dibujarTexto(p2score, screenSurf, 395, 185, COLOR_GRIS, COLOR_NEGRO)
-        dibujarTexto('Press any key to continue', screenSurf, ANCHO_PNT / 2, 298, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+        dibujarTexto('P  y  t  h  o  n     G  O  R  I  L  A  S', supPant, ANCHO_PNT / 2, 50, COLOR_BLANCO, COLOR_NEGRO, pos='centro')
+        dibujarTexto('Tu misión es golpear a tu oponente con la banana explosiva', supPant, ANCHO_PNT / 2, 110, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+        dibujarTexto('variando el ángulo y la potencia de tu tiro, tomando en', supPant, ANCHO_PNT / 2, 130, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+        dibujarTexto('cuenta la velocidad del viento, gravedad, y el perfil urbano.', supPant, ANCHO_PNT / 2, 150, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+        dibujarTexto('La velocidad del viento se indica por la flecha debajo', supPant, ANCHO_PNT / 2, 170, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+        dibujarTexto('del campo de juego, siendo su longitud proporcional a su fuerza.', supPant, ANCHO_PNT / 2, 190, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+        dibujarTexto('Pulsa cualquier tecla para continuar', supPant, ANCHO_PNT / 2, 300, COLOR_GRIS, COLOR_NEGRO, pos='centro')
 
         pygame.display.update()
         RELOJ_JUEGO.tick(FPS)
 
-def drawStars(screenSurf, vertAdj, horAdj):
-    """This function draws the red stars on the border of screenSurf."""
+def mostrarPantallaJuegoTerminado(supPant, j1nombre, j1puntaje, j2nombre, j2puntaje):
+    """Dibuja la pantalla de juego terminado sobre supPant, mostrando los nombres y puntajes de los jugadores. Esta pantalla también
+    tiene estrellas rojas rotantes, y permanece hasta que el usuario pulse una tecla."""
+    j1puntaje = str(j1puntaje)
+    j2puntaje = str(j2puntaje)
+    ajVert = 0
+    ajHor = 0
+    while not comprobarTeclaPulsada():
+        supPant.fill(COLOR_NEGRO)
+
+        dibujarEstrellas(supPant, ajVert, ajHor)
+        ajVert += 1
+        if ajVert == 4: ajVert = 0
+        ajHor += 12
+        if ajHor == 84: ajHor = 0
+        """Las estrellas a los lados de la pantalla se mueven 1 píxel por cada iteración de este bucle y se reinician cada 4
+        píxeles. Las estrellas en los bordes superior e inferior se mueven 12 píxels cada iteración y se reinician cada 84 píxeles."""
+
+        dibujarTexto('¡JUEGO TERMINADO!', supPant, ANCHO_PNT / 2, 120, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+        dibujarTexto('Puntaje:', supPant, ANCHO_PNT / 2, 155, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+        dibujarTexto(j1nombre, supPant, 225, 170, COLOR_GRIS, COLOR_NEGRO)
+        dibujarTexto(j1puntaje, supPant, 395, 170, COLOR_GRIS, COLOR_NEGRO)
+        dibujarTexto(j2nombre, supPant, 225, 185, COLOR_GRIS, COLOR_NEGRO)
+        dibujarTexto(j2puntaje, supPant, 395, 185, COLOR_GRIS, COLOR_NEGRO)
+        dibujarTexto('Pulsa cualquier tecla para continuar', supPant, ANCHO_PNT / 2, 298, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+
+        pygame.display.update()
+        RELOJ_JUEGO.tick(FPS)
+
+def dibujarEstrellas(supPant, ajVert, ajHor):
+    """Esta función dibuja las estrellas rojas sobre el borde de supPant."""
     for i in range(16):
-        # draw top row of stars
-        screenSurf.blit(ESTRELLA_SUP, (2 + (((3 - vertAdj) + i * 4) * ESTRELLA_SUP.get_width()), 3))
-        # draw bottom row of stars
-        screenSurf.blit(ESTRELLA_SUP, (2 + ((vertAdj + i * 4) * ESTRELLA_SUP.get_width()), ALTURA_PNT - 7 - ESTRELLA_SUP.get_height()))
+        # dibujar fila superior de estrellas
+        supPant.blit(ESTRELLA_SUP, (2 + (((3 - ajVert) + i * 4) * ESTRELLA_SUP.get_width()), 3))
+        # dibujar fila inferior de estrellas
+        supPant.blit(ESTRELLA_SUP, (2 + ((ajVert + i * 4) * ESTRELLA_SUP.get_width()), ALTURA_PNT - 7 - ESTRELLA_SUP.get_height()))
 
     for i in range(4):
-        # draw left column of stars going down
-        screenSurf.blit(ESTRELLA_SUP, (5, 6 + ESTRELLA_SUP.get_height() + (horAdj + i * 84)))
-        # draw right column of stars going up
-        screenSurf.blit(ESTRELLA_SUP, (ANCHO_PNT - 5 - ESTRELLA_SUP.get_width(), (ALTURA_PNT - (6 + ESTRELLA_SUP.get_height() + (horAdj + i * 84)))))
+        # dibuja la columna izquierda de estrellas moviéndose hacia abajo
+        supPant.blit(ESTRELLA_SUP, (5, 6 + ESTRELLA_SUP.get_height() + (ajHor + i * 84)))
+        # dibuja la columna derecha de estrellas moviéndose hacia arriba
+        supPant.blit(ESTRELLA_SUP, (ANCHO_PNT - 5 - ESTRELLA_SUP.get_width(), (ALTURA_PNT - (6 + ESTRELLA_SUP.get_height() + (ajHor + i * 84)))))
 
 
 
-def showSettingsScreen(screenSurf):
-    """This is the screen that lets the user type in their name and settings for the game."""
-    p1name = None
-    p2name = None
-    points = None
-    gravity = None
+def mostrarPantallaConfiguración(supPant):
+    """Esta es la pantalla que permite al jugador ingresar su nombre y ajustes para el juego."""
+    j1nombre = None
+    j2nombre = None
+    puntos = None
+    gravedad = None
 
-    screenSurf.fill(COLOR_NEGRO)
+    supPant.fill(COLOR_NEGRO)
 
-    while p1name is None:
-        p1name = modoEntrada("Name of Player 1 (Default = 'Player 1'):  ", screenSurf, ANCHO_PNT / 2 - 146, 50, COLOR_GRIS, COLOR_NEGRO, longmax=10, pos='izq', destelloCursor=True)
-    if p1name == '':
-        p1name = 'Player 1'
+    while j1nombre is None:
+        j1nombre = modoEntrada("Nombre del Jugador 1 (Defecto = 'Jugador 1'):  ", supPant, ANCHO_PNT / 2 - 146, 50, COLOR_GRIS, COLOR_NEGRO, longmax=10, pos='izq', destelloCursor=True)
+    if j1nombre == '':
+        j1nombre = 'Jugador 1'
 
-    while p2name is None:
-        p2name = modoEntrada("Name of Player 2 (Default = 'Player 2'):  ", screenSurf, ANCHO_PNT / 2 - 146, 80, COLOR_GRIS, COLOR_NEGRO, longmax=10, pos='izq', destelloCursor=True)
-    if p2name == '':
-        p2name = 'Player 2'
+    while j2nombre is None:
+        j2nombre = modoEntrada("Nombre del Jugador 2 (Defecto = 'Jugador 2'):  ", supPant, ANCHO_PNT / 2 - 146, 80, COLOR_GRIS, COLOR_NEGRO, longmax=10, pos='izq', destelloCursor=True)
+    if j2nombre == '':
+        j2nombre = 'Jugador 2'
 
-    while points is None:
-        points = modoEntrada("Play to how many total points (Default = 3)?  ", screenSurf, ANCHO_PNT / 2 - 155, 110, COLOR_GRIS, COLOR_NEGRO, longmax=6, permitidos='0123456789', pos='izq', destelloCursor=True)
-    if points == '':
-        points = 3
+    while puntos is None:
+        puntos = modoEntrada("¿Jugar a cuántos puntos en total (Defecto = 3)?  ", supPant, ANCHO_PNT / 2 - 155, 110, COLOR_GRIS, COLOR_NEGRO, longmax=6, permitidos='0123456789', pos='izq', destelloCursor=True)
+    if puntos == '':
+        puntos = 3
     else:
-        points = int(points)
+        puntos = int(puntos)
 
-    while gravity is None:
-        gravity = modoEntrada("Gravity in Meters/Sec (Earth = 9.8)?  ", screenSurf, ANCHO_PNT / 2 - 150, 140, COLOR_GRIS, COLOR_NEGRO, longmax=6, permitidos='0123456789.', pos='izq', destelloCursor=True)
-    if gravity == '':
-        gravity = 9.8
+    while gravedad is None:
+        gravedad = modoEntrada("¿Gravedad en Metros/Seg (Tierra = 9.8)?  ", supPant, ANCHO_PNT / 2 - 150, 140, COLOR_GRIS, COLOR_NEGRO, longmax=6, permitidos='0123456789.', pos='izq', destelloCursor=True)
+    if gravedad == '':
+        gravedad = 9.8
     else:
-        gravity = float(gravity)
+        gravedad = float(gravedad)
 
-    dibujarTexto('--------------', screenSurf, ANCHO_PNT / 2 -10, 170, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-    dibujarTexto('V = View Intro', screenSurf, ANCHO_PNT / 2 -10, 200, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-    dibujarTexto('P = Play Game', screenSurf, ANCHO_PNT / 2 -10, 230, COLOR_GRIS, COLOR_NEGRO, pos='centro')
-    dibujarTexto('Your Choice?', screenSurf, ANCHO_PNT / 2 -10, 260, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+    dibujarTexto('--------------------', supPant, ANCHO_PNT / 2 -10, 170, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+    dibujarTexto('V = Ver Introducción', supPant, ANCHO_PNT / 2 -10, 200, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+    dibujarTexto('J = Jugar', supPant, ANCHO_PNT / 2 -10, 230, COLOR_GRIS, COLOR_NEGRO, pos='centro')
+    dibujarTexto('¿Tu Elección?', supPant, ANCHO_PNT / 2 -10, 260, COLOR_GRIS, COLOR_NEGRO, pos='centro')
     pygame.display.update()
 
-    key = waitForPlayerToPressKey()
-    while chr(key) != 'v' and chr(key) != 'p':
-        key = waitForPlayerToPressKey()
+    key = esperarEntradaDelTeclado()
+    while chr(key) != 'v' and chr(key) != 'j':
+        key = esperarEntradaDelTeclado()
 
-    return p1name, p2name, points, gravity, chr(key) # returns 'v' or 'p'
+    return j1nombre, j2nombre, puntos, gravedad, chr(key) # devuelve 'v' o 'j'
 
-def showIntroScreen(screenSurf, p1name, p2name):
-    """This is the screen that plays if the user selected "view intro" from the starting screen."""
-    screenSurf.fill(COLOR_CIELO)
-    dibujarTexto('P  y  t  h  o  n     G  O  R  I  L  L  A  S', screenSurf, ANCHO_PNT / 2, 15, COLOR_BLANCO, COLOR_CIELO, pos='centro')
-    dibujarTexto('STARRING:', screenSurf, ANCHO_PNT / 2, 55, COLOR_BLANCO, COLOR_CIELO, pos='centro')
-    dibujarTexto('%s AND %s' % (p1name, p2name), screenSurf, ANCHO_PNT / 2, 115, COLOR_BLANCO, COLOR_CIELO, pos='centro')
+def mostrarPantallaIntro(supPant, j1nombre, j2nombre):
+    """Esta es la pantalla que se reproduce si el jugador eligió "ver introducción" de la pantalla de inicio."""
+    supPant.fill(COLOR_CIELO)
+    dibujarTexto('P  y  t  h  o  n     G  O  R  I  L  L  A  S', supPant, ANCHO_PNT / 2, 15, COLOR_BLANCO, COLOR_CIELO, pos='centro')
+    dibujarTexto('STARRING:', supPant, ANCHO_PNT / 2, 55, COLOR_BLANCO, COLOR_CIELO, pos='centro')
+    dibujarTexto('%s AND %s' % (j1nombre, j2nombre), supPant, ANCHO_PNT / 2, 115, COLOR_BLANCO, COLOR_CIELO, pos='centro')
 
     x = 278
     y = 175
 
     for i in range(2):
-        drawGorilla(screenSurf, x-13, y, BRAZO_DER_ARRIBA)
-        drawGorilla(screenSurf, x+47, y, BRAZO_IZQ_ARRIBA)
+        drawGorilla(supPant, x-13, y, BRAZO_DER_ARRIBA)
+        drawGorilla(supPant, x+47, y, BRAZO_IZQ_ARRIBA)
         pygame.display.update()
 
         time.sleep(2)
 
-        drawGorilla(screenSurf, x-13, y, BRAZO_IZQ_ARRIBA)
-        drawGorilla(screenSurf, x+47, y, BRAZO_DER_ARRIBA)
+        drawGorilla(supPant, x-13, y, BRAZO_IZQ_ARRIBA)
+        drawGorilla(supPant, x+47, y, BRAZO_DER_ARRIBA)
         pygame.display.update()
 
         time.sleep(2)
 
     for i in range(4):
-        drawGorilla(screenSurf, x-13, y, BRAZO_IZQ_ARRIBA)
-        drawGorilla(screenSurf, x+47, y, BRAZO_DER_ARRIBA)
+        drawGorilla(supPant, x-13, y, BRAZO_IZQ_ARRIBA)
+        drawGorilla(supPant, x+47, y, BRAZO_DER_ARRIBA)
         pygame.display.update()
 
         time.sleep(0.3)
 
-        drawGorilla(screenSurf, x-13, y, BRAZO_DER_ARRIBA)
-        drawGorilla(screenSurf, x+47, y, BRAZO_IZQ_ARRIBA)
+        drawGorilla(supPant, x-13, y, BRAZO_DER_ARRIBA)
+        drawGorilla(supPant, x+47, y, BRAZO_IZQ_ARRIBA)
         pygame.display.update()
 
         time.sleep(0.3)
@@ -1009,13 +1009,13 @@ def main():
     ##pygame.display.toggle_fullscreen()
     pygame.display.set_caption('Gorillas.py')
 
-    showStartScreen(winSurface)
+    mostrarPantallaInicio(winSurface)
 
     while True:
         # start a new game
-        p1name, p2name, winPoints, gravity, nextScreen = showSettingsScreen(winSurface)
+        p1name, p2name, winPoints, gravity, nextScreen = mostrarPantallaConfiguración(winSurface)
         if nextScreen == 'v':
-            showIntroScreen(winSurface, p1name, p2name)
+            mostrarPantallaIntro(winSurface, p1name, p2name)
 
         # Reset the score and make it the first player's turn.
         p1score = 0
@@ -1062,7 +1062,7 @@ def main():
             else:
                 turn = 1
 
-        showGameOverScreen(winSurface, p1name, p1score, p2name, p2score)
+        mostrarPantallaJuegoTerminado(winSurface, p1name, p1score, p2name, p2score)
 
 if __name__ == '__main__':
     main()
