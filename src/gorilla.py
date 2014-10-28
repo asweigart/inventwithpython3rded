@@ -513,7 +513,7 @@ def makeCityScape():
     windowHeight = 7 # the height of each window in pixels
     windowSpacingX = 10 # how many pixels apart each window's left edge is
     windowSpacingY = 15 # how many pixels apart each window's top edge is
-    gHeight = 25 # (I'm not sure what this suppoes to be in the original Qbasic code, but I copied it anyway)
+    gHeight = 25 # (I'm not sure what this is supposed to be in the original Qbasic code, but I copied it anyway)
     # (There also was a maxHeight variable in the original Qbasic, but I don't think it did anything so I left it out.)
 
     buildingCoords = [] # a list of (left, top) coords of each building, left to right

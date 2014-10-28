@@ -488,98 +488,98 @@ def crearPaisajeUrbano():
     supPant = pygame.Surface((ANCHO_PNT, ALTURA_PNT)) # primero crea la nueva superficie del mismo tamaño que la pantalla.
     supPant.fill(COLOR_CIELO) # rellena la superficie con el color de fondo del cielo
 
-    """We will choose an upward, downward, valley "v" curve, or hilly "^" curve for the slope of the buildings.
-    Half of the time we will choose the valley slope shape, while the remaining three each have a 1/6 chance of
-    being choosen. The slope also determines the height of the first building, which is stored in newHeight."""
-    slope = random.randint(1, 6)
-    if slope == 1:
-        slope = 'upward'
-        newHeight = 15
-    elif slope == 2:
-        slope = 'downward'
-        newHeight = 130
-    elif slope >= 3 and slope <= 5:
-        slope = 'v'
-        newHeight = 15
+    """Elegiremos una curva ascendente, descendente, en forma de "v", o montañosa "^" para la inclinación de los edificios.
+    La mitad del tiempo elegiremos la curva en forma de "v", mientras que las 3 formas restantes tendrán cada una probabilidad 1/6
+    de ser elegidas. La inclinación también determina la altura del primer edificio, que es almacenada en nuevaAltura."""
+    inclinación = random.randint(1, 6)
+    if inclinación == 1:
+        inclinación = 'ascendente'
+        nuevaAltura = 15
+    elif inclinación == 2:
+        inclinación = 'descendente'
+        nuevaAltura = 130
+    elif inclinación >= 3 and inclinación <= 5:
+        inclinación = 'v'
+        nuevaAltura = 15
     else:
-        slope = '^'
-        newHeight = 130
+        inclinación = '^'
+        nuevaAltura = 130
 
-    bottomLine = 335 # the bottom line of the buildings. We want some space for the wind arrow to go
-    heightInc = 10 # a baseline for how much buildings grow or shrink compared to the last building
-    defBuildWidth = 37 # default building width, also judges how wide buildings can be
-    randomHeightDiff = 120 # about how much buildings grow or shrink
-    windowWidth = 4 # the width of each window in pixels
-    windowHeight = 7 # the height of each window in pixels
-    windowSpacingX = 10 # how many pixels apart each window's left edge is
-    windowSpacingY = 15 # how many pixels apart each window's top edge is
-    gHeight = 25 # (I'm not sure what this suppoes to be in the original Qbasic code, but I copied it anyway)
-    # (There also was a maxHeight variable in the original Qbasic, but I don't think it did anything so I left it out.)
+    líneaInferior = 335 # la línea inferior de los edificios. Queremos un poco de espacio para ubicar la flecha de viento
+    incAltura = 10 # una referencia de cuánto crecen o se reducen los edificios en comparación con el último
+    anchoEdifDef = 37 # anchura de los edificios por defecto, tambien juzga qué tan anchos pueden ser los edificios
+    difAlturaAleat = 120 # aproximadamente cuánto pueden crecer o reducirse los edificios
+    anchoVentana = 4 # el ancho de cada ventana en píxeles
+    alturaVentana = 7 # la altura de cada ventana en píxeles
+    separaciónVentanaX = 10 # a qué distancia en píxeles se encuentra el borde izquierdo de cada ventana
+    separaciónVentanaY = 15 # a qué distancia en píxeles se encuentra el borde superior de cada ventana
+    gAltura = 25 # (No estoy seguro de qué se supone que es esto en el código original Qbasic, pero igual lo he copiado)
+    # (También había una variable alturaMax en el Qbasic original, pero no creo que hiciera nada, así que la he omitido)
 
-    buildingCoords = [] # a list of (left, top) coords of each building, left to right
+    coordsEdificio = [] # una lista de las coordenadas (arriba, izquierda) de cada edificio, de izquierda a derecha
 
-    x = 2 # x refers to the top left corner of the current building being drawn
+    x = 2 # x referencia la esquina superior izquierda del edificio que está siendo dibujado
 
-    while x < ANCHO_PNT - heightInc:
-        # In this loop we keep drawing new buildings until we run out of space on the screen.
+    while x < ANCHO_PNT - incAltura:
+        # En este bucle continuamos dibujando nuevos edificios hasta que se acaba el espacio en la pantalla.
 
-        # First the slope type determines if the building should grow or shrink.
-        if slope == 'upward':
-            newHeight += heightInc
-        elif slope == 'downward':
-            newHeight -= heightInc
-        elif slope == 'v':
+        # Primero el tipo de inclinación determina si el edificio debería crecer o encogerse.
+        if inclinación == 'ascendente':
+            nuevaAltura += incAltura
+        elif inclinación == 'descendente':
+            nuevaAltura -= incAltura
+        elif inclinación == 'v':
             if x > ANCHO_PNT / 2:
-                newHeight -= (2 * heightInc)
-                # For valley slopes, buildings shrink on the left half of the screen...
+                nuevaAltura -= (2 * incAltura)
+                # Para curvas en forma de "v", los edificios se encogen en la mitad izquierda de la pantalla...
             else:
-                newHeight += (2 * heightInc)
-                # ...and grow on the right half.
+                nuevaAltura += (2 * incAltura)
+                # ...y crecen en la mitad derecha.
         else:
             if x > ANCHO_PNT / 2:
-                newHeight += (2 * heightInc)
-                # For hilley slopes, buildings grow on the left half of the screen...
+                nuevaAltura += (2 * incAltura)
+                # Para curvas "montañosas", los edificios crecen en la mitad izquierda de la pantalla...
             else:
-                newHeight -= (2 * heightInc)
-                # ...and shrink on the right half.
+                nuevaAltura -= (2 * incAltura)
+                # ...y se encogen en la mitad derecha.
 
-        # Get the new building's width.
-        buildWidth = defBuildWidth + random.randint(0, defBuildWidth)
-        if buildWidth + x > ANCHO_PNT:
-            buildWidth = ANCHO_PNT - x -2
+        # Obtener el ancho del nuevo edificio.
+        anchoEdif = anchoEdifDef + random.randint(0, anchoEdifDef)
+        if anchoEdif + x > ANCHO_PNT:
+            anchoEdif = ANCHO_PNT - x -2
 
-        # Get the new building's height
-        buildHeight = random.randint(heightInc, randomHeightDiff) + newHeight
+        # Obtener la altura del nuevo edificio
+        alturaEdif = random.randint(incAltura, difAlturaAleat) + nuevaAltura
 
-        # Check if the height is too high.
-        if bottomLine - buildHeight <= gHeight:
-            buildHeight = gHeight
+        # Comprobar si la altura es excesiva.
+        if líneaInferior - alturaEdif <= gAltura:
+            alturaEdif = gAltura
 
-        # Randomly select one of the building colors.
-        buildingColor = COLORES_EDIFICIO[random.randint(0, len(COLORES_EDIFICIO)-1)]
+        # Seleccionar en forma aleatoria uno de los colores de la lista para el edificio.
+        colorEdificio = COLORES_EDIFICIO[random.randint(0, len(COLORES_EDIFICIO)-1)]
 
-        # Draw the building
-        pygame.draw.rect(supPant, buildingColor, (x+1, bottomLine - (buildHeight+1), buildWidth-1, buildHeight-1))
+        # Dibujar el edificio
+        pygame.draw.rect(supPant, colorEdificio, (x+1, líneaInferior - (alturaEdif+1), anchoEdif-1, alturaEdif-1))
 
-        buildingCoords.append( (x, bottomLine - buildHeight) )
+        coordsEdificio.append( (x, líneaInferior - alturaEdif) )
 
-        # Draw the windows
-        for winx in range(3, buildWidth - windowSpacingX + windowWidth, windowSpacingX):
-            for winy in range(3, buildHeight - windowSpacingY, windowSpacingY):
+        # Dibujar las ventanas
+        for venx in range(3, anchoEdif - separaciónVentanaX + anchoVentana, separaciónVentanaX):
+            for veny in range(3, alturaEdif - separaciónVentanaY, separaciónVentanaY):
                 if random.randint(1, 4) == 1:
-                    winColor = VENTANA_OSCURA
+                    colorVen = VENTANA_OSCURA
                 else:
-                    winColor = VENTANA_CLARA
-                pygame.draw.rect(supPant, winColor, (x + 1 + winx, (bottomLine - buildHeight) + 1 + winy, windowWidth, windowHeight))
+                    colorVen = VENTANA_CLARA
+                pygame.draw.rect(supPant, colorVen, (x + 1 + venx, (líneaInferior - alturaEdif) + 1 + veny, anchoVentana, alturaVentana))
 
-        x += buildWidth
+        x += anchoEdif
 
-    # We want to return both the surface object we've drawn the buildings on, and the coordinates of each building.
-    return supPant, buildingCoords
+    # Queremos devolver el objeto surface sobre el que hemos dibujado los edificios, y también las coordenadas de cada edificio.
+    return supPant, coordsEdificio
 
-def placeGorillas(buildCoords):
-    """Using the buildingCoords value returned from crearPaisajeUrbano(), we want to place the gorillas on the left and right
-    side of the screen on the second or third building from the edge."""
+def ubicarGorilas(coordsEdif):
+    """Usando el valor de coordsEdif devuelto por crearPaisajeUrbano(), queremos ubicar los gorilas a los lados
+    izquierdo y derecho de la pantalla sobre el segundo y el tercer edificio desde el borde."""
 
     gorPos = [] # item 0 is for (left, top) of player one, item 1 is for player two.
     xAdj = int(GOR_ABAJO_SUP.get_rect().width / 2)
@@ -591,10 +591,10 @@ def placeGorillas(buildCoords):
         if i == 0:
             buildNum = random.randint(1,2)
         else:
-            buildNum = random.randint(len(buildCoords)-3, len(buildCoords)-2)
+            buildNum = random.randint(len(coordsEdif)-3, len(coordsEdif)-2)
 
-        buildWidth = buildCoords[buildNum + 1][0] - buildCoords[buildNum][0]
-        gorPos.append( (buildCoords[buildNum][0] + int(buildWidth / 2) - xAdj, buildCoords[buildNum][1] - yAdj - 1) )
+        buildWidth = coordsEdif[buildNum + 1][0] - coordsEdif[buildNum][0]
+        gorPos.append( (coordsEdif[buildNum][0] + int(buildWidth / 2) - xAdj, coordsEdif[buildNum][1] - yAdj - 1) )
 
     # The format of the gorPos list is [(p1 x, p1 y), (p2 x, p2 y)]
     return gorPos
@@ -1027,7 +1027,7 @@ def main():
             if newRound:
                 # At the start of a new round, make a new city scape, place the gorillas, and get the wind speed.
                 skylineSurf, buildCoords = crearPaisajeUrbano() # Note that the city skyline goes on skylineSurf, not winSurface.
-                gorPos = placeGorillas(buildCoords)
+                gorPos = ubicarGorilas(buildCoords)
                 wind = getWind()
                 newRound = False
 
