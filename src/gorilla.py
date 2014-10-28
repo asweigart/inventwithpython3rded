@@ -26,7 +26,7 @@ function, and "math" contains the pi constant."""
 
 
 """All of the variables below in CAPS LETTERS are constants, that is, they are only supposed to be read and not
-modified. (There's nothing to keep the program from modifying them, but it's just a convention programmers use.
+modified. (There's nothing to keep the program from modifying them, but it's just a convention programmers use).
 The constants are a bit more descriptive than just using the numbers by themselves. And if you ever want to change
 some value (such as the size of the explosions or the color of the gorillas), you only have to change it in one
 place."""
@@ -37,7 +37,7 @@ FPS = 30
 GAME_CLOCK = pygame.time.Clock()
 """Here are several constants we will use in the game. The original Qbasic game had a screen size of 640x350, so we'll
 use that as our screen size. We will use a single global Clock object to handle some of the timing stuff in all our
-functions, and generally have FPS set to 30 (except when we want to set it to something else.
+functions, and generally have FPS set to 30 (except when we want to set it to something else).
 
 Constants are useful because you can just change the value in one place, and it will be used throughout the program.
 

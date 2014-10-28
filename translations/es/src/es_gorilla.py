@@ -1,73 +1,73 @@
-"""Hello, and welcome to the source code of Gorillas.py. This program is meant to be very well documented so that a
-novice programmer can follow along. This program was written by Al Sweigart as a companion for his free, Creative
-Commons-licensed book "Invent Your Own Computer Games with Python", which is available in full at:
+"""Hola, y bienvenido al código fuente de Gorilas.py. Este programa pretende estar muy bien documentado, de modo que sea
+accesible a un programador novato. Este programa fue escrito por Al Sweigart, como acompañamiento a su libro gratuito
+"Inventa Tus Propios Juegos de Computadora con Python", ofrecido bajo licencia Creative Commons cuyo texto completo está disponible en:
 
         http://inventwithpython.com
 
-Feel free to email the author with any programming questions at al@inventwithpython.com
+Siéntete libre de escribirle al autor con cualquier consulta sobre programación a al@inventwithpython.com
 
-This program seeks to replicate gorillas.bas, a Qbasic program that was popular in the 1990s. By reading
-through the comments, you can learn how a simple Python game with the Pygame engine is put together.
+Este programa intenta replicar gorillas.bas, un programa de Qbasic que fue popular durante la década de 1990. Leyendo
+los comentarios, puedes aprender cómo se arma un juego simple en Python con el motor de programación Pygame.
 
-The comments will generally come _after_ the lines of code they describe.
+Los comentarios vendrán en general _después_ de las líneas de código que describen.
 
-If you like this, then check out inventwithpython.com to read the book (which has similar game projects) for free!
+Si te gusta esto, dale un vistazo a inventwithpython.com para leer el libro (que contiene juegos similares) gratis!
 
-The Pygame documentation is pretty good, and can be found at http://www.pygame.org/docs
+La documentación de Pygame es bastante buena, y puedes encontrarla en: http://www.pygame.org/docs
 
-Unfortunately there is no sound with this game.
+Desafortunadamente este juego no tiene sonido.
 """
 
 import pygame, sys, time, random, math
 from pygame.locals import *
-"""We'll import quite a few modules for this game. "pygame" has all the graphics & game-related functions that the
-Pygame game engine provides. "sys" has the exit() function. "time" has the sleep() function. "random" has the randint()
-function, and "math" contains the pi constant."""
+"""Importaremos unos cuantos módulos para este juego. "pygame" contiene todos los gráficos y funciones relacionadas con el juego
+provistos por el motor Pygame. "sys" contiene la función exit(). "time" contiene la función sleep(). "random" contiene la 
+función randint(), y "math" contiene la constante pi."""
 
 
-"""All of the variables below in CAPS LETTERS are constants, that is, they are only supposed to be read and not
-modified. (There's nothing to keep the program from modifying them, but it's just a convention programmers use.
-The constants are a bit more descriptive than just using the numbers by themselves. And if you ever want to change
-some value (such as the size of the explosions or the color of the gorillas), you only have to change it in one
-place."""
+"""Todas las variables a continuación en MAYÚSCULAS son constantes, es decir, sólo se supone que sean leídas y no
+modificadas. (No hay nada que impida al programa modificarlas, es sólo una convención usada por los programadores).
+Las constantes son un poco más descriptivas que simplemente usar los propios números. Y si alguna vez quieres cambiar
+algún valor (como el tamaño de las explosiones o el color de los gorilas), sólo necesitas cambiarlo en un
+lugar."""
 
-SCR_WIDTH = 640
-SCR_HEIGHT = 350
+ANCHO_PNT = 640
+ALTURA_PNT = 350
 FPS = 30
-GAME_CLOCK = pygame.time.Clock()
-"""Here are several constants we will use in the game. The original Qbasic game had a screen size of 640x350, so we'll
-use that as our screen size. We will use a single global Clock object to handle some of the timing stuff in all our
-functions, and generally have FPS set to 30 (except when we want to set it to something else.
+RELOJ_JUEGO = pygame.time.Clock()
+"""Aquí hay varias constantes que usaremos en el juego. El juego original de Qbasic tenía un tamaño de pantalla de 640x350, de modo que
+usaremos eso como nuestro tamaño de pantalla. Usaremos un solo objeto global Clock para manejar algunos asuntos de sincronización en todas nuestras
+funciones, y generalmente ajustaremos FPS a 30 (excepto cuando queramos ajustarlo a otro valor).
 
-Constants are useful because you can just change the value in one place, and it will be used throughout the program.
+Las constantes son útiles porque puedes simplemente ajustar el valor en un lugar, y será usado en todo el programa.
 
-Try experimenting with different values for these global constants."""
+Prueba experimentando con diferentes valores de estas constantes."""
 
-BUILDING_COLORS = ((173, 170, 173), (0, 170, 173), (173, 0, 0))
-LIGHT_WINDOW = (255, 255, 82)
-DARK_WINDOW = (82, 85, 82)
-SKY_COLOR = (0, 0, 173)
-GOR_COLOR = (255, 170, 82)
-BAN_COLOR = (255, 255, 82)
-EXPLOSION_COLOR = (255, 0, 0)
-SUN_COLOR = (255, 255, 0)
-DARK_RED_COLOR = (173, 0, 0)
-BLACK_COLOR = (0, 0, 0)
-WHITE_COLOR = (255, 255, 255)
-GRAY_COLOR = (173, 170, 173)
-"""Here are a bunch of colors. Pygame uses a tuple of three integers to specify a color. The integers are for the
-amount of Red, Blue, and Green (in order) in the color. This is known as an RGB value.
+COLORES_EDIFICIO = ((173, 170, 173), (0, 170, 173), (173, 0, 0))
+VENTANA_CLARA = (255, 255, 82)
+VENTANA_OSCURA = (82, 85, 82)
+COLOR_CIELO = (0, 0, 173)
+COLOR_GOR = (255, 170, 82)
+COLOR_BAN = (255, 255, 82)
+COLOR_EXPLOSIÓN = (255, 0, 0)
+COLOR_SOL = (255, 255, 0)
+COLOR_ROJO_OSCURO = (173, 0, 0)
+COLOR_NEGRO = (0, 0, 0)
+COLOR_BLANCO = (255, 255, 255)
+COLOR_GRIS = (173, 170, 173)
+"""Aquí hay unos cuantos colores. Pygame usa una tupla de tres enteros para especificar un color. Los enteros son la
+cantidad de Rojo, Azul, y Verde (en orden) en el color. Esto se conoce como un valor RGB.
 
-BUILDING_COLORS will hold a tuple of these RGB tuples and represent the different colors the buildings can be."""
+COLORES_EDIFICIO contiene una tupla de estas tuplas RGB y representa los diferentes colores que los edificios pueden tomar."""
 
-BUILD_EXPLOSION_SIZE = int(SCR_HEIGHT / 50)
-GOR_EXPLOSION_SIZE = 30
-"""BUILD_EXPLOSION_SIZE holds the size of an explosion when a banana hits a building, and GOR_EXPLOSION_SIZE is the size
-when it hits a gorilla."""
+TAMAÑO_EXPLOSIÓN_EDIF = int(ALTURA_PNT / 50)
+TAMAÑO_EXPLOSIÓN_GOR = 30
+"""TAMAÑO_EXPLOSIÓN_EDIF contiene el tamaño de una explosión cuando una banana choca contra un edificio, y TAMAÑO_EXPLOSIÓN_GOR es el tamaño
+cuando choca contra un gorila."""
 
-SUN_X = 300
-SUN_Y = 10
-"""The position of the sun in the sky."""
+SOL_X = 300
+SOL_Y = 10
+"""La posición del sol en el cielo."""
 
 pygame.init()
 GAME_FONT = pygame.font.SysFont(None, 20)
@@ -336,21 +336,21 @@ def makeSurfaceFromASCII(ascii, fgColor=(255,255,255), bgColor=(0,0,0)):
                 pArr[x][y] = fgColor
     return surf
 
-GOR_DOWN_SURF    = makeSurfaceFromASCII(GOR_DOWN_ASCII,    GOR_COLOR,      SKY_COLOR)
-GOR_LEFT_SURF    = makeSurfaceFromASCII(GOR_LEFT_ASCII,    GOR_COLOR,      SKY_COLOR)
-GOR_RIGHT_SURF   = makeSurfaceFromASCII(GOR_RIGHT_ASCII,   GOR_COLOR,      SKY_COLOR)
-BAN_RIGHT_SURF   = makeSurfaceFromASCII(BAN_RIGHT_ASCII,   BAN_COLOR,      SKY_COLOR)
-BAN_LEFT_SURF    = makeSurfaceFromASCII(BAN_LEFT_ASCII,    BAN_COLOR,      SKY_COLOR)
-BAN_UP_SURF      = makeSurfaceFromASCII(BAN_UP_ASCII,      BAN_COLOR,      SKY_COLOR)
-BAN_DOWN_SURF    = makeSurfaceFromASCII(BAN_DOWN_ASCII,    BAN_COLOR,      SKY_COLOR)
-SUN_NORMAL_SURF  = makeSurfaceFromASCII(SUN_NORMAL_ASCII,  SUN_COLOR,      SKY_COLOR)
-SUN_SHOCKED_SURF = makeSurfaceFromASCII(SUN_SHOCKED_ASCII, SUN_COLOR,      SKY_COLOR)
-STAR_SURF        = makeSurfaceFromASCII(STAR_ASCII,        DARK_RED_COLOR, BLACK_COLOR)
+GOR_DOWN_SURF    = makeSurfaceFromASCII(GOR_DOWN_ASCII,    COLOR_GOR,      COLOR_CIELO)
+GOR_LEFT_SURF    = makeSurfaceFromASCII(GOR_LEFT_ASCII,    COLOR_GOR,      COLOR_CIELO)
+GOR_RIGHT_SURF   = makeSurfaceFromASCII(GOR_RIGHT_ASCII,   COLOR_GOR,      COLOR_CIELO)
+BAN_RIGHT_SURF   = makeSurfaceFromASCII(BAN_RIGHT_ASCII,   COLOR_BAN,      COLOR_CIELO)
+BAN_LEFT_SURF    = makeSurfaceFromASCII(BAN_LEFT_ASCII,    COLOR_BAN,      COLOR_CIELO)
+BAN_UP_SURF      = makeSurfaceFromASCII(BAN_UP_ASCII,      COLOR_BAN,      COLOR_CIELO)
+BAN_DOWN_SURF    = makeSurfaceFromASCII(BAN_DOWN_ASCII,    COLOR_BAN,      COLOR_CIELO)
+SUN_NORMAL_SURF  = makeSurfaceFromASCII(SUN_NORMAL_ASCII,  COLOR_SOL,      COLOR_CIELO)
+SUN_SHOCKED_SURF = makeSurfaceFromASCII(SUN_SHOCKED_ASCII, COLOR_SOL,      COLOR_CIELO)
+STAR_SURF        = makeSurfaceFromASCII(STAR_ASCII,        COLOR_ROJO_OSCURO, COLOR_NEGRO)
 
 assert GOR_DOWN_SURF.get_size() == GOR_LEFT_SURF.get_size() == GOR_RIGHT_SURF.get_size()
 """Create the pygame.Surface objects from the ASCII strings."""
 
-sunRect = pygame.Rect(SUN_X, SUN_Y, SUN_NORMAL_SURF.get_width(), SUN_NORMAL_SURF.get_height())
+sunRect = pygame.Rect(SOL_X, SOL_Y, SUN_NORMAL_SURF.get_width(), SUN_NORMAL_SURF.get_height())
 """sunRect will be a global value so we'll always know where the sun is."""
 
 def drawText(text, surfObj, x, y, fgcol, bgcol, pos='left'):
@@ -432,7 +432,7 @@ def inputMode(prompt, screenSurf, x, y, fgcol, bgcol, maxlen=12, allowed=None, p
         textrect = drawText(prompt + cursorShow, screenSurf, x, y, fgcol, bgcol, pos)
         drawText(prompt + inputText + cursorShow, screenSurf, textrect.left, textrect.top, fgcol, bgcol, 'left')
         pygame.display.update()
-        GAME_CLOCK.tick(FPS)
+        RELOJ_JUEGO.tick(FPS)
     return inputText
 
 def nextBananaShape(orient):
@@ -460,9 +460,9 @@ def drawSun(screenSurf, shocked=False):
     """Draws the sun sprite onto the screenSurf surface. If shocked is True, then use the shocked-looking face,
     otherwise use the normal smiley face. This function does not call python.display.update()"""
     if shocked:
-        screenSurf.blit(SUN_SHOCKED_SURF, (SUN_X, SUN_Y))
+        screenSurf.blit(SUN_SHOCKED_SURF, (SOL_X, SOL_Y))
     else:
-        screenSurf.blit(SUN_NORMAL_SURF, (SUN_X, SUN_Y))
+        screenSurf.blit(SUN_NORMAL_SURF, (SOL_X, SOL_Y))
 
 
 def drawGorilla(screenSurf, x, y, arms=BOTH_ARMS_DOWN):
@@ -485,8 +485,8 @@ def makeCityScape():
     """This function creates and returns a new cityscape of various buildings on a pygame.Surface object and returns
     this surface object."""
 
-    screenSurf = pygame.Surface((SCR_WIDTH, SCR_HEIGHT)) # first make the new surface the same size of the screen.
-    screenSurf.fill(SKY_COLOR) # fill in the surface with the background sky color
+    screenSurf = pygame.Surface((ANCHO_PNT, ALTURA_PNT)) # first make the new surface the same size of the screen.
+    screenSurf.fill(COLOR_CIELO) # fill in the surface with the background sky color
 
     """We will choose an upward, downward, valley "v" curve, or hilly "^" curve for the slope of the buildings.
     Half of the time we will choose the valley slope shape, while the remaining three each have a 1/6 chance of
@@ -520,7 +520,7 @@ def makeCityScape():
 
     x = 2 # x refers to the top left corner of the current building being drawn
 
-    while x < SCR_WIDTH - heightInc:
+    while x < ANCHO_PNT - heightInc:
         # In this loop we keep drawing new buildings until we run out of space on the screen.
 
         # First the slope type determines if the building should grow or shrink.
@@ -529,14 +529,14 @@ def makeCityScape():
         elif slope == 'downward':
             newHeight -= heightInc
         elif slope == 'v':
-            if x > SCR_WIDTH / 2:
+            if x > ANCHO_PNT / 2:
                 newHeight -= (2 * heightInc)
                 # For valley slopes, buildings shrink on the left half of the screen...
             else:
                 newHeight += (2 * heightInc)
                 # ...and grow on the right half.
         else:
-            if x > SCR_WIDTH / 2:
+            if x > ANCHO_PNT / 2:
                 newHeight += (2 * heightInc)
                 # For hilley slopes, buildings grow on the left half of the screen...
             else:
@@ -545,8 +545,8 @@ def makeCityScape():
 
         # Get the new building's width.
         buildWidth = defBuildWidth + random.randint(0, defBuildWidth)
-        if buildWidth + x > SCR_WIDTH:
-            buildWidth = SCR_WIDTH - x -2
+        if buildWidth + x > ANCHO_PNT:
+            buildWidth = ANCHO_PNT - x -2
 
         # Get the new building's height
         buildHeight = random.randint(heightInc, randomHeightDiff) + newHeight
@@ -556,7 +556,7 @@ def makeCityScape():
             buildHeight = gHeight
 
         # Randomly select one of the building colors.
-        buildingColor = BUILDING_COLORS[random.randint(0, len(BUILDING_COLORS)-1)]
+        buildingColor = COLORES_EDIFICIO[random.randint(0, len(COLORES_EDIFICIO)-1)]
 
         # Draw the building
         pygame.draw.rect(screenSurf, buildingColor, (x+1, bottomLine - (buildHeight+1), buildWidth-1, buildHeight-1))
@@ -567,9 +567,9 @@ def makeCityScape():
         for winx in range(3, buildWidth - windowSpacingX + windowWidth, windowSpacingX):
             for winy in range(3, buildHeight - windowSpacingY, windowSpacingY):
                 if random.randint(1, 4) == 1:
-                    winColor = DARK_WINDOW
+                    winColor = VENTANA_OSCURA
                 else:
-                    winColor = LIGHT_WINDOW
+                    winColor = VENTANA_CLARA
                 pygame.draw.rect(screenSurf, winColor, (x + 1 + winx, (bottomLine - buildHeight) + 1 + winy, windowWidth, windowHeight))
 
         x += buildWidth
@@ -624,7 +624,7 @@ def showStartScreen(screenSurf):
     vertAdj = 0
     horAdj = 0
     while not checkForKeyPress():
-        screenSurf.fill(BLACK_COLOR)
+        screenSurf.fill(COLOR_NEGRO)
 
         drawStars(screenSurf, vertAdj, horAdj)
         vertAdj += 1
@@ -634,16 +634,16 @@ def showStartScreen(screenSurf):
         """The stars on the sides of the screen move 1 pixel each iteration through this loop and reset every 4
         pixels. The stars on the top and bottom of the screen move 12 pixels each iteration and reset every 84 pixels."""
 
-        drawText('P  y  t  h  o  n     G  O  R  I  L  L  A  S', screenSurf, SCR_WIDTH / 2, 50, WHITE_COLOR, BLACK_COLOR, pos='center')
-        drawText('Your mission is to hit your opponent with the exploding', screenSurf, SCR_WIDTH / 2, 110, GRAY_COLOR, BLACK_COLOR, pos='center')
-        drawText('banana by varying the angle and power of your throw, taking', screenSurf, SCR_WIDTH / 2, 130, GRAY_COLOR, BLACK_COLOR, pos='center')
-        drawText('into account wind speed, gravity, and the city skyline.', screenSurf, SCR_WIDTH / 2, 150, GRAY_COLOR, BLACK_COLOR, pos='center')
-        drawText('The wind speed is shown by a directional arrow at the bottom', screenSurf, SCR_WIDTH / 2, 170, GRAY_COLOR, BLACK_COLOR, pos='center')
-        drawText('of the playing field, its length relative to its strength.', screenSurf, SCR_WIDTH / 2, 190, GRAY_COLOR, BLACK_COLOR, pos='center')
-        drawText('Press any key to continue', screenSurf, SCR_WIDTH / 2, 300, GRAY_COLOR, BLACK_COLOR, pos='center')
+        drawText('P  y  t  h  o  n     G  O  R  I  L  L  A  S', screenSurf, ANCHO_PNT / 2, 50, COLOR_BLANCO, COLOR_NEGRO, pos='center')
+        drawText('Your mission is to hit your opponent with the exploding', screenSurf, ANCHO_PNT / 2, 110, COLOR_GRIS, COLOR_NEGRO, pos='center')
+        drawText('banana by varying the angle and power of your throw, taking', screenSurf, ANCHO_PNT / 2, 130, COLOR_GRIS, COLOR_NEGRO, pos='center')
+        drawText('into account wind speed, gravity, and the city skyline.', screenSurf, ANCHO_PNT / 2, 150, COLOR_GRIS, COLOR_NEGRO, pos='center')
+        drawText('The wind speed is shown by a directional arrow at the bottom', screenSurf, ANCHO_PNT / 2, 170, COLOR_GRIS, COLOR_NEGRO, pos='center')
+        drawText('of the playing field, its length relative to its strength.', screenSurf, ANCHO_PNT / 2, 190, COLOR_GRIS, COLOR_NEGRO, pos='center')
+        drawText('Press any key to continue', screenSurf, ANCHO_PNT / 2, 300, COLOR_GRIS, COLOR_NEGRO, pos='center')
 
         pygame.display.update()
-        GAME_CLOCK.tick(FPS)
+        RELOJ_JUEGO.tick(FPS)
 
 def showGameOverScreen(screenSurf, p1name, p1score, p2name, p2score):
     """Draws the game over screen to screenSurf, showing the players' names and scores. This screen has rotating
@@ -653,7 +653,7 @@ def showGameOverScreen(screenSurf, p1name, p1score, p2name, p2score):
     vertAdj = 0
     horAdj = 0
     while not checkForKeyPress():
-        screenSurf.fill(BLACK_COLOR)
+        screenSurf.fill(COLOR_NEGRO)
 
         drawStars(screenSurf, vertAdj, horAdj)
         vertAdj += 1
@@ -663,16 +663,16 @@ def showGameOverScreen(screenSurf, p1name, p1score, p2name, p2score):
         """The stars on the sides of the screen move 1 pixel each iteration through this loop and reset every 4
         pixels. The stars on the top and bottom of the screen move 12 pixels each iteration and reset every 84 pixels."""
 
-        drawText('GAME OVER!', screenSurf, SCR_WIDTH / 2, 120, GRAY_COLOR, BLACK_COLOR, pos='center')
-        drawText('Score:', screenSurf, SCR_WIDTH / 2, 155, GRAY_COLOR, BLACK_COLOR, pos='center')
-        drawText(p1name, screenSurf, 225, 170, GRAY_COLOR, BLACK_COLOR)
-        drawText(p1score, screenSurf, 395, 170, GRAY_COLOR, BLACK_COLOR)
-        drawText(p2name, screenSurf, 225, 185, GRAY_COLOR, BLACK_COLOR)
-        drawText(p2score, screenSurf, 395, 185, GRAY_COLOR, BLACK_COLOR)
-        drawText('Press any key to continue', screenSurf, SCR_WIDTH / 2, 298, GRAY_COLOR, BLACK_COLOR, pos='center')
+        drawText('GAME OVER!', screenSurf, ANCHO_PNT / 2, 120, COLOR_GRIS, COLOR_NEGRO, pos='center')
+        drawText('Score:', screenSurf, ANCHO_PNT / 2, 155, COLOR_GRIS, COLOR_NEGRO, pos='center')
+        drawText(p1name, screenSurf, 225, 170, COLOR_GRIS, COLOR_NEGRO)
+        drawText(p1score, screenSurf, 395, 170, COLOR_GRIS, COLOR_NEGRO)
+        drawText(p2name, screenSurf, 225, 185, COLOR_GRIS, COLOR_NEGRO)
+        drawText(p2score, screenSurf, 395, 185, COLOR_GRIS, COLOR_NEGRO)
+        drawText('Press any key to continue', screenSurf, ANCHO_PNT / 2, 298, COLOR_GRIS, COLOR_NEGRO, pos='center')
 
         pygame.display.update()
-        GAME_CLOCK.tick(FPS)
+        RELOJ_JUEGO.tick(FPS)
 
 def drawStars(screenSurf, vertAdj, horAdj):
     """This function draws the red stars on the border of screenSurf."""
@@ -680,13 +680,13 @@ def drawStars(screenSurf, vertAdj, horAdj):
         # draw top row of stars
         screenSurf.blit(STAR_SURF, (2 + (((3 - vertAdj) + i * 4) * STAR_SURF.get_width()), 3))
         # draw bottom row of stars
-        screenSurf.blit(STAR_SURF, (2 + ((vertAdj + i * 4) * STAR_SURF.get_width()), SCR_HEIGHT - 7 - STAR_SURF.get_height()))
+        screenSurf.blit(STAR_SURF, (2 + ((vertAdj + i * 4) * STAR_SURF.get_width()), ALTURA_PNT - 7 - STAR_SURF.get_height()))
 
     for i in range(4):
         # draw left column of stars going down
         screenSurf.blit(STAR_SURF, (5, 6 + STAR_SURF.get_height() + (horAdj + i * 84)))
         # draw right column of stars going up
-        screenSurf.blit(STAR_SURF, (SCR_WIDTH - 5 - STAR_SURF.get_width(), (SCR_HEIGHT - (6 + STAR_SURF.get_height() + (horAdj + i * 84)))))
+        screenSurf.blit(STAR_SURF, (ANCHO_PNT - 5 - STAR_SURF.get_width(), (ALTURA_PNT - (6 + STAR_SURF.get_height() + (horAdj + i * 84)))))
 
 
 
@@ -697,36 +697,36 @@ def showSettingsScreen(screenSurf):
     points = None
     gravity = None
 
-    screenSurf.fill(BLACK_COLOR)
+    screenSurf.fill(COLOR_NEGRO)
 
     while p1name is None:
-        p1name = inputMode("Name of Player 1 (Default = 'Player 1'):  ", screenSurf, SCR_WIDTH / 2 - 146, 50, GRAY_COLOR, BLACK_COLOR, maxlen=10, pos='left', cursorBlink=True)
+        p1name = inputMode("Name of Player 1 (Default = 'Player 1'):  ", screenSurf, ANCHO_PNT / 2 - 146, 50, COLOR_GRIS, COLOR_NEGRO, maxlen=10, pos='left', cursorBlink=True)
     if p1name == '':
         p1name = 'Player 1'
 
     while p2name is None:
-        p2name = inputMode("Name of Player 2 (Default = 'Player 2'):  ", screenSurf, SCR_WIDTH / 2 - 146, 80, GRAY_COLOR, BLACK_COLOR, maxlen=10, pos='left', cursorBlink=True)
+        p2name = inputMode("Name of Player 2 (Default = 'Player 2'):  ", screenSurf, ANCHO_PNT / 2 - 146, 80, COLOR_GRIS, COLOR_NEGRO, maxlen=10, pos='left', cursorBlink=True)
     if p2name == '':
         p2name = 'Player 2'
 
     while points is None:
-        points = inputMode("Play to how many total points (Default = 3)?  ", screenSurf, SCR_WIDTH / 2 - 155, 110, GRAY_COLOR, BLACK_COLOR, maxlen=6, allowed='0123456789', pos='left', cursorBlink=True)
+        points = inputMode("Play to how many total points (Default = 3)?  ", screenSurf, ANCHO_PNT / 2 - 155, 110, COLOR_GRIS, COLOR_NEGRO, maxlen=6, allowed='0123456789', pos='left', cursorBlink=True)
     if points == '':
         points = 3
     else:
         points = int(points)
 
     while gravity is None:
-        gravity = inputMode("Gravity in Meters/Sec (Earth = 9.8)?  ", screenSurf, SCR_WIDTH / 2 - 150, 140, GRAY_COLOR, BLACK_COLOR, maxlen=6, allowed='0123456789.', pos='left', cursorBlink=True)
+        gravity = inputMode("Gravity in Meters/Sec (Earth = 9.8)?  ", screenSurf, ANCHO_PNT / 2 - 150, 140, COLOR_GRIS, COLOR_NEGRO, maxlen=6, allowed='0123456789.', pos='left', cursorBlink=True)
     if gravity == '':
         gravity = 9.8
     else:
         gravity = float(gravity)
 
-    drawText('--------------', screenSurf, SCR_WIDTH / 2 -10, 170, GRAY_COLOR, BLACK_COLOR, pos='center')
-    drawText('V = View Intro', screenSurf, SCR_WIDTH / 2 -10, 200, GRAY_COLOR, BLACK_COLOR, pos='center')
-    drawText('P = Play Game', screenSurf, SCR_WIDTH / 2 -10, 230, GRAY_COLOR, BLACK_COLOR, pos='center')
-    drawText('Your Choice?', screenSurf, SCR_WIDTH / 2 -10, 260, GRAY_COLOR, BLACK_COLOR, pos='center')
+    drawText('--------------', screenSurf, ANCHO_PNT / 2 -10, 170, COLOR_GRIS, COLOR_NEGRO, pos='center')
+    drawText('V = View Intro', screenSurf, ANCHO_PNT / 2 -10, 200, COLOR_GRIS, COLOR_NEGRO, pos='center')
+    drawText('P = Play Game', screenSurf, ANCHO_PNT / 2 -10, 230, COLOR_GRIS, COLOR_NEGRO, pos='center')
+    drawText('Your Choice?', screenSurf, ANCHO_PNT / 2 -10, 260, COLOR_GRIS, COLOR_NEGRO, pos='center')
     pygame.display.update()
 
     key = waitForPlayerToPressKey()
@@ -737,10 +737,10 @@ def showSettingsScreen(screenSurf):
 
 def showIntroScreen(screenSurf, p1name, p2name):
     """This is the screen that plays if the user selected "view intro" from the starting screen."""
-    screenSurf.fill(SKY_COLOR)
-    drawText('P  y  t  h  o  n     G  O  R  I  L  L  A  S', screenSurf, SCR_WIDTH / 2, 15, WHITE_COLOR, SKY_COLOR, pos='center')
-    drawText('STARRING:', screenSurf, SCR_WIDTH / 2, 55, WHITE_COLOR, SKY_COLOR, pos='center')
-    drawText('%s AND %s' % (p1name, p2name), screenSurf, SCR_WIDTH / 2, 115, WHITE_COLOR, SKY_COLOR, pos='center')
+    screenSurf.fill(COLOR_CIELO)
+    drawText('P  y  t  h  o  n     G  O  R  I  L  L  A  S', screenSurf, ANCHO_PNT / 2, 15, COLOR_BLANCO, COLOR_CIELO, pos='center')
+    drawText('STARRING:', screenSurf, ANCHO_PNT / 2, 55, COLOR_BLANCO, COLOR_CIELO, pos='center')
+    drawText('%s AND %s' % (p1name, p2name), screenSurf, ANCHO_PNT / 2, 115, COLOR_BLANCO, COLOR_CIELO, pos='center')
 
     x = 278
     y = 175
@@ -774,11 +774,11 @@ def showIntroScreen(screenSurf, p1name, p2name):
 
 def getShot(screenSurf, p1name, p2name, playerNum):
     """getShot() is called when we want to get the angle and velocity from the player."""
-    pygame.draw.rect(screenSurf, SKY_COLOR, (0, 0, 200, 50))
-    pygame.draw.rect(screenSurf, SKY_COLOR, (550, 0, 00, 50))
+    pygame.draw.rect(screenSurf, COLOR_CIELO, (0, 0, 200, 50))
+    pygame.draw.rect(screenSurf, COLOR_CIELO, (550, 0, 00, 50))
 
-    drawText(p1name, screenSurf, 2, 2, WHITE_COLOR, SKY_COLOR)
-    drawText(p2name, screenSurf, 538, 2, WHITE_COLOR, SKY_COLOR)
+    drawText(p1name, screenSurf, 2, 2, COLOR_BLANCO, COLOR_CIELO)
+    drawText(p2name, screenSurf, 538, 2, COLOR_BLANCO, COLOR_CIELO)
 
     if playerNum == 1:
         x = 2
@@ -787,19 +787,19 @@ def getShot(screenSurf, p1name, p2name, playerNum):
 
     angle = ''
     while angle == '':
-        angle = inputMode('Angle:  ', screenSurf, x, 18, WHITE_COLOR, SKY_COLOR, maxlen=3, allowed='0123456789')
+        angle = inputMode('Angle:  ', screenSurf, x, 18, COLOR_BLANCO, COLOR_CIELO, maxlen=3, allowed='0123456789')
     if angle is None: terminate()
     angle = int(angle)
 
     velocity = ''
     while velocity == '':
-        velocity = inputMode('Velocity:  ', screenSurf, x, 34, WHITE_COLOR, SKY_COLOR, maxlen=3, allowed='0123456789')
+        velocity = inputMode('Velocity:  ', screenSurf, x, 34, COLOR_BLANCO, COLOR_CIELO, maxlen=3, allowed='0123456789')
     if velocity is None: terminate()
     velocity = int(velocity)
 
     # Erase the user's input
-    drawText('Angle:   ' + str(angle), screenSurf, x, 2, SKY_COLOR, SKY_COLOR)
-    drawText('Velocity:   ' + str(angle), screenSurf, x, 2, SKY_COLOR, SKY_COLOR)
+    drawText('Angle:   ' + str(angle), screenSurf, x, 2, COLOR_CIELO, COLOR_CIELO)
+    drawText('Velocity:   ' + str(angle), screenSurf, x, 2, COLOR_CIELO, COLOR_CIELO)
     pygame.display.update()
 
     if playerNum == 2:
@@ -809,7 +809,7 @@ def getShot(screenSurf, p1name, p2name, playerNum):
 
 def displayScore(screenSurf, oneScore, twoScore):
     """Draws the score on the screenSurf surface."""
-    drawText(str(oneScore) + '>Score<' + str(twoScore), screenSurf, 270, 310, WHITE_COLOR, SKY_COLOR, pos='left')
+    drawText(str(oneScore) + '>Score<' + str(twoScore), screenSurf, 270, 310, COLOR_BLANCO, COLOR_CIELO, pos='left')
 
 def plotShot(screenSurf, skylineSurf, angle, velocity, playerNum, wind, gravity, gor1, gor2):
     # startx and starty is the upper left corner of the gorilla.
@@ -860,7 +860,7 @@ def plotShot(screenSurf, skylineSurf, angle, velocity, playerNum, wind, gravity,
         y = starty + ((-1 * (initYVel * t)) + (0.5 * gravity * t**2))
         """This is basically the equation that describes the banana's arc."""
 
-        if x >= SCR_WIDTH - 10 or x <= 3 or y >= SCR_HEIGHT:
+        if x >= ANCHO_PNT - 10 or x <= 3 or y >= ALTURA_PNT:
             bananaInPlay = False
 
         bananaRect = getBananaRect(x, y, bananaShape)
@@ -895,21 +895,21 @@ def plotShot(screenSurf, skylineSurf, angle, velocity, playerNum, wind, gravity,
                 """Note that we draw the explosion on the screen (on screenSurf) and on the separate skyline surface (on skylineSurf).
                 This is done so that bananas won't hit the sun or any text and accidentally think they've hit something. We also want
                 the skylineSurf surface object to keep track of what chunks of the buildings are left."""
-                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=int(GOR_EXPLOSION_SIZE*2/3), speed=0.005)
-                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=GOR_EXPLOSION_SIZE, speed=0.005)
+                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), speed=0.005)
+                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=TAMAÑO_EXPLOSIÓN_GOR, speed=0.005)
                 drawSun(screenSurf)
                 return 'gorilla1'
             elif bananaRect.colliderect(gor2rect):
                 # banana has hit player 2
-                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=int(GOR_EXPLOSION_SIZE*2/3), speed=0.005)
-                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=GOR_EXPLOSION_SIZE, speed=0.005)
-                screenSurf.fill(SKY_COLOR, bananaRect) # erase banana
+                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), speed=0.005)
+                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=TAMAÑO_EXPLOSIÓN_GOR, speed=0.005)
+                screenSurf.fill(COLOR_CIELO, bananaRect) # erase banana
                 drawSun(screenSurf)
                 return 'gorilla2'
-            elif collideWithNonColor(srcPixArray, screenSurf, bananaRect, SKY_COLOR):
+            elif collideWithNonColor(srcPixArray, screenSurf, bananaRect, COLOR_CIELO):
                 # banana has hit a building
                 doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery)
-                screenSurf.fill(SKY_COLOR, bananaRect) # erase banana
+                screenSurf.fill(COLOR_CIELO, bananaRect) # erase banana
                 drawSun(screenSurf)
                 return 'building'
 
@@ -920,7 +920,7 @@ def plotShot(screenSurf, skylineSurf, angle, velocity, playerNum, wind, gravity,
         pygame.display.update()
         time.sleep(0.02)
 
-        screenSurf.fill(SKY_COLOR, bananaRect) # erase banana
+        screenSurf.fill(COLOR_CIELO, bananaRect) # erase banana
 
         t += 0.1 # go forward in the plot.
     drawSun(screenSurf)
@@ -942,8 +942,8 @@ def collideWithNonColor(pixArr, surfObj, rect, color):
     """This checks the area (described by "rect") on pixArr (a pixel array derived from the surfObj surface object)
     if it has any pixels that are not the color specified by the "color" parameter. This function is used to detect
     if the banana has hit any non-sky colored parts (which means a gorilla or a building)."""
-    rightSide = min(rect.right, SCR_WIDTH)
-    bottomSide = min(rect.bottom, SCR_HEIGHT)
+    rightSide = min(rect.right, ANCHO_PNT)
+    bottomSide = min(rect.bottom, ALTURA_PNT)
 
     for x in range(rect.left, rightSide):
         for y in range(rect.top, bottomSide):
@@ -974,33 +974,33 @@ def drawWind(screenSurf, wind):
     a call to getWind()."""
     if wind != 0:
         wind *= 3
-        pygame.draw.line(screenSurf, EXPLOSION_COLOR, (int(SCR_WIDTH / 2), SCR_HEIGHT - 5), (int(SCR_WIDTH / 2) + wind, SCR_HEIGHT - 5))
+        pygame.draw.line(screenSurf, COLOR_EXPLOSIÓN, (int(ANCHO_PNT / 2), ALTURA_PNT - 5), (int(ANCHO_PNT / 2) + wind, ALTURA_PNT - 5))
         # draw the arrow end
         if wind > 0: arrowDir = -2
         else:        arrowDir = 2
-        pygame.draw.line(screenSurf, EXPLOSION_COLOR, (int(SCR_WIDTH / 2) + wind, SCR_HEIGHT - 5), (int(SCR_WIDTH / 2) + wind + arrowDir, SCR_HEIGHT - 5 - 2))
-        pygame.draw.line(screenSurf, EXPLOSION_COLOR, (int(SCR_WIDTH / 2) + wind, SCR_HEIGHT - 5), (int(SCR_WIDTH / 2) + wind + arrowDir, SCR_HEIGHT - 5 + 2))
+        pygame.draw.line(screenSurf, COLOR_EXPLOSIÓN, (int(ANCHO_PNT / 2) + wind, ALTURA_PNT - 5), (int(ANCHO_PNT / 2) + wind + arrowDir, ALTURA_PNT - 5 - 2))
+        pygame.draw.line(screenSurf, COLOR_EXPLOSIÓN, (int(ANCHO_PNT / 2) + wind, ALTURA_PNT - 5), (int(ANCHO_PNT / 2) + wind + arrowDir, ALTURA_PNT - 5 + 2))
 
-def doExplosion(screenSurf, skylineSurf, x, y, explosionSize=BUILD_EXPLOSION_SIZE, speed=0.05):
+def doExplosion(screenSurf, skylineSurf, x, y, explosionSize=TAMAÑO_EXPLOSIÓN_EDIF, speed=0.05):
     for r in range(1, explosionSize):
-        pygame.draw.circle(screenSurf, EXPLOSION_COLOR, (x, y), r)
-        pygame.draw.circle(skylineSurf, EXPLOSION_COLOR, (x, y), r)
+        pygame.draw.circle(screenSurf, COLOR_EXPLOSIÓN, (x, y), r)
+        pygame.draw.circle(skylineSurf, COLOR_EXPLOSIÓN, (x, y), r)
         pygame.display.update()
         time.sleep(speed)
     for r in range(explosionSize, 1, -1):
-        pygame.draw.circle(screenSurf, SKY_COLOR, (x, y), explosionSize)
-        pygame.draw.circle(skylineSurf, SKY_COLOR, (x, y), explosionSize)
-        pygame.draw.circle(screenSurf, EXPLOSION_COLOR, (x, y), r)
-        pygame.draw.circle(skylineSurf, EXPLOSION_COLOR, (x, y), r)
+        pygame.draw.circle(screenSurf, COLOR_CIELO, (x, y), explosionSize)
+        pygame.draw.circle(skylineSurf, COLOR_CIELO, (x, y), explosionSize)
+        pygame.draw.circle(screenSurf, COLOR_EXPLOSIÓN, (x, y), r)
+        pygame.draw.circle(skylineSurf, COLOR_EXPLOSIÓN, (x, y), r)
         pygame.display.update()
         time.sleep(speed)
-    pygame.draw.circle(screenSurf, SKY_COLOR, (x, y), 2)
-    pygame.draw.circle(skylineSurf, SKY_COLOR, (x, y), 2)
+    pygame.draw.circle(screenSurf, COLOR_CIELO, (x, y), 2)
+    pygame.draw.circle(skylineSurf, COLOR_CIELO, (x, y), 2)
     pygame.display.update()
 
 
 def main():
-    winSurface = pygame.display.set_mode((SCR_WIDTH, SCR_HEIGHT), 0, 32)
+    winSurface = pygame.display.set_mode((ANCHO_PNT, ALTURA_PNT), 0, 32)
     """winSurface, being the surface object returned by pygame.display.set_mode(), will be drawn to the screen
     every time pygame.display.update() is called."""
 
