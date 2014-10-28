@@ -36,7 +36,7 @@ ALTURA_PNT = 350
 FPS = 30
 RELOJ_JUEGO = pygame.time.Clock()
 """Aquí hay varias constantes que usaremos en el juego. El juego original de Qbasic tenía un tamaño de pantalla de 640x350, de modo que
-usaremos eso como nuestro tamaño de pantalla. Usaremos un solo objeto global Clock para manejar algunos asuntos de sincronización en todas nuestras
+usaremos eso como nuestro tamaño de pantalla. Usaremos un solo objeto global Clock para manejar algunas cuestiones de sincronización en todas nuestras
 funciones, y generalmente ajustaremos FPS a 30 (excepto cuando queramos ajustarlo a otro valor).
 
 Las constantes son útiles porque puedes simplemente ajustar el valor en un lugar, y será usado en todo el programa.
@@ -70,31 +70,31 @@ SOL_Y = 10
 """La posición del sol en el cielo."""
 
 pygame.init()
-GAME_FONT = pygame.font.SysFont(None, 20)
-"""The pygame.init() function needs to be called before calling any of the Pygame functions.
-We will use the default system font at a size of 20 points."""
+FUENTE_JUEGO = pygame.font.SysFont(None, 20)
+"""La función pygame.init() debe ser llamada antes de llamar a cualquiera de las funciones de Pygame.
+Vamos a utilizar el tipo de letra predeterminado del sistema en un tamaño de 20 puntos."""
 
-# orientation of the banana:
-RIGHT = 0
-UP = 1
-LEFT = 2
-DOWN = 3
-"""Some constants for the direction the banana (or anything else) faces."""
+# orientación de la banana:
+DERECHA = 0
+ARRIBA = 1
+IZQUIERDA = 2
+ABAJO = 3
+"""Algunas constantes para la dirección en que se orienta la banana (o cualquier otra cosa)."""
 
-# gorilla arms drawing types
-BOTH_ARMS_DOWN = 0
-LEFT_ARM_UP = 1
-RIGHT_ARM_UP = 2
-"""Some constants for which of the three gorilla sprites to use: both arms down, left arm up, or right arm up."""
+# tipos de brazos del gorila
+AMBOS_BRAZOS_ABAJO = 0
+BRAZO_IZQUIERDO_ARRIBA = 1
+BRAZO_DERECHO_ARRIBA = 2
+"""Constantes para determinar cuál de los tres sprites del gorila usar: ambos brazos abajo, brazo izquierdo arriba, o brazo derecho arriba."""
 
 
-"""The following multiline strings are used with the makeSurfaceFromASCII() function. It's basically a way of
-generating Surfaces other than using the drawing functions or including graphic files along with this .py file.
+"""Las siguientes cadenas multilínea son usadas con la función makeSurfaceFromASCII(). Es básicamente una forma de
+generar superficies aparte de usar las funciones de dibujo o incluir archivos gráficos con este archivo .py.
 
-Try experimenting by changing the strings. The first and last line are ignored (so you don't have to deal with
-indentation issues in the string)."""
+Experimenta cambiando las cadenas. La primera y última línea son ignoradas (de modo que no tengas que lidiar con
+cuestiones de indentación en la cadena)."""
 
-STAR_ASCII = """
+ESTRELLA_ASCII = """
 
 
    XX  XX
@@ -104,7 +104,7 @@ STAR_ASCII = """
    XX  XX
 """
 
-GOR_DOWN_ASCII = """
+GOR_ABAJO_ASCII = """
 
           XXXXXXXX
           XXXXXXXX
@@ -137,7 +137,7 @@ XXXXX   XXXXXXXXXXXX   XXXXX
      XXXXX       XXXXX
 """
 
-GOR_LEFT_ASCII = """
+GOR_IZQUIERDA_ASCII = """
    XXXXX
   XXXXX   XXXXXXXX
  XXXXX    XXXXXXXX
@@ -170,7 +170,7 @@ XXXXX     XXXXXXXX
      XXXXX       XXXXX
 """
 
-GOR_RIGHT_ASCII = """
+GOR_DERECHA_ASCII = """
                     XXXXX
           XXXXXXXX   XXXXX
           XXXXXXXX    XXXXX
@@ -203,7 +203,7 @@ XXXXX   XXXXXXXXXXXX
      XXXXX       XXXXX
 """
 
-BAN_RIGHT_ASCII = """
+BAN_DERECHA_ASCII = """
      XX
     XXX
    XXX
@@ -215,7 +215,7 @@ BAN_RIGHT_ASCII = """
      XX
 """
 
-BAN_LEFT_ASCII = """
+BAN_IZQUIERDA_ASCII = """
 XX
 XXX
  XXX
@@ -227,21 +227,21 @@ XXX
 XX
 """
 
-BAN_UP_ASCII = """
+BAN_ARRIBA_ASCII = """
 XX     XX
 XXXXXXXXX
  XXXXXXX
   XXXXX
 """
 
-BAN_DOWN_ASCII = """
+BAN_ABAJO_ASCII = """
   XXXXX
  XXXXXXX
 XXXXXXXXX
 XX     XX
 """
 
-SUN_NORMAL_ASCII = """
+SOL_NORMAL_ASCII = """
                     X
                     X
             X       X       X
@@ -275,7 +275,7 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
                     X
 """
 
-SUN_SHOCKED_ASCII = """
+SOL_SORPRENDIDO_ASCII = """
                     X
                     X
             X       X       X
@@ -336,16 +336,16 @@ def makeSurfaceFromASCII(ascii, fgColor=(255,255,255), bgColor=(0,0,0)):
                 pArr[x][y] = fgColor
     return surf
 
-GOR_DOWN_SURF    = makeSurfaceFromASCII(GOR_DOWN_ASCII,    COLOR_GOR,      COLOR_CIELO)
-GOR_LEFT_SURF    = makeSurfaceFromASCII(GOR_LEFT_ASCII,    COLOR_GOR,      COLOR_CIELO)
-GOR_RIGHT_SURF   = makeSurfaceFromASCII(GOR_RIGHT_ASCII,   COLOR_GOR,      COLOR_CIELO)
-BAN_RIGHT_SURF   = makeSurfaceFromASCII(BAN_RIGHT_ASCII,   COLOR_BAN,      COLOR_CIELO)
-BAN_LEFT_SURF    = makeSurfaceFromASCII(BAN_LEFT_ASCII,    COLOR_BAN,      COLOR_CIELO)
-BAN_UP_SURF      = makeSurfaceFromASCII(BAN_UP_ASCII,      COLOR_BAN,      COLOR_CIELO)
-BAN_DOWN_SURF    = makeSurfaceFromASCII(BAN_DOWN_ASCII,    COLOR_BAN,      COLOR_CIELO)
-SUN_NORMAL_SURF  = makeSurfaceFromASCII(SUN_NORMAL_ASCII,  COLOR_SOL,      COLOR_CIELO)
-SUN_SHOCKED_SURF = makeSurfaceFromASCII(SUN_SHOCKED_ASCII, COLOR_SOL,      COLOR_CIELO)
-STAR_SURF        = makeSurfaceFromASCII(STAR_ASCII,        COLOR_ROJO_OSCURO, COLOR_NEGRO)
+GOR_DOWN_SURF    = makeSurfaceFromASCII(GOR_ABAJO_ASCII,    COLOR_GOR,      COLOR_CIELO)
+GOR_LEFT_SURF    = makeSurfaceFromASCII(GOR_IZQUIERDA_ASCII,    COLOR_GOR,      COLOR_CIELO)
+GOR_RIGHT_SURF   = makeSurfaceFromASCII(GOR_DERECHA_ASCII,   COLOR_GOR,      COLOR_CIELO)
+BAN_RIGHT_SURF   = makeSurfaceFromASCII(BAN_DERECHA_ASCII,   COLOR_BAN,      COLOR_CIELO)
+BAN_LEFT_SURF    = makeSurfaceFromASCII(BAN_IZQUIERDA_ASCII,    COLOR_BAN,      COLOR_CIELO)
+BAN_UP_SURF      = makeSurfaceFromASCII(BAN_ARRIBA_ASCII,      COLOR_BAN,      COLOR_CIELO)
+BAN_DOWN_SURF    = makeSurfaceFromASCII(BAN_ABAJO_ASCII,    COLOR_BAN,      COLOR_CIELO)
+SUN_NORMAL_SURF  = makeSurfaceFromASCII(SOL_NORMAL_ASCII,  COLOR_SOL,      COLOR_CIELO)
+SUN_SHOCKED_SURF = makeSurfaceFromASCII(SOL_SORPRENDIDO_ASCII, COLOR_SOL,      COLOR_CIELO)
+STAR_SURF        = makeSurfaceFromASCII(ESTRELLA_ASCII,        COLOR_ROJO_OSCURO, COLOR_NEGRO)
 
 assert GOR_DOWN_SURF.get_size() == GOR_LEFT_SURF.get_size() == GOR_RIGHT_SURF.get_size()
 """Create the pygame.Surface objects from the ASCII strings."""
@@ -360,7 +360,7 @@ def drawText(text, surfObj, x, y, fgcol, bgcol, pos='left'):
     If the pos parameter is "left", then the x,y parameter specifies the top left corner of the text rectangle.
     If the pos parameter is "center", then the x,y parameter specifies the middle top point of the text rectangle."""
 
-    textobj = GAME_FONT.render(text, 1, fgcol, bgcol) # creates the text in memory (it's not on a surface yet).
+    textobj = FUENTE_JUEGO.render(text, 1, fgcol, bgcol) # creates the text in memory (it's not on a surface yet).
     textrect = textobj.get_rect()
 
     if pos == 'left':
@@ -436,8 +436,8 @@ def inputMode(prompt, screenSurf, x, y, fgcol, bgcol, maxlen=12, allowed=None, p
     return inputText
 
 def nextBananaShape(orient):
-    """Returns the next banana shape in the sequence of 0, 1, 2, 3, then 0 again. (These correspond to the RIGHT, UP,
-    LEFT, and DOWN variables."""
+    """Returns the next banana shape in the sequence of 0, 1, 2, 3, then 0 again. (These correspond to the DERECHA, ARRIBA,
+    IZQUIERDA, and ABAJO variables."""
     if orient + 1 == 4:
         return 0
     else:
@@ -445,14 +445,14 @@ def nextBananaShape(orient):
 
 def drawBanana(screenSurf, orient, x, y):
     """Draws the banana shape to the screenSurf surface with its top left corner at the x y coordinate provided.
-    "orient" is one of the RIGHT, UP, LEFT, or DOWN values (which are the integers 0 to 3 respectively)"""
-    if orient == DOWN:
+    "orient" is one of the DERECHA, ARRIBA, IZQUIERDA, or ABAJO values (which are the integers 0 to 3 respectively)"""
+    if orient == ABAJO:
         screenSurf.blit(BAN_DOWN_SURF, (x, y))
-    elif orient == UP:
+    elif orient == ARRIBA:
         screenSurf.blit(BAN_UP_SURF, (x, y))
-    elif orient == LEFT:
+    elif orient == IZQUIERDA:
         screenSurf.blit(BAN_LEFT_SURF, (x, y))
-    elif orient == RIGHT:
+    elif orient == DERECHA:
         screenSurf.blit(BAN_RIGHT_SURF, (x, y))
 
 
@@ -465,15 +465,15 @@ def drawSun(screenSurf, shocked=False):
         screenSurf.blit(SUN_NORMAL_SURF, (SOL_X, SOL_Y))
 
 
-def drawGorilla(screenSurf, x, y, arms=BOTH_ARMS_DOWN):
+def drawGorilla(screenSurf, x, y, arms=AMBOS_BRAZOS_ABAJO):
     """Draws the gorilla sprite onto the screenSurf surface at a specific x, y coordinate. The x,y coordinate
     is for the top left corner of the gorilla sprite. Note that all three gorilla surfaces are the same size."""
 
-    if arms == BOTH_ARMS_DOWN:
+    if arms == AMBOS_BRAZOS_ABAJO:
         gorSurf = GOR_DOWN_SURF
-    elif arms == LEFT_ARM_UP:
+    elif arms == BRAZO_IZQUIERDO_ARRIBA:
         gorSurf = GOR_LEFT_SURF
-    elif arms == RIGHT_ARM_UP:
+    elif arms == BRAZO_DERECHO_ARRIBA:
         gorSurf = GOR_RIGHT_SURF
     """Above we choose which surface object we will use to draw the gorilla, depending on the "arms" parameter.
     The call to screenSurf.blit() will draw the surface onto the screen (but it won't show up on the screen until
@@ -746,27 +746,27 @@ def showIntroScreen(screenSurf, p1name, p2name):
     y = 175
 
     for i in range(2):
-        drawGorilla(screenSurf, x-13, y, RIGHT_ARM_UP)
-        drawGorilla(screenSurf, x+47, y, LEFT_ARM_UP)
+        drawGorilla(screenSurf, x-13, y, BRAZO_DERECHO_ARRIBA)
+        drawGorilla(screenSurf, x+47, y, BRAZO_IZQUIERDO_ARRIBA)
         pygame.display.update()
 
         time.sleep(2)
 
-        drawGorilla(screenSurf, x-13, y, LEFT_ARM_UP)
-        drawGorilla(screenSurf, x+47, y, RIGHT_ARM_UP)
+        drawGorilla(screenSurf, x-13, y, BRAZO_IZQUIERDO_ARRIBA)
+        drawGorilla(screenSurf, x+47, y, BRAZO_DERECHO_ARRIBA)
         pygame.display.update()
 
         time.sleep(2)
 
     for i in range(4):
-        drawGorilla(screenSurf, x-13, y, LEFT_ARM_UP)
-        drawGorilla(screenSurf, x+47, y, RIGHT_ARM_UP)
+        drawGorilla(screenSurf, x-13, y, BRAZO_IZQUIERDO_ARRIBA)
+        drawGorilla(screenSurf, x+47, y, BRAZO_DERECHO_ARRIBA)
         pygame.display.update()
 
         time.sleep(0.3)
 
-        drawGorilla(screenSurf, x-13, y, RIGHT_ARM_UP)
-        drawGorilla(screenSurf, x+47, y, LEFT_ARM_UP)
+        drawGorilla(screenSurf, x-13, y, BRAZO_DERECHO_ARRIBA)
+        drawGorilla(screenSurf, x+47, y, BRAZO_IZQUIERDO_ARRIBA)
         pygame.display.update()
 
         time.sleep(0.3)
@@ -822,9 +822,9 @@ def plotShot(screenSurf, skylineSurf, angle, velocity, playerNum, wind, gravity,
 
 
     if playerNum == 1:
-        gorImg = LEFT_ARM_UP
+        gorImg = BRAZO_IZQUIERDO_ARRIBA
     else:
-        gorImg = RIGHT_ARM_UP
+        gorImg = BRAZO_DERECHO_ARRIBA
     """The player 1 gorilla on the left uses his left arm to throw, the player 2 gorilla on the right uses his
     right arm to throw."""
 
@@ -838,11 +838,11 @@ def plotShot(screenSurf, skylineSurf, angle, velocity, playerNum, wind, gravity,
     drawGorilla(screenSurf, startx, starty, gorImg)
     pygame.display.update()
     time.sleep(0.3)
-    drawGorilla(screenSurf, startx, starty, BOTH_ARMS_DOWN)
+    drawGorilla(screenSurf, startx, starty, AMBOS_BRAZOS_ABAJO)
     pygame.display.update()
     """Draw the gorilla throwing the banana."""
 
-    bananaShape = UP
+    bananaShape = ARRIBA
 
     if playerNum == 2:
         startx += GOR_DOWN_SURF.get_size()[0]
@@ -864,17 +864,17 @@ def plotShot(screenSurf, skylineSurf, angle, velocity, playerNum, wind, gravity,
             bananaInPlay = False
 
         bananaRect = getBananaRect(x, y, bananaShape)
-        if bananaShape == UP:
+        if bananaShape == ARRIBA:
             bananaSurf = BAN_UP_SURF
             bananaRect.left -= 2
             bananaRect.top += 2
-        elif bananaShape == DOWN:
+        elif bananaShape == ABAJO:
             bananaSurf = BAN_DOWN_SURF
             bananaRect.left -= 2
             bananaRect.top += 2
-        elif bananaShape == LEFT:
+        elif bananaShape == IZQUIERDA:
             bananaSurf = BAN_LEFT_SURF
-        elif bananaShape == RIGHT:
+        elif bananaShape == DERECHA:
             bananaSurf = BAN_RIGHT_SURF
 
         bananaShape = nextBananaShape(bananaShape)
@@ -953,13 +953,13 @@ def collideWithNonColor(pixArr, surfObj, rect, color):
 
 
 def getBananaRect(x, y, shape):
-    if shape == UP:
+    if shape == ARRIBA:
         return pygame.Rect((x, y), BAN_UP_SURF.get_size())
-    if shape == DOWN:
+    if shape == ABAJO:
         return pygame.Rect((x, y), BAN_DOWN_SURF.get_size())
-    if shape == LEFT:
+    if shape == IZQUIERDA:
         return pygame.Rect((x, y), BAN_LEFT_SURF.get_size())
-    if shape == RIGHT:
+    if shape == DERECHA:
         return pygame.Rect((x, y), BAN_RIGHT_SURF.get_size())
 
 def getWind():
