@@ -811,7 +811,7 @@ def mostrarPuntaje(supPant, puntajeUno, puntajeDos):
     """Dibuja el puntaje sobre la superficie supPant."""
     dibujarTexto(str(puntajeUno) + '>Score<' + str(puntajeDos), supPant, 270, 310, COLOR_BLANCO, COLOR_CIELO, pos='izq')
 
-def dibujarTiro(supPant, paisajeUrbano, ángulo, velocidad, númJugador, viento, gravedad, gor1, gor2):
+def dibujarTiro(supPant, supPaisajeUrbano, ángulo, velocidad, númJugador, viento, gravedad, gor1, gor2):
     # xinicio e yinicio corresponden a la esquina superior izquierda del gorila.
     ángulo = ángulo / 180.0 * math.pi
     velInicX = math.cos(ángulo) * velocidad
@@ -879,75 +879,75 @@ def dibujarTiro(supPant, paisajeUrbano, ángulo, velocidad, númJugador, viento,
 
         formaBanana = siguienteFormaBanana(formaBanana)
 
-        srcPixArray = pygame.PixelArray(paisajeUrbano)
+        arregloPíxFuente = pygame.PixelArray(supPaisajeUrbano)
         if bananaEnJuego and y > 0:
 
             if solRect.collidepoint(x, y):
-                # banana has hit the sun, so draw the "shocked" face.
+                # la banana ha golpeado al sol, entonces dibujamos la cara "sorprendida".
                 impactoSol = True
 
-            # draw the appropriate sun face
+            # dibujar el sol con la cara adecuada
             dibujarSol(supPant, sorprendido=impactoSol)
 
             if rectBanana.colliderect(rectGor1):
-                # banana has hit player 1
+                # la banana ha golpeado al jugador 1
 
-                """Note that we draw the explosion on the screen (on supPant) and on the separate skyline surface (on paisajeUrbano).
-                This is done so that bananas won't hit the sun or any text and accidentally think they've hit something. We also want
-                the paisajeUrbano surface object to keep track of what chunks of the buildings are left."""
-                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery, explosionSize=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), speed=0.005)
-                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery, explosionSize=TAMAÑO_EXPLOSIÓN_GOR, speed=0.005)
+                """Notar que dibujamos la explosión sobre la pantalla (en supPant) y en la superficie independiente del paisaje (on supPaisajeUrbano).
+                Esto es para que las bananas no golpeen al sol o algún texto y accidentalmente piensen que han chocado contra algo. También queremos
+                que el objeto superficie supPaisajeUrbano lleve registro de qué parte de los edificios sigue en pie."""
+                hacerExplosión(supPant, supPaisajeUrbano, rectBanana.centerx, rectBanana.centery, tamañoExplosión=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), velocidad=0.005)
+                hacerExplosión(supPant, supPaisajeUrbano, rectBanana.centerx, rectBanana.centery, tamañoExplosión=TAMAÑO_EXPLOSIÓN_GOR, velocidad=0.005)
                 dibujarSol(supPant)
-                return 'gorilla1'
+                return 'gorila1'
             elif rectBanana.colliderect(rectGor2):
-                # banana has hit player 2
-                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery, explosionSize=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), speed=0.005)
-                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery, explosionSize=TAMAÑO_EXPLOSIÓN_GOR, speed=0.005)
-                supPant.fill(COLOR_CIELO, rectBanana) # erase banana
+                # la banana ha golpeado al jugador 2
+                hacerExplosión(supPant, supPaisajeUrbano, rectBanana.centerx, rectBanana.centery, tamañoExplosión=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), velocidad=0.005)
+                hacerExplosión(supPant, supPaisajeUrbano, rectBanana.centerx, rectBanana.centery, tamañoExplosión=TAMAÑO_EXPLOSIÓN_GOR, velocidad=0.005)
+                supPant.fill(COLOR_CIELO, rectBanana) # borrar banana
                 dibujarSol(supPant)
-                return 'gorilla2'
-            elif collideWithNonColor(srcPixArray, supPant, rectBanana, COLOR_CIELO):
-                # banana has hit a building
-                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery)
-                supPant.fill(COLOR_CIELO, rectBanana) # erase banana
+                return 'gorila2'
+            elif chocaContraSinColor(arregloPíxFuente, supPant, rectBanana, COLOR_CIELO):
+                # la banana ha golpeado un edificio
+                hacerExplosión(supPant, supPaisajeUrbano, rectBanana.centerx, rectBanana.centery)
+                supPant.fill(COLOR_CIELO, rectBanana) # borrar banana
                 dibujarSol(supPant)
-                return 'building'
+                return 'edificio'
 
-        del srcPixArray
-        """Pygame doesn't let us blit a surface while there is a pixel array of it existing, so we delete it."""
+        del arregloPíxFuente
+        """Pygame no nos permite hacer "blit" sobre una superficie mientras exista un arreglo de píxeles de ella, de modo que la borramos."""
 
         supPant.blit(supBanana, (rectBanana.topleft))
         pygame.display.update()
         time.sleep(0.02)
 
-        supPant.fill(COLOR_CIELO, rectBanana) # erase banana
+        supPant.fill(COLOR_CIELO, rectBanana) # borrar banana
 
-        t += 0.1 # go forward in the plot.
+        t += 0.1 # avanzar en el dibujo.
     dibujarSol(supPant)
-    return 'miss'
+    return 'errado'
 
-def victoryDance(screenSurf, x, y):
-    """Given the x,y coordinates of the topleft corner of the gorilla sprite, this goes through
-    the victory dance routine of the gorilla where they start waving their arms in the air."""
+def danzaVictoria(supPant, x, y):
+    """Dadas las coordenadas x,y de la esquina superior izquierda del sprite gorila, esta función recorre
+    la rutina de la danza de la victoria del gorila, en la cual este agita sus brazos en el aire."""
     for i in range(4):
-        screenSurf.blit(GOR_IZQ_SUP, (x, y))
+        supPant.blit(GOR_IZQ_SUP, (x, y))
         pygame.display.update()
         time.sleep(0.3)
-        screenSurf.blit(GOR_DER_SUP, (x, y))
+        supPant.blit(GOR_DER_SUP, (x, y))
         pygame.display.update()
         time.sleep(0.3)
 
 
-def collideWithNonColor(pixArr, surfObj, rect, color):
-    """This checks the area (described by "rect") on pixArr (a pixel array derived from the surfObj surface object)
-    if it has any pixels that are not the color specified by the "color" parameter. This function is used to detect
-    if the banana has hit any non-sky colored parts (which means a gorilla or a building)."""
-    rightSide = min(rect.right, ANCHO_PNT)
-    bottomSide = min(rect.bottom, ALTURA_PNT)
+def chocaContraSinColor(arrPíx, objSup, rect, color):
+    """Esto comprueba si el área (descripta por "rect") en arrPíx (un arreglo de píxeles derivado del objeto superficie objSup)
+    contiene algún píxel que no sea del color especificado por el parámetro "color". Esta función se usa para detectar
+    si la banana ha golpeado alguna parte del cielo sin color (lo que significa un gorila o un edificio)."""
+    ladoDerecho = min(rect.right, ANCHO_PNT)
+    ladoInferior = min(rect.bottom, ALTURA_PNT)
 
-    for x in range(rect.left, rightSide):
-        for y in range(rect.top, bottomSide):
-            if surfObj.unmap_rgb(pixArr[x][y]) != color:
+    for x in range(rect.left, ladoDerecho):
+        for y in range(rect.top, ladoInferior):
+            if objSup.unmap_rgb(arrPíx[x][y]) != color:
                 return True
     return False
 
@@ -962,107 +962,107 @@ def obtenerRectBanana(x, y, shape):
     if shape == DER:
         return pygame.Rect((x, y), BAN_DER_SUP.get_size())
 
-def getWind():
-    """Randomly determine what the wind speed and direction should be for this game."""
-    wind = random.randint(5, 15)
+def obtenerViento():
+    """Determina aleatoriamente cuáles serán la velocidad y dirección del viento para este juego."""
+    viento = random.randint(5, 15)
     if random.randint(0, 1):
-        wind *= -1
-    return wind
+        viento *= -1
+    return viento
 
-def drawWind(screenSurf, wind):
-    """Draws the wind arrow on the screenSurf object at the bottom of the screen. The "wind" parameter comes from
-    a call to getWind()."""
+def dibujarViento(supPant, wind):
+    """Dibuja la flecha de viento sobre el objeto supPant en la parte inferior de la pantalla. El parámetro "viento" proviene de
+    una llamada a obtenerViento()."""
     if wind != 0:
         wind *= 3
-        pygame.draw.line(screenSurf, COLOR_EXPLOSIÓN, (int(ANCHO_PNT / 2), ALTURA_PNT - 5), (int(ANCHO_PNT / 2) + wind, ALTURA_PNT - 5))
-        # draw the arrow end
+        pygame.draw.line(supPant, COLOR_EXPLOSIÓN, (int(ANCHO_PNT / 2), ALTURA_PNT - 5), (int(ANCHO_PNT / 2) + wind, ALTURA_PNT - 5))
+        # dibujar la punta de la flecha
         if wind > 0: arrowDir = -2
         else:        arrowDir = 2
-        pygame.draw.line(screenSurf, COLOR_EXPLOSIÓN, (int(ANCHO_PNT / 2) + wind, ALTURA_PNT - 5), (int(ANCHO_PNT / 2) + wind + arrowDir, ALTURA_PNT - 5 - 2))
-        pygame.draw.line(screenSurf, COLOR_EXPLOSIÓN, (int(ANCHO_PNT / 2) + wind, ALTURA_PNT - 5), (int(ANCHO_PNT / 2) + wind + arrowDir, ALTURA_PNT - 5 + 2))
+        pygame.draw.line(supPant, COLOR_EXPLOSIÓN, (int(ANCHO_PNT / 2) + wind, ALTURA_PNT - 5), (int(ANCHO_PNT / 2) + wind + arrowDir, ALTURA_PNT - 5 - 2))
+        pygame.draw.line(supPant, COLOR_EXPLOSIÓN, (int(ANCHO_PNT / 2) + wind, ALTURA_PNT - 5), (int(ANCHO_PNT / 2) + wind + arrowDir, ALTURA_PNT - 5 + 2))
 
-def doExplosion(screenSurf, skylineSurf, x, y, explosionSize=TAMAÑO_EXPLOSIÓN_EDIF, speed=0.05):
-    for r in range(1, explosionSize):
-        pygame.draw.circle(screenSurf, COLOR_EXPLOSIÓN, (x, y), r)
-        pygame.draw.circle(skylineSurf, COLOR_EXPLOSIÓN, (x, y), r)
+def hacerExplosión(supPant, supPaisajeUrbano, x, y, tamañoExplosión=TAMAÑO_EXPLOSIÓN_EDIF, velocidad=0.05):
+    for r in range(1, tamañoExplosión):
+        pygame.draw.circle(supPant, COLOR_EXPLOSIÓN, (x, y), r)
+        pygame.draw.circle(supPaisajeUrbano, COLOR_EXPLOSIÓN, (x, y), r)
         pygame.display.update()
-        time.sleep(speed)
-    for r in range(explosionSize, 1, -1):
-        pygame.draw.circle(screenSurf, COLOR_CIELO, (x, y), explosionSize)
-        pygame.draw.circle(skylineSurf, COLOR_CIELO, (x, y), explosionSize)
-        pygame.draw.circle(screenSurf, COLOR_EXPLOSIÓN, (x, y), r)
-        pygame.draw.circle(skylineSurf, COLOR_EXPLOSIÓN, (x, y), r)
+        time.sleep(velocidad)
+    for r in range(tamañoExplosión, 1, -1):
+        pygame.draw.circle(supPant, COLOR_CIELO, (x, y), tamañoExplosión)
+        pygame.draw.circle(supPaisajeUrbano, COLOR_CIELO, (x, y), tamañoExplosión)
+        pygame.draw.circle(supPant, COLOR_EXPLOSIÓN, (x, y), r)
+        pygame.draw.circle(supPaisajeUrbano, COLOR_EXPLOSIÓN, (x, y), r)
         pygame.display.update()
-        time.sleep(speed)
-    pygame.draw.circle(screenSurf, COLOR_CIELO, (x, y), 2)
-    pygame.draw.circle(skylineSurf, COLOR_CIELO, (x, y), 2)
+        time.sleep(velocidad)
+    pygame.draw.circle(supPant, COLOR_CIELO, (x, y), 2)
+    pygame.draw.circle(supPaisajeUrbano, COLOR_CIELO, (x, y), 2)
     pygame.display.update()
 
 
 def main():
-    winSurface = pygame.display.set_mode((ANCHO_PNT, ALTURA_PNT), 0, 32)
-    """winSurface, being the surface object returned by pygame.display.set_mode(), will be drawn to the screen
-    every time pygame.display.update() is called."""
+    supVentana = pygame.display.set_mode((ANCHO_PNT, ALTURA_PNT), 0, 32)
+    """supVentana, siendo el objeto devuelto por pygame.display.set_mode(), será dibujado sobre la pantalla
+    cada vez que se llame a pygame.display.update()."""
 
-    # Uncomment either of the following lines to put the game into full screen mode.
-    ##winSurface = pygame.display.set_mode((SCR_WIDTH, SCR_HEIGHT), pygame.FULLSCREEN, 32)
+    # Descomentar cualquiera de las siguientes líneas para poner el juego en modo pantalla completa.
+    ##supVentana = pygame.display.set_mode((SCR_WIDTH, SCR_HEIGHT), pygame.FULLSCREEN, 32)
     ##pygame.display.toggle_fullscreen()
-    pygame.display.set_caption('Gorillas.py')
+    pygame.display.set_caption('Gorilas.py')
 
-    mostrarPantallaInicio(winSurface)
+    mostrarPantallaInicio(supVentana)
 
     while True:
-        # start a new game
-        p1name, p2name, winPoints, gravity, nextScreen = mostrarPantallaConfiguración(winSurface)
-        if nextScreen == 'v':
-            mostrarPantallaIntro(winSurface, p1name, p2name)
+        # comenzar un nuevo juego
+        j1nombre, j2nombre, puntosVictoria, gravedad, pantallaSiguiente = mostrarPantallaConfiguración(supVentana)
+        if pantallaSiguiente == 'v':
+            mostrarPantallaIntro(supVentana, j1nombre, j2nombre)
 
-        # Reset the score and make it the first player's turn.
-        p1score = 0
-        p2score = 0
-        turn = 1
+        # Reiniciar los puntajes y dar el turno al primer jugador.
+        j1puntos = 0
+        j2puntos = 0
+        turno = 1
 
-        newRound = True
-        while p1score < winPoints and p2score < winPoints:
-            if newRound:
-                # At the start of a new round, make a new city scape, place the gorillas, and get the wind speed.
-                skylineSurf, buildCoords = crearPaisajeUrbano() # Note that the city skyline goes on skylineSurf, not winSurface.
-                gorPos = ubicarGorilas(buildCoords)
-                wind = getWind()
-                newRound = False
+        nuevaRonda = True
+        while j1puntos < puntosVictoria and j2puntos < puntosVictoria:
+            if nuevaRonda:
+                # Al comienzo de una nueva ronda, crear un nuevo paisaje urbano, colocar los gorilas y obtener la velocidad del viento.
+                supPaisajeUrbano, coordsEdif = crearPaisajeUrbano() # Notar que el paisaje urbano se almacena en supPaisajeUrbano, no en supVentana.
+                posGor = ubicarGorilas(coordsEdif)
+                viento = obtenerViento()
+                nuevaRonda = False
 
-            # Do all the drawing.
-            winSurface.blit(skylineSurf, (0,0))
-            dibujarGorila(winSurface, gorPos[0][0], gorPos[0][1], 0)
-            dibujarGorila(winSurface, gorPos[1][0], gorPos[1][1], 0)
-            drawWind(winSurface, wind)
-            dibujarSol(winSurface)
-            mostrarPuntaje(winSurface, p1score, p2score)
+            # Hacer el dibujo completo.
+            supVentana.blit(supPaisajeUrbano, (0,0))
+            dibujarGorila(supVentana, posGor[0][0], posGor[0][1], 0)
+            dibujarGorila(supVentana, posGor[1][0], posGor[1][1], 0)
+            dibujarViento(supVentana, viento)
+            dibujarSol(supVentana)
+            mostrarPuntaje(supVentana, j1puntos, j2puntos)
 
             pygame.display.update()
 
-            angle, velocity = obtenerTiro(winSurface, p1name, p2name, turn)
-            if turn == 1:
-                gorx, gory = gorPos[0][0], gorPos[0][1]
-            elif turn == 2:
-                gorx, gory = gorPos[1][0], gorPos[1][1]
-            result = dibujarTiro(winSurface, skylineSurf, angle, velocity, turn, wind, 9.8, gorPos[0], gorPos[1])
+            ángulo, velocidad = obtenerTiro(supVentana, j1nombre, j2nombre, turno)
+            if turno == 1:
+                gorx, gory = posGor[0][0], posGor[0][1]
+            elif turno == 2:
+                gorx, gory = posGor[1][0], posGor[1][1]
+            result = dibujarTiro(supVentana, supPaisajeUrbano, ángulo, velocidad, turno, viento, 9.8, posGor[0], posGor[1])
 
-            if result == 'gorilla1':
-                victoryDance(winSurface, gorPos[1][0], gorPos[1][1])
-                p2score += 1
-                newRound = True
-            elif result == 'gorilla2':
-                victoryDance(winSurface, gorPos[0][0], gorPos[0][1])
-                p1score += 1
-                newRound = True
+            if result == 'gorila1':
+                danzaVictoria(supVentana, posGor[1][0], posGor[1][1])
+                j2puntos += 1
+                nuevaRonda = True
+            elif result == 'gorila2':
+                danzaVictoria(supVentana, posGor[0][0], posGor[0][1])
+                j1puntos += 1
+                nuevaRonda = True
 
-            if turn == 1:
-                turn = 2
+            if turno == 1:
+                turno = 2
             else:
-                turn = 1
+                turno = 1
 
-        mostrarPantallaJuegoTerminado(winSurface, p1name, p1score, p2name, p2score)
+        mostrarPantallaJuegoTerminado(supVentana, j1nombre, j1puntos, j2nombre, j2puntos)
 
 if __name__ == '__main__':
     main()
