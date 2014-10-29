@@ -1,3 +1,4 @@
+#! python3
 """
 Since the translated source code should still keep the line numbers intact,
 this script checks that the lines are loosely the same as the original.
@@ -26,7 +27,7 @@ ANY_ASPECTS = ('[', ']', '(', ')')
 def getAspects(filename):
     lineAspects = {}
 
-    fo = open(filename)
+    fo = open(filename, encoding='utf-8')
     lineNum = 1
     for line in fo.readlines():
         # modify the python source to take out the strings so they don't confuse the unit tests
@@ -89,16 +90,20 @@ class TestSpanish(unittest.TestCase):
             self.assertEqual((stamp, ORIG[origProgram][line]['any']), (stamp, translatedAspects[line]['any']))
 
 
-    def test_programs(self):
-        LANG = 'es'
+    def test_es_programs(self):
         programs = {'hello': 'hola',
                     'guess': 'adivinaElNúmero',
                     'dragon': 'dragón',
-                    'hangman': 'verdugo',
-                    'hangman2': 'verdugo2',}
+                    'hangman': 'ahorcado',
+                    'hangman2': 'ahorcado2',
+                    'AISim2': 'es_AISim2',
+                    'AISim3': 'es_AISim3',
+                    'jokes': 'es_jokes',
+                    'animation': 'animacion',
+                    'cipher': 'cifrado'}
 
         for original, translated in programs.items():
-            self._compareTwoPrograms(original, LANG, translated)
+            self._compareTwoPrograms(original, 'es', translated)
 
 
 if __name__ == '__main__':
