@@ -6,17 +6,17 @@ import sys
 def ritaBräde(bräde):
     # Denna funktion skriver ut brädet som skickats in. Returnerar inget.
     HRAD = '  +---+---+---+---+---+---+---+---+'
-
+    VRAD = '  |   |   |   |   |   |   |   |   |'
 
     print('    1   2   3   4   5   6   7   8')
     print(HRAD)
     for y in range(8):
-
+        print(VRAD)
         print(y+1, end=' ')
         for x in range(8):
             print('| %s' % (bräde[x][y]), end=' ')
         print('|')
-
+        print(VRAD)
         print(HRAD)
 
 

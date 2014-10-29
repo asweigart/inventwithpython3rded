@@ -80,14 +80,15 @@ for pythonScript in ('AISim1', 'AISim2', 'AISim3', 'animation', 'bagels',
 
 
 class TestSpanish(unittest.TestCase):
-    def _compareTwoPrograms(self, origProgram, lang, translatedProgram):
-        translatedAspects = getAspects(os.path.join(lang, 'src', translatedProgram + '.py'))
-        for line in ORIG[origProgram].keys():
-            stamp = (translatedProgram, line)
-            self.assertEqual((stamp, ORIG[origProgram][line]['blank']), (stamp, translatedAspects[line]['blank']))
-            self.assertEqual((stamp, ORIG[origProgram][line]['whole']), (stamp, translatedAspects[line]['whole']))
-            self.assertEqual((stamp, ORIG[origProgram][line]['function']), (stamp, translatedAspects[line]['function']))
-            self.assertEqual((stamp, ORIG[origProgram][line]['any']), (stamp, translatedAspects[line]['any']))
+    def _compareTwoPrograms(self, lang, programs):
+        for origProgram, translatedProgram in programs.items():
+            translatedAspects = getAspects(os.path.join(lang, 'src', translatedProgram + '.py'))
+            for line in ORIG[origProgram].keys():
+                stamp = (translatedProgram, line)
+                self.assertEqual((stamp, ORIG[origProgram][line]['blank']), (stamp, translatedAspects[line]['blank']))
+                self.assertEqual((stamp, ORIG[origProgram][line]['whole']), (stamp, translatedAspects[line]['whole']))
+                self.assertEqual((stamp, ORIG[origProgram][line]['function']), (stamp, translatedAspects[line]['function']))
+                self.assertEqual((stamp, ORIG[origProgram][line]['any']), (stamp, translatedAspects[line]['any']))
 
 
     def test_es_programs(self):
@@ -102,8 +103,27 @@ class TestSpanish(unittest.TestCase):
                     'animation': 'animacion',
                     'cipher': 'cifrado'}
 
-        for original, translated in programs.items():
-            self._compareTwoPrograms(original, 'es', translated)
+        self._compareTwoPrograms('es', programs)
+
+    def test_sv_programs(self):
+        programs = {'AISim1': 'AISim1',
+                    'AISim2': 'AISim2',
+                    'AISim3': 'AISim3',
+                    'bagels': 'bagels',
+                    'buggy': 'buggy',
+                    'coinFlips': 'coinFlips',
+                    'dragon': 'dragon',
+                    'guess': 'guess',
+                    'hangman': 'hangman',
+                    'hello': 'hello',
+                    'jokes': 'jokes',
+                    'reversi': 'reversi',
+                    'reversi_mini': 'reversi_mini',
+                    'sonar': 'sonar',
+                    'tictactoe': 'tictactoe'}
+
+        self._compareTwoPrograms('sv', programs)
+
 
 
 if __name__ == '__main__':

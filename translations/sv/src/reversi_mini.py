@@ -5,15 +5,15 @@ import sys
 
 def ritaBräde(bräde):
     # Denna funktion skriver ut brädet som skickats in. Returnerar inget.
-
-    print('   1 2 3 4 5 6 7 8')
-
+    HRAD = ' +--------+'
+    print('  12345678')
+    print(HRAD)
     for y in range(8):
-        print(' %s ' % (y+1), end='')
+        print('%s|' % (y+1), end='')
         for x in range(8):
-            print('%s ' % ('.' if bräde[x][y] == ' ' else bräde[x][y]), end='')
-        print()
-
+            print(bräde[x][y], end='')
+        print('|')
+    print(HRAD)
 
 
 def tömBräde(bräde):
