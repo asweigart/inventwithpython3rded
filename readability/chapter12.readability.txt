@@ -1,0 +1,35 @@
+readability grades:
+    Kincaid:                    10.62
+    ARI:                        13.96
+    Coleman-Liau:                8.77
+    FleschReadingEase:          72.02
+    GunningFogIndex:            15.78
+    LIX:                        48.76
+    SMOGIndex:                  12.28
+    RIX:                         5.65
+sentence info:
+    characters_per_word:         4.35
+    syll_per_word:               1.24
+    words_per_sentence:         29.82
+    sentences_per_paragraph:         1.94
+    characters:               8817
+    syllables:                2506
+    words:                    2028
+    sentences:                  68
+    paragraphs:                 35
+    long_words:                384
+    complex_words:             195
+word usage:
+    tobeverb:                   91
+    auxverb:                    52
+    conjunction:                77
+    pronoun:                   165
+    preposition:               248
+    nominalization:             33
+sentence beginnings:
+    pronoun:                     7
+    interrogative:               1
+    article:                    12
+    subordination:               2
+    conjunction:                 0
+    preposition:                 2
