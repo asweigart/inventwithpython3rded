@@ -465,7 +465,7 @@ def dibujarSol(supPant, sorprendido=False):
         supPant.blit(SOL_NORMAL_SUP, (SOL_X, SOL_Y))
 
 
-def drawGorilla(supPant, x, y, brazos=AMBOS_BRAZOS_ABAJO):
+def dibujarGorila(supPant, x, y, brazos=AMBOS_BRAZOS_ABAJO):
     """Dibuja el sprite gorila sobre la superficie supPant en una coordenada específica x, y. La coordenada x,y
     es para la esquina superior izquierda del sprite gorila. Notar que las tres superficies gorila son del mismo tamaño."""
 
@@ -736,194 +736,194 @@ def mostrarPantallaConfiguración(supPant):
     return j1nombre, j2nombre, puntos, gravedad, chr(key) # devuelve 'v' o 'j'
 
 def mostrarPantallaIntro(supPant, j1nombre, j2nombre):
-    """Esta es la pantalla que se reproduce si el jugador eligió "ver introducción" de la pantalla de inicio."""
+    """Esta es la pantalla que se reproduce si el jugador ha elegido "ver introducción" de la pantalla de inicio."""
     supPant.fill(COLOR_CIELO)
-    dibujarTexto('P  y  t  h  o  n     G  O  R  I  L  L  A  S', supPant, ANCHO_PNT / 2, 15, COLOR_BLANCO, COLOR_CIELO, pos='centro')
-    dibujarTexto('STARRING:', supPant, ANCHO_PNT / 2, 55, COLOR_BLANCO, COLOR_CIELO, pos='centro')
-    dibujarTexto('%s AND %s' % (j1nombre, j2nombre), supPant, ANCHO_PNT / 2, 115, COLOR_BLANCO, COLOR_CIELO, pos='centro')
+    dibujarTexto('P  y  t  h  o  n     G  O  R  I  L  A  S', supPant, ANCHO_PNT / 2, 15, COLOR_BLANCO, COLOR_CIELO, pos='centro')
+    dibujarTexto('PROTAGONIZADO POR:', supPant, ANCHO_PNT / 2, 55, COLOR_BLANCO, COLOR_CIELO, pos='centro')
+    dibujarTexto('%s Y %s' % (j1nombre, j2nombre), supPant, ANCHO_PNT / 2, 115, COLOR_BLANCO, COLOR_CIELO, pos='centro')
 
     x = 278
     y = 175
 
     for i in range(2):
-        drawGorilla(supPant, x-13, y, BRAZO_DER_ARRIBA)
-        drawGorilla(supPant, x+47, y, BRAZO_IZQ_ARRIBA)
+        dibujarGorila(supPant, x-13, y, BRAZO_DER_ARRIBA)
+        dibujarGorila(supPant, x+47, y, BRAZO_IZQ_ARRIBA)
         pygame.display.update()
 
         time.sleep(2)
 
-        drawGorilla(supPant, x-13, y, BRAZO_IZQ_ARRIBA)
-        drawGorilla(supPant, x+47, y, BRAZO_DER_ARRIBA)
+        dibujarGorila(supPant, x-13, y, BRAZO_IZQ_ARRIBA)
+        dibujarGorila(supPant, x+47, y, BRAZO_DER_ARRIBA)
         pygame.display.update()
 
         time.sleep(2)
 
     for i in range(4):
-        drawGorilla(supPant, x-13, y, BRAZO_IZQ_ARRIBA)
-        drawGorilla(supPant, x+47, y, BRAZO_DER_ARRIBA)
+        dibujarGorila(supPant, x-13, y, BRAZO_IZQ_ARRIBA)
+        dibujarGorila(supPant, x+47, y, BRAZO_DER_ARRIBA)
         pygame.display.update()
 
         time.sleep(0.3)
 
-        drawGorilla(supPant, x-13, y, BRAZO_DER_ARRIBA)
-        drawGorilla(supPant, x+47, y, BRAZO_IZQ_ARRIBA)
+        dibujarGorila(supPant, x-13, y, BRAZO_DER_ARRIBA)
+        dibujarGorila(supPant, x+47, y, BRAZO_IZQ_ARRIBA)
         pygame.display.update()
 
         time.sleep(0.3)
 
 
-def getShot(screenSurf, p1name, p2name, playerNum):
-    """getShot() is called when we want to get the angle and velocity from the player."""
-    pygame.draw.rect(screenSurf, COLOR_CIELO, (0, 0, 200, 50))
-    pygame.draw.rect(screenSurf, COLOR_CIELO, (550, 0, 00, 50))
+def obtenerTiro(supPant, j1nombre, j2nombre, númJugador):
+    """obtenerTiro() es llamada cuando queremos obtener el ángulo y la velocidad desde el jugador."""
+    pygame.draw.rect(supPant, COLOR_CIELO, (0, 0, 200, 50))
+    pygame.draw.rect(supPant, COLOR_CIELO, (550, 0, 00, 50))
 
-    dibujarTexto(p1name, screenSurf, 2, 2, COLOR_BLANCO, COLOR_CIELO)
-    dibujarTexto(p2name, screenSurf, 538, 2, COLOR_BLANCO, COLOR_CIELO)
+    dibujarTexto(j1nombre, supPant, 2, 2, COLOR_BLANCO, COLOR_CIELO)
+    dibujarTexto(j2nombre, supPant, 538, 2, COLOR_BLANCO, COLOR_CIELO)
 
-    if playerNum == 1:
+    if númJugador == 1:
         x = 2
     else:
         x = 538
 
-    angle = ''
-    while angle == '':
-        angle = modoEntrada('Angle:  ', screenSurf, x, 18, COLOR_BLANCO, COLOR_CIELO, longmax=3, permitidos='0123456789')
-    if angle is None: terminar()
-    angle = int(angle)
+    ángulo = ''
+    while ángulo == '':
+        ángulo = modoEntrada('Angle:  ', supPant, x, 18, COLOR_BLANCO, COLOR_CIELO, longmax=3, permitidos='0123456789')
+    if ángulo is None: terminar()
+    ángulo = int(ángulo)
 
-    velocity = ''
-    while velocity == '':
-        velocity = modoEntrada('Velocity:  ', screenSurf, x, 34, COLOR_BLANCO, COLOR_CIELO, longmax=3, permitidos='0123456789')
-    if velocity is None: terminar()
-    velocity = int(velocity)
+    velocidad = ''
+    while velocidad == '':
+        velocidad = modoEntrada('Velocity:  ', supPant, x, 34, COLOR_BLANCO, COLOR_CIELO, longmax=3, permitidos='0123456789')
+    if velocidad is None: terminar()
+    velocidad = int(velocidad)
 
-    # Erase the user's input
-    dibujarTexto('Angle:   ' + str(angle), screenSurf, x, 2, COLOR_CIELO, COLOR_CIELO)
-    dibujarTexto('Velocity:   ' + str(angle), screenSurf, x, 2, COLOR_CIELO, COLOR_CIELO)
+    # Borrar la entrada de datos del jugador
+    dibujarTexto('Ángulo:   ' + str(ángulo), supPant, x, 2, COLOR_CIELO, COLOR_CIELO)
+    dibujarTexto('Velocidad:   ' + str(ángulo), supPant, x, 2, COLOR_CIELO, COLOR_CIELO)
     pygame.display.update()
 
-    if playerNum == 2:
-        angle = 180 - angle
+    if númJugador == 2:
+        ángulo = 180 - ángulo
 
-    return (angle, velocity)
+    return (ángulo, velocidad)
 
-def displayScore(screenSurf, oneScore, twoScore):
-    """Draws the score on the screenSurf surface."""
-    dibujarTexto(str(oneScore) + '>Score<' + str(twoScore), screenSurf, 270, 310, COLOR_BLANCO, COLOR_CIELO, pos='izq')
+def mostrarPuntaje(supPant, puntajeUno, puntajeDos):
+    """Dibuja el puntaje sobre la superficie supPant."""
+    dibujarTexto(str(puntajeUno) + '>Score<' + str(puntajeDos), supPant, 270, 310, COLOR_BLANCO, COLOR_CIELO, pos='izq')
 
-def plotShot(screenSurf, skylineSurf, angle, velocity, playerNum, wind, gravity, gor1, gor2):
-    # startx and starty is the upper left corner of the gorilla.
-    angle = angle / 180.0 * math.pi
-    initXVel = math.cos(angle) * velocity
-    initYVel = math.sin(angle) * velocity
-    gorWidth, gorHeight = GOR_ABAJO_SUP.get_size()
-    gor1rect = pygame.Rect(gor1[0], gor1[1], gorWidth, gorHeight)
-    gor2rect = pygame.Rect(gor2[0], gor2[1], gorWidth, gorHeight)
+def dibujarTiro(supPant, paisajeUrbano, ángulo, velocidad, númJugador, viento, gravedad, gor1, gor2):
+    # xinicio e yinicio corresponden a la esquina superior izquierda del gorila.
+    ángulo = ángulo / 180.0 * math.pi
+    velInicX = math.cos(ángulo) * velocidad
+    velInicY = math.sin(ángulo) * velocidad
+    anchoGor, alturaGor = GOR_ABAJO_SUP.get_size()
+    rectGor1 = pygame.Rect(gor1[0], gor1[1], anchoGor, alturaGor)
+    rectGor2 = pygame.Rect(gor2[0], gor2[1], anchoGor, alturaGor)
 
 
-    if playerNum == 1:
-        gorImg = BRAZO_IZQ_ARRIBA
+    if númJugador == 1:
+        imgGor = BRAZO_IZQ_ARRIBA
     else:
-        gorImg = BRAZO_DER_ARRIBA
-    """The player 1 gorilla on the left uses his left arm to throw, the player 2 gorilla on the right uses his
-    right arm to throw."""
+        imgGor = BRAZO_DER_ARRIBA
+    """El gorila del jugador 1 sobre la izquierda usa su brazo izquierdo para arrojar bananas. El gorila del jugador 2 sobre la derecha
+    usa su brazo derecho."""
 
-    if playerNum == 1:
-        startx = gor1[0]
-        starty = gor1[1]
-    elif playerNum == 2:
-        startx = gor2[0]
-        starty = gor2[1]
+    if númJugador == 1:
+        xinicio = gor1[0]
+        yinicio = gor1[1]
+    elif númJugador == 2:
+        xinicio = gor2[0]
+        yinicio = gor2[1]
 
-    drawGorilla(screenSurf, startx, starty, gorImg)
+    dibujarGorila(supPant, xinicio, yinicio, imgGor)
     pygame.display.update()
     time.sleep(0.3)
-    drawGorilla(screenSurf, startx, starty, AMBOS_BRAZOS_ABAJO)
+    dibujarGorila(supPant, xinicio, yinicio, AMBOS_BRAZOS_ABAJO)
     pygame.display.update()
-    """Draw the gorilla throwing the banana."""
+    """Dibujar el gorila arrojando la banana."""
 
-    bananaShape = ARRIBA
+    formaBanana = ARRIBA
 
-    if playerNum == 2:
-        startx += GOR_ABAJO_SUP.get_size()[0]
+    if númJugador == 2:
+        xinicio += GOR_ABAJO_SUP.get_size()[0]
 
-    starty -= getBananaRect(0, 0, bananaShape).height + BAN_ARRIBA_SUP.get_size()[1]
+    yinicio -= obtenerRectBanana(0, 0, formaBanana).height + BAN_ARRIBA_SUP.get_size()[1]
 
-    impact = False
-    bananaInPlay = True
+    impacto = False
+    bananaEnJuego = True
 
     t = 1.0
-    sunHit = False
+    impactoSol = False
 
-    while not impact and bananaInPlay:
-        x = startx + (initXVel * t) + (0.5 * (wind / 5) * t**2)
-        y = starty + ((-1 * (initYVel * t)) + (0.5 * gravity * t**2))
-        """This is basically the equation that describes the banana's arc."""
+    while not impacto and bananaEnJuego:
+        x = xinicio + (velInicX * t) + (0.5 * (viento / 5) * t**2)
+        y = yinicio + ((-1 * (velInicY * t)) + (0.5 * gravedad * t**2))
+        """Esta es básicamente la ecuación que describe el arco de la trayectoria de la banana."""
 
         if x >= ANCHO_PNT - 10 or x <= 3 or y >= ALTURA_PNT:
-            bananaInPlay = False
+            bananaEnJuego = False
 
-        bananaRect = getBananaRect(x, y, bananaShape)
-        if bananaShape == ARRIBA:
-            bananaSurf = BAN_ARRIBA_SUP
-            bananaRect.left -= 2
-            bananaRect.top += 2
-        elif bananaShape == ABAJO:
-            bananaSurf = BAN_ABAJO_SUP
-            bananaRect.left -= 2
-            bananaRect.top += 2
-        elif bananaShape == IZQ:
-            bananaSurf = BAN_IZQ_SUP
-        elif bananaShape == DER:
-            bananaSurf = BAN_DER_SUP
+        rectBanana = obtenerRectBanana(x, y, formaBanana)
+        if formaBanana == ARRIBA:
+            supBanana = BAN_ARRIBA_SUP
+            rectBanana.left -= 2
+            rectBanana.top += 2
+        elif formaBanana == ABAJO:
+            supBanana = BAN_ABAJO_SUP
+            rectBanana.left -= 2
+            rectBanana.top += 2
+        elif formaBanana == IZQ:
+            supBanana = BAN_IZQ_SUP
+        elif formaBanana == DER:
+            supBanana = BAN_DER_SUP
 
-        bananaShape = siguienteFormaBanana(bananaShape)
+        formaBanana = siguienteFormaBanana(formaBanana)
 
-        srcPixArray = pygame.PixelArray(skylineSurf)
-        if bananaInPlay and y > 0:
+        srcPixArray = pygame.PixelArray(paisajeUrbano)
+        if bananaEnJuego and y > 0:
 
             if solRect.collidepoint(x, y):
                 # banana has hit the sun, so draw the "shocked" face.
-                sunHit = True
+                impactoSol = True
 
             # draw the appropriate sun face
-            dibujarSol(screenSurf, sorprendido=sunHit)
+            dibujarSol(supPant, sorprendido=impactoSol)
 
-            if bananaRect.colliderect(gor1rect):
+            if rectBanana.colliderect(rectGor1):
                 # banana has hit player 1
 
-                """Note that we draw the explosion on the screen (on screenSurf) and on the separate skyline surface (on skylineSurf).
+                """Note that we draw the explosion on the screen (on supPant) and on the separate skyline surface (on paisajeUrbano).
                 This is done so that bananas won't hit the sun or any text and accidentally think they've hit something. We also want
-                the skylineSurf surface object to keep track of what chunks of the buildings are left."""
-                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), speed=0.005)
-                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=TAMAÑO_EXPLOSIÓN_GOR, speed=0.005)
-                dibujarSol(screenSurf)
+                the paisajeUrbano surface object to keep track of what chunks of the buildings are left."""
+                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery, explosionSize=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), speed=0.005)
+                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery, explosionSize=TAMAÑO_EXPLOSIÓN_GOR, speed=0.005)
+                dibujarSol(supPant)
                 return 'gorilla1'
-            elif bananaRect.colliderect(gor2rect):
+            elif rectBanana.colliderect(rectGor2):
                 # banana has hit player 2
-                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), speed=0.005)
-                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery, explosionSize=TAMAÑO_EXPLOSIÓN_GOR, speed=0.005)
-                screenSurf.fill(COLOR_CIELO, bananaRect) # erase banana
-                dibujarSol(screenSurf)
+                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery, explosionSize=int(TAMAÑO_EXPLOSIÓN_GOR*2/3), speed=0.005)
+                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery, explosionSize=TAMAÑO_EXPLOSIÓN_GOR, speed=0.005)
+                supPant.fill(COLOR_CIELO, rectBanana) # erase banana
+                dibujarSol(supPant)
                 return 'gorilla2'
-            elif collideWithNonColor(srcPixArray, screenSurf, bananaRect, COLOR_CIELO):
+            elif collideWithNonColor(srcPixArray, supPant, rectBanana, COLOR_CIELO):
                 # banana has hit a building
-                doExplosion(screenSurf, skylineSurf, bananaRect.centerx, bananaRect.centery)
-                screenSurf.fill(COLOR_CIELO, bananaRect) # erase banana
-                dibujarSol(screenSurf)
+                doExplosion(supPant, paisajeUrbano, rectBanana.centerx, rectBanana.centery)
+                supPant.fill(COLOR_CIELO, rectBanana) # erase banana
+                dibujarSol(supPant)
                 return 'building'
 
         del srcPixArray
         """Pygame doesn't let us blit a surface while there is a pixel array of it existing, so we delete it."""
 
-        screenSurf.blit(bananaSurf, (bananaRect.topleft))
+        supPant.blit(supBanana, (rectBanana.topleft))
         pygame.display.update()
         time.sleep(0.02)
 
-        screenSurf.fill(COLOR_CIELO, bananaRect) # erase banana
+        supPant.fill(COLOR_CIELO, rectBanana) # erase banana
 
         t += 0.1 # go forward in the plot.
-    dibujarSol(screenSurf)
+    dibujarSol(supPant)
     return 'miss'
 
 def victoryDance(screenSurf, x, y):
@@ -952,7 +952,7 @@ def collideWithNonColor(pixArr, surfObj, rect, color):
     return False
 
 
-def getBananaRect(x, y, shape):
+def obtenerRectBanana(x, y, shape):
     if shape == ARRIBA:
         return pygame.Rect((x, y), BAN_ARRIBA_SUP.get_size())
     if shape == ABAJO:
@@ -1033,20 +1033,20 @@ def main():
 
             # Do all the drawing.
             winSurface.blit(skylineSurf, (0,0))
-            drawGorilla(winSurface, gorPos[0][0], gorPos[0][1], 0)
-            drawGorilla(winSurface, gorPos[1][0], gorPos[1][1], 0)
+            dibujarGorila(winSurface, gorPos[0][0], gorPos[0][1], 0)
+            dibujarGorila(winSurface, gorPos[1][0], gorPos[1][1], 0)
             drawWind(winSurface, wind)
             dibujarSol(winSurface)
-            displayScore(winSurface, p1score, p2score)
+            mostrarPuntaje(winSurface, p1score, p2score)
 
             pygame.display.update()
 
-            angle, velocity = getShot(winSurface, p1name, p2name, turn)
+            angle, velocity = obtenerTiro(winSurface, p1name, p2name, turn)
             if turn == 1:
                 gorx, gory = gorPos[0][0], gorPos[0][1]
             elif turn == 2:
                 gorx, gory = gorPos[1][0], gorPos[1][1]
-            result = plotShot(winSurface, skylineSurf, angle, velocity, turn, wind, 9.8, gorPos[0], gorPos[1])
+            result = dibujarTiro(winSurface, skylineSurf, angle, velocity, turn, wind, 9.8, gorPos[0], gorPos[1])
 
             if result == 'gorilla1':
                 victoryDance(winSurface, gorPos[1][0], gorPos[1][1])
