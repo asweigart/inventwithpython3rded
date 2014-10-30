@@ -1,4 +1,5 @@
 computer, computadora
+draw, dibujar
 input, entrada
 get, obtener
 loop, bucle

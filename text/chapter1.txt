@@ -56,7 +56,7 @@ Type the code for the program into IDLE’s file editor yourself, rather than do
 
 Line Numbers and Spaces
 
-When typing the source code, do not type the line numbers appear at the beginning of each line. For example, if you see this in the book:
+When typing the source code, do not type the line numbers that appear at the beginning of each line. For example, if you see this in the book:
 
 9. number = random.randint(1, 20)
 
