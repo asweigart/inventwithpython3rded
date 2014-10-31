@@ -68,11 +68,11 @@ Esos números están sólo para que este libro pueda referir a líneas específi
 
 Aparte de los números de línea, escribe el código exactamente como aparece. Ten en cuenta que algunas de las líneas de código están indentadas por cuatro u ocho espacios. Cada caracter en IDLE ocupa el mismo ancho. Cuenta el número de espacios contando el número de caracteres en las líneas arriba o abajo.
 
-Por ejemplo, los espacios indentados aquí están marcados con un ? cuadrado negro:
+Por ejemplo, los espacios indentados aquí están marcados con un ▪ cuadrado negro:
 
 while intentos < 10:
-????if número == 42:
-????????print('Hola')
+▪▪▪▪if número == 42:
+▪▪▪▪▪▪▪▪print('Hola')
 
 Ajuste de Texto en Este Libro
 

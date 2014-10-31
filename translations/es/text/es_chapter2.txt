@@ -1,74 +1,74 @@
-  Chapter 2
+  Capítulo 2
 
-  THE INTERACTIVE SHELL
+  LA CONSOLA INTERACTIVA
 
-Topics Covered In This Chapter:
+Temas Tratados En Este Capítulo:
 
-• Integers and Floating Point Numbers
-• Expressions
-• Values
-• Operators
-• Evaluating Expressions
-• Storing Values in Variables
-• Overwriting variables
+• Enteros y Números de Punto Flotante
+• Expresiones
+• Valores
+• Operadores
+• Evaluación de Expresiones
+• Almacenamiento de Valores en Variables
+• Sobreescritura de variables
 
-Before you can make games, you need to learn a few basic programming concepts. You won't make games in this chapter, but learning these concepts is the first step to programming video games. Start by learning how to use Python’s interactive shell.
+Antes de poder crear juegos, necesitas aprender algunos conceptos básicos de programación. No crearás juegos en este capítulo, pero aprender estos conceptos es el primer paso para programar videojuegos. Comenzaremos por aprender cómo usar la consola interactiva de Python.
 
-Some Simple Math Stuff
+Operaciones Matemáticas Sencillas
 
-Open IDLE using the steps in Chapter 1, then get Python to solve some simple math stuff. The interactive shell can work just like a calculator. Type 2 + 2 into the interactive shell and press the ENTER key on your keyboard. (On some keyboards, this is the RETURN key.) Figure 2-1 shows how the IDLE responds with the number 4.
-
-
-
-Figure 2-1: Enter 2+2 into the interactive shell.
-
-This math problem is a simple programming instruction. The + sign tells the computer to add the numbers 2 and 2. Table 2-1 lists the other math symbols available in Python. The - sign will subtract numbers. The * asterisk will multiply numbers. The / slash will divide numbers.
-
-Table 2-1: The various math operators in Python.
-Operator      Operation
-+             addition
--             subtraction
-*             multiplication
-/             division
+Abre IDLE usando los pasos en el Capítulo 1, y haz que Python resuelva algunas operaciones matemáticas sencillas. La consola interactiva puede funcionar como una calculadora. Escribe 2 + 2 en la consola interactiva y presiona la tecla INTRO en tu teclado. (En algunos teclados, esta tecla se llama RETURN.) La Figura 2-1 muestra cómo IDLE responde con el número 4.
 
 
 
-When used in this way, +, -, *, and / are called operators. Operators tell Python which mathematical operation on the numbers surrounding them.
+Figura 2-1: Escribe 2+2 en la consola interactiva.
 
-Integers and Floating Point Numbers
+Este pronlema matemático es una simple instrucción de programación. El signo + le dice a la computadora que sume los números 2 y 2. La Tabla 2-1 presenta los otros operadores matemáticos disponibles en Python. El signo - restará números. El asterisco * los multiplicará. La barra / los dividirá.
 
-In programming, integers or ints are whole numbers such as 4, 99, and 0. Floating point numbers or floats are fractions or numbers with decimal points like 3.5, 42.1 and 5.0.. In Python, the number 5 is an integer, but 5.0 is a float.
+Tabla 2-1: Los diferentes operadores matemáticos en Python.
+Operador      Operación
++             suma
+-             resta
+*             multiplicación
+/             división
 
-Expressions
 
-These math problems are examples of expressions. Computers can solve millions of these problems in seconds. Expressions are made up of values (the numbers) connected by operators (the math signs). Let’s learn exactly what values and operators are. Try entering some of these math problems into the interactive shell, pressing ENTER key after each one.
+
+Cuando se usan de esta forma, +, -, *, y / se llama operadores. Los operadores le dicen a Python qué operación matemática realizar sobre los números que los rodean.
+
+Enteros y Números de Punto Flotante
+
+En programación, los enteros o ints son precisamente números enteros como 4, 99, y 0. Los números de punto flotante o floats son fracciones o números con punto decimal como 3.5, 42.1 y 5.0. En Python, el número 5 is an integer, pero 5.0 es un float.
+
+Expresiones
+
+Estos problemas matemáticos son ejemplos de expresiones. Las computadoras pueden resolver millones de estos problemas en segundos. Las expresiones se componen de valores (los números) conectadas por operadores (los símbolos matemáticos). Vamos a aprender exactamente qué son los valores y operadores. Prueba escribir algunos de estos problemas matemáticos en la consola interactiva, presiona la tecla INTRO después de cada uno.
 
 2+2+2+2+2
 8*6
 10-5+6
 2  +       2
 
-After you type in the above instructions, the interactive shell will look like Figure 2-2.
+Luego de introducir estas instrucciones, la consola interactiva se verá como la Figura 2-2.
 
 
 
-Figure 2-2: What the IDLE window looks like after entering instructions.
+Figura 2-2: Así se ve la ventana de IDLE luego de introducir las instrucciones.
 
 
 
-Figure 2-3: An expression is a made up of values and operators.
+Figura 2-3: Una expresión se compone de valores y operadores.
 
-An expression is made up of values (such as integers like 8 and 6) connected by an operator (such as the * multiplication sign). A single value by itself is also an expression. In the 2  +       2 example, notice that there can be any amount of spaces between the values and operators. However, don’t put any spaces at the beginning of the instruction when entering them into the interactive shell.
+Una expresión se compone de valores (por ejemplo enteros como 8 y 6) conectados por un operador (tal como el signo de multiplicación * ). Un solo valor es también en sí mismo una expresión. En el ejemplo 2  +       2, se ve que puede haber cualquier cantidad de espacios entre los valores y los operadores. Sin embargo, no pongas espacios al comienzo de la instrucción al escribirla en la consola interactiva.
 
-In the next chapter, you will learn about working with text in expressions. Python isn’t limited to just numbers; it’s more than a calculator!
+En el próximo capítulo, aprenderás a trabajar con texto en expresiones. Python no se limita sólo a los números; ¡es más que una calculadora!
 
-Evaluating Expressions
+Evaluación de Expresiones
 
-When a computer solves the expression 10 + 5 and gets the value 15, it has evaluated the expression. Evaluating an expression reduces the it to a single value, just like solving a math problem reduces the problem to a single number: the answer.
+Cuando una computadora resuelve la expresión 10 + 5y obtiene el valor 15, ha evaluado la expresión. Evaluar una expresión la reduce a un único valor, igual que resolver un problema de matemática lo reduce a un único número: la respuesta.
 
-The expressions 10 + 5 and 10 + 3 + 2 have the same value. They both evaluate to 15.
+Las expresiones 10 + 5 y 10 + 3 + 2 tienen el mismo valor. Ambas son evaluadas a 15.
 
-Expressions can be of any size, but they will always evaluate down to a single value. Even single values are expressions: The expression 15 evaluates to the value 15. For example, the expression 8 * 3 / 2 + 2 + 7 - 9 will evaluate down to the value 12.0 through the following steps:
+Las expresiones pueden ser de cualquier tamaño, pero siempre serán evaluadas a un valor único. Incluso valores únicos son expresiones: La expresión 15 se evalúa al valor 15. Por ejemplo, la expresión 8 * 3 / 2 + 2 + 7 - 9 se evalúa al valor 12.0 a través de los siguientes pasos:
 
 8 * 3 / 2 + 2 + 7 – 9
                   ▼
@@ -82,42 +82,42 @@ Expressions can be of any size, but they will always evaluate down to a single v
                   ▼
                  12.0
 
-You don’t see all of these steps in the interactive shell. The interactive shell does them and just shows you the results:
+No puedes ver todos estos pasos en la consola interactiva. La consola los realiza y sólo te muestra los resultados:
 
 >>> 8 * 3 / 2 + 2 + 7 - 9
 12.0
 
-Notice that the / division operator evaluates to a float value, as in 24 / 2 evaluating to 12.0. Also, math operations with float values also evaluate to float values, as in 12.0 + 2 evaluating to 14.0.
+Observa que el operador división / se evalúa a un valor float, como ocurre cuando 24 / 2 devuelve 12.0. Además, las operaciones matemáticas con valores flotantes también devuelven valores flotantes, como cuando 12.0 + 2 devuelve 14.0.
 
-Syntax Errors
+Errores de Sintaxis
 
-If you enter 5 + into the interactive shell, you’ll get an error message.
+Si escribes 5 + en la consola interactiva, obtendrás un mensaje de error.
 
 >>> 5 +
 SyntaxError: invalid syntax
 
-This error happened because 5 + isn’t an expression. Expressions have values connected by operators. But the + operator expects a value after the + sign. An error message appears when this value is missing.
+Este error ha ocurrido porque 5 + no es una expresión. Las expresiones conectan valores mediante operadores. Pero el operador + espera un valor después del signo +. Cuando este valor no se encuentra, aparece un mensaje de error.
 
-SyntaxError means Python doesn’t understand the instruction because you typed it incorrectly. A lot of computer programming isn’t just telling the computer what to do, but also knowing exactly how to tell it.
+SyntaxError significa que Python no entiende la instrucción porque la has escrito de forma incorrecta. Una gran parte de programar computadoras se trata no sólo de decirle a la computadora qué hacer, sino también de saber exactamente cómo decírselo.
 
-Don’t worry about making mistakes though. Errors don’t damage your computer. Just retype the instruction correctly into the interactive shell at the next >>> prompt.
+Pero no te preocupes por cometer errores. Los errores no dañan tu computadora. Simplemente vuelve a escribir la instrucción correctamente en la consola interactiva luego del siguiente indicador >>> de consola.
 
-Storing Values in Variables
+Almacenamiento de Valores en Variables
 
-You’ll often want to save the value an expression evaluates to so you can use it later in the program. You can store values in variables. Think of variables like a box that can hold values.
+A menudo desearás guardar el valor al cual al cual una expresión es evaluada, para poder usarlo más adelante en el programa. Puedes guardar valores en variables. Piensa las variables como cajas que pueden contener valores.
 
-An assignment statement instruction will store a value (or the value an expression evaluates to) inside a variable. Make up a name for the variable, followed by the = sign (called the assignment operator), and then the value to store in the variable. For example, enter spam = 15 into the interactive shell:
+Una instrucción de asignación guardará un valor (o el valor al que se evalúa una expresión) dentro de una variable. Inventa un nombre para una variable, seguido por el signo = (llamado operador de asignación), y luego el valor a almacenar en la variable. Por ejemplo, ingresa spam = 15 en la consola interactiva:
 
 >>> spam = 15
 >>>
 
 
 
-Figure 2-4: Variables are like boxes that can hold values in them.
+Figura 2-4: Las variables son como cajas que pueden contener variables.
 
-The spam variable’s box will have the value 15 stored in it, as shown in Figure 2-4. The name “spam” is the label on the box (so Python can tell variables apart) and the value is written on a small note inside the box.
+La caja de la variable spam tendrá guardado el valor 15, como se muestra en la Figura 2-4. El nombre “spam” es la etiqueta en la caja (para que Python pueda distinguir las variables) y el valor está escrito en una pequeña nota dentro de la caja.
 
-When you press ENTER you won't see anything in response. In Python, assume the instruction executed successfully if no error message appears. The >>> prompt will appear so you can type in the next instruction.
+Cuando presiones INTRO no recibirás ninguna respuesta. En Python, si no aparece ningún mensaje de error puedes asumir que la instrucción se ha ejecutado correctamente. El indicador de consola >>> aparecerá para que puedas tipear la próxima instrucción.
 
 Unlike expressions, statements are instructions that do not evaluate to any value, which is why there is no value displayed on the next line in the interactive shell. It might be confusing to know which instructions are expressions and which are statements. Just remember that expressions evaluate to a single value. Any other kind of instruction is a statement.
 
