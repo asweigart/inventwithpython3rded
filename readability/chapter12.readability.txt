@@ -1,35 +1,35 @@
 readability grades:
-    Kincaid:                    10.62
-    ARI:                        13.96
-    Coleman-Liau:                8.77
-    FleschReadingEase:          72.02
-    GunningFogIndex:            15.78
-    LIX:                        48.76
-    SMOGIndex:                  12.28
-    RIX:                         5.65
+    Kincaid:                     8.69
+    ARI:                        11.62
+    Coleman-Liau:                8.85
+    FleschReadingEase:          76.71
+    GunningFogIndex:            13.77
+    LIX:                        44.15
+    SMOGIndex:                  11.49
+    RIX:                         4.81
 sentence info:
-    characters_per_word:         4.35
+    characters_per_word:         4.4
     syll_per_word:               1.24
-    words_per_sentence:         29.82
-    sentences_per_paragraph:         1.94
-    characters:               8817
-    syllables:                2506
-    words:                    2028
-    sentences:                  68
-    paragraphs:                 35
-    long_words:                384
-    complex_words:             195
+    words_per_sentence:         24.69
+    sentences_per_paragraph:         1.95
+    characters:               7816
+    syllables:                2208
+    words:                    1778
+    sentences:                  72
+    paragraphs:                 37
+    long_words:                346
+    complex_words:             173
 word usage:
-    tobeverb:                   91
-    auxverb:                    52
-    conjunction:                77
-    pronoun:                   165
-    preposition:               248
-    nominalization:             33
+    tobeverb:                   82
+    auxverb:                    40
+    conjunction:                69
+    pronoun:                   131
+    preposition:               222
+    nominalization:             32
 sentence beginnings:
     pronoun:                     7
-    interrogative:               1
-    article:                    12
+    interrogative:               0
+    article:                    13
     subordination:               2
     conjunction:                 0
-    preposition:                 2
+    preposition:                 3

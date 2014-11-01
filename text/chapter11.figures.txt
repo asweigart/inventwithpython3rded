@@ -1,0 +1,12 @@
+Fig 11-1:
+Start
+Generate secret number.
+See if player has run out of guesses.
+Get player's guess.
+Tell player clues.
+Increment guess count.
+Ask to play again.
+Player has lost.
+Player has won.
+End
+

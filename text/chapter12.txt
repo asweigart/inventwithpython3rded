@@ -1,72 +1,88 @@
+    Chapter 12
+    CARTESIAN COORDINATES
+Topics Covered In This Chapter:
+•   Cartesian coordinate systems
+•   The X-axis and Y-axis
+•   The Commutative Property of Addition
+•   Absolute values and the abs() function
 This chapter doesn’t introduce a new game, but instead goes over some simple mathematical concepts you will use in the rest of the games in this book.
-
 In 2D games the graphics on the screen can move left or right (the first dimension) and up or down (the second dimension, hence 2D). In order to create games that have objects moving around two dimensions (such as the two-dimensional computer screen), you need a system that can translate a place on the screen into integers that the program can deal with.
-
 This is where the Cartesian coordinate system comes in. The coordinates are numbers that point to a specific point on the screen. These numbers can be stored as integers in your program’s variables.
-
 You may already know about Cartesian coordinate systems and negative numbers from math class. In that case, just give this chapter a quick read anyway to refresh yourself.
+Grids and Cartesian Coordinates
 
+Figure 12-1: A sample chessboard with a black knight at a, 4 and a white knight at e, 6.
 A problem in many games is how to talk about exact places on the board. A common way of solving this is by marking each individual row and column on a board with a letter and a number. Figure 12-1 is a chessboard that has each row and each column marked.
-
 A coordinate for a space on the chessboard is a combination of a row and a column. The rows are marked with numbers and the columns are marked with letters. In chess, the knight piece looks like a horse head. The white knight is located at the point e, 6 and the black knight is located at point a, 4. You can also say that every space on row 7 and every space in column c is empty.
-
 A grid with labeled rows and columns like the chessboard is a Cartesian coordinate system. By using a row label and column label, we can give a coordinate that is for one and only one space on the board. If you’ve learned about Cartesian coordinate systems in math class, you may know that usually we have numbers for both the rows and columns. That board would look like Figure 12-2.
 
+Figure 12-2: The same chessboard but with numeric coordinates for both rows and columns.
 The numbers going left and right that describe the columns are part of the X-axis. The numbers going up and down that describe the rows are part of the Y-axis. Coordinates are always described with the X-coordinate first, followed by the Y-coordinate. That means the white knight in the above picture is located at the coordinate 5, 6 and not 6, 5. The black knight is located at the coordinate 1, 4 which is not to be confused with 4, 1.
-
 Notice that for the black knight to move to the white knight's position, the black knight must move up two spaces, and then to the right by four spaces. (Or move right four spaces and then move up two spaces.) But we don’t need to look at the board to figure this out. If we know the white knight is located at 5, 6 and the black knight is located at 1, 4, then we can just use subtraction to figure out this information.
-
 Subtract the black knight's X-coordinate and white knight's X-coordinate: 5 - 1 = 4. That means the black knight has to move along the X-axis by four spaces.
-
 Subtract the black knight's Y-coordinate and white knight's Y-coordinate: 6 - 4 = 2. That means the black knight has to move along the Y-axis by two spaces.
-
 By doing some math with the coordinate numbers, you can figure out the distances between two coordinates.
-
+Negative Numbers
 Another concept that Cartesian coordinates use is negative numbers. Negative numbers are numbers that are smaller than zero. We put a minus sign in front of a number to show that it is a negative number. -1 is smaller than 0. And -2 is smaller than -1. And -3 is smaller than -2. If you think of regular numbers (called positive numbers) as starting from 1 and increasing, you can think of negative numbers as starting from -1 and decreasing. 0 itself isn’t positive or negative. In Figure 12-3, you can see the positive numbers increasing to the right and the negative numbers decreasing to the left:
 
+Figure 12-3: A number line.
 The number line is useful to see subtraction and addition done with negative numbers. The expression 4 + 3 can be thought of as the white knight starting at position 4 and moving 3 spaces over to the right (addition means increasing, which is in the right direction).
 
+Figure 12-4: Moving the white knight to the right adds to the coordinate.
 As you can see in Figure 12-4, the white knight ends up at position 7. This makes sense, because 4 + 3 is 7.
-
 Subtraction is done by moving the white knight to the left. Subtraction means decreasing, which is in the left direction. 4 - 6 would be the white knight starting at position 4 and moving 6 spaces to the left, like in Figure 12-5:
 
+Figure 12-5: Moving the white knight to the left subtracts from the coordinate.
 The white knight ends up at position -2. That means 4 - 6 equals -2.
-
 If we add or subtract a negative number, the white knight would move in the opposite direction. If you add a negative number, the knight moves to the left. If you subtract a negative number, the knight moves to the right. The expression -6 - -4 would be equal to -2. The knight starts at -6 and moves to the right by 4 spaces. Notice that -6 - -4 has the same answer as -6 + 4.
 
+Figure 12-6: Even if the white knight starts at a negative coordinate, moving right still adds to the coordinate.
+
+Figure 12-7: Putting two number lines together creates a Cartesian coordinate system.
 The number line is the same as the X-axis. If we made the number line go up and down instead of left and right, it would model the Y-axis. Adding a positive number (or subtracting a negative number) would move the knight up the number line, and subtracting a positive number (or adding a negative number) would move the knight down. If you put these two number lines together, you have a Cartesian coordinate system like in Figure 12-7.
-
 The 0, 0 coordinate is called the origin.
-
+Math Tricks
 Subtracting and adding negative numbers seems easy when you have a number line in front of you, but it can be easy when you only have the numbers too. Here are three tricks you can do to make evaluating these expressions by yourself easier to do.
-
+Trick 1: “A Minus Eats the Plus Sign on its Left”
 The first trick is “a minus eats the plus sign on its left”. When you see a minus sign with a plus sign on the left, you can replace the plus sign with a minus sign. The answer is still the same, because adding a negative value is the same as subtracting a positive value. 4 + -2 and 4 - 2 both evaluate to 2.
 
+Figure 12-8: Trick 1 - Adding a positive and negative number.
+Trick 2: “Two Minuses Combine Into a Plus”
 The second trick is “two minuses combine into a plus”. When you see the two minus signs next to each other without a number in between them, they can combine into a plus sign. The answer is still the same, because subtracting a negative value is the same as adding a positive value.
 
+Figure 12-9: Trick 2 - Subtracting a positive and negative number.
+Trick 3: The Commutative Property of Addition
 A third trick is that you can always swap the numbers in addition. This is the commutative property of addition. That means that 6 + 4 and 4 + 6 both equal the same value, 10. If you count the boxes in the figure below, you can see that it doesn’t matter what order you have the numbers for addition.
 
+Figure 12-10: Trick 3 - The commutative property of addition.
 Say you are adding a negative number and a positive number, like -6 + 8. Because you are adding numbers, you can swap the order of the numbers without changing the answer. -6 + 8 is the same as 8 + -6.
-
 Then when you look at 8 + -6, you see that the minus sign can eat the plus sign to its left, and the problem becomes 8 - 6 = 2. But this means that -6 + 8 is also 2! You’ve rearranged the problem to have the same answer, but made it easier for us to solve without using a calculator or the computer.
 
+Figure 12-11: Using our math tricks together.
 Of course, you can always use the interactive shell as a calculator to evaluate these expressions. It is still useful to know the above three tricks when adding or subtracting negative numbers. After all, you won't always be in front of a computer with Python all the time!
-
+>>> 4 + -2
+2
+>>> -4 + 2
+-2
+>>> -4 - 2
+-6
+Absolute Values and the abs() Function
 The absolute value of a number is the number without the negative sign in front of it. This means that positive numbers do not change, but negative numbers become positive. For example, the absolute value of -4 is 4. The absolute value of -7 is 7. The absolute value of 5 (which is positive) is just 5.
-
 You can also figure out the distance between two objects by subtracting their position and taking the absolute value of the difference. Imagine that the white knight is at position 4 and the black knight is at position -2. The distance would be 6, since 4 - -2 is 6, and the absolute value of 6 is 6.
-
 It works no matter what the order of the numbers is. -2 - 4 (that is, negative two minus four) is -6, and the absolute value of -6 is also 6. Using the absolute value of the difference is a good way of finding the distance between two points on a number line (or axis).
-
 Python’s abs() function return sthe absolute value of an integer. Try entering the following into the interactive shell:
+>>> abs(-5)
+5
+>>> abs(42)
+42
+>>> abs(-10.5)
+10.5
+Coordinate System of a Computer Screen
 
+Figure 12-12: The Cartesian coordinate system on a computer screen.
 It is common that computer screens use a coordinate system that has the origin (0, 0) at the top left corner of the screen, which increases going down and to the right. There are no negative coordinates. Most computer graphics use this coordinate system, and we will use it in our games.
-
+Summary
 This hasn’t been too much math to learn for programming. In fact, most programming doesn’t require understanding a lot of math. Up until this chapter, we’ve been getting by on simple addition and multiplication.
-
 Cartesian coordinate systems are needed to describe exactly where in a two-dimensional area a certain position is. Coordinates have two numbers: the X-coordinate and the Y-coordinate. The X-axis runs left and right and the Y-axis runs up and down. On a computer screen, origin is in the top-left corner and the coordinates increase going right and down.
-
 The three tricks you learned in this chapter make it easy to add positive and negative integers. The first trick is that a minus sign will eat the plus sign on its left. The second trick is that two minuses next to each other will combine into a plus sign. And the third trick is that you can swap the position of the numbers you are adding.
-
 For the rest of the book, we will use the concepts we learned in this chapter in our games because they have two-dimensional areas in them. All graphical games require understanding how Cartesian coordinates work.
-

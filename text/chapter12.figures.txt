@@ -1,0 +1,22 @@
+Fig 12-1:
+X-axis
+Y-axis
+
+Fig 12-3:
+(smaller)
+(bigger)
+
+Fig 12-8:
+(a minus eats the plus sign on its left)
+
+Fig 12-9:
+(two minuses combine into a plus)
+
+Fig 12-11:
+(because this is addition, swap the order)
+(the minus sign eats the plus sign on its left)
+
+Fig 12-12:
+X increases
+Y increases
+
