@@ -4,7 +4,7 @@
 Les Sujets Traités dans ce Chapitre :
 
 •   Télécharger et Installer l'Interpréteur Python
-•   La Console Intéractive d'IDLE
+•   Le Mode Interactif d'IDLE
 •   Comment Utiliser ce Livre
 •   Le Site du Livre : http://inventwithpython.com
 
@@ -12,13 +12,13 @@ Bonjour ! Ce livre va vous apprendre comment programmer en faisant des jeux vid�
 
 Quand j'étais enfant, un livre comme celui-ci m'a appris comment écrire mes premiers programmes et jeux. C'était amusant et facile. Arrivé à l'âge adulte, j'ai toujours du plaisir à programmer et je suis même payé pour cela. Mais, même si vous ne devenez pas un développeur en grandissant, la programmation peut être utile, et une compétence amusante à avoir.
 
-Les ordinateur sont des machines incroyables, et apprendre à les programmer est simple. Si vous pouvez lire ce livre, vous pouvez programmer un ordinateur. Un programme informatique est une suite d'instructions que l'ordinateur peut comprendre, comme un roman est une suite de phrases que le lecteur peut comprendre. Les jeux vidéos ne sont ni plus ni moins que des programmes informatiques, ainsi ilst sont fait d'instructions.
+Les ordinateur sont des machines incroyables, et apprendre à les programmer est simple. Si vous pouvez lire ce livre, vous pouvez programmer un ordinateur. Un programme informatique est une suite d'instructions que l'ordinateur peut comprendre, comme un roman est une suite de phrases que le lecteur peut comprendre. Les jeux vidéos ne sont ni plus ni moins que des programmes informatiques, ainsi ils sont fait d'instructions.
 
-Pour donner des instructions à un ordinateur, vous devez écrire un programme dans un langage que l'ordinateur peut comprendre. Ce libre va vous apprendre à utiliser le langage de programmation appelé Python. il y a de nombreux langages de programmation différents : BASIC, Java, JavaScript, PHP, and C++.
+Pour donner des instructions à un ordinateur, vous devez écrire un programme dans un langage que l'ordinateur peut comprendre. Ce libre va vous apprendre à utiliser le langage de programmation appelé Python. il y a de nombreux langages de programmation différents : BASIC, Java, JavaScript, PHP, et C++.
 
-Quand j'étais enfant, le BASIC était le langage habituel pour commencer à programmer. Cependant, de nouveaux langages de programmation comme Pÿthon ont été créés depuis. Python est même plus simple à apprendre que le BASIC ! Et en même temps, il reste un langage de programmation sérieux utilisé par des développeurs professionnels. Nombreux sont les adultes qui utilisent Python pour leur travail ou pour programmer pour leurs loisirs.
+Quand j'étais enfant, le BASIC était le langage habituel pour commencer à programmer. Cependant, de nouveaux langages de programmation comme Python ont été créés depuis. Python est même plus simple à apprendre que le BASIC ! Et en même temps, il reste un langage de programmation sérieux utilisé par des développeurs professionnels. Nombreux sont les adultes qui utilisent Python pour leur travail ou pour programmer pour leurs loisirs.
 
-Les jeux que vous allez créer à partir de ce livre sont simples comparés aux jeux sur Xbox, Playstation, ou Wii. Ces jeux n'ont pas de somptueux graphismes parce qu'ils sont là pour faire apprendre les bases de la programmation. Ils sont volontairement simples afin que vous puissez vous concentrer sur l'apprentissage de la programmation. Et les jeux n'ont pas besoin d'être compliqués pour être amusant.
+Les jeux que vous allez créer à partir de ce livre sont simples comparés aux jeux sur Xbox, Playstation, ou Wii. Ces jeux n'ont pas de somptueux graphismes parce qu'ils sont là pour faire apprendre les bases de la programmation. Ils sont volontairement simples afin que vous puissiez vous concentrer sur l'apprentissage de la programmation. Et les jeux n'ont pas besoin d'être compliqués pour être amusant.
 
 Télécharger et Installer Python
 
@@ -26,11 +26,11 @@ Vous aurez besoin d'installer l'interpréteur Pythons. Cet interpréteur compren
 
 Télécharger la version 3.4 et plus récente de Python depuis le site officiel, http://www.python.org. Télécharger la version 32-bits de Python pour votre système d'exploitation, même si vous avez un système 64-bits. Le module Pygame utilisé plus tard dans ce livre supporte uniquement le Python en 32-bits.
 
-Note importante ! Soyez sûr d'installer Python 3, et non Python 2. Les programmes de ce livre utilisent Python 3, et vous obtiendrez des erreurs si vous essayez de les utiliser avec Python 2. C'est tellement important, que j'ai ajouté un dessin de pinguouin dans la Figure 1-1 opur vous dire d'installer Python 3 afin que vous ne manquiez pas ce message.
+Note importante ! Soyez sûr d'installer Python 3, et non Python 2. Les programmes de ce livre utilisent Python 3, et vous obtiendrez des erreurs si vous essayez de les utiliser avec Python 2. C'est tellement important, que j'ai ajouté un dessin de pingouin dans la Figure 1-1 pour vous dire d'installer Python 3 afin que vous ne manquiez pas ce message.
 
 
 
-Figure 1-1: Un pinguouin incongru vous demande d'installer Python 3.
+Figure 1-1: Un pingouin incongru vous demande d'installer Python 3.
 
 Démarrer IDLE
 
@@ -46,17 +46,17 @@ Sous Ubuntu ou Linux, ouvrez une console et tapez “idle3”. Vous pourriez êt
 
 Figure 1-2: La fenêtre d'édition d'IDLE sous Windows, OS X, et Ubuntu Linux.
 
-La fenêter qui apparait quand vous lancez IDLE pour la première fois est la console intéractive. Vous pouvez entrer des instructions Python dans la console intéractive et Python les exécutera. Python affichera le résultat des instructions dans la console intéractive.
+La fenêtre qui apparaît quand vous lancez IDLE pour la première fois est la console interactive. Vous pouvez entrer des instructions Python dans la console interactive et Python les exécutera. Python affichera le résultat des instructions dans la console interactive.
 
 Comment Utiliser ce Livre
 
 La plupart des chapitres de ce livre commenceront par un exemple d'utilisation du programme. Cet exemple montre ce à quoi ressemble le programme quand vous l'exécutez. Ce que tape au clavier l'utilisateur est affiché en gras.
 
-Tapez le code du programme dans l'éditeur IDLE vous même, au lieu de le téléchager. Vous apprendez plus rapidement si vous tapez le code.
+Tapez le code du programme dans l'éditeur IDLE vous même, au lieu de le télécharger. Vous apprendrez plus rapidement si vous tapez le code.
 
 Numéros de Ligne et Espaces
 
-Qaund vous tapez le programme, n'entrez pas les numéros de lignes qui apparaissent en début de ligne. Par exemple, vous verez dans le livre :
+Qaund vous tapez le programme, n'entrez pas les numéros de lignes qui apparaissent en début de ligne. Par exemple, vous verrez dans le livre :
 
 9. nombre = random.randint(1, 20)
 
@@ -64,9 +64,9 @@ Vous n'avez pas besoin de taper le “9.” sur la gauche, ou l'espace qui le su
 
 nombre = random.randint(1, 20)
 
-Ces numéros de ligne sont présents ici afin que le livre puisse référer à des lignes spécifiques dans le programme. Ils ne font pas partis du proramme final.
+Ces numéros de ligne sont présents ici afin que le livre puisse référer à des lignes spécifiques dans le programme. Ils ne font pas partis du programme final.
 
-A part les numéros de lignes, entrez le code exactement comment il apparait. Notez que certaines lignes sont indentées de 4 ou 8 espaces. Chaque caractère dans IDLE a la même largeur. Comptez le nombre d'espaces en utilisant la ligne du dessus ou du dessous.
+A part les numéros de lignes, entrez le code exactement comment il apparaît. Notez que certaines lignes sont indentées de 4 ou 8 espaces. Chaque caractère dans IDLE a la même largeur. Comptez le nombre d'espaces en utilisant la ligne du dessus ou du dessous.
 
 Par exemple , Les espaces d'indentation sont marqués avec un carré ▪ :
 
@@ -76,7 +76,7 @@ while tentatives < 10:
 
 Retour à la Ligne dans ce Livre
 
-Des lignes de code sont parfois trop longues pour êter affichées sur une seule ligne et seront découpées pour être affichées sur la ligne suivante. tapez ce code sans appuyer sur Entrée. Vous pouvez savoir quand une nouvelle ligne commence en regardant les numéros de ligne à gauche du code. Par exemple, le code ci-dessous contient uniquement 2 lignes de code :
+Des lignes de code sont parfois trop longues pour être affichées sur une seule ligne et seront découpées pour être affichées sur la ligne suivante. tapez ce code sans appuyer sur Entrée. Vous pouvez savoir quand une nouvelle ligne commence en regardant les numéros de ligne à gauche du code. Par exemple, le code ci-dessous contient uniquement 2 lignes de code :
 
 1. print('Première Ligne ! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxx')
@@ -92,10 +92,10 @@ Le site subreddit à http://reddit.com/r/inventwithpython est un endroit intére
 
 Aussi, envoyez moi vos questions à al@inventwithpython.com.
 
-Gardez à l'esprit qu'il y a des moyens habiles pour poser des questions de programmation qui permettent aux autres de vous répondrent. Soyez sûr de lire la section des FAQ de ces sites sur la manière de poser des quetions efficacement. Quand vous posez une question de programmation, suivez les consignes suivantes :
+Gardez à l'esprit qu'il y a des moyens habiles pour poser des questions de programmation qui permettent aux autres de vous répondre. Soyez sûr de lire la section des FAQ de ces sites sur la manière de poser des questions efficacement. Quand vous posez une question de programmation, suivez les consignes suivantes :
 
 •   Si vous tapez vous-même les programmes du livre mais obtenez des erreurs, commencez par vérifier les fautes de frappes avec un outil adapté (comme http://invpy.com/diff). Copiez/Collez votre code dans l'outil pour chercher les différences entre votre code et celui du livre.
-•   Expliquez ce que vous essayer de faire quand vous décrivez l'erreur. Cela permettra aux aidants si vous ne vous trompez pas de méthode complètement.
+•   Expliquez ce que vous essayer de faire quand vous décrivez l'erreur. Cela permettra aux personnes qui vous aideront à savoir si vous ne vous trompez pas de méthode complètement.
 •   Copiez/Coller le message d'erreur en entier.
 •   Cherchez sur internet pour voir si quelqu'un d'autre à déjà posé cette question (et répondu) à cette questions.
 •   Expliquez ce que vous avez déjà essayé pour résoudre le problème. Cela dit aux personnes que vous avez déjà travaillé à résoudre le problème par vous-même.
@@ -103,11 +103,11 @@ Gardez à l'esprit qu'il y a des moyens habiles pour poser des questions de prog
 
 Trace le Programme en Ligne
 
-Tracer un programme signigie parcourir le code ligne par ligne, de la même manière que l'ordinateur l'exécute. Visitez http://invpy.com/traces pour voir la trace de chacun de programmes du livre. La page web contient des notes et des rappels utiles à chaque pas d'exécution qui expliquent ce que le programme est en train de faire, cela vous permet de mieux comprendre comment ces programmes fonctionnent et ce qu'ils font.
+Tracer un programme signifie parcourir le code ligne par ligne, de la même manière que l'ordinateur l'exécute. Visitez http://invpy.com/traces pour voir la trace de chacun de programmes du livre. La page web contient des notes et des rappels utiles à chaque pas d'exécution qui expliquent ce que le programme est en train de faire, cela vous permet de mieux comprendre comment ces programmes fonctionnent et ce qu'ils font.
 
 Résumé
 
-Ce chapitre vous a aidé à débuter avec Python en vous montrant le site http://python.org où vous pouvez le télécharger gratuitement. Après l'installation et le démarage de l'éditeur Python IDLE, vous êtes prêt à apprendre à programmer en commençant avec le chapitre suivant.
+Ce chapitre vous a aidé à débuter avec Python en vous montrant le site http://python.org où vous pouvez le télécharger gratuitement. Après l'installation et le démarrage de l'éditeur Python IDLE, vous êtes prêt à apprendre à programmer en commençant avec le chapitre suivant.
 
-Le site du livre http://inventwithpython.com contient plus d'informations sur chaque chapitre, inclut un site de traceur de code en ligne et un outil diff qui peuvent vous permettrent de comprendre les programmes de ce livre.
+Le site du livre http://inventwithpython.com contient plus d'informations sur chaque chapitre, inclut un site de traceur de code en ligne et un outil diff qui peuvent vous permettent de comprendre les programmes de ce livre.
 

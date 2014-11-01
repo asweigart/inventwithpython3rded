@@ -1,0 +1,237 @@
+    Chapitre 3
+
+    ÉCRIRE DES PROGRAMMES
+
+Les Sujets Traités dans ce Chapitre :
+
+•   Le Chemin d'exécution
+•   Les chaînes
+•   La concaténation de chaînes
+•   Les Types de données (comme les chaînes ou les entiers)
+•   Utiliser IDLE pour écrire du code
+•   Sauvegarder et lancer des programmes dans IDLE
+•   La fonction print()
+•   La fonction input()
+•   Les commentaires
+•   Nommer vos Variables
+•   Sensibilité à la casse
+
+Assez de mathématiques pour le moment. Python est plus qu'une calculatrice. Maintenant regardons ce que peut faire Python avec du texte. Dans ce chapitre, vous apprendrez comment stocker du texte dans des variables, combiner du texte ensemble, et affiche du texte à l'écran. Pratiquement tous les programmes affiche du texte pour l'utilisateur, et l'utilisateur saisie du texte dans le programme grâce au clavier. Vous ferez aussi votre premier programme. Ce programme vous salue par un “Bonjour le monde !” et vous demande votre nom.
+
+Les Chaînes
+
+En Python, les valeurs texte sont appelées chaînes. Les chaînes peuvent être utilisées comme les nombres. Vous pouvez stocker les chaînes dans des variables. Dans le code, les chaînes commencent par une simple quote ('). Essayez d'entrer ce code dans la console interactive :
+
+>>> spam = 'bonjour'
+
+Les quotes simples dit à Python où commence et finie la chaîne. Elles ne font pas partie de la chaîne. Maintenant, si vous tapez spam dans la console, vous verrez le contenu de la variable spam (la chaîne 'bonjour'.) Rappelez-vous que Python évalue les variables par la valeur stockée dans la variables. De ce cas, c'est la chaîne 'bonjour' :
+
+>>> spam = 'bonjour'
+>>> spam
+'bonjour'
+
+Les chaînes peuvent contenir n'importe quel caractère du clavier. Les chaînes suivantes sont toutes des exemples de chaînes :
+
+'bonjour'
+'Salut ici !'
+'CHATONS'
+'7 pommes, 14 oranges, 3 citrons'
+'Anything not pertaining to elephants is irrelephant.'
+'Il y a bien longtemps dans une galaxie, très, très lointaine...'
+'O*&#wY%*&OCfsdYO*&gfC%YO*&%3yc8r2'
+
+Les chaînes peuvent être associées à des opérateurs pour former des expressions, exactement comme les nombres.
+
+La concaténation de chaînes
+
+Essayez d'utiliser l'opérateur + avec deux chaînes. C'est la concaténation de chaîne. Essayez d'entrer 'Bonjour' + 'le Monde !' dans la console interactive :
+
+>>> 'Bonjour' + 'le Monde !'
+'Bonjourle Monde!'
+
+L'expression est évaluée en une unique chaîne 'BonjourleMonde !'. Pour garder les mots séparer, ajoutez un espace à la fin de la chaîne 'Bonjour', avant la quote finale, comme ceci :
+
+>>> 'Bonjour ' + 'le Monde !'
+'Bonjour le Monde !'
+
+L'opérateur + fonctionne différemment pour les chaînes et les nombres parce que ce n'est pas le même type de valeur. Toutes les valeurs ont un type de donnée. Le type de donnée de la chaîne 'Bonjour' est une chaîne. Le type de donnée pour 5 est un entier. Le type donnée dicte à Python ce que doit faire les opérateurs quand il évalue une expression. L'opérateur + va concaténer les valeurs de type chaîne  et additionner les valeur de type entier (ou flottant).
+
+Écrire des Programmes dans l'Éditeur de Fichier d'IDLE
+
+Jusqu'à maintenant, vous avez tapez chacune des instructions une par une dans la console interactive. Cependant, quand vous écrivez des programmes, vous tapez plusieurs instructions et les exécutez toutes en une seule fois. Écrivons notre premier programme !
+
+IDLE contient une autre fonction appelée éditeur de fichier. Cliquez dans le menu 'File', et sélectionnez 'New File'. Une fenêtre vide va apparaître afin que vous puissiez saisir les instructions de votre programme.
+
+
+
+Figure 3-1: La fenêtre de l'éditeur de fichier.
+
+Les deux fenêtres se ressemblent, mais rappelez vous : La fenêtre de la console interactive affiche >>> en début de ligne, ce qui n'est pas le cas pour la fenêtre d'éditeur de fichier.
+
+Bonjour le Monde !
+
+C'est une habitude pour les développeurs de faire afficher 'Bonjour le Monde !' à leur premier programme. Vous allez maintenant écrire votre propre programme Bonjour.
+
+Quand vous tapez votre programme, ne saisissez pas les numéros de lignes à la gauche des instructions. Ils sont présents afin que ce livre puisse dire quelle ligne il commente. Le coin inférieur droit de la fenêtre de l'éditeur vous indique la position du curseur. La figure 3-2 montre un exemple d'où se trouve le curseur en fonction du texte dans le coin.
+
+
+
+Figure 3-2: Le coin inférieur droit de la fenêtre d'édition vous indique la position du curseur.
+
+bonjour.py
+
+Entrez le texte suivant dans la fenêtre d'édition. C'est le code source du programme. Il contient les instructions que Python suivra pendant l'exécution du programme. (Rappelez vous de ne pas taper les numéros de ligne !)
+
+NOTE IMPORTANTE ! Les programmes du livre fonctionne uniquement avec Python 3, et pas avec Python 2. Quand IDLE est lancé, il affiche quelque chose comme «Python 3.4.0» en haut. Si vous avez installé Python 2, vous pouvez aussi installer Python 3 en même temps. Pour télécharger Python 3, allez à l'adresse https://python.org/download/.
+
+1. # Ce programme affiche bonjour et demande votre nom.
+2. print('Bonjour le Monde !')
+3. print('Quel est votre nom ?')
+4. monNom = input()
+5. print('Je suis ravi de vous connaitre , ' + monNom)
+
+
+IDLE va afficher différents types d'instructions avec différentes couleurs. Après avoir tapez le code, la fenêtre devrait ressembler à ça :
+
+
+
+Figure 3-3: La fenêtre devrait ressembler à ça après avoir tapé le code.
+
+Sauver Votre Programme
+
+Une fois que vous avez saisi le code source, sauvez le en cliquant dans le menu File en haut de la fenêtre d'édition. Ensuite cliquez sur Save As. La figure 3-4 montre la fenêtre Save As qui s'ouvre. Entrez bonjour.py dans le champ texte File name puis cliquez sur Save. Ou pressez Ctrl-S pour sauvegarder en utilisant un raccourci clavier.
+
+
+
+Figure 3-4: Sauver le programme.
+
+Il est préférable de sauver régulièrement pendant que vous tapez un programme. Ainsi, si l'ordinateur plante, ou si vous sortez par erreur de l'éditeur, vous ne perdez pas trop de travail.
+
+Ouvrir un Programme Sauvegardé
+
+Pour charger un programme sauvé, cliquez File ► Open. Choisiseez bonjour.py dans la fenêtre qui apparaît et cliquez sur le bouton Open. Votre programme bonjour.py sauvé s'ouvrira dans la fenêtre d'édition.
+
+Maintenant, il est temps d'exécuter le programme. Cliquez sur File ► Run ► Run Module ou appuyez juste sur F5 dans la fenêtre d'édition. Votre programme sera lancé dans la console interactive.
+
+Entrez votre nom quand le programme le demande. Cela ressemblera à la Figure 3-5:
+
+
+
+Figure 3-5: La console interactive après exécution de bonjour.py.
+
+Quand vous entrez votre nom et appuyez sur Entrée, le programme vous saluera. Félicitations ! Vous avez écrit votre premier programme et êtes maintenant un développeur. Appuyez sur F5 de nouveau et entrez un autre nom.
+
+Si vous obtenez une erreur, comparez votre code avec celui du livre dans l'outil diff en ligne à http://invpy.com/diff/hello.
+
+Si vous obtenez une erreur qui ressemble à ceci :
+
+Bonjour le Monde !
+Quel est votre nom ?
+Albert
+Traceback (most recent call last):
+  File "C:/Python34/bonjour.py", line 4, in <module>
+    monNom = input()
+  File "<string>", line 1, in <module>
+NameError: name 'Albert' is not defined
+
+... cela signifie que vous utilisez Python 2, au lieu de Python 3. Installez une version de Python 3 à partir de http://python.org. Ensuite, relancez le programme avec Python 3.
+
+Comment le Programme «Bonjour» Fonctionne
+
+Chaque ligne de code est une instruction interprété par Python. Ces instructions sont le programme, et sont comme les étapes d'une recette de cuisine. Chaque instruction s'exécute dans l'ordre, en commençant par le haut du programme et exécutant les instructions vers le bas du programme.
+
+L'étape que Python est en train d'effectuer dans le programme est appelée le chemin d'exécution. Quand le programme commence, l'exécution est sur la première ligne. Ensuite, il va vers la bas à la prochaine instructions.
+
+Regardons chacune des lignes de code pour voir ce qui se passe. Commençons par la ligne 1.
+
+Les Commentaires
+
+1. # Ce programme affiche bonjour et demande votre nom.
+
+Cette ligne est un commentaire. Tout texte suivant le signe # (appelé croisillon) est un commentaire. Les commentaires ne sont pas destinés à Python, mais à vous, le développeur. Python ignore les commentaires. Les commentaires sont des notes sur ce que fait le code pour quiconque lit le code, vous ou un autre développeur. Pour rendre le code plus facile à lire, ce livre écrit les commentaires en gris clair.
+
+Habituellement, les développeurs mettent un commentaire au début de leur programme pour lui donner un titre. IDLE affiche les commentaires en rouge pour qu'ils ressortent du code.
+
+Les Fonctions
+
+Une fonction est comme un mini programme à l'intérieur de votre programme. Elle contient des instructions à exécuter quand la fonction est appelée. Python fournit déjà quelques fonctions prédéfinies. Deux fonctions, print() et input(), sont décrites après. La grande idée des fonctions est qu'il est juste important de savoir ce qu'elle fait sans savoir comment elle le fait.
+
+Un appel de fonction est un bout de code qui dit à Python d'exécuter du code à l'intérieur d'une fonction. Par exemple, votre programme appelle la fonction print() pour afficher du texte à l'écran. La fonction print() prend la chaîne que vous avez entrée entre parenthèse comme entrée et affiche ce texte à l'écran. Afin d'afficher Bonjour le Monde ! sur l'écran, entrez le nom de la fonction print, suivi par une parenthèse ouvrante, suivi par la chaîne 'Bonjour le Monde !' et une parenthèse fermante.
+
+La fonction print()
+
+2. print('Bonjour le Monde !')
+3. print('Quel est votre nom ?')
+
+Les lignes 2 et 3 appellent la fonction print(). La valeur entre parenthèses dans l'appel de la fonction est l'argument de la fonction. L'argument de la ligne 2 est 'Bonjour le Monde !'. L'argument de la ligne 3 est 'Quel est votre nom ?'. Cela s'appelle passer des arguments à la fonction print().
+
+Dans ce livre les noms de fonctions ont une paire de parenthèses à la fin. Cela permet d'identifier clairement que le livre parle du fonction appelée print. De la même manière, les quotes autour du nombre '42' dit à Python que vous êtes en train de parlez d'une chaîne '42' et pas d'un entier 42.
+
+La fonction input()
+
+4. monNom = input()
+
+Cette ligne est une affectation avec une variable (monNon) et un appel de fonction (input()). Quand input() est appelée, le programme attend que l'utilisateur entre un texte. La chaîne que l'utilisateur va entrer sera la valeur évaluée pour la fonction. Les appels de fonctions peuvent être utilisés dans les expressions partout où une valeur peut être utilisée.
+
+La valeur par laquelle est évaluée la fonction est appelée valeur de retour. (En fait, «la valeur qu'un appel de fonction retourne» signifie la même chose que «la valeur par laquelle est évaluée la fonction».) Dans ce cas, la valeur de retour de la fonction input() est la chaîne que l'utilisateur aura tapé comme son nom. Si l'utilisateur a tapé «Albert», l'appel de la fonction input() sera évalué par la chaîne 'Albert'. Cette évaluation ressemble à :
+
+nomNom = input()
+            ▼
+nomNom = 'Albert'
+
+C'est la manière dont la chaîne 'Albert' se retrouve stockée dans la variable nomNom.
+
+Utiliser une Expression dans les Appels de Fonction
+
+5. print('Je suis ravi de vous connaitre, ' + monNom)
+
+La dernière ligne est un autre appel à la fonction print(). L'expression 'Je suis ravi de vous connaître, ' + monNom est passée à print(). Cependant, les arguments sont toujours des valeurs simples. Python commencera par évaluer cette expression et passera ensuite la valeur en tant qu'argument. Si 'Albert' est stockée dans nomNom, l'évaluation ressemblera à ceci :
+
+print('Je suis ravi de vous connaître, ' + nomNom)
+                         ▼
+print('Je suis ravi de vous connaître, ' + 'Albert')
+                         ▼
+print('Je suis ravi de vous connaître, Albert')
+
+Voici comment accueille un utilisateur par son nom.
+
+Terminer le Programme
+
+Une fois que le programme exécute la dernière ligne, il se termine ou sort. Cela signifie que le programme arrête de s'exécuter. Python oublie toutes les variables, incluant la chaîne stockée dans monNom. Si vous lancez de nouveau le programme avec un différent nom, le programme va penser que cette différente chaîne est votre nom.
+
+Bonjour le Monde !
+Quel est votre nom ?
+Caroline
+Je suis ravi connaître, Caroline
+
+Rappelez vous, l'ordinateur fait exactement ce que vous lui demander. Les ordinateurs sont idiots. L'ordinateur se fiche si vous tapez votre nom, le nom de quelqu'un d'autre, ou quelque chose d'autre. Entrez ce que vous voulez. L'ordinateur en fera toujours la même chose :
+
+Bonjour le Monde !
+Quel est votre nom ?
+poop
+Je suis ravi connaître, poop
+
+Les Noms de Variable
+
+Donner des noms de variables clairs rend plus facile la compréhension de votre programme. Imaginez si vous déménagiez dans une nouvelle maison et vous notez chaque carton "Trucs". Ce ne serait pas vraiment utile !
+
+Au lieu de monNom, vous auriez pu appeler cette variable abrahamLincoln ou nOM. Python d'en fiche. Il exécutera le programme de la même manière.
+
+Les noms de variable sont sensibles à la case. Sensible à la case signifie qu'un même nom de variable avec une case différente sera une autre variable. Ainsi spam, SPAM, Spam, and sPAM sont quatre différentes variables pour Python. Elles contiennent toutes leurs propres valeurs.
+
+C'est une mauvais idée d'avoir des variables avec des cases différentes dans votre programme. Si vous stockez votre prénom dans une variable appelée nom, et votre nom de famille dans une variable NOM, l'utilisation de ces variables ne sera pas clair quand vous lirez votre code plusieurs semaines après l'avoir lu. Est-ce que nom signifie prénom et NOM signifie nom de famille, ou l'inverse ?
+
+Les noms de variable sont habituellement en minuscules. S'il y a plusieurs mots dans le nom de la variable, mettez en majuscule la première lettre des mots suivants le premier. Cela rend votre code plus lisible. Par exemple, le nom de variable  ceQueJAiEuAMangerCeMatin est plus facile à lire que cequejaieuamangercematin. C'est une convention (optionnelle mais une manière standard de faire) en programmation Python.
+
+Les exemples du livre pour la console intéractive utilisent des noms de variable comme spam, eggs, ham, et bacon, parce que les noms de variable dans ces exemples n'ont pas d'importance. Cependant, les programmes du livre utilisent tous des noms de variable clairs décrivant leur rôle. Vos programmes devraient en faire aussi utiliser des nom de variables clairs.
+
+Résumé
+
+Une fois que vous avez appris les chaînes et les fonctions, vous pouvez commencer à faire des programmes qui interagissent avec les utilisateurs. C'est important car le texte est le moyen principal pour faire communiquer un utilisateur et l'ordinateur. L'utilisateur entre du texte grâce au clavier qui est lu par la fonction input(), et l'ordinateur affiche le texte grâce à la fonction print().
+
+Les chaînes sont juste des valeurs d'un autre type de données. Toutes les valeurs ont un type de données, et il y a de nombreux types dans Python. L'opérateur + peut concaténer des chaînes ensembles.
+
+Les variables vous permettent de stocker des valeurs pour être utiliser plus tard ailleurs dans votre programme. Les fonctions sont utilisées pour regrouper un ensemble complexe d'instruction pour faire partie de votre programme. Python contient de nombreuses fonctions qui vous apprendrez dans ce livre. Les variables et les appels de fonction peuvent être utilisés partout où une expression peut l'être.
+
+L'instruction dans votre programme que Python est en train d'exécuter est l'exécution. Dans le chapitre suivant, vous apprendrez à modifier le chemin d'exécution afin qu'il n'aille pas uniquement vers le bas du programme. Une fois cette étape effectuée, vous serez prêt à écrire des jeux.
+
