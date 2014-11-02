@@ -11,11 +11,13 @@ Topics Covered In This Chapter:
 •   Conversion Specifier %s
 •   Nested Loops
 
-In this chapter, you’ll learn a few new methods and functions that come with Python. You’ll also learn about augmented assignment operators and string interpolation. These concepts don’t let you do anything you couldn't do before, but they are nice shortcuts that make typing your code easier.
-Bagels is a simple game you can play with a friend. Your friend thinks up a random 3-digit number with no repeating digits, and you try to guess what the number is. After each guess, your friend gives you a clue on how close your guess was:
+In this chapter, you’ll learn a few new methods and functions that come with Python. You’ll also learn about augmented assignment operators and string interpolation. These things don’t let you do anything you couldn't do before, but they are nice shortcuts to make coding easier.
+Bagels is a deduction game you can play with a friend. Your friend thinks up a random 3-digit number with no repeating digits, and you try to guess what the number is. After each guess, your friend gives you three types of clues:
+
 •   Bagels – None of the three digits you guessed is in the secret number.
 •   Pico – One of the digits is in the secret number, but your guess has the digit in the wrong place.
-•   Fermi – your guess has a correct digit in the correct place
+•   Fermi – Your guess has a correct digit in the correct place.
+
 Of course, even if you get a pico or fermi clue, you still don’t know which digit in your guess is the correct one.
 You can get multiple clues after each guess. If the secret number is 456 and your guess is 546 the clues would be “fermi pico pico”. The 6 provides “fermi” and the 5 and 4 provide “pico pico”.
 
@@ -57,7 +59,7 @@ no
 
 Bagel’s Source Code
 
-You can download this code from http://invpy.com/bagels.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/bagels.
+If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/bagels.
 
 bagels.py
  1. import random
@@ -138,7 +140,6 @@ bagels.py
 76.         break
 
 Designing the Program
-
 The flow chart in Figure 11-1 describes what happens in this game, and in what order they can happen.
 
 Figure 11-1: Flow chart for the Bagels game.
@@ -146,39 +147,38 @@ Figure 11-1: Flow chart for the Bagels game.
 How the Code Works
 
  1. import random
+ 2. def getSecretNum(numDigits):
+ 3.     # Returns a string that is numDigits long, made up of unique random digits.
 
-At the start of the program, import the random module and also create a function for generating a random secret number for the player to guess. The process of creating this number isn’t hard, and also guarantees that it only has unique digits in it.
+At the start of the program, import the random module. Then define a function named getSecretNum(). The function will make a secret number that has only unique digits in it. Instead of only 3-digit secret numbers, the numDigits parameter lets the function make a secret number with any number of digits. For example, you can make a secret number of four or six digits by passing 4 or 6 for numDigits.
 
 Shuffling a Unique Set of Digits
 
- 2. def getSecretNum(numDigits):
- 3.     # Returns a string that is numDigits long, made up of unique random digits.
  4.     numbers = list(range(10))
  5.     random.shuffle(numbers)
 
-The getSecretNum() function will generate the random secret number. Instead of having the code only produce 3-digit numbers, the numDigits parameter tells the function how many digits the secret number should have. (You can easily make the game use secret numbers with, say, four or six digits just by passing 4 or 6 for numDigits.)
 Line 4’s list(range(10)) will always evaluate to [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. It’s just easier to type list(range(10)). The numbers variable contains a list of all ten digits.
-
 The random.shuffle() Function
-
-The random.shuffle() function will randomly change the order of all the items in the list passed to it. This function doesn’t return a value, but rather changes the list you pass it “in place”. This is similar to the way the makeMove() function in the Tic Tac Toe chapter modified the list it was passed in place, rather than return a new list with the change). This is why you do not write code like numbers = random.shuffle(numbers).
+The random.shuffle() function randomly changes the order of a list’s items. This function doesn’t return a value, but rather modifies the list you pass it “in place”. This is similar to the way the makeMove() function in the Tic Tac Toe chapter modified the list it was passed in place, rather than return a new list with the change. This is why you do not write code like numbers = random.shuffle(numbers).
 Try experimenting with the random.shuffle() function by entering the following code into the interactive shell:
 
 >>> import random
 >>> spam = list(range(10))
 >>> print(spam)
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 >>> random.shuffle(spam)
 >>> print(spam)
 [3, 0, 5, 9, 6, 8, 2, 4, 1, 7]
+
 >>> random.shuffle(spam)
 >>> print(spam)
 [1, 2, 5, 9, 4, 7, 0, 3, 6, 8]
+
 >>> random.shuffle(spam)
 >>> print(spam)
 [9, 8, 3, 5, 4, 7, 1, 2, 0, 6]
-
-You want the secret number in Bagels to have unique digits. The Bagels game is much more fun if you don’t have duplicate numbers in the secret number, such as '244' or '333'.
+You want the secret number in Bagels to have unique digits. The Bagels game is much more fun if you don’t have duplicate numbers in the secret number, such as '244' or '333'. The shuffle() function will help you do this.
 
 Getting the Secret Number from the Shuffled Digits
 
@@ -210,7 +210,18 @@ spam += 10       # Like spam = spam + 10
 eggs = 'Hello '
 eggs += 'world!' # Like eggs = eggs + 'world!'
 
-There are other augmented assignment operators. -= will subtract a value from an integer. *= will multiply the variable by a value. /= will divide a variable by a value. Notice that these augmented assignment operators do the same math operations as the -, *, and / operators.
+There are other augmented assignment operators as well. Try entering the following into the interactive shell:
+
+>>> spam = 42
+>>> spam -= 2
+>>> spam
+40
+>>> spam *= 3
+>>> spam
+120
+>>> spam /= 10
+>>> spam
+12.0
 
 Calculating the Clues to Give
 
@@ -230,13 +241,14 @@ The getClues() function will return a string with the fermi, pico, and bagels cl
 22.             clue.append('Pico')
 
 If the guess isn’t the same as the secret number, you need to figure out what clues to give the player. The list in clue will start empty and have 'Fermi' and 'Pico' strings added as needed.
-Do this by looping through each possible index in guess and secretNum (the strings in both variables will be the same length, so the code could have either len(guess) or len(secretNum) and work the same). As the value of i changes from 0 to 1 to 2, and so on, the if statement checks if the first, second, third, etc. letter of guess is the same as the number in the same index of secretNum. If so, we will add a string 'Fermi' to clue.
-If that condition is False we will check if the number at the ith position in guess exists anywhere in secretNum. If this condition is True we know that the number is somewhere in the secret number but not in the same position. This is why we add the 'Pico' to clue.
+Do this by looping through each possible index in guess and secretNum (the strings in both variables will be the same length, so the code could have either len(guess) or len(secretNum) and work the same). As the value of i changes from 0 to 1 to 2, and so on, line 19 checks if the first, second, third, etc. letter of guess is the same as the number in the same index of secretNum. If so, line 20 will add a string 'Fermi' to clue.
+Otherwise, line 21 will check if the number at the ith position in guess exists anywhere in secretNum. If so, you know that the number is somewhere in the secret number but not in the same position. Line 22 will then add 'Pico' to clue.
 
 23.     if len(clue) == 0:
 24.         return 'Bagels'
 
 If the clue list is empty after the loop, then you know that there are no correct digits at all in guess. In this case, the string 'Bagels' is returned as the only clue.
+
 The sort() List Method
 
 26.     clue.sort()
@@ -253,23 +265,23 @@ Lists have a method named sort() that rearranges the items in the list to be in 
 >>> spam
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-The sort() method doesn’t return a sorted list, but rather just sorts the list it is called on “in place”. This is much like how the reverse() method works. You would never want to use this line of code: return spam.sort() because that would return the value None (which is what sort() returns). Instead you would want a separate line spam.sort() and then the line return spam.
-The reason you want to sort the clue list is to get rid of extra information based on the order of the clues. If clue was ['Pico', 'Fermi', 'Pico'], then that would tell us that the center digit of our guess is in the correct position. Since the other two clues are both Pico, the player would know that all they have to do is swap the first and third digit to get the secret number.
+The sort() method doesn’t return a sorted list, but rather just sorts the list it is called on “in place”. This is just like how the reverse() method works.
+You would never want to use this line of code: return spam.sort() because that would return the value None (which is what sort() returns). Instead you would want a separate line spam.sort() and then the line return spam.
+The reason you want to sort the clue list is to get rid of extra information based on the order of the clues. If clue was ['Pico', 'Fermi', 'Pico'], then that would tell the player that the center digit of our guess is in the correct position. Since the other two clues are both Pico, the player would know that all they have to do is swap the first and third digit to get the secret number.
 If the clues are always sorted in alphabetical order, the player can’t be sure which number the Fermi clue refers. This is what we want for the game.
 
 The join() String Method
 
 27.     return ' '.join(clue)
 
-The join() string method returns a string of each item in the list argument joined together. The string that the method is called on (on line 27, this is a single space, ' ') appears in between each item in the list. So the string that is returned on line 27 is each string in clue combined together with a single space in between each string.
-For an example, enter the following into the interactive shell:
+The join() string method takes a list of strings. It returns a single string of the list’s strings joined together. The string that the method is called on (on line 27, this is a single space, ' ') appears in between each string in the list. For an example, enter the following into the interactive shell:
 
 >>> ' '.join(['My', 'name', 'is', 'Zophie'])
 'My name is Zophie'
 >>> 'x'.join(['hello', 'world'])
 'helloxworld'
 
-The join() string method is sort of like the opposite of the split() string method. While split() returns a list from a split up string, join() returns a string from a combined list.
+So the string that is returned on line 27 is each string in clue combined together with a single space in between each string. The join() string method is sort of like the opposite of the split() string method. While split() returns a list from a split up string, join() returns a string from a combined list.
 
 Checking if a String Only has Numbers
 
@@ -278,7 +290,7 @@ Checking if a String Only has Numbers
 31.     if num == '':
 32.         return False
 
-The isOnlyDigits() is a small function that will help us determine if the player entered a guess that was only made up of numbers. Line 31 does a quick checks if we were sent the blank string, and if so, we return False.
+The isOnlyDigits() helps determine if the player entered a valid guess. Line 31 checks if num is the blank string, and if so, returns False.
 
 34.     for i in num:
 35.         if i not in '0 1 2 3 4 5 6 7 8 9'.split():
@@ -286,7 +298,7 @@ The isOnlyDigits() is a small function that will help us determine if the player
 37.
 38.     return True
 
-The for loop iterates over each character in the string num. The value of i will have a character from the num string on each iteration. Inside the for-block, the code checks if i doesn’t exist in the list returned by '0 1 2 3 4 5 6 7 8 9'.split(). If it doesn’t, you know there is a non-number character in num. In that case, False is returned.
+The for loop iterates over each character in the string num. The value of i will have a single character on each iteration. Inside the for-block, the code checks if i doesn’t exist in the list returned by '0 1 2 3 4 5 6 7 8 9'.split(). If it doesn’t, you know there is a non-number character in num. In that case, False is returned.
 If execution continues past the for loop, then you know that every character in num is a number. In that case, True is returned.
 
 Finding out if the Player Wants to Play Again
@@ -296,7 +308,7 @@ Finding out if the Player Wants to Play Again
 42.     print('Do you want to play again? (yes or no)')
 43.     return input().lower().startswith('y')
 
-The playAgain() function is the same one we used in Hangman and Tic Tac Toe. The long expression on line 43 will evaluate to either True or False.
+The playAgain() function is the same one we used in Hangman and Tic Tac Toe. The long expression on line 43 evaluates to either True or False based on the answer given by the player.
 
 The Start of the Game
 
@@ -310,12 +322,13 @@ The Start of the Game
 52. print('  Fermi        One digit is correct and in the right position.')
 53. print('  Bagels       No digit is correct.')
 
-This is the actual start of the program. Instead of hard-coding three digits as the size of the secret number, use the constant variable NUMDIGITS. And instead of hard-coding a maximum of ten guesses that the player can make, use the constant variable MAXGUESS. This is because if we increase the number of digits the secret number has, we also might want to give the player more guesses. We put the variable names in all capitals to show they are meant to be constant.
+This is the actual start of the program. Instead of hard-coding three digits as the size of the secret number, use the constant variable NUMDIGITS. And instead of hard-coding ten as the number of guesses that the player can make, use the constant variable MAXGUESS.
+Now it will be easy to change the number of guesses or secret number digits. Just change line 45 or 46 and the rest of the program will still work without any more changes. The variable name are in all capitals to show they are constants. The program does not change the value stored in them.
 The print() function calls will tell the player the rules of the game and what the Pico, Fermi, and Bagels clues mean. Line 48's print() call has % (NUMDIGITS) added to the end and %s inside the string. This is a technique known as string interpolation.
 
 String Interpolation
 
-String interpolation is another shortcut, like augmented assignment operators. Normally, if you want to use the string values inside variables in another string, you have to use the + concatenation operator:
+String interpolation is a coding shortcut. Normally, if you want to use the string values inside variables in another string, you have to use the + concatenation operator:
 
 >>> name = 'Alice'
 >>> event = 'party'
@@ -325,7 +338,9 @@ String interpolation is another shortcut, like augmented assignment operators. N
 
 >>> print('Hello, ' + name + '. Will you go to the ' + event + ' at ' + where + ' this ' + day + ' at ' + time + '?')
 Hello, Alice. Will you go to the party at the pool this Saturday at 6:00pm?
-As you can see, it can be hard to type a line that concatenates several strings together. Instead, you can use string interpolation, which lets you put placeholders like %s (these placeholders are called conversion specifiers), and then put all the variable names at the end. Each %s is replaced with the value in the variable at the end of the line. For example, the following code does the same thing as the above code:
+
+As you can see, it can be hard to type a line that concatenates several strings together. Instead, you can use string interpolation, which lets you put placeholders like %s (these placeholders are called conversion specifiers), and then put all the variable names at the end. Each %s is replaced with the value in the variable at the end of the line. For example, the following code does the same thing as the previous code:
+
 >>> name = 'Alice'
 >>> event = 'party'
 >>> where = 'the pool'
@@ -335,9 +350,9 @@ As you can see, it can be hard to type a line that concatenates several strings 
 >>> print('Hello, %s. Will you go to the %s at %s this %s at %s?' % (name, event, where, day, time))
 Hello, Alice. Will you go to the party at the pool this Saturday at 6:00pm?
 
-String interpolation can make your code much easier to type and read, rather than using several + concatenation operators.
+String interpolation can make your code much easier to type. It saves you from code with several + concatenation operators.
 The final line has the print() call with a string with conversion specifiers, followed by the % sign, followed by a set of parentheses with the variables in them. The first variable name is used for the first %s, the second variable with the second %s and so on. You must have the same number of %s conversion specifiers as you have variables.
-Another benefit of using string interpolation instead of string concatenation is that interpolation works with any data type, not just strings. All values are automatically converted to the string data type. (This is what the s in %s stands for.) If you typed this code into the interactive shell, you'd get an error:
+Another benefit of using string interpolation instead of string concatenation is that interpolation works with any data type, not just strings. All values are automatically converted to the string data type. If you typed this code into the interactive shell, you’d get this error:
 
 >>> spam = 42
 >>> print('Spam == ' + spam)
@@ -345,13 +360,12 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: Can't convert 'int' object to str implicitly
 
-This is because string concatenation can only combine two strings, but spam is an integer. You would have to remember to put str(spam) in there instead. But with string interpolation, you can have any data type. Try entering this into the interactive shell:
+String concatenation can only combine two strings, but spam is an integer. You would have to remember to put str(spam) instead of spam. But with string interpolation, this conversion to strings is done for you. Try entering this into the interactive shell:
 
 >>> spam = 42
 >>> print('Spam is %s' % (spam))
 Spam is 42
 
-As you can see, using string interpolation instead of string concatenation is much easier because you don’t have to worry about the data type of the variable. Also, string interpolation can be done on any strings, not just strings used in print() function calls.
 String interpolation is also known as string formatting.
 
 Creating the Secret Number
