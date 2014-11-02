@@ -18,6 +18,8 @@ As the copyright holder, I commercially sell "Invent with Python" on Amazon. I a
 
 I make similar donations to the EFF, Tor Project, and Creative Commons nonprofits from sales of my other book, "Hacking Secret Ciphers with Python". I publicly post an accounting of these donations at http://inventwithpython.com/hacking/proceeds/
 
+These proceeds will be published at https://github.com/asweigart/inventwithpython3rded/blob/master/proceeds.md
+
 All translators will get attribution credit on the book cover, in the PDF, and on the website.
 
 I appreciate the efforts of the translators to bring programming knowledge outside of the English-speaking world. I want them to know that I do not plan to personally profit off of their labor.
