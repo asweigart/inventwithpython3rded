@@ -29,7 +29,7 @@ Suggested Guidelines for Translators
 
 First, thank you for helping with the translation of "Invent with Python". Here are some helpful guidelines:
 
-0. Read and agree to the Contributor License Agreement. (I've copied the one used by NodeJS.) This is available at https://github.com/asweigart/inventwithpython3rded/blob/master/cla.txt. You can agree by sending al@inventwithpython.com an email saying "I agree to the Invent with Python Contributor License Agreement". This is mostly a formality.
+0. Read and agree to the Contributor License Agreement. (I've copied the one used by NodeJS.) This is available at https://github.com/asweigart/inventwithpython3rded/blob/master/cla.md. You can agree by sending al@inventwithpython.com an email saying "I agree to the Invent with Python Contributor License Agreement". This is mostly a formality.
 
 1. Look at the translations/<lang code>/README.md file to contact other translators working on your language.
 
