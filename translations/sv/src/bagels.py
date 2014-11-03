@@ -1,5 +1,5 @@
 import random
-def hämtaHemligtTal (antalSiffror):
+def hämtaHemligtTal(antalSiffror):
     # Returnerar en sträng som är antalSiffror lång och som består av unika, framslumpade siffror.
     siffror = list(range(10))
     random.shuffle(siffror)
