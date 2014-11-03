@@ -64,7 +64,7 @@ In the next chapter, you will learn about working with text in expressions. Pyth
 
 Evaluating Expressions
 
-When a computer solves the expression 10 + 5 and gets the value 15, it has evaluated the expression. Evaluating an expression reduces the it to a single value, just like solving a math problem reduces the problem to a single number: the answer.
+When a computer solves the expression 10 + 5 and gets the value 15, it has evaluated the expression. Evaluating an expression reduces it to a single value, just like solving a math problem reduces the problem to a single number: the answer.
 
 The expressions 10 + 5 and 10 + 3 + 2 have the same value. They both evaluate to 15.
 
@@ -196,7 +196,7 @@ Try entering spam = fizz + eggs into the interactive shell, then check the new v
 >>> spam
 25
 
-The value in spam is now 25. When you added fizz and eggs you are adding their values, which are 10 and 15, respectively.
+The value in spam is now 25. When you add fizz and eggs you are adding their values, which are 10 and 15, respectively.
 
 Summary
 
@@ -205,4 +205,3 @@ In this chapter, you learned the basics about writing Python instructions. Pytho
 Expressions are values (such as 2 or 5) combined with operators (such as + or -). Python can evaluate expressions (that is, reduce the expression to a single value). You can store values inside of variables so that your program can remember them and use them later.
 
 There are many other types of operators and values in Python. In the next chapter, you’ll go over some more basic concepts and write your first program!
-
