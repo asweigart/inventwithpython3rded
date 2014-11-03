@@ -1,7 +1,7 @@
 Fig 2-3:
-value
-operator
-expression
+valor
+operador
+expresión
 
 Fig 2-4:
 spam
