@@ -113,31 +113,31 @@ Una instrucción de asignación guardará un valor (o el valor al que se evalúa
 
 
 
-Figura 2-4: Las variables son como cajas que pueden contener variables.
+Figura 2-4: Las variables son como cajas que pueden contener valores.
 
 La caja de la variable spam tendrá guardado el valor 15, como se muestra en la Figura 2-4. El nombre “spam” es la etiqueta en la caja (para que Python pueda distinguir las variables) y el valor está escrito en una pequeña nota dentro de la caja.
 
 Cuando presiones INTRO no recibirás ninguna respuesta. En Python, si no aparece ningún mensaje de error puedes asumir que la instrucción se ha ejecutado correctamente. El indicador de consola >>> aparecerá para que puedas tipear la próxima instrucción.
 
-Unlike expressions, statements are instructions that do not evaluate to any value, which is why there is no value displayed on the next line in the interactive shell. It might be confusing to know which instructions are expressions and which are statements. Just remember that expressions evaluate to a single value. Any other kind of instruction is a statement.
+A diferencia de las expresiones, las sentencias no son evaluadas a ningún valor, por lo que no se muestra ningún valor en la siguiente línea de la consola interactiva. Puede ser confuso diferenciar cuáles instrucciones son expresiones y cuáles son sentencias. Sólo recuerda que las expresiones son evaluadas a un valor único. Cualquier otro tipo de instrucción es una sentencia.
 
-Variables store values, not expressions. For example, consider the expression in the statements spam = 10 + 5 and spam = 10 + 7 - 2. They both evaluate to 15. The end result is the same: Both statements store the value 15 in the variable spam.
+Las variables almacenan valores, no expresiones. Por ejemplo, considera la expresión en las sentencias spam = 10 + 5 y spam = 10 + 7 - 2. Ambas son evaluadas a 15. El resultado final es el mismo: Ambas sentencias almacenan el valor 15 en la variables spam.
 
-The first time a variable is used in an assignment statement, Python will create that variable. To check what value is in a variable, type the variable name into the interactive shell:
+La primera vez que una variables es usada en una sentencia de asignación, Python creará esa variable. Para comprobar qué valor contiene una variable dada, escribe el nombre de la variable en la consola interactiva:
 
 >>> spam = 15
 >>> spam
 15
 
-The expression spam evaluates to the value inside the spam variable: 15. You can use variables in expressions. Try entering the following in the interactive shell:
+La expresión spam se evalúa al valor dentro de la variable spam: 15. Puedes usar variables en expresiones. Prueba escribir lo siguiente en la consola interactiva:
 
 >>> spam = 15
 >>> spam + 5
 20
 
-You’ve set the value of the variable spam to 15, so writing spam + 5 is like writing the expression 15 + 5.
+Haz fijado el valor de la variable spam en 15, por lo que escribir spam + 5 es como escribir la expresión 15 + 5.
 
-You cannot use a variable before an assignment statement creates it. Python will give you an error because no such variable exists yet. Mistyping the variable name also causes this error:
+No puedes usar una variable antes de que sea creada por una sentencia de asignación. Python te dará un error porque tal variable todavía no existe. Escribir mal el nombre de la variable también causa este error:
 
 >>> spam = 15
 >>> spma
@@ -147,9 +147,9 @@ Traceback (most recent call last):
     spma
 NameError: name 'spma' is not defined
 
-The error appeared because there is spam variable but not spma.
+El error ha aparecido porque la variable se llama spam, no spma.
 
-You can change the value stored in a variable by entering another assignment statement. For example, try the following:
+Puedes cambiar el valor almacenado en una variable escribiendo otra sentencia de asignación. Por ejemplo, prueba lo siguiente:
 
 >>> spam = 15
 >>> spam + 5
@@ -158,15 +158,15 @@ You can change the value stored in a variable by entering another assignment sta
 >>> spam + 5
 8
 
-When you first enter spam + 5, the expression evaluates to 20 because you stored 15 inside spam. However, when you enter spam = 3, the value 15 is replaced, or overwritten, with the value 3. Now when you enter spam + 5, the expression evaluates to 8 because the value of spam is now 3.
+La primera vez que escribes spam + 5, la expresión se evalúa a 20 porque has guardado 15 dentro de spam. Sin embargo, cuando escribes spam = 3, el valor 15 es reemplazado, o sobrescrito, con el valor 3. Ahora cuando escribes spam + 5, la expresión se evalúa a 8 porque el valor de spam es ahora 3.
 
-You can even use the value in the spam variable to assign a new value to spam:
+Puedes incluso usar el valor en la variable spam para asignar un nuevo valor a spam:
 
 >>> spam = 15
 >>> spam = spam + 5
 20
 
-The assignment statement spam = spam + 5 is like saying, “the new value of the spam variable will be the current value of spam plus five.” Keep increasing the value in spam by 5 several times:
+La sentencia de asignación spam = spam + 5 es como decir, “el nuevo valor de la variable spam será el valor actual de spam más cinco.” Continúa incrementando el valor de spam en 5 varias veces:
 
 >>> spam = 15
 >>> spam = spam + 5
@@ -175,20 +175,20 @@ The assignment statement spam = spam + 5 is like saying, “the new value of the
 >>> spam
 30
 
-Using More Than One Variable
+Usando Más Que Una Variable
 
-Create as many variables as you need in your programs. For example, let’s assign different values to two variables named eggs and fizz, like so:
+Crea tantas variables como necesites en tus programas. Por ejemplo, asignemos diferentes valores a dos variables llamadas eggs y fizz, de esta forma:
 
 >>> fizz = 10
 >>> eggs = 15
 
-Now the fizz variable has 10 inside it, and eggs has 15 inside it.
+Ahora la variable fizz almacena el valor 10, y eggs almacena el valor 15.
 
 
 
-Figure 2-5: The “fizz” and “eggs” variables have values stored in them.
+Figura 2-5: Las variables “fizz” y “eggs” almacenan valores dentro de ellas.
 
-Try entering spam = fizz + eggs into the interactive shell, then check the new value of spam:
+Intenta escribir spam = fizz + eggs en la consola interactiva, luego comprueba el nuevo valor de spam:
 
 >>> fizz = 10
 >>> eggs = 15
@@ -196,13 +196,12 @@ Try entering spam = fizz + eggs into the interactive shell, then check the new v
 >>> spam
 25
 
-The value in spam is now 25. When you added fizz and eggs you are adding their values, which are 10 and 15, respectively.
+El valor de spam es ahora 25. Cuando sumas fizz y eggs estás sumando sus valores, que son 10 y 15 respectivamente.
 
-Summary
+Resumen
 
-In this chapter, you learned the basics about writing Python instructions. Python needs you to tell it exactly what to do in a strict way. Computers don’t have common sense and only understand specific instructions.
+En este capítulo, has aprendido los conceptos básicos para escribir instrucciones en Python. Python necesita que le digas exactamente qué hacer de forma estricta. Las computadoras no tienen sentido común, y sólo entienden instrucciones específicas.
 
-Expressions are values (such as 2 or 5) combined with operators (such as + or -). Python can evaluate expressions (that is, reduce the expression to a single value). You can store values inside of variables so that your program can remember them and use them later.
+Las expresiones son valores (tales como 2 ó 5) combinados con operadores (tales como + o -). Python puede evaluar expresiones (es decir, reducirlas a un valor único). Puedes almacenar valores dentro de las variables de modo que tu programa sea capaz de recordarlas y usarlas más adelante.
 
-There are many other types of operators and values in Python. In the next chapter, you’ll go over some more basic concepts and write your first program!
-
+Hay muchos otros tipos de operadores y valores en Python. En el próximo capítulo, repasaras algunos  conceptos más, ¡y escribirás tu primer programa!

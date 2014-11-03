@@ -7,4 +7,6 @@ move (noun), movida
 run, ejecutar
 set, establecer
 set up, configurar
+shell, consola
 show, mostrar
+statement, sentencia
