@@ -65,22 +65,20 @@ Special Thanks
 
 Here is an inevitably incomplete list of MUCH-APPRECIATED CONTRIBUTORS -- people who have submitted patches, reported bugs, added translations, helped answer newbie questions, and generally made Invent Your Own Computer Games with Python that much better:
 
-*Chinese Translation:*
+**Chinese Translation:**
 
-Bitex Kuang https://github.com/7bitex
+- Bitex Kuang https://github.com/7bitex
 
-*French Translation:*
+**French Translation:**
 
-David Fleury https://github.com/dfleury2
+- David Fleury https://github.com/dfleury2
 
-*Spanish Translation:*
+**Spanish Translation:**
 
-Alejandro Pernin https://github.com/aleperno
+- Alejandro Pernin https://github.com/aleperno
+- Alfredo Carella https://github.com/alfredocarella
 
-Alfredo Carella https://github.com/alfredocarella
+**Swedish Translation:**
 
-*Swedish Translation:*
-
-Christer Nilsson https://github.com/ChristerNilsson
-
-Mats Rörbecker https://github.com/matsrorbecker
+- Christer Nilsson https://github.com/ChristerNilsson
+- Mats Rörbecker https://github.com/matsrorbecker

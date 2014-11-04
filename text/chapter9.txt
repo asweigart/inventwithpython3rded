@@ -189,6 +189,7 @@ The Hangman program is going to randomly select a secret word from a list of sec
  10. =========''', '''
 
 ...the rest of the code is too big to show here...
+
 This “line” of code is a simple variable assignment, but it actually stretches over several real lines in the source code. The actual “line” doesn’t end until line 58. To help you understand what this code means, you should learn about multi-line strings and lists:
 
 Multi-line Strings
@@ -263,7 +264,9 @@ This would be hard if you have hundreds or thousands of strings. But a list can 
 
 >>> animals[0] + animals[2]
 'aardvarkantelope'
+
 The evaluation looks like this:
+
 animals[0] + animals[2]
            ▼
 'aardvark' + animals[2]
@@ -319,6 +322,7 @@ True
 False
 
 The in operator also works for strings. You check if one string exists in another the same way you check if a value exists in a list. Try entering 'hello' in 'Alice said hello to Bob.' into the interactive shell. This expression will evaluate to True.
+
 >>> 'hello' in 'Alice said hello to Bob.'
 True
 
@@ -381,12 +385,13 @@ Try entering 'Hello world!'.lower() into the interactive shell to see an example
 
 >>> 'Hello world'.lower()
 'hello world!'
+
 There is also an upper() method for strings, which returns a string with all the characters in uppercase. Try entering 'Hello world'.upper() into the interactive shell:
+
 >>> 'Hello world'.upper()
 'HELLO WORLD! '
 
 Because the upper() method returns a string, you can call a method on that string also. Try entering 'Hello world!'.upper().lower() into the interactive shell:
-
 >>> 'Hello world'.upper().lower()
 'hello world!'
 
@@ -422,7 +427,6 @@ Note that this does not change the value in spam. The spam variable will still c
 The reverse() and append() List Methods
 
 The list data type also has methods. The reverse() method will reverse the order of the items in the list. Try entering spam = [1, 2, 3, 4, 5, 6, 'meow', 'woof'], and then spam.reverse() to reverse the list. Then enter spam to view the contents of the variable.
-
 >>> spam = [1, 2, 3, 4, 5, 6, 'meow', 'woof']
 >>> spam.reverse()
 >>> spam
@@ -446,12 +450,11 @@ Note that integers and floats don’t have any methods.
 The split() List Method
 
 Line 59 is a long line of code, but it is really just a simple assignment statement. This line also uses the split() method, which is a method for the string data type (just like the lower() and upper() methods).
-59. words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra'.split()
 
+59. words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra'.split()
 This assignment statement has just one long string, full of words separated by spaces. And at the end of the string the split() method. The split() method evaluates to a list with each word in the string as a single list item. The “split” occurs wherever a space occurs in the string.
 The reason we do it this way instead of just writing out the list is that it is easier to type. If you created it as a list to begin with, we would have to type: ['ant', 'baboon', 'badger',... and so on, with quotes and commas for every word. The split() method can be useful in other ways, but on line 59 it is just used to save the programmer some tedious typing.
 For an example of how the split() string method works, try entering this into the interactive shell:
-
 >>> 'My very energetic mother just served us nine pies'.split()
 ['My', 'very', 'energetic', 'mother', 'just', 'served', 'us', 'nine', 'pies']
 
@@ -653,6 +656,7 @@ if secretWord[3] in correctLetters:
 
 if secretWord[4] in correctLetters:
     blanks = blanks[:4] + secretWord[4] + blanks[5:]
+
 If you are confused as to what the value of something like secretWord[0] or blanks[3:] is, then look at Figure 9-2. It shows the value of the secretWord and blanks variables, and the index for each letter in the string.
 
 Figure 9-2: The indexes of the blanks and secretWord strings.
@@ -703,7 +707,9 @@ We will use a while loop because we want to keep asking the player for a letter 
 The code inside the loop asks the player to enter a letter, which is stored in the variable guess. If the player entered a capitalized letter, it will be converted to lowercase on line 90.
 
 elif (“Else If”) Statements
+
 Take a look at the following code:
+
 if catName == 'Fuzzball':
     print('Your cat is fuzzy.')
 elif catName == 'Spots'

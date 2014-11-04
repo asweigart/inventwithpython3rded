@@ -4,8 +4,6 @@ This chapter's game is a bit longer than the previous games, but much of it is t
 
 The Hangman program is going to randomly select a secret word from a list of secret words. The random module will provide this ability.
 
-...the rest of the code is too big to show here...
-
 This “line” of code is a simple variable assignment, but it actually stretches over several real lines in the source code. The actual “line” doesn’t end until line 58. To help you understand what this code means, you should learn about multi-line strings and lists:
 
 Ordinarily when you write strings in your source code, the string has to be on one line starting and ending with a one quote character. However, if you use three quotes the string can go across several lines:
@@ -72,8 +70,6 @@ Because the upper() method returns a string, you can call a method on that strin
 
 The order is important. 'Hello world!'.lower().upper() isn’t the same as 'Hello world!'.upper().lower():
 
-This evaluation looks like this:
-
 If a string is stored in a variable, you can call a string method on that variable. Look at this example:
 
 Note that this does not change the value in spam. The spam variable will still contain 'Hello world!'.
@@ -95,8 +91,6 @@ For an example of how the split() string method works, try entering this into th
 The result is a list of nine strings, one string for each of the words in the original string. The spaces are not included in any of the items in the list.
 
 You can also add your own words to the string on line 59, or remove any you don’t want to be in the game. Just make sure that the words are separated by spaces.
-
-How the Code Works
 
 Line 61 defines a the getRandomWord() function, which has a single parameter named wordList. This function will return a single secret word from the list in the wordList parameter.
 
