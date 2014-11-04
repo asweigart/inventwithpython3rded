@@ -48,13 +48,13 @@ First, thank you for helping with the translation of "Invent with Python". Here 
 
 2. Read this README.md file to note any special parts of the book that may need additional attention. Feel free to add to this file.
 
-2. Translate the programs first. Do not change the order or position of the code, as that will require tedious updating of line numbers in the book. Long lines of code are fine.
+2. Translate the programs first. Do not change the order or position of the code, as that will require tedious updating of line numbers in the book. Long lines of code are fine. Consult (and update) the src/_ISSUES.txt file for any language-translation issues that come up.
 
 3. Save the .py files of the programs with UTF-8 encoding. (This is the default encoding the Python 3 expects source files to be in.)
 
 4. Make notes of any cultural differences that would require more than just a straight translation to the translations/<lang code>/README.md file.
 
-5. All of the files for a translation go into the translations/<lang code> folder. This includes the text files, figure image files, and source code .py files. (Look at the other folders to get an idea of the structure.)
+5. All of the files for a translation go into the translations/<lang code> folder. This includes the text files, figure image files, and source code .py files. (Look at the other folders to get an idea of the structure.) These text files will just hold the content. Formatting (such as bold text, different fonts, etc) will be done in Word at a later step. The text files just hold the textual content.
 
 6. Add spaces to line up the columns for tables to make it obvious which text is in which cell.
 

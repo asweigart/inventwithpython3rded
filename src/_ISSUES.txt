@@ -1,0 +1,4 @@
+
+
+Sonar.py
+On lines 182 to 187, these might have to change if the language does not need to add an "s" to the plural of "device" or "chest".
