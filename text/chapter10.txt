@@ -7,7 +7,7 @@ Topics Covered In This Chapter:
 • Short-Circuit Evaluation
 • The None Value
 
-This chapter features a Tic Tac Toe game against a simple artificial intelligence. An artificial intelligence (or AI) is a computer program that can intelligently respond to the player’s moves. This game doesn’t introduce any complicated new concepts. We will see that the artificial intelligence that plays Tic Tac Toe is really just a few lines of code.
+This chapter features a Tic Tac Toe game against a simple artificial intelligence. An artificial intelligence (or AI) is a computer program that can intelligently respond to the player’s moves. This game doesn’t introduce any complicated new concepts. The artificial intelligence that plays Tic Tac Toe is really just a few lines of code.
 Two people play Tic Tac Toe with paper and pencil. One player is X and the other player is O. On a nine-square board, players take turns placing their X or O. If a player gets three of their marks on the board in a row, column or one of the two diagonals, they win. When the board fills up with neither player winning, the game ends in a draw.
 While this chapter may not introduce many new programming concepts, it does make use of our existing programming knowledge to make an intelligent Tic Tac Toe player. Let’s get started by looking at a sample run of the program. The player makes their move by entering the number of the space they wish to go. These numbers are in the same places as the number keys on your keyboard's keypad (see Figure 10-2).
 
@@ -277,9 +277,11 @@ In the program, the Tic Tac Toe board is represented as a list of strings. Each 
 Figure 10-2: The board will be numbered like the keyboard's number pad.
 
 The strings will either be 'X' for the X player, 'O' for the O player, or a single space ' ' for a blank space.
-So if a list with ten strings was stored in a variable named board, then board[7] would be the top-left space on the board. Also, board[5] would be the center, board[4] would be the left side space, and so on. Because there is no 0 on the keypad, the program will just ignore the string at index 0 in our list. The player will enter a number from 1 to 9 to tell the game which space they want to move on.
+So if a list with ten strings was stored in a variable named board, then board[7] would be the top-left space on the board. Also, board[5] would be the center, board[4] would be the left side space, and so on. Because there is no 0 on the keypad, the program will ignore the string at index 0 in our list. The player will enter a number from 1 to 9 to tell the game which space they want to move on.
+
 Game AI
-The AI will need to be able to look at a board and decide which types of spaces it will move on. Just to be clear, we will label three types of spaces on the Tic Tac Toe board: corners, sides, and the center. Figure 10-3 is a chart of what each space is.
+
+The AI will need to be able to look at a board and decide which types of spaces it will move on. To be clear, we will label three types of spaces on the Tic Tac Toe board: corners, sides, and the center. Figure 10-3 is a chart of what each space is.
 
 Figure 10-3: Locations of the side, corner, and center places.
 
@@ -307,8 +309,11 @@ The Start of the Program
   1. # Tic Tac Toe
   2.
   3. import random
+
 The first couple of lines are a comment and importing the random module so we can use the randint() function in our game.
+
 Printing the Board on the Screen
+
   5. def drawBoard(board):
   6.     # This function prints out the board that it was passed.
   7.
@@ -458,7 +463,7 @@ The spam variable does not contain the list value itself, but rather spam contai
 
 Figure 10-5: Variables don’t store lists, but rather references to lists.
 
-Notice that the line cheese = spam copies the list reference in spam to cheese, instead of copying the list value itself. Both spam and cheese store a reference that refers to the same list value. There is only one list because the list was not copied, the reference to the list was copied. This is shown in Figure 10-6.
+Notice that cheese = spam copies the list reference in spam to cheese, instead of copying the list value itself. Both spam and cheese store a reference that refers to the same list value. There is only one list because the list was not copied, the reference to the list was copied. This is shown in Figure 10-6.
 
 Figure 10-6: Two variables store two references to the same list.
 
@@ -495,7 +500,7 @@ Let’s go back to the makeMove() function:
  48.     board[move] = letter
 
 When a list value is passed for the board parameter, the function's local variable is really a copy of the reference to the list, not a copy of the list. The letter and move parameters are copies of the string and integer values that we pass. Since they are copies, if we modify letter or move in this function, the original variables we used when we called makeMove() would not be modified. Only the copies would be modified.
-But a copy of the reference still refers to the same list that the original reference refers to. So any changes to board in this function will also happen to the original list. This is how the makeMove() function modifies the list that a reference of is passed.
+But a copy of the reference still refers to the same list the original reference refers. So any changes to board in this function will also happen to the original list. This is how the makeMove() function modifies the list that a reference of is passed.
 
 Checking if the Player Has Won
 
@@ -511,7 +516,7 @@ Checking if the Player Has Won
  59.     (bo[7] == le and bo[5] == le and bo[3] == le) or # diagonal
  60.     (bo[9] == le and bo[5] == le and bo[1] == le)) # diagonal
 
-Lines 53 to 60 in the isWinner() function are actually one very long if statement. The bo and le names are shortcuts for instead of using board and letter parameters so that we have less to type in this function. Remember, Python doesn’t care what you name your variables.
+Lines 53 to 60 in the isWinner() function are actually one long if statement. The bo and le names are shortcuts for instead of using board and letter parameters so that we have less to type in this function. Remember, Python doesn’t care what you name your variables.
 There are eight possible ways to win at Tic Tac Toe. You can have a line across the top, middle, and bottom. Or you can have a line down the left, middle, or right. Or you can have either of the two diagonals.
 Note that each line of the condition checks if the three spaces are equal to the letter provided (combined with the and operator) and we use the or operator to combine the eight different ways to win. This means only one of the eight ways must be true in order for us to say that the player who owns letter in le is the winner.
 Let’s pretend that le is 'O', and the board looks like this:
@@ -592,7 +597,7 @@ Once again, we get rid of the parentheses, and we are left with one value:
 
 53.     return True
 
-So given those values for bo and le, the expression would evaluate to True. This is how the program can tell if one of the players has won the game or not. Remember that the value of le matters. If le is 'O' and X has won the game, the isWinner() would return False.
+So given those values for bo and le, the expression would evaluate to True. This is how the program can tell if one of the players has won the game or not. The value of le matters. If le is 'O' and X has won the game, the isWinner() would return False.
 
 Duplicating the Board Data
 
@@ -630,7 +635,7 @@ The getPlayerMove() function asks the player to enter the number for the space t
 The two lines of code inside the while loop simply ask the player to enter a number from 1 to 9. The condition on line 78 is True if either of the expressions on the left or right side of the or keyword is True.
 The expression on the left side checks if the move that the player entered is equal to '1', '2', '3', and so on up to '9' by creating a list with these strings (with the split() method) and checking if move is in this list.
 '1 2 3 4 5 6 7 8 9'.split() evaluates to be the same as ['1', '2', '3', '4', '5', '6', '7', '8', '9'], but it easier to type. They both would do the same thing.
-The expression on the right side checks if the move that the player entered is a free space on the board. It checks this by calling the isSpaceFree() function we just wrote. Remember that isSpaceFree() will return True if the move we pass is available on the board. Note that isSpaceFree() expects an integer for move, so we use the int() function to evaluate an integer form of move.
+The expression on the right side checks if the move that the player entered is a free space on the board. It checks this by calling the isSpaceFree() function. Remember that isSpaceFree() will return True if the move we pass is available on the board. Note that isSpaceFree() expects an integer for move, so we use the int() function to evaluate an integer form of move.
 The not operators are added to both sides so that the condition will be True when either of these requirements are unfulfilled. This will cause the loop to ask the player again and again until they enter a proper move.
 Finally, on line 81, we will return the integer form of whatever move the player entered. Remember that input() returns a string, so the int() function is needed to evaluate the string to its integer value form.
 
@@ -817,7 +822,7 @@ Checking if the Board is Full
 136.             return False
 137.     return True
 
-The last function is isBoardFull(). This function returns True if the 10-string list board argument it was passed has an 'X' or 'O' in every index (except for index 0, which is just a placeholder that the code ignores). If there is at least one space in board that is set to a single space ' ' then it will return False.
+The last function is isBoardFull(). This function returns True if the 10-string list board argument it was passed has an 'X' or 'O' in every index (except for index 0, which is a placeholder that the code ignores). If there is at least one space in board that is set to a single space ' ' then it will return False.
 The for loop will let us check spaces 1 through 9 on the Tic Tac Toe board. As soon as it finds a free space in the board (that is, when isSpaceFree(board, i) returns True) the isBoardFull() function will return False.
 If execution manages to go through every iteration of the loop, you know that none of the spaces are free. Line 137 will execute return True.
 
@@ -860,7 +865,7 @@ This loop will keep going back and forth between the code for the player’s tur
 155.             makeMove(theBoard, playerLetter, move)
 
 The turn variable was originally set by the whoGoesFirst() call on line 146). It is either set to 'player' or 'computer'. If turn contains the string 'computer', then the condition is False and execution will jump down to line 169.
-The first thing to do is show the board to the player. Calling the drawBoard() and passing the theBoard variable will print the board on the screen. Then the getPlayerMove() function lets the player type in their move (and also makes sure it is a valid move). The makeMove() function updates theBoard to reflect this move.
+The first thing to do is call the drawBoard() passing the theBoard variable will print the board on the screen. Then the getPlayerMove() function lets the player type in their move (and also makes sure it is a valid move). The makeMove() function updates theBoard to reflect this move.
 
 157.             if isWinner(theBoard, playerLetter):
 158.                 drawBoard(theBoard)
@@ -883,7 +888,7 @@ Running the Computer’s Turn
 166.                 else:
 167.                     turn = 'computer'
 
-If the player hasn’t won or tied the game, then we should just set the turn variable to 'computer' so that when this while loop loops back to the start it will execute the code for the computer's turn.
+If the player hasn’t won or tied the game, then we should set the turn variable to 'computer' so that when this while loop loops back to the start it will execute the code for the computer's turn.
 
 169.         else:
 

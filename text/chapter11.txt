@@ -140,6 +140,7 @@ bagels.py
 76.         break
 
 Designing the Program
+
 The flow chart in Figure 11-1 describes what happens in this game, and in what order they can happen.
 
 Figure 11-1: Flow chart for the Bagels game.
@@ -158,7 +159,9 @@ Shuffling a Unique Set of Digits
  5.     random.shuffle(numbers)
 
 Line 4’s list(range(10)) will always evaluate to [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. It’s just easier to type list(range(10)). The numbers variable contains a list of all ten digits.
+
 The random.shuffle() Function
+
 The random.shuffle() function randomly changes the order of a list’s items. This function doesn’t return a value, but rather modifies the list you pass it “in place”. This is similar to the way the makeMove() function in the Tic Tac Toe chapter modified the list it was passed in place, rather than return a new list with the change. This is why you do not write code like numbers = random.shuffle(numbers).
 Try experimenting with the random.shuffle() function by entering the following code into the interactive shell:
 
@@ -178,6 +181,7 @@ Try experimenting with the random.shuffle() function by entering the following c
 >>> random.shuffle(spam)
 >>> print(spam)
 [9, 8, 3, 5, 4, 7, 1, 2, 0, 6]
+
 You want the secret number in Bagels to have unique digits. The Bagels game is much more fun if you don’t have duplicate numbers in the secret number, such as '244' or '333'. The shuffle() function will help you do this.
 
 Getting the Secret Number from the Shuffled Digits
@@ -265,7 +269,7 @@ Lists have a method named sort() that rearranges the items in the list to be in 
 >>> spam
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-The sort() method doesn’t return a sorted list, but rather just sorts the list it is called on “in place”. This is just like how the reverse() method works.
+The sort() method doesn’t return a sorted list, but rather sorts the list it is called on “in place”. This is just like how the reverse() method works.
 You would never want to use this line of code: return spam.sort() because that would return the value None (which is what sort() returns). Instead you would want a separate line spam.sort() and then the line return spam.
 The reason you want to sort the clue list is to get rid of extra information based on the order of the clues. If clue was ['Pico', 'Fermi', 'Pico'], then that would tell the player that the center digit of our guess is in the correct position. Since the other two clues are both Pico, the player would know that all they have to do is swap the first and third digit to get the secret number.
 If the clues are always sorted in alphabetical order, the player can’t be sure which number the Fermi clue refers. This is what we want for the game.
@@ -309,7 +313,6 @@ Finding out if the Player Wants to Play Again
 43.     return input().lower().startswith('y')
 
 The playAgain() function is the same one we used in Hangman and Tic Tac Toe. The long expression on line 43 evaluates to either True or False based on the answer given by the player.
-
 The Start of the Game
 
 45. NUMDIGITS = 3
@@ -424,4 +427,4 @@ Summary
 Bagels is a simple game to program but can be difficult to win at. But if you keep playing, you’ll eventually discover better ways to guess and make use of the clues the game gives you.
 This chapter introduced a few new functions and methods (random.shuffle(), sort(), and join()), along with a couple handy shortcuts. Using the augmented assignment operators involve less typing when you want to change a variable's relative value (such as in spam = spam + 1, which can be shortened to spam += 1). String interpolation can make your code much more readable by placing %s (called a conversion specifier) inside the string instead of using many string concatenation operations.
 The join() string method is passed a list of strings that will be concatenated together, with the original associated string in between them. The sort() list method will rearrange the items in the list to be in alphabetical order. The append() list method will add a value to the end of the associated list.
-The next chapter isn’t about programming directly, but will be necessary for the games we want to create in the later chapters of this book. We will learn about the math concepts of Cartesian coordinates and negative numbers. These are used in the Sonar, Reversi, and Dodger games, but Cartesian coordinates and negative numbers are used in many games. If you already know about these concepts, give the next chapter a brief read anyway just to freshen up.
+The next chapter isn’t about programming directly, but will be necessary for the games we want to create in the later chapters of this book. We will learn about the math concepts of Cartesian coordinates and negative numbers. These are used in the Sonar, Reversi, and Dodger games, but Cartesian coordinates and negative numbers are used in many games. If you already know about these concepts, give the next chapter a brief read anyway to refresh yourself.
