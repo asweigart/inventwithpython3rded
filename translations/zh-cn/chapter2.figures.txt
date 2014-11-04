@@ -1,0 +1,11 @@
+Fig 2-3:
+值
+运算符
+表达式
+
+Fig 2-4:
+spam
+
+Fig 2-5:
+eggs
+fizz
