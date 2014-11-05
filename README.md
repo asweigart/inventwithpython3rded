@@ -37,6 +37,23 @@ All translators will get attribution credit on the book cover, in the PDF, and o
 
 I appreciate the efforts of the translators to bring programming knowledge outside of the English-speaking world. I want them to know that I do not plan to personally profit off of their labor.
 
+Scope of the Translation
+------------------------
+
+While a complete translation of the book would be nice, Invent Your Own Computer Games with Python is a behemoth of a book. In retrospect, the book's size is quite intimidating for both readers and translators.
+
+I intend to cut back on the scope of the translated works. The foreign language versions will only go up to the Bagels chapter, and then include the Pygame chapters afterwards. This cuts chapters 12 to 16 (about 100 pages!) of translation work that would need to be done.
+
+The cut chapters would include:
+
+* Chapter 12 - Cartesian Coordinates
+* Chapter 13 - Sonar
+* Chapter 14 - Caesar Cipher
+* Chapter 15 - Reversi
+* Chapter 16 - AI Simulation
+
+If the translation teams were enthusiastic enough to translate these chapters, that'd be all the better. But I would prefer to initially have a conservative scope so as to not over-burden the volunteers.
+
 Suggested Guidelines for Translators
 ------------------------------------
 
