@@ -3,6 +3,8 @@ inventwithpython3rded
 
 Source text for "Invent Your Own Computer Games with Python, 3rd Edition" and repo for the translation efforts.
 
+NOTE TO ALL TRANSLATORS: Don't hesitate to contact me if you have questions or want to know what to do next. al@inventwithpython.com
+
 Why a 3rd Edition?
 ------------------
 
