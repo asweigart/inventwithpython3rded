@@ -8,7 +8,7 @@ Why a 3rd Edition?
 
 The 2nd edition came out in 2010 and was my first book. Since then, I've written three more books and gained experience from teaching programming to kids and adults. The 3rd edition will not have new content (aside from the Appendixes, which previously were only online), but has two major aims:
 
-1. Renewed copy editing efforts to make the text easier to read (especially for younger readers) and reduce the word count by 20%.
+1. Renewed copyediting efforts to make the text easier to read (especially for younger readers) and reduce the word count by 20%.
 
 2. Translate the book into other languages through volunteer efforts.
 
@@ -44,7 +44,7 @@ While a complete translation of the book would be nice, Invent Your Own Computer
 
 I intend to (optionally) cut back on the scope of the translated works. The foreign language versions will only go up to the Bagels chapter, and then include the Pygame chapters afterwards. This cuts chapters 12 to 16 (about 100 pages!) of translation work that would need to be done.
 
-The cut chapters would include:
+The optional chapters are:
 
 * Chapter 12 - Cartesian Coordinates
 * Chapter 13 - Sonar
@@ -55,6 +55,8 @@ The cut chapters would include:
 Once all the chapters are translated, we can see if the translators want to translate the cut chapters or just publish the book as is. I see the later chapters as not having as much value-per-page, and many readers don't end up getting to them.
 
 If the translation teams were enthusiastic enough to translate these chapters, that'd be all the better. But I would prefer to initially have a conservative scope so as to not overburden the volunteers.
+
+Also: There are no deadlines for translation projects. Feel free to work at your own pace. I'm grateful for all the help you can provide and don't mind if other things come up in your life.
 
 Suggested Guidelines for Translators
 ------------------------------------
