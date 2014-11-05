@@ -42,7 +42,7 @@ Scope of the Translation
 
 While a complete translation of the book would be nice, Invent Your Own Computer Games with Python is a behemoth of a book. In retrospect, the book's size is quite intimidating for both readers and translators.
 
-I intend to cut back on the scope of the translated works. The foreign language versions will only go up to the Bagels chapter, and then include the Pygame chapters afterwards. This cuts chapters 12 to 16 (about 100 pages!) of translation work that would need to be done.
+I intend to (optionally) cut back on the scope of the translated works. The foreign language versions will only go up to the Bagels chapter, and then include the Pygame chapters afterwards. This cuts chapters 12 to 16 (about 100 pages!) of translation work that would need to be done.
 
 The cut chapters would include:
 
@@ -52,7 +52,9 @@ The cut chapters would include:
 * Chapter 15 - Reversi
 * Chapter 16 - AI Simulation
 
-If the translation teams were enthusiastic enough to translate these chapters, that'd be all the better. But I would prefer to initially have a conservative scope so as to not over-burden the volunteers.
+Once all the chapters are translated, we can see if the translators want to translate the cut chapters or just publish the book as is. I see the later chapters as not having as much value-per-page, and many readers don't end up getting to them.
+
+If the translation teams were enthusiastic enough to translate these chapters, that'd be all the better. But I would prefer to initially have a conservative scope so as to not overburden the volunteers.
 
 Suggested Guidelines for Translators
 ------------------------------------
