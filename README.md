@@ -63,23 +63,25 @@ Suggested Guidelines for Translators
 
 First, thank you for helping with the translation of "Invent with Python". Here are some helpful guidelines:
 
-0. Read and agree to the Contributor License Agreement. (I've copied the one used by NodeJS.) This is available at https://github.com/asweigart/inventwithpython3rded/blob/master/cla.md. You can agree by sending al@inventwithpython.com an email saying "I agree to the Invent with Python Contributor License Agreement". This is mostly a formality.
+1. Read and agree to the Contributor License Agreement. (I've copied the one used by NodeJS.) This is available at https://github.com/asweigart/inventwithpython3rded/blob/master/cla.md. You can agree by sending al@inventwithpython.com an email saying "I agree to the Invent with Python Contributor License Agreement". This is mostly a formality.
 
 1. Look at the translations/<lang code>/README.md file to contact other translators working on your language.
 
-2. Read this README.md file to note any special parts of the book that may need additional attention. Feel free to add to this file.
+1. Read this README.md file to note any special parts of the book that may need additional attention. Feel free to add to this file.
 
-2. Translate the programs first. Do not change the order or position of the code, as that will require tedious updating of line numbers in the book. Long lines of code are fine. Consult (and update) the src/_ISSUES.txt file for any language-translation issues that come up.
+1. Translate the programs first. Do not change the order or position of the code, as that will require tedious updating of line numbers in the book. Long lines of code are fine. Consult (and update) the src/_ISSUES.txt file for any language-translation issues that come up.
 
-3. Save the .py files of the programs with UTF-8 encoding. (This is the default encoding the Python 3 expects source files to be in.)
+1. To prevent overlapping work with other translators, see the Tasks page on the wiki for your language: http://invent-with-python-translations.wikia.com/wiki/Invent_with_Python_Translations_Wiki
 
-4. Make notes of any cultural differences that would require more than just a straight translation to the translations/<lang code>/README.md file.
+1. Save the .py files of the programs with UTF-8 encoding. (This is the default encoding the Python 3 expects source files to be in.)
 
-5. All of the files for a translation go into the translations/<lang code> folder. This includes the text files, figure image files, and source code .py files. (Look at the other folders to get an idea of the structure.) These text files will just hold the content. Formatting (such as bold text, different fonts, etc) will be done in Word at a later step. The text files just hold the textual content.
+1. Make notes of any cultural differences that would require more than just a straight translation to the translations/<lang code>/README.md file.
 
-6. Add spaces to line up the columns for tables to make it obvious which text is in which cell.
+1. All of the files for a translation go into the translations/<lang code> folder. This includes the text files, figure image files, and source code .py files. (Look at the other folders to get an idea of the structure.) These text files will just hold the content. Formatting (such as bold text, different fonts, etc) will be done in Word at a later step. The text files just hold the textual content.
 
-7. Translations for text in the figure images can go in the <lang code>_chapterN.figures.txt file. Not all chapters have figures, and not all figures have text that needs to be translated.
+1. Add spaces to line up the columns for tables to make it obvious which text is in which cell.
+
+1. Translations for text in the figure images can go in the <lang code>_chapterN.figures.txt file. Not all chapters have figures, and not all figures have text that needs to be translated.
 
 Special Thanks
 --------------
