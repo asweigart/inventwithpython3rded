@@ -3,11 +3,11 @@ import random
 
 abgegebenTipps = 0
 
-print('Hallo? Was ist dein Name')
+print('Hallo! Was ist dein Name?')
 meinName = input()
 
 zahl = random.randint(1, 20)
-print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 20')
+print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 20.')
 
 while abgegebenTipps < 6:
     print('Los, rate.') # Vor print sind vier Leerzeichen.

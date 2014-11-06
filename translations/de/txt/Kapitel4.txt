@@ -1,0 +1,106 @@
+    Kapitel 4
+
+    Rate die Zahl
+
+In diesem Kapitel lernst du:
+
+•   import Kommandos
+•   Module
+•   Argumente
+•   while Kommandos
+•   Bedingungen
+•   Blöcke
+•   Boolean-Datentypen
+•   Vergleichsoperatoren
+•   Den Unterschied zwischen = und ==
+•   if Kommandos
+•   Das break Kommando
+•   Die str() und int() Funktionen
+•   Die random.randint() Funktion
+
+Das "Rate die Zahl" Spiel
+
+In diesem Kapitel wirst du ein "Rate die Zahl" Spiel schreiben. Der Computer wird an eine Zufallzahl zwischen 1 und 20 denken und dich bitten, sie zu erraten. Der Computer wird dir bei jedem Tipp, den du abgibst, sagen ob er zu hoch oder zu niedrig war. Du gewinnst wenn du die Zahl innerhalb von sechs Versuchen errätst.
+
+"Rate die Zahl" ist interessant zu programmieren weil es Zufallszahlen, Schleifen und Benutzereingaben in einem ziemlich kurzen Programm verwendet. Du wirst lernen, wie man Werte in unterschiedliche Datentypen umwandelt (und warum das notwendig ist). Weil unser Programm ein Spiel ist, nennen wir den Benutzer Spieler, aber "Benutzer" wäre auch ok.
+
+Beispiel Lauf zu "Rate die Zahl"
+
+So sieht das Programm für den Spieler aus, wenn es ausgeführt wird. Der Text den der Spieler eintippt ist fett geschrieben.
+
+Hallo! Was ist dein Name?
+Albert
+Also, Albert, ich denke an eine Zahl zwischen 1 und 20.
+Los, rate.
+10
+Los, rate.
+Dein Tipp ist zu hoch.
+Los, rate.
+2
+Dein Tipp ist zu niedrig.
+Los, rate.
+4
+Gut gemacht, Albert! Du hast meine Zahl in 3 Zügen erraten.
+
+Gib diesen Programmcode genau so wie er hier steht ein und klick dann auf Datei►Speichern unter. Verwende zahlenRaten.py als Dateinamen. Dann drück F5 um das Programm auszuführen. Keine Sorge wenn du den Code jetzt noch nicht verstehst, ich werde ihn dir Schritt für Schritt erklären.
+
+Der Quellcode von "Rate die Zahl"
+
+Hier ist der Quellcode von "Rate dir Zahl". Gib auf die Leerzeichen vor manchen der Zeilen acht, wenn du den Quellcode in den Dateieditor eingibst. Manche der Zeilen haben vier, manche haben acht Leerzeichen.  
+
+WICHTIGER HINWEIS! Die Programme in diesem Buch können nur in Python 3 ausgeführt werden, nicht in Python 2. Wenn IDLE startet sollte es so etwas wie "Python 3.4.0" oben anzeigen. Du kannst Python 2 und Python 3 zur selben Zeit auf deinem Computer installiert haben. Um Python 3 herunter zu laden geh zu http://python.org/download/.
+
+Du kannst diesen Code von http://invpy.com/de/zahlenRaten.py herunterladen. Wenn du nach dem Eintippen des Codes Fehlermeldungen bekommst, verwende das Online diff Werkzeug unter http://invpy.com/diff/de/zahlenRaten um deinen Code mit dem Code aus dem Buch zu vergleichen.
+
+zahlenRaten.py
+    
+ 1.  # Das ist ein Zahlenratespiel.
+ 2.  import random
+ 3.  
+ 4.  abgegebenTipps = 0
+ 5.  
+ 6.  print('Hallo! Was ist dein Name?')
+ 7.  meinName = input()
+ 8.  
+ 9.  zahl = random.randint(1, 20)
+10.  print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 20.')
+11.  
+12.  while abgegebenTipps < 6:
+13.      print('Los, rate.') # Vor print sind vier Leerzeichen.
+14.      tipp = input()
+15.      tipp = int(tipp)
+16.  
+17.      abgegebenTipps = abgegebenTipps + 1
+18.  
+19.      if tipp < zahl:
+20.          print('Dein Tipp ist zu niedrig.') # Hier sind acht Leerzeichen vor print.
+21.  
+22.      if tipp > zahl:
+23.          print('Dein Tipp ist zu hoch.')
+24.  
+25.      if tipp == zahl:
+26.          break
+27.  
+28.  if tipp == zahl:
+29.      abgegebenTipps = str(abgegebenTipps)
+30.      print('Gut gemacht, ' + meinName + '! Du hast meine Zahl in ' + abgegebenTipps + ' Zügen erraten!')
+31.  
+32.  if tipp != zahl:
+33.      zahl = str(zahl)
+34.      print('Nene. Die Nummer an die ich gedacht habe war ' + zahl)
+
+Jetzt schauen wir uns den Code Zeile für Zeile an um zu verstehen wie das Programm funktioniert.
+
+Der import Befehl.
+
+ 1.  # Das ist ein Zahlenratespiel.
+ 2.  import random
+ 
+Die erste Zeile ist ein Kommentar. Python ignoriert alles nach dem # Zeichen. Diese Zeile dient nur dazu, uns daran zu erinnern was das Programm macht.
+
+#TODO: Check that we really already know that.
+Zeile Zwei ist ein import Befehl. Befehle sind Instruktionen die eine Handlung durchführen aber nicht wie Ausdrücke ausgewertete werden können. Wir haben bereits Befehle kennengelernt: Zuweisungsbefehle speichern einen Wert in einer Variable (aber der Befehl selbst kann nicht ausgwertet werden).
+
+Python bringt viele Funktionen mit, ein großer Teil davon befindet sich aber in getrennten Programmen die Module genannt werden. Module sind Python Programme die zusätzliche Funktionen beinhalten. Um diese Funktionen zu verwenden musst du die zugerhörigen Module mit einem import Befehl in dein Programm importieren.
+
+Der import Befehl besteht aus dem import Schlüsselwort gefolgt vom Modulnamen. Zeile 2 importiert das modul mit dem Namen random (engl. zufällig). Das random module enthält einige Funktionen die mit Zufallszahlen zu tun haben. Eine dieser Funktionen liefert die Zufallszahlen die der Benutzer erraten muss.
