@@ -1,0 +1,2 @@
+Fig 1-1:
+Pastikan instal Python 3, bukan Python 2!
