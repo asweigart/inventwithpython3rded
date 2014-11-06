@@ -1,12 +1,16 @@
+cake, torta
+case-sensitive, sensible a mayúsculas
 computer, computadora
 draw, dibujar
 input, entrada
 get, obtener
 loop, bucle
 move (noun), movida
+return value, valor de retorno
 run, ejecutar
 set, establecer
 set up, configurar
 shell, consola
 show, mostrar
 statement, sentencia
+#(pound sign), símbolo almohadilla
