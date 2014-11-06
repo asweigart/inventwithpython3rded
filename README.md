@@ -77,6 +77,8 @@ First, thank you for helping with the translation of "Invent with Python". Here 
 
 1. Save the .py files of the programs with UTF-8 encoding. (This is the default encoding the Python 3 expects source files to be in.)
 
+1. A note about the source code: There are a lot of places where the code could improve (I wrote it a long time ago and learned much since). But I'd like to keep the code frozen (aside from the text translations). I'm doing this in the English version so that those who bought the 2nd edition book can still use the website without confusion. But I'd also like to keep the English source code in sync with the foreign language source code as well.
+
 1. Make notes of any cultural differences that would require more than just a straight translation to the translations/<lang code>/README.md file.
 
 1. All of the files for a translation go into the translations/<lang code> folder. This includes the text files, figure image files, and source code .py files. (Look at the other folders to get an idea of the structure.) These text files will just hold the content. Formatting (such as bold text, different fonts, etc) will be done in Word at a later step. The text files just hold the textual content.
