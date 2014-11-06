@@ -42,7 +42,7 @@ def hämtaNyttBräde():
     bräde = []
     for x in range(60): # huvudlistan är en lista bestående av 60 listor
         bräde.append([])
-        for y in range(15): # varje lista i huvudlistan innehåller 15 stränger med ett tecken i varje
+        for y in range(15): # varje lista i huvudlistan innehåller 15 strängar med ett tecken i varje
             # använd olika tecken för havet för att göra det mer läsbart
             if random.randint(0, 1) == 0:
                 bräde[x].append('~')
@@ -50,168 +50,168 @@ def hämtaNyttBräde():
                 bräde[x].append('`')
     return bräde
 
-def getRandomChests(numChests):
-    # Create a list of chest data structures (two-item lists of x, y int coordinates)
-    chests = []
-    for i in range(numChests):
-        chests.append([random.randint(0, 59), random.randint(0, 14)])
-    return chests
+def slumpaFramKistor(antalKistor):
+    # Skapa en lista med kistor (två heltal som representerar x- och y-koordinater)
+    kistor = []
+    for i in range(antalKistor):
+        kistor.append([random.randint(0, 59), random.randint(0, 14)])
+    return kistor
 
-def isValidMove(x, y):
-    # Return True if the coordinates are on the board, otherwise False.
+def ärTillåtetDrag(x, y):
+    # Returnerar True om koordinaterna finns på brädet, annars False.
     return x >= 0 and x <= 59 and y >= 0 and y <= 14
 
-def makeMove(bräde, chests, x, y):
-    # Change the board data structure with a sonar device character. Remove treasure chests
-    # from the chests list as they are found. Return False if this is an invalid move.
-    # Otherwise, return the string of the result of this move.
-    if not isValidMove(x, y):
+def utförDrag(bräde, kistor, x, y):
+    # Lägg till ett tecken för ekolodet på brädet. Ta bort skattkistor
+    # från listan med kistor när de hittas. Returnera False om draget är otillåtet.
+    # Annars, returnera en sträng med resultatet av draget.
+    if not ärTillåtetDrag(x, y):
         return False
 
-    smallestDistance = 100 # any chest will be closer than 100.
-    for cx, cy in chests:
+    minstaDistans = 100 # alla kistor ligger närmare än 100
+    for cx, cy in kistor:
         if abs(cx - x) > abs(cy - y):
-            distance = abs(cx - x)
+            distans = abs(cx - x)
         else:
-            distance = abs(cy - y)
+            distans = abs(cy - y)
 
-        if distance < smallestDistance: # we want the closest treasure chest.
-            smallestDistance = distance
+        if distans < minstaDistans: # vi vill ha den närmaste skattkistan
+            minstaDistans = distans
 
-    if smallestDistance == 0:
-        # xy is directly on a treasure chest!
-        chests.remove([x, y])
-        return 'You have found a sunken treasure chest!'
+    if minstaDistans == 0:
+        # xy är direkt ovanför en skattkista!
+        kistor.remove([x, y])
+        return 'Du har hittat en sjunken skattkista!'
     else:
-        if smallestDistance < 10:
-            bräde[x][y] = str(smallestDistance)
-            return 'Treasure detected at a distance of %s from the sonar device.' % (smallestDistance)
+        if minstaDistans < 10:
+            bräde[x][y] = str(minstaDistans)
+            return 'Skatt upptäckt på en distans av %s från ekolodet.' % (minstaDistans)
         else:
             bräde[x][y] = 'O'
-            return 'Sonar did not detect anything. All treasure chests out of range.'
+            return 'Ekolodet upptäckte ingenting. Alla skattkistor ligger utom räckhåll.'
 
 
-def enterPlayerMove():
-    # Let the player type in her move. Return a two-item list of int xy coordinates.
-    print('Where do you want to drop the next sonar device? (0-59 0-14) (or type quit)')
+def hämtaSpelarDrag():
+    # Låt spelaren mata in sitt drag. Returnera en lista med x- och y-koordinater.
+    print('Var vill du släppa nästa ekolod? (0-59 0-14) (eller skriv sluta)')
     while True:
-        move = input()
-        if move.lower() == 'quit':
-            print('Thanks for playing!')
+        drag = input()
+        if drag.lower() == 'sluta':
+            print('Tack för att du spelade!')
             sys.exit()
 
-        move = move.split()
-        if len(move) == 2 and move[0].isdigit() and move[1].isdigit() and isValidMove(int(move[0]), int(move[1])):
-            return [int(move[0]), int(move[1])]
-        print('Enter a number from 0 to 59, a space, then a number from 0 to 14.')
+        drag = drag.split()
+        if len(drag) == 2 and drag[0].isdigit() and drag[1].isdigit() and ärTillåtetDrag(int(drag[0]), int(drag[1])):
+            return [int(drag[0]), int(drag[1])]
+        print('Ange ett tal mellan 0 och 59, ett mellanrum, sedan ett tal mellan 0 och 14.')
 
 
-def playAgain():
-    # This function returns True if the player wants to play again, otherwise it returns False.
-    print('Do you want to play again? (yes or no)')
-    return input().lower().startswith('y')
+def spelaIgen():
+    # Den här funktionen returnerar True om spelaren vill spela igen, annars returnerar den False.
+    print('Vill du spela igen? (ja eller nej)')
+    return input().lower().startswith('j')
 
 
-def showInstructions():
-    print('''Instructions:
-You are the captain of the Simon, a treasure-hunting ship. Your current mission
-is to find the three sunken treasure chests that are lurking in the part of the
-ocean you are in and collect them.
+def visaInstruktioner():
+    print('''Instruktioner:
+Du är kapten på Simon, ett skattjägar-skepp. Ditt nuvarande uppdrag
+är att hitta de tre sjunkna skattkistor som döljer sig i den del av 
+havet där du befinner dig och samla in dem.
 
-To play, enter the coordinates of the point in the ocean you wish to drop a
-sonar device. The sonar can find out how far away the closest chest is to it.
-For example, the d below marks where the device was dropped, and the 2's
-represent distances of 2 away from the device. The 4's represent
-distances of 4 away from the device.
+För att spela, ange koordinaterna för den plats i havet där du vill släppa ett
+ekolod. Ekolodet kan räkna ut på vilket avstånd den närmaste kistan finns.
+Ett exempel: Bokstaven e nedan visar var ekolodet har släppts, och tvåorna
+representerar ett avstånd på 2 enheter från ekolodet. Fyrorna representerar
+avstånd på 4 enheter från ekolodet.
 
     444444444
     4       4
     4 22222 4
     4 2   2 4
-    4 2 d 2 4
+    4 2 e 2 4
     4 2   2 4
     4 22222 4
     4       4
     444444444
-Press enter to continue...''')
+Tryck enter för att fortsätta...''')
     input()
 
-    print('''For example, here is a treasure chest (the c) located a distance of 2 away
-from the sonar device (the d):
+    print('''Till exempel, här ligger en skattkista (markerad med s) på ett avstånd av 2 enheter
+från ekolodet (markerat med e):
 
     22222
-    c   2
-    2 d 2
+    s   2
+    2 e 2
     2   2
     22222
 
-The point where the device was dropped will be marked with a 2.
+Platsen där ekolodet släpptes kommer att markeras med en tvåa.
 
-The treasure chests don't move around. Sonar devices can detect treasure
-chests up to a distance of 9. If all chests are out of range, the point
-will be marked with O
+Skattkistorna flyttar sig inte. Ekoloden kan upptäcka skattkistor
+på ett avstånd av upp till 9 enheter. Om alla kistor ligger utom räckhåll, så kommer platsen
+att markeras med en nolla.
 
-If a device is directly dropped on a treasure chest, you have discovered
-the location of the chest, and it will be collected. The sonar device will
-remain there.
+Om ett ekolod släpps rakt på en skattkista så kommer du att upptäcka
+kistan och den kommer att samlas in. Ekolodet kommer att 
+ligga kvar på platsen.
 
-When you collect a chest, all sonar devices will update to locate the next
-closest sunken treasure chest.
-Press enter to continue...''')
+När du samlar in en kista kommer alla ekolod att uppdateras för att lokalisera
+den kista som därefter ligger närmast.
+Tryck enter för att fortsätta...''')
     input()
     print()
 
 
-print('S O N A R !')
+print('E K O L O D !')
 print()
-print('Would you like to view the instructions? (yes/no)')
-if input().lower().startswith('y'):
-    showInstructions()
+print('Vill du läsa instruktionerna? (ja/nej)')
+if input().lower().startswith('j'):
+    visaInstruktioner()
 
 while True:
-    # game setup
-    sonarDevices = 16
-    theBoard = hämtaNyttBräde()
-    theChests = getRandomChests(3)
-    ritaBräde(theBoard)
-    previousMoves = []
+    # förbered spelet
+    antalEkolod = 16
+    brädet = hämtaNyttBräde()
+    kistorna = slumpaFramKistor(3)
+    ritaBräde(brädet)
+    tidigareDrag = []
 
-    while sonarDevices > 0:
-        # Start of a turn:
+    while antalEkolod > 0:
+        # Starten av en omgång:
 
-        # show sonar device/chest status
-        if sonarDevices > 1: extraSsonar = 's'
-        else: extraSsonar = ''
-        if len(theChests) > 1: extraSchest = 's'
-        else: extraSchest = ''
-        print('You have %s sonar device%s left. %s treasure chest%s remaining.' % (sonarDevices, extraSsonar, len(theChests), extraSchest))
+        # visa status för antalet ekolod/kistor
+        if antalEkolod > 1: ekolodändelse = '-enheter'
+        else: ekolodändelse = '-enhet'
+        if len(kistorna) > 1: kiständelse = 'or'
+        else: kiständelse = 'a'
+        print('Du har %s ekolod%s kvar. %s skattkist%s återstår.' % (antalEkolod, ekolodändelse, len(kistorna), kiständelse))
 
-        x, y = enterPlayerMove()
-        previousMoves.append([x, y]) # we must track all moves so that sonar devices can be updated.
+        x, y = hämtaSpelarDrag()
+        tidigareDrag.append([x, y]) # vi måste spara alla drag så att ekoloden kan uppdateras
 
-        moveResult = makeMove(theBoard, theChests, x, y)
-        if moveResult == False:
+        resultatAvDrag = utförDrag(brädet, kistorna, x, y)
+        if resultatAvDrag == False:
             continue
         else:
-            if moveResult == 'You have found a sunken treasure chest!':
-                # update all the sonar devices currently on the map.
-                for x, y in previousMoves:
-                    makeMove(theBoard, theChests, x, y)
-            ritaBräde(theBoard)
-            print(moveResult)
+            if resultatAvDrag == 'Du har hittat en sjunken skattkista!':
+                # uppdatera alla ekolod som för närvarande finns på kartan
+                for x, y in tidigareDrag:
+                    utförDrag(brädet, kistorna, x, y)
+            ritaBräde(brädet)
+            print(resultatAvDrag)
 
-        if len(theChests) == 0:
-            print('You have found all the sunken treasure chests! Congratulations and good game!')
+        if len(kistorna) == 0:
+            print('Du har hittat alla sjunkna skattkistor! Grattis och bra spelat!')
             break
 
-        sonarDevices -= 1
+        antalEkolod -= 1
 
-    if sonarDevices == 0:
-        print('We\'ve run out of sonar devices! Now we have to turn the ship around and head')
-        print('for home with treasure chests still out there! Game over.')
-        print('    The remaining chests were here:')
-        for x, y in theChests:
+    if antalEkolod == 0:
+        print('Vi har fått slut på ekolod! Nu måste vi vända skutan och ge oss av')
+        print('hemåt trots att skattkistor ligger kvar i havet! Spelet är över.')
+        print('    De återstående kistorna fanns här:')
+        for x, y in kistorna:
             print('    %s, %s' % (x, y))
 
-    if not playAgain():
+    if not spelaIgen():
         sys.exit()
