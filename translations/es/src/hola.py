@@ -1,5 +1,5 @@
-# Este programa me saluda y pregunta por mi nombre.
+# Este programa saluda y pregunta por mi nombre.
 print('¡Hola Mundo!')
-print('¿Cuál es tu nombre?')
+print('¿Cómo te llamas?')
 miNombre = input()
 print('Es un placer conocerte, ' + miNombre)
