@@ -18,6 +18,8 @@ Untuk memberi instruksi komputer, kamu harus membuat sebuah program dalam sebuah
 
 Ketika aku masih kanak-kanak, BASIC merupakan bahasa pertama yang sering dipelajari. Kemudian, bahasa pemgrogaman seperti Python tercipta. Python lebih mudah dipelajari daripada BASIC! Namun, tetap merupakan bahasa pemrograman yang serius yang digunakan programmer profesional. Banyak orang dewasa menggunakan Python dalam untuk kerjaan mereka dan ketika sedang memrogram untuk bersenang-senang. 
 
+Games yang akan kamu buat dari buku ini terlihat sederhana dibandingkan dengan games utuk Xbox, Playstation, atau Wii. Game di sini tidak akan punya grafik yang bagus karena bertujuan untuk mengajarkan dasar pemrograman. Game ini sengaja dibuat sederhana sehingga kamu bisa fokus pada belajar membuat program. Dan games tidak harus kompleks untuk menyenangkan. 
+
 Pengunduhan dan installasi Python
 
 Kamu perlu menginstal perangkat lunak bernaman Python interpreter. Program interpreter ini mengerti instruksi yang akan kamu tulis dalam bahasa Python. Lebih lanjut aku akan menggunakan kata "Python" yang mengacu pada "perangkat lunak Python interpreter". 
@@ -39,6 +41,7 @@ Pada Windows, klik tombol Start di sudut kiri bawah, ketik "IDLE" lalu pilih IDL
 Pada MAC OS X, buka jendela Finder, lalu klik Aplications. Setelah itu, klik Python 3.4, lalu klik ikon IDLE. 
 
 Pada Ubuntu atau Linux, buka jendela terminal, lalu ketik "idle3". Kamu juga dapat mengeklik Applications pada bagian atas layar, lalu klik "Programming and IDLE 3".
+
 
 
 Gambar 1-2: Shell interaktif program IDLE pada Windows, OS X, dan Ubuntu Linux.
@@ -92,6 +95,7 @@ Kamu juga dapat mengirim email untukku pada alamat al@inventwithpython.com.
 Perhatikan bahwa ada banyak cara mengajukan pertanyaan pemrograman secara cerdas yang dapat mempermudah orang lain membantumu. Pastikan membaca bagian Frequently Asked Questions dalam situs-situs itu berkenaan dengan cara yang diharapkan untuk mengajukan pertanyaan. Ketika bertanya seputar pemrograman, lakukan hal berikut:
 
 •   Jika kamu mengetik secara langsung program dalam buku ini dan mendapatkan error, cek terlebih dahulu salah ketik dengan perkakas pembeda online di http://invpy.com/diff. Salin dan tempel kodemu ke dalam perkakas pembeda untuk menemukan perbedaan dengan kode dalam buku ini. 
+•   Jelaskan apa yang akan kamu coba lakukan ketika kamu menjelaskan error. Dengan demikian orang lain akan tahu apakah kamu berada di jalur yang salah.
 •   Salin dan tempel seluruh pesan error dan kodemu
 •   Lalukan pencarian online untuk memastikan apakah ada orang lain dengan pertanyaan sama yang mungkin sudah terjawab. 
 •   Jelaskan apa yang sudah dilakukan untuk menyelesaikan masalah. Hal ini menjelaskan pada orang lain bahwa kamu sudah berusaha memecahkan masalah itu sendiri. 
