@@ -28,3 +28,8 @@ General Notes
 - domain
 - post
 - tracing
+- floating point
+- games
+- video games
+- keyboard
+- prompt
