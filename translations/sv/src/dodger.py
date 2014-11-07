@@ -60,7 +60,7 @@ skurkbild = pygame.image.load('baddie.png')
 
 # visa startskärmen
 ritaText('Smitaren', font, fönsteryta, (FÖNSTERBREDD / 3), (FÖNSTERHÖJD / 3))
-ritaText('Tryck på en tangent för att starta.', font, fönsteryta, (FÖNSTERBREDD / 3) - 30, (FÖNSTERHÖJD / 3) + 50)
+ritaText('Tryck på en tangent för att starta.', font, fönsteryta, (FÖNSTERBREDD / 3) - 160, (FÖNSTERHÖJD / 3) + 50)
 pygame.display.update()
 väntaPåKnapptryckning()
 
@@ -192,8 +192,8 @@ while True:
     pygame.mixer.music.stop()
     speletÖverLjud.play()
 
-    ritaText('SPELET ÖVER', font, fönsteryta, (FÖNSTERBREDD / 3), (FÖNSTERHÖJD / 3))
-    ritaText('Tryck på en tangent för att spela igen.', font, fönsteryta, (FÖNSTERBREDD / 3) - 80, (FÖNSTERHÖJD / 3) + 50)
+    ritaText('GAME OVER', font, fönsteryta, (FÖNSTERBREDD / 3), (FÖNSTERHÖJD / 3))
+    ritaText('Tryck en tangent för att spela igen.', font, fönsteryta, (FÖNSTERBREDD / 3) - 180, (FÖNSTERHÖJD / 3) + 50)
     pygame.display.update()
     väntaPåKnapptryckning()
 
