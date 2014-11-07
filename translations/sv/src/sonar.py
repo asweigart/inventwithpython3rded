@@ -91,7 +91,7 @@ def utförDrag(bräde, kistor, x, y):
             return 'Ekolodet upptäckte ingenting. Alla skattkistor ligger utom räckhåll.'
 
 
-def hämtaSpelarDrag():
+def hämtaSpelardrag():
     # Låt spelaren mata in sitt drag. Returnera en lista med x- och y-koordinater.
     print('Var vill du släppa nästa ekolod? (0-59 0-14) (eller skriv sluta)')
     while True:

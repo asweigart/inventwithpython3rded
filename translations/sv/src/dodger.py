@@ -1,200 +1,200 @@
 import pygame, random, sys
 from pygame.locals import *
 
-WINDOWWIDTH = 600
-WINDOWHEIGHT = 600
-TEXTCOLOR = (255, 255, 255)
-BACKGROUNDCOLOR = (0, 0, 0)
+FÖNSTERBREDD = 600
+FÖNSTERHÖJD = 600
+TEXTFÄRG = (255, 255, 255)
+BAKGRUNDSFÄRG = (0, 0, 0)
 FPS = 40
-BADDIEMINSIZE = 10
-BADDIEMAXSIZE = 40
-BADDIEMINSPEED = 1
-BADDIEMAXSPEED = 8
-ADDNEWBADDIERATE = 6
-PLAYERMOVERATE = 5
+SKURK_MIN_STORLEK = 10
+SKURK_MAX_STORLEK = 40
+SKURK_MIN_HASTIGHET = 1
+SKURK_MAX_HASTIGHET = 8
+NY_SKURK_NIVÅ = 6
+SPELARHASTIGHET = 5
 
-def terminate():
+def avsluta():
     pygame.quit()
     sys.exit()
 
-def waitForPlayerToPressKey():
+def väntaPåKnapptryckning():
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
-                terminate()
+                avsluta()
             if event.type == KEYDOWN:
-                if event.key == K_ESCAPE: # pressing escape quits
-                    terminate()
+                if event.key == K_ESCAPE: # ett tryck på escape avslutar spelet
+                    avsluta()
                 return
 
-def playerHasHitBaddie(playerRect, baddies):
-    for b in baddies:
-        if playerRect.colliderect(b['rect']):
+def spelareHarTräffatSkurk(spelarrektangel, skurkar):
+    for s in skurkar:
+        if spelarrektangel.colliderect(s['rektangel']):
             return True
     return False
 
-def drawText(text, font, surface, x, y):
-    textobj = font.render(text, 1, TEXTCOLOR)
-    textrect = textobj.get_rect()
-    textrect.topleft = (x, y)
-    surface.blit(textobj, textrect)
+def ritaText(text, font, yta, x, y):
+    textobj = font.render(text, 1, TEXTFÄRG)
+    textrektangel = textobj.get_rect()
+    textrektangel.topleft = (x, y)
+    yta.blit(textobj, textrektangel)
 
-# set up pygame, the window, and the mouse cursor
+# förbered pygame, fönstret och muspekaren
 pygame.init()
-mainClock = pygame.time.Clock()
-windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
-pygame.display.set_caption('Dodger')
+huvudklocka = pygame.time.Clock()
+fönsteryta = pygame.display.set_mode((FÖNSTERBREDD, FÖNSTERHÖJD))
+pygame.display.set_caption('Smitaren')
 pygame.mouse.set_visible(False)
 
-# set up fonts
+# förbered font
 font = pygame.font.SysFont(None, 48)
 
-# set up sounds
-gameOverSound = pygame.mixer.Sound('gameover.wav')
+# förbered ljud
+speletÖverLjud = pygame.mixer.Sound('gameover.wav')
 pygame.mixer.music.load('background.mid')
 
-# set up images
-playerImage = pygame.image.load('player.png')
-playerRect = playerImage.get_rect()
-baddieImage = pygame.image.load('baddie.png')
+# förbered bilder
+spelarbild = pygame.image.load('player.png')
+spelarrektangel = spelarbild.get_rect()
+skurkbild = pygame.image.load('baddie.png')
 
-# show the "Start" screen
-drawText('Dodger', font, windowSurface, (WINDOWWIDTH / 3), (WINDOWHEIGHT / 3))
-drawText('Press a key to start.', font, windowSurface, (WINDOWWIDTH / 3) - 30, (WINDOWHEIGHT / 3) + 50)
+# visa startskärmen
+ritaText('Smitaren', font, fönsteryta, (FÖNSTERBREDD / 3), (FÖNSTERHÖJD / 3))
+ritaText('Tryck på en tangent för att starta.', font, fönsteryta, (FÖNSTERBREDD / 3) - 30, (FÖNSTERHÖJD / 3) + 50)
 pygame.display.update()
-waitForPlayerToPressKey()
+väntaPåKnapptryckning()
 
 
-topScore = 0
+bästaPoäng = 0
 while True:
-    # set up the start of the game
-    baddies = []
-    score = 0
-    playerRect.topleft = (WINDOWWIDTH / 2, WINDOWHEIGHT - 50)
-    moveLeft = moveRight = moveUp = moveDown = False
-    reverseCheat = slowCheat = False
-    baddieAddCounter = 0
+    # förbered för start av spelet
+    skurkar = []
+    poäng = 0
+    spelarrektangel.topleft = (FÖNSTERBREDD / 2, FÖNSTERHÖJD - 50)
+    flyttaVänster = flyttaHöger = flyttaUpp = flyttaNer = False
+    bakåtfusk = bromsfusk = False
+    läggTillSkurkRäknare = 0
     pygame.mixer.music.play(-1, 0.0)
 
-    while True: # the game loop runs while the game part is playing
-        score += 1 # increase score
+    while True: # spelloopen körs medan spelet pågår
+        poäng += 1 # öka poängen
 
         for event in pygame.event.get():
             if event.type == QUIT:
-                terminate()
+                avsluta()
 
             if event.type == KEYDOWN:
                 if event.key == ord('z'):
-                    reverseCheat = True
+                    bakåtfusk = True
                 if event.key == ord('x'):
-                    slowCheat = True
+                    bromsfusk = True
                 if event.key == K_LEFT or event.key == ord('a'):
-                    moveRight = False
-                    moveLeft = True
+                    flyttaHöger = False
+                    flyttaVänster = True
                 if event.key == K_RIGHT or event.key == ord('d'):
-                    moveLeft = False
-                    moveRight = True
+                    flyttaVänster = False
+                    flyttaHöger = True
                 if event.key == K_UP or event.key == ord('w'):
-                    moveDown = False
-                    moveUp = True
+                    flyttaNer = False
+                    flyttaUpp = True
                 if event.key == K_DOWN or event.key == ord('s'):
-                    moveUp = False
-                    moveDown = True
+                    flyttaUpp = False
+                    flyttaNer = True
 
             if event.type == KEYUP:
                 if event.key == ord('z'):
-                    reverseCheat = False
-                    score = 0
+                    bakåtfusk = False
+                    poäng = 0
                 if event.key == ord('x'):
-                    slowCheat = False
-                    score = 0
+                    bromsfusk = False
+                    poäng = 0
                 if event.key == K_ESCAPE:
-                        terminate()
+                        avsluta()
 
                 if event.key == K_LEFT or event.key == ord('a'):
-                    moveLeft = False
+                    flyttaVänster = False
                 if event.key == K_RIGHT or event.key == ord('d'):
-                    moveRight = False
+                    flyttaHöger = False
                 if event.key == K_UP or event.key == ord('w'):
-                    moveUp = False
+                    flyttaUpp = False
                 if event.key == K_DOWN or event.key == ord('s'):
-                    moveDown = False
+                    flyttaNer = False
 
             if event.type == MOUSEMOTION:
-                # If the mouse moves, move the player where the cursor is.
-                playerRect.move_ip(event.pos[0] - playerRect.centerx, event.pos[1] - playerRect.centery)
+                # Om muspekaren flyttas så ska spelaren följa med.
+                spelarrektangel.move_ip(event.pos[0] - spelarrektangel.centerx, event.pos[1] - spelarrektangel.centery)
 
-        # Add new baddies at the top of the screen, if needed.
-        if not reverseCheat and not slowCheat:
-            baddieAddCounter += 1
-        if baddieAddCounter == ADDNEWBADDIERATE:
-            baddieAddCounter = 0
-            baddieSize = random.randint(BADDIEMINSIZE, BADDIEMAXSIZE)
-            newBaddie = {'rect': pygame.Rect(random.randint(0, WINDOWWIDTH-baddieSize), 0 - baddieSize, baddieSize, baddieSize),
-                        'speed': random.randint(BADDIEMINSPEED, BADDIEMAXSPEED),
-                        'surface':pygame.transform.scale(baddieImage, (baddieSize, baddieSize)),
+        # Lägg till nya skurkar längst upp på skärmen, om det behövs.
+        if not bakåtfusk and not bromsfusk:
+            läggTillSkurkRäknare += 1
+        if läggTillSkurkRäknare == NY_SKURK_NIVÅ:
+            läggTillSkurkRäknare = 0
+            skurkstorlek = random.randint(SKURK_MIN_STORLEK, SKURK_MAX_STORLEK)
+            nySkurk = {'rektangel': pygame.Rect(random.randint(0, FÖNSTERBREDD-skurkstorlek), 0 - skurkstorlek, skurkstorlek, skurkstorlek),
+                        'hastighet': random.randint(SKURK_MIN_HASTIGHET, SKURK_MAX_HASTIGHET),
+                        'yta':pygame.transform.scale(skurkbild, (skurkstorlek, skurkstorlek)),
                         }
 
-            baddies.append(newBaddie)
+            skurkar.append(nySkurk)
 
-        # Move the player around.
-        if moveLeft and playerRect.left > 0:
-            playerRect.move_ip(-1 * PLAYERMOVERATE, 0)
-        if moveRight and playerRect.right < WINDOWWIDTH:
-            playerRect.move_ip(PLAYERMOVERATE, 0)
-        if moveUp and playerRect.top > 0:
-            playerRect.move_ip(0, -1 * PLAYERMOVERATE)
-        if moveDown and playerRect.bottom < WINDOWHEIGHT:
-            playerRect.move_ip(0, PLAYERMOVERATE)
+        # Flytta spelaren.
+        if flyttaVänster and spelarrektangel.left > 0:
+            spelarrektangel.move_ip(-1 * SPELARHASTIGHET, 0)
+        if flyttaHöger and spelarrektangel.right < FÖNSTERBREDD:
+            spelarrektangel.move_ip(SPELARHASTIGHET, 0)
+        if flyttaUpp and spelarrektangel.top > 0:
+            spelarrektangel.move_ip(0, -1 * SPELARHASTIGHET)
+        if flyttaNer and spelarrektangel.bottom < FÖNSTERHÖJD:
+            spelarrektangel.move_ip(0, SPELARHASTIGHET)
 
-        # Move the mouse cursor to match the player.
-        pygame.mouse.set_pos(playerRect.centerx, playerRect.centery)
+        # Flytta muspekaren till spelarens position.
+        pygame.mouse.set_pos(spelarrektangel.centerx, spelarrektangel.centery)
 
-        # Move the baddies down.
-        for b in baddies:
-            if not reverseCheat and not slowCheat:
-                b['rect'].move_ip(0, b['speed'])
-            elif reverseCheat:
-                b['rect'].move_ip(0, -5)
-            elif slowCheat:
-                b['rect'].move_ip(0, 1)
+        # Flytta skurkarna nedåt.
+        for s in skurkar:
+            if not bakåtfusk and not bromsfusk:
+                s['rektangel'].move_ip(0, s['hastighet'])
+            elif bakåtfusk:
+                s['rektangel'].move_ip(0, -5)
+            elif bromsfusk:
+                s['rektangel'].move_ip(0, 1)
 
-        # Delete baddies that have fallen past the bottom.
-        for b in baddies[:]:
-            if b['rect'].top > WINDOWHEIGHT:
-                baddies.remove(b)
+        # Radera skurkar som har försvunnit ur fönstret.
+        for s in skurkar[:]:
+            if s['rektangel'].top > FÖNSTERHÖJD:
+                skurkar.remove(s)
 
-        # Draw the game world on the window.
-        windowSurface.fill(BACKGROUNDCOLOR)
+        # Rita spelvärlden i fönstret.
+        fönsteryta.fill(BAKGRUNDSFÄRG)
 
-        # Draw the score and top score.
-        drawText('Score: %s' % (score), font, windowSurface, 10, 0)
-        drawText('Top Score: %s' % (topScore), font, windowSurface, 10, 40)
+        # Skriv ut nuvarande poäng och bästa poängen.
+        ritaText('Poäng: %s' % (poäng), font, fönsteryta, 10, 0)
+        ritaText('Bästa poäng: %s' % (bästaPoäng), font, fönsteryta, 10, 40)
 
-        # Draw the player's rectangle
-        windowSurface.blit(playerImage, playerRect)
+        # Rita spelarrektangeln.
+        fönsteryta.blit(spelarbild, spelarrektangel)
 
-        # Draw each baddie
-        for b in baddies:
-            windowSurface.blit(b['surface'], b['rect'])
+        # Rita varje skurk.
+        for s in skurkar:
+            fönsteryta.blit(s['yta'], s['rektangel'])
 
         pygame.display.update()
 
-        # Check if any of the baddies have hit the player.
-        if playerHasHitBaddie(playerRect, baddies):
-            if score > topScore:
-                topScore = score # set new top score
+        # Kolla om någon av skurkarna har träffat spelaren.
+        if spelareHarTräffatSkurk(spelarrektangel, skurkar):
+            if poäng > bästaPoäng:
+                bästaPoäng = poäng # registrera ny topp-poäng
             break
 
-        mainClock.tick(FPS)
+        huvudklocka.tick(FPS)
 
-    # Stop the game and show the "Game Over" screen.
+    # Stoppa spelet och visa "Spelet över"-skärmen.
     pygame.mixer.music.stop()
-    gameOverSound.play()
+    speletÖverLjud.play()
 
-    drawText('GAME OVER', font, windowSurface, (WINDOWWIDTH / 3), (WINDOWHEIGHT / 3))
-    drawText('Press a key to play again.', font, windowSurface, (WINDOWWIDTH / 3) - 80, (WINDOWHEIGHT / 3) + 50)
+    ritaText('SPELET ÖVER', font, fönsteryta, (FÖNSTERBREDD / 3), (FÖNSTERHÖJD / 3))
+    ritaText('Tryck på en tangent för att spela igen.', font, fönsteryta, (FÖNSTERBREDD / 3) - 80, (FÖNSTERHÖJD / 3) + 50)
     pygame.display.update()
-    waitForPlayerToPressKey()
+    väntaPåKnapptryckning()
 
-    gameOverSound.stop()
+    speletÖverLjud.stop()
