@@ -2,7 +2,7 @@ Translators
 ===========
 
 - Ben Bernard ([https://github.com/bbn-bernard](https://github.com/bbn-bernard))
-
+- Daya Adianto ([https://github.com/addianto](https://github.com/addianto))
 
 (You can always check the commit history of the files in this folder to find other translators, if this README is not up to date.)
 
