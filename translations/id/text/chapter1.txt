@@ -8,25 +8,25 @@ Cakupan topik dalam Bab ini:
 •   Bagaimana menggunakan buku ini
 •   Situs web buku ini ada di http://inventwithpython.com
 
-Halo! Buku ini mengajarkanmu bagaimana membuat video games. Ketika kamu sudah mengerti bagaimana games dalam buku ini bekerja, kamu akan dapa membuat game sendiri. Apa yang kamu butuhkan hanya sebuah komputer, suatu perangkat lunak bernama Python interpreter, dan buku ini. Python interpreter dapat diunduh secara gratis dari Internet. 
+Halo! Buku ini mengajarkanmu bagaimana membuat video games. Ketika kamu sudah mengerti bagaimana games dalam buku ini bekerja, kamu akan dapat membuat game sendiri. Apa yang kamu butuhkan hanya sebuah komputer, suatu perangkat lunak bernama Python interpreter, dan buku ini. Python interpreter dapat diunduh secara gratis dari Internet. 
 
-Ketika aku masih kecil, sebuah buku seperti ini mengajarkanku bagaiman menulis program dan games pertamaku. Proses ini sangat menyenangkan dan mudah. Sekarang, sebagai orang dewasa, aku masih bersenang-senang dengan memrogram dan bahkan dibayar untuk melakukannya. Meski kamu tidak menjadi seorang pemrogram komputer ketika dewasa, pemrograman merupakan keterampilan yang berguna dan menyenangkan untuk dimiliki. 
+Ketika aku masih kecil, sebuah buku seperti ini mengajarkanku bagaimana menulis program dan games pertamaku. Prosesnya sangat menyenangkan dan mudah. Sekarang, sebagai orang dewasa, aku masih bersenang-senang dengan memrogram dan bahkan dibayar untuk melakukannya. Meski kamu tidak menjadi seorang pemrogram komputer ketika dewasa, pemrograman merupakan keterampilan yang berguna dan menyenangkan untuk dimiliki. 
 
 Komputer merupakan mesin yang menakjubkan dan memrogram komputer mudah dipelajari. Jika kamu bisa membaca buku ini, maka kamu akan bisa memrogram komputer. Sebuah program komputer merupakan sekumpulan instruksi yang dimengerti komputer, sama seperti sebuah buku cerita merupakan sekumpulan kalimat-kalimat yang dimengerti oleh pembaca. Video games merupakan program komputer, sehingga video games juga dibuat oleh instruksi-instruksi. 
 
-Untuk memberi instruksi komputer, kamu harus membuat sebuah program dalam sebuah bahasa yang dimengerti komputer. Buku ini mengajarkan sebuah bahasa pemrograman bernama Python. Ada banyak bahasa pemrograman yang berbeda, termasuk BASIC, Java, JavaScript, PHP, and C++.
+Untuk memberikan instruksi kepada komputer, kamu harus membuat sebuah program dalam sebuah bahasa yang dimengerti oleh komputer. Buku ini mengajarkan sebuah bahasa pemrograman bernama Python. Ada banyak bahasa pemrograman yang berbeda, termasuk BASIC, Java, JavaScript, PHP, dan C++.
 
-Ketika aku masih kanak-kanak, BASIC merupakan bahasa pertama yang sering dipelajari. Kemudian, bahasa pemgrogaman seperti Python tercipta. Python lebih mudah dipelajari daripada BASIC! Namun, tetap merupakan bahasa pemrograman yang serius yang digunakan programmer profesional. Banyak orang dewasa menggunakan Python dalam untuk kerjaan mereka dan ketika sedang memrogram untuk bersenang-senang. 
+Ketika aku masih kanak-kanak, BASIC merupakan bahasa pertama yang sering dipelajari. Kemudian setelah sekian lama, bahasa pemgrogaman seperti Python tercipta. Python lebih mudah dipelajari daripada BASIC! Namun, tetap merupakan bahasa pemrograman yang serius yang digunakan oleh programmer profesional. Banyak orang dewasa menggunakan Python dalam untuk pekerjaan mereka dan ketika sedang memrogram untuk bersenang-senang. 
 
-Games yang akan kamu buat dari buku ini terlihat sederhana dibandingkan dengan games utuk Xbox, Playstation, atau Wii. Game di sini tidak akan punya grafik yang bagus karena bertujuan untuk mengajarkan dasar pemrograman. Game ini sengaja dibuat sederhana sehingga kamu bisa fokus pada belajar membuat program. Dan games tidak harus kompleks untuk menyenangkan. 
+Games yang akan kamu buat dari buku ini terlihat sederhana dibandingkan dengan games untuk Xbox, PlayStation, atau Wii. Game di sini tidak akan memiliki grafik yang bagus karena bertujuan untuk mengajarkan dasar-dasar pemrograman. Game ini sengaja dibuat sederhana sehingga kamu bisa fokus pada belajar membuat program. Dan games tidak harus kompleks untuk menyenangkan. 
 
 Pengunduhan dan installasi Python
 
-Kamu perlu menginstal perangkat lunak bernaman Python interpreter. Program interpreter ini mengerti instruksi yang akan kamu tulis dalam bahasa Python. Lebih lanjut aku akan menggunakan kata "Python" yang mengacu pada "perangkat lunak Python interpreter". 
+Kamu perlu menginstal sebuah perangkat lunak bernama Python interpreter. Program interpreter ini mengerti instruksi yang akan kamu tulis dalam bahasa Python. Untuk seterusnya aku akan menggunakan kata "Python" yang mengacu pada "perangkat lunak Python interpreter". 
 
-Unduh Python 3.4 atau versi lebih baru dari situs resim Python, http://www.python.org. Unduh Python yang versi 32-bit untuk sistem operasimu, meski kamu memiliki komputer 64-bit. Module Pygame yang digunakan dalam buku ini sejauh ini hanya dapat dilarikan pada Python 32-bit.
+Unduh Python 3.4 atau versi lebih baru dari situs resmi Python, http://www.python.org. Unduh Python yang versi 32-bit untuk sistem operasimu, meskipun kamu menggunakan komputer 64-bit. Module Pygame yang akan digunakan dalam buku ini sejauh ini hanya dapat dijalankan pada Python 32-bit.
 
-Catatan Penting! Pastikan menginstal Python 3, bukan Python 2. Program-program dalam buku ini menggunakan Python 3 dan kamu akan memperoleh error jika kamu mencoba melarikan program-program itu dengan Python 2. Hal ini sangat penting, aku telah menambahkan kartun pinguin dalam Gambar 1-1 to memberi tahumu agar menginstal Python 3, sehingga kamu tidak akan melewatkan pesan ini. 
+Catatan Penting! Pastikan menginstal Python 3, bukan Python 2. Program-program dalam buku ini menggunakan Python 3 dan kamu akan memperoleh error jika kamu mencoba melarikan program-program itu dengan Python 2. Hal ini sangat penting, aku telah menambahkan kartun pinguin dalam Gambar 1-1 untuk memberitahumu agar menginstal Python 3, sehingga kamu tidak akan melewatkan pesan ini. 
 
 
 
@@ -34,11 +34,11 @@ Gambar 1-1: Pinguin yang memberitahumu agar menginstal Python 3.
 
 Memulai IDLE
 
-IDLE merupakan singkatan dari Interactive Development Environment - Linkungan Pengembangan Interaktif. Lingkungan pengembangan sama seperti perangkat lunak prosesor kata untuk menulis program Python. Memulai IDLE berbeda-beda untuk setiap sistem operasi. 
+IDLE merupakan singkatan dari Interactive DeveLopment Environment (Lingkungan Pengembangan Interaktif). Lingkungan pengembangan sama seperti perangkat lunak prosesor kata untuk menulis program Python. Memulai IDLE berbeda-beda untuk setiap sistem operasi. 
 
 Pada Windows, klik tombol Start di sudut kiri bawah, ketik "IDLE" lalu pilih IDLE (Python GUI). 
 
-Pada MAC OS X, buka jendela Finder, lalu klik Aplications. Setelah itu, klik Python 3.4, lalu klik ikon IDLE. 
+Pada MAC OS X, buka jendela Finder, lalu klik Applications. Setelah itu, klik Python 3.4, lalu klik ikon IDLE. 
 
 Pada Ubuntu atau Linux, buka jendela terminal, lalu ketik "idle3". Kamu juga dapat mengeklik Applications pada bagian atas layar, lalu klik "Programming and IDLE 3".
 
@@ -46,17 +46,17 @@ Pada Ubuntu atau Linux, buka jendela terminal, lalu ketik "idle3". Kamu juga dap
 
 Gambar 1-2: Shell interaktif program IDLE pada Windows, OS X, dan Ubuntu Linux.
 
-Jendela yang muncul ketika kamu pertama kali memulai IDLE disebut shell interaktif. Kamu dapat memasukkan instruksi Python dalam shell tersebut yang akan dioleh oleh Python. Lalu Python akan memunculkan hasil instruksi dalam shell interaktif itu. 
+Jendela yang muncul ketika kamu pertama kali memulai IDLE disebut shell interaktif. Kamu dapat memasukkan instruksi Python dalam shell tersebut yang kemudian akan diolah oleh Python. Lalu Python akan memunculkan hasil instruksi dalam shell interaktif itu. 
 
 Bagaimana Menggunakan Buku ini
 
-Beberapa bab dalam buku ini akan dimulai dengan melarikan contoh program utama. Contoh ini akan menunjukkan bagaimana program bekerja ketika dilarikan. Tulisan pengguna ditunjukkan dengan cetak tebal. 
+Beberapa bab dalam buku ini akan dimulai dengan menjalankan contoh program utama. Contoh ini akan menunjukkan bagaimana program bekerja ketika dijalankan. Masukan dari pengguna ditampilkan dengan huruf cetak tebal. 
 
 Tulis kode program langsung dalam editor teks IDLE, jangan mengunduh kodenya. Kamu akan mengingat lebih baik jika kamu menulis langsung kodenya. 
 
-Nomer Baris dan Spasi
+Nomor Baris dan Spasi
 
-Ketika menulis sumber kode, jangan tulis juga nomer yang tampak pada setiap awal baris. Sebagai contoh, jika kamu melihat tulisan ini dalam buku:
+Ketika menuliskan kode sumber, jangan tulis juga nomer yang tampak pada setiap awal baris. Sebagai contoh, jika kamu melihat tulisan ini dalam buku:
 
 9. number = random.randint(1, 20)
 
@@ -64,9 +64,9 @@ Kamu tidak perlu menulis "9." di bagian kiri atau satu spasi setelahnya. Tulisla
 
 number = random.randint(1, 20)
 
-Nomer-nomer itu hanya digunakan sebagai acuan ke baris tertentu pada program dan bukan merupakan bagian dari program sebenarnya. 
+Nomor-nomor itu hanya digunakan sebagai acuan ke baris tertentu pada program dan bukan merupakan bagian dari program sebenarnya. 
 
-Disamping nomer baris, tulis kode persis seperti yang terlihat. Perhatikan bahwa beberapa baris kode tampak bertakuk (indented) dengan empat atau delapan spasi. Setiap karakter dalam IDLE berlebar sama. Hitung banyaknya spasi yang digunakan dengan cara menghitung banyaknya karakter di atas atao bawahnya. 
+Selain dari nomor-nomor baris, tulislah kode persis seperti yang terlihat. Perhatikan bahwa beberapa baris kode tampak bertakuk (indented) dengan empat atau delapan spasi. Setiap karakter dalam IDLE berlebar sama. Hitung banyaknya spasi yang digunakan dengan cara menghitung banyaknya karakter di atas atau bawahnya. 
 
 Sebagai contoh, spasi bertakuk disini ditandai oleh tanda kotak hitam ▪:
 
@@ -82,13 +82,13 @@ Beberapa baris kode terlalu panjang untuk muat dalam satu baris dalam halaman da
 xxxxxxxxxxxx')
 2. print('Ini baris kedua, bukan ketiga')
 
-Baris pertama terlipat kebawah dan membuat kode mengandung tiga baris. Hal ini dilakukan karena halaman buku ini tidak cukup lebar untuk memuat baris pertama itu dalam satu baris. 
+Baris pertama terlipat ke bawah dan membuat kode terlihat mengandung tiga baris. Hal ini dilakukan karena halaman buku ini tidak cukup lebar untuk memuat baris pertama itu dalam satu baris. 
 
 Menemukan Bantuan Online
 
 Situs web buku ini ada di http://inventwithpython.com. Kamu dapat menemukan beberapa sumber yang berkaitan dengan buku ini di sana. Beberapa tautan dalam buku ini menggunakan nama domain invpy.com untuk memperpendek URL.
 
-Situs ini punya subreddit di http://reddit.com/r/inventwithpython yang merupakan tempat yang tepat untuk menanyakan isu pemrograman berkaitan dengan buku ini. Untuk pertanyaan Python yang lebih umum silakan post ke subreddit LearnProgramming dan LearnPython di berturut-turut tautan berikut http://reddit.com/r/learnprogramming dan http://reddit.com/r/learnpython. 
+Situs ini punya subreddit di http://reddit.com/r/inventwithpython yang merupakan tempat yang tepat untuk menanyakan isu pemrograman berkaitan dengan buku ini. Untuk pertanyaan Python yang lebih umum silakan post ke subreddit LearnProgramming dan LearnPython. Masing-masing subreddit dapat dikunjungi di tautan http://reddit.com/r/learnprogramming dan http://reddit.com/r/learnpython. 
 
 Kamu juga dapat mengirim email untukku pada alamat al@inventwithpython.com.
 
