@@ -8,7 +8,7 @@ NOTE TO ALL TRANSLATORS: Don't hesitate to contact me if you have questions or w
 Why a 3rd Edition?
 ------------------
 
-The 2nd edition came out in 2010 and was my first book. Since then, I've written three more books and gained experience from teaching programming to kids and adults. The 3rd edition will not have new content (aside from the Appendixes, which previously were only online), but has two major aims:
+The 2nd edition came out in 2010 and was my first book. Since then, I've gained experience from writing three more books and teaching programming to kids and adults. The 3rd edition will not have new content (aside from the Appendixes, which previously were only online), but has two major aims:
 
 1. Renewed copyediting efforts to make the text easier to read (especially for younger readers) and reduce the word count by 20%.
 
@@ -42,9 +42,9 @@ I appreciate the efforts of the translators to bring programming knowledge outsi
 Scope of the Translation
 ------------------------
 
-While a complete translation of the book would be nice, Invent Your Own Computer Games with Python is a behemoth of a book. In retrospect, the book's size is quite intimidating for both readers and translators.
+While a complete translation of the book would be nice, Invent Your Own Computer Games with Python is a behemoth. In retrospect, the book's size is quite intimidating for both readers and translators.
 
-I intend to (optionally) cut back on the scope of the translated works. The foreign language versions will only go up to the Bagels chapter, and then include the Pygame chapters afterwards. This cuts chapters 12 to 16 (about 100 pages!) of translation work that would need to be done.
+The translated books will be optionally abridged. The foreign language versions will only go up to and including the Bagels chapter, and then include the Pygame chapters afterwards. This cuts chapters 12 to 16 (about 100 pages!) of translation work that would need to be done.
 
 The optional chapters are:
 
@@ -54,11 +54,9 @@ The optional chapters are:
 * Chapter 15 - Reversi
 * Chapter 16 - AI Simulation
 
-Once all the chapters are translated, we can see if the translators want to translate the cut chapters or just publish the book as is. I see the later chapters as not having as much value-per-page, and many readers don't end up getting to them.
+Once the abridged version is finished, it's up to the translation team if they want to translate the entire book. I see the later chapters as not having as much value-per-page, and many readers don't end up getting to them. I want to start with a conservative scope and not overburden volunteers.
 
-If the translation teams were enthusiastic enough to translate these chapters, that'd be all the better. But I would prefer to initially have a conservative scope so as to not overburden the volunteers.
-
-Also: There are no deadlines for translation projects. Feel free to work at your own pace. I'm grateful for all the help you can provide and don't mind if other things come up in your life.
+There are no deadlines for translation projects. Feel free to work at your own pace, and I understand if other things come up in your life.
 
 Suggested Guidelines for Translators
 ------------------------------------
@@ -67,13 +65,15 @@ First, thank you for helping with the translation of "Invent with Python". Here 
 
 1. Read and agree to the Contributor License Agreement. (I've copied the one used by NodeJS.) This is available at https://github.com/asweigart/inventwithpython3rded/blob/master/cla.md. You can agree by sending al@inventwithpython.com an email saying "I agree to the Invent with Python Contributor License Agreement". This is mostly a formality.
 
+1. I've set up mailing list for translation teams. The Wiki has links: http://invent-with-python-translations.wikia.com/wiki/Invent_with_Python_Translations_Wiki
+
 1. Look at the translations/<lang code>/README.md file to contact other translators working on your language.
 
 1. Read this README.md file to note any special parts of the book that may need additional attention. Feel free to add to this file.
 
 1. Translate the programs first. Do not change the order or position of the code, as that will require tedious updating of line numbers in the book. Long lines of code are fine. Consult (and update) the src/_ISSUES.txt file for any language-translation issues that come up.
 
-1. To prevent overlapping work with other translators, see the Tasks page on the wiki for your language: http://invent-with-python-translations.wikia.com/wiki/Invent_with_Python_Translations_Wiki
+1. To prevent overlapping work with other translators, use the Tasks page on the wiki for your language: http://invent-with-python-translations.wikia.com/wiki/Invent_with_Python_Translations_Wiki
 
 1. Save the .py files of the programs with UTF-8 encoding. (This is the default encoding the Python 3 expects source files to be in.)
 
@@ -109,3 +109,7 @@ Here is an inevitably incomplete list of MUCH-APPRECIATED CONTRIBUTORS -- people
 
 - Christer Nilsson https://github.com/ChristerNilsson
 - Mats Rörbecker https://github.com/matsrorbecker
+
+**Indonesian Translation:**
+
+- Ben Bernard https://github.com/bbn-bernard
