@@ -10,7 +10,6 @@ Topics Covered In This Chapter:
 • Operators
 • Evaluating Expressions
 • Storing Values in Variables
-• Overwriting variables
 
 Before you can make games, you need to learn a few basic programming concepts. You won't make games in this chapter, but learning these concepts is the first step to programming video games. Start by learning how to use Python’s interactive shell.
 
