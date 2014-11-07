@@ -1,17 +1,18 @@
-T³umacze
+TÅ‚umacze
 ===========
 
-Micha³ Niklas https://github.com/michal-niklas
+MichaÅ‚ Niklas https://github.com/michal-niklas
 
 
-(Zawsze warto sprawdziæ w historii plików w tym katalogu, czy s¹ inni t³umacze)
+(Zawsze warto sprawdziÄ‡ w historii plikÃ³w w tym katalogu, czy sÄ… inni tÅ‚umacze)
 
-Tytu³
+TytuÅ‚
 =====
 
-Twórz w³asne gry komputerowe u¿yaj¹c Pythona, wydanie 3
+TwÃ³rz wÅ‚asne gry komputerowe uÅ¼ywajÄ…c Pythona, wydanie 3
 
-Uwagi ogólne
+
+Uwagi ogÃ³lne
 =============
 
-Na potrzebê szybkiego znajdywania wspólnych fraz i by zachowaæ w miarê jednolite t³umaczena danych fraz stworzy³êm plik glossary.txt z moimi propozycjami. Przyk³adowo chcia³bym, by 'file' zawsze by³o t³umaczone jako plik.
+Na potrzebÄ™ szybkiego znajdywania wspÃ³lnych fraz i by zachowaÄ‡ w miarÄ™ jednolite tÅ‚umaczena danych fraz stworzyÅ‚em plik glossary.txt z moimi propozycjami. PrzykÅ‚adowo chciaÅ‚bym, by 'file' zawsze byÅ‚o tÅ‚umaczone jako plik.
