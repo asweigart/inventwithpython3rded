@@ -1,0 +1,2 @@
+file, plik
+run, uruchom

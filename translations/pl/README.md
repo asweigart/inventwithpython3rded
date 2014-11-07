@@ -1,17 +1,17 @@
-Translators
+T³umacze
 ===========
 
+Micha³ Niklas https://github.com/michal-niklas
 
 
+(Zawsze warto sprawdziæ w historii plików w tym katalogu, czy s¹ inni t³umacze)
 
-(You can always check the commit history of the files in this folder to find other translators, if this README is not up to date.)
-
-Title
+Tytu³
 =====
 
-(Put translated book title here.)
+Twórz w³asne gry komputerowe u¿yaj¹c Pythona, wydanie 3
 
-General Notes
+Uwagi ogólne
 =============
 
-Add notes here.
+Na potrzebê szybkiego znajdywania wspólnych fraz i by zachowaæ w miarê jednolite t³umaczena danych fraz stworzy³êm plik glossary.txt z moimi propozycjami. Przyk³adowo chcia³bym, by 'file' zawsze by³o t³umaczone jako plik.
