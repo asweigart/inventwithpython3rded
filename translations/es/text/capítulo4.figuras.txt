@@ -1,0 +1,9 @@
+Fig 4-2:
+...ve dentro del bloque while, aquí.
+...ve más allá del bloque while, aquí.
+
+Fig 4-3:
+fizzy
+palabra reservada if
+condición
+palabra reservada while
