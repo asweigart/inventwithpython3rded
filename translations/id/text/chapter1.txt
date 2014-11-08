@@ -8,7 +8,7 @@ Cakupan topik dalam Bab ini:
 •   Bagaimana menggunakan buku ini
 •   Situs web buku ini ada di http://inventwithpython.com
 
-Halo! Buku ini mengajarkanmu bagaimana membuat video games. Ketika kamu sudah mengerti bagaimana games dalam buku ini bekerja, kamu akan dapa membuat game sendiri. Apa yang kamu butuhkan hanya sebuah komputer, suatu perangkat lunak bernama Python interpreter, dan buku ini. Python interpreter dapat diunduh secara gratis dari Internet. 
+Halo! Buku ini mengajarkanmu bagaimana membuat video games. Ketika kamu sudah mengerti bagaimana games dalam buku ini bekerja, kamu akan dapat membuat game sendiri. Apa yang kamu butuhkan hanya sebuah komputer, suatu perangkat lunak bernama Python interpreter, dan buku ini. Python interpreter dapat diunduh secara gratis dari Internet. 
 
 Ketika aku masih kecil, sebuah buku seperti ini mengajarkanku bagaiman menulis program dan games pertamaku. Proses ini sangat menyenangkan dan mudah. Sekarang, sebagai orang dewasa, aku masih bersenang-senang dengan memrogram dan bahkan dibayar untuk melakukannya. Meski kamu tidak menjadi seorang pemrogram komputer ketika dewasa, pemrograman merupakan keterampilan yang berguna dan menyenangkan untuk dimiliki. 
 
@@ -16,7 +16,7 @@ Komputer merupakan mesin yang menakjubkan dan memrogram komputer mudah dipelajar
 
 Untuk memberi instruksi komputer, kamu harus membuat sebuah program dalam sebuah bahasa yang dimengerti komputer. Buku ini mengajarkan sebuah bahasa pemrograman bernama Python. Ada banyak bahasa pemrograman yang berbeda, termasuk BASIC, Java, JavaScript, PHP, and C++.
 
-Ketika aku masih kanak-kanak, BASIC merupakan bahasa pertama yang sering dipelajari. Kemudian, bahasa pemgrogaman seperti Python tercipta. Python lebih mudah dipelajari daripada BASIC! Namun, tetap merupakan bahasa pemrograman yang serius yang digunakan programmer profesional. Banyak orang dewasa menggunakan Python dalam untuk kerjaan mereka dan ketika sedang memrogram untuk bersenang-senang. 
+Ketika aku masih kanak-kanak, BASIC merupakan bahasa pertama yang sering dipelajari. Kemudian, bahasa pemgrogaman seperti Python tercipta. Python lebih mudah dipelajari daripada BASIC! Namun, tetap merupakan bahasa pemrograman yang serius yang digunakan programmer profesional. Banyak orang dewasa menggunakan Python untuk kerjaan mereka dan ketika sedang memrogram untuk bersenang-senang. 
 
 Games yang akan kamu buat dari buku ini terlihat sederhana dibandingkan dengan games utuk Xbox, Playstation, atau Wii. Game di sini tidak akan punya grafik yang bagus karena bertujuan untuk mengajarkan dasar pemrograman. Game ini sengaja dibuat sederhana sehingga kamu bisa fokus pada belajar membuat program. Dan games tidak harus kompleks untuk menyenangkan. 
 
@@ -24,9 +24,9 @@ Pengunduhan dan installasi Python
 
 Kamu perlu menginstal perangkat lunak bernaman Python interpreter. Program interpreter ini mengerti instruksi yang akan kamu tulis dalam bahasa Python. Lebih lanjut aku akan menggunakan kata "Python" yang mengacu pada "perangkat lunak Python interpreter". 
 
-Unduh Python 3.4 atau versi lebih baru dari situs resim Python, http://www.python.org. Unduh Python yang versi 32-bit untuk sistem operasimu, meski kamu memiliki komputer 64-bit. Module Pygame yang digunakan dalam buku ini sejauh ini hanya dapat dilarikan pada Python 32-bit.
+Unduh Python 3.4 atau versi lebih baru dari situs resmi Python, http://www.python.org. Unduh Python versi 32-bit untuk sistem operasimu, meski kamu memiliki komputer 64-bit. Module Pygame yang digunakan dalam buku ini sejauh ini hanya dapat dilarikan pada Python 32-bit.
 
-Catatan Penting! Pastikan menginstal Python 3, bukan Python 2. Program-program dalam buku ini menggunakan Python 3 dan kamu akan memperoleh error jika kamu mencoba melarikan program-program itu dengan Python 2. Hal ini sangat penting, aku telah menambahkan kartun pinguin dalam Gambar 1-1 to memberi tahumu agar menginstal Python 3, sehingga kamu tidak akan melewatkan pesan ini. 
+Catatan Penting! Pastikan menginstal Python 3, bukan Python 2. Program-program dalam buku ini menggunakan Python 3 dan kamu akan memperoleh error jika kamu mencoba melarikan program-program itu dengan Python 2. Hal ini sangat penting, aku telah menambahkan kartun pinguin dalam Gambar 1-1 to memberitahumu agar menginstal Python 3, sehingga kamu tidak akan melewatkan pesan ini. 
 
 
 
@@ -46,7 +46,7 @@ Pada Ubuntu atau Linux, buka jendela terminal, lalu ketik "idle3". Kamu juga dap
 
 Gambar 1-2: Shell interaktif program IDLE pada Windows, OS X, dan Ubuntu Linux.
 
-Jendela yang muncul ketika kamu pertama kali memulai IDLE disebut shell interaktif. Kamu dapat memasukkan instruksi Python dalam shell tersebut yang akan dioleh oleh Python. Lalu Python akan memunculkan hasil instruksi dalam shell interaktif itu. 
+Jendela yang muncul ketika kamu pertama kali memulai IDLE disebut shell interaktif. Kamu dapat memasukkan instruksi Python dalam shell tersebut yang akan diolah oleh Python. Lalu Python akan memunculkan hasil instruksi dalam shell interaktif itu. 
 
 Bagaimana Menggunakan Buku ini
 
@@ -66,7 +66,7 @@ number = random.randint(1, 20)
 
 Nomer-nomer itu hanya digunakan sebagai acuan ke baris tertentu pada program dan bukan merupakan bagian dari program sebenarnya. 
 
-Disamping nomer baris, tulis kode persis seperti yang terlihat. Perhatikan bahwa beberapa baris kode tampak bertakuk (indented) dengan empat atau delapan spasi. Setiap karakter dalam IDLE berlebar sama. Hitung banyaknya spasi yang digunakan dengan cara menghitung banyaknya karakter di atas atao bawahnya. 
+Disamping nomer baris, tulis kode persis seperti yang terlihat. Perhatikan bahwa beberapa baris kode tampak bertakuk (indented) dengan empat atau delapan spasi. Setiap karakter dalam IDLE berlebar sama. Hitung banyaknya spasi yang digunakan dengan cara menghitung banyaknya karakter di atas atau bawahnya. 
 
 Sebagai contoh, spasi bertakuk disini ditandai oleh tanda kotak hitam ▪:
 
@@ -99,11 +99,11 @@ Perhatikan bahwa ada banyak cara mengajukan pertanyaan pemrograman secara cerdas
 •   Salin dan tempel seluruh pesan error dan kodemu
 •   Lalukan pencarian online untuk memastikan apakah ada orang lain dengan pertanyaan sama yang mungkin sudah terjawab. 
 •   Jelaskan apa yang sudah dilakukan untuk menyelesaikan masalah. Hal ini menjelaskan pada orang lain bahwa kamu sudah berusaha memecahkan masalah itu sendiri. 
-•   Tunjukan sikap ramah. Jangan meminta atau menekan orang lain untuk merespon secara cepat. 
+•   Tunjukkan sikap ramah. Jangan meminta atau menekan orang lain untuk merespon secara cepat. 
 
 Tracing Program secara Online
 
-Tracing program berarti melangkah melalui kode satu baris tiap langkah, sama seperti ketika komputer mengeksekusi program. Kunjungi http://invpy.com/traces untuk tracing program dalam buku ini. Halaman situs punya catatan dan pengingat yang berguna pada tiap langkah untuk menjelaskan apa yang sedang program lakukan. Dengan ini kamu akan lebih mudah mengerti mengapa program bekerja dengan cara yang dilakukan.
+Tracing program berarti melangkah melalui kode satu baris tiap langkah, sama seperti ketika komputer mengeksekusi program. Kunjungi http://invpy.com/traces untuk tracing program dalam buku ini. Halaman situs punya catatan dan pengingat yang berguna pada tiap langkah untuk menjelaskan apa yang sedang program lakukan. Dengan ini kamu akan lebih mudah mengerti mengapa program bekerja dengan cara yang dilakukannya.
 
 Ringkasan
 
