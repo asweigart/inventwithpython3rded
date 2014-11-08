@@ -1,132 +1,132 @@
-    Chapter 4
+    Capítulo 4
 
-    GUESS THE NUMBER
+    ADIVINA EL NÚMERO
 
-Topics Covered In This Chapter:
+Temas Tratados En Este Capítulo:
 
-•   import statements
-•   Modules
-•   Arguments
-•   while statements
-•   Conditions
-•   Blocks
-•   Booleans
-•   Comparison operators
-•   The difference between = and ==
-•   if statements
-•   The break keyword
-•   The str() and int() functions
-•   The random.randint() function
+•   Sentencias import
+•   Módulos
+•   Argumentos
+•   Sentencias while
+•   Condiciones
+•   Bloques
+•   Booleanos
+•   Operadores de comparación
+•   La diferencia entre = y ==
+•   Sentencias if
+•   La palabra reservada break
+•   Las funciones int() y str()
+•   La función random.randint()
 
-The “Guess the Number” Game
+El Juego “Adivina el Número”
 
-In this chapter, you’re going to make a “Guess the Number” game. The computer will think of a random number from 1 to 20, and ask you to guess it. The computer will tell you if each guess is too high or too low. You win if you guess the number within six tries.
+En este capítulo crearás el juego de  “Adivina el Número”. La computadora pensará un número aleatorio entre 1 y 20, y te pedirá que intentes adivinarlo. La computadora te dirá si cada intento es muy alto o muy bajo. Tú ganas si adivinas el número en seis intentos o menos.
 
-This is a good game to code because it uses random numbers, loops, and input from the user in a fairly short program. You’ll learn how to convert values to different data types (and why you would need to do this). Since this program is a game, call the user the player, but “user” would be correct too.
+Este es un buen juego para codificar ya que usa números aleatorios y bucles, y recibe entradas del usuario en un programa relativamente corto. Aprenderás cómo convertir valores a diferentes tipos de datos (y por qué esto es necesario). Dado que este programa es un juego, nos referiremos al usuario como el jugador, pero “usuario” también sería correcto.
 
-Sample Run of “Guess the Number”
+Muestra de ejecución de “Adivina el Número”
 
-Here’s what the program looks like to the player when run. The text that the player types in is in bold.
+Así es como el programa se muestra al jugador al ejecutarse. El texto que el jugador ingresa está en negrita.
 
-Hello! What is your name?
+¡Hola! ¿Cómo te llamas?
 Albert
-Well, Albert, I am thinking of a number between 1 and 20.
-Take a guess.
+Bueno, Albert, estoy pensando en un número entre 1 y 20.
+Intenta adivinar.
 10
-Your guess is too high.
-Take a guess.
+Tu estimación es muy alta.
+Intenta adivinar.
 2
-Your guess is too low.
-Take a guess.
+Tu estimación es muy baja.
+Intenta adivinar.
 4
-Good job, Albert! You guessed my number in 3 guesses!
+¡Buen trabajo, Albert! ¡Has adivinado mi número en 3 intentos!
 
-Enter this code exactly as it appears here, and then save it by clicking on File ► Save As. Give it the filename guess.py. Then press F5 to run the program. Don’t worry if you don’t understand the code now, I'll explain it step by step.
+Escribe este código exactamente como aparece aquí, y guárdalo haciendo clic en Archivo ► Guardar Como. Usa como nombre de archivo adivinaElNúmero.py. Luego pulsa F5 para ejecutar el programa. No te preocupes si no entiendes el código todavía, lo explicaré paso a paso.
 
-Guess the Number’s Source Code
+Código Fuente de Adivina el Número
 
-Here’s the source code for the “Guess the Number” game. When you enter this code into the file editor, be sure to pay attention to the spacing at the front of some of the lines. Some lines have four or eight spaces of indentation.
+Este es el código fuente del juego “Adivina el Número”. Cuando escribas este código en el editor de archivos, asegúrate de prestar atención a los espacios delante de algunas líneas. Algunas líneas tienen cuatro u ocho espacios de indentación.
 
-IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
+¡NOTA IMPORTANTE! Los programas de este libro sólo podrán ejecutarse sobre Python 3, no Python 2. Al iniciar la ventana IDLE, dirá algo como “Python 3.4.0” en la parte superior. Si tienes Python 2 instalado, es posible instalar también Python 3 a la vez. Para descargar Python 3, dirígete a https://python.org/download/.
 
-You can download this code from http://invpy.com/guess.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/guess.
+Puedes descargar este código de http://invpy.com/adivinaElNúmero.py. Si obtienes errores luego de copiar este código, compáralo con el código del libro usando la herramienta diff online en http://invpy.com/diff/guess.
 
-guess.py
+adivinaElNúmero.py
 
- 1. # This is a guess the number game.
+ 1. # Este es el juego de adivinar el número.
  2. import random
  3.
- 4. guessesTaken = 0
+ 4. intentosRealizados = 0
  5.
- 6. print('Hello! What is your name?')
- 7. myName = input()
+ 6. print('¡Hola! ¿Cómo te llamas?')
+ 7. miNombre = input()
  8.
- 9. number = random.randint(1, 20)
-10. print('Well, ' + myName + ', I am thinking of a number between 1 and 20.')
+ 9. número = random.randint(1, 20)
+10. print('Bueno, ' + miNombre + ', estoy pensando en un número entre 1 y 20.')
 11.
-12. while guessesTaken < 6:
-13.     print('Take a guess.') # There are four spaces in front of print.
-14.     guess = input()
-15.     guess = int(guess)
+12. while intentosRealizados < 6:
+13.     print('Intenta adivinar.') # Hay cuatro espacios delante de print.
+14.     estimación = input()
+15.     estimación = int(estimación)
 16.
-17.     guessesTaken = guessesTaken + 1
+17.     intentosRealizados = intentosRealizados + 1
 18.
-19.     if guess < number:
-20.         print('Your guess is too low.') # There are eight spaces in front of print.
+19.     if estimación < número:
+20.         print('Tu estimación es muy baja.') # Hay ocho espacios delante de print.
 21.
-22.     if guess > number:
-23.         print('Your guess is too high.')
+22.     if estimación > número:
+23.         print('Tu estimación es muy alta.')
 24.
-25.     if guess == number:
+25.     if estimación == número:
 26.         break
 27.
-28. if guess == number:
-29.     guessesTaken = str(guessesTaken)
-30.     print('Good job, ' + myName + '! You guessed my number in ' + guessesTaken + ' guesses!')
+28. if estimación == número:
+29.     intentosRealizados = str(intentosRealizados)
+30.     print('¡Buen trabajo, ' + miNombre + '! ¡Has adivinado mi número en ' + intentosRealizados + ' intentos!')
 31.
-32. if guess != number:
-33.     number = str(number)
-34.     print('Nope. The number I was thinking of was ' + number)
+32. if estimación != número:
+33.     número = str(número)
+34.     print('Pues no. El número que estaba pensando era ' + número)
 
-Take look at each line of code in turn to see how this program works.
+Echa un vistazo a cada línea de código para entender cómo funciona el programa.
 
-The import statement
+La sentencia import
 
-1. # This is a guess the number game.
+1. # Este es el juego de adivinar el número.
 2. import random
 
-The first line is a comment. Remember that Python will ignore everything after the # sign. This just reminds us what this program does.
+La primera línea es un comentario. Recuerda que Python ignorará todo lo que esté precedido por el signo #. Esto sólo nos indica qué es lo que hace el programa.
 
-The second line is an import statement. Remember, statements are instructions that perform some action but don’t evaluate to a value like expressions do. You’ve already seen statements: assignment statements store a value into a variable (but the statement itself doesn’t evaluate to anything).
+La segunda línea es una sentencia import. Recuerda, las sentencias son instrucciones que realizan alguna acción, pero no son evaluadas a un valor como las expresiones. Ya has visto sentencias antes: las sentencias de asignación almacenan un valor dentro de una variable (pero la sentencia en sí misma no es evaluada a un valor).
 
-While Python includes many built-in functions, some functions exist in separate programs called modules. Modules are Python programs that contain additional functions. Use the functions by importing their modules into your program with an import statement.
+Aunque Python incluye muchas funciones integradas, algunas funciones existen en programas separados llamados módulos. Los módulos son programas de Python que contienen funciones adicionales. Puedes usar esas funciones importando sus módulos en tu programa con una sentencia import.
 
-The import statement has the import keyword followed by the module name. Line 2 imports the module named random. The random module contains several functions related to random numbers. One of these functions will come up with the random number for the user to guess.
+La sentencia import consiste en la palabra reservada import seguida por el nombre del módulo. La línea 2 importa el módulo llamado random. El módulo random contiene varias funciones relacionadas con números aleatorios. Una de esas funciones generará el número aleatorio para que el usuario adivine.
 
-4. guessesTaken = 0
+4. intentosRealizados = 0
 
-This line creates a new variable named guessesTaken. You’ll store the number of guesses the player has made in this variable. Since the player hasn’t made any guesses so far, store the integer 0 here.
+Esta línea crea una nueva variable llamada intentosRealizados. Guardaremos en esta variable el número de veces que el jugador ha intentado adivinar el número. Ya que el jugador aún no ha realizado ningún intento, guardaremos aquí el entero 0.
 
-6. print('Hello! What is your name?')
-7. myName = input()
+6. print('¡Hola! ¿Cómo te llamas?')
+7. miNombre = input()
 
-Lines 6 and 7 are the same as the lines in the Hello World program that you saw in Chapter 3. Programmers often reuse code from their other programs to save themselves work.
+Las líneas 6 y 7 son iguales a las líneas en el programa Hola Mundo que viste en el Capítulo 3. Los programadores a menudo reutilizan código de sus otros programas para ahorrarse trabajo.
 
-Line 6 is a function call to the print() function. Remember that a function is like a mini-program inside your program. When your program calls a function, it runs this mini-program. The code inside the print() function displays on the screen the string argument you passed it.
+La línea 6 es una llamada a la función print(). Recuerda que una función es como un mini-programa dentro de tu programa. Cuando tu programa llama a una función, ejecuta este mini-programa. El código dentro de la función print() muestra en la pantalla la cadena que ha recibido como argumento.
 
-Line 7 lets the user type in their name and stores it in the myName variable. (Remember, the string might not really be the player’s name. It’s just whatever string the player typed. Computers are dumb and just follow their programs no matter what.)
+La línea 7 permite al usuario escribir su nombre y lo almacena en la variable miNombre. (Recuerda, la cadena podría no ser realmente el nombre del jugador. Es simplemente cualquier cadena que el jugador haya introducido. Las computadoras son tontas, y sólo siguen sus programas sin importarles nada más.)
 
-The random.randint() function
+La función random.randint()
 
-9. number = random.randint(1, 20)
+9. número = random.randint(1, 20)
 
-Line 9 calls a new function named randint() and stores the return value in number. Remember, function calls can be part of expressions because they evaluate to a value.
+La línea 9 llama a una nueva función denominada randint() y guarda el valor que ésta devuelve en la variable número. Recuerda, las llamadas a funciones pueden ser parte de expresiones, ya que son evaluadas a un valor.
 
-Because the randint() function is provided by the random module, precede it with random. (don’t forget the period!) to tell Python that the function randint() is in the random module.
+La función randint() es parte del módulo random, por lo que debes colocar random. delante de ella (¡no olvides colocar el punto!) para decirle a Python que la función randint() está en el módulo random.
 
-The randint() function will return a random integer between (and including) the two integer arguments you pass to it. Line 9 passes 1 and 20 between the parentheses that follow the function name (separated by a comma). The random integer that randint() returns is stored in a variable named number; this is the secret number the player is trying to guess.
+La función randint() devolverá un entero aleatorio en el intervalo comprendido (incluidos los bordes) entre los dos argumentos enteros que le pases. La línea 9 pasa 1 y 20 entre los paréntesis que siguen al nombre de la función (separados por una coma). El entero aleatorio devuelto por randint() es almacenado en una variable llamada número; este es el número secreto que el jugador intentará adivinar.
 
-Just for a moment, go back to the interactive shell and enter import random to import the random module. Then enter random.randint(1, 20) to see what the function call evaluates to. It will return an integer between 1 and 20. Repeat the code again and the function call will probably return a different integer. The randint() function returns some random integer each time, just as rolling dice you’ll get a random number each time.
+Sólo por un momento, vuelve a la consola interactiva y escribe import random para importar el módulo aleatorio. Luego escribe random.randint(1, 20) para ver a qué se evalúa la llamada a la función. Devolverá un entero entre 1 y 20. Repite el código nuevamente y la llamada a la función probablemente devolverá un entero diferente. La función randint() devuelve un entero aleatorio cada vez, de la misma forma en que tirando un dado obtendrías un número aleatorio cada vez.
 
 >>> import random
 >>> random.randint(1, 20)
@@ -140,107 +140,107 @@ Just for a moment, go back to the interactive shell and enter import random to i
 >>> random.randint(1, 20)
 7
 
-Use the randint() function when you want to add randomness to your games. And you’ll use randomness in most games. Think of how many board games use dice.
+Usa la función randint() cuando quieras agregar aleatoriedad a tus juegos. Y vas a usar aleatoriedad en la mayoría de los juegos. Piensa que muchos juegos de mesa utilizan dados.
 
-You can also try out different ranges of numbers by changing the arguments. For example, enter random.randint(1, 4) to only get integers between 1 and 4 (including both 1 and 4). Or try random.randint(1000, 2000) to get integers between 1000 and 2000. For example, enter the following into the interactive shell. The results you get when you call the random.randint() function will probably be different (it is random, after all).
+También puedes probar diferentes intervalos de números cambiando los argumentos. Por ejemplo, escribe random.randint(1, 4) para obtener sólo enteros entre 1 y 4 (incluyendo 1 y 4). O prueba random.randint(1000, 2000) para obtener enteros entre 1000 y 2000. Por ejemplo, escribe lo siguiente en la consola interactiva. Los resultados que obtienes cuando llamas a la función random.randint() serán seguramente diferentes (después de todo es aleatorio).
 
 >>> random.randint(1, 4)
 3
 >>> random.randint(1000, 2000)
 1294
 
-You can change the game’s code slightly to make the game behave differently. Try changing line 9 and 10 from this:
+Puedes cambiar ligeramente el código fuente del juego para hacer que el programa se comporte de forma diferente. Prueba cambiar las líneas 9 y 10 de:
 
- 9. number = random.randint(1, 20)
-10. print('Well, ' + name + ', I am thinking of a number between 1 and 20.')
+ 9. número = random.randint(1, 20)
+10. print('Bueno, ' + miNombre + ', estoy pensando en un número entre 1 y 20.')
 
-…into these lines:
+a lo siguiente:
 
- 9. number = random.randint(1, 100)
-10. print('Well, ' + name + ', I am thinking of a number between 1 and 100.')
+ 9. número = random.randint(1, 100)
+10. print('Bueno, ' + miNombre + ', estoy pensando en un número entre 1 y 100.')
 
-And now the computer will think of an integer between 1 and 100 instead of 1 and 20. Changing line 9 will change the range of the random number, but remember to change line 10 so that the game also tells the player the new range instead of the old one.
+Y ahora la computadora pensará en un entero comprendido entre 1 y 100 en lugar de entre 1 y 20. Cambiar la línea 9 cambiará el intervalo del número aleatorio, pero recuerda cambiar también la línea 10 para que el juego le diga al jugador el nuevo rango en lugar del viejo.
 
-Welcoming the Player
+Recibiendo al Jugador
 
-10. print('Well, ' + myName + ', I am thinking of a number between 1 and 20.')
+10. print('Bueno, ' + miNombre + ', estoy pensando en un número entre 1 y 20.')
 
-On line 10 the print() function welcomes the player by name, and tells them that the computer is thinking of a random number.
+En la línea 10 la función print() recibe al jugador llamándolo por su nombre, y le dice que la computadora está pensando un número aleatorio.
 
-It may look like there’s more than one string argument in line 10, but look at the line carefully. The plus signs concatenate the three strings to evaluate down to one string. And that is the one string argument passed to the print() function. If you look closely, you’ll see that the commas are inside the quotes and part of the strings themselves.
+Puede parecer que hay más de un argumento cadena en la línea 10, pero observa la línea con cuidado. El signo suma concatena las tres cadenas de modo que son evaluadas a una única cadena. Y esa única cadena es la que se pasa a la función print(). Si miras detenidamente, verás que las comas están dentro de las comillas, por lo que son parte de las cadenas y no un separador.
 
-Loops
+Bucles
 
-12. while guessesTaken < 6:
+12. while intentosRealizados < 6:
 
-Line 12 is a while statement, which indicates the beginning of a while loop. Loops let you execute code over and over again. However, you need to learn a few other concepts first before learning about loops. Those concepts are blocks, Booleans, comparison operators, conditions, and the while statement.
+La línea 12 es una sentencia while, que indica el comienzo de un bucle while. Los bucles te permiten ejecuta código una y otra vez. Sin embargo, necesitas aprender algunos otros conceptos antes de aprender acerca de los bucles. Estos conceptos son bloques, booleanos, operadores de comparación, condiciones, y la sentencia while.
 
-Blocks
+Bloques
 
-Several lines of code can group together in a block. A block of code has the same minimum amount of indentation. You can tell where a block begins and ends by looking at the number of spaces at the front of the lines. This is the line’s indentation.
+Varias líneas de código pueden ser agrupadas en un bloque. Un bloque consiste en líneas de código que comparten mínima indentación posible. Puedes ver dónde comienza y termina un bloque de código mirando el número de espacios antes de las líneas. Esto se llama la indentación de la línea.
 
-A block begins when a line’s indentation increases (usually by four spaces). Any following line also indented by four spaces is part of the block. The block ends when there is a line of code with the same indentation before the block started. This means blocks can exist within other blocks.
+Un bloque comienza cuando la indentación de una línea se incrementa (usualmente en cuatro espacios). Cualquier línea subsiguiente que también esté indentada por cuatro espacios es parte del bloque. El bloque termina cuando hay una línea de código con la misma indentación que antes de empezar el bloque. Esto significa que pueden existir bloques dentro de otros bloques.
 
-Figure 4-1 is a diagram of code with the blocks outlined and numbered. The spaces are black squares to make them easier to count.
+La Figura 4-1 es un diagrama de código con los bloques delineados y numerados. Los espacios son cuadrados negros para que sean más fáciles de contar.
 
 
 
-Figure 4-1: Blocks and their indentation. The black dots represent spaces.
+Figura 4-1: Bloques y su indentación. Los puntos negros representan espacios.
 
-In Figure 4-1, line 12 has no indentation and isn’t inside any block. Line 13 has an indentation of four spaces. Since this indentation is larger than the previous line’s indentation, a new block has started. This block is labeled (1) in Figure 4-1. This block will continue until a line with zero spaces (the original indentation before the block began). Blank lines are ignored.
+En la Figura 4-1, la línea 12 no tiene indentación y no se encuentra dentro de ningún bloque. La línea 13 tiene una indentación de cuatro espacios. Como esta indentación es mayor que la indentación de la línea anterior, ha comenzado un nuevo bloque. Este bloque tiene la etiqueta (1) en la Figura 4-1. Este bloque continuará hasta una línea sin espacios (la indentación original antes de que comenzara el bloque). Las líneas vacías son ignoradas.
 
 Line 20 has an indentation of eight spaces. Eight spaces is more than four spaces, which starts a new block. This block is labeled (2) in Figure 4-1. This block is inside of another block.
 
-Line 22 only has four spaces. Because the indentation has decreased, you know that block has ended. Line 20 is the only line in that block. Line 22 is in the same block as the other lines with four spaces.
+La línea 22 sólo tiene cuatro espacios. Al ver que la indentación se ha reducido, sabes que el bloque ha terminado. La línea 20 es la única línea del bloque. La línea 22 está en el mismo bloque que las otras líneas con cuatro espacios.
 
-Line 23 increases the indentation to eight spaces, so again a new block has started. It is labeled (3) in Figure 4-1.
+La línea 23 incrementa la indentación a ocho espacios, de modo que otra vez comienza un nuevo bloque. Es el que tiene la etiqueta (3) en la Figura 4-1.
 
-To recap, line 12 isn’t in any block. Lines 13 to 23 all in one block (marked as block 1). Line 20 is in a block in a block (marked as block 2). And line 23 is the only line in another block in a block (marked as block 3).
+Para recapitular, la línea 12 no están en ningún bloque. Las líneas 13 a 23 pertenecen al mismo bloque (marcado como bloque 1). La línea 20 está en un bloque dentro de un bloque (marcado como bloque 2). Y la línea 23 es la única línea en otro bloque dentro de un bloque (marcado como bloque 3).
 
-The Boolean Data Type
+El Tipo de Datos Booleano
 
-The Boolean data type has only two values: True or False. These values must be typed with a capital “T” and “F”. The rest of the value’s name must be in lowercase. You will use Boolean values (also called bools) with comparison operators to form conditions. (Conditions are explained later.)
+El tipo de datos Booleano tiene sólo dos valores: True o False. Estos valores deben escribirse con “T” y “F” mayúsculas. El resto del nombre del valor debe estar en minúscula. Usarás valores Booleanos (tambien llamados bools) con operadores de comparación para formar condiciones. (Las condiciones serán explicadas más adelante.)
 
-The data types that have been introduced so far are integers, floats, strings, and now bools.
+Los tipos de datos que han sido introducidos hasta ahora son enteros, floats, cadenas, y ahora bools.
 
-Comparison Operators
+Operadores de Comparación
 
-Line 12 has a while statement:
+La línea 12 tiene una sentencia while:
 
-12. while guessesTaken < 6:
+12. while intentosRealizados < 6:
 
-The expression that follows the while keyword (the guessesTaken < 6 part) contains two values (the value in the variable guessesTaken, and the integer value 6) connected by an operator (the < sign, the “less than” sign). The < sign is called a comparison operator.
+La expresión que sigue a la palabra reservada while (la parte intentosRealizados < 6) contiene dos valores (el valor en la variable intentosRealizados, y el valor entero 6) conectados por un operador (el símbolo <, llamado el símbolo “menor que”). El símbolo < se llama un operador de comparación.
 
-Comparison operators compare two values and evaluate to a True or False Boolean value. A list of all the comparison operators is in Table 4-1.
+Los operadores de comparación comparan dos valores y se evalúan a un valor Booleano True o False. En la Tabla 4-1 se muestra una lista de todos los operadores de comparación.
 
-Table 4-1: Comparison operators.
-Operator Sign       Operator Name
-<                   Less than
->                   Greater than
-<=                  Less than or equal to
->=                  Greater than or equal to
-==                  Equal to
-!=                  Not equal to
+Tabla 4-1: Operadores de comparación.
+Signo del Operador       Nombre del operador
+<                        Menor que
+>                        Mayor que
+<=                       Menor o igual a
+>=                       Mayor o igual a
+==                       Igual a
+!=                       Diferente a
 
-You’ve already read about the +, -, *, and / math operators. Like any operator, the comparison operators combine with values to form expressions such as guessesTaken < 6.
+Ya has leído acerca de los operadores matemáticos +, -, *, y /. Como cualquier operador, los operadores de comparación se combinan con valores ara formar expresiones tales como intentosRealizados < 6.
 
-Conditions
+Condiciones
 
-A condition is an expression that combines two values with a comparison operator (such as < or >) and evaluates to a Boolean value. A condition is just another name for an expression that evaluates to True or False. Conditions are used in while statements (and a few other places, explained later.)
+Una condición es una expresión que combina dos valores con un operador de comparación (tal como < o >) y se evalúa a un valor Booleano. Una condición es sólo otro nombre para una expresión que se evalúa a True o False. Las condiciones se usan en sentencias while (y en algunas otras situaciones, explicadas más adelante.)
 
-For example, the condition guessesTaken < 6 asks, “is the value stored in guessesTaken less than the number 6?” If so, then the condition evaluates to True. If not, the condition evaluates to False.
+Por ejemplo, la condición intentosRealizados < 6 pregunta, “¿es el valor almacenado en intentosRealizados menor que el número 6?” Si es así, entonces la condición se evalúa a True. en caso contrario, la condición se evalúa a False.
 
-In the case of the “Guess the Number” program, on line 4 you stored the value 0 in guessesTaken. Because 0 is less than 6, this condition evaluates to the Boolean value of True. The evaluation would look like this:
+En el caso del programa “Adivina el Número”, en la línea 4 has almacenado el valor 0 en intentosRealizados. Como 0 es menor que 6, esta condición se evalúa al valor Booleano True. La evaluación ocurre así:
 
-guessesTaken < 6
-             ▼
-           0 < 6
-             ▼
-            True
+intentosRealizados < 6
+                   ▼
+                 0 < 6
+                   ▼
+                  True
 
-Experiment with Booleans, Comparison Operators, and Conditions
+Experimentando con Booleans, Operadores de Comparación y Condiciones
 
-Enter the following expressions in the interactive shell to see their Boolean results:
+Escribe las siguientes expresiones en la consola interactiva para ver sus resultados Booleanos:
 
 >>> 0 < 6
 True
@@ -253,11 +253,11 @@ True
 >>> 10 < 10
 False
 
-The condition 0 < 6 returns the Boolean value True because the number 0 is less than the number 6. But because 6 isn’t less than 0, the condition 6 < 0 evaluates to False. 50 isn’t less than 10, so 50 < 10 is False. 10 is less than 11, so 10 < 11 is True.
+La condición 0 < 6 devuelve el valor Booleano True porque el número 0 es menor que el número 6. Pero como 6 no es menor que 0, la condición 6 < 0 se evalúa a False. 50 no es menor que 10, luego 50 < 10 es False. 10 es menor que 11, entonces 10 < 11 es True.
 
-Notice that 10 < 10 evaluates to False because the number 10 isn’t smaller than the number 10. They are exactly the same size. If Alice were the same height as Bob, you wouldn't say that Alice is taller than Bob or that Alice is shorter than Bob. Both of those statements would be false.
+Observa que 10 < 10 se evalúa a False porque el número 10 no es más pequeño que el número 10. Son exactamente del mismo tamaño. Si Alice fuera igual de alta que Bob, no dirías que Alice es más alta que Bob o que Alice más baja que Bob. Ambas afirmaciones serían falsas.
 
-Now try entering these expressions into the interactive shell:
+Ahora prueba introducir estas expresiones en la consola interactiva:
 
 >>> 10 == 10
 True
@@ -269,82 +269,82 @@ False
 False
 >>> 10 != 11
 True
->>> 'Hello' == 'Hello'
+>>> 'Hola' == 'Hola'
 True
->>> 'Hello' == 'Goodbye'
+>>> 'Hola' == 'Adios'
 False
->>> 'Hello' == 'HELLO'
+>>> 'Hola' == 'HOLA'
 False
->>> 'Goodbye' != 'Hello'
+>>> 'Adios' != 'Hola'
 True
 
-Try not to confuse the assignment operator (=) and the “equal to” comparison operator (==). The equal sign (=) is used in assignment statements to store a value to a variable, while the equal-equal sign (==) is used in expressions to see whether two values are equal. It’s easy to accidentally use one when you meant to use the other.
+Intenta no confundir el operador asignación (=) y el operador de comparación “igual a” (==). El signo igual (=) se usa en sentencias de asignación para almacenar un valor en una variable, mientras que el signo igual-igual (==) se usa en expresiones para ver si dos valores son iguales. Es fácil usar uno accidentalmente cuando quieres usar el otro.
 
-Just remember that the “equal to” comparison operator (==) has two characters in it, just as the “not equal to” comparison operator (!=) has two characters in it.
+Sólo recuerda que el operador de comparación “igual a” (==) está compuesto por dos caracteres, igual que el operador de comparación “diferente a” (!=) que también está compuesto por dos caracteres.
 
-String and integer values will not be equal to each other. For example, try entering the following into the interactive shell:
+Cadenas y valores enteros no pueden ser iguales. Por ejemplo, prueba escribiendo lo siguiente en la consola interactiva:
 
->>> 42 == 'Hello'
+>>> 42 == 'Hola'
 False
 >>> 42 != '42'
 True
 
-Looping with while statements
+Creabdo Bucles con sentencias while
 
-The while statement marks the beginning of a loop. Loops can execute the same code repeatedly. When the execution reaches a while statement, it evaluates the condition next to the while keyword. If the condition evaluates to True, the execution moves inside the while-block. (In your program, the while-block begins on line 13.) If the condition evaluates to False, the execution moves all the way past the while-block. (In “Guess the Number”, the first line after the while-block is line 28.)
+La sentencia while indica el comienzo de un bucle. Los bucles pueden ejecutar el mismo código repetidas veces. Cuando la ejecución llega hasta una sentencia while, evalúa la condición junto a la palabra reservada while. Si la condición se evalúa a True, la ejecución se mueve dentro del bloque while. (En tu programa, el bloque while comienza en la línea 13.) Si la condición se evalúa a False, la ejecución se mueve hasta debajo del bloque while. (En “Adivina el Número”, la primera línea luego del bloque while es la línea 28.)
 
-A while statement always has a colon (the : sign) after the condition.
+Una sentencia while siempre incluye dos punos (el signo :) después de la condición.
 
-12. while guessesTaken < 6:
+12. while intentosRealizados < 6:
 
 
 
-Figure 4-2: The while loop’s condition.
+Figura 4-2: La condición del bucle while.
 
-Figure 4-2 shows how the execution flows depending on the condition. If the condition evaluates to True (which it does the first time, because the value of guessesTaken is 0), execution will enter the while-block at line 13 and keep going down. Once the program reaches the end of the while-block, instead of going down to the next line, the execution loops back up to the while statement’s line (line 12) and re-evaluates the condition. As before, if the condition is True the execution enters the while-block again. Each time the execution goes through the loop is called an iteration.
+La Figura 4-2 muestra como transcurre la ejecución dependiendo de la condición. Si la condición se evalúa a True (lo cual hace la primera vez, porque el valor de intentosRealizados es 0), la ejecución entrará al bloque while en la línea 13 y continuará moviéndose hacia abajo. Una vez que el programa llegue al final del bloque while, en lugar de ir hacia abajo hasta la siguiente línea, la ejecución vuelve atrás hasta la línea de la sentencia while (línea 12) y reevalúa la condición. Como antes, si la condición es True la ejecución vuelve a entrar al bloque while. Cada vez que la ejecución recorre el bucle se llama una iteración.
 
-This is how the loop works. As long as the condition is True, the program keeps executing the code inside the while-block repeatedly until the first time the condition is False. Think of the while statement as saying, “while this condition is true, keep iterating through the code in this block”.
+Así es como funciona el bucle. Mientras que la condición sea True, el programa sigue ejecutando el código dentro del bloque while en forma repetida hasta la primera vez que la condición sea False. Piensa en la sentencia while como decir, “mientras esta condición sea verdadera, sigue iterando a través del código en este bloque”.
 
-The code inside the while-block handles accepting a guess from the player and checking if it is greater than, less than, or equal to the secret number. You can change the game’s difficulty by changing the number of guesses the player gets. To give the player only four guesses, change this line:
+El código dentro del bloque while se encarga de aceptar un intento del jugador y comprobar si es mayor, menor o igual al número secreto. Puedes cambiar la dificultad del juego modificando el número de intentos que el jugador recibe. Para dar al jugador sólo cuatro intentos, cambia esta línea:
 
-12. while guessesTaken < 6:
+12. while intentosRealizados < 6:
 
-into this line:
+por esta otra:
 
-12. while guessesTaken < 4:
+12. while intentosRealizados < 4:
 
-Code later in the while-block increases the guessesTaken variable by 1 on each iteration. By setting the condition to guessesTaken < 4, you ensure that the code inside the loop only runs four times instead of six. This makes the game much more difficult. To make the game easier, set the condition to guessesTaken < 8 or guessesTaken < 10. This will cause the loop to run a few more times and accept more guesses from the player.
+El código más adelante en el bloque while incrementa la variable intentosRealizados en 1 en cada iteración. Al imponer la condición intentosRealizados < 4, te aseguras de que el código dentro del bucle sólo se ejecuta cuatro veces en lugar de seis. Esto hace al juego mucho más difícil. Para hacer el juego más fácil, cambia la condición a intentosRealizados < 8 o intentosRealizados < 10. Esto permitirá que el bucle se ejecute algunas veces más y acepte más intentos del jugador.
 
-Of course, if you removed line 17 (guessesTaken = guessesTaken + 1) altogether then the guessesTaken would never increase. The while loop’s condition would always be True! This would give the player an unlimited number of guesses. The player might like this, but a programmer would consider this a bug.
+Por supuesto, si eliminaras la línea 17 (intentosRealizados = intentosRealizados + 1) completamente, intentosRealizados nunca se incrementaría. ¡La condición del bucle while sería siempre True! Esto daría al jugador un número ilimitado de intentos. Al jugador podría gustarle esto, pero un programador lo consideraría un error.
 
-The Player Guesses
+El Jugador Adivina
 
-Lines 13 to 17 ask the player to guess what the secret number is and lets them enter their guess. That number is stored in a variable named guess.
+Las líneas 13 a 17 piden al jugador que adivine cuál es el númeo secreto y le permiten formular su intento. Este número se almacena en una variable llamada estimación.
 
-14.     print('Take a guess.') # There are four spaces in front of print.
-15.     guess = input()
+13.     print('Intenta adivinar.') # Hay cuatro espacios delante de print.
+14.     estimación = input()
 
-Converting Strings to Integers with the int() function
+Conversión de Cadenas a Enteros con la función int()
 
-16.     guess = int(guess)
+15.     estimación = int(estimación)
 
-In line 15, you call a new function called int(). The int() function takes one argument and returns an integer value form that argument. Try entering the following into the interactive shell:
+En la línea 15, llamas a una función llamada int(). La función int() toma un argumento y devuelve un valor entero de ese argumento. Prueba escribir lo siguiente en la consola interactiva:
 
 >>> int('42')
 42
 >>> int(42)
 42
->>> int('forty-two')
+>>> int('cuarenta-y-dos')
 Traceback (most recent call last):
   File "<pyshell#5>", line 1, in <module>
-int('forty-two')
-ValueError: invalid literal for int() with base 10: 'forty-two'
+int('cuarenta-y-dos')
+ValueError: invalid literal for int() with base 10: 'cuarenta-y-dos'
 >>> 3 + int('2')
 5
 
-The int('42') call will return the integer value 42.The int(42) call will do the same (though it is kind of pointless to get an integer value form of an integer value). However, even though you can pass a string to the int() function, you cannot pass just any string. Passing 'forty-two' to int() will result in an error. The string you pass to int() must be made up of numbers.
+La llamada a int('42') devolverá el valor entero 42. La llamada int(42) hará lo mismo (a pesar de que no tiene mucho sentido obtener la forma de valor entero de un valor que ya es entero). Sin embargo, aunque la función int() acepta cadenas, no puedes pasarle cualquier cadena. Pasarle 'cuarenta-y-dos' a int() resultará en un error. La cadena que recibe int() debe estar compuesta por números.
 
-The 3 + int('2') line shows an expression that uses the return value of int() as part of an expression. It evaluates to the integer value 5:
+La línea 3 + int('2') muestra una expresión que usa el valor de retorno de int() como parte de una expresión. Se evalúa al valor entero 5:
 
 3 + int('2')
   ▼
@@ -352,7 +352,7 @@ The 3 + int('2') line shows an expression that uses the return value of int() as
   ▼
   5
 
-Remember, the input() function returns a string of text the player typed. If the player types 5, the input() function will return the string value '5', not the integer value 5. Python cannot use the < and > comparison operators to compare a string and an integer value:
+Recuerda, la función input() devuelve una cadena de texto que el jugador ha escrito. Si el jugador escribe 5, la función input() devolverá el valor de cadena '5', no el valor entero 5. Python no puede usar los operadores de comparación < y > para comparar una cadena y un valor entero:
 
 >>> 4 < '5'
 Traceback (most recent call last):
@@ -360,109 +360,109 @@ Traceback (most recent call last):
     4 < '5'
 TypeError: unorderable types: int() < str()
 
-On line 15 the guess variable originally held the string value of what the player typed. Line 16 overwrites the string value in guess with the integer value returned by int(). This lets the code later in the program compare if guess is greater than, less than, or equal to the secret number in the number variable. Python cannot compare a string value with an integer value to see if one is greater or less than the other, even if that string value is something like '5'.
+En la línea 14 la variable estimación contenía originalmente el valor de cadena ingresado por el jugador. La línea 15 sobrescribe el valor de cadena en estimación con el valor entero devuelto por int(). Esto permite al código más adelante en el programa comparar si estimación es mayor, menor o igual al número secreto en la variable número. Python no puede comparar un valor cadena con un valor entero para ver si uno es mayor o menor que el otro, incluso si el valor de cadena es algo como '5'.
 
-One last thing: Calling int(guess) doesn’t change the value in the guess variable. The code int(guess) is an expression that evaluates to the integer value form of the string stored in the guess variable. What changes guess is the assignment statement: guess = int(guess)
+Una última cosa: La llamada int(estimación) no cambia el valor de la variable estimación. El código int(estimación) es una expresión que se evalúa a la forma de valor entero de la cadena guardada en la variable estimación. Lo que cambia estimación es la sentencia de asignación: estimación = int(estimación)
 
-Incrementing Variables
+Incrementando las Variables
 
-17.     guessesTaken = guessesTaken + 1
+17.     intentosRealizados = intentosRealizados + 1
 
-Once the player has taken a guess, the number of guesses should be increased by one.
+Una vez que el jugador ha realizado un intento, el número de intentos debería incrementarse en uno.
 
-On the first iteration of the loop, guessesTaken has the value of 0. Python will take this value and add 1 to it. 0 + 1 evaluates to 1, which is stored as the new value of guessesTaken. Think of line 17 as meaning, “the guessesTaken variable should be one more than what it already is”.
+En la primera iteración del bucle, intentosRealizados tiene el valor 0. Python tomará este valor y le sumará 1. 0 + 1 se evalúa a 1, el cual se almacena como nuevo valor de intentosRealizados. Piensa en la línea 17 como diciendo, “la variable intentosRealizados debería ser uno más que lo que es ahora”.
 
-Adding one to a variable’s integer or float value is incrementing the variable. Subtracting one from a variable’s integer or float value is decrementing the variable.
+Sumarle uno al valor entero o float de una variable es lo que se llama incrementar la variable. Restarle uno al valor entero o float de una variable es decrementar la variable.
 
-if statements
+Sentencias if
 
-Is the Player’s Guess Too Low?
+¿La Estimación del Jugador es Demasiado Baja?
 
-19.     if guess < number:
-20.          print('Your guess is too low.') # There are eight spaces in front of print.
+19.     if estimación < número:
+20.         print('Tu estimación es muy baja.') # Hay ocho espacios delante de print.
 
-Line 19 checks if the player’s guess is less than the computer’s secret number. If so, then the execution moves to line 20 and prints a message telling the player this. Line 19 is an if statement. The execution will run the code in the following block if the if statement’s condition evaluates to True. If the condition is False, then the code in the if-block is skipped. Using if statements, you can make the program only run certain code when you want it to.
+La línea 19 comprueba si la estimación del jugador es menor que el número secreto de la computadora. Si lo es, entonces la ejecución se mueve a la línea 20 y muestra un mensaje que se lo comunica al jugador. La línea 19 es una sentencia if. La ejecución correrá el código en el siguiente bloque si la condición de la sentencia if se evalúa a True. Si la condición es False, entonces el código en el bloque if se omite. Mediante el uso de sentencias if, puedes hacer que el programa sólo ejecute ciertas partes del código cuando tú quieras.
 
-The if statement works almost the same as a while statement, too. But unlike the while-block, the execution doesn’t jump back to the if statement at the end of the if-block. It just continues down to the next line. In other words, if statements don’t loop. See Figure 4-3 for a comparison of the two statements.
+La sentencia if funciona casi igual que una sentencia while. Pero a diferencia del bloque while, la ejecución no vuelve atrás hasta la sentencia if cuando termina de ejecutarse el bloque if. Simplemente continúa en la línea siguiente. En otras palabras, las sentencias if no generan un bucle. Mira la Figura 4-3 para ver una comparación de las dos sentencias.
 
 
 
-Figure 4-3: if and while statements.
+Figura 4-3: Sentencias if y while.
 
-Is the Player’s Guess Too High?
+¿La Estimación del Jugador es Demasiado Alta?
 
-22.     if guess > number:
-23.          print('Your guess is too high.')
+22.     if estimación > número:
+23.         print('Tu estimación es muy alta.')
 
-Line 22 checks if the player’s guess is greater than the random integer. If this condition is True, then the print() function call tells the player that their guess is too big.
+La línea 22 comprueba si la estimación del jugador es mayor que el entero aleatorio. Si esta condición es True, entonces la llamada a la función print() indica al jugador que su estimación es demasiado alta.
 
-Leaving Loops Early with the break statement
+Abandonando los Bucles Anticipadamente con la sentencia break
 
-25.     if guess == number:
-26.          break
+25.     if estimación == número:
+26.         break
 
-The if statement on line 25 checks if the guess is equal to the random integer. If it is, the program runs the break statement on line 26.
+La sentencia if en la línea 25 comprueba si la estimación es igual al entero aleatorio. Si lo es, el programa ejecuta la sentencia break de la línea 26.
 
-A break statement tells the execution to jump immediately out of the while-block to the first line after the end of the while-block. (The break statement doesn’t bother rechecking the while loop’s condition, it just breaks out of the loop immediately.)
+Una sentencia break indica a la ejecución que salga inmediatamente del bucle while y se mueva a la primera línea a continuación del mismo. (Las sentencias break no se molestan en volver a revisar la condición del bucle while, sólo salen del bucle instantaneamente.)
 
-The break statement is just the break keyword by itself, with no condition or colon.
+La sentencia break es simplemente la palabra reservada break en sí misma, sin condición o dos puntos.
 
-If the player’s guess isn’t equal to the random integer, the execution reaches the bottom of the while-block. This means the execution will loop back to the top and recheck the condition on line 12 (guessesTaken < 6). Remember after the guessesTaken = guessesTaken + 1 line of code executed, the new value of guessesTaken is 1. Because 1 < 6 is True, the execution enters the loop again.
+If the player’s guess isn’t equal to the random integer, the execution reaches the bottom of the while-block. This means the execution will loop back to the top and recheck the condition on line 12 (intentosRealizados < 6). Remember after the intentosRealizados = intentosRealizados + 1 line of code executed, the new value of intentosRealizados is 1. Because 1 < 6 is True, the execution enters the loop again.
 
-If the player keeps guessing too low or too high, the value of guessesTaken will change to 2, then 3, then 4, then 5, then 6. When guessesTaken has the number 6 stored in it, the while statement’s condition is False, since 6 isn’t less than 6. Because the while statement’s condition is False, the execution moves to the first line after the while-block.
+Si el jugador continúa realizando intentos demasiado altos o bajos, el valor de intentosRealizados cambiará a 2, luego 3, luego 4, luego 5, luego 6. Cuando intentosRealizados tiene almacenado el número 6, la condición de la sentencia while es False, dado que 6 no es menor que 6. Como la condición de la sentencia while es False, la ejecución se mueve a la primera línea después del bloque while.
 
-If the player guessed the number correctly, the break statement would move the execution to the first line after the while-block.
+Si el jugador adivinó el número correctamente, la sentencia break moverá la ejecución a la primera línea luego del bloque while.
 
-The remaining lines of code run when the player has finished guessing, either because the player guessed the correct number or run out of guesses.
+Las líneas de código restantes se ejecutan cuando el jugador ha concluido sus intentos, sea por haber adivinado el número correcto o por haberse quedado sin intentos.
 
-Check if the Player Won
+Comprobar si el Jugador ha Ganado
 
-28. if guess == number:
+28. if estimación == número:
 
-Line 28 has no indentation, which means the while-block has ended and this is the first line after the while-block. The execution left the while-block either because the while statement’s condition was False (when the player runs out of guesses) or the break statement executed (when the player guesses the number correctly). Line 28 checks to see if the player guessed correctly. If so, the execution enter the if-block at line 29.
+La línea 28 no tiene indentación, lo que significa que el bloque while ha terminado y esta es la primera línea luego del mismo. La ejecución ha abandonado el bloque while, sea porque la condición de la sentencia while era False (cuando el jugador se quedó sin intentos) o porque se ejecutó la sentencia break (cuando el jugador adivina el número correctamente). La línea 28 comprueba a ver si el jugador ha adivinado correctamente. Si es así, la ejecución entra al bloque if de la línea 29.
 
-29.     guessesTaken = str(guessesTaken)
-30.     print('Good job, ' + myName + '! You guessed my number in ' + guessesTaken + ' guesses!')
+29.     intentosRealizados = str(intentosRealizados)
+30.     print('¡Buen trabajo, ' + miNombre + '! ¡Has adivinado mi número en ' + intentosRealizados + ' intentos!')
 
-Lines 29 and 30 only execute if the condition in the if statement on line 28 was True (that is, if the player correctly guessed the computer’s number).
+Las líneas 29 y 30 sólo se ejecutan si la condición en la sentencia if de la línea 28 es True (es decir, si el jugador ha adivinado correctamente el número de la computadora).
 
-Line 29 calls the new function str(), which returns the string form of an argument. This code gets the string form of the integer in guessesTaken since only strings concatenate strings together.
+La línea 29 llama a la nueva función str(), que devuelve la forma cadena de un argumento. Este código obtiene la forma cadena del entero en intentosRealizados ya que sólo cadenas pueden ser concatenadas con otras cadenas.
 
-Line 30 concatenates strings together to tell the player they have won and how many guesses it took them. Only string values can concatenate to other strings. This is why line 29 had to change guessesTaken to the string form. Otherwise, trying to concatenate a string to an integer would cause Python to display an error.
+La línea 30 concatena cadenas para decirle al jugador que ha ganado, y cuántos intentos ha usado. Sólo valores cadena pueden ser concatenados con otras cadenas. Esta es la razón de que la línea 29 tuviese que cambiar intentosRealizados a la forma cadema. De otro modo, tratar de concatenar una cadena con un entero causaría que Python to an integer haría que Python mostrara un error.
 
-Check if the Player Lost
+Comprobar si el Jugador ha Perdido
 
-32. if guess != number:
+32. if estimación != número:
 
-Line 32 uses the comparison operator != to check if player’s last guess is not equal to the secret number. If this condition evaluates to True, the exeution moves into the if-block on line 33.
+La línea 32 usa el operador comparación != para comprobar si el último intento del jugador no es igual al número secreto. Si esta condición se evalúa a True, la ejecución se mueve dentro del bloque if de la línea 33.
 
-Lines 33 and 34 are inside the if-block, and only execute if the condition on line 32 was True.
+Las líneas 33 y 34 están dentro del bloque if, y sólo se ejecutan si la condición de la línea 32 es True.
 
-33.     number = str(number)
-34.     print('Nope. The number I was thinking of was ' + number)
+33.     número = str(número)
+34.     print('Pues no. El número que estaba pensando era ' + número)
 
-In this block, the program tells the player what the secret number they failed to guess correctly was. This requires concatenating strings, but number stores an integer value. Line 33 will replace number with a string form so that it can be concatenated to the 'Nope. The number I was thinking of was ' string on line 34.
+En este bloque, el programa indica al jugador cuál era el número secreto que no ha podido adivinar correctamente. Esto requiere concatenar cadenas, pero número almacena un valor entero. La línea 33 reemplazará número con una forma cadena, de modo que pueda ser concatenada con la cadena 'Pues no. El número que estaba pensando era ' de la línea 34.
 
-At this point, the execution has reached the end of the code, and the program terminates. Congratulations! You’ve just programmed your first real game!
+En este punto, la ejecución ha alcanzado el final del código, y el programa termina. ¡Felicitaciones! ¡Acabas de programar tu primer juego de verdad!
 
-Flow Control Statements
+Sentencias de Control de Flujo
 
-In previous chapters, the program execution started at the top instruction in program and went straight down, executing each instruction in order. But with the while, if, else, and break statements, you can cause the execution to loop and skip instructions based on conditions. The name for these kinds of statements is flow control statement, since they change the “flow” of the program execution as it moves around your program.
+En capítulos anteriores, la ejecución del programa comenzaba por la instrucción de más arriba e iba directo hacia abajo, ejecutando cada instrucción en orden. Pero con las sentencias while, if, else, y break, puedes hacer que la ejecución repita u omita instrucciones basándose en condiciones. Este tipo de sentencia se llama sentencia de control de flujo, ya que modifican el “flujo” de la ejecución a medida que esta se desplaza por tu programa.
 
-Summary
+Resumen
 
-If someone asked you, “What exactly is programming anyway?” what could you say to them? Programming is just the action of writing code for programs, that is, creating programs that can be executed by a computer.
+Si alguien te preguntase “¿Qué es exactamente programar de todos modos?”, ¿qué podrías decirle? Programar es simplemente la acción de escribir código para programas, es decir, crear programas que puedan ser ejecutados por una computadora.
 
-“But what exactly is a program?” When you see someone using a computer program (for example, playing your “Guess the Number” game), all you see is some text appearing on the screen. The program decides what exact text to show on the screen (the program’s output), based on its instructions and on the text that the player typed on the keyboard (the program’s input). A program is just a collection of instructions that act on the user’s input.
+“Pero ¿qué es exactamente un programa?” Cuando ves a alguien usando un programa de computadora (por ejemplo, jugando tu juego “Adivina el Número”), todo lo que ves es texto apareciendo en la pantalla. El programa decide exactamente qué texto mostrar en la pantalla (las salidas del programa), basado en instrucciones y en el texto que el jugador ha escrito mediante el teclado (las entradas del programa). Un programa es sólo una colección de instrucciones que actúan sobre las entradas provistas por el usuario.
 
-“What kind of instructions?” There are only a few different kinds of instructions, really.
+“¿Qué tipo de instrucciones?” Hay sólo unos pocos tipos diferentes de instrucciones, de verdad.
 
-1.  Expressions. Expressions are values connected by operators. Expressions are all evaluated down to a single value, as 2 + 2 evaluates to 4 or 'Hello' + ' ' + 'World' evaluates to 'Hello World'. When expressions are next to the if and while keywords, you also call them conditions.
-2.  Assignment statements. Assignment statements store values in variables so you can remember the values later in the program.
-3.  The if, while, and break flow control statements. Flow control statements can cause the flow to skip instructions, loop over instructions, or break out of loops. Function calls also change the flow of execution by jumping to the start of a function.
-4.  The print() and input() functions. These functions display text on the screen and get text from the keyboard. This is called I/O (pronounced like the letters, “eye-oh”), because it deals with the Input and Output of the program.
+1.  Expresiones. Las expresiones son valores conectados por operadores. Todas las expresiones son evaluadas a un único valor, así como 2 + 2 se evalúa a 4 o 'Hola' + ' ' + 'Mundo' se evalúa a 'Hola Mundo'. Cuando las expresiones están al lado de las palabras reservadas if y while, pueden recibir también el nombre de condiciones.
+2.  Sentencias de asignación. Las sentencias de asignación almacenan valores en variables para que puedas recordar los valores más adelante en el programa.
+3.  Sentencias de control de flujo if, while, y break. Las sentencias de control de flujo pueden hacer que el flujo omita instrucciones, genere un bucle sobre un bloque de instrucciones o salga del bucle en el que se encuentra. Las llamadas a funciones también cambian el flujo de ejecución moviéndose al comienzo de una función.
+4.  Las funciones print() e input(). Estas funciones muestran texto en la pantalla y reciben texto del teclado. Esto se llama E/S (o en inglés I/O), porque tiene que ver con las Entradas y Salidas del programa.
 
-And that’s it, just those four things. Of course, there are many details about those four types of instructions. In this book you’ll learn about new data types and operators, new flow control statements, and many other functions that come with Python. There are also different types of I/O such as input from the mouse or outputting sound and graphics instead of just text.
+Y eso es todo, sólo estas cuatro cosas. Por supuesto, hay muchos detalles acerca de estos cuatro tipos de instrucciones. En este libro aprenderás acerca de nuevos tipos de datos y operadores, nuevas sentencias de controlo de flujo, y muchas otras funciones que vienen con Python. También hay diferentes tipos de E/S tales como entradas provistas por el ratón o salidas de sonido y gráficos en lugar de sólo texto.
 
-For the person using your programs, they only care about that last type, I/O. The user types on the keyboard and then sees things on the screen or hears things from the speakers. But for the computer to figure out what sights to show and what sounds to play, it needs a program, and programs are just a bunch of instructions you, the programmer, have written.
+En cuanto a la persona que usa tus programas, sólo se preocupa acerca del último tipo, E/S. El usuario escribe con el teclado y luego ve cosas en la pantalla u oye sonidos de los altavoces. Pero para que la computadora pueda saber qué imágenes mostrar y qué sonidos reproducir, necesita un programa, y los programas son sólo un manojo de instrucciones que tú, el programador, has escrito.
 
