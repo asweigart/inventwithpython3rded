@@ -24,7 +24,7 @@ In Python, text values are called strings. Strings values can be used just like 
 
 >>> spam = 'hello'
 
-The single quotes tell Python where the string begins and ends. They are not part of the string value. Now, if you type spam into the interactive shell, you will see the contents of the spam variable (the 'hello' string.) Remember, Python evaluates variables to the value stored inside the variable. In this case, this is the string 'Hello':
+The single quotes tell Python where the string begins and ends. They are not part of the string value. Now, if you type spam into the interactive shell, you will see the contents of the spam variable (the 'hello' string.) Remember, Python evaluates variables to the value stored inside the variable. In this case, this is the string 'hello':
 
 >>> spam = 'hello'
 >>> spam
@@ -137,7 +137,7 @@ NameError: name 'Albert' is not defined
 
 How the “Hello World” Program Works
 
-Each line of code is an instruction interpreted by Python. These instructions make up the program. A computer program’s instructions is like the steps in a cake recipe. Each instruction executes in order, beginning from the top of the program and working down the list of instructions.
+Each line of code is an instruction interpreted by Python. These instructions make up the program. A computer program’s instructions are like the steps in a cake recipe. Each instruction executes in order, beginning from the top of the program and working down the list of instructions.
 
 What step Python is in the program’s recipe is called the flow of execution, or just the execution for short. When the program starts, the execution is at the first line. Then it goes down to the next instruction.
 
@@ -147,7 +147,7 @@ Comments
 
 1. # This program says hello and asks for my name.
 
-This line is a comment. Any text following a # sign (called the pound sign) is a comment. Comments are not for the Python, but for you, the programmer. Python ignores comments. Comments are notes about what the code does for you or any other programmer who is examining the source code. To make it easier to read the source code, this book prints comments in a light gray-colored text.
+This line is a comment. Any text following a # sign (called the pound sign) is a comment. Comments are not for Python, but for you, the programmer. Python ignores comments. Comments are notes about what the code does for you or any other programmer who is examining the source code. To make it easier to read the source code, this book prints comments in a light gray-colored text.
 
 Programmers usually put a comment at the top of their code to give their program a title. The IDLE program displays comments in red text to help them stand out.
 
