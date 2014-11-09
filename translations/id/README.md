@@ -17,11 +17,29 @@ General Notes
 ## Convention ##
 
 - use "aku" and "kamu"
-- "Bab" for "chapter", dan "bagian" for "section"
-- "wrapped" <-> "terlipat" with text/paragraph context
 
-## English term ##
+## Glossary ##
 
+- chapter, bab
+- section, bagian
+- run, menjalankan dalam konteks program
+- software, perangkat lunak
+- wrapped, terlipat dalam konteks paragraf atau teks
+- concatenation, perangkaian
+- assigment, pengisian atau subtitusi bilangan ke variabel
+- integer, bilangan bulat
+- float, float atau bilangan dengan tanda koma
+- cursor, kursor
+- source code, sumber kode
+- tool, perkakas
+- passing, melempar
+- return value, nilai kembalian
+- loop, putaran iterasi
+- module, module dalam konteks Python
+- import, import dalam konteks Python
+- increment, meningkatkan suatu variabel
+- decrement, merendahkan suatu variabel
+- programmer
 - interpeter
 - shell
 - online
@@ -33,3 +51,12 @@ General Notes
 - video games
 - keyboard
 - prompt
+- string
+- case-sensitivity
+- file editor
+- shortcut
+- build-in
+- argument
+- bug
+- mouse
+
