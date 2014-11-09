@@ -104,3 +104,28 @@ Zeile Zwei ist ein import Befehl. Befehle sind Instruktionen die eine Handlung d
 Python bringt viele Funktionen mit, ein großer Teil davon befindet sich aber in getrennten Programmen die Module genannt werden. Module sind Python Programme die zusätzliche Funktionen beinhalten. Um diese Funktionen zu verwenden musst du die zugerhörigen Module mit einem import Befehl in dein Programm importieren.
 
 Der import Befehl besteht aus dem import Schlüsselwort gefolgt vom Modulnamen. Zeile 2 importiert das modul mit dem Namen random (engl. zufällig). Das random module enthält einige Funktionen die mit Zufallszahlen zu tun haben. Eine dieser Funktionen liefert die Zufallszahlen die der Benutzer erraten muss.
+
+4. abgegebeneTipps = 0
+
+Diese Zeile erstellt eine neue Variable mit dem Namen agbgebeneTipps. In dieser Variable wird die Anzahl der Tipps, die der Spieler abgegeben hat, gespeichert. Wir setzen die Variable hier auf den Integer 0 weil der Spieler noch keinen Tipp abgegeben hat. 
+
+6.  print('Hallo! Was ist dein Name?')
+7.  meinName = input() 
+
+Zeilen 6 und 7 sind wie im Hallo Welt Programm aus Kapitel 3. Programmierer verwenden Programmcode aus alten Programmen oft wieder um sich Arbeit zu sparen.
+
+Zeile 6 ist ein Funktionsaufruf, hier wird die print() Funktion aufgerufen. Erinner dich, dass ein Funktionsaufruf wie ein Miniprogramm in deinem Programm ist. Wenn dein Programm eine Funktion aufruft, dann führt es dieses Miniprogramm aus. Der Programmcode in der print() Funktion zeigt den Text, der im String Argument übergeben wird, auf dem Bildschirm an.
+
+Zeile 7 lässt den Benutzer seinen Name eingeben und speichert die Eingabe in der Variable meinName. (Der String muss nicht wirklich der Name des Spieler sein sondern ist einfach genau der String, den der Spieler eintippt. Computer sind dumm und folgen einfach stur ihrem Programm.)
+
+Die random.randint() Funktion
+
+9.  zahl = random.randint(1, 20)
+
+Zeile 9 ruft eine  neue Funktion mit dem Namen randint() auf und speichert den Rückgabewert in zahl ab. Funktionsaufrufe können Teil eines Ausdrucks sein, weil sie zu einem Wert ausgewerteten haben. 
+
+Weil die randint() Funktion von vom random Modul präsentiert wird muss ihm random vorangestellt werden (Vergiss nicht auf den Punkt!) um Python mitzuteilen, dass die Funktion randint() im Modul random zu finden ist.
+
+Die randint() Funktion wird eine Zufallszahl zwischen (und inklusive) den beiden übergebenen Integerargumenten zurückgeben. Zeile 9 übergibt 1 und 20 zwischen den Klammern die dem Funktionsnamen folgen (unterteilt durch ein Komma). Die Zufallszahl die von randint() zurück gibt wird einer Variable namens zahl gespeichert; das ist die geheime Zahl die der Spieler erraten muss. 
+
+
