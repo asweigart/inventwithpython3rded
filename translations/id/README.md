@@ -34,6 +34,11 @@ General Notes
 - tool, perkakas
 - passing, melempar
 - return value, nilai kembalian
+- loop, putaran iterasi
+- module, module dalam konteks Python
+- import, import dalam konteks Python
+- increment, meningkatkan suatu variabel
+- decrement, merendahkan suatu variabel
 - programmer
 - interpeter
 - shell
@@ -52,4 +57,6 @@ General Notes
 - shortcut
 - build-in
 - argument
+- bug
+- mouse
 
