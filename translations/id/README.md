@@ -19,6 +19,7 @@ General Notes
 - use "aku" and "kamu"
 - "Bab" for "chapter", dan "bagian" for "section"
 - "wrapped" <-> "terlipat" with text/paragraph context
+- "source code" <-> "kode sumber"
 
 ## English term ##
 
@@ -28,3 +29,7 @@ General Notes
 - domain
 - post
 - tracing
+- newline
+- backslash
+- forward slash
+- bug(s)
