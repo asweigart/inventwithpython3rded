@@ -6,7 +6,7 @@ Topics Covered In This Chapter:
 •   The time.sleep() function
 •   The return keyword
 •   Creating your own functions with the def keyword
-•   The and and or and not Boolean operators
+•   The and, or and not Boolean operators
 •   Truth tables
 •   Variable scope (Global and Local)
 •   Parameters and Arguments
