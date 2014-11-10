@@ -132,7 +132,7 @@ The number1 variable has the value 4 and the number2 variable has the value 8. W
 
 Figure 7-4: number1 is set to 4 and number2 is set to 8.
 
-Clicking on Step from line 5 will execute input(). The debugger waits until the player enters a response into the program. Enter the correct answer (in my case, 19) into the interactive shell window. The debugger will resume and move down to line 6.
+Clicking on Step from line 5 will execute input(). The debugger waits until the player enters a response into the program. Enter the correct answer (in my case, 12) into the interactive shell window. The debugger will resume and move down to line 6.
 Line 6 is an if statement. The condition is that the value in answer must match the sum of number1 and number2. If the condition is True, then the debugger will move to line 7. If the condition is False, the debugger will move to line 9. Click Step one more time to find out where it goes.
 The debugger is now on line 9! What happened? The condition in the if statement must have been False. Take a look at the values for number1, number2, and answer. Notice that number1 and number2 are integers, so their sum would have also been an integer. But answer is a string.
 That means that answer == number1 + number2 would have evaluated to '12' == 12. A string value and an integer value will always not equal each other, so the condition evaluated to False.
@@ -148,7 +148,7 @@ Break Points
 
 Stepping through the code one line at a time might still be too slow. Often you’ll want the program to run at normal speed until it reaches a certain line. A break point is set on a line when you want the debugger to take control once execution reaches that line. If you think there is a problem with your code on, say, line 17, just set a break point on line 17 (or maybe a few lines before that).
 When execution reaches that line, the debugger will “break into the debugger”. Then you can step through lines one at a time to see what is happening. Clicking Go will execute the program normally until it reaches another break point or the end of the program.
-To set a break point, right-click on the line in the file editor and select Set Breakpoint from the menu that appears. The file editor will highlight that line with yellow. You can set break points on as many lines as you want. To remove the break point, click on the line and select Clear Breakpoint from the menu that appears.
+To set a break point, right-click on the line in the file editor and select Set Breakpoint from the menu that appears. The file editor will highlight that line with yellow. You can set break points on as many lines as you want. To remove the break point, right-click on the line and select Clear Breakpoint from the menu that appears.
 
 Figure 7-5: The file editor with two break points set.
 
@@ -186,7 +186,7 @@ You can click Step a few more times, but you’ll find that it would take quite 
 
 Figure 7-6: Three break points set.
 
-After setting the breakpoints, click Go in the Debug Control window. The program will run at normal speed until it reaches the next break point. When flip is set to 100, the condition for the if statement on line 13 is True. This causes line 14 (where we have a break point set) to execute, which tells the debugger to stop the program and take over. Look at the Debug Control window in the Globals section to see what the value of flips and heads are.
+After setting the breakpoints, click Go in the Debug Control window. The program will run at normal speed until it reaches the next break point. When flips is set to 100, the condition for the if statement on line 13 is True. This causes line 14 (where we have a break point set) to execute, which tells the debugger to stop the program and take over. Look at the Debug Control window in the Globals section to see what the value of flips and heads are.
 Click Go again and the program will continue until it reaches the next break point on line 16. Again, see how the values in flips and heads have changed.
 If you click Go again, the execution will continue until the next break point is reached, which is on line 12.
 

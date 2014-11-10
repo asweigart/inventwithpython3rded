@@ -10,7 +10,6 @@ Cakupan Topik dalam Bab ini:
 • Operator
 • Evaluasi Ekspresi
 • Menyimpan Nilai dalam Variabel
-• Tulis-timpa variabel
 
 Sebelum kamu dapat membuat games, kamu harus belajar sedikit konsep dasar pemrograman. Kamu tidak akan membuat games dalam bab ini. Belajar konsep ini merupakan langkah pertama untuk membuat video games. Dimulai dengan belajar bagaimana menggunakan shell interaktif Python.
 
