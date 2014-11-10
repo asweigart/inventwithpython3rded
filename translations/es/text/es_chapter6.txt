@@ -5,7 +5,7 @@ Temas Tratados En Este Capítulo:
 El módulo time.
 La función time.sleep().
 La palabra reservada return.
-Creando tus propias funciones con la palabra reservada def.
+Creando nuestras propias funciones con la palabra reservada def.
 Los operadores Booleanos and, or y not.
 Tablas de verdad
 Entorno de variables (Global y Local)
@@ -13,11 +13,11 @@ Parámetros y Argumentos
 Diagramas de Flujo
 Introducción a Funciones
 
-We've already used two functions in our previous programs: input() and print(). In our previous programs, we have called these functions to execute the code that is inside these functions. In this chapter, we will write our own functions for our programs to call. A function is like a mini-program that is inside of our program. Many times in a program we want to run the exact same code multiple times. Instead of typing out this code several times, we can put that code inside a function and call the function several times. This has the added benefit that if we make a mistake, we only have one place in the code to change it.
+Ya hemos usado dos funciones en nuestros programas anteriores: input() y print(). En los programas anteriores, hemos llamado a estas funciones para ejecutar el código dentro de ellas. En este capítulo, escribiremos nuestras propias funciones para que sean llamadas por programas. Una función es como un mini-programa dentro de nuestro programa. Muchas veces en un programa queremos ejecutar exactamente el mismo código múltiples veces. En lugar de escribir el código varias veces, podemos poner el código dentro de una función y llamar a la función varias veces. Esto tiene el beneficio adicional de que si cometemos un error, sólo tendremos que corregirlo en un lugar del código.
 
-The game we will create to introduce functions is called "Dragon Realm", and lets the player make a guess between two caves which randomly hold treasure or certain doom.
+El juego que crearemos para presentar las funciones se llama "Reino de Dragones", y permite al jugador elegir entre dos cuevas, en una de las cuales encontrará un tesoro y en la otra su perdición.
 
-How to Play "Dragon Realm"
+Cómo Jugar a "Reino de Dragones"
 
 In this game, the player is in a land full of dragons. The dragons all live in caves with their large piles of collected treasure. Some dragons are friendly, and will share their treasure with you. Other dragons are greedy and hungry, and will eat anyone who enters their cave. The player is in front of two caves, one with a friendly dragon and the other with a hungry dragon. The player is given a choice between the two.
 
