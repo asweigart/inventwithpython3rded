@@ -1,17 +1,17 @@
-Chapter 6 - Dragon Realm
+Capítulo 6 - Reino de Dragones
 
-Topics Covered In This Chapter:
+Temas Tratados En Este Capítulo:
 
-The time module.
-The time.sleep() function.
-The return keyword.
-Creating our own functions with the def keyword.
-The and and or and not Boolean operators.
-Truth tables
-Variable scope (Global and Local)
-Parameters and Arguments
-Flow charts
-Introducing Functions
+El módulo time.
+La función time.sleep().
+La palabra reservada return.
+Creando tus propias funciones con la palabra reservada def.
+Los operadores Booleanos and, or y not.
+Tablas de verdad
+Entorno de variables (Global y Local)
+Parámetros y Argumentos
+Diagramas de Flujo
+Introducción a Funciones
 
 We've already used two functions in our previous programs: input() and print(). In our previous programs, we have called these functions to execute the code that is inside these functions. In this chapter, we will write our own functions for our programs to call. A function is like a mini-program that is inside of our program. Many times in a program we want to run the exact same code multiple times. Instead of typing out this code several times, we can put that code inside a function and call the function several times. This has the added benefit that if we make a mistake, we only have one place in the code to change it.
 
