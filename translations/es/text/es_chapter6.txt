@@ -28,7 +28,7 @@ Estás en una tierra llena de dragones. Frente a tí
 hay dos cuevas. En una de ellas, el dragón es generoso y amigable
 y compartirá su tesoro contigo. El otro dragón
 es codicioso y está hambriento, y te devorará inmediatamente.
-¿En qué cueva quieres entrar? (1 ó 2)
+¿A qué cueva quieres entrar? (1 ó 2)
 1
 Te aproximas a la cueva...
 Es oscura y espeluznante...
@@ -58,7 +58,7 @@ dragón.py
 11. def elegirCueva():
 12.     cueva = ''
 13.     while cueva != '1' and cueva != '2':
-14.         print('¿En qué cueva quieres entrar? (1 ó 2)')
+14.         print('¿A qué cueva quieres entrar? (1 ó 2)')
 15.         cueva = input()
 16.
 17.     return cueva
@@ -227,34 +227,34 @@ not A       es  Enunciado completo
 not True    es  False
 not False   es  True
 
-Evaluating Boolean Operators
+Evaluando Operadores Booleanos
 
-Look at line 13 again:
+Miremos otra vez la línea 13:
 
-13.     while cave != '1' and cave != '2':
+13.     while cueva != '1' and cueva != '2':
 
-The condition has two parts connected by the and Boolean operator. The condition is True only if both parts are True.
-The first time the while statement’s condition is checked, cave is set to the blank string, ''. The blank string is not equal to the string '1', so the left side evaluates to True. The blank string is also not equal to the string '2', so the right side evaluates to True.
-So the condition then turns into True and True. Because both Boolean values are True, the condition finally evaluates to True. So the program execution enters the while-block.
-This is what the evaluation of the condition looks like (if the value of cave is the blank string):
+La condición tiene dos partes conectadas por el operador Booleano and. La condición es True sólo si ambas partes son True.
+La primera vez que se comprueba la condición de la sentencia while, cueva está definida como la cadena vacía, ''. La cadena vacía no es igual a la cadena '1', luego el lado izquierdo se evalúa a True. La cadena vacía tampoco es igual a la cadena '2', por lo que el lado derecho se evalúa a True.
+Entonces la condición se transforma en True and True. Como ambos valores Booleanos son True, la condición finalmente se evalúa a True. Luego la ejecución del programa entra al bloque while.
+Así es como se ve la evaluación de la condición (si el valor de cueva es la cadena vacía):
 
-while cave != '1' and cave != '2':
-                   ▼
-while  ''  != '1' and cave != '2':
-                   ▼
-while     True    and cave != '2':
-                   ▼
-while     True    and  ''  != '2':
-                   ▼
-while     True    and     True:
-                   ▼
-while             True:
+while cueva != '1' and cueva != '2':
+                    ▼
+while   ''  != '1' and cueva != '2':
+                    ▼
+while      True    and cueva != '2':
+                    ▼
+while      True    and   ''  != '2':
+                    ▼
+while      True    and      True:
+                    ▼
+while              True:
 
-Getting the Player’s Input
+Obteniendo la Entrada de Datos del Jugador
 
-13.     while cave != '1' and cave != '2':
-14.         print('Which cave will you go into? (1 or 2)')
-15.         cave = input()
+13.     while cueva != '1' and cueva != '2':
+14.         print('¿A qué cueva quieres entrar? (1 ó 2)')
+15.         cueva = input()
 
 Line 14 asks the player which cave they choose. Line 15 lets the player type the response and hit ENTER. This response is stored in cave. After this code is executed, the execution loops back to the top of the while statement and rechecks the condition.
 If the player typed in 1 or 2, then cave will either be '1' or '2'. This makes the condition False, and the program execution will continue past the while loop. For example, if the user entered '1' then the evaluation would look like this:
