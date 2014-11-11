@@ -158,12 +158,14 @@ La línea 12 crea una nueva variable llamada cueva y guarda en ella una cadena v
 
 Operadores Booleanos
 
-Boolean logic deals with things that are either True or False. Boolean operators compare two Boolean values and evaluate to a single Boolean value. The and Boolean operator combines two Boolean values to produce a new Boolean value.
-Think of the sentence, “Cats have whiskers and dogs have tails.” “Cats have whiskers” is true and “dogs have tails” is also true, so the entire sentence “Cats have whiskers and dogs have tails” is true.
-But the sentence, “Cats have whiskers and dogs have wings” would be false. Even though “cats have whiskers” is true, dogs do not have wings, so “dogs have wings” is false. In Boolean logic, things can only be entirely true or entirely false. Because of the word “and”, the entire sentence is only true if both parts are true. If one or both parts are false, then the entire sentence is false.
+La lógica Booleana se ocupa de enunciados que son verdaderas (True) o falsos (False). Los operadores Booleanos comparan dos valores Booleanos y se evalúan a un único valor Booleano. El operador Booleano and combina dos valores Booleanos para producir un nuevo valor Booleano.
+Piensa en este enunciado, “Los gatos tienen bigotes y los perros tienen colas.” “Los gatos tienen bigotes” es verdadero y “los perros tienen colas” también es verdadero, luego el enunciado completo “Los gatos tienen bigotes y los perros tienen colas” es verdadero.
+Pero el enunciado “Los gatos tienen bigotes y los perros tienen alas” sería falso. Incluso si “los gatos tienen bigotes” es verdadero, los perros no tienen alas, luego “los perros tienen alas” es falso. En lógica Booleana, los enunciados sólo pueden ser completamente verdaderos o completamente falsos. Debido a la conjunción “y”, el enunciado completo es verdadero sólo si ambas partes son verdaderas. Si una o ambas partes son falsas, entonces el enunciado completo es falso.
+
 The and and or Operators
-The and operator in Python is the same. If the Boolean values on both sides of the and keyword are True, then the expression with the and operator evaluates to True. If either of the Boolean values are False, or both of the Boolean values are False, then the expression evaluates to False.
-Try entering the following expressions with the and operator into the interactive shell:
+
+El operador and en Python es igual que la conjunción "y". Si los valores Booleanos a ambos lados de la palabra reservada and son True, entonces la expresión con el operador and se evalúa a True. Si cualquiera de los valores Booleanos es False, o ambos valores Booleanos son False, entonces la expresión se evalúa a False.
+Prueba escribir las siguientes expresiones con el operador and en la consola interactiva:
 
 >>> True and True
 True
@@ -173,11 +175,11 @@ False
 False
 >>> False and False
 False
->>> 10 < 20 and 'Hello' == 'Hello'
+>>> 10 < 20 and 'Hola' == 'Hola'
 True
 
-The or operator is similar to the and operator, except it will evaluate to True if either of the two Boolean values are True. The only time the or operator evaluates to False is if both of the Boolean values are False.
-Try entering the following into the interactive shell:
+El operador or es similar al operador and, excepto que se evaluará a True si cualquiera de los dos valores Booleanos es True. La única vez en que el operador or se evalúa a False es si los dos valores Booleanos son False.
+Prueba escribir lo siguiente en la consola interactiva:
 
 >>> True or True
 True
@@ -190,40 +192,40 @@ False
 >>> 10 > 20 or 20 > 10
 True
 
-The not Operator
+El Operador not
 
-The not operator only works on one value, instead of combining two values. The not operator evaluates to the opposite Boolean value. The expression not True will evaluate to False and not False will evaluate to True.
-Try entering the following into the interactive shell:
+El operador not sólo actúa sobre un valor, en lugar de combinar dos valores. El operador not se evalúa al valor Booleano opuesto. La expresión not True se evaluará a False y not False se evaluará a True.
+Prueba escribir lo siguiente en la consola interactiva:
 
 >>> not True
 False
 >>> not False
 True
->>> not 'black' == 'white'
+>>> not 'negro' == 'blanco'
 True
 
-Truth Tables
+Tablas de Verdad
 
-If you ever forget how the Boolean operators work, you can look at these charts, which are called truth tables:
+Si alguna vez te olvidas cóno funcionan los operadores Booleanos, puedes mirar estas tablas, llamadas tablas de verdad:
 
-Table 6-1: The and operator's truth table.
-A       And B       Is  Entire statement
-True    And True    Is  True
-True    And False   Is  False
-False   And True    Is  False
-False   And False   Is  False
+Tabla 6-1: La tabla de verdad del operador and.
+A       and B       es  Enunciado completo
+True    and True    es  True
+True    and False   es  False
+False   and True    es  False
+False   and False   es  False
 
-Table 6-2: The or operator's truth table.
-A       And B       Is  Entire statement
-True    And True    Is  True
-True    And False   Is  False
-False   And True    Is  False
-False   And False   Is  False
+Tabla 6-2: La tabla de verdad del operador or.
+A       and B       es  Enunciado completo
+True    and True    es  True
+True    and False   es  False
+False   and True    es  False
+False   and False   es  False
 
-Table 6-3: The not operator's truth table.
-not A   is  Entire statement
-not True    is  False
-not False   is  True
+Table 6-3: La tabla de verdad del operador not.
+not A       es  Enunciado completo
+not True    es  False
+not False   es  True
 
 Evaluating Boolean Operators
 
