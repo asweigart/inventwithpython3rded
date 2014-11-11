@@ -109,53 +109,54 @@ Sentencias def
  8.     print('es codicioso y está hambriento, y te devorará inmediatamente.')
  9.     print()
 
-Line 4 is a def statement. The def statement creates, that is, defines, a new function that you can call later in the program. After you define this function, you can call it the same way you call other functions. When you call this function, the code inside the def-block executes.
-Figure 6-1 shows the parts of a def statement. It has the def keyword followed by a function name with parentheses and then a colon (the : sign). The block after the def statement called the def-block.
+La línea 4 es una sentencia def. La sentencia def crea, es decir, define, una nueva función que puede ser llamada más adelante en el programa. Luego de haber definido esta función, puedes llamarla de la misma forma en que llamas a otras funciones. Cuando llamas a esta función, el código dentro del bloque def se ejecuta.
+La Figura 6-1 muestra las partes de una sentencia def. Comienza con la palabra reservada def seguida por un nombre de función con paréntesis y luego dos puntos. El bloque a continuación de la sentencia def se llama el bloque def.
 
-Figure 6-1: Parts of a def statement.
+Figura 6-1: Las partes de una sentencia def.
 
-Remember, the def statement doesn’t execute the code. It only defines what code to execute when you call the function. When the execution reaches a def statement it skips down to the first line after the def-block.
-But when the displayIntro() function is called (such as on line 38), the execution moves inside of the displayIntro() function to the first line of the def-block.
+Recuerda, la sentencia def no ejecuta el código. Sólo define qué código se ejecutará cuando llames a la función. Cuando la ejecución llega a una sentencia def, omite lo que sigue hasta la primera línea a continuación del bloque def.
+Pero cuando la función mostrarIntroducción() es llamada (como en la línea 38), la ejecución entra a la función mostrarIntroducción()  y se posiciona en la primera línea del bloque def.
 
-38.     displayIntro()
+38.     mostrarIntroducción()
 
-All of the print() calls are run and the “You are in a land full of dragons...” introduction is displayed.
+Todas las llamadas a print() se ejecutan, y se muestra la introducción “Estás en una tierra llena de dragones...”.
 
-Where to Put Function Definitions
+Dónde Colocar las Definiciones de Funciones
 
-A function's def statement and the def-block must come before you call the function. This is like how you must assign a value to a variable before you use the variable. If you put the function call before the function definition, you’ll get an error. Look at this code:
-sayGoodbye()
+La sentencia def y el bloque def de una función deben aparecer antes de llamar a la función. Esto es igual que cuando tienes que asignarle un valor a una variable antes de usar la variable. Si colocas la llamada a la función antes que la definición de la función, obtendrás un error. Mira este código:
 
-def sayGoodbye():
-    print('Goodbye!')
+decirAdios()
 
-If you try to run it, Python will give you an error message that looks like this:
+def decirAdios():
+    print('¡Adios!')
+
+Si tratas de ejecutarlo, Python te dará un mensaje de error como este:
 
 Traceback (most recent call last):
   File "C:\Python34\spam.py", line 1, in <module>
 sayGoodbye()
-NameError: name 'sayGoodbye' is not defined
+NameError: name 'decirAdios' is not defined
 
-To fix this, put the function definition before the function call:
+Para arreglar esto, coloca la definición de la función antes de llamar a la función:
 
-def sayGoodbye():
-    print('Goodbye!')
+def decirAdios():
+    print('¡Adios!')
 
-sayGoodbye()
+decirAdios()
 
-Defining the chooseCave() Function
+Definiendo la Función elegirCueva()
 
-11. def chooseCave():
+11. def elegirCueva():
 
-Here you are defining another function called chooseCave(). This function’s code asks the player which cave they want to go in, either 1 or 2.
+Aquí estás definiendo otra función llamada elegirCueva(). El código de esta función pregunta al jugador a qué cueva quiere entrar, 1 ó 2.
 
-12.     cave = ''
-13.     while cave != '1' and cave != '2':
+12.     cueva = ''
+13.     while cueva != '1' and cueva != '2':
 
-This code needs to make sure the player typed 1 or 2, and not something else. A loop here will keep asking the player until they enter one of these two valid responses.
-Line 12 creates a new variable called cave and stores a blank string in it. Then a while loop begins on line 13. The condition contains a new operator you haven't seen before called and. Just like the - or * are mathematical operators, and == or != are comparison operators, the and operator is a Boolean operator.
+Este código necesita asegurar que el jugador haya respondido 1 ó 2, y no otra cosa. Un bucle aquí seguirá preguntando al jugador hasta que escriba alguna de estas dos respuestas válidas.
+La línea 12 crea una nueva variable llamada cueva y guarda en ella una cadena vacía. Luego un bucle while comienza en la línea 13. La condición contiene un nuevo operador que no has visto antes llamado and. Igual que los signos - o * son operadores matemáticos y los signos == o != son operadores de comparación, el operador and es un operador Booleano.
 
-Boolean Operators
+Operadores Booleanos
 
 Boolean logic deals with things that are either True or False. Boolean operators compare two Boolean values and evaluate to a single Boolean value. The and Boolean operator combines two Boolean values to produce a new Boolean value.
 Think of the sentence, “Cats have whiskers and dogs have tails.” “Cats have whiskers” is true and “dogs have tails” is also true, so the entire sentence “Cats have whiskers and dogs have tails” is true.
@@ -274,13 +275,13 @@ Return Values
 
 17.     return cave
 
-This is a return statement, which only appears inside def-blocks. Remember how the input() function returns a string value that the player typed in? The chooseCave() function will also return a value. Line 17 returns the string that is stored in cave, either '1' or '2'.
+This is a return statement, which only appears inside def-blocks. Remember how the input() function returns a string value that the player typed in? The elegirCueva() function will also return a value. Line 17 returns the string that is stored in cave, either '1' or '2'.
 Once the return statement executes, the program execution jumps immediately out of the def-block. (This is like how the break statement will make the execution jump out of a while-block.) The program execution moves back to the line with the function call. The function call itself will evaluate to the return value.
 Skip down and look at line 40 for a moment:
 
-40.     caveNumber = chooseCave()
+40.     caveNumber = elegirCueva()
 
-When the chooseCave() is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
+When the elegirCueva() is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that elegirCueva() will only return either '1' or '2' as its return value.
 So when line 17 returns a string, the function call on line 40 evaluates to this string, which is then stored in caveNumber.
 
 Global Scope and Local Scope
@@ -318,7 +319,7 @@ Where a variable is created determines what scope it is in. When the Dragon Real
 
 12.     cave = ''
 
-...the variable cave is created inside the chooseCave() function. This means it is created in the chooseCave() function’s local scope. It will be forgotten when chooseCave() returns, and will be recreated if chooseCave() is called a second time. The value of a local variable isn’t remembered in between function calls.
+...the variable cave is created inside the elegirCueva() function. This means it is created in the elegirCueva() function’s local scope. It will be forgotten when elegirCueva() returns, and will be recreated if elegirCueva() is called a second time. The value of a local variable isn’t remembered in between function calls.
 
 Defining the checkCave() Function
 
@@ -409,13 +410,13 @@ The first time the execution comes to this while statement, line 35 will have ju
 
 Calling the Functions in the Program
 
-38.     displayIntro()
+38.     mostrarIntroducción()
 
-Line 38 calls the displayIntro() function. This isn’t a Python function, it is your function that you defined earlier on line 4. When this function is called, the program execution jumps to the first line in the displayIntro() function on line 5. When all the lines in the function are done, the execution jumps back to line 38 and continues moving down.
+Line 38 calls the mostrarIntroducción() function. This isn’t a Python function, it is your function that you defined earlier on line 4. When this function is called, the program execution jumps to the first line in the mostrarIntroducción() function on line 5. When all the lines in the function are done, the execution jumps back to line 38 and continues moving down.
 
-40.     caveNumber = chooseCave()
+40.     caveNumber = elegirCueva()
 
-Line 40 also calls a function that you defined. Remember that the chooseCave() function lets the player type in the cave they choose to go into. When the line 17’s return cave executes, the program execution jumps back to line 40, and the chooseCave() call evaluates to the return value. This return value is stored in a new variable named caveNumber. Then the program execution moves on to line 42.
+Line 40 also calls a function that you defined. Remember that the elegirCueva() function lets the player type in the cave they choose to go into. When the line 17’s return cave executes, the program execution jumps back to line 40, and the elegirCueva() call evaluates to the return value. This return value is stored in a new variable named caveNumber. Then the program execution moves on to line 42.
 
 42.     checkCave(caveNumber)
 

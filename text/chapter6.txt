@@ -110,7 +110,7 @@ def Statements
  9.     print()
 
 Line 4 is a def statement. The def statement creates, that is, defines, a new function that you can call later in the program. After you define this function, you can call it the same way you call other functions. When you call this function, the code inside the def-block executes.
-Figure 6-1 shows the parts of a def statement. It has the def keyword followed by a function name with parentheses and then a colon (the : sign). The block after the def statement called the def-block.
+Figure 6-1 shows the parts of a def statement. It has the def keyword followed by a function name with parentheses and then a colon (the : sign). The block after the def statement is called the def-block.
 
 Figure 6-1: Parts of a def statement.
 
@@ -124,6 +124,7 @@ All of the print() calls are run and the “You are in a land full of dragons...
 Where to Put Function Definitions
 
 A function's def statement and the def-block must come before you call the function. This is like how you must assign a value to a variable before you use the variable. If you put the function call before the function definition, you’ll get an error. Look at this code:
+
 sayGoodbye()
 
 def sayGoodbye():
