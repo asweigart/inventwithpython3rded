@@ -11,7 +11,7 @@ def mostrarIntroducción():
 def elegirCueva():
     cueva = ''
     while cueva != '1' and cueva != '2':
-        print('¿En qué cueva quieres entrar? (1 ó 2)')
+        print('¿A qué cueva quieres entrar? (1 ó 2)')
         cueva = input()
 
     return cueva
@@ -41,5 +41,5 @@ while jugarDeNuevo == 'sí' or jugarDeNuevo == 's':
 
     explorarCueva(númeroDeCueva)
 
-    print('¿Quieres jugar otra vez? (sí or no)')
+    print('¿Quieres jugar de nuevo? (sí or no)')
     jugarDeNuevo = input()
