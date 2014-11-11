@@ -1,0 +1,16 @@
+Fig 6-1:
+palabra reservada def
+paréntesis
+nombre de la función
+dos puntos
+
+Fig 6-2:
+Inicio
+Mostrar introducción
+Jugador elige una cueva
+Comprobar dragón amistoso o hambriento
+Jugador gana
+Jugador pierde
+Ofrece jugar de nuevo
+Fin
+
