@@ -17,6 +17,8 @@ General Notes
 ## Convention ##
 
 - use "aku" and "kamu"
+- "Bab" for "chapter", dan "bagian" for "section"
+- "wrapped" <-> "terlipat" with text/paragraph context
 
 ## Glossary ##
 
@@ -46,6 +48,10 @@ General Notes
 - domain
 - post
 - tracing
+- newline
+- backslash
+- forward slash
+- keyword
 - floating point
 - games
 - video games
