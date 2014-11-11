@@ -3,15 +3,13 @@
 
 Cakupan topik dalam bab ini:
 
-•   Menggunakan keyword argument end pada fungsi print()’s untuk melewati newline
+•   Menggunakan argumen keyword end pada fungsi print()’s untuk melewati newline
 •   Karakter-karakter escape
 •   Penggunaan tanda kutip dan tanda kutip ganda pada string 
 
 Memanfaatkan print()
 
-Most of the games in this book will have simple text for input and output. The input is typed by the user on the keyboard and entered to the computer. The output is the text displayed on the screen. In Python, the print() function can be used for displaying textual output on the screen. But there is more to learn about how strings and print() work in Python.
-
-Banyak games pada buku ini akan menggunakan teks sederhana sebagai masukan dan keluaran. Masukan diberikan oleh pengguna melalui keyboard yang akan mengirimkannya ke komputer. Setelah itu komputer akan mencetak keluaran berupa teks yang ditampilkan pada layar. Fungsi print() di Python dapat digunakan untuk menampilkan keluaran berbentuk teks pada layar. Tapi masih banyak yang dapat dipelajari dari bagaimana string dan fungsi print() bekerja di Python.
+Banyak game pada buku ini akan menggunakan teks sederhana sebagai masukan dan keluaran. Masukan diberikan oleh pengguna melalui keyboard yang akan mengirimkannya ke komputer. Setelah itu komputer akan mencetak keluaran berupa teks yang ditampilkan pada layar. Fungsi print() di Python dapat digunakan untuk menampilkan keluaran berbentuk teks pada layar. Tapi masih banyak yang dapat dipelajari dari bagaimana string dan fungsi print() bekerja di Python.
 
 Program dalam bab ini memberikan berbagai lelucon kepada penggunanya.
 
@@ -136,8 +134,6 @@ He said, "I can’t believe you let him borrow your car."
 
 Pada string dengan tanda kutip tunggal, kamu tidak perlu menambahkan karakter escape terhadap tanda kutip ganda. Begitu pula pada string dengan tanda kutip ganda. Kamu tidak perlu menambahkan karakter escape terhadap tanda kutip tunggal. Interpreter Python cukup pintar untuk mengetahui tanda kutip yang digunakan untuk membuat string dengan tanda kutip yang menjadi bagian dari string.
 
-The end Keyword Argument
-
 Argumen Keyword end
 
  9. print('Knock knock.')
@@ -149,11 +145,13 @@ Argumen Keyword end
 15. print('Interrupting cow wh', end='')
 16. print('-MOO!')
 
-Did you notice the second parameter on line 15's print()? Normally, print() adds a newline character to the end of the string it prints. This is why a blank print() function will just print a newline. But the print() function can optionally have a second parameter (which has the name “end”.)
+Apakah kamu memperhatikan parameter kedua pada pemanggilan fungsi print() di baris 15? Biasanya, print() menambahkan karakter newline di akhir string yang dicetak. Inilah penyebab pemanggilan print() kosong akan mencetak sebuah newline. Namun fungsi print() bisa diberikan parameter kedua, yaitu "end".
 
 The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter we need to use the end= syntax.
 
-By passing a blank string for the end, the print() function won’t add a newline at the end of the string, but instead add a blank string. This is why '-MOO!' appears next to the previous line, instead of on its own new line. There was no newline after the 'Interrupting cow wh' string.
+String kosong yang dimasukkan disebut sebagai argumen keyword. Parameter end memiliki nama parameter. Untuk memasukkan sebuah argumen kepada suatu parameter, kita butuh menggunakan sintaks end=. 
+
+Dengan memasukkan string kosong sebagai nilai argumen end, fungsi print() tidak akan menambahkan karakter newline di akhir string. Inilah penyebab string '-MOO!' muncul di sebelah baris keluaran string sebelumnya. Ketika mencetak 'Interrupting cow wh', di akhir string tidak ada karakter newline.
 
 Ringkasan
 
