@@ -1,5 +1,5 @@
   Bab 8
-  Diagram Alir
+  DIAGRAM ALIR
 
 Cakupan Topik dalam Bab ini:
 •   Bagaimana cara bermain Hangman

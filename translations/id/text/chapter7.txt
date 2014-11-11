@@ -1,5 +1,5 @@
     Bab 7
-    Menggunakan Debugger
+    MENGGUNAKAN DEBUGGER
 
 Cakupan Topik dalam Bab ini:
 •   Tiga Tipe Error yang Berbeda
