@@ -1,0 +1,206 @@
+  Bab 2
+  
+  SHELL INTERAKTIF
+
+Cakupan Topik dalam Bab ini:
+
+• Bilangan Bulat dan Floating Point (real) 
+• Ekspresi
+• Nilai
+• Operator
+• Evaluasi Ekspresi
+• Menyimpan Nilai dalam Variabel
+
+Sebelum kamu dapat membuat games, kamu harus belajar sedikit konsep dasar pemrograman. Kamu tidak akan membuat games dalam bab ini. Belajar konsep ini merupakan langkah pertama untuk membuat video games. Dimulai dengan belajar bagaimana menggunakan shell interaktif Python.
+
+Beberapa Konsep Matematika
+
+Buka IDLE dengan cara dari Bab 1, lalu gunakan Python untuk memecahkan beberapa soal matematika. Shell interaktif dapat bekerja seperti kalkulator. Ketik 2 + 2 ke dalam shell interaktif, lalu tekan tombol ENTER pada keyboard. (Pada beberapa keyboard tombol ini bernama "Return".) Gambar 2-1 menunjukan bagaimana respon IDLE dengan menunjukkan angka 4. 
+
+
+
+Gambar 2-1: Masukkan 2+2 dalam shell interaktif. 
+
+Soal matematika ini merupakan instruksi pemrograman sederhana. Tanda "+" memberi tahu komputer untuk menambahkan angka 2 dan 2. Tabel 2-1 mendaftarkan simbol matematika lainnya yang tersedia di Python. Tanda "-" akan mengurangi angka. Tanda bintang, "*", akan mengalikan angka. Tanda "/" akan membagi angka. 
+
+Tabel 2-1: Operator matematika di Python
+Operator      Operasi
++             penambahan
+-             pengurangan
+*             perkalian
+/             pembagian
+
+
+
+Ketika digunakan dengan cara seperti itu, +, -, *, dan / disebut operator. Operator memberi tahu Python operasi matematika untuk bilangan diantaranya. 
+
+Bilangan Bulat dan Floating Point
+
+Dalam pemrograman, bilangan bulat biasa disebut integer, seperti 4, 99, dan 0. Bilangan Floating point atau float merupakan pecahan atau bilangan dengan tanda koma, seperti 3,5; 42,1; dan 5,0. (dalam Python koma perlu diganti titik). Jadi angka 5 merupakan integer dan 5,0 merupakan float. 
+
+Ekspresi
+
+Soal matematika berikut merupakan contoh ekspresi. Komputer dapat menyelesaikan jutaan soal ini dalam beberapa detik. Ekspresi dibuat oleh nilai-nilai (angka) yang terhubung oleh operator (simbol matematika). Mari belajar tentang apa nilai dan operator itu. Coba masukkan beberapa soal matematika berikut dalam shell interaktif dengan menekan ENTER untuk tiap soal. 
+
+2+2+2+2+2
+8*6
+10-5+6
+2  +       2
+
+Setelah kamu mengetik instruksi di atas, shell interaktif akan tampak seperti Gambar 2-2.
+
+
+
+Gambar 2-2: Jendela IDLE setelah memasukkan instruksi. 
+
+
+
+Gambar 2-3: Sebuah ekspresi dibuat oleh nilai-nilai dan operator-operator.
+
+Sebuah ekspresi dibuat oleh beberapa nilai (seperti bilangan bulat 8 dan 6) yang terhubung oleh operator (seperti tanda * untuk perkalian). Nilai tunggal juga merupakan sebuah ekspresi. Dalam contoh 2  +       2, terlihat bahwa dapat ada banyak spasi diantara nilai dan operator. Namun, jangan buat spasi pada awal instruksi ketika memasukkannya kedalam shell interaktif. 
+
+Pada bab berikutnya, kamu akan belajar bagaimana bekerja dengan teks dalam ekspresi. Python tidak hanya terbatas pada angka. Python lebih dari sebuah kalkulator!
+
+Evaluasi Ekspresi
+
+Ketika komputer mengerjakan ekspresi 10 + 5 dan memperoleh nilai 15, komputer ini dikatakan sudah mengevaluasi ekspresi. Proses evaluasi mereduksi ekspresi menjadi nilai tunggal, sama seperti menyelesaikan soal matematika yang mereduksi soal menjadi sebuah angka, yaitu solusinya.
+
+Ekspresi 10 + 5 dan 10 + 3 + 2 punya nilai yang sama. Keduanya terevaluasi menjadi 15. 
+
+Ekspresi dapat berukuran berapapun, tapi akan selalu terevaluasi menjadi satu nilai. Bahkan nilai tunggal merupakan ekspresi. Contohnya, ekspresi 15 terevaluasi menjadi nilai 15. Lebih lanjut, ekspresi 8 * 3 / 2 + 2 + 7 - 9 akan terevaluasi menjadi nilai 12.0 melalui serangkaian langkah berikut:
+
+8 * 3 / 2 + 2 + 7 – 9
+                  ▼
+   24 / 2 + 2 + 7 – 9
+                  ▼
+     12.0 + 2 + 7 – 9
+                  ▼
+         14.0 + 7 – 9
+                  ▼
+             21.0 – 9
+                  ▼
+                 12.0
+
+Kamu tidak akan melihat langkah-langkah itu dalam shell interaktif. Shell interaktif yang melakukannya untukmu dan hanya menunjukkan hasilnya:
+
+>>> 8 * 3 / 2 + 2 + 7 - 9
+12.0
+
+Perhatikan bahwa operator pembagian / mengevaluasi ekspresi jadi nilai float, seperti 24 / 2 akan terevaluasi menjadi 12.0. Operasi matematika yang menggunakan nilai float akan terevaluasi menjadi nilai float juga, seperti 12.0 + 2 terevaluasi menjadi 14.0.
+
+Error Sintaks
+
+Jika kamu memasukkan 5 + dalam shell interaktif, kamu akan mendapat pesan error. 
+
+>>> 5 +
+SyntaxError: invalid syntax
+
+Error tersebut terjadi karena 5 + bukan merupakan ekspresi. Ekspresi punya nilai-nilai yang terhubung oleh operator. Karena operator + mengharapkan sebuah nilai setelah tanda +, maka error itu terjadi. 
+
+SyntaxError berarti Python tidak mengerti instruksi karena kamu salah mengetiknya. Kebanyakan pemrograman komputer tidak hanya memerintah komputer apa yang harus dilakukan, tapi juga mengetahui bagaimana cara memerintahnya. 
+
+Namun, jangan khawatir membuat kesalahan. Error tidak merusak komputer. Kamu tinggal mengetik ulang instruksi secara benar ke dalam shell interaktif pada prompt >>> berikutnya. 
+
+Menyimpan Nilai dalam Variabel
+
+Kamu akan sering menginginkan nilai yang terevaluasi dari ekspresi tersimpan untuk dapat digunakan kemudian. Kamu dapat menyimpan nilai dalam variabel. Variabel dapat dikatakan seperti kotak yang menyimpan nilai.
+
+Instruksi pernyataan pengisian akan menyimpan sebuah nilai (atau nilai yang terevaluasi dari ekspresi) ke dalam variabel. Lalu buat nama variabel tersebut, disertai tanda = (yang disebut operator pengisian) dan diikuti nilai yang akan disimpan. Sebagai contoh, masukkan spam = 15 ke dalam shell interaktif:
+
+>>> spam = 15
+>>>
+
+
+
+Gambar 2-4: Variabel seperti kotak yang dapat menyimpan nilai ke dalamnya. 
+
+Kotak variabel spam akan mempunyai nilai 15 yang tersimpan di dalamnya, seperti ditunjukkan gambar 2-4. Nama "spam" merupakan label kotak itu (sehingga Python dapat membedakan antar variabel) dan nilai ditulis pada catatan kecil dalam kotak itu. 
+
+Ketika kamu menekan ENTER kamu tidak akan melihat respon apapun (dengan asumsi instruksi tereksekusi dengan sukses tanpa ada error). Prompt >>> akan muncul, sehingga kamu dapat mengetik instruksi berikutnya. 
+
+Tidak seperti ekspresi, pernyataan merupakan instruksi yang tidak terevaluasi menjadi suatu nilai, itulah sebabnya tidak ada nilai yang ditampilkan pada baris berikutnya dalam shell interaktif. Mungkin membingungkan ketika membedakan mana instruksi dan ekspresi. Ingatlah bahwa ekspresi akan terevaluasi menjadi satu nilai tunggal. Jenis lain dari instruksi adalah sebuah pernyataan.
+
+Variabel menyimpan nilai, bukan ekspresi. Sebagai contoh, pertimbangkan ekspresi dalam pernyataan spam = 10 + 5 dan spam = 10 + 7 - 2. Keduanya akan terevaluasi menjadi 15. Hasilanya sama, yaitu kedua pernyataan akan menyimpan nilai 15 ke variabel spam. 
+
+Python akan membuat variabel ketika variabel digunakan pertama kali dalam pernyataan pengisian. Untuk mengeceknya, ketik nama variabel dalam shell interaktif:
+
+>>> spam = 15
+>>> spam
+15
+
+Ekspresi spam akan terevaluasi menjadi nilai dalam variabel spam, yaitu 15. Kamu dapat menggunakan variabel dalam ekspresi. Coba masukkan instruksi berikut dalam shell interaktif:
+
+>>> spam = 15
+>>> spam + 5
+20
+
+Kamu telah mengeset variabel spam dengan nilai 15, sehingga menulis spam + 5 sama seperti menulis ekspresi 15 + 5.
+
+Kamu tidak bisa menggunakan variabel sebelum pernyataan pengisian membuatnya. Jika demikian Python akan memberi tahumu bahwa variabel tersebut belum ada. Salah ketik variabel juga akan menyebabkan error:
+
+>>> spam = 15
+>>> spma
+
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    spma
+NameError: name 'spma' is not defined
+
+Error itu terjadi karena yang tersedia adalah variabel spam, bukan spma.
+
+Kamu dapat merubah nilai yang tersimpan dalam variabel dengan memasukkan pernyataan pengisian lainnya. Sebagai contoh, coba ini:
+
+>>> spam = 15
+>>> spam + 5
+20
+>>> spam = 3
+>>> spam + 5
+8
+
+Ketika kamu memasukkan spam + 5 untuk pertama kali, ekspresi ini terevaluasi menjadi 20, karena kamu menyimpan 14 dalam spam. Namun, ketika kamu memasukkan spam = 3, nilai 15 itu diganti atau ditimpa dengan nilai 3. Sekarang ketika kamu memasukkan spam + 5, ekspresi ini akan terevaluasi menjadi 8, karena nilai spam sekarang adalah 3. 
+
+Kamu bahkan dapat menggunakan nilai dalam variabel spam untuk mengisi spam dengan nilai baru:
+
+>>> spam = 15
+>>> spam = spam + 5
+20
+
+Pernyataan pengisian spam = spam + 5, sama seperti berkata, "nilai baru variabel spam akan berisi nilai yang sekarang ditambah lima." Coba tambahkan terus spam dengan 5 beberapa kali:
+
+>>> spam = 15
+>>> spam = spam + 5
+>>> spam = spam + 5
+>>> spam = spam + 5
+>>> spam
+30
+
+Menggunakan Lebih Dari Satu Variabel
+
+Buatlah sebanyak mungkin variabel yang diperlukan dalam programmu. Sebagai contoh, mari isi nilai berbeda pada dua variabel bernama eggs dan fizz, seperti berikut:
+
+>>> fizz = 10
+>>> eggs = 15
+
+Sekarang variabel fizz berisi nilai 10 di dalamnya, sedangkan eggs berisi 15.
+
+
+
+Gambar 2-5: Variabel "fizz" dan "eggs" punya nilai yang tersimpan di dalamnya. 
+
+Coba masukkan spam = fizz + eggs ke dalam shell interaktif, lalu cek nilai baru spam:
+
+>>> fizz = 10
+>>> eggs = 15
+>>> spam = fizz + eggs
+>>> spam
+25
+
+Sekarang nilai spam adalah 25. Ketika kamu menambahkan fizz dan eggs, kamu menambahkan kedua nilainya, yaitu secara berturut-turut 10 dan 15. 
+
+Ringkasan
+
+Dalam bab ini, kamu telah belajar menulis instruksi dasar dalam Python. Python perlu diberitahu secara tepat apa yang harus dilakukan. Komputer tidak punya akal sehat dan hanya mengerti instruksi tertentu. 
+
+Ekspresi adalah nilai (seperti 2 atau 5) yang dikombinasikan dengan operator (sperti + atau -). Python dapat mengevaluasi ekspresi, yaitu mereduksi ekspresi menjadi nilai tunggal. Kamu dapat menyimpan nilai dalam variabel, sehingga program akan mengingatnya dan dapat digunakan kemudian. 
+
+Ada banyak tipe operator dan nilai lainnya dalam Python. Dalam bab berikutnya, kamu akan belajar lebih banyak konsep dasar dan menulis program pertamamu!

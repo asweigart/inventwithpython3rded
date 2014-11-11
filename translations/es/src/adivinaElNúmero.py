@@ -3,14 +3,14 @@ import random
 
 intentosRealizados = 0
 
-print('¡Hola! ¿Cuál es tu nombre?')
+print('¡Hola! ¿Cómo te llamas?')
 miNombre = input()
 
 número = random.randint(1, 20)
 print('Bueno, ' + miNombre + ', estoy pensando en un número entre 1 y 20.')
 
 while intentosRealizados < 6:
-    print('Intenta adivinar el número.') # Hay cuatro espacios delante de print.
+    print('Intenta adivinar.') # Hay cuatro espacios delante de print.
     estimación = input()
     estimación = int(estimación)
 

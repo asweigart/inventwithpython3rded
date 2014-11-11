@@ -8,13 +8,13 @@ Temas Tratados En Este Capítulo:
 •   Cómo usar este libro
 •   La página web de este libro en http://inventwithpython.com
 
-¡Hola! Este libro te enseñará a programar creando videojuegos. Una vez que aprendas cómo funcionan los juegos en este libro, serás capaz de crear tus propios juegos. Todo lo que necesitas es una computadora, un software llamado el intérprete de Python, y este libro. El intérprete de Python puede descargarse gratis de Internet.
+¡Hola! Este libro te enseñará a programar creando videojuegos. Una vez que aprendas cómo funcionan los juegos en este libro, serás capaz de crear tus propios juegos. Todo lo que necesitas es una computadora, un software llamado el intérprete de Python, y este libro. El intérprete de Python es libre para descargar de Internet.
 
 Cuando era niño, un libro como este me enseñó cómo escribir mis primeros programas y juegos. Era divertido y fácil. Ahora, siendo un adulto, sigo divirtiéndome programando y me pagan por hacerlo. Pero incluso si no te conviertes en un programador cuando crezcas, programar es una habilidad divertida y útil para tener.
 
 Las computadoras son máquinas increíbles, y aprender a programarlas es fácil. Si puedes leer este libro, puedes programar una computadora. Un programa de computadora es un conjunto de instrucciones que la computadora puede entender, igual que un libro de cuentos es un conjunto de oraciones que el lector entiende. Los videojuegos no son más que programas de computadora, de modo que están compuestos por instrucciones.
 
-Para dar instrucciones a una computadora, escribes un programa en un lenguaje que la computadora comprende. Este libro enseña un lenguaje de programación llamado Python. Hay muchos otros lenguajes de programación including BASIC, Java, JavaScript, PHP y C++.
+Para dar instrucciones a una computadora, escribes un programa en un lenguaje que la computadora comprende. Este libro enseña un lenguaje de programación llamado Python. Hay muchos otros lenguajes de programación, incluyendo BASIC, Java, JavaScript, PHP y C++.
 
 Cuando era niño, era común aprender BASIC como un primer lenguaje. Sin embargo, nuevos lenguajes de programación tales como Python han sido inventados desde entonces. ¡Python es aún más fácil de aprender que BASIC! Pero sigue siendo un lenguaje de programación muy útil utilizado por programadores profesionales. Muchos adultos usan Python en su trabajo y cuando programan por diversión.
 
@@ -94,7 +94,7 @@ Asimismo, envíame pot correo electrónico tus preguntas de programación a al@i
 
 Ten presente que hay formas inteligentes para hacer preguntas de programación que ayudan otros a ayudarte. Asegúrate de leer las secciones de Preguntas Frecuentes que estos sitios web tienen acerca de la forma correcta de publicar preguntas. Cuando hagas preguntas de programación, haz lo siguiente:
 
-•   Si estás escribiendo a mano los programas de este libro y obtienes un error, primero busca errores tipográficos con la herramienta diff en http://invpy.com/diff. Copia y pega tu código en la herramientadiff tool para encontrar las diferencias entre el código del libro y tu programa.
+•   Si estás escribiendo a mano los programas de este libro y obtienes un error, primero busca errores tipográficos con la herramienta diff en http://invpy.com/diff. Copia y pega tu código en la herramienta diff para encontrar las diferencias entre el código del libro y tu programa.
 •   Explica lo que estás intentando hacer cuando expliques el error. Esto permitirá a quien te ayuda saber si estás equivocándote por completo.
 •   Copia y pega el mensaje de error completo y tu código.
 •   Busca en la web para ver si alguien ya ha formulado (y respondido) tu pregunta.
@@ -109,5 +109,4 @@ Resumen
 
 Este capítulo te ha ayudado a comenzar con el software Python mostrándote el sitio web http://python.org, de donde puedes descargarlo gratis. Luego de instalar y lanzar el software Python IDLE, estarás listo para aprender a programar a comenzando en el próximo capítulo.
 
-El sitio web de este libro en http://inventwithpython.com contiene más información sobre cada uno de los capítulos, incluyendo un sitio web de RASTREO/TRACING y una herramienta diff que puede ayudarte a entender los programas de este libro.
-
+El sitio web de este libro en http://inventwithpython.com contiene más información sobre cada uno de los capítulos, incluyendo un sitio web de trazado en línea y una herramienta diff que puede ayudarte a entender los programas de este libro.

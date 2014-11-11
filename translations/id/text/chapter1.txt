@@ -99,11 +99,11 @@ Perhatikan bahwa ada banyak cara mengajukan pertanyaan pemrograman secara cerdas
 •   Salin dan tempel seluruh pesan error dan kodemu
 •   Lalukan pencarian online untuk memastikan apakah ada orang lain dengan pertanyaan sama yang mungkin sudah terjawab. 
 •   Jelaskan apa yang sudah dilakukan untuk menyelesaikan masalah. Hal ini menjelaskan pada orang lain bahwa kamu sudah berusaha memecahkan masalah itu sendiri. 
-•   Tunjukan sikap ramah. Jangan meminta atau menekan orang lain untuk merespon secara cepat. 
+•   Tunjukkan sikap ramah. Jangan meminta atau menekan orang lain untuk merespon secara cepat. 
 
 Tracing Program secara Online
 
-Tracing program berarti melangkah melalui kode satu baris tiap langkah, sama seperti ketika komputer mengeksekusi program. Kunjungi http://invpy.com/traces untuk tracing program dalam buku ini. Halaman situs punya catatan dan pengingat yang berguna pada tiap langkah untuk menjelaskan apa yang sedang program lakukan. Dengan ini kamu akan lebih mudah mengerti mengapa program bekerja dengan cara yang dilakukan.
+Tracing program berarti melangkah melalui kode satu baris tiap langkah, sama seperti ketika komputer mengeksekusi program. Kunjungi http://invpy.com/traces untuk tracing program dalam buku ini. Halaman situs punya catatan dan pengingat yang berguna pada tiap langkah untuk menjelaskan apa yang sedang program lakukan. Dengan ini kamu akan lebih mudah mengerti mengapa program bekerja dengan cara yang dilakukannya.
 
 Ringkasan
 

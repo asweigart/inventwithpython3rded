@@ -19,10 +19,29 @@ General Notes
 - use "aku" and "kamu"
 - "Bab" for "chapter", dan "bagian" for "section"
 - "wrapped" <-> "terlipat" with text/paragraph context
-- "source code" <-> "kode sumber"
 
-## English term ##
+## Glossary ##
 
+- chapter, bab
+- section, bagian
+- run, menjalankan dalam konteks program
+- software, perangkat lunak
+- wrapped, terlipat dalam konteks paragraf atau teks
+- concatenation, perangkaian
+- assigment, pengisian atau subtitusi bilangan ke variabel
+- integer, bilangan bulat
+- float, float atau bilangan dengan tanda koma
+- cursor, kursor
+- source code, sumber kode
+- tool, perkakas
+- passing, melempar
+- return value, nilai kembalian
+- loop, putaran iterasi
+- module, module dalam konteks Python
+- import, import dalam konteks Python
+- increment, meningkatkan suatu variabel
+- decrement, merendahkan suatu variabel
+- programmer
 - interpeter
 - shell
 - online
@@ -32,5 +51,30 @@ General Notes
 - newline
 - backslash
 - forward slash
-- bug(s)
 - keyword
+- floating point
+- games
+- video games
+- keyboard
+- prompt
+- string
+- case-sensitivity
+- file editor
+- shortcut
+- build-in
+- argument
+- bug, bug, ngebug
+- mouse
+- debugger, debugger
+- step into, melangkah masuk dalam konteks debugger
+- step over, melangkah melalui dalam konteks debugger
+- step out, melangkah keluar dalam konteks debugger
+- Go, lanjutkan dalam konteks debugger
+- Quit, keluar dalam konteks debugger
+- breakpoint, titik henti dalam konteks debugger
+- runtime, runtime 
+- crash, crash
+- infinite loop, putaran takhingga
+- checkbox, checkbox
+- scope, cakupan
+- debug, debug
