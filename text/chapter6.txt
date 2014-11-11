@@ -6,7 +6,7 @@ Topics Covered In This Chapter:
 •   The time.sleep() function
 •   The return keyword
 •   Creating your own functions with the def keyword
-•   The and and or and not Boolean operators
+•   The and, or and not Boolean operators
 •   Truth tables
 •   Variable scope (Global and Local)
 •   Parameters and Arguments
@@ -110,7 +110,7 @@ def Statements
  9.     print()
 
 Line 4 is a def statement. The def statement creates, that is, defines, a new function that you can call later in the program. After you define this function, you can call it the same way you call other functions. When you call this function, the code inside the def-block executes.
-Figure 6-1 shows the parts of a def statement. It has the def keyword followed by a function name with parentheses and then a colon (the : sign). The block after the def statement called the def-block.
+Figure 6-1 shows the parts of a def statement. It has the def keyword followed by a function name with parentheses and then a colon (the : sign). The block after the def statement is called the def-block.
 
 Figure 6-1: Parts of a def statement.
 
@@ -124,6 +124,7 @@ All of the print() calls are run and the “You are in a land full of dragons...
 Where to Put Function Definitions
 
 A function's def statement and the def-block must come before you call the function. This is like how you must assign a value to a variable before you use the variable. If you put the function call before the function definition, you’ll get an error. Look at this code:
+
 sayGoodbye()
 
 def sayGoodbye():
@@ -160,7 +161,9 @@ Boolean Operators
 Boolean logic deals with things that are either True or False. Boolean operators compare two Boolean values and evaluate to a single Boolean value. The and Boolean operator combines two Boolean values to produce a new Boolean value.
 Think of the sentence, “Cats have whiskers and dogs have tails.” “Cats have whiskers” is true and “dogs have tails” is also true, so the entire sentence “Cats have whiskers and dogs have tails” is true.
 But the sentence, “Cats have whiskers and dogs have wings” would be false. Even though “cats have whiskers” is true, dogs do not have wings, so “dogs have wings” is false. In Boolean logic, things can only be entirely true or entirely false. Because of the word “and”, the entire sentence is only true if both parts are true. If one or both parts are false, then the entire sentence is false.
+
 The and and or Operators
+
 The and operator in Python is the same. If the Boolean values on both sides of the and keyword are True, then the expression with the and operator evaluates to True. If either of the Boolean values are False, or both of the Boolean values are False, then the expression evaluates to False.
 Try entering the following expressions with the and operator into the interactive shell:
 
@@ -206,21 +209,21 @@ Truth Tables
 If you ever forget how the Boolean operators work, you can look at these charts, which are called truth tables:
 
 Table 6-1: The and operator's truth table.
-A       And B       Is  Entire statement
-True    And True    Is  True
-True    And False   Is  False
-False   And True    Is  False
-False   And False   Is  False
+A       and B       is  Entire statement
+True    and True    is  True
+True    and False   is  False
+False   and True    is  False
+False   and False   is  False
 
 Table 6-2: The or operator's truth table.
-A       And B       Is  Entire statement
-True    And True    Is  True
-True    And False   Is  False
-False   And True    Is  False
-False   And False   Is  False
+A       and B       is  Entire statement
+True    and True    is  True
+True    and False   is  False
+False   and True    is  False
+False   and False   is  False
 
 Table 6-3: The not operator's truth table.
-not A   is  Entire statement
+not A       is  Entire statement
 not True    is  False
 not False   is  True
 
