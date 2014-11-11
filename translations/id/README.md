@@ -57,6 +57,18 @@ General Notes
 - shortcut
 - build-in
 - argument
-- bug
+- bug, bug, ngebug
 - mouse
-
+- debugger, debugger
+- step into, melangkah masuk dalam konteks debugger
+- step over, melangkah melalui dalam konteks debugger
+- step out, melangkah keluar dalam konteks debugger
+- Go, lanjutkan dalam konteks debugger
+- Quit, keluar dalam konteks debugger
+- breakpoint, titik henti dalam konteks debugger
+- runtime, runtime 
+- crash, crash
+- infinite loop, putaran takhingga
+- checkbox, checkbox
+- scope, cakupan
+- debug, debug
