@@ -1,0 +1,12 @@
+Fig 8-1 through 8-9:
+Mulai
+Buat kata rahasia.
+Tampilkan papan dan garis pada pemain.
+Tanya pemain untuk menebak satu huruf.
+Pemain sudah menebak huruf ini.
+Huruf ada dalam kata rahasia.
+Hurut tidak ada dalam kata rahasia.
+Pemain sudah menebak semua huruf dan menang.
+Bagian tubuh yang tesisa sudah habis dan pemain kalah.
+Tanya pemain apa ingin main lagi.
+Akhir

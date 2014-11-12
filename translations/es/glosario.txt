@@ -3,14 +3,21 @@ cake, torta
 case-sensitive, sensible a mayúsculas
 computer, computadora
 draw, dibujar
-input, entrada
 get, obtener
+I/O, E/S
+indentation, indentación
+input, entrada
+keyword, palabra reservada
 loop, bucle
-move (noun), movida
+mouse, ratón
+move (noun), movida - movimiento
 newline (character), salto de línea
+output, salida
 punch line, remate del chiste (en el contexto de un chiste)
+random, aleatorio
 return value, valor de retorno
 run, ejecutar
+sample run, muestra de ejecución
 slash, barra inclinada
 set, establecer
 set up, configurar

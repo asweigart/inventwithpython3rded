@@ -17,6 +17,8 @@ General Notes
 ## Convention ##
 
 - use "aku" and "kamu"
+- "Bab" for "chapter", dan "bagian" for "section"
+- "wrapped" <-> "terlipat" with text/paragraph context
 
 ## Glossary ##
 
@@ -34,6 +36,11 @@ General Notes
 - tool, perkakas
 - passing, melempar
 - return value, nilai kembalian
+- loop, putaran iterasi
+- module, module dalam konteks Python
+- import, import dalam konteks Python
+- increment, meningkatkan suatu variabel
+- decrement, merendahkan suatu variabel
 - programmer
 - interpeter
 - shell
@@ -41,6 +48,10 @@ General Notes
 - domain
 - post
 - tracing
+- newline
+- backslash
+- forward slash
+- keyword
 - floating point
 - games
 - video games
@@ -52,4 +63,18 @@ General Notes
 - shortcut
 - build-in
 - argument
-
+- bug, bug, ngebug
+- mouse
+- debugger, debugger
+- step into, melangkah masuk dalam konteks debugger
+- step over, melangkah melalui dalam konteks debugger
+- step out, melangkah keluar dalam konteks debugger
+- Go, lanjutkan dalam konteks debugger
+- Quit, keluar dalam konteks debugger
+- breakpoint, titik henti dalam konteks debugger
+- runtime, runtime 
+- crash, crash
+- infinite loop, putaran takhingga
+- checkbox, checkbox
+- scope, cakupan
+- debug, debug

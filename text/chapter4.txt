@@ -88,7 +88,7 @@ guess.py
 33.     number = str(number)
 34.     print('Nope. The number I was thinking of was ' + number)
 
-Take look at each line of code in turn to see how this program works.
+Take a look at each line of code in turn to see how this program works.
 
 The import statement
 
@@ -167,7 +167,7 @@ Welcoming the Player
 
 On line 10 the print() function welcomes the player by name, and tells them that the computer is thinking of a random number.
 
-It may look like there’s more than one string argument in line 10, but look at the line carefully. The plus signs concatenate the three strings to evaluate down to one string. And that is the one string argument passed to the print() function. If you look closely, you’ll see that the commas are inside the quotes and part of the strings themselves.
+It may look like there’s more than one string argument in line 10, but look at the line carefully. The plus signs concatenate the three strings to evaluate down to one string. And that is the one string argument passed to the print() function. If you look closely, you’ll see that the commas are inside the quotes and are part of the strings themselves.
 
 Loops
 
@@ -315,18 +315,18 @@ into this line:
 
 Code later in the while-block increases the guessesTaken variable by 1 on each iteration. By setting the condition to guessesTaken < 4, you ensure that the code inside the loop only runs four times instead of six. This makes the game much more difficult. To make the game easier, set the condition to guessesTaken < 8 or guessesTaken < 10. This will cause the loop to run a few more times and accept more guesses from the player.
 
-Of course, if you removed line 17 (guessesTaken = guessesTaken + 1) altogether then the guessesTaken would never increase. The while loop’s condition would always be True! This would give the player an unlimited number of guesses. The player might like this, but a programmer would consider this a bug.
+Of course, if you removed line 17 (guessesTaken = guessesTaken + 1) altogether then guessesTaken would never increase. The while loop’s condition would always be True! This would give the player an unlimited number of guesses. The player might like this, but a programmer would consider this a bug.
 
 The Player Guesses
 
-Lines 13 to 17 ask the player to guess what the secret number is and lets them enter their guess. That number is stored in a variable named guess.
+Lines 13 to 17 ask the player to guess what the secret number is and let them enter their guess. That number is stored in a variable named guess.
 
-14.     print('Take a guess.') # There are four spaces in front of print.
-15.     guess = input()
+13.     print('Take a guess.') # There are four spaces in front of print.
+14.     guess = input()
 
 Converting Strings to Integers with the int() function
 
-16.     guess = int(guess)
+15.     guess = int(guess)
 
 In line 15, you call a new function called int(). The int() function takes one argument and returns an integer value form that argument. Try entering the following into the interactive shell:
 
@@ -342,7 +342,7 @@ ValueError: invalid literal for int() with base 10: 'forty-two'
 >>> 3 + int('2')
 5
 
-The int('42') call will return the integer value 42.The int(42) call will do the same (though it is kind of pointless to get an integer value form of an integer value). However, even though you can pass a string to the int() function, you cannot pass just any string. Passing 'forty-two' to int() will result in an error. The string you pass to int() must be made up of numbers.
+The int('42') call will return the integer value 42. The int(42) call will do the same (though it is kind of pointless to get an integer value form of an integer value). However, even though you can pass a string to the int() function, you cannot pass just any string. Passing 'forty-two' to int() will result in an error. The string you pass to int() must be made up of numbers.
 
 The 3 + int('2') line shows an expression that uses the return value of int() as part of an expression. It evaluates to the integer value 5:
 
@@ -360,7 +360,7 @@ Traceback (most recent call last):
     4 < '5'
 TypeError: unorderable types: int() < str()
 
-On line 15 the guess variable originally held the string value of what the player typed. Line 16 overwrites the string value in guess with the integer value returned by int(). This lets the code later in the program compare if guess is greater than, less than, or equal to the secret number in the number variable. Python cannot compare a string value with an integer value to see if one is greater or less than the other, even if that string value is something like '5'.
+On line 14 the guess variable originally held the string value of what the player typed. Line 15 overwrites the string value in guess with the integer value returned by int(). This lets the code later in the program compare if guess is greater than, less than, or equal to the secret number in the number variable. Python cannot compare a string value with an integer value to see if one is greater or less than the other, even if that string value is something like '5'.
 
 One last thing: Calling int(guess) doesn’t change the value in the guess variable. The code int(guess) is an expression that evaluates to the integer value form of the string stored in the guess variable. What changes guess is the assignment statement: guess = int(guess)
 

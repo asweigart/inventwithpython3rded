@@ -1,0 +1,468 @@
+    Bab 42
+
+    TEBAK ANGKA
+
+Cakupan Topik dalam Bab ini:
+
+•   Pernyataan import
+•   Module
+•   Argument
+•   Pernyataan while
+•   Kondisi
+•   Blok
+•   Boolean
+•   Operator pembanding
+•   Perbedaan antara = dan ==
+•   Pernyataan if
+•   Katakunci break
+•   Fungsi str() dan int()
+•   Fungsi random.randint()
+
+Game "Tebak Angka"
+
+Dalam bab ini, kamu akan membuat game "Tebak Angka". Komputer akan berpikir satu angka secara acak antara 1 dan 20, lalu kamu harus menebaknya. Komputer akan memberitahumu apakah tebakanmu terlalu tinggi atau rendah. Kamu menang jika kamu berhasil menebak kurang dari enam tebakan.
+
+Game ini cocok untuk ditulis karena menggunakan bilangan acak, putaran, dan masukan dari pengguna dalam program yang relatif kecil. Kamu akan belajar bagaimana mengonversi nilai ke tipe data yang berbeda (dan alasan mengapa perlu melakukannya). Karena program ini adalah game, sebut penggunanya sebagai pemain, atau "pengguna" juga sudah tepat.
+
+Contoh menjalankan "Tebak Angka"
+
+Berikut apa yang dilihat pemain ketika menjalankannya. Teks yang diketik pemain ditulis tebal.
+
+Halo! Siapa namamu?
+Ulami
+Eh, Ulami, Aku lagi berpikir angka antara 1 dan 20.
+Coba tebak.
+10
+Tebakanmu terlalu tinggi.
+Coba tebak.
+2
+Tebakanmu terlalu rendah.
+Coba tebak.
+4
+Hebat, Ulami! Kamu menebak angkaku dalam 3 tebakan!
+
+Masukkan kode ini persis seperti yang terlihat di sini, lalu simpan dengan mengeklik File ► Save As. Beri nama file itu tebak.py. Lalu tekan F5 untuk menjalankannya. Jangan khawatir kalau kamu tidak mengerti kodenya sekarang, aku akan menjelaskan tiap langkahnya. 
+
+Sumber Kode Tebak Angka
+
+Berikut sumber kode untuk game "Tebak Angka". Ketika kamu mengetikkannya ke dalam file editor, pastikan kamu memperhatikan spasi di depan beberapa baris. Beberapa baris bertakuk sebanyak empat atau delapan spasi. 
+
+CATATAN PENTING! Program dalam buku ini hanya akan jalan di Python 3, bukan Python 2. Ketika jendela IDLE dimulai, judul "Python 3.4.0" akan muncul di bagian atas. Jika kamu punya Python 2 yang terinstal, kamu bisa juga menginstal Python 3. Untuk mengunduh Python 3, cek https://python.org/download/.
+
+Kamu dapat menunduh kode ini di http://invpy.com/tebak.py. Jika kamu mendapat error ketika mengetikkan kodenya, bandingkan dengan kode dalam buku dengan perkakas pembanding online di http://invpy.com/diff/guess.
+
+tebak.py
+
+ 1. # Ini adalah game tebak angka.
+ 2. import random
+ 3. 
+ 4. guessesTaken = 0
+ 5. 
+ 6. print('Halo! Siapa namamu?')
+ 7. myName = input()
+ 8. 
+ 9. number = random.randint(1, 20)
+10. print('Eh, ' + myName + ', Aku lagi berpikir angka antara 1 dan 20.')
+11. 
+12. while guessesTaken < 6:
+13.     print('Coba tebak.') # Ada empat spasi di depan print.
+14.     guess = input()
+15.     guess = int(guess)
+16. 
+17.     guessesTaken = guessesTaken + 1
+18. 
+19.     if guess < number:
+20.         print('Tebakanmu terlalu rendah.') # Ada delapan spasi didepan print.
+21. 
+22.     if guess > number:
+23.         print('Tebakanmu terlalu tinggi.')
+24. 
+25.     if guess == number:
+26.         break
+27. 
+28. if guess == number:
+29.     guessesTaken = str(guessesTaken)
+30.     print('Hebat, ' + myName + '! Kamu menebak angkaku dalam ' + guessesTaken + ' tebakan!')
+31. 
+32. if guess != number:
+33.     number = str(number)
+34.     print('Sayang sekali. Angka yang aku pikirkan adalah ' + number)
+
+Untuk melihat bagaiman program bekerja liat tiap baris kode itu.
+
+Pernyataan import
+
+1. # Ini adalah game tebak angka.
+2. import random
+
+Baris pertama adalah komentar. Ingat kembali bahwa Python akan mengabaikan teks setelah tanda #. Komentar ini digunakan sebagai pengingat apa yang bisa dilakukan program.
+
+Baris kedua adalah pernyataan import. Coba ingat, pernyataan adalah sebuah instruksi yang melakukan suatu aksi, tapi tidak terevaluasi menjadi satu nilai seperti pada ekspresi. Kamu sudah pernah melihat pernyataan: pernyataan pengisian akan menyimpan nilai dalam variabel (tapi pernyataan sendiri tidak terevaluasi menjadi apapun). 
+
+Meski Python mengandung banyak fungsi build-in, terdapat beberapa fungsi dalam program yang disebut module. Module adalah program Python yang mengandung fungsi-fungsi tambahan. Untuk menggunakan fungsi itu, kamu harus mengimpornya terlebih dahulu dengan pernyataan import.
+
+Pernyataan import punya katakunci import diikuti oleh nama module. Baris 2 mengimpor sebuah module bernama random. Module random mengandung beberapa fungsi yang berkaitan dengan bilangan acak. Salah satunya adalah fungsi yang akan digunakan untuk membuat bilangan acak yang akan ditebak pengguna. 
+
+4. guessesTaken = 0
+
+Baris ini membuat variabel baru bernama guessesTaken. Variabel ini akan menyimpan banyaknya tebakan yang sudah dibuat pemain. Karena sejauh ini pemain belum membuat tebakan, maka nilai yang disimpan adalah 0.
+
+6. print('Halo! Siapa namamu?')
+7. myName = input()
+
+Baris 6 dan 7 sama seperti baris pada program Halo Dunia! yang sudah kamu lihat di Bab 3. Programmer biasanya menggunakan ulang kodenya untuk program lain demi menghemat kerjaan. 
+
+Baris 6 merupakan pemanggilan fungsi print(). Ingat bahwa fungsi mirip seperti program mini dalam programmu. Ketika programmu memanggil sebuah fungsi, program akan menjalankan program mini itu. Kode di dalam fungsi print() akan menampilkan argument string yang dilemparkan padanya. 
+
+Baris 7 akan menangkap nama pemain dan menyimpannya dalam variabel myName. (Ingat, string itu bisa saja bukan nama pemain sebenarnya. Pemain bisa memasukkan string apapun. Komputer itu bodoh dan hanya mengikuti program apapun itu.)
+
+Fungsi random.randint()
+
+9. number = random.randint(1, 20
+
+Baris 9 memanggil fungsi bernama randint() dan menyimpan nilai kembaliannya dalam variabel number. Ingat, pemanggilan fungsi bisa menjadi bagian dari ekspresi karena proses itu terevaluasi menjadi sebuah nilai.
+
+Karena fungsi randint() disediakan oleh module random, maka namanya awali dengan random. (jangan lupa tanda titiknya!) untuk memberitahu Python bahwa fungsi randint() ada di module random.
+
+Fungsi randint() akan mengembalikan sebuah bilangan bulat acak antara (termasuk) dua bilangan bulat yang dilemparkan padanya. Baris 9 melemparkan 1 dan 20 antara tanda kurung yang mengikuti nama fungsi (dipisahkan oleh koma). Bilangan bulat yang dikembalikan randint() disimpan dalam variabel bernama number yang akan ditebak pengguna. 
+
+Untuk sementara, kembalilah ke shell interaktif dan masukkan import random untuk mengimpor module random. Lalu masukkan random.randint(1, 20) untuk melihat nilai yang terevaluasi. Fungsi ini akan mengembalikan nilai antara 1 dan 20. Ulangi kode itu dan pemanggilan fungsi mungkin akan mengembalikan bilangan bulat yang berbeda. Fungsi randint() mengembalikan bilangan bulat secara acak setiap kali pemanggilan, sama seperti ketika melempar dadu; kamu akan dapat bilangan acak pada setiap lemparan.
+
+>>> import random
+>>> random.randint(1, 20)
+12
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+3
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+7
+
+Gunakan fungsi randint() ketika kamu ingin menambahkan efek acak pada programmu. Kamu akan menggunakan efek acak untuk banyak game. Bayangkan berapa banyak game papan menggunakan dadu.
+
+Kamu dapat pula mencoba beberapa rentang bilangan dengan mengubah argument. Sebagai contoh, masukkan random.randint(1, 4) untuk mendapatkan bilangan bulat antara 1 dan 4 (termasuk 1 dan 4). Atau coba random.randint(1000, 2000) untuk mendapatkan bilangan bulat antara 1000 dan 2000. Sebagai contoh, masukkan kode berikut dalam shell interaktif. Hasil yang akan kamu dapatkan ketika memanggil fungsi random.randint() mungkin berbeda (karena kembaliannya adalah bilangan acak).
+
+>>> random.randint(1, 4)
+3
+>>> random.randint(1000, 2000)
+1294
+
+Kamu bisa mengubah sedikit kode game untuk membuatnya berjalan dengan beda. Coba ubah baris 9 dan 10 dari:
+
+ 9. number = random.randint(1, 20)
+10. print('Eh, ' + myName + ', Aku lagi berpikir angka antara 1 dan 20.')
+
+… jadi beris berikut:
+
+ 9. number = random.randint(1, 100)
+10. print('Eh, ' + myName + ', Aku lagi berpikir angka antara 1 dan 100.')
+
+Sekarang komputer akan memikirkan bilangan bulat antara 1 dan 100, bukan antara 1 dan 20. Dengan merubah baris 9 rentang bilangan akan berubah, tapi jangan lupa ubah juga baris 10, sehingga game akan memberitahu pemain rentang baru itu.
+
+Menyambut Pemain
+
+10. print('Eh, ' + myName + ', Aku lagi berpikir angka antara 1 dan 20.')
+
+Pada baris 10 fungsi print() menyambut pemain dengan namanya, lalu memberitahu kalau komputer sedang memikirkan sebuah bilangan acak.
+
+Mungkin baris 10 terlihat menggunakan lebih dari satu argument string, coba lihat lebih hati-hati. Tanda plus merangkai tiga string yang terevaluasi menjadi satu string. String itulah yang dilemparkan ke fungsi print(). Jika kamu melihat lebih teliti, kamu akan tahu bahwa koma-koma itu ada dalam tanda kutip yang merupakan bagian dari string itu sendiri.
+
+Putaran (Looping)
+
+12. while guessesTaken < 6:
+
+Baris 12 adalah pernyataan while yang mengindikasikan awal suatu putaran iterasi. Putaran meberimu cara untuk mengulang eksekusi kode berkali-kali. Namun, kamu perlu belajar beberapa konsep lain sebelum akhirnya belajar konsep putaran. Konsep-konsep itu adalah blok, boolean, operator pembanding, kondisi, dan pernyataan while. 
+
+Blok
+
+Beberapa baris kode dapat dikelompokkan menjadi satu blok. Blok kode punya banyaknya spasi bertekuk minimum yang sama. Kamu bisa tahu awal dan akhir blok dengan melihat banyaknya spasi pada awal baris. Spasi-spasi itu adalah tekukan baris. 
+
+Blok dimulai ketika tekukan suatu baris mulai bertambah (biasanya bertambah empat spasi). Semua baris berikutnya yang tertekuk empat spasi masuk dalam blok yang sama. Blok berakhir ketika ada baris kode dengan tekukan sama seperti sebelum awal blok. Artinya, blok bisa ada di dalam blok lain. 
+
+Gambar 4-1 adalah diagram kode dengan blok bergaris dan dilabeli. Spasi ditandai dengan kotak hitam agar lebih mudah dihitung.
+
+
+
+Gambar 4-1: Blok dan tekukannya. Titik hitam menunjukkan spasi. 
+
+Dalam Gambar 4-1, baris 12 tidak punya tekukan dan tidak berada dalam blok apapun. Baris 13 punya tekukan sebanyak empat spasi. Karena tekukan ini lebih besar dari tekukan sebelumnya, maka blok baru dimulai. Blok ini dilabeli (1) dalam Gambar 4-1. Blok ini terus berlanjut sampai bertemu baris tanpa diawali spasi (tekukan sebelum blok dimulai). Baris kosong diabaikan.
+
+Baris 20 punya tekukan sebanyak delapan spasi. Delapan spasi lebih banyak daripada empat, sehingga blok baru dimulai. Blok ini dilabeli (2) dalam Gambar 4-1. Blok ini ada dalam blok lain. 
+
+Baris 22 hanya punya empat spasi. Karena tekukannya berkurang, kamu tahu bahwa blok itu berakhir. Baris 20 hanya satu-satunya baris dalam blok itu. Baris 22 ada dalam blok yang sama dengan baris lain yang bertekuk empat spasi. 
+
+Tekukan pada baris 23 bertambah menjadi delapan spasi, sehinga blok baru mulai lagi. Blok ini dilabeli (3) dalam Gambar 4-1. 
+
+Jadi, baris 12 tidak dalam blok manapun. Baris 13 sampai 23 ada dalam satu blok, blok 1. Baris 20 ada dalam blok di dalam blok, yaitu blok 2. Terakhir, baris 23 adalah baris lain yang ada dalam blok di dalam blok, yaitu blok 3. 
+
+Tipe Data Boolean
+
+Tipe data Boolean hanya punya dua nilai, yaitu True atau False. Nilai ini harus ditulis dengan awal huruf kapital, "T" dan "F", sisanya ditulis dalam huruf kecil. Kamu akan menggunakan nilai Boolean (yang disebut juga bool) pada operasi perbandingan untuk membentuk suatu kondisi. (Konsep kondisi dijelaskan nanti.)
+
+Tipe data yang dikenal Python dan sudah kamu ketahui adalah integer, float, string, dan bool.
+
+Operasi Perbandingan
+
+Baris 12 punya pernyataan while:
+
+12. while guessesTaken < 6:
+
+Ekspresi setelah katakunci while (bagian guessesTaken < 6) mengandung dua nilai (nilai dalam variabel guessesTaken dan nilai bilangan bulat 6) yang dihubungkan dengan operator (tanda kurang dari <). Tanda < termasuk operator pembanding. 
+
+Operator pembanding membandingkan dua nilai dan terevaluasi menjadi nilai Boolean True atau False. Daftar semua operator pembanding ada dalam Tabel 4-1.
+
+Table 4-1: Operator pembanding.
+Tanda Operator      Nama Operator
+<                   lebih kecil dari
+>                   lebih besar dari
+<=                  lebih kecil atau sama dengan
+>=                  lebih besar atau sama dengan
+==                  sama dengan
+!=                  tidak sama dengan
+
+Kamu sudah tahu tentang operator matematika +, -, *, dan /. Seperti operator lainnya, operator pembanding dikombinasikan dengan nilai menjadi bentuk ekspresi seperti guessesTaken < 6.
+
+Kondisi
+
+Sebuah kondisi adalah ekspresi yang menggabungkan dua nilai dengan operator pembanding (seperti < atau >) yang terevaluasi menjadi nilai Boolean. Suatu kondisi merupakan nama lain untuk ekspresi yang terevaluasi menjadi True atau False. Kondisi digunakan dalam pernyataan while (dan beberapa pernyataan lainnya yang dijelaskan nanti.)
+
+Sebagai contoh, kondisi guessesTaken < 6 bertanya, "apakah nilai yang tersimpan dalam guessesTaken lebih kecil dari angka 6?" Jika ya, maka kondisi terevaluasi menjadi True. Jika tidak, kondisi terevaluasi menjadi False. 
+
+Pada kasus program "Tebak Angka", di baris 4 kamu menyimpan nilai 0 dalam guessesTaken. Karena 0 lebih kecil dari 6, kondisi ini terevaluasi menjadi nilai Boolean True. Proses evaluasi ini tampak seperti:
+
+guessesTaken < 6
+             ▼
+           0 < 6
+             ▼
+            True
+
+Eksperimen dengan Boolean, Operator Pembanding, dan Kondisi
+
+Masukkan ekspresi berikut dalam shell interaktif untuk melihat hasil boolean:
+
+>>> 0 < 6
+True
+>>> 6 < 0
+False
+>>> 50 < 10
+False
+>>> 10 < 11
+True
+>>> 10 < 10
+False
+
+Kondisi 0 < 6 mengembalikan nilai Boolean True karena angka 0 kurang dari angka 6. Sebaliknya karena 6 tidak kurang dari 0, kondisi 6 < 0 terevaluasi menjadi False. Karena 50 tidak kurang dari 10, maka 50 < 10 sama dengan False. Terkhir, karena 10 kurang dari 11, maka 10 < 11 sama dengan True.
+
+Perhatikan bahwa 10 < 10 terevaluasi menjadi False karena angka 10 tidak kurang dari angka 10. Kedua angka itu bernilai sama persis. Jika tinggi Alice sama dengan tinggi Bob, kamu tidak akan bilang Alice lebih tinggi daripada Bob atau Alice lebih pendek daripada Bob. Kedua pernyataan itu bernilai False. 
+
+Sekarang coba masukkan ekspresi berikut dalam shell interaktif:
+
+>>> 10 == 10
+True
+>>> 10 == 11
+False
+>>> 11 == 10
+False
+>>> 10 != 10
+False
+>>> 10 != 11
+True
+>>> 'Halo' == 'Halo'
+True
+>>> 'Halo' == 'Dadah'
+False
+>>> 'Halo' == 'HALO'
+False
+>>> 'Dadah' != 'Halo'
+True
+
+Coba untuk tidak bingung membedakan operator pengisian (=) dengan operator pembanding "sama dengan" (==). Tanda sama dengan (=) digunakan dalam pernyataan pengisian untuk menyimpan nilai ke dalam variabel, sedangkan tanda sama dengan-sama dengan (==) digunakan dalam ekspresi untuk melihat apakah kedua nilai bernilai sama. Mudah sekali secara tidak sengaja menggunakan tanda dengan satu sama dengan padahal yang dimaksud yang lainnya, atau sebaliknya.
+
+Ingatlah bahwa operator pembanding "sama dengan" (==) punya dua karakter, sama seperti operasi pembanding "tidak sama dengan" (!=) yang juga punya dua karakter. 
+
+String dan bilangan bulat tidak sama satu sama lainnya. Sebagai contoh, masukkan kode berikut ke dalam shell interaktif:
+
+>>> 42 == 'Halo'
+False
+>>> 42 != '42'
+True
+
+Putar Balik dengan pernyataan while
+
+Pernyataan while menandai awal suatu putaran. Putaran dapat mengeksekusi kode yang sama berkali-kali. Ketika eksekusi sampai pada pernyataan while, program mengevaluasi kondisi setelah katakunci while. Jika kondisi itu terevaluasi menjadi True, eksekusi maju ke dalam blok while. (Dalam programmu, blok while itu dimulai pada baris 13.) Jika kondisi terevaluasi menjadi False, eksekusi bergerak melewati blok while itu. (Dalam program "Tebak Angka", baris pertama setelah blok while adalah baris 28.)
+
+Pernyataan while selalu punya tanda titik dua (:) setelah kondisinya. 
+
+12. while guessesTaken < 6:
+
+
+
+Gambar 4-2: Kondisi pada putaran while. 
+
+Gambar 4-2 menunjukkan bagaiman aliran eksekusi bergantung pada kondisi. Jika kondisi terevaluasi menjadi True (yang terjadi pada kali pertama, karena nilai guessesTaken sama dengan 0), eksekusi akan memasuki blok while pada baris 13 dan terus ke bawah. Ketika program sampai pada akhir blok while, eksekusi tidak lanjut ke baris berikutnya, melainkan berputar balik ke atas ke baris dengan pernyataan while (baris 12), lalu mengevaluasi kembali kondisinya. Seperti sebelumnya, jika kondisinya sama dengan True eksekusi masuk ke blok while lagi. Setiap kali eksekusi masuk suatu putaran, proses ini disebut iterasi. 
+
+Begitulah kerja putaran. Selama kondisinya True, program akan terus mengeksekusi kode dalam blok while berulang-ulang sampai kali pertama kondisinya False. Bayangkan pernyataan while seperti berkata, "selama kondisi ini benar, teruskan iterasi dalam blok kode ini".
+
+Kode didalam blok while itu menangani masukan tebakan dari pemain, lalu mengecek apakah tebakan itu lebih dari, kurang dari, atau sama dengan angka rahasia. Kamu bisa mengubah tingkat kesusahan game dengan mengubah banyaknya tebakan yang diperolehkan pemain. Untuk memberi pemain hanya empat kali tebakan, ubah baris berikut:
+
+12. while guessesTaken < 6:
+
+menjadi baris ini:
+
+12. while guessesTaken < 4:
+
+Kode dalam blok while akan membuat variabel guessesTaken bertambah satu pada tiap iterasi. Dengan mengeset kondisi menjadi guessesTaken < 4, kamu memastikan bahwa kode dalam loop hanya dijalankan empat kali, bukan enam. Hal ini membuat games lebih sulit. Untuk membuat games lebih mudah, set kondisi menjadi guessesTaken < 8 atau guessesTaken < 10, sehingga putaran yang dijalankan akan lebih banyak dan program menerima lebih banyak tebakan dari pemain.
+
+Tentu saja, kalau kamu menghapus baris 17 (guessesTaken = guessesTaken + 1), maka guessesTaken tidak akan pernah bertambah. Kondisi putaran while akan selalu True! Hal ini akan membuat pemain menebak tanpa batas. Pemain akan suka ini, tapi programmer akan menganggap isu ini sebagai bug.
+
+Tebakan Pemain
+
+Baris 13 sampai 17 bertanya ke pemain apa angka rahasia itu dan membolehkan pemain menebaknya. Tebakan itu disimpan dalam variabel bernama guess.
+
+13.     print('Coba tebak.') # Ada empat spasi di depan print.
+14.     guess = input()
+
+Mengubah String menjadi Bilangan Bulat dengan fungsi int()
+
+15.    guess = int(guess)
+
+Baris 15 memanggil fungsi baru bernama int(). Fungsi int() mengambil satu argument dan mengembalikan satu nilai bilangan bulat. Coba masukkan kode berikut ke shell interaktif:
+
+>>> int('42')
+42
+>>> int(42)
+42
+>>> int('forty-two')
+Traceback (most recent call last):
+  File "<pyshell#5>", line 1, in <module>
+int('forty-two')
+ValueError: invalid literal for int() with base 10: 'forty-two'
+>>> 3 + int('2')
+5
+
+Pemanggilan int('42') akan mengembalikan nilai bilangan bulat 42. Begitu pula int(42) berlaku sama (meski tidak ada untungnya mengubah nilai bilangan bulat ke bilangan bulat lagi). Meskipun kamu dapat melempar string ke fungsi int(), kamu tidak bisa melempar sembarang string. Lemparkan 'forty-two' ke int() dan kamu akan dapat error. Kamu harus melemparkan bentuk string dari suatu angka ke fungsi int().
+
+Baris 3 + int('2') menunjukkan sebuah ekspresi yang menggunakan kembalian int() sebagai bagian dari ekspresi yang akan terevaluasi ke nilai 5:
+
+3 + int('2')
+  ▼
+3 + 2
+  ▼
+  5
+
+Ingat kembali, fungsi input() mengembalikan sebuah string teks yang dimasukkan pemain. Jika pemain memasukkan 5, fungsi input() akan mengembalikan nilai string '5', bukan nilai bilangan bulat 5. Python tidak bisa menggunakan operator pembanding < dan > untuk membandingkan string dan bilangan bulat:
+
+>>> 4 < '5'
+Traceback (most recent call last):
+  File "<pyshell#0>", line 1, in <module>
+    4 < '5'
+TypeError: unorderable types: int() < str()
+
+Pada baris 14 variabel guess awalnya menyimpan nilai string yang dimasukkan pemain. Baris 15 menimpa nilai string itu dengan nilai bilangan bulat kembalian dari int(). Dengan demikian, kode berikutnya bisa membandingkan apakah guess lebih besar, kurang dari, atau sama dengan angka rahasia dalam variabel number. Python tidak bisa membandingkan nilai string dengan nilai bilangan bulat untuk melihat apakah nilai yang satu lebih besar atau lebih kecil dari nilai lainnya, bahkan jika nilai string itu seperti '5'.
+
+Satu hal lagi: memanggil int(guess) tidak mengubah nilai pada variabel guess. Kode int(guess) adalah sebuah ekspresi yang terevaluasi menjadi nilai bilangan bulat dari string yang tersimpan dalam variabel guess. Apa yang merubah guess adalah pernyataan pengisian: guess = int(guess).
+
+Meningkatkan Nilai Variabel
+
+17.     guessesTaken = guessesTaken + 1
+
+Ketika pemain sudah menebak, banyaknya tebakan harus ditambahkan satu. 
+
+Pada iterasi pertama putaran while, guessesTaken punya nilai 0. Python akan mengambil nilainya, lalu ditambahkan satu. 0 + 1 terevaluasi menjadi 1 yang akan disimpan sebagai nilai baru guessesTaken. Bayangkan baris 17 seolah berkata, "variabel guessesTaken harus lebih besar satu dari yang sudah ada".
+
+Proses menambahkan suatu variabel bilangan bulat atau float dengan satu disebut meningkatkan variabel. Proses mengurangi satu dari suatu variabel bilangan bulat atau float disebut merendahkan variabel.
+
+Pernyataan if
+
+Apakah si pemain menebak terlalu rendah?
+
+19.     if guess < number:
+20.         print('Tebakanmu terlalu rendah.') # Ada delapan spasi didepan print.
+
+Baris 19 mengecek apakah tebakan pemain kurang dari angka rahasia si komputer. Jika demikian, maka eksekusi maju ke baris 20, lalu eksekusi mencetak sebuah pesan yang memberitahu pemain kondisi ini. Baris 19 adalah pernyataan if. Eksekusi akan menjalankan kode dalam blok berikutnya jika pernyataan kondisinya terevaluasi ke True. Jika kondisinya False, maka kode dalam blok if dilewati. Dengan pernyataan if, kamu bisa membuat program hanya menjalankan kode tertentu ketika kamu menginginkannya. 
+
+Cara kerja pernyataan if mirip cara kerja pernyataan while. Namun, tidak seperti blok while, pada akhir blok if eksekusi tidak berputar balik ke awal pernyataan if. Eksekusi dilanjutkan ke bawah ke baris berikutnya. Dengan kata lain, pernyataan if tidak berputar. Liat Gambar 4-3 untuk membandingkan kedua pernyataan. 
+
+
+
+Gambar 4-3: Pernyataan if dan while.
+
+Apakah si Pemain Menebak terlalu Tinggi?
+
+22.     if guess > number:
+23.         print('Tebakanmu terlalu tinggi.')
+
+Baris 22 mengecek apakah tebakan pemain lebih besar dari angka rahasia. Jika benar, maka pemanggilan fungsi print() akan memberitahu pemain bahwa tebakannya terlalu tinggi. 
+
+Keluar dari Putaran dengan pernyataan break
+
+25.     if guess == number:
+26.         break
+
+Pertanyaan if pada baris 25 mengecek apakah tebakan sama dengan angka rahasia. Jika ya, program menjalankan pernyataan break pada baris 26.
+
+Pernyataan break memberitahu eksekusi untuk lompat keluar blok while ke baris pertama setelah akhir blok while. (Pernyataan break tidak mengecek ulang kondisi putaran while, melainkan langsung lompat keluar putaran.)
+
+Pernyataan break dibentuk oleh hanya katakunci break, tanpa kondisi atau titik dua.
+
+Jika tebakan pemain tidak sama dengan angka rahasia, eksekusi mencapai akhir blok while. Artinya, eksekusi akan berputar balik ke atas dan mengecek ulang kondisi pada baris 12 (guessesTaken < 6). Ingat, setelah baris guessesTaken = guessesTaken + 1 tereksekusi, nilai baru guessesTaken adalah 1. Karena 1 < 6 bernilai True, eksekusi masuk putaran lagi. 
+
+Jika pemain terus menebak terlalu rendah atau tinggi, nilai guessesTaken akan berubah menjadi 2, lalu 3, lalu 4, lalu 5, lalu 6. Ketika guessesTaken bernilai 6, kondisi while akan False, karena 6 tidak kurang dari 6. Sehingga, eksekusi maju ke baris pertama setelah blok while. 
+
+Jika pemain menebak angka rahasia dengan benar, pernyataan break akan memanjukan eksekusi ke baris bertama setelah blok while. 
+
+Sisa baris kode berjalan ketika pemain sudah selesai menebak, baik karena pemain berhasil menebak angka rahasia atau karena banyaknya tebakan yang diperbolehkan sudah habis. 
+
+Mengecek Apakah si Pemain Menang
+
+28. if guess == number:
+
+Baris 28 tidak bertekuk yang berarti blok while telah berakhir dan baris ini adalah baris pertama setelah blok while. Eksekusi meninggalkan blok while baik karena kondisi pernyataan while bernilai False (ketika pemain kehabisan banyaknya tebakan yang diperbolehkan) atau ketika pernyataan break tereksekusi (ketika pemain berhasil menebak angka rahasia dengan benar). Baris 28 mengecek apakah pemain berhasil menebak dengan benar. Jika demikian, eksekusi masuk blok if pada baris 29. 
+
+29.     guessesTaken = str(guessesTaken)
+30.     print('Hebat, ' + myName + '! Kamu menebak angkaku dalam ' + guessesTaken + ' tebakan!')
+
+Baris 29 dan 30 hanya dieksekusi jika kondisi pada pernyataan if bernilai True (yaitu, ketika pemain berhasil menebak angka rahasia komputer dengan benar). 
+
+Baris 29 memanggil fungsi baru str() yang mengembalikan bentuk string dari argument. Kode ini mengambil bentuk string dari bilangan bulat dalam guessesTaken kerena hanya string yang bisa diserangkaikan dengan string lainnya. 
+
+Baris 30 merangkaikan string untuk memberitahu pemain bahwa mereka telah menang dan berapa banyak tebakan yang telah dilakukan. Hanya nilai string yang dapat diserangkaikan dengan string lain. Itulah sebabnya mengapa baris 29 harus merubah guessesTaken menjadi berbentuk string. Jika tidak, perangkaian string dengan bilangan bulat akan menyebabkan Python menampilkan pesan error. 
+
+Mengecek Apakah si Pemain Kalah
+
+32. if guess != number:
+
+Baris 32 menggunakan operator pembanding != untuk mengecek apakah tebakan pemain tidak sama dengan angka rahasia. Jika kondisinya benar, eksekusi maju ke dalam blok if pada baris 33. 
+
+Baris 33 dan 34 ada di dalam blok if dan hanya dieksekusi jika kondisi pada baris 32 bernilai True. 
+
+33.     number = str(number)
+34.     print('Sayang sekali. Angka yang aku pikirkan adalah ' + number)
+
+Pada blok ini. program akan memberitahu pemain angka rahasia yang tidak bisa ditebak pemain. Proses ini perlu merangkaikan string, tapi variabel number menyimpan nilai bilangan bulat. Baris 33 akan mengganti number sehingga berbentuk string. Dengan demikian, variabel itu dapat diserangkaikan dengan string 'Sayang sekali. Angka yang aku pikirkan adalah ' pada baris 34.
+
+Pada titik ini, eksekusi telah mencapai akhir kode dan program akan mati. Selamat! kamu telah memrogram game pertamamu!
+
+Pernyataan Kontrol Aliran
+
+Pada bab sebelumnya, eksekusi program dimulai dari instruksi di atas, lalu bergerak lurus ke bawah, mengeksekusi tiap instruksi secara berurutan. Namun, dengan pernyataan while, if, else, dan break, kamu bisa membuat eksekusi berputar dan melewati beberapa instruksi berdasarkan suatu kondisi. Pernyataan seperti ini disebut pernyataan kontrol aliran, karena menyebabkan 'aliran' eksekusi program berubah ketika bergerak dalam program. 
+
+Ringkasan
+
+Jika seseorang bertanya, "Apa sebenarnya memrogram itu?". Apa yang akan kamu katakan pada mereka? Memrogram hanyalah sebuah proses membuat kode untuk program, yaitu membuat program yang dapat dieksekusi oleh komputer. 
+
+"Tapi apa sebenarnya program itu?" Ketika kamu melihat seseorang menggunakan program komputer (sebagai contoh, memainkan game "Tebak Angka"-mu), apa yang kamu lihat hanya teks dalam layar. Programlah yang menentukan teks apa yang muncul dalam layar (keluaran program), berdasarkan instruksi dan masukan pemain yang diketikkan di keyboard (masukan program). Sebuah program hanyalah sebuah koleksi instruksi yang bereaksi terhadap masukan penggunanya. 
+
+"Instruksi seperti apa?" Sebeneranya, hanya ada sedikit jenis instruksi yang berbeda. 
+
+1.  Ekspresi. Ekspresi adalah nilai yang dihubungkan dengan operator. Semua ekspresi terevaluasi menjadi satu nilai, seperti 2 + 2 terevaluasi menjadi 5 atau 'Halo' + ' ' + 'Dunia' terevaluasi menjadi 'Halo Dunia'. Ketika ekspresi berada setelah pernyataan if atau while, ekspresi ini disebut juga sebagai suatu kondisi. 
+2.  Pernyataan pengisian. Pernyataan pengisian menyimpan nilai dalam variabel, sehingga kamu dapat memanggilnya kemudian dalam program. 
+3.  Pernyataan kontrol aliran if, while, dan break. Pernyataan kontrol aliran dapat menyebabkan aliran melewati beberapa instruksi, berputar dalam instruksi-instruksi, atau keluar dari putaran. Pemanggilan fungsi juga merubah aliran eksekusi dengan melompat masuk ke dalam awal fungsi. 
+4.  Fungsi print() dan input(). Fungsi ini menampilkan teks pada layar dan mengambil teks dari keyboard. Proses ini disebut I/O (dalam bahasa inggris dilafalkan sebagai, "eye-oh"), karena menangani masalah masukan (Input) dan keluaran (Output) sebuah program. 
+
+Itu saja, hanya empat hal itu. Tentu saja, ada banyak detil tentang keempat tipe instruksi itu. Dalam buku ini kamu akan belajar mengenai tipe data baru dan fungsi lain yang disediakan Python. Ada juga tipe I/O lainnya, seperti masukan dari mouse atau keluaran suara dan grafik, tidak sekedar teks.
+
+Untuk seseorang yang menggunakan programmu, mereka hanya peduli dengan tipe terakhir, yaitu I/O. Pengguna mengetikkan sesuatu dengan keyboard, lalu mereka melihat sesuatu di layar atau mendengar suara di speaker. Namun, komputer perlu instruksi untuk menampilkan sesuatu pada layar atau memainkan suara tertentu. Instruksi ini terdapat di program yang telah dibuat oleh kamu, si programmer. 
+

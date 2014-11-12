@@ -1,0 +1,162 @@
+    Bab 5
+    LELUCON
+
+Cakupan topik dalam bab ini:
+
+•   Menggunakan argumen keyword end pada fungsi print()’s untuk melewati newline
+•   Karakter-karakter escape
+•   Penggunaan tanda kutip dan tanda kutip ganda pada string 
+
+Memanfaatkan print()
+
+Banyak game pada buku ini akan menggunakan teks sederhana sebagai masukan dan keluaran. Masukan diberikan oleh pengguna melalui keyboard yang akan mengirimkannya ke komputer. Setelah itu komputer akan mencetak keluaran berupa teks yang ditampilkan pada layar. Fungsi print() di Python dapat digunakan untuk menampilkan keluaran berbentuk teks pada layar. Tapi masih banyak yang dapat dipelajari dari bagaimana string dan fungsi print() bekerja di Python.
+
+Program dalam bab ini memberikan berbagai lelucon kepada penggunanya.
+
+Contoh Program Lelucon
+
+What do you get when you cross a snowman with a vampire?
+Frostbite!
+What do dentists call an astronaut's cavity?
+A black hole!
+Knock knock.
+Who's there?
+Interrupting cow.
+Interrupting cow wh-MOO!
+
+Kode Sumber Program Lelucon
+
+Ketikkan kode sumber berikut menggunakan file editor dan simpan sebagai file jokes.py
+
+PERLU DIPERHATIKAN! Program-program dalam buku ini hanya dapat dijalankan di Python 3. Kamu dapat melihat versi Python yang kamu gunakan dengan melihat angka versi pada jendela IDLE. Jika kamu telah memiliki instalasi Python 2, kamu dapat memiliki instalasi Python 3 dalam satu komputer secara bersamaan. Silakan buka https://python.org/download untuk mengunduh Python 3.
+
+Jika kamu mendapatkan error setelah mengetikkan kode dalam kode sumber berikut, coba bandingkan dengan kode sumber pada buku melalui perangkat diff online di http://invpy.com/diff/jokes
+
+jokes.py
+
+ 1. print('What do you get when you cross a snowman with a vampire?')
+ 2. input()
+ 3. print('Frostbite!')
+ 4. print()
+ 5. print('What do dentists call a astronaut's cavity?')
+ 6. input()
+ 7. print('A black hole!')
+ 8. print()
+ 9. print('Knock knock.')
+10. input()
+11. print("Who's there?")
+12. input()
+13. print('Interrupting cow.')
+14. input()
+15. print('Interrupting cow wh', end='')
+16. print('-MOO!')
+
+Jangan khawatir jika kamu tidak mengerti seluruh kode di atas. Simpan dan jalankan program. Ingat, jika program kamu memiliki bug, kamu dapat menggunakan perangkat diff online di http://invpy.com/diff/jokes
+
+Alur Kerja Kode
+
+ 1. print('What do you get when you cross a snowman with a vampire?')
+ 2. input()
+ 3. print('Frostbite!')
+ 4. print()
+
+Baris 1 hingga 4 memiliki tiga pemanggilan fungsi print(). Kamu tidak ingin pemain untuk langsung membaca bagian lucu dari lelucon. Oleh karena itu, terdapat pemanggilan fungsi input() setelah pemanggilan print() pertama. Pemain dapat membaca baris pertama, menekan Enter, lalu membaca bagian lucu dari lelucon.
+
+Pengguna masih dapat mengetikkan string apapun dan menekan Enter. Namun string masukan tidak disimpan pada variabel apapun. Program akan langsung melupakan string tersebut dan lanjut ke baris kode berikutnya.
+
+Pemanggilan fungsi print() terakhir tidak memiliki argumen string apapun. Ini memberitahukan program untuk mencetak sebuah baris kosong. Baris kosong dapat berguna untuk memberikan jarak pada teks agar tidak berantakan.
+
+Karakter-Karakter Escape
+
+ 5. print('What do dentists call a astronaut's cavity?')
+ 6. input()
+ 7. print('A black hole!')
+ 8. print()
+
+Pada pemanggilan pertama fungsi print() di atas, terdapat sebuah karakter backslash \ tepat sebelum tanda kutip tunggal. Perhatikan bahwa \ adalah backslash, sedangkan / adalah forward slash. Karakter backslash berarti bahwa karakter setelahnya adalah sebuah karakter escape. Karakter escape berguna untuk mencetak karakter-karakter yang sulit dimasukkan ke dalam kode sumber. Pada pemanggilan print() di atas, karakter escape yang digunakan adalah tanda kutip.
+
+Karakter escape untuk tanda kutip tunggal digunakan supaya Python tidak menganggap tanda kutip tunggal tersebut bukan penanda akhir dari string. Python akan mengetahui ketika ada karakter escape untuk tanda kutip tunggal, maka tanda kutip tunggal tersebut merupakan bagian dari string.
+
+Beberapa Karakter Escape Lainnya
+
+Bagaimana jika kamu ingin menampilkan karakter backslash? Baris kode berikut ini tidak akan berhasil:
+
+>>> print('He flew away in a green\teal helicopter.')
+
+Pemanggilan fungsi print() akan mencetak keluaran:
+
+He flew away in a green    eal helicopter.
+
+Ini disebabkan karena karakter t pada green\teal dilihat sebagai sebuah karakter escape karena muncul setelah sebuah backslash. Karakter escape t mensimulasikan penekanan tombol Tab pada keyboard. Karakter escape ada sehingga string-string dalam program dapat memiliki karakter-karakter yang tidak dapat diketik.
+
+Supaya dapat mencetak string keluaran berisi \teal, coba masukkan baris berikut:
+
+>>> print('He flew away in a green\\teal helicopter.')
+He flew away in a green\teal helicopter.
+
+Table 5-1 adalah daftar karakter-karakter escape dalam Python
+
+Table 5-1: Karakter-Karakter Escape
+Karakter Escape         Karakter Yang Akan Dicetak
+\\                      Backslash (\)
+\'                      Tanda kutip tunggal (')
+\"                      Tanda kutip ganda (")
+\n                      Newline
+\t                      Tab
+
+
+
+Tanda Kutip Tunggal dan Tanda Kutip Ganda
+
+String-string dalam Python tidak harus selalu berada diantara tanda kutip tunggal. Kamu juga dapat menaruhnya di antara tanda kutip ganda. Kedua baris berikut akan mencetak keluaran yang sama:
+
+>>> print('Hello world')
+Hello world
+>>> print("Hello world")
+Hello world
+
+Namun kamu tidak dapat mencampur aduk tanda kutip. Baris berikut ini akan memberikan error jika kamu mencoba menggunakannya:
+
+>>> print('Hello world")
+SyntaxError: EOL while scanning single-quoted string
+
+Aku suka menggunakan tanda kutip tunggal sehingga aku tidak perlu untuk menekan tombol Shift untuk mengetikkannya. Lebih mudah diketik dan Python tidak terlalu peduli akan hal itu.
+
+Sama seperti ketika kamu membutuhkan karakter escape \' untuk dapat mencetak tanda kutip tunggal dalam string, kamu juga akan membutuhkan karakter escape \" supaya dapat memunculkan tanda kutip ganda dalam string. Sebagai contoh, coba lihat kedua baris berikut:
+
+>>> print('I asked to borrow Abe\'s car for a week. He said, "Sure."')
+
+I asked to borrow Abe's car for a week. He said, "Sure."
+
+>>> print("He said, \"I can’t believe you let him borrow your car.\"")
+
+He said, "I can’t believe you let him borrow your car."
+
+Pada string dengan tanda kutip tunggal, kamu tidak perlu menambahkan karakter escape terhadap tanda kutip ganda. Begitu pula pada string dengan tanda kutip ganda. Kamu tidak perlu menambahkan karakter escape terhadap tanda kutip tunggal. Interpreter Python cukup pintar untuk mengetahui tanda kutip yang digunakan untuk membuat string dengan tanda kutip yang menjadi bagian dari string.
+
+Argumen Keyword end
+
+ 9. print('Knock knock.')
+10. input()
+11. print("Who's there?")
+12. input()
+13. print('Interrupting cow.')
+14. input()
+15. print('Interrupting cow wh', end='')
+16. print('-MOO!')
+
+Apakah kamu memperhatikan parameter kedua pada pemanggilan fungsi print() di baris 15? Biasanya, print() menambahkan karakter newline di akhir string yang dicetak. Inilah penyebab pemanggilan print() kosong akan mencetak sebuah newline. Namun fungsi print() bisa diberikan parameter kedua, yaitu "end".
+
+The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter we need to use the end= syntax.
+
+String kosong yang dimasukkan disebut sebagai argumen keyword. Parameter end memiliki nama parameter. Untuk memasukkan sebuah argumen kepada suatu parameter, kita butuh menggunakan sintaks end=. 
+
+Dengan memasukkan string kosong sebagai nilai argumen end, fungsi print() tidak akan menambahkan karakter newline di akhir string. Inilah penyebab string '-MOO!' muncul di sebelah baris keluaran string sebelumnya. Ketika mencetak 'Interrupting cow wh', di akhir string tidak ada karakter newline.
+
+Ringkasan
+
+Bab ini menjelaskan berbagai cara penggunaan fungsi print(). Karakter escape digunakan untuk karakter-karakter yang sulit atau tidak mungkin dimasukkan ke dalam kode. Karakter escape diketikkan sebagai sebuah string yand diawali dengan karakter backslash \ kemudian diikuti dengan sebuah huruf yang mewakili karakter escape. Sebagai contoh, \n merupakan sebuah newline. Agar dapat memasukkan backslash dalam sebuah string, kamu dapat menggunakan karakter escape \\.
+
+Fungsi print() secara otomatis menambahkan sebuah karakter newline pada ujung string yang kita masukkan agar ditampilkan pada layar. Seringkali ini merupakan cara cepat yang sangat membantu. Namun terkadang kamu tidak ingin ada sebuah karakter newline di akhir string. Kamu dapat merubahnya dengan memasukkan argumen keyword end yang berisi string kosong. Sebagai contoh, jika ingin mencetak "spam" di layar tanpa karakter newline, maka kamu dapat melakukannya dengan memanggil print('spam', end='').
+
+Dengan menambahkan kendali terhadap teks yang ditampilkan pada layar, kamu dapat lebih fleksibel dalam cara menampilkan teks.
