@@ -1,3 +1,4 @@
+backslash, barra inversa
 cake, torta
 case-sensitive, sensible a mayúsculas
 computer, computadora
@@ -6,11 +7,15 @@ input, entrada
 get, obtener
 loop, bucle
 move (noun), movida
+newline (character), salto de línea
+punch line, remate del chiste (en el contexto de un chiste)
 return value, valor de retorno
 run, ejecutar
+slash, barra inclinada
 set, establecer
 set up, configurar
 shell, consola
 show, mostrar
 statement, sentencia
+trace/tracing: traza de trazado (se refiere a la ejecución linea a linea o "corrida en frío")
 #(pound sign), símbolo almohadilla
