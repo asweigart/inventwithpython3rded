@@ -2,10 +2,10 @@ Translators
 ===========
 
 - Christian Von Aster
-- Dennis Bautembach
+- Dennis Bautembach (denniskb)
 - Frank Lehmann
 - Georg Ramer
-- Horst Jens
+- Horst Jens (horstjens)
 - Thomas Klemmer
 
 (You can always check the commit history of the files in this folder to find other translators, if this README is not up to date.)
