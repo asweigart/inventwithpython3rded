@@ -6,7 +6,7 @@ Topics Covered In This Chapter:
 • ASCII art
 • Designing a program with flow charts
 
-In this chapter, you’ll design a Hangman game. This game is more complicated than our previous game, but also more fun. Because the game is advanced, you should first carefully plan it out by creating a flow chart (explained later). In the next chapter, we will actually write out the code for Hangman.
+In this chapter, you’ll design a Hangman game. This game is more complicated than our previous game, but also more fun. Because the game is advanced, you should first carefully plan it out by creating a flow chart (explained later). In the next chapter, you’ll actually write out the code for Hangman.
 
 How to Play “Hangman”
 
@@ -15,7 +15,7 @@ If they guess correctly, the first player writes the letter in the proper blank.
 
 Sample Run of “Hangman”
 
-Here is an example of what the player might see when they run the Hangman program we will write later. The text that the player enters in shown in bold.
+Here is an example of what the player might see when they run the Hangman program you’ll write later. The text that the player enters in shown in bold.
 
 H A N G M A N
   +---+

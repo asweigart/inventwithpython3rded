@@ -613,7 +613,7 @@ Duplicating the Board Data
  68.
  69.     return dupeBoard
 
-The getBoardCopy() function is here so that we can easily make a copy of a given 10-string list that represents a Tic Tac Toe board in our game. There are times that we will want our AI algorithm to make temporary modifications to a temporary copy of the board without changing the original board. In that case, we call this function to make a copy of the board's list. The actual new list is created on line 64, with the blank list brackets [].
+The getBoardCopy() function is here so that we can easily make a copy of a given 10-string list that represents a Tic Tac Toe board in our game. There are times that you’ll want the AI algorithm to make temporary modifications to a temporary copy of the board without changing the original board. In that case, we call this function to make a copy of the board's list. The actual new list is created on line 64, with the blank list brackets [].
 But the list stored in dupeBoard on line 64 is just an empty list. The for loop will go through the board parameter, appending a copy of the string values in the original board to the duplicate board. Finally, after the loop, dupeBoard is returned. The getBoardCopy() function builds up a copy of the original board and returning a reference to this new board, and not the original one.
 
 Checking if a Space on the Board is Free
@@ -640,7 +640,7 @@ The expression on the left side checks if the move that the player entered is eq
 '1 2 3 4 5 6 7 8 9'.split() evaluates to be the same as ['1', '2', '3', '4', '5', '6', '7', '8', '9'], but it easier to type. They both would do the same thing.
 The expression on the right side checks if the move that the player entered is a free space on the board. It checks this by calling the isSpaceFree() function. Remember that isSpaceFree() will return True if the move we pass is available on the board. Note that isSpaceFree() expects an integer for move, so we use the int() function to evaluate an integer form of move.
 The not operators are added to both sides so that the condition is True when either of these requirements are unfulfilled. This will cause the loop to ask the player again and again until they enter a proper move.
-Finally, on line 81, we will return the integer form of whatever move the player entered. Remember that input() returns a string, so the int() function is needed to evaluate the string to its integer value form.
+Finally, line 81 returns the integer form of whatever move the player entered. Remember that input() returns a string, so the int() function is needed to evaluate the string to its integer value form.
 
 Short-Circuit Evaluation
 
@@ -812,7 +812,7 @@ Our call to chooseRandomMoveFromList() with the list of [1, 3, 7, 9] will ensure
 126.     if isSpaceFree(board, 5):
 127.         return 5
 
-If none of the corners are available, we will try to move on the center space if it is free. If the center space isn’t free, the execution moves on to line 129.
+If none of the corners are available, try to move on the center space if it is free. If the center space isn’t free, the execution moves on to line 129.
 
 129.     # Move on one of the sides.
 130.     return chooseRandomMoveFromList(board, [2, 4, 6, 8])
@@ -842,7 +842,7 @@ Line 140 is the first line that isn’t inside of a function, so it is the first
 143.     # Reset the board
 144.     theBoard = [' '] * 10
 
-Line 142’s while loop has True for the condition and will keep looping until execution encounter a break statement. Line 144 sets up the main Tic Tac Toe board that we will use, named theBoard. It is a 10-string list, where each string is a single space ' '.
+Line 142’s while loop has True for the condition and will keep looping until execution encounter a break statement. Line 144 sets up the main Tic Tac Toe board in a variable named theBoard. It is a 10-string list, where each string is a single space ' '.
 Rather than type out this full list, you can use list replication. It is shorter to type [' '] * 10 then [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '].
 
 Deciding the Player’s Mark and Who Goes First
