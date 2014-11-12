@@ -1,0 +1,2 @@
+Rysunek 1-1:
+Upewnij się, że instalujesz Python 3, a nie Python 2!

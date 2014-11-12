@@ -1,2 +1,8 @@
+Python, odmieniamy: Pythona, Pythonem, Pythonie itd
+
+click, kliknij
+download, pobranie
+Figure, Rysunek
 file, plik
 run, uruchom
+shell, pow³oka

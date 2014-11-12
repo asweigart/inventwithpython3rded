@@ -1,0 +1,111 @@
+    Rozdział 1
+    INSTALACJA PYTHONA
+
+Rzeczy omówione w tym rozdziale:
+
+•   Pobranie i instalacja interpertera Pythona
+•   Interaktyna konsola IDLE
+•   Jak używać tej książki?
+•   Strona WWW: http://inventwithpython.com
+
+Cześć! Ta książka nauczy Cię jak programować przez tworzenie gier komputerowych. Ja nauczysz się jak działają gry z tej książki, to będziesz mógł tworzyć własne gry. Wszystko czego potrzebujesz to komputer, oprogramowanie nazywane interpreterem Pythona i ta książka. Interpreter Pythona jest darmowy i można go pobrać z internetu.
+
+Kiedy byłem dzieckiem książki jak ta nauczyły mnie jak pisać pierwsze programy i gry. To było zabawne i łatwe. Teraz, jako dorosłego nadal bawi mnie programowanie i jeszcze mi za to płacą. Nawet jeśli nie zostaniesz programistą gdy dorośniesz, to programowanie jest przydatną i dającą radość umiejętnością.
+
+Komputery są niesamowitymi maszynami, a nauczenie się ich programowania jest łatwe. Jeśli możecz czytać tę książkę, to możesz programować komputery. Program komputerowy to zestaw instrukcji które komputer może zrozumieć, tak jak opowieść to zestaw zdań zrozumiałych przez czytelnika. Gry komputerowe są także programami komputerowymi i także składają się z instrukcji.
+
+Aby kierować komputerem piszesz program w języku jaki komputer może zrozumieć. Ta książka uczy programowania w języku nazywającym się Python. Są także inne języki programowania jak BASIC, Java, JavaScript, PHO, czy C++.
+
+W czasach mojego dzieciństwa najczęściej BASIC był pierwszym językiem którego się uczono. Jednakże od tego czasu wymyślono nowe języki, takie jak Python. Python jest nawet ławiejszy do nauczenia, niż BASIC! I jednocześnie jest poważnym językiem używanym przez zawodowych programistów. Wielu dorosłych używa Pythona w swej pracy, albo dla zabawy.
+
+Gry jakie stworzysz z tą książką wyglądają na proste w porównaniu do gier na XBox, Playstation, czy Wii. Nie mają one wymyślnej grafiki ponieważ mają służyć nauce podstaw programowania. Prostota jest celowa i dzięki niej możesz skupić się na nauce programowania. Zresztą gry nie muszą być skomplikowane by dawać frajdę.
+
+Pobieranie i instalacja Pythona
+
+Musisz pobrać oprogramowania zwane interpreterem Pythona. Ten interpreter rozumie instrukcje które napiszesz w języku Python. Od teraz "interpreter Pythona" będziemy nazywali "Pythonem".
+
+Pobierz Pythona 3.4 lub nowszą wersję z oficjalnej strony Pythona: http://www.python.org. Pobierz wersję 32 bitową dla swojego systemu operacyjnego nawet jeśli masz 64 bitowy komputer. Moduł Pygame użyty później w tej książce dziła jedynie z 32 bitowym Pythonem.
+
+Ważna uwaga! Upewnij się, że instalujesz Pythona 3, a nie Pythona 2. Programy w tej książce używają Pythona 3 i uzyskasz błędy jeśli spróbujesz je uruchomić Pythonem 2. Jest to tak ważne, że na rysunku 1-1 dodałem rysunkowego pingwina by Ci to powiedział i byś tego nie przeoczył.
+
+Rysunek 1-1: Absurdalny pingwin mówiący byś zainstalował Pythona 3.
+
+Uruchamianie IDLE
+
+IDLE to skrót od angielskich słów Interactive DeveLopment Environment, co po polsku znaczy Interaktywne środowisko programistyczne. Te środowisko jest jak edytor tekstu do pisania programów w Pythonie. Uruchamianie IDLE wygląda różnie na różnych systemach operacyjnych.
+
+W Windows naciśnik przycisk Start w dolnym lewym rogu, wpisz “IDLE” i wybierz IDLE (Python GUI).
+
+W Mac OS X, otwórz okno Szukacz i kliknij w Aplikacje. Następnie kliknij Python 3.4. A potem kliknij w ikonę IDLE.
+
+Na Ubuntu lub innej dystrybucji Linuxa, otwórz okno terminala i wpisz “idle3”. Możesz takkże kliknąć w aplikacje ina górze ekranu. I wtedy kliknij Programowanie i IDLE 3.
+
+
+
+Rysunek 1-2: Interaktywna powłoka programu IDLE na Windows, OS X i Linux Ubuntu.
+
+Okno jakie otwiera się gdy pierwszy raz uruchomisz IDLE to interaktywna powłoka (shell). Możesz w niej wpisywać instrukcje Pythona, a Python je wykona, a po ich wykonaniu wyświetli ich wyniki również w interaktywniej powłoce.
+
+Jak używać tej książki?
+
+Większość rozdziałów tej książki rozpocznie się przykładowym uruchomioniem omawianego programu. Pokazuje to jak program wygląda, gdy go uruchomiesz. To, co wpisuje użytkownik jest pokazane pogrubionym tekstem.
+
+Lepiej wpisuj samodzielnie kody programów w edytorze IDLE, niż pobieraj je z internetu. Lepiej zapamiętasz programowanie, gdy samodzielnie wpiszesz kody.
+
+Numery linii i spacje
+
+Nie wpisuj numerów linii które pojawiają się na początku każdej linii kodów źródłowych. Na przykład gdy zobaczysz:
+
+9. number = random.randint(1, 20)
+
+to nie wpisuj “9.” które jest po lewej stronie, ani pojedynczej spacji która jest obok. Wpisz to tak:
+
+number = random.randint(1, 20)
+
+Te numery linii są tylko po to, by omawiając progam móc odnieść się do wskazanej linii. Nie są one częścią programu.
+
+Poza tyni numerami wpisuj kod dokładnie tak, jak go widzisz. Zwróć uwagę na to, że niektóre linie są wcięte za pomocą czterech, lub ośmiu spacje. Każdy znak w IDLE jest tej samej szerokości. Policz ilość spacji licząc znaki w linii sąsiadującej z góry, lub z dołu.
+
+Na przykład spacje tworzące wcięcia są tu oznaczone ▪, znakiem czarnego prostokątu:
+
+while guesses < 10:
+▪▪▪▪if number == 42:
+▪▪▪▪▪▪▪▪print('Hej')
+
+Zawijanie tekstu w tej książce
+
+Niektóre linie kodu są zbyt długie, by zmieścić się w jednej na stronie i będą zawijane do następnej linii. Wprowadź ten kod cały, w jednej linii bez naciskania Enter. Będziesz wiedział, czy nowa linia się zaczęła dzięki numerom linii jakie pojawiają się po lewej stronie kodu. Na przykład poniższy kod ma tylko dwie linie kodu:
+
+1. print('To jest pierwsza linia! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxx')
+2. print('A to druga linia, a nie trzecia.')
+
+Pierwsza linia została zawinięta i wygląda jakby kod miał trzy linie. Dzieje się tak gdyż strony książki nie są wystarczająco szerokie by zmieścić pierwszą linię kodu.
+
+Finding Help Online
+
+This book’s website is at http://inventwithpython.com. You can find several resources related to this book there. Several links in this book use the invpy.com domain name for shortened URLs.
+
+The subreddit web site at http://reddit.com/r/inventwithpython is a great place to ask programming questions related to this book. Post general Python questions to the LearnProgramming and LearnPython subreddits at http://reddit.com/r/learnprogramming and http://reddit.com/r/learnpython, respectively.
+
+Also, email me your programming questions at al@inventwithpython.com.
+
+Keep in mind there are smart ways to ask programming questions that help others help you. Be sure to read the Frequently Asked Questions sections these websites have about the proper way to post questions. When asking programming questions, do the following:
+
+•   If you are typing out the programs in this book but getting an error, first check for typos with the online diff tool at http://invpy.com/diff. Copy and paste your code into the diff tool to find any differences from the book’s code in your program.
+•   Explain what you are trying to do when you explain the error. This will let your helper know if you are on the wrong path entirely.
+•   Copy and paste the entire error message and your code.
+•   Search the Web to see whether someone else has already asked (and answered) your question.
+•   Explain what you’ve already tried to do to solve your problem. This tells people you’ve already put in some work to try to figure things out on your own.
+•   Be polite. Don’t demand help or pressure your helpers to respond quickly.
+
+Tracing the Programs Online
+
+Tracing a program means to step through the code one line at a time, in the same way a computer would execute it. Visit http://invpy.com/traces to see a trace through of each program in this book. The web page has notes and helpful reminders at each step of the trace to explain what the program is doing, so it can help you better understand why these programs work the way they do.
+
+Summary
+
+This chapter has helped you get started with the Python software by showing you the http://python.org website where you can download it free. After installing and starting the Python IDLE software, you’ll be ready to learn programming starting in the next chapter.
+
+This book’s website at http://inventwithpython.com has more information on each of the chapters, including an online tracing website and diff tool can help you understand the programs in this book.
+
