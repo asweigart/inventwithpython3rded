@@ -147,8 +147,6 @@ Argumen Keyword end
 
 Apakah kamu memperhatikan parameter kedua pada pemanggilan fungsi print() di baris 15? Biasanya, print() menambahkan karakter newline di akhir string yang dicetak. Inilah penyebab pemanggilan print() kosong akan mencetak sebuah newline. Namun fungsi print() bisa diberikan parameter kedua, yaitu "end".
 
-The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter we need to use the end= syntax.
-
 String kosong yang dimasukkan disebut sebagai argumen keyword. Parameter end memiliki nama parameter. Untuk memasukkan sebuah argumen kepada suatu parameter, kita butuh menggunakan sintaks end=. 
 
 Dengan memasukkan string kosong sebagai nilai argumen end, fungsi print() tidak akan menambahkan karakter newline di akhir string. Inilah penyebab string '-MOO!' muncul di sebelah baris keluaran string sebelumnya. Ketika mencetak 'Interrupting cow wh', di akhir string tidak ada karakter newline.
