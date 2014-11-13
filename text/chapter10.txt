@@ -273,7 +273,7 @@ The boxes on the left side of the flow chart are what happens during the playerâ
 
 Representing the Board as Data
 
-First, we need to figure out how to represent the board as a variable. On paper, the Tic Tac Toe board is drawn as a pair of horizontal lines and a pair of vertical lines, with either an X, O, or empty space in each of the nine spaces.
+First, you must figure out how to represent the board as a variable. On paper, the Tic Tac Toe board is drawn as a pair of horizontal lines and a pair of vertical lines, with either an X, O, or empty space in each of the nine spaces.
 In the program, the Tic Tac Toe board is represented as a list of strings. Each string will represent one of the nine spaces on the board. To make it easier to remember which index in the list is for which space, they will mirror the numbers on a keyboardâ€™s number keypad, as shown in Figure 10-2.
 
 Figure 10-2: The board is numbered like the keyboard's number pad.
@@ -283,7 +283,7 @@ So if a list with ten strings was stored in a variable named board, then board[7
 
 Game AI
 
-The AI will need to be able to look at a board and decide which types of spaces it will move on. To be clear, we will label three types of spaces on the Tic Tac Toe board: corners, sides, and the center. Figure 10-3 is a chart of what each space is.
+The AI needs to be able to look at a board and decide which types of spaces it will move on. To be clear, we will label three types of spaces on the Tic Tac Toe board: corners, sides, and the center. Figure 10-3 is a chart of what each space is.
 
 Figure 10-3: Locations of the side, corner, and center places.
 

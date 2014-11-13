@@ -244,7 +244,7 @@ The getClues() function will return a string with the fermi, pico, and bagels cl
 21.         elif guess[i] in secretNum:
 22.             clue.append('Pico')
 
-If the guess isn’t the same as the secret number, you need to figure out what clues to give the player. The list in clue will start empty and have 'Fermi' and 'Pico' strings added as needed.
+If the guess isn’t the same as the secret number, the code must figure out what clues to give the player. The list in clue will start empty and have 'Fermi' and 'Pico' strings added as needed.
 Do this by looping through each possible index in guess and secretNum (the strings in both variables will be the same length, so the code could have either len(guess) or len(secretNum) and work the same). As the value of i changes from 0 to 1 to 2, and so on, line 19 checks if the first, second, third, etc. letter of guess is the same as the number in the same index of secretNum. If so, line 20 will add a string 'Fermi' to clue.
 Otherwise, line 21 will check if the number at the ith position in guess exists anywhere in secretNum. If so, you know that the number is somewhere in the secret number but not in the same position. Line 22 will then add 'Pico' to clue.
 

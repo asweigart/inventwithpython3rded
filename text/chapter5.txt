@@ -147,7 +147,7 @@ The end Keyword Argument
 
 Did you notice the second parameter on line 15's print()? Normally, print() adds a newline character to the end of the string it prints. This is why a blank print() function will just print a newline. But the print() function can optionally have a second parameter (which has the name “end”.)
 
-The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter we need to use the end= syntax.
+The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter you must type end=.
 
 By passing a blank string for the end, the print() function won’t add a newline at the end of the string, but instead add a blank string. This is why '-MOO!' appears next to the previous line, instead of on its own new line. There was no newline after the 'Interrupting cow wh' string.
 

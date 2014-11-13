@@ -548,7 +548,7 @@ o
 
 A while Loop Equivalent of a for Loop
 
-The for loop is similar to the while loop, but when you only need to iterate over items in a list, using a for loop is much less code to type. You can make a while loop that acts the same as a for loop by adding extra code:
+The for loop is similar to the while loop, but when you only must iterate over items in a list, using a for loop is much less code to type. You can make a while loop that acts the same as a for loop by adding extra code:
 
 >>> sequence = ['cats', 'pasta', 'programming', 'spam']
 >>> index = 0
