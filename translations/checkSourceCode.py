@@ -157,5 +157,9 @@ class TestPrograms(unittest.TestCase):
         self._check('id', 'dragon', 'naga')
 
 
+    def test_fr_programs(self):
+        self._check('fr', 'hello', 'bonjour')
+
+
 if __name__ == '__main__':
     unittest.main()
