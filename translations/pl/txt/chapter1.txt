@@ -82,30 +82,30 @@ xxxxxxxxxxxx')
 
 Pierwsza linia została zawinięta i wygląda jakby kod miał trzy linie. Dzieje się tak gdyż strony książki nie są wystarczająco szerokie by zmieścić pierwszą linię kodu.
 
-Finding Help Online
+Pomoc Online
 
-This book’s website is at http://inventwithpython.com. You can find several resources related to this book there. Several links in this book use the invpy.com domain name for shortened URLs.
+Strona WWW tej książki: http://inventwithpython.com. Możesz tu znaleźć kilka zasobów związanych z książką. Kilka linków w tej książce używa domeny invpy.co, by adresy był krótszy.
 
-The subreddit web site at http://reddit.com/r/inventwithpython is a great place to ask programming questions related to this book. Post general Python questions to the LearnProgramming and LearnPython subreddits at http://reddit.com/r/learnprogramming and http://reddit.com/r/learnpython, respectively.
+Strona WWW subreddit: http://reddit.com/r/inventwithpython jest dobrym miejscem by zadawać pytania programistyczne związane z książką. Pytania dotyczące ogólnie Pythona można zadawać na subreditach LearnProgramming i LearnPython pod adresami: http://reddit.com/r/learnprogramming i http://reddit.com/r/learnpython.
 
-Also, email me your programming questions at al@inventwithpython.com.
+Można także napisać do mnie na adres: al@inventwithpython.com.
 
-Keep in mind there are smart ways to ask programming questions that help others help you. Be sure to read the Frequently Asked Questions sections these websites have about the proper way to post questions. When asking programming questions, do the following:
+Pamiętaj, że są sprytne sposoby by zapytać innych w sposób taki, że pomaga się innym dać odpowiedź. Upewnij się, że przeczytałeś sekcję Często Zadawane Pytania FAQ - Frequently Asked Questions) na temat prawidłowego sposobu zadawania pytań na powyższych stronach. Kiedy zadajesz pytanie programistyczne zrób co następuje:
 
-•   If you are typing out the programs in this book but getting an error, first check for typos with the online diff tool at http://invpy.com/diff. Copy and paste your code into the diff tool to find any differences from the book’s code in your program.
-•   Explain what you are trying to do when you explain the error. This will let your helper know if you are on the wrong path entirely.
-•   Copy and paste the entire error message and your code.
-•   Search the Web to see whether someone else has already asked (and answered) your question.
-•   Explain what you’ve already tried to do to solve your problem. This tells people you’ve already put in some work to try to figure things out on your own.
-•   Be polite. Don’t demand help or pressure your helpers to respond quickly.
+•   Jeśli przy wpisywaniu programów z tej książki dostajesz błedy, to najpierw sprawdź, czy nie są to literówki używając  porównywania z: http://invpy.com/diff. Skopiuj i wklej swój kod do tego narządzia by zobaczyć wszelkie różnice między nim, a kodem z książki.
+•   Wytłumacz co próbujesz zrobić gdy tłumaczysz błąd. Osobie chcącej pomóc pozwoli to ocenić, czy całkowicie się nie pomyliłeś.
+•   Skopiuj i wklej cały kod i cały komunikat o błędzie.
+•   Poszukaj w internecie czy ktoś już nie zapytał (i odpowiedział) na takie pytanie.
+•   Opis co już wypróbowałeś by rozwiązać problem. To pokaże, że włożyłeś w rozwiązanie nieco wysiłku.
+•   Bądź uprzejmy. Nie żądaj pomocy, ani nie naciskaj na pomagających, by odpowiadali natychmiast.
 
-Tracing the Programs Online
+Śledzenie programów Online
 
-Tracing a program means to step through the code one line at a time, in the same way a computer would execute it. Visit http://invpy.com/traces to see a trace through of each program in this book. The web page has notes and helpful reminders at each step of the trace to explain what the program is doing, so it can help you better understand why these programs work the way they do.
+Śledzenie programu oznacza krokowe przejście przez kod, linia po linii, w ten sposób, jak robi to komputer. Odwiedź http://invpy.com/traces by zobaczyć ślad każdego z programów z tej książki. Ta strona ma notes i pomocne uwagi do każdego kroku w zapisanym śladzie by wytłumaczyć co robi program. Dzięki temu lepiej zrozumiesz dlaczego te programy działają tak, jak działają.
 
-Summary
+Podsumowanie
 
-This chapter has helped you get started with the Python software by showing you the http://python.org website where you can download it free. After installing and starting the Python IDLE software, you’ll be ready to learn programming starting in the next chapter.
+Ten rozdział pomógł rozpocząć pracę z oprogramowaniem Pythona przez pokazanie, że http://python.org website jest miejscem skąd można ściągnąć go za darmo. Po instalacji i uruchomieniu Pythonowego środowiska IDLE będziesz gotowy na naukę programowania w następnym rozdziale.
 
-This book’s website at http://inventwithpython.com has more information on each of the chapters, including an online tracing website and diff tool can help you understand the programs in this book.
+Strona WWW tej książki: http://inventwithpython.com ma więcej informacji o każdym z rozdziałów, włączając w to śledzenie programów i narzędzie wyszukiwania różnic tak, by pomóc w zrozumieniu programów z tej książki.
 

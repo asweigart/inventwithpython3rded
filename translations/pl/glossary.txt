@@ -5,4 +5,4 @@ download, pobranie
 Figure, Rysunek
 file, plik
 run, uruchom
-shell, pow≥oka
+shell, pow≈Çoka
