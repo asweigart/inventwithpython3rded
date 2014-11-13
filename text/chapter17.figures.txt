@@ -1,0 +1,7 @@
+Fig 17-3:
+Programming is fun!
+
+Fig 17-4:
+Aliased
+Anti-aliased
+

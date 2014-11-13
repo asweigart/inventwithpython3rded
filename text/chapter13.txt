@@ -493,11 +493,8 @@ A new board data structure is needed at the start of each new game. The board da
  50.                 board[x].append('`')
 
 But board is more than just a list of 60 blank lists. Each of the 60 lists represents the Y coordinate of our game board. There are 15 rows in the board, so each of these 60 lists must have 15 characters in them. We have another for loop to add 15 single-character strings that represent the ocean.
-The “ocean” will be a bunch of '~' and '`' strings, so we will randomly choose between those two. If the return value of random.randint() is 0, we add the '~' string. Otherwise we will add the '`' string. This will give our ocean a random, choppy look to it.
+The “ocean” will be a bunch randomly chosen of '~' and '`' strings. If the return value of random.randint() is 0, add the '~' string. Otherwise add the '`' string. This will give the ocean a random, choppy look to it.
 Remember that the board variable is a list of 60 lists that have 15 strings. That means to get the string at coordinate 26, 12, we would access board[26][12], and not board[12][26]. The X coordinate is first, then the Y coordinate.
-Figure 13-3 is the picture to demonstrate the indexes of a list of lists named x. The red arrows point to indexes of the inner lists themselves. The image is also flipped on its side to make it easier to read:
-
-Figure 13-3: The indexes of a list of lists.
 
  51.     return board
 
@@ -554,13 +551,13 @@ Otherwise, makeMove() will return a string value describing what happened in res
 
 Given the coordinates of where the player wants to drop the sonar device and a list of XY coordinates for the treasure chests, you’ll need an algorithm to find out which treasure chest is closest.
 An Algorithm for Finding the Closest Treasure Chest
-While the x and y variables are integers (say, 5 and 0), together they represent the location on the game board (which is a Cartesian coordinate system) where the player guessed. The chests variable may have a value such as [[5, 0], [0, 2], [4, 2]]. That value represents the locations of three treasure chests. You can visualize it like the picture in Figure 13-4:
+While the x and y variables are integers (say, 5 and 0), together they represent the location on the game board (which is a Cartesian coordinate system) where the player guessed. The chests variable may have a value such as [[5, 0], [0, 2], [4, 2]]. That value represents the locations of three treasure chests. You can visualize it like the picture in Figure 13-3:
 
-Figure 13-4: The treasure chests that [[5, 0], [0, 2], [4, 2]] represents.
+Figure 13-3: The treasure chests that [[5, 0], [0, 2], [4, 2]] represents.
 
-We figure out the distance from the sonar device located at 3, 2 with “rings” and the distances around, as in Figure 13-5.
+The distances form “rings” around the sonar device located at 3, 2 as in Figure 13-4.
 
-Figure 13-5: The board marked with distances from the 3, 2 position.
+Figure 13-4: The board marked with distances from the 3, 2 position.
 
 But how do you translate this into code for the game? You need a way to represent distance as an expression. Notice that the distance from an XY coordinate is always the larger of two values: the absolute value of the difference of the two X coordinates and the absolute value of the difference of the two Y coordinates.
 That means you should subtract the sonar device’s X coordinate and a treasure chest’s X coordinate, and then take the absolute value of this number. Do the same for the sonar device’s Y coordinate and a treasure chest’s Y coordinate. The larger of these two values is the distance.
@@ -766,7 +763,7 @@ Line 171’s while loop is the main loop for the program. Several variables are 
 Table 13-1: Variables used in the main game loop.
 Variable    Description
 sonarDevices    The number of sonar devices (and turns) the player has left.
-theBoard    The board data structure we will use for this game.
+theBoard    The board data structure used for this game.
 theChests   The list of chest data structures. getRandomChests() will return a list of three treasure chests at random places on the board.
 previousMoves   A list of all the XY moves that the player has made in the game.
 

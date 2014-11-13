@@ -6,7 +6,7 @@ Topics Covered In This Chapter:
 • ASCII art
 • Designing a program with flow charts
 
-In this chapter, you’ll design a Hangman game. This game is more complicated than our previous game, but also more fun. Because the game is advanced, you should first carefully plan it out by creating a flow chart (explained later). In the next chapter, we will actually write out the code for Hangman.
+In this chapter, you’ll design a Hangman game. This game is more complicated than our previous game, but also more fun. Because the game is advanced, you should first carefully plan it out by creating a flow chart (explained later). In the next chapter, you’ll actually write out the code for Hangman.
 
 How to Play “Hangman”
 
@@ -15,7 +15,7 @@ If they guess correctly, the first player writes the letter in the proper blank.
 
 Sample Run of “Hangman”
 
-Here is an example of what the player might see when they run the Hangman program we will write later. The text that the player enters in shown in bold.
+Here is an example of what the player might see when they run the Hangman program you’ll write later. The text that the player enters in shown in bold.
 
 H A N G M A N
   +---+
@@ -109,13 +109,13 @@ The graphics for hangman are keyboard characters printed on the screen. This typ
 
 Designing a Program with a Flowchart
 
-This game is a bit more complicated than the ones we’ve seen so far, so take a moment to think about how it’s put together. First you’ll need to create a flow chart (like the one at the end of the Dragon Realm chapter) to help visualize what this program will do. This chapter will go over what flow charts are and why they are useful. The next chapter will go over the source code to the Hangman game.
+This game is a bit more complicated than the ones we’ve seen so far, so take a moment to think about how it’s put together. First you’ll create a flow chart (like the one at the end of the Dragon Realm chapter) to help visualize what this program will do. This chapter will go over what flow charts are and why they are useful. The next chapter will go over the source code to the Hangman game.
 A flow chart is a diagram that shows a series of steps as boxes connected with arrows. Each box represents a step, and the arrows show the steps leads to which other steps. Put your finger on the “Start” box of the flow chart and trace through the program by following the arrows to other boxes until you get to the “End” box.
 Figure 8-1 is a complete flow chart for Hangman. You can only move from one box to another in the direction of the arrow. You can never go backwards unless there is a second arrow going back, like in the “Player already guessed this letter” box.
 
 Figure 8-1: The complete flow chart for what happens in the Hangman game.
 
-Of course, you don’t have to make a flow chart. You could just start writing code. But often once you start programming you’ll think of things that need to be added or changed. You may end up having to delete a lot of your code, which would be a waste of effort. To avoid this, it’s always best plan how the program will work before you start writing it.
+Of course, you don’t have to make a flow chart. You could just start writing code. But often once you start programming you’ll think of things that must be added or changed. You may end up having to delete a lot of your code, which would be a waste of effort. To avoid this, it’s always best plan how the program will work before you start writing it.
 Creating the Flow Chart
 Your flow charts don’t always have to look exactly like this one. As long as you understand the flow chart you made, it will be helpful when you start coding. A flow chart that begins with just a “Start” and an “End” box, as shown in Figure 8-2:
 
@@ -128,12 +128,12 @@ Figure 8-3: Draw out the first two steps of Hangman as boxes with descriptions.
 
 But the game doesn’t end after the player guesses one letter. It needs to check if that letter is in the secret word or not.
 Branching from a Flowchart Box
-There are two possibilities: the letter is either in the word or not. This means you need to add two new boxes to the flowchart, one for each case. This creates a branch in the flow chart, as show in Figure 8-4:
+There are two possibilities: the letter is either in the word or not. You’ll add two new boxes to the flowchart, one for each case. This creates a branch in the flow chart, as show in Figure 8-4:
 
 Figure 8-4: The branch has two arrows going to separate boxes.
 
 If the letter is in the secret word, check if the player has guessed all the letters and won the game. If the letter isn’t in the secret word, another body part is added to the hanging man. Add boxes for those cases too.
-You don’t need an arrow from the “Letter is in secret word” box to the “Player has run out of body parts and loses” box, because it’s impossible to lose as long as the player guesses correctly. It’s also impossible to win as long as the player is guessing incorrectly, so we don’t need to draw that arrow either. The flow chart now looks like Figure 8-5.
+You don’t need an arrow from the “Letter is in secret word” box to the “Player has run out of body parts and loses” box, because it’s impossible to lose as long as the player guesses correctly. It’s also impossible to win as long as the player is guessing incorrectly, so you don’t need to draw that arrow either. The flow chart now looks like Figure 8-5.
 
 Figure 8-5: After the branch, the steps continue on their separate paths.
 
@@ -145,7 +145,7 @@ Figure 8-6: The flow chart branches when asking the player to play again.
 
 Guessing Again
 
-The player doesn’t guess a letter just once. They have to keep guessing letters until they win or lose. You’ll need to draw two new arrows, as shown in Figure 8-7.
+The player doesn’t guess a letter just once. They have to keep guessing letters until they win or lose. You’ll draw two new arrows, as shown in Figure 8-7.
 
 Figure 8-7: The new arrows (outlined) show that the player can guess again.
 
@@ -156,7 +156,7 @@ Figure 8-8: Adding a step in case the player guesses a letter they already guess
 Offering Feedback to the Player
 
 The player needs to know how they’re doing in the game. The program should show them the hangman board and the secret word (with blanks for the letters they haven't guessed yet). These visuals will let them see how close they are to winning or losing the game.
-This information will need to be updated every time the player guesses a letter. Add a “Show the board and blanks to the player.” box to the flow chart between the “Come up with a secret word” and the “Ask player to guess a letter” boxes. These boxes are shown in Figure 8-9.
+This information is updated every time the player guesses a letter. Add a “Show the board and blanks to the player.” box to the flow chart between the “Come up with a secret word” and the “Ask player to guess a letter” boxes. These boxes are shown in Figure 8-9.
 
 Figure 8-9: Adding “Show the board and blanks to the player.” to give the player feedback.
 

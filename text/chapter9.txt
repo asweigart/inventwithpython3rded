@@ -451,7 +451,7 @@ Line 61 defines a the getRandomWord() function, which has a single parameter nam
  63.     wordIndex = random.randint(0, len(wordList) - 1)
  64.     return wordList[wordIndex]
 
-On line 63, we will store a random index for this list in the wordIndex variable. We do this by calling randint() with two arguments. The first argument is 0 and the second argument is the value that the expression len(wordList) - 1 evaluates to.
+Line 63 stores a random index for this list in the wordIndex variable. We do this by calling randint() with two arguments. The first argument is 0 and the second argument is the value that the expression len(wordList) - 1 evaluates to.
 List indexes start at 0, not 1. If we have a list of three items, the index of the first item is 0, the index of the second item is 1, the index of the third item is 2. The length of this list is 3, but the index 3 would be after the last index. This is why line 63 subtracts 1 from the length.
 The wordIndex variable will be set to a random index for the list passed as the wordlist parameter. On line 64, we would return the element in wordList at the integer index stored in wordIndex.
 Let’s pretend ['apple', 'orange', grape'] was passed as the argument to getRandomWord() and that randint(0, 2) returned the integer 2. That would mean that line 64 would become return wordList[2], which would evaluate to return 'grape'. This is how the getRandomWord() returns a random string in the wordList list.
@@ -548,7 +548,7 @@ o
 
 A while Loop Equivalent of a for Loop
 
-The for loop is similar to the while loop, but when you only need to iterate over items in a list, using a for loop is much less code to type. You can make a while loop that acts the same as a for loop by adding extra code:
+The for loop is similar to the while loop, but when you only must iterate over items in a list, using a for loop is much less code to type. You can make a while loop that acts the same as a for loop by adding extra code:
 
 >>> sequence = ['cats', 'pasta', 'programming', 'spam']
 >>> index = 0
@@ -685,7 +685,7 @@ The getGuess() function has a string parameter called alreadyGuessed which shoul
  89.         guess = input()
  90.         guess = guess.lower()
 
-We will use a while loop because we want to keep asking the player for a letter until they enter text that is:
+Line 87’s while loop will keep asking the player for a letter until they enter text that is:
 
 1.  A single letter.
 2.  A letter they have not guessed previously.
@@ -764,7 +764,7 @@ Review of the Hangman Functions
 
 That’s all the functions we are creating for this game!
 
-• getRandomWord(wordList) will take a list of strings passed to it as a parameter, and return one string from it. That is how we will choose a word for the player to guess.
+• getRandomWord(wordList) will take a list of strings passed to it as a parameter, and return one string from it. That is how a word is chosen for the player to guess.
 • displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord) will show the current state of the board, including how much of the secret word the player has guessed so far and the wrong letters the player has guessed. This function needs four parameters passed to work correctly. HANGMANPICS is a list of strings that hold the ASCII art for each possible hangman board. correctLetters and missedLetters are strings made up of the letters that the player has guessed that are in and not in the secret word. And secretWord is the secret word the player is trying to guess. This function has no return value.
 • getGuess(alreadyGuessed) takes a string of letters the player has already guessed and will keep asking the player for a letter that is a letter that he hasn’t already guessed. (That is, a letter that isn’t in alreadyGuessed.) This function returns the string of the acceptable letter the player guessed.
 • playAgain() is a function that asks if the player wants to play another round of Hangman. This function returns True if the player does and False if the player doesn’t.
@@ -792,7 +792,7 @@ Displaying the Board to the Player
 112. while True:
 113.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
 
-The while loop’s condition is always True, which means we will always loop forever until a break statement is encountered.
+The while loop’s condition is always True, which means it will always loop forever until a break statement is encountered.
 Line 113 calls our displayBoard() function, passing it the list of hangman ASCII art pictures and the three variables we set on lines 107, 108, and 109. Based on how many letters the player has correctly guessed and missed, this function displays the appropriate hangman board to the player.
 
 Letting the Player Enter Their Guess

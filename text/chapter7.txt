@@ -38,7 +38,6 @@ KeyboardInterrupt
 The Debugger
 
 It can be hard to figure out how your code could be causing a bug.  The lines of code get executed quickly and the values in variables change so often. A debugger is a program that lets you step through your code one line at a time in the same order that Python executes them. The debugger also shows you what values are stored in variables at each step.
-A video tutorial on using the debugger that comes with IDLE can be found on this book’s website at http://invpy.com/videos
 
 Starting the Debugger
 
@@ -78,7 +77,7 @@ Locals Area
 There is also a Locals area, which shows you the local scope variables and their values. The local area will only have variables in it when the program execution is inside of a function. When the execution is in the global scope, this area is blank.
 The Go and Quit Buttons
 If you get tired of clicking the Step button repeatedly and just want the program to run normally, click the Go button at the top of the Debug Control window. This will tell the program to run normally instead of stepping.
-To terminate the program entirely, just click the Quit button at the top of the Debug Control window. The program will exit immediately. This is helpful if you need to start debugging again from the beginning of the program.
+To terminate the program entirely, just click the Quit button at the top of the Debug Control window. The program will exit immediately. This is helpful if you must start debugging again from the beginning of the program.
 
 Stepping Into, Over, and Out
 

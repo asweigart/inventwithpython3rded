@@ -9,7 +9,7 @@ Topics Covered In This Chapter:
 
 Making the Most of print()
 
-Most of the games in this book will have simple text for input and output. The input is typed by the user on the keyboard and entered to the computer. The output is the text displayed on the screen. In Python, the print() function can be used for displaying textual output on the screen. But there is more to learn about how strings and print() work in Python.
+Most of the games in this book will have simple text for input and output. The input is typed by the user on the keyboard and entered to the computer. The output is the text displayed on the screen. In Python, the print() function is used for displaying textual output on the screen. But there is more to learn about how strings and print() work in Python.
 
 This chapter’s program tells a few different jokes to the user.
 
@@ -64,7 +64,7 @@ Lines 1 to 4 have three print() function calls. You don’t want the player to i
 
 The user can still type in a string and hit Enter, but this returned string isn’t being stored in any variable. The program will just forget about it and move to the next line of code.
 
-The last print() function call has no string argument. This tells the program to just print a blank line. Blank lines can be useful to keep the text from being bunched up.
+The last print() function call has no string argument. This tells the program to just print a blank line. Blank lines are useful to keep the text from being bunched up.
 
 Escape Characters
 
@@ -147,7 +147,7 @@ The end Keyword Argument
 
 Did you notice the second parameter on line 15's print()? Normally, print() adds a newline character to the end of the string it prints. This is why a blank print() function will just print a newline. But the print() function can optionally have a second parameter (which has the name “end”.)
 
-The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter we need to use the end= syntax.
+The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter you must type end=.
 
 By passing a blank string for the end, the print() function won’t add a newline at the end of the string, but instead add a blank string. This is why '-MOO!' appears next to the previous line, instead of on its own new line. There was no newline after the 'Interrupting cow wh' string.
 

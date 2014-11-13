@@ -3,12 +3,10 @@
 
 Topics Covered In This Chapter:
 •   The bool() Function
-•   Evaluating Non-Boolean Values as Booleans
 •   How to Play Reversi
 
-In this chapter, we will make a game called Reversi (also called Othello). Reversi is a board game that is played on a grid, so we will use a Cartesian coordinate system with XY coordinates. It is a game played with two players. Our version of the game will have a computer AI that is more advanced than the AI we made for Tic Tac Toe. In fact, this AI is so good that it will probably beat you almost every time you play. (I know I lose whenever I play against it!)
-The web page http://invpy.com/reversi has a video of Reversi being played.
-Reversi has an 8 × 8 board and tiles that are black on one side and white on the other (our game will use O’s and X’s instead). The starting board looks like Figure 15-1. The black player and white player take turns placing down a new tile of their color. Any of the opponent’s tiles that are between the new tile and the other tiles of that color is flipped. The goal of the game is to have as many of the tiles with your color as possible. For example, Figure 15-2 is what it looks like if the white player places a new white tile on space 5, 6.
+In this chapter, we’ll make a game called Reversi (also called Othello). Reversi is a board game that is played on a grid, so we’ll use a Cartesian coordinate system with XY coordinates. It is a game played with two players. Our version of the game will have a computer AI that is more advanced than the AI we made for Tic Tac Toe. In fact, this AI is so good that it will probably beat you almost every time you play. (I know I lose whenever I play against it!)
+Reversi has an 8 × 8 board and tiles that are black on one side and white on the other (our game will use Os and X’s instead). The starting board looks like Figure 15-1. The black player and white player take turns placing down a new tile of their color. Any of the opponent’s tiles that are between the new tile and the other tiles of that color is flipped. The goal of the game is to have as many of the tiles with your color as possible. For example, Figure 15-2 is what it looks like if the white player places a new white tile on space 5, 6.
 
 Figure 15-1: The starting Reversi board has two white tiles and two black tiles.
 
@@ -188,7 +186,7 @@ As you can see, the AI was pretty good at beating me. To help the player out, we
 Reversi’s Source Code
 
 Reversi is a mammoth program compared to our previous games. It’s over 300 lines long! But don’t worry, many of these lines are comments or blank lines to space out the code and make it more readable.
-As with our other programs, we will first create several functions to carry out Reversi-related tasks that the main section will call. Roughly the first 250 lines of code are for these helper functions, and the last 50 lines of code implement the Reversi game itself.
+As with our other programs, we’ll first create several functions to carry out Reversi-related tasks that the main section will call. Roughly the first 250 lines of code are for these helper functions, and the last 50 lines of code implement the Reversi game itself.
 If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/reversi.
 
 reversi.py
@@ -987,8 +985,8 @@ The Start of the Game
 254.     turn = whoGoesFirst()
 255.     print('The ' + turn + ' will go first.')
 
-The while loop on line 248 is the main game loop. The program will loop back to line 248 when a new game starts. First we get a new game board data structure by calling getNewBoard() and set the starting tiles by calling resetBoard(). mainBoard is the main game board data structure we will use for this program. The call to enterPlayerTile() will let the player type in whether they want to be 'X' or 'O', which is then stored in playerTile and computerTile.
-showHints is a Boolean value that determines if hints mode is on or off. It starts as off by setting showHints to False.
+The while loop on line 248 is the main game loop. The program will loop back to line 248 when a new game starts. First we get a new game board data structure by calling getNewBoard() and set the starting tiles by calling resetBoard(). mainBoard is the main game board data structure for the program. The call to enterPlayerTile() will let the player type in whether they want to be 'X' or 'O', which is then stored in playerTile and computerTile.
+showHints is a Boolean value that determines if hints mode is on or off. It starts as off as False on line 253.
 The turn variable is a string will either have the string value 'player' or 'computer', and will keep track of whose turn it is. It is set to the return value of whoGoesFirst(), which randomly chooses who will go first.
 
 Running the Player’s Turn
@@ -1003,7 +1001,7 @@ Running the Player’s Turn
 264.                 drawBoard(mainBoard)
 265.             showPoints(playerTile, computerTile)
 
-The while loop that starts on line 257 will keep looping each time the player or computer takes a turn. We will break out of this loop when the current game is over.
+The while loop that starts on line 257 will keep looping each time the player or computer takes a turn. The execution will break out of this loop when the current game is over.
 Line 258 has an if statement whose body has the code that runs if it is the player’s turn. (The else-block that starts on line 282 has the code for the computer’s turn.)
 First the board is displayed on the screen. If hints mode is on (which it is if showHints is True), then the board data structure needs to have '.' period characters on every valid space the player could move.
 The getBoardWithValidMoves() function does that. It is passed a game board data structure and returns a copy that also contains '.' period characters. Line 262 passes this board to the drawBoard() function.
