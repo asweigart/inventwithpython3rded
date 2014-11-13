@@ -13,6 +13,13 @@ This is not fullproof, but it is a pretty good check.
 import unittest
 import os
 import re
+import sys
+
+if len(sys.argv) > 1 and sys.argv[1] == 'debug':
+    DEBUG = True
+    del sys.argv[1]
+else:
+    DEBUG = False
 
 stringPat = re.compile(r"""('.*?')|(".*?")""")
 commentPat = re.compile(r"#(.*)")
@@ -29,7 +36,7 @@ def getAspects(filename):
 
     fo = open(filename, encoding='utf-8')
     lineNum = 1
-    for line in fo.readlines():
+    for line in fo.read().split('\n'):
         # modify the python source to take out the strings so they don't confuse the unit tests
         line = line.replace('\\"', '').replace("\\'", '')
         line = stringPat.sub('STRING', line)
@@ -79,51 +86,75 @@ for pythonScript in ('AISim1', 'AISim2', 'AISim3', 'animation', 'bagels',
 
 
 
-class TestSpanish(unittest.TestCase):
-    def _compareTwoPrograms(self, lang, programs):
-        for origProgram, translatedProgram in programs.items():
-            translatedAspects = getAspects(os.path.join(lang, 'src', translatedProgram + '.py'))
-            for line in ORIG[origProgram].keys():
-                stamp = (translatedProgram, line)
-                self.assertEqual((stamp, ORIG[origProgram][line]['blank']), (stamp, translatedAspects[line]['blank']))
-                self.assertEqual((stamp, ORIG[origProgram][line]['whole']), (stamp, translatedAspects[line]['whole']))
-                self.assertEqual((stamp, ORIG[origProgram][line]['function']), (stamp, translatedAspects[line]['function']))
-                self.assertEqual((stamp, ORIG[origProgram][line]['any']), (stamp, translatedAspects[line]['any']))
+class TestPrograms(unittest.TestCase):
+    def _checkEncoding(self, lang, translatedProgram):
+        try:
+            fo = open(os.path.join(lang, 'src', translatedProgram + '.py'), encoding='utf-8')
+            fo.read()
+            fo.close()
+        except:
+            print('Error with encoding of ' + translatedProgram + '.py')
+            raise
 
+    def _compareTwoPrograms(self, lang, origProgram, translatedProgram):
+        if DEBUG: print(origProgram, translatedProgram)
+        translatedAspects = getAspects(os.path.join(lang, 'src', translatedProgram + '.py'))
+        for line in ORIG[origProgram].keys():
+            stamp = (translatedProgram, line)
+            if DEBUG: print(lang, translatedProgram, line)
+            self.assertEqual((stamp, ORIG[origProgram][line]['blank']), (stamp, translatedAspects[line]['blank']))
+            self.assertEqual((stamp, ORIG[origProgram][line]['whole']), (stamp, translatedAspects[line]['whole']))
+            self.assertEqual((stamp, ORIG[origProgram][line]['function']), (stamp, translatedAspects[line]['function']))
+            self.assertEqual((stamp, ORIG[origProgram][line]['any']), (stamp, translatedAspects[line]['any']))
+
+    def _check(self, lang, origProgram, translatedProgram):
+        self._checkEncoding(lang, translatedProgram)
+        self._compareTwoPrograms(lang, origProgram, translatedProgram)
 
     def test_es_programs(self):
-        programs = {'hello': 'hola',
-                    'guess': 'adivinaElNúmero',
-                    'dragon': 'dragón',
-                    'hangman': 'ahorcado',
-                    'hangman2': 'ahorcado2',
-                    'AISim2': 'es_AISim2',
-                    'AISim3': 'es_AISim3',
-                    'jokes': 'es_jokes',
-                    'animation': 'animacion',
-                    'cipher': 'cifrado'}
-
-        self._compareTwoPrograms('es', programs)
+        self._check('es', 'hello', 'hola')
+        self._check('es', 'guess', 'adivinaElNúmero')
+        self._check('es', 'dragon', 'dragón')
+        self._check('es', 'hangman', 'ahorcado')
+        self._check('es', 'hangman2', 'ahorcado2')
+        self._check('es', 'AISim2', 'es_AISim2')
+        self._check('es', 'AISim3', 'es_AISim3')
+        self._check('es', 'jokes', 'chistes')
+        self._check('es', 'animation', 'animacion')
+        self._check('es', 'cipher', 'cifrado')
+        self._check('es', 'dodger', 'evasor')
+        self._check('es', 'bagels', 'panecillos')
+        self._check('es', 'tictactoe', 'tateti')
+        self._check('es', 'pygameHelloWorld', 'pygameHolaMundo')
+        self._check('es', 'collisionDetection', 'deteccionColision')
+        self._check('es', 'pygameInput', 'pygameEntrada')
+        self._check('es', 'spritesAndSounds', 'spritesYsonidos')
 
     def test_sv_programs(self):
-        programs = {'AISim1': 'AISim1',
-                    'AISim2': 'AISim2',
-                    'AISim3': 'AISim3',
-                    'bagels': 'bagels',
-                    'buggy': 'buggy',
-                    'coinFlips': 'coinFlips',
-                    'dragon': 'dragon',
-                    'guess': 'guess',
-                    'hangman': 'hangman',
-                    'hello': 'hello',
-                    'jokes': 'jokes',
-                    'reversi': 'reversi',
-                    'reversi_mini': 'reversi_mini',
-                    'sonar': 'sonar',
-                    'tictactoe': 'tictactoe'}
+        self._check('sv', 'hello', 'hello')
+        self._check('sv', 'sonar', 'sonar')
+        self._check('sv', 'coinFlips', 'coinFlips')
+        self._check('sv', 'guess', 'guess')
+        self._check('sv', 'reversi', 'reversi')
+        self._check('sv', 'AISim3', 'AISim3')
+        self._check('sv', 'buggy', 'buggy')
+        self._check('sv', 'bagels', 'bagels')
+        self._check('sv', 'AISim2', 'AISim2')
+        self._check('sv', 'dragon', 'dragon')
+        self._check('sv', 'AISim1', 'AISim1')
+        self._check('sv', 'hangman', 'hangman')
+        self._check('sv', 'tictactoe', 'tictactoe')
+        self._check('sv', 'jokes', 'jokes')
+        self._check('sv', 'reversi_mini', 'reversi_mini')
 
-        self._compareTwoPrograms('sv', programs)
 
+    def test_id_programs(self):
+        self._check('id', 'guess', 'tebak')
+        self._check('id', 'hangman', 'hangman')
+        self._check('id', 'hello', 'halo')
+        self._check('id', 'buggy', 'ngebug')
+        self._check('id', 'coinFlips', 'lemparKoin')
+        self._check('id', 'dragon', 'naga')
 
 
 if __name__ == '__main__':
