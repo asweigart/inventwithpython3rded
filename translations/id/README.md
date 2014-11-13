@@ -78,3 +78,8 @@ General Notes
 - checkbox, checkbox
 - scope, cakupan
 - debug, debug
+- method, method istilah OOP termasuk dalam Python
+- list, 
+- item
+- keyword argument, keyword argument (istilah python), argumen keyword
+
