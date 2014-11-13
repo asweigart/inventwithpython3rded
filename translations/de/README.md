@@ -4,7 +4,7 @@ Translators
 - Christian Von Aster
 - Dennis Bautembach (denniskb)
 - Frank Lehmann
-- Georg Ramer
+- Georg Ramer (GeorgRamer)
 - Horst Jens (horstjens)
 - Thomas Klemmer
 
