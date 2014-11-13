@@ -56,10 +56,10 @@ HANGMANPICS = ['''
  / \  |
       |
 =========''']
-words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra'.split() # kata "cat" harus ada dalam words, hapus komentar ini jika sudah direvisi
+words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra semut babon musang kelelawar beruang unta kucing kerang kobra gagak anjing rusa bebek keledai elang musang rubah katak kambing angsa elang singa kadal monyet keledai tikus hiu kadal panda beo merpati piton kelinci tikus gagak badak salmon domba sigung kukang ular bangau angsa harimau kodok kalkun penyu musang paus serigala zebra'.split() # juga mengandung hewan dalam bahasa indonesia (satu suku kata)
 
 def getRandomWord(wordList):
-    # This function returns a random string from the passed list of strings.
+    # Fungsi ini mengembalikan satu string acak dari daftar string dalam list yang dilemparkan.
     wordIndex = random.randint(0, len(wordList) - 1)
     return wordList[wordIndex]
 
@@ -74,16 +74,16 @@ def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
 
     blanks = '_' * len(secretWord)
 
-    for i in range(len(secretWord)): # replace blanks with correctly guessed letters
+    for i in range(len(secretWord)): # ganti garis dengan huruf yang ditebak dengan tepat
         if secretWord[i] in correctLetters:
             blanks = blanks[:i] + secretWord[i] + blanks[i+1:]
 
-    for letter in blanks: # show the secret word with spaces in between each letter
+    for letter in blanks: # tampilkan kata rahasia dengan huruf-huruf yang dipisahkan satu spasi
         print(letter, end=' ')
     print()
 
 def getGuess(alreadyGuessed):
-    # Returns the letter the player entered. This function makes sure the player entered a single letter, and not something else.
+    # Mengembalikan huruf yang dimasukkan pemain. Fungsi ini memastika pemain memasukkan satu huruf, bukan string lainnya.
     while True:
         print('Tebak satu huruf.')
         guess = input()
@@ -98,7 +98,7 @@ def getGuess(alreadyGuessed):
             return guess
 
 def playAgain():
-    # This function returns True if the player wants to play again, otherwise it returns False.
+    # Fungsi ini mengembalikan True jika pemain ingin bermain lagi, jika tidak maka False yang dikembalikan.
     print('Kamu mau main lagi? (ya or tidak)')
     return input().lower().startswith('y')
 
@@ -112,13 +112,13 @@ gameIsDone = False
 while True:
     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
 
-    # Let the player type in a letter.
+    # Ambil masukan satu huruf dari pemain.
     guess = getGuess(missedLetters + correctLetters)
 
     if guess in secretWord:
         correctLetters = correctLetters + guess
 
-        # Check if the player has won
+        # Cek apakah pemain sudah menang
         foundAllLetters = True
         for i in range(len(secretWord)):
             if secretWord[i] not in correctLetters:
@@ -130,13 +130,13 @@ while True:
     else:
         missedLetters = missedLetters + guess
 
-        # Check if player has guessed too many times and lost
+        # Cek apakah pemain sudah coba menebak terlalu banyak dan kalah
         if len(missedLetters) == len(HANGMANPICS) - 1:
             displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
-            print('You have run out of guesses!\nAfter ' + str(len(missedLetters)) + ' missed guesses and ' + str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
+            print('Kamu sudah tidak bisa menebak lagi!\nSetelah salah menebak ' + str(len(missedLetters)) + ' kali dan ' + str(len(correctLetters)) + ' tebakan yang tepat, kata itu adalah "' + secretWord + '"')
             gameIsDone = True
 
-    # Ask the player if they want to play again (but only if the game is done).
+    # Tanya apakah pemain ingin main lagi (tapi, hanya jika game sudah selesai).
     if gameIsDone:
         if playAgain():
             missedLetters = ''
