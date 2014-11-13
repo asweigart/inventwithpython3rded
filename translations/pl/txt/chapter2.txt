@@ -104,16 +104,16 @@ Nie martw się jeśli zrobisz pomyłkę. Błędy nie zniszczą twojego komputera
 
 Zapisywanie wartości w zmiennych
 
-You’ll often want to save the value an expression evaluates to so you can use it later in the program. You can store values in variables. Think of variables like a box that can hold values.
+Często będziesz chciał zachować obliczone wyrażenie by użyć go później w programoe. Takie wartości możesz zapisywać w zmiennych. Wyobraź je sobie jako pudełka, które mogą przechowywać wartości.
 
-An assignment statement instruction will store a value (or the value an expression evaluates to) inside a variable. Make up a name for the variable, followed by the = sign (called the assignment operator), and then the value to store in the variable. For example, enter spam = 15 into the interactive shell:
+Instrukcja przypisania zachowa wartość (lub wartość do jakiej zostanie zredukowane wyrażenie) w zmiennej. Wymyśl sobie nazwę dla zmiennej, daj za nią znak = (nazywany operatorem przypisania) i następnie wartość do zapisania w zmiennej. Przykładowo wprowadź spam = 15 w interaktywnej powłoce:
 
 >>> spam = 15
 >>>
 
 
 
-Figure 2-4: Variables are like boxes that can hold values in them.
+Rysunek 2-4: Zmienne są jak pudełka które mogą przechowywać w sobie wartości.
 
 The spam variable’s box will have the value 15 stored in it, as shown in Figure 2-4. The name “spam” is the label on the box (so Python can tell variables apart) and the value is written on a small note inside the box.
 
