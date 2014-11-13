@@ -216,7 +216,7 @@ A list value is a kind of value that can contain several other values inside it.
 ['apples', 'oranges', 'HELLO WORLD']
 
 This list value contains three string values. Just like any other value, you can store this list in a variable. When typing the list value into your code, it begins with a [ square bracket and ends with a ] square bracket.
-Commas separated the individual values inside of a list. These values are also called items.
+Commas separate the individual values inside of a list. These values are also called items.
 Try entering animals = ['aardvark', 'anteater', 'antelope', 'albert'] into the interactive shell to store a list in the variable animals. The square brackets can also be used to access an item inside a list. Try entering animals[0], or animals[1], or animals[2], or animals[3] into the interactive shell to see how they evaluate.
 
 >>> animals = ['aardvark', 'anteater', 'antelope', 'albert']
@@ -258,7 +258,7 @@ If you try accessing an index that is too large, you’ll get an index error tha
 >>> animals[9999]
 Traceback (most recent call last):
 File "", line 1, in
-animals[99]
+animals[9999]
 IndexError: list index out of range
 
 Changing the Values of List Items with Index Assignment
@@ -337,7 +337,7 @@ Lists are a data type that can contain other values. But lists can also be the i
 [['eggs', 'milk', 'soup', 'apples', 'bread'], ['clean', 'mow the lawn', 'go grocery shopping'], ['apple', 'frumbleberry']]
 
 To get an item inside the list of lists, you would use two sets of square brackets like this: listOfLists[1][2] which would evaluate to the string 'go grocery shopping'.
-This is because listOfLists[1] evaluates to ['clean', 'mow the lawn', 'go grocery shopping'][2]. That finally evaluates to 'go grocery shopping':
+This is because listOfLists[1] evaluates to ['clean', 'mow the lawn', 'go grocery shopping'] and ['clean', 'mow the lawn', 'go grocery shopping'][2] evaluates to 'go grocery shopping':
 
 listOfLists[1][2]
          ▼
@@ -365,7 +365,7 @@ Try entering 'Hello world!'.lower() into the interactive shell to see an example
 There is also an upper() method for strings, which returns a string with all the characters in uppercase. Try entering 'Hello world'.upper() into the interactive shell:
 
 >>> 'Hello world'.upper()
-'HELLO WORLD! '
+'HELLO WORLD!'
 
 Because the upper() method returns a string, you can call a method on that string also. Try entering 'Hello world!'.upper().lower() into the interactive shell:
 
@@ -395,9 +395,9 @@ This evaluation looks like this:
 
 If a string is stored in a variable, you can call a string method on that variable. Look at this example:
 
->>> spam = 'Hello world'
+>>> spam = 'Hello world!'
 >>> spam.upper()
-'HELLO WORLD'
+'HELLO WORLD!'
 
 Note that this does not change the value in spam. The spam variable will still contain 'Hello world!'.
 
@@ -425,7 +425,7 @@ The most common list method you’ll use is append(). This method will add the v
 
 Note that integers and floats don’t have any methods.
 
-The split() List Method
+The split() String Method
 
 Line 59 is a long line of code, but it is really just a simple assignment statement. This line also uses the split() method, which is a method for the string data type like the lower() and upper() methods.
 
@@ -453,8 +453,8 @@ Line 61 defines a the getRandomWord() function, which has a single parameter nam
 
 Line 63 stores a random index for this list in the wordIndex variable. We do this by calling randint() with two arguments. The first argument is 0 and the second argument is the value that the expression len(wordList) - 1 evaluates to.
 List indexes start at 0, not 1. If we have a list of three items, the index of the first item is 0, the index of the second item is 1, the index of the third item is 2. The length of this list is 3, but the index 3 would be after the last index. This is why line 63 subtracts 1 from the length.
-The wordIndex variable will be set to a random index for the list passed as the wordlist parameter. On line 64, we would return the element in wordList at the integer index stored in wordIndex.
-Let’s pretend ['apple', 'orange', grape'] was passed as the argument to getRandomWord() and that randint(0, 2) returned the integer 2. That would mean that line 64 would become return wordList[2], which would evaluate to return 'grape'. This is how the getRandomWord() returns a random string in the wordList list.
+The wordIndex variable will be set to a random index for the list passed as the wordList parameter. On line 64, we would return the element in wordList at the integer index stored in wordIndex.
+Let’s pretend ['apple', 'orange', 'grape'] was passed as the argument to getRandomWord() and that randint(0, 2) returned the integer 2. That would mean that line 64 would become return wordList[2], which would evaluate to return 'grape'. This is how the getRandomWord() returns a random string in the wordList list.
 So the input to getRandomWord() is a list of strings, and the return value output is a randomly selected string in that list. This will be useful for the Hangman game.
 
 Displaying the Board to the Player
@@ -719,7 +719,7 @@ elif catName == 'Puff'
 else:
     print('Your cat is neither fuzzy nor spotted nor chubby nor puffy.')
 
-When one of the elif conditions is True, its code is executed and then execution jumps to the first line past the else-block. So only one of the blocks in this if-elif-else statement will be executed. You can also leave off the else-block if you don’t need one, and just have an if-else statement.
+When one of the elif conditions is True, its code is executed and then execution jumps to the first line past the else-block. So only one of the blocks in this if-elif-else statement will be executed. You can also leave off the elif-block if you don’t need one, and just have an if-else statement.
 
 Making Sure the Player Entered a Valid Guess
 
@@ -732,8 +732,8 @@ Making Sure the Player Entered a Valid Guess
  97.         else:
  98.             return guess
 
-The guess variable contains player’s letter guess. The program needs to make sure they typed in one and only one lowercase letter. If they didn't, Python should loop back and ask them again.
-Line 91’s condition checks if guess is not one character long. Line 93’s condition checks if guess already exists inside the alreadyGuessed variable. Line 95’s condition checks if guess is not a lowercase letter.
+The guess variable contains player’s letter guess. The program needs to make sure they typed in one and only one letter. If they didn't, Python should loop back and ask them again.
+Line 91’s condition checks if guess is not one character long. Line 93’s condition checks if guess already exists inside the alreadyGuessed variable. Line 95’s condition checks if guess is not an alphabet letter.
 If all of these conditions are False, then the else statement’s block executes and getGuess() returns the value in guess on line 98.
 Remember, only one of the blocks in the if-elif-else statements will be executed.
 
