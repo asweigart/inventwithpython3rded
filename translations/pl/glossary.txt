@@ -2,6 +2,7 @@ Python, odmieniamy: Pythona, Pythonem, Pythonie itd
 
 click, kliknij
 download, pobranie
+Evaluation, Obliczanie
 Figure, Rysunek
 file, plik
 run, uruchom
