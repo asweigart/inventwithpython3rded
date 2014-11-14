@@ -2,8 +2,10 @@ Python, odmieniamy: Pythona, Pythonem, Pythonie itd
 
 click, kliknij
 download, pobranie
-Evaluation, Obliczanie
+Evaluation, Obliczanie, wyliczanie
+expression, wyrażenie
 Figure, Rysunek
 file, plik
 run, uruchom
 shell, powłoka
+statement, dyrektywa

@@ -66,9 +66,9 @@ Obliczanie wyrażeń
 
 Kiedy komputer rozwiązuje wyrażenie 10 + 5 i otrzymuje wartość 15, to mówimy o obliczaniu wyrażeń. Obliczanie wyrażeń reduje je do pojedynczej wartości, tak jak rozwiązanie problemu matematycznego redukuje problem do jednej liczby: odpowiedzi.
 
-Wyrażenia 10 + 5 i 10 + 3 + 2 mają taką samą wartość. Oba redukują się do 15.
+Wyrażenia 10 + 5 i 10 + 3 + 2 mają taką samą wartość. Oba wyliczają się do 15.
 
-Wyrażenia mogą być dowolnego rozmiaru, ale zawsze zostaną zredukowane do pojedynczej wartości. Nawet pojedyncza wartość jest wyrażeniem: wyrażenie 15 jest redukowane do 15. Dla przykładu wyrażenie 8 * 3 / 2 + 2 + 7 - 9 zostanie zredukowane do wartości 12.0 w następujących krokach:
+Wyrażenia mogą być dowolnego rozmiaru, ale zawsze zostaną wyliczone do pojedynczej wartości. Nawet pojedyncza wartość jest wyrażeniem: wyrażenie 15 jest wyliczane do 15. Dla przykładu wyrażenie 8 * 3 / 2 + 2 + 7 - 9 zostanie wyliczone do wartości 12.0 w następujących krokach:
 
 8 * 3 / 2 + 2 + 7 – 9
                   ▼
@@ -106,7 +106,7 @@ Zapisywanie wartości w zmiennych
 
 Często będziesz chciał zachować obliczone wyrażenie by użyć go później w programoe. Takie wartości możesz zapisywać w zmiennych. Wyobraź je sobie jako pudełka, które mogą przechowywać wartości.
 
-Instrukcja przypisania zachowa wartość (lub wartość do jakiej zostanie zredukowane wyrażenie) w zmiennej. Wymyśl sobie nazwę dla zmiennej, daj za nią znak = (nazywany operatorem przypisania) i następnie wartość do zapisania w zmiennej. Przykładowo wprowadź spam = 15 w interaktywnej powłoce:
+Instrukcja przypisania zachowa wartość (lub wartość do jakiej zostanie wyliczone wyrażenie) w zmiennej. Wymyśl sobie nazwę dla zmiennej, daj za nią znak = (nazywany operatorem przypisania) i następnie wartość do zapisania w zmiennej. Przykładowo wprowadź spam = 15 w interaktywnej powłoce:
 
 >>> spam = 15
 >>>
@@ -115,29 +115,29 @@ Instrukcja przypisania zachowa wartość (lub wartość do jakiej zostanie zredu
 
 Rysunek 2-4: Zmienne są jak pudełka które mogą przechowywać w sobie wartości.
 
-The spam variable’s box will have the value 15 stored in it, as shown in Figure 2-4. The name “spam” is the label on the box (so Python can tell variables apart) and the value is written on a small note inside the box.
+Zmienna o nazwie spam przechowuje wartość 15 jak pokazano to na rysunku 2-4. Nazwa “spam” jest etykietą na pudełku (po nich Python rozróżnia zmienne), a wartość jest zapisane w małej notatce w środku pudełka.
 
-When you press ENTER you won't see anything in response. In Python, assume the instruction executed successfully if no error message appears. The >>> prompt will appear so you can type in the next instruction.
+Kiedy naciśniesz ENTER nie zobaczysz nic w odpowiedzi. W Pythonie przyjmuje się, że instrukcja się udała jeśli ie pojawił sie komunikat o błędzie. Pojawi się znak zachęty >>>, więc możesz wpisywac kolejne instrukcje.
 
-Unlike expressions, statements are instructions that do not evaluate to any value, which is why there is no value displayed on the next line in the interactive shell. It might be confusing to know which instructions are expressions and which are statements. Just remember that expressions evaluate to a single value. Any other kind of instruction is a statement.
+Poza wyrażeniami są także dyrektywy, które są instrukcjami, które nie wyliczają się do żadnej wartości, w związku z czym nie ma co wyświetlić w nastepnej linii powłoki. Może to byc nieco mylące, ale wystarczy pamiętać, że wyrażenia wyliczają się do pojedynczej wartości. Inne rodzaje instrukcji są dyrektywami.
 
-Variables store values, not expressions. For example, consider the expression in the statements spam = 10 + 5 and spam = 10 + 7 - 2. They both evaluate to 15. The end result is the same: Both statements store the value 15 in the variable spam.
+Zmienne przechowują wartości, a nie wyrażenia. Dla przykładu rozważmy dyrektywy spam = 10 + 5 i spam = 10 + 7 - 2. Obie wyliczają się do 15. Wynik końcowy jest taki sam: obie dyrektywy zapisują wartość 15 w zmiennej spam.
 
-The first time a variable is used in an assignment statement, Python will create that variable. To check what value is in a variable, type the variable name into the interactive shell:
+Za pierwszym razem, gdy zmienna jest użyta w dyrektywie przypisania Python stworzy taką zmienną. Aby sprawdzić wartość jakia jest w zmiennej wpis jej nazwę w powłoce:
 
 >>> spam = 15
 >>> spam
 15
 
-The expression spam evaluates to the value inside the spam variable: 15. You can use variables in expressions. Try entering the following in the interactive shell:
+Wyrażenie spam wylicza się do wartości przechowywanej w zmiennej spam: 15. Możesz używać zmiennych w wyrażeniach. Spróbuj wprowadzić następujący kod w powłoce:
 
 >>> spam = 15
 >>> spam + 5
 20
 
-You’ve set the value of the variable spam to 15, so writing spam + 5 is like writing the expression 15 + 5.
+Ustawiłeś wartość zmiennej spam na 15, więc zapisanie spam + 5 jest jak zapisanie wyrażenia 15 + 5.
 
-You cannot use a variable before an assignment statement creates it. Python will give you an error because no such variable exists yet. Mistyping the variable name also causes this error:
+Nie możesz używać zmiennej nim dyrektywa przypisania ją stworzy. Python zgłosi błąð ponieważ taka zmienna jeszcze nie istnieje. Literówka w nazwie zmiennej także powoduje błąd:
 
 >>> spam = 15
 >>> spma
@@ -147,9 +147,14 @@ Traceback (most recent call last):
     spma
 NameError: name 'spma' is not defined
 
-The error appeared because there is spam variable but not spma.
+(Ślad wykonania (najnowsze wywołana na końcu):
+  Plik "<pyshell#8>", linia 1, w <module>
+    spma
+BłądNazwy: nazwa 'spma' nie jest zdefiniowana)
 
-You can change the value stored in a variable by entering another assignment statement. For example, try the following:
+Błąd się pojawił ponieważ istnieje zmienna spam, ale nie spma.
+
+Możesz zmienić wartość zapisaną w zmiennej przez wprowadzenie kolejnej dyrektywy podstawiuenia. Spróbuj tego:
 
 >>> spam = 15
 >>> spam + 5
@@ -158,15 +163,15 @@ You can change the value stored in a variable by entering another assignment sta
 >>> spam + 5
 8
 
-When you first enter spam + 5, the expression evaluates to 20 because you stored 15 inside spam. However, when you enter spam = 3, the value 15 is replaced, or overwritten, with the value 3. Now when you enter spam + 5, the expression evaluates to 8 because the value of spam is now 3.
+Kiedy na początku wpowadziłeś spam + 5, wyrażenie wyliczy się do 20 ponieważ w spam zapisałeś 15. Jednak gdy wprowadzisz spam = 3, to wartość 15 jest zamieniona, lub nadpisana przez wartość 3. Teraz, po wprowadzeniu spam + 5, wyrażenie zostanie wyliczone do 8, ponieważ wartość spam wynosi teraz 3.
 
-You can even use the value in the spam variable to assign a new value to spam:
+Możesz nawet użyc wartości zmiennej spam, by podstawić do niej nową wartość:
 
 >>> spam = 15
 >>> spam = spam + 5
 20
 
-The assignment statement spam = spam + 5 is like saying, “the new value of the spam variable will be the current value of spam plus five.” Keep increasing the value in spam by 5 several times:
+Dyrektywa podstawienia spam = spam + 5 jest jak powiedzenie: “Nowa wartość zmiennej spam będzie wynosiła aktualną jej wartość dodać pięć”. Zwiększ wartość zapisaną w spam o 5 kilka razy:
 
 >>> spam = 15
 >>> spam = spam + 5
@@ -175,20 +180,20 @@ The assignment statement spam = spam + 5 is like saying, “the new value of the
 >>> spam
 30
 
-Using More Than One Variable
+Używanie większej liczby zmiennych
 
-Create as many variables as you need in your programs. For example, let’s assign different values to two variables named eggs and fizz, like so:
+Twórz tyle zmiennych, ile ich potrzebujesz w swoim programie. Dla przykłądu podstawimy kilka wartości do zmiennych o nazwach eggs i fizz:
 
 >>> fizz = 10
 >>> eggs = 15
 
-Now the fizz variable has 10 inside it, and eggs has 15 inside it.
+Teraz zmienna fizz przechowuje 10, a eggs przechowuje 15.
 
 
 
-Figure 2-5: The “fizz” and “eggs” variables have values stored in them.
+Rysuneke 2-5: Zmienne “fizz” i “eggs” przechowują wartości.
 
-Try entering spam = fizz + eggs into the interactive shell, then check the new value of spam:
+Spróbuj wprowadzić spam = fizz + eggs w powłoce, a potem sprawdź nową wartość spam:
 
 >>> fizz = 10
 >>> eggs = 15
@@ -196,12 +201,12 @@ Try entering spam = fizz + eggs into the interactive shell, then check the new v
 >>> spam
 25
 
-The value in spam is now 25. When you add fizz and eggs you are adding their values, which are 10 and 15, respectively.
+Wartość spam wynosi teraz 25. Kiedy dodałeś fizz i eggs dodałeś ich wartości, które wynoszą odpowiednio 10 i 15.
 
-Summary
+Podsumowanie
 
-In this chapter, you learned the basics about writing Python instructions. Python needs you to tell it exactly what to do in a strict way. Computers don’t have common sense and only understand specific instructions.
+W tym rozdziale nauczyłeś sie podstaw pisania instrukcji Pythona. Python wymaga, być mówił mu dokładnie co ma zrobić i byś robił to w określony sposób. Komputery nie mają zdrowego rozsądku i mogą zrozumieć jedynie określone instrukcje.
 
-Expressions are values (such as 2 or 5) combined with operators (such as + or -). Python can evaluate expressions (that is, reduce the expression to a single value). You can store values inside of variables so that your program can remember them and use them later.
+Wyrażenia to wartości (takie jak 2, lub 5) połączone z operatorami (takimi jak +, lub -). Python może wyliczać wyrażenia (to jest redukowac je do pojedynczej wartości). Możesz zapisywać wartości w zmiennych by twój program je pamiętał i mógł użyć ich w późniejszym czasie.
 
-There are many other types of operators and values in Python. In the next chapter, you’ll go over some more basic concepts and write your first program!
+W Pythonie jest wiele innych typów operatorów i wartości. W następnym rozdziale poznamy kilka kolejnych podstawowych koncepcji i napiszesz swój pierwszy program!
