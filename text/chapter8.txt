@@ -109,7 +109,7 @@ The graphics for hangman are keyboard characters printed on the screen. This typ
 
 Designing a Program with a Flowchart
 
-This game is a bit more complicated than the ones we’ve seen so far, so take a moment to think about how it’s put together. First you’ll create a flow chart (like the one at the end of the Dragon Realm chapter) to help visualize what this program will do. This chapter will go over what flow charts are and why they are useful. The next chapter will go over the source code to the Hangman game.
+This game is a bit more complicated than the ones you’ve seen so far, so take a moment to think about how it’s put together. First you’ll create a flow chart (like the one at the end of the Dragon Realm chapter) to help visualize what this program will do. This chapter will go over what flow charts are and why they are useful. The next chapter will go over the source code to the Hangman game.
 A flow chart is a diagram that shows a series of steps as boxes connected with arrows. Each box represents a step, and the arrows show the steps leads to which other steps. Put your finger on the “Start” box of the flow chart and trace through the program by following the arrows to other boxes until you get to the “End” box.
 Figure 8-1 is a complete flow chart for Hangman. You can only move from one box to another in the direction of the arrow. You can never go backwards unless there is a second arrow going back, like in the “Player already guessed this letter” box.
 
@@ -139,7 +139,7 @@ Figure 8-5: After the branch, the steps continue on their separate paths.
 
 Ending or Restarting the Game
 
-Once the player has won or lost, ask them if they want to play again with a new secret word. If the player doesn’t want to play again, the program will end. If the program doesn’t end, we think of a new secret word. This is shown in Figure 8-6.
+Once the player has won or lost, ask them if they want to play again with a new secret word. If the player doesn’t want to play again, the program will end. If the program doesn’t end, it thinks up a new secret word. This is shown in Figure 8-6.
 
 Figure 8-6: The flow chart branches when asking the player to play again.
 

@@ -501,7 +501,7 @@ How the Code Works
 
 The Game Board Data Structure
 
-Before we get into the code, we should talk about the board’s data structure. This data structure is a list of lists, just like the one in the previous Sonar game. The list of lists is created so that board[x][y] will represent the character on space located at position x on the X-axis (going left/right) and position y on the Y-axis (going up/down).
+Before getting into the code, let’s figure out the board’s data structure. This data structure is a list of lists, just like the one in the previous Sonar game. The list of lists is created so that board[x][y] will represent the character on space located at position x on the X-axis (going left/right) and position y on the Y-axis (going up/down).
 This character can either be a ' ' space character (to represent a blank space), a '.' period character (to represent a possible move in hint mode), or an 'X' or 'O' (to represent a player’s tile). Whenever you see a parameter named board, it is meant to be this kind of list of lists data structure.
 
 Importing Other Modules

@@ -9,11 +9,11 @@ Topics Covered In This Chapter:
 
 The game in this chapter is the first to make use of Cartesian coordinates that you learned about in Chapter 12. The game also has data structures (which is just a fancy way of saying variables that contain lists of lists.) As the games you program become more complicated, you’ll need to organize your data in data structures.
 In this chapter’s game, the player places sonar devices at various places in the ocean to locate sunken treasure chests. Sonar is a technology that ships use to locate objects under the sea. The sonar devices (in our game) will tell the player how far away the closest treasure chest is, but not in what direction. But by placing multiple sonar devices down, the player can figure out where the treasure chest is.
-There are three chests to collect, but the player has only sixteen sonar devices to use to find them. Imagine that we could not see the treasure chest in the following picture. Because each sonar device can only find the distance, not direction, the possible places the treasure could be is anywhere in a square ring around the sonar device (see Figure 13-1).
+There are three chests to collect, but the player has only sixteen sonar devices to use to find them. Imagine that you could not see the treasure chest in the following picture. Because each sonar device can only find the distance, not direction, the possible places the treasure could be is anywhere in a square ring around the sonar device (see Figure 13-1).
 
-Figure 13-1: The sonar device’s ring touches the (hidden) treasure chest.
+Figure 13-1: The sonar device’s square ring touches the (hidden) treasure chest.
 
-Figure 13-2: Combining multiple rings of shows where treasure chests could be.
+Figure 13-2: Combining multiple square rings of shows where treasure chests could be.
 
 But multiple sonar devices working together can narrow it to an exact place where the rings intersect each other. See Figure 13-2. (Normally these rings would be circles, but this game will use squares to make programming it easier.)
 
@@ -407,8 +407,8 @@ The drawing in the drawBoard() function has four steps.
 
 •   First, create a string variable of the line with 1, 2, 3, 4, and 5 spaced out with wide gaps (to mark the coordinates for 10, 20, 30, 40, and 50 on the X-axis).
 •   Second, use that string to display the X-axis coordinates along the top of the screen.
-•   Third, we print each row of the ocean along with the Y-axis coordinates on both sides of the screen.
-•   Fourth, we print the X-axis again at the bottom. Coordinates on all sides makes it easier to see coordinates for where to place a sonar device.
+•   Third, print each row of the ocean along with the Y-axis coordinates on both sides of the screen.
+•   Fourth, print the X-axis again at the bottom. Coordinates on all sides makes it easier to see coordinates for where to place a sonar device.
 
 Drawing the X-Coordinates Along the Top
 
@@ -420,7 +420,7 @@ Drawing the X-Coordinates Along the Top
 
 Look again at the top part of the board in Figure 13-3.  It has + plus signs instead of blank spaces so you can count the blank spaces easier:
 
-Figure 13-3: The spacing we use for printing the top of the game board.
+Figure 13-3: The spacing used for printing the top of the game board.
 
 The numbers on the first line which mark the tens position all have nine spaces between them, and there are thirteen spaces in front of the 1. Lines 9 to 11 create this string with this line and store it in a variable named hline.
 
@@ -429,7 +429,7 @@ The numbers on the first line which mark the tens position all have nine spaces 
  15.     print('   ' + ('0123456789' * 6))
  16.     print()
 
-To print the numbers across the top of the sonar board, we first print the contents of the hline variable. Then on the next line, we print three spaces (so that this row lines up correctly), and then print the string '012345678901234567890123456789012345678901234567890123456789'. But as a shortcut you can use ('0123456789' * 6), which evaluates to the same string.
+To print the numbers across the top of the sonar board, first print the contents of the hline variable. Then on the next line, print three spaces (so that this row lines up correctly), and then print the string '012345678901234567890123456789012345678901234567890123456789'. But as a shortcut you can use ('0123456789' * 6), which evaluates to the same string.
 
 Drawing the Rows of the Ocean
 
@@ -450,7 +450,7 @@ There’s a small problem. Numbers with only one digit (like 0, 1, 2, and so on)
 10 `~~~~```~`~````~`~`~~``~`~~~~`~``~``~```~~```````~`~``~````` 10
 11 ~~`~`~~`~``~`~~~````````````````~~`````~`~~``~`~~~~`~~~`~~`~ 11
 
-The solution is easy. Add a space only in front of all the single-digit numbers. Lines 21 to 24 set the variable extraSpace to either a space or an empty string. The extraSpace variable is always printed, but only has a space for single-digit row numbers. This way, all of our rows will line up when we print them.
+The solution is easy. Add a space only in front of all the single-digit numbers. Lines 21 to 24 set the variable extraSpace to either a space or an empty string. The extraSpace variable is always printed, but only has a space for single-digit row numbers. This way, all of our rows will line up when you print them.
 The getRow() function takes a row number and returns a string representing that row’s ocean waves. Its two parameters are the board data structure stored in the board variable and a row number. Let’s look at this function next.
 
 Drawing the X-Coordinates Along the Bottom
@@ -483,7 +483,7 @@ Creating a New Game Board
  43.     for x in range(60): # the main list is a list of 60 lists
  44.         board.append([])
 
-A new board data structure is needed at the start of each new game. The board data structure is a list of lists of strings. The first list represents the X coordinate. Since our game’s board is 60 characters across, this first list needs to contain 60 lists. So we create a for loop that will append 60 blank lists to it.
+A new board data structure is needed at the start of each new game. The board data structure is a list of lists of strings. The first list represents the X coordinate. Since the game’s board is 60 characters across, this first list needs to contain 60 lists. Create a for loop that will append 60 blank lists to it.
 
  45.         for y in range(15): # each list in the main list has 15 single-character strings
  46.             # use different characters for the ocean to make it more readable.
@@ -492,9 +492,9 @@ A new board data structure is needed at the start of each new game. The board da
  49.             else:
  50.                 board[x].append('`')
 
-But board is more than just a list of 60 blank lists. Each of the 60 lists represents the Y coordinate of our game board. There are 15 rows in the board, so each of these 60 lists must have 15 characters in them. We have another for loop to add 15 single-character strings that represent the ocean.
+But board is more than just a list of 60 blank lists. Each of the 60 lists represents the Y coordinate of our game board. There are 15 rows in the board, so each of these 60 lists must have 15 characters in them. Line 45 is another for loop to add 15 single-character strings that represent the ocean.
 The “ocean” will be a bunch randomly chosen of '~' and '`' strings. If the return value of random.randint() is 0, add the '~' string. Otherwise add the '`' string. This will give the ocean a random, choppy look to it.
-Remember that the board variable is a list of 60 lists that have 15 strings. That means to get the string at coordinate 26, 12, we would access board[26][12], and not board[12][26]. The X coordinate is first, then the Y coordinate.
+Remember that the board variable is a list of 60 lists that have 15 strings. That means to get the string at coordinate 26, 12, you would access board[26][12], and not board[12][26]. The X coordinate is first, then the Y coordinate.
 
  51.     return board
 
@@ -511,7 +511,7 @@ Creating the Random Treasure Chests
 
 The game also randomly decides where the hidden treasure chests are. The treasure chests are represented as a list of lists of two integers. These two integers will be the X and Y coordinates of a single chest.
 For example, if the chest data structure was [[2, 2], [2, 4], [10, 0]], then this would mean there are three treasure chests, one at 2, 2, another chest at 2, 4, and a third one at 10, 0.
-The numChests parameter tells the function how many treasure chests to generate. Line 56’s for loop will iterate this number of times, and on each iteration we append a list of two random integers. The X coordinate can be anywhere from 0 to 59, and the Y coordinate can be from anywhere between 0 and 14. The expression [random.randint(0, 59), random.randint(0, 14)] that is passed to the append method will evaluate to a value like [2, 2] or [2, 4] or [10, 0].
+The numChests parameter tells the function how many treasure chests to generate. Line 56’s for loop will iterate this number of times, and on each iteration line 57 appends a list of two random integers. The X coordinate can be anywhere from 0 to 59, and the Y coordinate can be from anywhere between 0 and 14. The expression [random.randint(0, 59), random.randint(0, 14)] that is passed to the append method will evaluate to a value like [2, 2] or [2, 4] or [10, 0].
 
 Determining if a Move is Valid
 
@@ -567,7 +567,7 @@ For example, consider the sonar’s X and Y coordinates are 3 and 2. The first t
 2.  For the Y coordinates, 2 - 1 evaluates to 1, and the absolute value of 1 is 1.
 3.  Comparing the two absolute values 2 and 1, the larger value is 2, so 2 should be the distance between the sonar device and the treasure chest at coordinates 5, 1.
 
-We can look at the board in Figure 13-6 and see that this algorithm works, because the treasure chest at 5,1 is in the sonar device’s 2nd ring. Let’s quickly compare the other two chests to see if his distances work out correctly also.
+We can look at the board in Figure 13-6 and see that this algorithm works, because the treasure chest at 5,1 is in the sonar device’s 2nd ring. Let’s quickly compare the other two chests to see if the distances work out correctly also.
 Let’s find the distance from the sonar device at 3, 2 and the treasure chest at 0, 2:
 
 1.  abs(3 - 0) evaluates to 3.
@@ -580,7 +580,7 @@ Let’s find the distance from the sonar device at 3, 2 and the last treasure ch
 2.  abs(2 - 2) evaluates to 0.
 3.  1 is larger than 0, so the distance is 1.
 
-Looking at Figure 13-6 you can see all three distances worked out correctly. It seems this algorithm works. The distances from the sonar device to the three sunken treasure chests are 2, 3, and 1. On each guess, we want to know the distance from the sonar device to the closest of the three treasure chest distances. To do this we use a variable called smallestDistance. Let’s look at the code again:
+Looking at Figure 13-6 you can see all three distances worked out correctly. It seems this algorithm works. The distances from the sonar device to the three sunken treasure chests are 2, 3, and 1. On each guess, you want to know the distance from the sonar device to the closest of the three treasure chest distances. To do this, use a variable called smallestDistance. Let’s look at the code again:
 
  71.     smallestDistance = 100 # any chest will be closer than 100.
  72.     for cx, cy in chests:
@@ -595,8 +595,8 @@ Looking at Figure 13-6 you can see all three distances worked out correctly. It 
 Line 72 uses the multiple assignment trick in a for loop. Remember, the assignment statement spam, eggs = [5, 10] will assign 5 to spam and 10 to eggs. Also, the for loop for i in [0, 1, 2, 3, 4] will assign the i variable the values 0 and 1 and so on for each iteration.
 Because chests is a list where each item in the list is itself a list of two integers, the first of these integers is assigned to cx and the second integer is assigned to cy. So if chests has the value [[5, 0], [0, 2], [4, 2]], cx will have the value 5 and cy will have the value 0 on the first iteration through the loop.
 Line 73 determines which is larger: the absolute value of the difference of the X coordinates, or the absolute value of the difference of the Y coordinates. (abs(cx - x) < abs(cy - y) seems like much easier way to say that, doesn’t it?). Lines 73 to 76 assign the larger of the values to the distance variable.
-So on each iteration of the for loop, the distance variable holds the distance of a treasure chest’s distance from the sonar device. But we want the shortest (that is, smallest) distance of all the treasure chests. This is where the smallestDistance variable comes in. Whenever the distance variable is smaller than smallestDistance, then the value in distance becomes the new value of smallestDistance.
-We give smallestDistance the impossibly high value of 100 at the beginning of the loop so that at least one of the treasure chests we find will be put into smallestDistance. By the time the for loop has finished, we know that smallestDistance holds the shortest distance between the sonar device and all of the treasure chests in the game.
+So on each iteration of the for loop, the distance variable holds the distance of a treasure chest’s distance from the sonar device. But you want the shortest (that is, smallest) distance of all the treasure chests. This is where the smallestDistance variable comes in. Whenever the distance variable is smaller than smallestDistance, then the value in distance becomes the new value of smallestDistance.
+Give smallestDistance the impossibly high value of 100 at the beginning of the loop so that at least one of the treasure chests you found will be put into smallestDistance. By the time the for loop has finished, you know that smallestDistance holds the shortest distance between the sonar device and all of the treasure chests in the game.
 
 The remove() List Method
 
@@ -627,7 +627,7 @@ ValueError: list.remove(x): x not in list
  83.         chests.remove([x, y])
  84.         return 'You have found a sunken treasure chest!'
 
-The only time that smallestDistance is equal to 0 is when the sonar device’s XY coordinates are the same as a treasure chest’s XY coordinates. This means the player has correctly guessed the location of a treasure chest. We should remove this chest’s two-integer list from the chests data structure with the remove() list method.
+The only time that smallestDistance is equal to 0 is when the sonar device’s XY coordinates are the same as a treasure chest’s XY coordinates. This means the player has correctly guessed the location of a treasure chest. Remove this chest’s two-integer list from the chests data structure with the remove() list method.
 Then the function returns 'You have found a sunken treasure chest!'.
 
  85.     else:
@@ -638,7 +638,7 @@ Then the function returns 'You have found a sunken treasure chest!'.
  90.             board[x][y] = 'O'
  91.             return 'Sonar did not detect anything. All treasure chests out of range.'
 
-The else-block executes if smallestDistance was not 0, which means the player didn’t guess an exact location of a treasure chest. If the sonar device’s distance was less than 10, line 87 marks the board with the string version of smallestDistance. If not, we mark the board with a '0'.
+The else-block executes if smallestDistance was not 0, which means the player didn’t guess an exact location of a treasure chest. If the sonar device’s distance was less than 10, line 87 marks the board with the string version of smallestDistance. If not, mark the board with a '0'.
 
 Getting the Player’s Move
 
@@ -795,7 +795,7 @@ Getting the Player’s Move
 Line 189 uses the multiple assignment trick since enterPlayerMove() returns a two-item list. The first item in the returned list is assigned to the x variable. The second is assigned to the y variable.
 They are then appended to the end of the previousMoves list. This means previousMoves is a list of XY coordinates of each move the player makes in this game. This list is used later in the program.
 The x, y, theBoard, and theChests variables are all passed to the makeMove() function. This function will make the necessary modifications to the game board to make a move.
-If makeMove() returns the value False, then there was a problem with the x and y values we passed it. The continue statement will send the execution back to the start of the while loop on line 179 to ask the player for XY coordinates again.
+If makeMove() returns the value False, then there was a problem with the x and y values you passed it. The continue statement will send the execution back to the start of the while loop on line 179 to ask the player for XY coordinates again.
 
 Finding a Sunken Treasure Chest
 
@@ -816,14 +816,14 @@ Checking if the Player has Won
 204.             print('You have found all the sunken treasure chests! Congratulations and good game!')
 205.             break
 
-Remember that the makeMove() function modifies the theChests list we send it. Because theChests is a list, any changes made to it inside the function will persist after execution returns from the function. makeMove() removes items from theChests when treasure chests are found, so eventually (if the player guesses correctly) all of the treasure chests will have been removed. (Remember, by “treasure chest” we mean the two-item lists of the XY coordinates inside the theChests list.)
-When all the treasure chests have been found on the board and removed from theChests, the theChests list will have a length of 0. When that happens, we display a congratulations to the player, and then execute a break statement to break out of this while loop. Execution will then move to line 209 (the first line after the while-block.)
+Remember that the makeMove() function modifies the theChests list you sent it. Because theChests is a list, any changes made to it inside the function will persist after execution returns from the function. makeMove() removes items from theChests when treasure chests are found, so eventually (if the player guesses correctly) all of the treasure chests will have been removed. (Remember, by “treasure chest” we mean the two-item lists of the XY coordinates inside the theChests list.)
+When all the treasure chests have been found on the board and removed from theChests, the theChests list will have a length of 0. When that happens, display a congratulations to the player, and then execute a break statement to break out of this while loop. Execution will then move to line 209 (the first line after the while-block.)
 
 Checking if the Player has Lost
 
 207.         sonarDevices -= 1
 
-This is the last line of the while loop that started on line 179. We decrement the sonarDevices variable because the player has used one. If the player keeps missing the treasure chests, eventually sonarDevices will be reduced to 0. After this line, execution jumps back up to line 179 so we can re-evaluate the while statement’s condition (which is sonarDevices > 0).
+This is the last line of the while loop that started on line 179. Decrement the sonarDevices variable because the player has used one. If the player keeps missing the treasure chests, eventually sonarDevices will be reduced to 0. After this line, execution jumps back up to line 179 so it can re-evaluate the while statement’s condition (which is sonarDevices > 0).
 If sonarDevices is 0, then the condition will be False and execution will continue outside the while-block on line 209. But until then, the condition will remain True and the player can keep making guesses.
 
 209.     if sonarDevices == 0:
@@ -833,7 +833,7 @@ If sonarDevices is 0, then the condition will be False and execution will contin
 213.         for x, y in theChests:
 214.             print('    %s, %s' % (x, y))
 
-Line 209 is the first line outside the while loop. When the execution reaches this point the game is over. If sonarDevices is 0, we know the player ran out of sonar devices before finding all the chests and lost.
+Line 209 is the first line outside the while loop. When the execution reaches this point the game is over. If sonarDevices is 0, you know the player ran out of sonar devices before finding all the chests and lost.
 Lines 210 to 212 will tell the player they’ve lost. The for loop on line 213 will go through the treasure chests remaining in theChests and show their location to the player so that they can know where the treasure chests had been lurking.
 Asking the Player to Play Again, and the sys.exit() Function
 
