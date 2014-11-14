@@ -9,3 +9,4 @@ file, plik
 run, uruchom
 shell, powłoka
 statement, dyrektywa
+string, napis
