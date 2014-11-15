@@ -155,6 +155,7 @@ class TestPrograms(unittest.TestCase):
         self._check('id', 'buggy', 'ngebug')
         self._check('id', 'coinFlips', 'lemparKoin')
         self._check('id', 'dragon', 'naga')
+        self._check('id', 'hangman2', 'hangman2')
 
 
     def test_fr_programs(self):
