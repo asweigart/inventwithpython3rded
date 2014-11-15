@@ -56,67 +56,68 @@ Wyrażenie jest obliczane do pojedynczego napisu: 'witajświecie!'. Aby słowa b
 
 Operator + działa inaczej dla napisów i inaczej dla liczb, bo są to różne typy danych. Wszystkie wartości mają swój typ. Typem dla wartości 'witaj' jest napis (ang: string). Typem wartości 5 jest liczba całkowita. Typ danej mówi Pythonowi jakie co operatory powinny zrobić by obliczyć wyrażenie. Oprator + połączy dwa napisy, ale doda liczby całkowite, lub zmiennoprzecinkowe.
 
-Writing Programs in IDLE’s File Editor
+Pisanie programów w edytorze plikó IDLE
 
-Until now, you’ve been typing instructions into IDLE’s interactive shell one at a time. When you write programs though, you type in several instructions and have them run all at once. Let’s write your first program!
+Dotychczas wpisywałeś instrukcje w interaktywnej powłoce IDLE wykonując je pojedynczo. Jednak gdy piszesz program, wypisujesz wiele instrukcji i wykonujesz je razem. Napiszmy pierwszy program!
 
-IDLE has another part called the file editor. Click on the File menu at the top of the Python Shell window. Then select New Window. A blank window will appear for you to type your program’s code into.
+IDLE ma wbudowany edytor plików. Kliknij na menu File (Plik) na górze okna Python Shell. Teraz wybierz New Window (Nowe okno). Pojawi się puste okno byś mógł wpisać w nim kod swojego programu.
 
 
 
-Figure 3-1: The file editor window.
+Rysunek 3-1: Okno edytora tekstu.
 
-The two windows look similar, but just remember this: The interactive shell window will have the >>> prompt. The file editor window will not.
+Oba okna wyglądają podobnie, ale pamiętaj: okno powłoki ma znak zachęty >>>. Okno edytora plików go nie ma.
 
 witaj świecie!
 
-It’s traditional for programmers to make their first program display “witaj świecie!” on the screen. You’ll create your own witaj World program now.
+Tradycją programostów jest, by ich pierwszy program wyświetlał na ekranie napis "witaj świecie". Teraz stworzymy taki program.
 
-When you enter your program, don’t enter the numbers at the left side of the code. They’re there so this book can refer to code by line number. The bottom-right corner of the file editor window will tell you where the blinking cursor is. Figure 3-2 shows an example of where the cursor is according to the text in the corner.
+Kiedy wprowadzasz kod programu nie wpisuj numerów które są po lewej stronie kody. Są one po to, by w książce odnosić się do danej linii kodu. W dolnym prawym rogu okna edytora jest informacja gdzie znajduje się mrugający kursor. Rysunek 3-2 pokazuje przykład wskazania na położenie kursora w edytorze.
 
 
 
-Figure 3-2: The bottom right of the file editor window tells you what line the cursor is on.
+Rysunek 3-2: Dolny prawy róg edytora tekstu pokazuje w jakiej linii jest kursor.
 
 hello.py
 
-Enter the following text into the new file editor window. This is the program’s source code. It contains the instructions Python will follow when the program is run. (Remember, don’t type in the line numbers!)
+Wprowadź następujący tekst w nowym oknie edytora tekstu. To jest tekst źródłowy programu. Zawiera on instrukcje jakie wykona Python, gdy proram zostanie uruchomiony. Pamiętaj, by nie wpisywać numerów linii!
 
-IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
+WAŻNA UWAGA! Programy w tej książe da się uruchomić jedynie z użyciem Pythona 3, a nie Pythona 2. Kiedy uruchomimy okno edytora IDLE, pokaż on coś w stylu “Python 3.4.0” an górze okna. Jeśli masz zainstalowanego Pythona 2, to możesz mieć także zainstalowanego Pythona 3. Aby pobrać Pythona 3 odwiedź https://python.org/download/.
 
-1. # This program says hello and asks for my name.
-2. print('Hello świecie!')
-3. print('What is your name?')
+1. # Ten program wypisuje napisy i pyta o imię
+2. print('Witaj świecie!')
+3. print('Jak masz na imię?')
 4. myName = input()
-5. print('It is good to meet you, ' + myName)
-
-The IDLE program will write different types of instructions with different colors. After you’re done typing the code, the window should look like this:
+5. print(myName + ', miło Cię poznać')
 
 
-
-Figure 3-3: The file editor window will look like this after you type in the code.
-
-Saving Your Program
-
-Once you’ve entered your source code, save it by clicking the File menu at the top of the File Editor window. Then click on Save As. Figure 3-4 shows the Save As window that will open. Enter hello.py in the File name text field then click Save. Or press Ctrl-S to save with a keyboard shortcut.
+Edytor IDLE będzie używał różnych kolorów dla różnych typów instrukcji. Gdy skończysz wpisywanie kody okno edytora będzie wyglądało podobnie do:
 
 
 
-Figure 3-4: Saving the program.
+Rysunek 3-3: Wygląd okna edytora po wpisaniu kodu.
 
-You should save your programs while you type them. That way, if the computer crashes or you accidentally exit from IDLE you won’t lose much work.
+Zapisywanie programu
 
-Opening The Programs You’ve Saved
+Jak już skończysz wprowadzanie kodu źródłowego zapisz go klikając menu File (Plik) na górze okna edytora. Później wybierz Save As (Zapisz jako). Rysunek 3-4 pokazuje otwarte okno Save As. Wpisz hello.py w polu File name (Nazwa pliku) i kliknij Save (Zapisz). Albo wciścij Ctrl-S co jest skrótem klawiaturowym tej operacji.
 
-To load a saved program, click File ► Open. Choose hello.py in the window that appears and click the Open button. Your saved hello.py program will open in the File Editor window.
+
+
+Rysunek 3-4: Zapisywanie programu
+
+Powinieneś zapisywać programy w trakcie ich pisania. W ten sposób, jeśli komputer ulegnie awarii, albo przez pomyłkę wyjdziesz z edytora, to nie stracisz wiele pracy.
+
+Otwieranie programu jaki zapisałeś
+
+By wczytać zapisany program kliknij File ► Open (Plik ► Otwórz). Wybierz hello.py w oknie jakie się pojawu i kliknij przycisk Open (Otwórz). Zapisany wcześniej program hello.py pojawi się w oknie edytora.
 
 Now it’s time to run the program. Click File ► Run ► Run Module or just press F5 from the file editor window. Your program will run in the interactive shell window.
 
-Enter your name when the program asks for it. This will look like Figure 3-5:
+Enter your name when the program asks for it. This will look like Rysunek 3-5:
 
 
 
-Figure 3-5: The interactive shell after running hello.py.
+Rysunek 3-5: The interactive shell after running hello.py.
 
 When you type your name and push ENTER, the program will greet you by name. Congratulations! You’ve written your first program and are now a computer programmer. Press F5 again and enter another name.
 
