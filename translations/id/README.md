@@ -16,7 +16,8 @@ General Notes
 
 ## Convention ##
 
-- use "aku" and "kamu"
+- use "aku" and "kamu". 
+    - perlu diputuskan: apa perlu kata ganti "kita" diganti juga?
 - "Bab" for "chapter", dan "bagian" for "section"
 - "wrapped" <-> "terlipat" with text/paragraph context
 

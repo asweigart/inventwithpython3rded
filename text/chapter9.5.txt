@@ -53,15 +53,15 @@ Dictionaries use { and } curly braces instead of [ and ] square brackets. Try en
 
 >>> stuff = {'hello':'Hello there, how are you?', 4:'bacon', 'spam':9999 }
 
-The values between the curly braces separated by commas are key-value pairs. The keys are on the left of the colon and the key’s values are on the right. You can access the values like items in lists by using the key. Try entering into the interactive shell stuff['hello'] and stuff['chat'] and stuff['goodbye']:
+The values between the curly braces separated by commas are key-value pairs. The keys are on the left of the colon and the key’s values are on the right. You can access the values like items in lists by using the key. Try entering into the interactive shell stuff['hello'] and stuff[4] and stuff['spam']:
 
 >>> stuff = {'hello':'Hello there, how are you?', 4:'bacon', 'spam':9999}
 >>> stuff['hello']
 'Hello there, how are you?'
 >>> stuff[4]
-'spam'
->>> stuff['spam']
 'bacon'
+>>> stuff['spam']
+'9999'
 
 Instead of putting an integer between the square brackets, you use a string key. This will evaluate to the value for that key.
 
@@ -167,7 +167,7 @@ Instead of return wordList[wordIndex], the function returns a list with two item
 
 Evaluating a Dictionary of Lists
 
-The wordDict[wordKey][wordIndex] expression may look complicated, but it is just an expression you can evaluate one step at a time like anything else. First, imagine that wordKey had the value 'Fruits' (which was chosen on line 65) and wordIndex has the value 5 (chosen on line 68). Here is how wordDict[wordKey][wordIndex] would evaluate:
+The wordDict[wordKey][wordIndex] expression may look complicated, but it is just an expression you can evaluate one step at a time like anything else. First, imagine that wordKey had the value 'Fruits' (which was chosen on line 67) and wordIndex has the value 5 (chosen on line 70). Here is how wordDict[wordKey][wordIndex] would evaluate:
 
 wordDict[wordKey][wordIndex]
            ▼
@@ -210,13 +210,13 @@ ValueError: need more than 2 values to unpack
 
 Change your code in Hangman to use this trick with the return value of getRandomWord():
 
-108. correctLetters = ''
-109. secretWord, secretKey = getRandomWord(words)
-110. gameIsDone = False
+117. correctLetters = ''
+118. secretWord, secretKey = getRandomWord(words)
+119. gameIsDone = False
 ...
-144. gameIsDone = False
-145. secretWord, secretKey = getRandomWord(words)
-146. else:
+154. gameIsDone = False
+155. secretWord, secretKey = getRandomWord(words)
+156. else:
 
 Printing the Word Category for the Player
 
