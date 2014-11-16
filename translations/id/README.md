@@ -78,3 +78,4 @@ General Notes
 - checkbox, checkbox
 - scope, cakupan
 - debug, debug
+- parantheses, tanda kurung buka-tutup

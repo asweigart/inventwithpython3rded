@@ -2,6 +2,7 @@
     DUNIA NAGA
 
 Cakupan topik dalam Bab ini:
+
 •   Modul time
 •   Fungsi time.sleep()
 •   Keyword return
@@ -17,7 +18,7 @@ Memperkenalkan Fungsi-Fungsi
 You’ve already used a few functions: print(), input(), random.randint(), str(), and int(). You’ve called these functions to execute the code inside them. In this chapter, you’ll write your own functions for your programs to call. A function is like a mini-program inside a program. Functions let you run the same code multiple times without copying and pasting the source code. Instead, you can put that code inside a function and call the function several times. This has the added benefit that if the function’s code has a mistake, you only have one place in the program to change it.
 The game you will create in this chapter is called “Dragon Realm”. The player decides between two caves which hold either treasure or certain doom.
 
-Kamu sejauh ini telah menggunakan beberapa fungsi: print(), input(), random.randint(), str(), dan int(). [???]. Dalam bab ini, kamu akan menulis sendiri fungsi-fungsi sendiri yang akan dipanggil oleh program buatanmu. Sebuah fungsi mirip seperti program mini dalam sebuah program. Fungsi membuatmu dapat menjalankan sebuah kode berulang kali tanpa harus melakukan copy-paste kode tersebut dalam kode sumber. Sebaliknya, kamu dapat menaruh kode tersebut dalam sebuah fungsi dan memanggil fungsi tersebut berkali-kali. Ini memberikan keuntungan ketika terjadi kesalahan pada kode sebuah fungsi. Kamu hanya perlu mengubah kode fungsi tersebut.
+Sejauh ini kamu telah menggunakan beberapa fungsi: print(), input(), random.randint(), str(), dan int(). [???]. Dalam bab ini, kamu akan menulis sendiri fungsi-fungsi sendiri yang akan dipanggil oleh program buatanmu. Sebuah fungsi mirip seperti program mini dalam sebuah program. Fungsi membuatmu dapat menjalankan sebuah kode berulang kali tanpa harus melakukan copy-paste kode tersebut dalam kode sumber. Sebaliknya, kamu dapat menaruh kode tersebut dalam sebuah fungsi dan memanggil fungsi tersebut berkali-kali. Ini memberikan keuntungan ketika terjadi kesalahan pada kode sebuah fungsi. Kamu hanya perlu mengubah kode fungsi tersebut.
 
 Game yang akan kamu buat pada bab ini bernama "Dunia Naga". Pemain akan memilih diantara dua gua dimana dapat berisi harta karun atau kematian bagi pemain.
 
@@ -29,7 +30,6 @@ Dalam game ini pemain berada dalam sebuah dunia penuh dengan naga. Naga-naga hid
 
 Bukalah sebuah jendela file editor baru dengan mengeklik File - New Window. Pada jendela yang kosong, ketikkan kode sumber dan simpan sebagai dragon.py. Kemudian jalankan programnya dengan menekan F5.
 
-Sample Run of Dragon Realm
 Contoh Penjalanan Dunia Naga
 
 You are in a land full of dragons. In front of you,
@@ -101,7 +101,6 @@ dragon.py
 44.     print('Do you want to play again? (yes or no)')
 45.     playAgain = input()
 
-How the Code Works
 Bagaimana Kode Bekerja
 
 Mari lihat kode sumber dengan lebih teliti.
@@ -109,8 +108,7 @@ Mari lihat kode sumber dengan lebih teliti.
  1. import random
  2. import time
 
-This program imports two modules. The random module will provide the random.randint() function like it did in the “Guess the Number” game. You will also want time-related functions that the time module includes, so import that too.
-Program ini melakukan impor terhadap dua modul. Modul random akan menyediakan fungsi random.randint() seperti yang telah dilakukan dalam gim "Tebak Nomor". Kamu juga akan membutuhkan fungsi-fungsi yang berhubungan dengan waktu. Oleh karena itu, imporlah juga modul time.
+Program ini melakukan impor terhadap dua modul. Modul random akan menyediakan fungsi random.randint() seperti yang telah dilakukan dalam gim "Tebak Angka". Kamu juga akan membutuhkan fungsi-fungsi yang berhubungan dengan waktu. Oleh karena itu, imporlah juga modul time.
 
 Pernyataan-pernyataan def
 
@@ -165,7 +163,7 @@ def sayGoodbye():
 
 sayGoodbye()
 
-Defining the chooseCave() Function
+Mendefinisikan Fungsi chooseCave()
 
 11. def chooseCave():
 
@@ -178,13 +176,21 @@ This code needs to make sure the player typed 1 or 2, and not something else. A 
 Line 12 creates a new variable called cave and stores a blank string in it. Then a while loop begins on line 13. The condition contains a new operator you haven't seen before called and. Just like the - or * are mathematical operators, and == or != are comparison operators, the and operator is a Boolean operator.
 
 Boolean Operators
+Operator-Operator Boolean
 
-Boolean logic deals with things that are either True or False. Boolean operators compare two Boolean values and evaluate to a single Boolean value. The and Boolean operator combines two Boolean values to produce a new Boolean value.
+Logika Boolean berhubungan dengan hal-hal yang bernilai Benar (True) atau Salah (False). Operator-operator Boolean membandingkan dua nilai Boolean dan dievaluasi menjadi nilai Boolean tunggal. Operator Boolean and menggabungkan dua nilai Boolean untuk menghasil sebuah nilai Boolean baru.
+
 Think of the sentence, “Cats have whiskers and dogs have tails.” “Cats have whiskers” is true and “dogs have tails” is also true, so the entire sentence “Cats have whiskers and dogs have tails” is true.
-But the sentence, “Cats have whiskers and dogs have wings” would be false. Even though “cats have whiskers” is true, dogs do not have wings, so “dogs have wings” is false. In Boolean logic, things can only be entirely true or entirely false. Because of the word “and”, the entire sentence is only true if both parts are true. If one or both parts are false, then the entire sentence is false.
-The and and or Operators
-The and operator in Python is the same. If the Boolean values on both sides of the and keyword are True, then the expression with the and operator evaluates to True. If either of the Boolean values are False, or both of the Boolean values are False, then the expression evaluates to False.
-Try entering the following expressions with the and operator into the interactive shell:
+
+Misalkan terdapat sebuah kalimat "Kucing memiliki kumis dan anjing memiliki ekor." "Kucing memiliki kumis" adalah benar, begitu pula dengan "anjing memiliki ekor." Oleh karena itu, keseluruhan kalimat "Kucing memiliki kumis dan anjing memiliki ekor" adalah benar.
+
+Namun pada kalimat "Kucing memiliki kumis dan anjing memiliki sayap" adalah salah. Walaupun "Kucing memiliki kumis" adalah benar, anjing tidak memiliki sayap. Makanya "anjing memiliki sayap" adalah salah. Dalam logika Boolean, suatu hal hanya akan sepenuhnya bernilai benar (true) atau salah (false). Karena ada kata "and", keseluruhan kalimat hanya akan benar jika masing-masing bagiannya benar. Jika salah satu atau kedua-duanya salah, maka keseluruhan kalimat adalah salah.
+
+Operator and dan or
+
+Operator and di Python berlaku sama layaknya kata and di logika Boolean. Jika nilai Boolean di masing-masing sisi pada keyword and bernilai True, maka ekspresi dengan operator and dievaluasi menjadi True. Jika salah satu nilai Boolean bernilai False atau masing-masing nilai Boolean bernilai False, maka ekspresi dievaluasi menjadi False.
+
+Coba masukkan ekspresi-ekspresi dengan operator and berikut ke dalam shell interaktif:
 
 >>> True and True
 True
@@ -197,8 +203,9 @@ False
 >>> 10 < 20 and 'Hello' == 'Hello'
 True
 
-The or operator is similar to the and operator, except it will evaluate to True if either of the two Boolean values are True. The only time the or operator evaluates to False is if both of the Boolean values are False.
-Try entering the following into the interactive shell:
+Operator or mirip seperti operator and, kecuali dia akan dievalusi menjadi True ketika salah satu dari dua nilai Boolean bernilai True. Satu-satunya waktu operator or dievaluasi menjadi False adalah ketika masing-masing nilai Boolean bernilai False.
+
+Coba masukkan ekspresi-ekspresi berikut ke dalam shell interaktif:
 
 >>> True or True
 True
@@ -211,10 +218,11 @@ False
 >>> 10 > 20 or 20 > 10
 True
 
-The not Operator
+Operator not
 
-The not operator only works on one value, instead of combining two values. The not operator evaluates to the opposite Boolean value. The expression not True will evaluate to False and not False will evaluate to True.
-Try entering the following into the interactive shell:
+Operator not hanya bekerja pada sebuah nilai, bukan dengan menggabungkan dua nilai. Operator not akan dievaluasi menghasilkan nilai kebalikan dari suatu nilai Boolean. Ekspresi not True akan dievaluasi menjadi False, dan not False akan dievaluasi menjadi True.
+
+Coba masukkan ekspresi-ekspresi berikut ke dalam shell interaktif:
 
 >>> not True
 False
@@ -223,32 +231,32 @@ True
 >>> not 'black' == 'white'
 True
 
-Truth Tables
+Tabel Kebenaran
 
-If you ever forget how the Boolean operators work, you can look at these charts, which are called truth tables:
+Jika kamu lupa bagaimana operator-operator Boolean bekerja, kamu dapat melihat pada tabel-tabel berikut yang disebut sebagai tabel kebenaran:
 
-Table 6-1: The and operator's truth table.
-A       And B       Is  Entire statement
-True    And True    Is  True
-True    And False   Is  False
-False   And True    Is  False
-False   And False   Is  False
+Tabel 6-1: Tabel Kebenaran Operator and
+A       and B       Adalah  Keseluruhan pernyataan
+True    and True    Adalah  True
+True    and False   Adalah  False
+False   and True    Adalah  False
+False   and False   Adalah  False
 
-Table 6-2: The or operator's truth table.
-A       And B       Is  Entire statement
-True    And True    Is  True
-True    And False   Is  False
-False   And True    Is  False
-False   And False   Is  False
+Tabel 6-2: Tabel Kebenaran Operator or
+A       or B       Adalah  Keseluruhan pernyataan
+True    or True    Adalah  True
+True    or False   Adalah  True
+False   or True    Adalah  True
+False   or False   Adalah  False
 
-Table 6-3: The not operator's truth table.
-not A   is  Entire statement
-not True    is  False
-not False   is  True
+Tabel 6-3: Tabel Kebenaran Operator not
+not A       adalah  Keseluruhan pernyatan
+not True    adalah  False
+not False   adalah  True
 
-Evaluating Boolean Operators
+Mengevaluasi Operator-Operator Boolean
 
-Look at line 13 again:
+Lihat kembali baris 13:
 
 13.     while cave != '1' and cave != '2':
 
@@ -429,52 +437,59 @@ Line 35 is the first line that isn’t a def statement or inside a def-block. Th
 Line 35 and 36 are setting up a loop that the rest of the game code fits in. At the end of the game, the player can enter if they want to play again. If they do, the execution enters the while loop to run the entire game all over again. If they don’t, the while statement’s condition will be False and the execution will move on to the end of the program and terminate.
 The first time the execution comes to this while statement, line 35 will have just assigned 'yes' to the playAgain variable. That means the condition will be True.
 
-Calling the Functions in the Program
+Memanggil Fungsi-Fungsi Dalam Program
 
 38.     displayIntro()
 
-Line 38 calls the displayIntro() function. This isn’t a Python function, it is your function that you defined earlier on line 4. When this function is called, the program execution jumps to the first line in the displayIntro() function on line 5. When all the lines in the function are done, the execution jumps back to line 38 and continues moving down.
+Baris 38 memanggil fungsi displayIntro(). Ini bukanlah fungsi bawaan Python, namun merupakan fungsi yang telah kamu buat sebelumnya di baris 4. Ketika fungsi ini dipanggil, eksekusi program loncat ke baris pertama dalam fungsi displayIntro() pada baris 5. Ketika seluruh baris dalam fungsi telah selesai dieksekusi, alur eksekusi program loncat kembali ke baris 38 dan berlanjut maju ke bawah.
 
 40.     caveNumber = chooseCave()
 
-Line 40 also calls a function that you defined. Remember that the chooseCave() function lets the player type in the cave they choose to go into. When the line 17’s return cave executes, the program execution jumps back to line 40, and the chooseCave() call evaluates to the return value. This return value is stored in a new variable named caveNumber. Then the program execution moves on to line 42.
+Baris 40 juga memanggil sebuah fungsi yang telah kamu buat. Ingat bahwa fungsi chooseCave() meminta pemain untuk mengetikkan gua yang mereka ingin jelajahi. Ketika pernyataan return cave pada baris 17 dieksekusi, alur eksekusi program akan kembali loncat ke baris 40 dan pemanggilan chooseCave() mengembalikan sebuah nilai kembalian. Nilai kembalian ini kemudian disimpan dalam variabel baru bernama caveNumber. Lalu eksekusi program maju ke baris 42.
 
 42.     checkCave(caveNumber)
 
-This line calls your checkCave() function, passing the value in caveNumber as an argument. Not only does execution jump to line 20, but the value in caveNumber is copied to the parameter chosenCave inside the checkCave() function. This is the function that will display either 'Gives you his treasure!' or 'Gobbles you down in one bite!' depending on the cave the player chose to go in.
+Baris ini memanggil fungsi checkCave() buatanmu, lalu melemparkan nilai dalam variabel caveNumber sebagai argumen. Eksekusi tidak hanya loncat ke baris 20, namun nilai dalam caveNumber disalin ke parameter chosenCave dalam fungsi checkCave(). Fungsi ini yang akan menampilkan 'Gives you his treasure!' atau 'Gobbles you down in one bit!', tergantung pilihan gua yang dipilih oleh pemain.
 
-Asking the Player to Play Again
+Meminta Pemain Untuk Kembali Bermain
 
 44.     print('Do you want to play again? (yes or no)')
 45.     playAgain = input()
 
-Whether the player won or lost, they are asked if they want to play again. The variable playAgain stores the string that the player typed in. Line 45 is the last line of the while-block, so the program jumps back to line 36 to check the condition: playAgain == 'yes' or playAgain == 'y'
-If the player typed in the string 'yes' or 'y', then the execution would enter the loop again at line 38.
-If the player typed in 'no' or 'n' or something silly like 'Abraham Lincoln', then the condition would be False. The program execution continues on to the line after the while-block. But since there are no more lines after the while-block, the program terminates.
-One thing to note: the string 'YES' is not equal to the string 'yes'. If the player typed in the string 'YES', then the while statement’s condition would evaluate to False and the program would still terminate. Later programs in this book will show you how to avoid this problem.
-You've just completed your second game! In Dragon Realm, you used a lot of what you learned in the “Guess the Number” game and picked up a few new tricks. If you didn't understand some of the concepts in this program, then read the summary at the end of this chapter. Or go over each line of the source code again, and try changing the source code and see how the program changes.
-In the next chapter you won't create a game, but instead learn how to use a feature of IDLE called the debugger.
+Walaupun pemain kalah atau kalah, pemain akan diminta apakah mereka ingin bermain kembali. Variabel playAgain menyimpan string yang diketikkan oleh pemain. Baris 46 adalah baris terakhir pada while-block. Oleh karena itu, program akan kembali loncat ke baris 36 untuk memeriksa kondisi: playAgain == 'yes' or playAgain == 'y'
 
-Designing the Program
+Jika pemain mengetikkan string 'yes' atau 'y', maka eksekusi akan berulang kembali ke baris 38.
+
+Jika pemain mengetikkan 'no' atau 'n' atau sesuatu yang tidak relevan seperti 'Abraham Lincoln', maka evaluasi kondisi tetap menghasilkan False. Eksekusi program akan berlanjut ke baris setelah while-block. Namun karena tidak ada baris setelah while-block, maka program akan berhenti.
+
+Satu hal yang perlu dicatat: string 'YES' tidak sama dengan string 'yes'. Jika pemain mengetikkan string 'YES', maka kondisi dalam pernyataan while akan dievaluasi menjadi False dan program akan tetap berhenti. Program-program dalam bab-bab selanjutnya akan menunjukkan cara bagaimana menghindari masalah ini.
+
+Kamu baru saja menyelesaikan game kedua kamu! Pada Dunia Naga, kamu telah menggunakan hal-hal yang telah kamu pelajari pada game "Tebak Angka" dan belajar trik-trik baru. Jika kamu belum mengerti beberapa konsep dalam program ini, maka bacalah ringkasan pada akhir bab ini. Atau kamu dapat kembali melihat setiap baris pada kode sumber dan mencoba mengubahnya dan lihat bagaimana program berubah.
+
+Pada bab berikutnya kamu tidak akan membuat sebuah gim, tapi kamu akan belajar bagaimana menggunakan sebuah fitur IDLE yang disebut sebagai debugger.
+
 Merancang Program
-
-Dragon Realm is a simple game. The other games in this book will be a bit more complicated. It sometimes helps to write down everything you want your game or program to do before you start writing code. This is called “designing the program.”
 
 Dunia Naga merupakan game sederhana. Game-game lainnya dalam buku ini akan sedikit lebih rumit. Seringkali menuliskan apa saja yang kamu inginkan dari game atau program akan sangat membantu sebelum kamu mulai menulis kode. Kegiatan ini disebut "merancang program."
 
-For example, it may help to draw a flow chart. A flow chart is a picture that shows every possible action that can happen in the game, and which actions lead to which other actions. Figure 6-2 is a flow chart for Dragon Realm.
+Sebagai contoh, kamu dapat menggambar sebuah diagram alur. Diagram alur adalah sebuah gambar yang menunjukkan semua kemungkinan aksi yang dapat terjadi dalam permainan dan aksi-aksi tersebut akan mengarah kepada aksi-aksi yang lain. Gambar 6-2 merupakan diagram alur untuk Dunia Naga.
 
-Sebagai contoh, kamu dapat menggambar sebuah diagram alur. Diagram alur adalah sebuah gambar yang menunjukkan semua kemungkinan aksi yang dapat terjadi dalam permainan dan aksi-aksi tersebut akan mengarah kepada aksi-aksi yang lain. Figure 6-2 merupakan diagram alur untuk Dunia Naga.
+Gambar 6-2: Diagram alur permainan Dunia Naga.
 
-Figure 6-2: Diagram alur permainan Dunia Naga.
+Untuk melihat apa yang terjadi dalam permainan, coba taruh jari kamu pada kotak "Mulai", lalu ikuti panah dari sana ke kotak lain. Jari kamu berfungsi layaknya eksekusi program. Program akan selesai ketika jari kamu mendarat pada kotak "Selesai".
 
-To see what happens in the game, put your finger on the “Start” box. Then follow one arrow from the box to another box. Your finger is like the program execution. The program terminates when your finger lands on the “End” box.
 When you get to the “Check for friendly or hungry dragon” box, you can go to the “Player wins” box or the “Player loses” box. This branching point shows how the program can do different things. Either way, both paths will end up at the “Ask to play again” box.
+
+Ketika kamu mencapai kotak "Cek apakah ada naga baik atau lapar", kamu dapat pergi ke kotak "Pemain menang" atau "Pemain kalah". Titik percabangan ini menunjukkan bagaimana program dapat melakukan hal-hal yang berbeda. [Either way?], masing-masing jalur akan berakhir pada kotak "Apakah ingin bermain kembali".
 
 Ringkasan
 
-In the “Dragon Realm” game, you created your own functions. Functions are a mini-program within your program. The code inside the function runs when the function is called. By breaking up your code into functions, you can organize your code into smaller and easier to understand sections.
-Arguments are values passed to the function’s code when the function is called. The function call itself evaluates to a value called the return value.
-You also learned about variable scopes. Variables created inside of a function exist in the local scope, and variables created outside of all functions exist in the global scope. Code in the global scope cannot make use of local variables. If a local variable has the same name as a variable in the global scope, Python considers it a separate variable and assigning new values to the local variable won’t change the value in the global variable.
-Variable scopes might seem complicated, but they are useful for organizing functions as separate pieces of code from the rest of the program. Because each function has its own local scope, you can be sure that the code in one function won’t cause bugs in other functions.
-Almost every program uses functions because they are so useful. By understanding how functions work, you can save ourselves a lot of typing and make bugs easier to fix.
+Pada permainan "Dunia Naga", kamu telah membuat fungsi buatanmu sendiri. Fungsi merupakan sebuah program mini di dalam program. Kode di dalam fungsi dijalankan ketika fungsi dipanggil. Dengan memecah kode kamu menjadi kumpulan fungsi, kamu dapat menyusun kode buatanmu menjadi bagian-bagian kecil yang lebih mudah dipahami.
+
+Argumen merupakan nilai-nilai yang dimasukkan ke dalam fungsi ketika fungsi tersebut dipanggil. Pemanggilan fungsi dievaluasi hingga menghasilkan sebuah nilai yang disebut sebagai nilai kembalian.
+
+Kamu juga telah memelajari mengenai cakupan variabel. Variabel-variabel yang dibuat dalam suatu fungsi hidup dalam cakupan lokal. Sedangkan variabel-variabel yang dibuat di luar semua fungsi hidup dalam cakupan global. Kode dalam cakupan global tidak dapat menggunakan variabel-variabel dalam cakupan lokal. Ketika ada variabel lokal yang memiliki nama sama dengan variabel dalam cakupan global, Python menganggapnya sebagai variabel yang berbeda. Oleh karena itu, memasukkan nilai baru ke dalam variabel lokal tidak akan mengubah nilai dalam variabel global.
+
+Cakupan variabel mungkin terlihat rumit, namun mereka sangat bermanfaat untuk mengorganisir fungsi-fungsi sebagai bagian kode-kode terpisah dari keseluruhan program. Kamu dapat yakin bahwa kode dalam suatu fungsi tidak akan membuat bug di fungsi lain karena tiap fungsi memiliki cakupan lokal masing-masing.
+
+Hampir semua program melakukan pemanggilan fungsi karena sangat berguna. Dengan memahami cara kerja fungsi, kamu dapat mengurangi banyak ketikan dan membuat bug lebih mudah dibetulkan.

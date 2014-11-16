@@ -1,6 +1,6 @@
 Fig 6-1:
 keyword def
-tanda kurung penutup
+tanda kurung buka-tutup
 nama fungsi
 titik dua
 
