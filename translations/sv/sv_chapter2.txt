@@ -1,1 +1,212 @@
+<<<<<<< HEAD
 Jakob Malm started working on this chapter.
+=======
+  Kapitel 2
+
+  DEN INTERAKTIVA KOMMANDOTOLKEN
+
+Ämnen som behandlas i detta kapitel:
+
+• Heltal och flyttal
+• Uttryck
+• Värden
+• Operatorer
+• Utvärdera uttryck
+• Lagra värden i variabler
+• Skriva över variabler
+
+Innan du kan skapa spel behöver du lära dig några grundläggande koncept inom programmering. I det här kapitlet kommer du inte att skapa spel, men att lära sig dessa koncept är det första steget till att programmera dataspel. Börja med att lära dig hur du använder Pythons interaktiva kommandotolk.
+
+Lite enkel matte
+
+Öppna IDLE med hjälp av stegen i Kapitel 1. Få sedan Python att lösa lite enkel matte. Kommandotolken kan fungera precis som en miniräknare. Skriv 2 + 2 i kommandotolken och tryck på ENTER-tangenten på ditt tangentbord. (På en del tangentbord är detta RETUR-tangenten.) Figur 2-1 visar hur IDLE svarar med talet 4.
+
+
+
+Figur 2-1: Skriv 2+2 i kommandotolken.
+
+Det här matteproblemet är en enkel programmeringsinstruktion. Plustecknet (+) säger till datorn att addera talen 2 och 2. Tabell 2-1 listar de övriga matematiska symbolerna som finns tillgängliga i Python. Minustecknet (-) subtraherar tal. Asterisk (*) multiplicerar tal. Snedstreck (/) dividerar tal.
+
+Tabell 2-1: De olika matematiska operatorerna i Python.
+Operator      Operation
++             addition
+-             subtraktion
+*             multiplikation
+/             division
+
+
+
+När +, -, * och / används på detta sätt kallas de operatorer. Operatorer säger till Python vilken matematisk operation som ska användas på talen på vardera sida om dem.
+
+Heltal och flyttal
+
+Inom programmering är heltal (eller intar) hela tal, såsom 4, 99 och 0. Flyttal (eller floatar) är bråk eller tal med decimalpunkt, såsom 3.5, 42.1 och 5.0. I Python är talet 5 ett heltal, men 5.0 är ett flyttal.
+
+Uttryck
+
+Dessa matteproblem är exempel på uttryck. Datorer kan lösa miljontals sådana problem på bara några sekunder. Uttryck utgörs av värden (talen) sammankopplade med operatorer (de matematiska tecknen). Låt oss lära oss precis vad värden och operatorer är. Försök att skriva in några av de här matteproblemen i kommandotolken. Tryck på ENTER-tangenten efter vart och ett.
+
+2+2+2+2+2
+8*6
+10-5+6
+2  +       2
+
+Efter att du skrivit in instruktionerna ovan bör kommandotolken se ut som i Figur 2-2.
+
+
+
+Figur 2-2: Hur IDLE-fönstret bör se ut efter att ha skrivit in instruktioner.
+
+
+
+Figur 2-3: Ett uttryck utgörs av värden och operatorer.
+
+Ett uttryck utgörs av värden (såsom heltalen 8 och 6) ihopkopplade med en operator (såsom multiplikationstecknet *). Ett enskilt värde för sig självt är också ett uttryck. Notera i exemplet 2  +       2 att man kan ha vilket antal mellanslag som helst mellan värdena och operatorerna. Men använd inga mellanslag i början av instruktionen när du skriver dem i kommandotolken.
+
+I nästa kapitel kommer du att lära dig att arbeta med text i uttryck. Python är inte begränsat till bara tal. Det är mer än en räknare!
+
+Utvärdera uttryck
+
+När en dator löser uttrycker 10 + 5 och får värdet 15 har den utvärderat uttrycket. Att utvärdera ett uttryck reducerar det till ett enskilt värde, precis som att lösa ett matematiskt problem reducerar problemet till ett enskilt tal: svaret.
+
+Uttrycken 10 + 5 och 10 + 3 + 2 har samma värde. De utvärderas båda till 15.
+
+Uttryck kan ha vilken storlek som helst, men de kommer alltid utvärderas till ett enskilt värde. Enskilda värden är faktiskt också uttryck: Uttrycket 15 utvärderas till värdet 15. Uttrycket 8 * 3 / 2 + 2 + 7 - 9 utvärderas till exempel till 12.0 genom följande steg:
+
+8 * 3 / 2 + 2 + 7 – 9
+                  ▼
+   24 / 2 + 2 + 7 – 9
+                  ▼
+     12.0 + 2 + 7 – 9
+                  ▼
+         14.0 + 7 – 9
+                  ▼
+             21.0 – 9
+                  ▼
+                 12.0
+
+Man ser inte alla dessa steg i kommandotolken. Tolken utför dem och visar bara resultatet:
+
+>>> 8 * 3 / 2 + 2 + 7 - 9
+12.0
+
+Notera att divisionsoperatorn / utvärderar till ett flyttal, som i 24 / 2  som utvärderas till 12.0. Dessutom utvärderas operationer med flyttal också till flyttal, som i 12.0 + 2 som utvärderas till 14.0.
+
+Syntaxfel
+
+Om du skriver in 5 + i kommandotolken får du ett felmeddelande.
+
+>>> 5 +
+SyntaxError: invalid syntax
+
+Detta fel uppkom eftersom 5 + inte är ett uttryck. Uttryck har värden ihopkopplade med operatorer. Men +-operatorn förväntar sig ett värde efter +-tecknet. Ett felmeddelande visas när detta värde saknas.
+
+SyntaxError betyder att Python inte förstår intruktionen eftersom du skrev den felaktigt. Datorprogrammering är mer än att bara berätta för datorn vad den ska göra, man måste också veta precis hur det ska sägas.
+
+Men var inte rädd för att göra misstag. Fel skadar inte din dator. Skriv bara om instruktionen på rätt sätt i kommandotolken på nästa inmatningsställe >>>.
+
+Lagra värden i variabler
+
+Du kommer ofta vilja spara värdet som ett uttryck utvärderar till så att du kan använda det senare i programmet. Du kan lagra värden i variabler. Tänk på variabler som en låda som kan innehålla värden.
+
+En tilldelningsinstruktion lagrar ett värde (eller värdet som ett uttryck utvärderas till) inuti en variabel. Hitta på ett namn på variabeln, följt av =-tecknet (kallat tilldelningsoperatorn) och sedan värdet som ska lagras i variabeln. Skriv exempelvis skinka = 15 i kommandotolken:
+
+>>> skinka = 15
+>>>
+
+
+
+Figure 2-4: Variabler är som lådor som kan innehålla värden.
+
+Variabeln skinkas låda kommer att innehålla värdet 15, som i Figur 2-4. Namnet "skinka" är etiketten på lådan (så att Python kan skilja på olika variabler) och värdet står på en liten lapp inuti lådan.
+
+När du trycker på ENTER kommer du inte se något svar. Med Python kan du anta att instruktionen utfördes med framgång om inget felmeddelande visar sig. Inmatningsstället >>> kommer att visas så att du kan skriva in nästa instruktion.
+
+Till skillnad från uttryck är programsatser instruktioner som inte utvärderas till något värde, vilket är orsaken till att inget värde visades på nästa rad i kommandotolken. Det kan kanske vara förvirrande att veta vilka instruktioner som är uttryck och vilka som är programsatser. Kom bara ihåg att uttryck utvärderas till ett enskilt värde. Alla andra slags instruktioner är programsatser.
+
+Variabler lagrar värden, inte uttryck. Betänk exempelvis uttrycken i satserna skinka = 10 + 5 och skinka = 10 + 7 - 2. De utvärderas båda till 15. Slutresultatet är detsamma: båda satserna lagrar värdet 15 i variabeln skinka.
+
+Första gången en variabel används i en tilldelningssats skapar Python variabeln. För att kolla vilket värde som finns i en variabel skriver du variabelns namn i kommandotolken:
+
+>>> skinka = 15
+>>> skinka
+15
+
+Uttrycket skinka utvärderas till värdet inuti skinka-variabeln: 15. Du kan använda variabler i uttryck. Testa att skriva in följande i kommandotolken:
+
+>>> skinka = 15
+>>> skinka + 5
+20
+
+Du har satt variabeln skinkas värde till 15, så att skriva skinka + 5 är som att skriva uttrycket 15 + 5.
+
+Du kan inte använda en variabel innan en tilldelningssats skapar den. Python kommer ge dig ett fel eftersom det inte finns någon sådan variabel ännu. Felstavning av variabelns namn ger också detta fel:
+
+>>> skinka = 15
+>>> ksinka
+
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    ksinka
+NameError: name 'ksinka' is not defined
+
+Felet visades eftersom det finns en variabel skinka men inte ksinka.
+
+Du kan ändra värdet som lagras i en variabel genom att skriva ytterligare en tilldelningssats. Testa exempelvis följande:
+
+>>> skinka = 15
+>>> skinka + 5
+20
+>>> skinka = 3
+>>> skinka + 5
+8
+
+Första gången du skriver skinka + 5 utvärderas uttrycket till 20 eftersom du lagrade 15 inuti skinka. Men när du skriver skinka = 3 ersätts värdet 15, eller skrivs över, med värdet 3. När du nu skriver skinka + 5 utvärderas uttrycket till 8 eftersom värdet av skinka nu är 3.
+
+Du kan till och med använda värdet i variabeln skinka för att tilldela skinka ett nytt värde:
+
+>>> skinka = 15
+>>> skinka = skinka + 5
+20
+
+Tilldelningssatsen skinka = skinka + 5 är som att säga “variabeln skinkas nya värde ska vara skinkas nuvarande värde plus fem”. Fortsätt att öka värdet i skinka med 5 flera gånger:
+
+>>> skinka = 15
+>>> skinka = skinka + 5
+>>> skinka = skinka + 5
+>>> skinka = skinka + 5
+>>> skinka
+30
+
+Använda fler än en variabel
+
+Skapa så många variabler du behöver i dina program. Låt oss exempelvis tilldela olika värden till två variabler som vi kallar ägg och brus, så här:
+
+>>> brus = 10
+>>> ägg = 15
+
+Nu innehåller variabeln brus 10 och ägg innehåller 15.
+
+
+
+Figur 2-5: Variablerna “brus” och “ägg” har värden lagrade i sig.
+
+Testa att skriva skinka = brus + ägg i kommandotolken och kontrollera sedan skinkas nya värde:
+
+>>> brus = 10
+>>> ägg = 15
+>>> skinka = brus + ägg
+>>> skinka
+25
+
+Värdet i skinka är nu 25. När du adderade brus och ägg adderar du deras värden, vilka är 10 respektive 15.
+
+Summering
+
+I detta kapitel har du lärt dig grunderna i att skriva Python-instruktioner. Du måste säga precis vad Python ska göra, på ett strikt sätt. Datorer har inte sunt förnuft och förstår bara specifika instruktioner.
+
+Uttryck är värden (såsom 2 eller 5) kombinerade med operatorer (såsom + eller -). Python kan utvärdera uttryck (det vill säga reducera uttrycket till en enskilt värde). Du kan lagra värden inuti variabler så att ditt program kan komma ihåg dem och använda dem senare.
+
+Det finns många andra slags operatorer och värden i Python. I nästa kapitel kommer du att gå igenom några ytterligare grundläggande koncept och skriva ditt första program!
+
+>>>>>>> e302051... Updated Swedish translation of Chapter 2.
