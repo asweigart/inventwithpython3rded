@@ -111,22 +111,22 @@ Otwieranie programu jaki zapisałeś
 
 By wczytać zapisany program kliknij File ► Open (Plik ► Otwórz). Wybierz hello.py w oknie jakie się pojawu i kliknij przycisk Open (Otwórz). Zapisany wcześniej program hello.py pojawi się w oknie edytora.
 
-Now it’s time to run the program. Click File ► Run ► Run Module or just press F5 from the file editor window. Your program will run in the interactive shell window.
+Nadszedł czas uruchomienia programu. Kliknij File ► Run ► Run Module (Plik ► Uruchom ► Uruchom modłuł), lub wciśnij F5 będąc w oknie edytora. Twój program zostanie uruchomiony w oknie interaktywnej powłoki.
 
-Enter your name when the program asks for it. This will look like Rysunek 3-5:
+Podaj swoje imię, gdy program o nie spyta. Będzie to wyglądało jak na rysunku 3-5:
 
 
 
-Rysunek 3-5: The interactive shell after running hello.py.
+Rysunek 3-5: Interaktywna powłoka po uruchomieniu hello.py.
 
-When you type your name and push ENTER, the program will greet you by name. Congratulations! You’ve written your first program and are now a computer programmer. Press F5 again and enter another name.
+Kiedy wpiszesz swoje imię i naciśniesz ENTER origram cię pozdrowi używając twojego imienia. Gratulacje! Właśnie napisałeś swój pierwszy program i teraz jesteś programistą. Ponownie naciśnij F5 i podaj inne imię.
 
-If you got an error, compare your code to this book’s code with the online diff tool at http://invpy.com/diff/hello.
+Jeśli uzyskasz błąd, to porównaj swój kod z kodem z książki za pomocą narzędzia do porównywania ze strony http://invpy.com/diff/hello.
 
-If you get an error that looks like this:
+Jeśli błąd wygląda jak:
 
-witaj świecie!
-What is your name?
+Witaj świecie!
+Jak masz na imię?
 Albert
 Traceback (most recent call last):
   File "C:/Python26/test1.py", line 4, in <module>
@@ -134,38 +134,38 @@ Traceback (most recent call last):
   File "<string>", line 1, in <module>
 NameError: name 'Albert' is not defined
 
-...then this means you are using Python 2, instead of Python 3. Install a version of Python 3 from http://python.org. Then, re-run the program with Python 3.
+...to oznacza, że używasz Pythona 2 zamiast Pythona 3. Zainstaluj Pythona 3 ze strony http://python.org. Potem urucho program ponownie, tym razem za pomocą Pythona 3.
 
-How the “witaj World” Program Works
+Jak działa program “Witaj świecie”
 
-Each line of code is an instruction interpreted by Python. These instructions make up the program. A computer program’s instructions are like the steps in a cake recipe. Each instruction executes in order, beginning from the top of the program and working down the list of instructions.
+Każda linia kodu jest instrukcją interpretowaną przez Pythona. Te instrukcje tworzą program. Instrukcje w programie sa jak kolejne kroki w przepisie na ciasto. Każda instrukcja jest wykonywana po kolei zaczynając og góry programu.
 
-What step Python is in the program’s recipe is called the flow of execution, or just the execution for short. When the program starts, the execution is at the first line. Then it goes down to the next instruction.
+Krokowe wykonywanie programu jest nazywane przepływem wykonania, lub po prostu wykonaniem. Kiedy program rozpoczyna pracę, to wykonuje pierwszą linię. Potem idzie w dół do następnej instrukcji.
 
-Let’s look at each line of code to see what it’s doing. We’ll begin with line number 1.
+Przypatrzmy się każdej linii kodu i omówmy co one robą. Zaczniemy od linii o numerze 1.
 
-Comments
+Komentarze
 
-1. # This program says hello and asks for my name.
+1. # Ten program wypisuje napisy i pyta o imię
 
-This line is a comment. Any text following a # sign (called the pound sign) is a comment. Comments are not for Python, but for you, the programmer. Python ignores comments. Comments are notes about what the code does for you or any other programmer who is examining the source code. To make it easier to read the source code, this book prints comments in a light gray-colored text.
+Ta linia to komentarz. Dowolny tekst po znaku # (znanym także jako hasz, lub płotek) jest komentarzem. Komentarze nie są dla Pythona, ale dla ciebie, programisty. Python ignoruje komentarze. Komentarze są notatkami mówiącymi co robi kod i są skierowane dla ciebie, lub dla innych programistów analizujących kod źródłowy. Aby w tej książce było łatwiej czytać kod, komentarze są w jasno szarym kolorze.
 
-Programmers usually put a comment at the top of their code to give their program a title. The IDLE program displays comments in red text to help them stand out.
+programiści zwykle wstawiają komentarze na górze swojego programu, by nadać mu tytuł. Program IDLEwyświetla komentarze kolorem czerwonym by je wyróżnić.
 
-Functions
+Funkcje
 
-A function is kind of like a mini-program inside your program. It contains instructions to execute when the function is called. Python provides some built-in functions already. Two functions, print() and input(), are described next. The great thing about functions is that you only need to know what the function does, but not how it does it.
+Funkcja jest rodzajem mini-programu w twoim programie. Funkcja zawiera instrukcje do wywołania gdy funkcja zostanie wywołana. Python dostarcza wiele wbudowanych funkcji. Dwie z nich: print() i input(), zaraz omówimy. Świetną rzeczą w funkcjach jest to, że potrzebujesz tylko wiedzę na temat tego, co funkcja robi, a nie jak to robi.
 
-A function call is a piece of code that tells Python to run the code inside a function. For example, your program calls the print() function to display a string on the screen. The print() function takes the string you type in between the parentheses as input and displays the text on the screen. In order to display Hello świecie! on the screen, type the print function name, followed by an opening parenthesis, followed by the 'Hello świecie!' string and a closing parenthesis.
+Wywołanie funkcji to fragment kodu który mówi Pythonowi by wykonac kod znajdujący się w funkcji. Przykładowo program wywołuje funkcję print() by wyświetlić napis na ekranie. Funkcja print() pobiera napis jaki wpisałeś między nawiasami jako wejście i wypisuje go na ekranie. Aby wyposać Witaj świecie! na ekranie wspisz nazwę funkcji: print, potem otwórz nawias, wpisz napis 'Witah świecie!' i zamknij nawias.
 
-The print() function
+Funkcja print()
 
-2. print('Hello świecie!')
-3. print('What is your name?')
+2. print('Witaj świecie!')
+3. print('Jak masz na imię?')
 
-Lines 2 and 3 are calls to the print() function. A value between the parentheses in a function call is an argument. The argument on line 2’s print() function call is 'Hello świecie!'. The argument on line 3’s print() function call is 'What is your name?'. This is called passing the argument to the print() function.
+Linie 2 i 3 są wywołaniami funkcji print(). Wartość pomiędzy nawiasami to argument. Argumentem funkcji print() w linii 2 jest 'Witaj świecie!'. Argumentem funkcji pront() w linii 3 jest 'Jak masz na imię?'. Nazywane to jest przekazywaniem argumentów do funkcji print().
 
-In this book function names have parentheses at the end. This makes it clear that the book means a function named print(), not a variable named print. This is like the quotes around the number '42' tell Python that you are talking about the string '42' and not the integer 42.
+W tej książce nazwy funkcji mają nawiasy na końcu. Dzięki temu jasne jest, że mamy do czynienia z funkcją o nazwie print(), a nie ze zmienną print. To troche jak cudzysłowia otaczające numer '42', które mówią Pythonowi, że ma do czynienia z napisem '42', a nie z liczbą całkowitą 43.
 
 The input() function
 
