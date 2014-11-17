@@ -1,0 +1,240 @@
+  Bab 9 ½
+  MENAMBAH FITUR GAME Hangman
+
+Cakupan Topik dalam Bab ini:
+• Tipe data dictionary
+• Pasangan kunci-nilai
+• Method keys() dan values() pada dictionary
+• Pengisian Beberapa Variabel Sekaligus
+
+Membuat Perubahan Baru pada Game Hangman
+
+Program Hangman tidak hanya lebih besar daripada Alam Naga, tapi juga lebih canggih. Diagram alir atau sketsa sangat membantu untuk mengingat bagaimana kerja program itu.
+Sekarang, kamu sudah membuat dasar game Hangman, mari lihat beberapa cara untuk menambah fitur game..
+Setelah kamu bermain game Hangman beberapa kali, kamu mulai berpikir enam tebakan tidak cukup untuk menebak kata rahasia. Kamu dapat menambah papan game, sehingga pemain bisa lebih banyak menebak dengan cara menambah string pada daftar HANGMANPICS.
+Simpan game hangman.py sebagai hangman2.py, lalu tambah kode berikut.
+
+ 58. ==========''', '''
+ 59.   +----+
+ 60.   |    |
+ 61.  [O    |
+ 62.  /|\   |
+ 63.  / \   |
+ 64.        |
+ 65. ==========''', '''
+ 66.   +----+
+ 67.   |    |
+ 68.  [O]   |
+ 69.  /|\   |
+ 70.  / \   |
+ 71.        |
+ 72. ==========''']
+
+Ada dua multiline string baru dalam list HANGMANPICS, satu dengan telinga kiri digambar pada orang, satu lagi dengan kedua teliga digambar. Karena program akan memberitahu pemain bahwa mereka telah kalah setelah menebak sebanyak banyaknya string dalam HANGMANPICS dikurangi satu, hanya ini yang perlu diubah.
+
+Kamu juga dapat mengubah daftar kata-kata dengan cara merubah kata-kata pada baris 59. Disamping binatang, kamu bisa mendaftarkan warna:
+
+59. words = 'merah oranye kuning hijau biru violet putih hitam coklat'.split()
+
+Atau bentuk:
+
+59. words = 'persegi segitiga persegipanjang lingkaran elips jajargenjang segilima segienam segitujuh segidelapan.'split()
+
+Atau buah-buahan:
+
+59. words = 'apel jeruk lemon jeruknipis pir semangka anggur jerukbali ceri pisang melon mangga strowberi tomat'.split()
+
+Dengan sedikit modifikasi, kamu dapat merubah kode, sehingga game Hangman menggunakan kata-kata itu sebagai himpunan terpisah.
+
+Tipe Data Seperti Kamus: dictionary
+
+Untuk melakukannya, kamu butuh tahu tipe data baru yang oleh Python disebut dictionary yang dapat dianaloginya seperti kamus. Sebuah dictionary dapat menyimpan beberapa nilai. Tidak seperti list, item dalam dictionary dapat diakses dengan indeks dengan tipe data apapun. Dalam dictionary, indeks-indeks itu disebut kunci.
+Tipe data dictionary menggunakan tanda kurung kurawal { dan }, bukan kurung kotak [ dan ]. Coba masukkan kode berikut pada shell interaktif:
+
+>>> stuff = {'halo':'Halo bro, apa kabar?', 4:'nasi goreng', 'spam':9999 }
+
+Nilai-nilai dalam kurung kurawal yang dipisahkan oleh koma disebut pasangan kunci-nilai. Kunci berada di kiri, sedangkan nilainya ada di kanan tanda titik dua. Kamu dapat mengakses nilai suatu item dengan menggunakan kuncinya. Coba masukkan stuff['halo'], stuff[4], stuff['spam'] dalam shell interaktif:
+
+>>> stuff = {'halo':'Halo bro, apa kabar?', 4:'nasi goreng', 'spam':9999 }
+>>> stuff['halo']
+'Halo bro, apa kabar?'
+>>> stuff[4]
+'nasi goreng'
+>>> stuff['spam']
+9999
+
+Dibandinkan list, kamu tidak hanya bisa memasukkan bilangan bulat dalam kurung kotak, tapi string juga dapat dijadikan kunci. Proses ini akan terevaluasi menjadi nilai untuk kunci itu.
+
+Mendapatkan Ukuran dictionary dengan len()
+
+Kamu bisa mendapatkan banyaknya pasangan kunci-nilai dalam dictionary dengan menggunakan fungsi len(). Coba masukkan kode berikut dalam shell interaktif:
+
+>>> stuff = {'halo':'Halo bro, apa kabar?', 4:'nasi goreng', 'spam':9999 }
+>>> len(stuff)
+3
+
+Perbedaan Antara list dan dictionary
+
+Tipe data dictionary dapat mempunyai kunci berupa tipe data apapun, tidak hanya string. Tapi ingat, karena 0 dan '0' adalah nilai yang berbeda, nilai-nilai itu bisa jadi kunci yang berbeda. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> spam = {'0': 'suatu string', 0:'suatu bilangan bulat'}
+>>> spam[0]
+'suatu bilangan bulat'
+>>> spam['0']
+'suatu string'
+
+Kunci-kunci pada dictionary juga dapat dienumerasi dengan menggunakan putaran for. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> favorites = {'buah':'apel', 'binatang':'kucing', 'angka':42}
+>>> for i in favorites:
+...     print(i)
+buah
+angka
+binatang
+>>> for i in favorites:
+...     print(favorites[i])
+apel
+42
+kucing
+
+Tipe data dictionary berbeda dengan list dalam hal urutan nilai-nilainya, yaitu tidak berurutan. Pada list bernama listStuff, item pertama adalah listStuff[0]. Tidak ada item pertama dalam dictionary, karena dictionary tidak punya suatu urutan. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> favorites1 = {'buah':'apel', 'angka':42, 'binatang':'kucing'}
+>>> favorites2 = {'binatang':'kucing', 'angka':42, 'buah':'apel'}
+>>> favorites1 == favorites2
+True
+
+Ekspresi favorites1 == favorites2 terevaluasi menjadi True karena dictionary tidak berurutan. Dua dictionary dikatakan sama jika keduanya punya pasangan kunci-nilai yang sama, tidak peduli urutan saat memasukkannya. Sementara, karena isi list berurutan, dua list dengan nilai-nilai yang sama, tapi urutannya berbeda dikatakan berbeda pula. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> listFavs1 = ['apel', 'kucing', 42]
+>>> listFavs2 = ['kucing', 42, 'apel']
+>>> listFavs1 == listFavs2
+False
+
+Tipe data dictionary punya dua method berguna, yaitu keys() dan values() yang secara berturut-turut akan mengembalikan tipe data yang disebut dict_keys dan dict_values. Mirip seperti objek range, nilai dalam tipe data itu dapat diubah menjadi list dengan fungsi list(). Coba masukkan kode berikut dalam shell interaktif:
+
+>>> favorites = {'buah':'apel', 'angka':42, 'binatang':'kucing'}
+>>> list(favorites.keys())
+['buah', 'angka', 'binatang']
+>>> list(favorites.values())
+['anggur', 42, 'kucing']
+
+Himpunan Kata-kata untuk Hangman
+
+Mari ubah kode game Hangman untuk mendukung kata-kata dalam beberapa himpunan. Pertama, ubah nilai dalam words menjadi dictionary yang kuncinya bertipe string dan nilainya adalah list string. Method string split() akan mengubah string menjadi list string yang masing-masing berisi satu kata.
+
+ 59. words = {'Colors': 'merah oranye kuning hijau biru violet putih hitam coklat'.split(),
+ 60. 'Shapes':'persegi segitiga persegipanjang lingkaran elips jajargenjang segilima segienam segitujuh segidelapan.'split(),
+ 61. 'Fruits':'apel jeruk lemon jeruknipis pir semangka anggur jerukbali ceri pisang melon mangga strowberi tomat'.split(),
+ 62. 'Animals':'semut babon musang kelelawar beruang unta kucing kerang kobra gagak anjing rusa bebek keledai elang musang rubah katak kambing angsa elang singa kadal monyet keledai tikus hiu kadal panda beo merpati piton kelinci tikus gagak badak salmon domba sigung kukang ular bangau angsa harimau kodok kalkun penyu musang paus serigala zebra'.split()}
+
+Kode ini ditulis dalam beberapa baris. Meskipun demikian Python akan mengangapnya sebagai satu "baris kode." (karena instruksi akan berakhir pada akhir kurung kurawal }).
+
+Fungsi random.choice()
+
+Fungsi choice() dalam module random mengambil argument list dan mengembalikan nilai acak dalam list itu, sama seperti fungsi getRandomWord(). Kamu akan menggunakan fungsi random.choice() dalam versi baru fungsi getRandomWord().
+Untuk melihat bagaimana kerja fungsi random.choice(), coba masukkan kode berikut dalam shell interaktif:
+
+>>> import random
+>>> random.choice(['kucing', 'anjing', 'tikus'])
+'tikus'
+>>> random.choice(['kucing', 'anjing', 'tikus'])
+'kucing'
+>>> random.choice([2, 22, 222, 223])
+2
+>>> random.choice([2, 22, 222, 223])
+222
+
+Ubah fungsi getRandomWord(), sehingga parameternya adalah dictionary dengan isi list string, bukan list string. Sebelum diubah kode tampak seperti:
+
+def getRandomWord(wordList):
+    # Fungsi ini mengembalikan satu string acak dari daftar string dalam list yang dilemparkan.
+    wordIndex = random.randint(0, len(wordList) - 1)
+    return wordList[wordIndex]
+
+Ubah kode di atas, sehingga menjadi seperti:
+
+def getRandomWord(wordDict):
+    # Fungsi ini mengembalikan satu string acak dari dictionary berisi list string yang dilemparkan dan kunci string itu.
+    # Pertama, pilih acak kunci dalam dictionary
+    wordKey = random.choice(list(wordDict.keys()))    
+    # Kedua, pilih acak kata pada nilai list dalam kunci
+    wordIndex = random.randint(0, len(wordDict[wordKey]) - 1)    
+    return [wordDict[wordKey][wordIndex], wordKey]
+
+Nama parameter wordList diganti menjadi wordDict agar lebih deskriptif. Sekarang, kode tidak memilih kata secara acak dari daftar string, tapi pertama-tama memilih kunci secara acak dalam wordDict dengan memanggil random.choice().
+Dan kembaliannya bukan wordList[wordIndex], tapi list dua item. Item pertama adalah wordDict[wordKey][wordIndex] dan item kedua adalah wordKey.
+
+Mengevaluasi list dalam dictionary
+
+Ekspresi wordDict[wordKey][wordIndex] tampak rumit, tapi ekspresi ini dapat dievaluasi satu-satu perlangkah, seperti ekspresi lainnya. Pertama, bayangkan wordKey bernilai 'Buah-buahan' (yang terpilih pada baris 67) dan wordIndex bernilai 5 (yang terpilih pada baris 70). Beginilah evaluasi wordDict[wordKey][wordIndex]:
+
+wordDict[wordKey][wordIndex]
+           ▼
+wordDict['Buah-buahan'][wordIndex]
+           ▼
+['apel', 'jeruk', 'lemon', 'jeruknipis', 'pir', 'semangka', 'anggur', 'jerukbali', 'ceri', 'pisang', 'melon', 'mangga', 'strowberi', 'tomat'][wordIndex]
+           ▼
+['apel', 'jeruk', 'lemon', 'jeruknipis', 'pir', 'semangka', 'anggur', 'jerukbali', 'ceri', 'pisang', 'melon', 'mangga', 'strowberi', 'tomat'][5]
+           ▼
+        semangka'
+
+Pada kasus di atas, item dalam list yang akan dikembalikan fungsi itu adalah 'semangka'. (Ingat, indeks dimulai dari 0, sehingga [5] adalah item keenam dalam list.)
+Karena fungsi getRandomWord() sekarang mengembalikan satu list yang mengandung dua item, maka variabel secretWord akan berisi satu list, bukan string. Kamu dapat mengisi kedua item ini menjadi dua variabel yang berbeda menggunakan trik pengisian beberapa variabel sekaligus.
+
+Pengisian Beberapa Variabel
+
+Kamu dapat menulis beberapa variabel yang dipisahkan dengan koma pada bagian kiri pernyataan pengisian. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> a, b, c = ['apel', 'kucing', 42]
+>>> a
+'apel'
+>>> b
+'kucing'
+>>> c
+42
+
+Triknya adalah menaruh variabel-variabel sebanyak banyaknya item dalam list pada sisi kanan tanda =. Python akan secara otomatis mengisi nilai dalam item pertama pada variabel pertama, nilai item kedua pada variabel kedua, dan seterusnya. Namun, jika kamu mengetikkan sejumlah variabel yang tidak sama dengan banyaknya item, interpreter Python akan memberimu error.
+
+>>> a, b, c, d = ['apel', 'kucing', 42, 10, 'halo']
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    a, b, c, d = ['apel', 'kucing', 42, 10, 'halo']
+ValueError: too many values to unpack
+
+>>> a, b, c, d = ['apel', 'kucing']
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    a, b, c, d = ['apel', 'kucing']
+ValueError: need more than 2 values to unpack
+
+Ubah kode Hangman, sehinga menggunakan trik ini untuk mengambil keluaran getRandomWord():
+
+117. correctLetters = ''
+118. secretWord, secretKey = getRandomWord(words)
+119. gameIsDone = False
+...
+154.            gameIsDone = False
+155.            secretWord, secretKey = getRandomWord(words)
+156.        else:
+
+Menampilkan Kategori Kata pada Pemain
+
+Perubahan terakhir yang dapat kamu lakukan adalah memberitahu pemain himpunan kata apa yang terpilih. Dengan demikian, ketika pemain memainkan game, mereka akan tahu apakah kata rahasia itu berkategori binatang, warna, bentuk, atau buah-buahan. Tambahkan kode setelah baris 112 pada versi asli:
+
+112. while True:
+113.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+
+sehingga, menjadi seperti berikut:
+
+112. while True:
+113.     print('The secret word is in the set: ' + secretKey)
+114.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+
+Perubahan selesai. Sekarang game tidak hanya memilih dari satu daftar kata-kata, melainkan memilih kata dari dari beberapa himpunan kata-kata. Program juga memberitahu pemain dari himpunan mana kata rahasia itu terpilih.
+Coba mainkan versi baru ini. Lebih lanjut kamu dapat merubah variabel words yang bertipe dictionary dengan memasukkan himpunan kata-kata lainnya. Sekarang game Hangman dapat dengan mudah diperbarui dengan himpunan kata-kata baru!
+
+Ringkasan
+
+Game Hangman sudah selesai. Bahkan setelah kamu selesai menulis game, kamu selalu bisa menambah fitur pada game itu setelah belajar lebih banyak ilmu pemrograman.
+Game Hangman lebih canggih dibandingkan dengan game lain sebelumnya dalam buku ini. Pada titik ini, kamu sudah mengenal banyak tentang konsep dasar membuat program: variabel, putaran, fungsi, dan tipe data yang disediakan Python, seperti list dan dictionary. Program berikutnya akan tetap menjadi tantangan untuk dapat memahaminya, tapi kamu sudah memanjat tebing tercuram dalam belajar pemrograman.

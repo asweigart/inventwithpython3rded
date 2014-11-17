@@ -1,130 +1,152 @@
-A common behavior in most graphical games is collision detection. Collision detection is figuring when two things on the screen have touched (that is, collided with) each other. This is used often in computer games. For example, if the player touches an enemy they may lose health or a game life. Or we may want to know when the player has touched a coin so that they automatically pick it up. Collision detection can help determine if the game character is standing on solid ground, or if there is nothing but empty air underneath them. In our games, collision detection is determining if two rectangles are overlapping each other or not. Our next example program will cover this basic technique.
+Collision detection is figuring when two things on the screen have touched (that is, collided with) each other. For example, if the player touches an enemy they may lose health. Or the program needs to know when the player touches a coin so that they automatically pick it up. Collision detection can help determine if the game character is standing on solid ground or if there is nothing but empty air underneath them.
 
-Later in this chapter, we will look at how our Pygame programs can accept input from the user through the keyboard and the mouse. It’s a bit more complicated than calling the input() function like we did for our text programs. But using the keyboard is much more interactive in GUI programs, and using the mouse isn’t even possible in our text games. Knowing these two concepts will make our games more advanced and exciting!
+In our games, collision detection will determine if two rectangles are overlapping each other or not. Our next example program will cover this basic technique.
 
-Much of this code is similar to the animation program, so we will skip over explaining how to make the bouncer move and bounce off of the walls. (See the animation program in the previous chapter for an explanation of that code.) We will use a list of pygame.Rect objects to represent the food squares. Each Rect object in the list represents a single food square. On each iteration through the game loop, the program will read each Rect object in the list and draw a green square on the window. Every forty iterations through the game loop we will add a new Rect to the list so that the screen constantly has new food squares in it.
+Later in this chapter, we’ll look at how our Pygame programs can accept input from the user through the keyboard and the mouse. It’s a bit more complicated than calling the input() function like we did for our text programs. But using the keyboard is much more interactive in GUI programs. And using the mouse isn’t even possible in our text games. These two concepts will make your games more exciting!
 
-The bouncer is represented by a dictionary. The dictionary has a key named 'rect' (whose value is a pygame.Rect object) and a key named 'dir' (whose value is one of the constant direction variables just like we had in last chapter's Animation program). As the bouncer bounces around the window, we check if it collides with any of the food squares. If it does, we delete that food square so that it will no longer be drawn on the screen.
+Much of this code is similar to the animation program, so the explanation of the moving and bouncing code is skipped. (See the animation program in Chapter 17 for that.) A bouncer will bounce around the window. A list of Rect objects will represent food squares.
+
+On each iteration through the game loop, the program will read each Rect object in the list and draw a green square on the window. Every forty iterations through the game loop we will add a new Rect to the list so that the screen constantly has new food squares in it.
+
+The bouncer is represented by a dictionary. The dictionary has a key named 'rect' (whose value is a pygame.Rect object) and a key named 'dir' (whose value is one of the constant direction variables like we had in last chapter’s Animation program).
+
+As the bouncer bounces around the window, we check if it collides with any of the food squares. If it does, we delete that food square so that it will no longer be drawn on the screen. This will make it look like the bouncer “eats” the food squares in the window.
 
 Type the following into a new file and save it as collisionDetection.py. If you don’t want to type all of this code, you can download the source from the book’s website at http://invpy.com/chap18.
 
-When you run this code, this is what the program looks like. The white square (the bouncer) will bounce around the window, and when it collides with the green squares (the food) will disappear from the screen.
+If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/collisionDetection.
+
+The program will look like Figure 18-1. The white square (the bouncer) will bounce around the window. When it collides with the green squares (the food) will disappear from the screen.
 
 The collision detection program imports the same things as the Animation program in the last chapter, along with the random module.
 
-In order to do collision detection, we will need a function that can determine if two rectangles intersect each other or not. Here is a picture of intersecting rectangles (on the left) and rectangles that do not intersect (on the right):
+In order to do collision detection, you need a function that can determine if two rectangles intersect each other or not. Figure 18-2 is a picture of intersecting rectangles (on the left) and rectangles that do not intersect (on the right):
 
-We will make a single function that is passed two pygame.Rect objects. The function, doRectsOverlap(), will return True if they do and False if they don’t.
+doRectsOverlap() is passed two pygame.Rect objects. The function, doRectsOverlap(), will return True if they do and False if they don’t.
 
-There is a simple rule we can follow to determine if rectangles intersect (that is, collide). Look at each of the four corners on both rectangles. If at least one of these eight corners is inside the other rectangle, then we know that the two rectangles have collided. We will use this fact to determine if doRectsOverlap() returns True or False.
+There is a simple rule to follow to determine if rectangles intersect (that is, collide). Look at each of the four corners on both rectangles. If at least one of these eight corners is inside the other rectangle, then you know that the two rectangles have collided. You can use this fact to determine if doRectsOverlap() returns True or False.
 
-Above is the code that checks if one rectangle's corners are inside another. Later we will create a function called isPointInsideRect() that returns True if the XY coordinates of the point are inside the rectangle. We call this function for each of the eight corners, and if any of these calls return True, the or operators will make the entire condition True.
+Lines 5 to 11 check if one rectangle’s corners are inside another. Later you will create a function called isPointInsideRect() that returns True if the XY coordinates of the point are inside the rectangle. Call this function for each of the eight corners, and if any of these calls return True, the or operators will make the entire condition True.
 
-The parameters for doRectsOverlap() are rect1 and rect2. We first want to check if rect1's corners are inside rect2 and then check if rect2's corners are in rect1.
+The parameters for doRectsOverlap() are rect1 and rect2. First check if rect1’s corners are inside rect2, then check if rect2’s corners are in rect1.
 
-We don’t want to repeat the code that checks all four corners for both rect1 and rect2, so instead we use a and b on lines 7 to 10. The for loop on line 5 uses the multiple assignment trick so that on the first iteration, a is set to rect1 and b is set to rect2. On the second iteration through the loop, it is the opposite. a is set to rect2 and b is set to rect1.
+Don’t repeat the code that checks all four corners for both rect1 and rect2. Instead, use a and b on lines 7 to 10. The for loop on line 5 uses the multiple assignment trick. On the first iteration, a is set to rect1 and b is set to rect2. On the second iteration through the loop, it is the opposite: a is set to rect2 and b is set to rect1.
 
-We do this because then we only have to type the code for the if statement on line 7 once. This is good, because this is a very long if statement. The less code we have to type, the less chance there is that we have buggy code.
+Line 11 never returns True, then none of the eight corners checked are in the other rectangle. In that case, the rectangles didn’t collide and the function returns False.
 
-If we never return True from the previous if statements, then none of the eight corners we checked are in the other rectangle. In that case, the rectangles didn’t collide and we return False.
-
-The isPointInsideRect() function is used by the doRectsOverlap() function. isPointInsideRect() will return True if the XY coordinates passed to it as the first and second parameters are located “inside” the pygame.Rect object that is passed as the third parameter. Otherwise, this function returns False.
+The isPointInsideRect() function is called from doRectsOverlap(). isPointInsideRect() will return True if the XY coordinates passed to it as the first and second parameters are located inside the pygame.Rect object passed as the third parameter. Otherwise, this function returns False.
 
 Figure 18-3 is an example picture of a rectangle and several dots. The dots and the corners of the rectangle are labeled with coordinates.
 
-The pattern that points inside a rectangle have is an X-coordinate that is greater than the X-coordinate of the left side and less than the X-coordinate of the right side, and a Y-coordinate that is greater than the Y-coordinate of the top side and less than the Y-coordinate of the bottom side. If any of those conditions are False, then the point is outside the rectangle.
+The dot is inside the rectangle if the following four things are true:
 
-We combine all four of these conditions into the if statement’s condition with and operators because all four of the conditions must be True.
+•   The dot’s X-coordinate is greater than the X-coordinate of the rectangle’s left side.
 
-If just one of the four expressions in the condition on line 16 is False, then we should have isPointInsideRect() return the value False.
+•   The dot’s X-coordinate is less than the X-coordinate of the rectangle’s right side.
 
-This function will be called from the doRectsOverlap() function to see if any of the corners in the two pygame.Rect objects are inside each other. These two functions give us the power to do collision detection between two rectangles.
+•   The dot’s Y-coordinate is greater than the Y-coordinate of the rectangle’s top side.
 
-The pygame.time.Clock Object and tick() Method
+•   The dot’s Y-coordinate is less than the Y-coordinate of the rectangle’s bottom side.
 
-Much of lines 22 to 43 do the same thing that Animation program in the last chapter did: initialize the Pygame library, set WINDOWHEIGHT and WINDOWWIDTH, and put together the color and direction constants. However, line 24 is new:
+If any of those parts are False, then the point is outside the rectangle. Line 16 combines all four of these conditions into the if statement’s condition with and operators.
 
-In the previous Animation program, we had a call to time.sleep(0.02) inside the game loop in order to slow down the program enough so that we could see the blocks moving. The problem with this is that the program might run too fast on fast computers and too slow on slow computers. We want to limit the maximum number of iterations through the game loop there are per second.
+This function is called from the doRectsOverlap() function to see if any of the corners in the two pygame.Rect objects are inside each other. These two functions give you the power to do collision detection between two rectangles.
 
-A pygame.time.Clock object can do this for us. You can see on line 125 that we call mainClock.tick(40) inside the game loop. This call to the Clock object's tick() method will check if we have iterated through the game loop more than 40 times in the last second. If so, it puts a short sleep into the program for us based on frequently tick() is being called. This ensures that the game never runs faster than we expect. Be sure to call tick() only once in the game loop.
+Much of lines 22 to 43 do the same thing that Animation program in the last chapter did: initialize Pygame, set WINDOWHEIGHT and WINDOWWIDTH, and assign the color and direction constants.
 
-We are going to set up a few variables for the food blocks that appear on the screen. foodCounter will start at the value 0, NEWFOOD at 40, and FOODSIZE at 20.
+In the previous Animation program, a call to time.sleep(0.02) would slow down the program so that the program doesn’t run too fast. The problem with time.sleep()is that might be too much of a pause on slow computers and not enough of a pause on fast computers.
 
-We are going to set up a new data structure called bouncer. bouncer is a dictionary with two keys. The value stored in the 'rect' key will be a pygame.Rect object that represents the bouncer's size and position. The value stored in the 'dir' key will be a direction that the bouncer is currently moving. The bouncer will move the same way the blocks did in our previous animation program: moving in diagonal directions and bouncing off of the sides of the window.
+A pygame.time.Clock object can pause an appropriate amount of time on any computer. Line 125 calls mainClock.tick(40) inside the game loop. This call to the Clock object’s tick() method waits enough time so that it runs at about 40 iterations a second, no matter what the computer’s speed is. This ensures that the game never runs faster than you expect. Be sure to call tick() only once in the game loop.
 
-Our program will keep track of every food square with a list of Rect objects called foods. At the start of the program, we want to create twenty food squares randomly placed around the screen. We can use the random.randint() function to come up with random XY coordinates.
+Lines 46 to 48 set up a few variables for the food blocks that appear on the screen. foodCounter will start at the value 0, NEWFOOD at 40, and FOODSIZE at 20.
 
-On line 52, we will call the pygame.Rect() constructor function to return a new pygame.Rect object that will represent the position and size of the food square. The first two parameters for pygame.Rect() are the XY coordinates of the top left corner. We want the random coordinate to be between 0 and the size of the window minus the size of the food square. If we had the random coordinate between 0 and the size of the window, then the food square might be pushed outside of the window altogether. For example, look at the diagram in Figure 18-4.
+Line 49 sets up a new data structure called bouncer. bouncer is a dictionary with two keys. The value stored in the 'rect' key is a pygame.Rect object that represents the bouncer’s size and position.
 
-The square on the left has an X-coordinate of its top left corner at 380. Because the food square is 20 pixels wide, the right edge of the food square is at 400. (This is because 380 + 20 = 400.) The square on the right has an X-coordinate of its top left corner at 400. Because the food square is 20 pixels wide, the right edge of the food square is at 420, which puts the entire square outside of the window (and not viewable to the user).
+The value stored in the 'dir' key is a direction that the bouncer is currently moving. The bouncer will move the same way the blocks did in Chapter 17’s animation program.
 
-The third parameter for pygame.Rect() is a tuple that contains the width and height of the food square. Both the width and height will be equal to the value in the FOODSIZE constant.
+The program will keep track of every food square with a list of Rect objects in foods. Lines 51 and 52 create twenty food squares randomly placed around the screen. You can use the random.randint() function to come up with random XY coordinates.
 
-Lines 71 to 109 cause the bouncer to move around the window and bounce off of the edges of the window. This code is similar to lines 44 to 83 of our animation program in the last chapter, so we won’t go over them again here.
+On line 52, we will call the pygame.Rect() constructor function to return a new pygame.Rect object that will represent the position and size of the food square. The first two parameters for pygame.Rect() are the XY coordinates of the top left corner. You want the random coordinate to be between 0 and the size of the window minus the size of the food square. If you had the random coordinate between 0 and the size of the window, then the food square might be pushed outside of the window altogether, like in Figure 18-4.
 
-After moving the bouncer, we now want to draw it on the window in its new position. We call the pygame.draw.rect() function to draw a rectangle. The windowSurface passed for the first parameter tells Python which Surface object to draw the rectangle on. The WHITE variable, which has (255, 255, 255) stored in it, will tell Python to draw a white rectangle. The Rect object stored in the bouncer dictionary at the 'rect' key tells the position and size of the rectangle to draw. This is all the information needed to draw a white rectangle on windowSurface.
+The third parameter for pygame.Rect() is a tuple that contains the width and height of the food square. Both the width and height is the value in the FOODSIZE constant.
 
-Remember, we are not done drawing things on the windowSurface object yet. We still need to draw a green square for each food square in the foods list. And we are just “drawing” rectangles on the windowSurface object, not on the screen. This Surface object is only inside the computer's memory, which is much faster to modify than the pixels on the screen. The window on the screen won’t be updated until we call the pygame.display.update() function.
+Lines 71 to 109 cause the bouncer to move around the window and bounce off of the edges of the window. This code is similar to lines 44 to 83 of our animation program in the last chapter, so the explanation will be skipped.
 
-Before we draw the food squares, we want to see if the bouncer has overlapped any of the food squares. If it has, we will remove that food square from the foods list. This way, Python won't draw any food squares that the bouncer has “eaten”.
+After moving the bouncer, line 112 draws it in its new position. The windowSurface passed for the first parameter tells Python which Surface object to draw the rectangle on. The WHITE variable, which has (255, 255, 255) stored in it, will tell Python to draw a white rectangle. The Rect object stored in the bouncer dictionary at the 'rect' key tells the position and size of the rectangle to draw.
 
-On each iteration through the for loop, the current food square from the foods (plural) list will be stored inside a variable called food (singular).
+Before drawing the food squares, check if the bouncer has overlapped any of the food squares. If it has, remove that food square from the foods list. This way, Python won't draw any food squares that the bouncer has “eaten”.
 
-Notice that there is a slight difference with this for loop. If you look carefully at line 116, we are not iterating over foods but actually over foods[:]. Just as foods[:2] would return a copy of the list with the items from the start and up to (but not including) the item at index 2, and just as foods[3:] would return a copy of the list with the items from index 3 to the end of the list, foods[:] will give you a copy of the list with the items from the start to the end. Basically, foods[:] creates a new list with a copy of all the items in foods. (This is a shorter way to copy a list than our getBoardCopy() function in the Tic Tac Toe game.)
+On each iteration through the for loop, the current food square from the foods (plural) list is in the variable food (singular).
 
-Why would we want to iterate over a copy of the list instead of the list itself? It is because we cannot add or remove items from a list while we are iterating over it. Python can lose track of what the next value of food variable should be if the size of the foods list is always changing. Think of how difficult it would be for you if you tried to count the number of jelly beans in a jar while someone was adding or removing jelly beans. But if we iterate over a copy of the list (and the copy never changes), then adding or removing items from the original list won't be a problem.
+Notice that there is a slight difference with this for loop. If you look carefully at line 116, we are not iterating over foods but actually over foods[:].
 
-Line 116 is where our doRectsOverlap() function that we defined earlier comes in handy. We pass two pygame.Rect objects to doRectsOverlap(): the bouncer and the current food square. If these two rectangles overlap, then doRectsOverlap() will return True and we will remove the overlapping food squares from foods list.
+Remember how slices work. foods[:2] evaluates to a copy of the list with the items from the start and up to (but not including) the item at index 2. foods[3:] evaluates to a copy of the list with the items from index 3 to the end of the list.
 
-The code on lines 120 and 121 are similar to how we drew the white square for the player. We will loop through each food square in the foods list, and then draw the rectangle onto the windowSurface surface. This program was similar to our bouncing program in the previous chapter, except now the bouncing square will “eat” the other squares as it passes over them.
+foods[:] will give you a copy of the list with the items from the start to the end. Basically, foods[:] creates a new list with a copy of all the items in foods. This is a shorter way to copy a list than, say, what the getBoardCopy() function does in the previous Tic Tac Toe game.
 
-These past few programs are interesting to watch, but the user doesn’t get to actually control anything. In this next program, we will learn how to get input from the keyboard. Keyboard input is handled in Pygame by using events.
+You cannot add or remove items from a list while we are iterating over it. Python can lose track of what the next value of food variable should be if the size of the foods list is always changing. Think of how difficult it would be to count the number of jelly beans in a jar while someone was adding or removing jelly beans.
 
-Start a new file and type in the following code, then save it as pygameInput.py.
+But if you  iterate over a copy of the list (and the copy never changes), adding or removing items from the original list won’t be a problem.
 
-This program looks identical to the collision detection program earlier in this chapter. But in this program, the bouncer only moves around when we hold down keys on the keyboard. Holding down the “W” key moves the bouncer up. The “A” key moves the bouncer to the left and the “D” key moves the bouncer to the right. The “S” key moves the bouncer down. You can also move the bouncer by holding down the arrow keys on the keyboard. The user can also use the keyboard's arrow keys.
+Line 116 is where doRectsOverlap()comes in handy. If the bouncer and the current food square two rectangles overlap, then doRectsOverlap() will return True and line 117 removes the overlapping food square from foods list.
 
-We can also click anywhere in the GUI window and create new food objects at the coordinates where we clicked. In addition, the ESC key will quit the program and the “X” key will teleport the bouncer to a random place on the screen.
+The code on lines 120 and 121 are similar to how we drew the white square for the player. Line 120 loops through each food square in the foods list. Line 121 draws the rectangle onto the windowSurface surface. This program was similar to the bouncing program in the previous chapter, except now the bouncing square will “eat” other squares it passes over them.
 
-First, we set the caption of the window's title bar to the string to 'Mouse' on line 12. We set the caption of the window with a call to pygame.display.set_caption() the same as we did in our previous Pygame programs. Next we want to set up some variables that track the movement of the bouncer.
+These past few programs are interesting to watch, but the user doesn’t get to control anything. In the next program, we will learn how to get input from the keyboard.
 
-We are going to use four different Boolean variables to keep track of which of the arrow keys are being held down. For example, when the user pushes the left arrow key on her keyboard, we will set the moveLeft variable to True. When she lets go of the key, we will set the moveLeft variable back to False. The “W” key affects the moveUp variable, the “S” key affects the moveDown variable, and the “D” key affects the moveRight variable in a similar way.
+Start a new file and type in the following code, then save it as pygameInput.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/pygameInput.
 
-Lines 34 to 43 are identical to code in the previous Pygame programs. These lines handle the start of the game loop and handling what to do when the user wants to quit the program. We will skip the explanation for this code here since we have already covered it in the last chapter.
+This program is almost identical to the collision detection program. But in this program, the bouncer only moves around when the user holds down the arrow keys on the keyboard.
 
-The code to handle the key press and key release events is below. But at the start of the program, we will set all of these variables to False.
+We can also click anywhere in the window and create new food objects at the coordinates where we clicked. In addition, the ESC key will quit the program and the “X” key will teleport the bouncer to a random place on the screen.
 
-Pygame has another event type called KEYDOWN. On line 41, we check if the event.type attribute is equal to the QUIT value to check if we should exit the program. But there are other events that Pygame can generate. A brief list of the events that could be returned by pygame.event.get() is in Table 18-1.
+Starting at line 29, the code sets up some variables that track the movement of the bouncer.
 
-If the event type is KEYDOWN, then the event object will have a key attribute that will tell us which key was pressed down. On line 46, we can compare this value to K_LEFT, which represents the left arrow key on the keyboard. We will do this for each of the arrow keys: K_LEFT, K_RIGHT, K_UP, K_DOWN.
+The four variables have Boolean values to keep track of which of the arrow keys are being held down. For example, when the user pushes the left arrow key on her keyboard, moveLeft is set to True. When they let go of the key, moveLeft is set back to False.
 
-When one of these keys is pressed down, we will set the corresponding movement variable to True. We will also set the movement variable of the opposite direction to False. For example, the program executes lines 47 and 48 when the left arrow key has been pressed. In this case, we will set moveLeft to True and moveRight to False (even though moveRight might already be False, we set it to False just to be sure).
+Lines 34 to 43 are identical to code in the previous Pygame programs. These lines handle the start of the game loop and what to do when the user quits the program. We’ll skip the explanation for this code here since we have already covered it in the last chapter.
+
+The code to handle the key press and key release events starts on line 44. At the start of the program, they are all set to False.
+
+Pygame has an event type called KEYDOWN. Line 41 checks if the event.type attribute is equal to the QUIT value to check if the program should exit. But there are other events that Pygame can generate. A brief list of the events that could be returned by pygame.event.get() is in Table 18-1.
+
+If the event type is KEYDOWN, then the event object will have a key attribute that tells which key was pressed down. Line 46 compares this attribute to K_LEFT, which is the pygame.locals constant that represents the left arrow key on the keyboard. Lines 46 to 57 does this for each of the arrow keys: K_LEFT, K_RIGHT, K_UP, K_DOWN.
+
+When one of these keys is pressed down, set the corresponding movement variable to True. Also, set the movement variable of the opposite direction to False.
+
+For example, the program executes lines 47 and 48 when the left arrow key has been pressed. In this case, set moveLeft to True and moveRight to False (even though moveRight might already be False, set it to False just to be sure).
 
 On line 46, in event.key can either be equal to K_LEFT or ord('a'). The value in event.key is set to the integer ASCII value of the key that was pressed on the keyboard. (There is no ASCII value for the arrow keys, which is why we use the constant variable K_LEFT.) You can use the ord() function to get the ASCII value of any single character to compare it with event.key.
 
-By executing the code on lines 47 and 48 if the keystroke was either K_LEFT or ord('a'), we make the left arrow key and the A key do the same thing. The W, A, S, and D keys are all used as alternates for changing the movement variables. This is because some people may want to use their left hand to press the WASD keys instead of their right hand to press the arrow keys. Our game offers them both!
+By executing the code on lines 47 and 48 if the keystroke was either K_LEFT or ord('a'), we make the left arrow key and the A key do the same thing. The W, A, S, and D keys are all used as alternates for changing the movement variables. The WASD (pronounced “wazz-dee”) keys let you use your left hand. The arrow keys can be pressed with your right hand.
 
 When the user releases the key that they are holding down, a KEYUP event is generated.
 
-If the key that the user released was the Esc key, then we want to terminate the program. Remember, in Pygame you must call the pygame.quit() function before calling the sys.exit() function. We want to do this when the user releases the Esc key, not when they first Esc key down.
+If the key that the user released was the ESC key, then terminate the program. Remember, in Pygame you must call the pygame.quit() function before calling the sys.exit() function.
 
-Lines 62 to 69 will set a movement variable to False if that direction's key was let go.
+Lines 62 to 69 will set a movement variable to False if that direction’s key was let go.
 
-If the user released one of the keys that moves the player, then we want to set the movement variable that corresponds with the key to False. This will tell the later parts of the program to no longer move the player’s square on the screen.
+You can also add teleportation to the game. If the user presses the “X” key, then lines 71 and 72 will set the position of the user’s square to a random place on the window. This will give the user the ability to teleport around the window by pushing the “X” key. Although they can’t control where they will teleport; it’s completely random.
 
-We will also add teleportation to our game. If the user presses the “X” key, then we will set the position of the user’s square to a random place on the window. This will give the user the ability to teleport around the window by pushing the “X” key (though they can’t control where they will teleport: it’s completely random).
+Mouse input is handled by events just like keyboard input is. The MOUSEBUTTONUP event occurs when the user releases the mouse button after clicking it. The pos attribute in the Event object is set to a tuple of two integers for the XY coordinates for where the mouse cursor was at the time of the click.
 
-Mouse input is handled by events just like keyboard input is. The MOUSEBUTTONUP event occurs when the user clicks a mouse button somewhere in our window, and releases the mouse button. The pos attribute in the Event object is set to a tuple of two integers for the XY coordinates. On line 75, the X-coordinate is stored in event.pos[0] and the Y-coordinate is stored in event.pos[1]. We will create a new Rect object to represent a new food and place it where the MOUSEBUTTONUP event occurred. By adding a new Rect object to the foods list, a new food square will be displayed on the screen.
+On line 75, the X-coordinate is stored in event.pos[0] and the Y-coordinate is stored in event.pos[1]. Line 75 creates a new Rect object to represent a new food and place it where the MOUSEBUTTONUP event occurred. By adding a new Rect object to the foods list, a new food square is displayed on the screen.
 
-We have set the movement variables (moveDown, moveUp, moveLeft, and moveRight) to True or False depending on what keys the user has pressed. Now we will actually move the player’s square (which is represented by the pygame.Rect object stored in player) around by adjusting the XY coordinates of player. If moveDown is set to True (and the bottom of the player’s square isn’t below the bottom edge of the window), then we move the player’s square down by adding MOVESPEED to the player’s current top attribute. We do the same thing for the other three directions.
+You’ve set the movement variables (moveDown, moveUp, moveLeft, and moveRight) to True or False depending on what keys the user has pressed. Now move the player’s square (which is represented by the pygame.Rect object stored in player) by adjusting the XY coordinates of player.
 
-In our previous Collision Detection program, we had the doRectsOverlap() function to check if one rectangle had collided with another. That function was included in this book so you could understand how the code behind collision detection works. In this program, we can use the collision detection function that comes with Pygame. The colliderect() method for pygame.Rect objects is passed another pygame.Rect object as an argument and returns True if the two rectangles collide and False if they do not. This is the exact behavior of the doRectsOverlap() function in our previous Collision Detection program.
+If moveDown is set to True (and the bottom of the player’s square isn’t below the bottom edge of the window), then move the player’s square down by adding MOVESPEED to the player’s current top attribute. Do the same thing for the other three directions.
 
-The rest of the code is similar to the code in the Input program is similar to the earlier Collision Detection program: draw the food squares and the player squares to the windowSurface surface, occasionally add a new food square at a random location to the foods list, check if the player square has collided with any of the food squares, and call mainClock.tick(40) to make the program run at an appropriate speed.
+In our previous Collision Detection program, the doRectsOverlap() function to check if one rectangle had collided with another. That function was included in this book so you could understand how the code behind collision detection works.
 
-This chapter introduced the concept of collision detection, which is used in most graphical games. Detecting collisions between two rectangles is easy: we just check if the four corners of either rectangle are within the other rectangle. This is such a common thing to check for that Pygame provides it’s own collision detection method named colliderect() for pygame.Rect objects.
+In this program, we can use the collision detection function that comes with Pygame. The colliderect() method for pygame.Rect objects is passed another pygame.Rect object as an argument and returns True if the two rectangles collide and False if they do not.
 
-The first several games in this book were text-based. The program output was text printed to the screen and the input was text typed by the user on the keyboard. But GUI programs can accept keyboard and mouse inputs. Furthermore, GUI programs can respond to single keystrokes when the user pushes down or lets up a single key. The user doesn’t have to type in an entire response and press Enter. This allows for immediate feedback when the player presses down any key on the keyboard and much more interactive games.
+The rest of the code is similar to the code in the Input program is similar to the earlier Collision Detection program.
 
-The Pygame programs we shown so far have drawn rectangles, lines, circles, and even individual pixels to the screen. These are called drawing primitives. But we also want to use pictures and images instead of simple drawing primitives. The next chapter will tell you how to load images and draw them on the screen. We will also learn how to play sounds and music for the player to hear.
+This chapter introduced the concept of collision detection, which is in many graphical games. Detecting collisions between two rectangles is easy: check if the four corners of either rectangle are within the other rectangle. This is such a common thing to check for that Pygame provides its own collision detection method named colliderect() for pygame.Rect objects.
+
+The first several games in this book were text-based. The program output was text printed to the screen and the input was text typed by the user on the keyboard. But graphical programs can accept keyboard and mouse inputs.
+
+Furthermore, these programs can respond to single keystrokes when the user pushes down or lets up a single key. The user doesn’t have to type in an entire response and press ENTER. This allows for immediate feedback when the player presses down any key on the keyboard and much more interactive games.
+
+The Pygame programs we shown so far have drawn simple shapes to the screen. But we also want to use pictures and images instead of simple drawing primitives. The next chapter will tell you how to draw pictures from image files. You’ll also learn how to play sounds and music for the player to hear.
 

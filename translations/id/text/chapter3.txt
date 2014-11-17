@@ -1,0 +1,236 @@
+    Bab 3
+    
+    MEMBUAT PROGRAM
+
+Cakupan Topik dalam Bab ini:
+
+•   Alur eksekusi
+•   String
+•   Perangkaian string
+•   Tipe data (seperti string dan integer)
+•   Menggunakan IDLE untuk menulis sumber kode
+•   Menyimpan dan menjalankan program dalam IDLE
+•   Fungsi print()
+•   Fungsi input()
+•   Komentar
+•   Mengkapitalkan variabel
+•   Case-sensitivity
+
+Sudah cukup matematika untuk sekarang. Python lebih dari sekedar kalkulator. Sekarang mari kita lihat apa yang bisa dilakukan Python terhadap teks. Pada bab ini, kamu akan belajar bagaimana menyimpan teks dalam variabel, mengkombinasikan beberapa teks, dan menampilkan teks pada layar. Hampir semua program menampilkan teks pada pengguna, dan pengguna dapat memasukkan teks ke dalam programmu melalui keyboard. Kamu juga akan membuat program pertamamu. Program ini menampilkan sapaan, "Halo Dunia!" dan bertanya siapa namamu.
+
+String
+
+Dalam Python, nilai berbentuk teks disebut string. Nilai string dapat digunakan sama seperti nilai bilangan bulat atau float. Kamu dapat menyimpan string dalam variabel. Dalam kode nilai string dimulai dan diakhiri oleh tanda kutip tunggal ('). Coba masukkan kode berikut dalam shell interaktif:
+
+>>> spam = 'halo'
+
+Tanda kutip tunggal memberitahu Python dimana awal dan akhir string. Kutip tersebut bukan bagian dari nilai string. Sekarang, jika kamu mengetik spam dalam shell interaktif, kamu akan melihat isi variabel spam, yaitu string 'halo'. Ingatlah, Python mengevaluasi variabel ke nilai yang disimpan di dalam variabel. Dalam kasus ini, isinya adalah 'halo':
+
+>>> spam = 'halo'
+>>> spam
+'halo'
+
+String dapat tediri dari karakter yang tercetak di keyboard. Berikut contoh string:
+
+'halo'
+'hai!'
+'ANAK KUCING'
+'7 apel, 14 jeruk, 3 lemon'
+'Bule apa yang jorok? bulepotan'
+'Pada masa silam di galaxy yang jauh, jauh sekali...
+'O*&#wY%*&OCfsdYO*&gfC%YO*&%3yc8r2'
+
+Nilai string dapat dikombinasikan dengan operator untuk membuat ekspresi, sama seperti bilangan bulat dan float. 
+
+Perangkaian String
+
+Coba gabungkan dua string dengan operator +. Proses ini disebut perangkaian string. Coba masukkan 'Halo' + 'Dunia!' ke dalam shell interaktif:
+
+>>> 'Halo' + 'Dunia!'
+'HaloDunia!'
+
+Ekspresi terevaluasi menjadi satu nilai string, 'HaloDunia!'. Untuk membuat kata-kata itu tetap terpisah, tambahkan satu spasi pada akhir string 'Halo' sebelum kutip terakhir, seperti berikut:
+
+>>> 'Halo ' + 'Dunia!'
+'Halo Dunia!
+
+Operator + bekerja dengan cara berbeda pada string dan bilangan bulat karena keduanya adalah dua tipe data berbeda. Semua nilai punya tipe data tertentu. Tipe data nilai 'Halo' adalah string. Tipe data nilai 5 adalah integer (istilah Python, penj.). Tipe data memberitahu Python apa yang harus dilakukan operator ketika mengevaluasi ekspresi. Operator + akan merangkaikan dua string atau menambahkan dua bilangan bulat (atau float). 
+
+Membuat Program dalam File Editor EDLE
+
+Sampai sekarang, kamu sudah mengetikkan satu per satu instruksi dalam shell interaktif IDLE. Ketika menulis program, kamu mengetik beberapa instruksi dan menjalankannya sekaligus. Mari buat program pertamamu!
+
+IDLE punya bagian yang disebut file editor. Klik menu File pada bagian atas jendela Python Shell. Lalu pilih New Window. Jendela kosong akan ditampilkan untukmu. Kamu bisa menulis kode di sini. 
+
+
+
+Gambar 3-1: Jendela file editor.
+
+Kedua jendela tampak serupa, tapi ingat ini: Jendela shell interaktif akan memiliki prompt >>>, sedangkan jendela file editor tidak.
+
+Halo Dunia!
+
+Sudah tradisi bagi programmer untuk membuat program pertamanya menampilkan "Halo Dunia!" pada layar. Kamu akan membuat sendiri program Halo Dunia-mu sekarang. 
+
+Ketika kamu memasukkan programmu, jangan sertakan angka pada bagian sisi kode. Angka tersebut berguna untuk merujuk kode dengan nomer baris. Sudut kanan bawah jendela file editor akan memberitahumu dimana kursor berkedip. 
+
+
+
+Gambar 3-2: Pada bagian kanan bawah jendela file editor terdapat angka yang menunjukkan baris di mana kursor berada. 
+
+halo.py
+
+Masukkan teks berikut ke dalam jendela file editor. Teks itu merupakan sumber kode program yang mengandung instruksi yang akan dijalankan oleh Python. (Ingat, jangan ketikkan nomer barisnya!)
+
+CATATAN PENTING! Program dalam buku ini hanya akan jalan di Python 3, bukan Python 2. Ketika jendela IDLE dimulai, judul "Python 3.4.0" akan muncul di bagian atas. Jika kamu punya Python 2 yang terinstal, kamu bisa juga menginstal Python 3. Untuk mengunduh Python 3, cek https://python.org/download/.
+
+1. # Program ini berkata halo dan bertanya siapa namaku.
+2. print('Halo Dunia!')
+3. print('Siapa namamu?')
+4. myName = input()
+5. print('Senang bertemu denganmu, ' + myName)
+
+IDLE akan menulis tipe instruksi yang berbeda dengan warna yang berbeda. Setelah selesai mengetikkan kodenya, jendela akan terlihat seperti berikut:
+
+
+
+Gambar 3-3: Jendela file editor akan tampak seperti ini ketika kamu selesai mengetikkan kodenya.
+
+Menyimpan Programmu
+
+Ketika sudah selesai memasukkan sumber kode, simpan file ini dengan cara mengeklik menu File pada bagian atas jendela File Editor. Lalu klik Save As. Gambar 3-4 menunjukkan jendela Save-As yang akan terbuka. Masukkan halo.py dalam kolom isian nama File, lalu klik Save. Atau tekan Ctrl-S untuk menyimpan dengan shortcut di keyboard. 
+
+
+
+Gambar 3-4: Menyimpan program.
+
+Kamu sebaiknya menyimpan programmu ketika sedang mengetik. Dengan demikian, jika komputer crash atau secara tidak sengaja keluar dari IDLE, kamu tidak akan kehilangan banyak pekerjaan. 
+
+Membuka Program yang Tersimpan
+
+Untuk memuat program yang sudah tersimpan, klik File ► Open. Pilih halo.py dalam jendela yang muncul, lalu klik tombol Open. Program halo.py-mu akan dibuka dalam jendela File Editor. 
+
+Sekarang waktunya menjalankan program itu. Klik File ► Run ► Run Module atau tekan saja F5 dari jendela file editor. Programmu akan dijalankan dalam jendela shell interaktif. 
+
+Masukkan namamu ketika program itu bertanya. Tampilannya akan seperti Gambar 3-5:
+
+
+
+Gambar 3-5: Shell interaktif setelah menjalankan halo.py.
+
+Ketika kamu mengetikkan namamu dan menekan Enter, program itu akan menyapa namamu. Selamat! Kamu telah menulis program pertamamu dan sekarang kamu adalah programmer komputer. Tekan F5 lagi dan masukkan nama lain. 
+
+Jika kamu mendapatkan error, bandingkan kodemu dengan kode dari buku ini menggunakan perkakas pembeda di http://invpy.com/diff/hello.
+
+Jika kamu dapat error seperti berikut:
+
+Halo Dunia!
+Siapa namamu?
+Albert
+Traceback (most recent call last):
+  File "C:/Python26/test1.py", line 4, in <module>
+    myName = input()
+  File "<string>", line 1, in <module>
+NameError: name 'Albert' is not defined
+
+Itu berarti kamu menggunakan Python 2, bukan Python 3. Instal versi Python 3 dari http://python.org. Lalu, jalankan ulang program itu dengan Python 3.
+
+Bagaimana cara kerja program "Halo Dunia!"
+
+Setiap baris kode merupakan instruksi yang diterjemahkan oleh Python. Instruksi-instruksi ini membuat sebuah program. Instruksi program komputer sama seperti langkah membuat resep kue. Setiap instruksi dieksekusi secara berurutan, berawal dari atas lalu berjalan ke bawah daftar instruksi program.
+
+Langkah yang diambil Python dalam resep itu disebut aliran eksekusi atau hanya eksekusi singkatnya. Ketika program dimulai, eksekusi ada di baris pertama. Lalu bergerak ke bawah ke instruksi berikutnya. 
+
+Mari lihat tiap baris kode untuk mengetahui apa yang dilakukannya. Kita mulai dari nomer baris 1.
+
+Komentar
+
+1. # Program ini berkata halo dan bertanya siapa namaku.
+
+Baris ini merupakan komentar. Setiap teks setelah tanda pagar # adalah sebuah komentar. Komentar bukan buat Python, tapi kamu, si programmer. Python mengabaikan komentar. Komentar adalah catatan mengenai apa yang kode lakukan untukmu atau programmer lain yang membaca sumber kode itu. Untuk mempermudah membaca sumber kode, buku ini mencetak komentar dalam teks berwarna abu-abu terang. 
+
+Programmer biasanya menambahkan komentar pada bagian atas kode mereka untuk memberi judul program. IDLE menampilkan komentar dengan teks warna merah agar lebih mencolok.
+
+Fungsi
+
+Sebuah fungsi mirip seperti program mini dalam programmu. Fungsi mengandung instruksi yang akan dieksekusi jika fungsinya dipanggil. Python menyediakan fungsi build-in. Dua fungsi, print() dan input() akan dijelaskan pada bagian berikut ini. Hebatnya fungsi adalah bahwa kamu cukup tahu apa yang dilakukannya, bukan bagaimana fungsi melakukannya.
+
+Pemanggilan fungsi adalah bagian kode yang memberitahu Python untuk menjalankan kode dalam fungsi. Sebagai contoh, programmu memanggil fungsi print() untuk menampilkan string pada layar. Fungsi print() mengambil string yang kamu ketik diantara tanda kurung sebagai masukan dan menampilkannya pada layar. Untuk menampilkan Halo Dunia! pada layar, ketik nama fungsi print, diikuti dengan kurung buka, string 'Halo Dunia!', dan kurung tutup.
+
+Fungsi print()
+
+2. print('Halo Dunia!')
+3. print('Siapa namamu?')
+
+Baris 2 dan 3 memanggil fungsi print(). Nilai diantara tanda kurung pada pemanggilan fungsi disebut argument. Pemanggilan fungsi print() pada baris 2 argument-nya adalah 'Halo Dunia!'. Argument pada baris ketiga pemanggilan fungsi print() adalah 'Siapa namamu?'. Proses ini disebut melempar argument ke fungsi print().
+
+Dalam buku ini nama fungsi diakhiri dengan tanda kurung. Dengan demikian print() berarti nama fungsi, bukan nama variabel print. Sama seperti kutip diantara angka '42' memberitahu Python bahwa kamu berbicara tentang string '42' bukan bilangan bulat 42.
+
+Fungsi input()
+
+4. myName = input()
+
+Baris ini mengandung pernyataan pengisian dengan variabel myName dan pemanggilan fungsi input(). Ketika input() dipanggil, program akan menunggu pengguna memasukkan teks. Teks yang dimasukkan pengguna menjadi nilai yang terevaluasi dari pemanggilan fungsi itu. Pemanggilan fungsi dapat digunakan dalam ekspresi dimanapun sebuah nilai dapat digunakan.
+
+Nilai yang terevaluasi dari pemanggilan fungsi disebut nilai kembalian (return value). (Nyatanya, "nilai yang dikembalikan pemanggilan fungsi" sama artinya dengan "nilai yang terevaluasi dari pemanggilan fungsi".) Dalam kasus ini, nilai kembalian dari fungsi input() adalah string yang dimasukkan pengguna, yaitu namanya. Jika pengguna mengetikkan "Albert", pemanggilan fungsi input() terevaluasi menjadi 'Albert'. Proses ini tampak seperti ini:
+
+myName = input()
+            ▼
+myName = 'Albert'
+
+Begitulah cara nilai string 'Albert' tersimpan dalam variabel myName.
+
+Menggunakan Ekspresi dalam Pemanggilan Fungsi
+
+5. print('Senang bertemu denganmu, ' + myName)
+
+Baris terakhir merupakan pemanggilan fungsi print() lainnya. Ekspresi 'Senang bertemu denganmu, ' + myName dilemparkan ke print(). Namun, argument selalu bernilai tunggal. Python akan mengevaluasi terlebih dulu ekspresi ini, lalu melempar nalainya sebagai argument. Jika 'Albert' tersimpan dalam myName, proses evaluasi tampak seperti ini:
+
+print('Senang bertemu denganmu, ' + myName)
+                         ▼
+print('Senang bertemu denganmu, ' + 'Albert')
+                         ▼
+print('Senang bertemu denganmu, Albert)
+
+Begitulah cara program penyapa pengguna dengan namanya.
+
+Mengakhiri Program
+
+Ketika program mengeksekusi baris terakhir, program itu mati atau keluar. Artinya program itu berhenti bekerja. Python melupakan semua variabel, termasuk string yang tersimpan dalam myName. Jika kamu menjalankan program itu lagi dengan nama lain, program akan berpikir string lain itu namamu. 
+
+Halo Dunia!
+Siapa namamu?
+Ulami
+Senang bertemu denganmu, Ulami
+
+Ingatlah, komputer melakukan secara tepat apa yang kamu program untuk dilakukan. Komputer itu bodoh. Komputer tidak peduli jika kamu mengetikkan namamu, nama orang lain, atau sesuatu yang konyol. Ketik apapun maumu. Komputer akan melakukan hal yang sama.
+
+Halo Dunia!
+Siapa namamu?
+ingus
+Senang bertemu denganmu, ingus
+
+Nama Variabel
+
+Memberi variabel nama yang deskriptif membuat kode lebih mudah dimengerti apa yang akan dilakukannya. Bayangkan jika kamu pindah rumah dan kamu melabeli semua kotak bawaan dengan "Barang". Itu sama sekali tidak membantu!
+
+Bisa saja kamu tidak pakai myName, tapi bandungBandawasa atau nAme. Python tidak peduli dan akan menjalankan hal yang sama. 
+
+Nama variabel case-sensitive, artinya nama variabel yang sama, tapi beda case (kapital/kecil), merupakan variabel berbeda. Jadi spam, SPAM, Spam, dan sPAM merupakan empat variabel berbeda dalam Python yang masing-masing punya nilai sendiri. 
+
+Punya variabel berbeda cara penulisan case adalah ide buruk. Jika kamu menyimpan nama pertama dalam variabel name dan nama belakangmu dalam variabel NAME, maka kamu akan kebingungan ketika membacanya lagi seminggu kemudian setelah menulisnya. Apa name berarti nama pertama dan NAME nama belakang, atau sebaliknya?
+
+Nama variabel biasanya dalam huruf kecil. Jika dalam variabel ada lebih dari dua kata, jadikan huruf kapital pada setiap awal kata berikutanya. Ini membuat kodemu lebih mudah dibaca. Sebagai contoh, nama variabel makanApaSarapanPagiIni lebih mudah dibaca dibandingkan dengan makanapasarapanpagiini. Ini merupakan konvensi (cara melakukan hal yang opsional, tapi standar) dalam pemograman dengan Python.
+
+Contoh pada shell interaktif dalam buku ini menggunakan nama variabel seperti spam, eggs, ham, dan bacon karena nama variabel dalam contoh ini bukan masalah. Namun, program dalam buku ini menggunakan variable yang deskriptif. Programmu sebaiknya juga menggunakan nama variabel yang deskriptif.
+
+Ringkasan
+
+Setelah mempelajari string dan fungsi, kamu bisa memulai membuat program yang berinteraksi dengan pengguna. Ini penting karena teks merupakan cara utama bagaimana pengguna dan komputer berkomunikasi. Pengguna memasukkan teks melalui keyboard dengan fungsi print() dan komputer akan menampilkan teks pada layar dengan fungsi print().
+
+String adalah nilai suatu tipe data. Semua nilai punya tipe data dan ada banyak tipe data dalam Python. Operator + dapat merangkaikan beberapa string.
+
+Variabel membuatmu mengingat nilai yang akan digunakan di bagian lain program. Fungsi digunakan untuk memanggil instruksi kompleks sebagai bagian programmu. Python punya banyak fungsi build-in yang akan dipelajari di buku ini. Variabel dan pemanggilan fungsi dapat digunakan dalam ekspresi dimanapun nilai digunakan.
+
+Instruksi dalam programmu yang sedang diikuti Python disebut eksekusi. Pada bab berikutnya, Kamu akan belajar lebih mengenai cara membuat eksekusi bergerak selain lurus ke bawah. Setelah mempelajari itu, kamu akan siap membuat games.
+

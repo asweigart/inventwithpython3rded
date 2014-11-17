@@ -1,0 +1,871 @@
+  Bab 9
+  GAME HANGMAN
+
+Cakupan Topik dalam Bab ini:
+•   Method dalam Python
+•   Method list append()
+•   Method string lower(), upper(), dan split()
+•   Method list reverse()
+•   Fungsi range() dan list()
+•   Putaran for
+•   Pernyataan elif
+•   Method string startswith() dan endswith()
+
+Game dalam bab ini akan mengenalkan banyak konsep baru. Namun, jangan khawatir, kamu akan mulai dengan bereksperimen mengenai konsep-konsep pemrograman ini dalam shell interaktif. Kamu juga akan belajar tentang method, yaitu fungsi yang terpasang pada nilai. Kamu juga akan belajar tentang tipe putaran baru yang disebut putaran for dan tipe data baru bernama dictionary - seperti kamus dalam bahasa indonesia. Ketika kamu sudah mengerti konsep-konsep ini, program Hangman akan lebih mudah dibuat.
+
+Kode Sumber Hangman
+
+Game dalam bab ini lebih panjang daripada game-game sebelumnya, tetapi game ini banyak mengandung seni ASCII untuk gambar orang yang digantung. Masukkan kode berikut dalam file editor dan simpan sebagai hangman.py
+
+hangman.py
+  1. import random
+  2. HANGMANPICS = ['''
+  3. 
+  4.   +---+
+  5.   |   |
+  6.       |
+  7.       |
+  8.       |
+  9.       |
+ 10. =========''', '''
+ 11. 
+ 12.   +---+
+ 13.   |   |
+ 14.   O   |
+ 15.       |
+ 16.       |
+ 17.       |
+ 18. =========''', '''
+ 19. 
+ 20.   +---+
+ 21.   |   |
+ 22.   O   |
+ 23.   |   |
+ 24.       |
+ 25.       |
+ 26. =========''', '''
+ 27. 
+ 28.   +---+
+ 29.   |   |
+ 30.   O   |
+ 31.  /|   |
+ 32.       |
+ 33.       |
+ 34. =========''', '''
+ 35. 
+ 36.   +---+
+ 37.   |   |
+ 38.   O   |
+ 39.  /|\  |
+ 40.       |
+ 41.       |
+ 42. =========''', '''
+ 43. 
+ 44.   +---+
+ 45.   |   |
+ 46.   O   |
+ 47.  /|\  |
+ 48.  /    |
+ 49.       |
+ 50. =========''', '''
+ 51. 
+ 52.   +---+
+ 53.   |   |
+ 54.   O   |
+ 55.  /|\  |
+ 56.  / \  |
+ 57.       |
+ 58. =========''']
+ 59. words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra semut babon musang kelelawar beruang unta kucing kerang kobra gagak anjing rusa bebek keledai elang musang rubah katak kambing angsa elang singa kadal monyet keledai tikus hiu kadal panda beo merpati piton kelinci tikus gagak badak salmon domba sigung kukang ular bangau angsa harimau kodok kalkun penyu musang paus serigala zebra'.split() # juga mengandung hewan dalam bahasa indonesia (satu suku kata)
+ 60. 
+ 61. def getRandomWord(wordList):
+ 62.     # Fungsi ini mengembalikan satu string acak dari daftar string dalam list yang dilemparkan.
+ 63.     wordIndex = random.randint(0, len(wordList) - 1)
+ 64.     return wordList[wordIndex]
+ 65. 
+ 66. def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
+ 67.     print(HANGMANPICS[len(missedLetters)])
+ 68.     print()
+ 69. 
+ 70.     print('Huruf yang salah tebak:', end=' ')
+ 71.     for letter in missedLetters:
+ 72.         print(letter, end=' ')
+ 73.     print()
+ 74. 
+ 75.     blanks = '_' * len(secretWord)
+ 76. 
+ 77.     for i in range(len(secretWord)): # ganti garis dengan huruf yang ditebak dengan tepat
+ 78.         if secretWord[i] in correctLetters:
+ 79.             blanks = blanks[:i] + secretWord[i] + blanks[i+1:]
+ 80. 
+ 81.     for letter in blanks: # tampilkan kata rahasia dengan huruf-huruf yang dipisahkan satu spasi
+ 82.         print(letter, end=' ')
+ 83.     print()
+ 84. 
+ 85. def getGuess(alreadyGuessed):
+ 86.     # Mengembalikan huruf yang dimasukkan pemain. Fungsi ini memastikan pemain memasukkan satu huruf, bukan string lainnya.
+ 87.     while True:
+ 88.         print('Tebak satu huruf.')
+ 89.         guess = input()
+ 90.         guess = guess.lower()
+ 91.         if len(guess) != 1:
+ 92.             print('Please enter a single letter.')
+ 93.         elif guess in alreadyGuessed:
+ 94.             print('Kamu sudah menebak huruf itu. Pilih lagi.')
+ 95.         elif guess not in 'abcdefghijklmnopqrstuvwxyz':
+ 96.             print('Masukkan huruf alfabet.')
+ 97.         else:
+ 98.             return guess
+ 99. 
+100. def playAgain():
+101.     # Fungsi ini mengembalikan True jika pemain ingin bermain lagi, jika tidak maka False yang dikembalikan.
+102.     print('Kamu mau main lagi? (ya or tidak)')
+103.     return input().lower().startswith('y')
+104. 
+105. 
+106. print('H A N G M A N')
+107. missedLetters = ''
+108. correctLetters = ''
+109. secretWord = getRandomWord(words)
+110. gameIsDone = False
+111. 
+112. while True:
+113.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+114. 
+115.     # Ambil masukan satu huruf dari pemain.
+116.     guess = getGuess(missedLetters + correctLetters)
+117. 
+118.     if guess in secretWord:
+119.         correctLetters = correctLetters + guess
+120. 
+121.         # Cek apakah pemain sudah menang
+122.         foundAllLetters = True
+123.         for i in range(len(secretWord)):
+124.             if secretWord[i] not in correctLetters:
+125.                 foundAllLetters = False
+126.                 break
+127.         if foundAllLetters:
+128.             print('Ya! Kata rahasia itu adalah "' + secretWord + '"! Kamu menang!')
+129.             gameIsDone = True
+130.     else:
+131.         missedLetters = missedLetters + guess
+132. 
+133.         # Cek apakah pemain sudah coba menebak terlalu banyak dan kalah
+134.         if len(missedLetters) == len(HANGMANPICS) - 1:
+135.             displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+136.             print('Kamu sudah tidak bisa menebak lagi!\nSetelah salah menebak ' + str(len(missedLetters)) + ' kali dan ' + str(len(correctLetters)) + ' tebakan yang tepat, kata itu adalah "' + secretWord + '"')
+137.             gameIsDone = True
+138. 
+139.     # Tanya apakah pemain ingin main lagi (tapi, hanya jika game sudah selesai).
+140.     if gameIsDone:
+141.         if playAgain():
+142.             missedLetters = ''
+143.             correctLetters = ''
+144.             gameIsDone = False
+145.             secretWord = getRandomWord(words)
+146.         else:
+147.             break
+
+Bagaiman Kode Bekerja
+
+  1. import random
+
+Program Hangman secara acak memilih satu kata dari daftar kata-kata rahasia. Module random akan menyediakan kemampuan ini.
+
+  2. HANGMANPICS = ['''
+  3. 
+  4.   +---+
+  5.   |   |
+  6.       |
+  7.       |
+  8.       |
+  9.       |
+ 10. =========''', '''
+
+...sisa kode terlalu panjang untuk ditunjukkan di sini.
+
+Pernyataan pengisian itu mengembang sampai baris 58. Untuk memahami apa yang kode itu lakukan, mari belajar tentang string banyak garis (multiline).
+
+String Multiline
+
+Sejauh ini string yang digunakan hanya terdiri dari satu baris yang diapit oleh kutip tunggal. Jika kamu menggunakan tiga kutip tunggal apa bagian awal dan akhir string, maka string itu dapat terdiri dari beberapa baris:
+
+>>> fizz = '''Dear Ulami,
+Aku akan pulang pada akhir bulan. Kita ketemuan nanti.
+Temanmu,
+Ben'''
+>>> print(fizz)
+Dear Ulami,
+Aku akan pulang pada akhir bulan. Kita ketemuan nanti.
+Temanmu,
+Ben
+
+Contoh di atas adalah string multiline. Dalam string multiline, karakter newline diikutkan sebagai bagian dari string. Kamu tidak perlu menggunakan karakter escape \n. Dengan demikian, untuk teks yang cukup panjang kode lebih mudah dibaca.
+
+Variabel Konstan
+
+Semua huruf pada nama variabel HANGMANPICS ditulis dalam huruf kapital. Hal ini merupakan konvensi penulisan variabel konstan. Variabel konstan adalah variabel yang dibuat supaya nilainya tidak pernah berubah. Meskipun, kamu bisa tetap merubah isi HANGMANPICS, seperti variabel lainnya, penulisannya dengan huruf kapital akan menginginkanmu supaya jangan melakukannya. Karena variabel HANGMANPICS tidak pernah harus diubah, maka kita menandainya sebagai suatu konstan.
+Seperti konvensi lainnya, kamu tidak perlu mengikutinya. Namun, mengikuti konvensi ini akan mempermudah programmer lain membaca kodemu.
+
+Tipe Data list
+
+Tipe data list adalah tipe data yang nilainya dapat mengandung beberapa nilai lain. Coba masukkan kode ini dalam shell interaktif: 
+
+>>> spam = ['apel', 'jeruk', 'HALO DUNIA']
+>>> spam
+['apel', 'jeruk', 'HALO DUNIA']
+
+Nilai list ini mengandung tidak nilai string. Sama seperti nilai lainnya, kamu dapat menyimpannya dalam satu variabel. Kamu harus memulai list dengan kurung kotak [ dan diakhiri dengan kurung kotak ].
+Tanda koma memisahkan nilai-nilai dalam list. Nilai-nilai itu disebut juga sebagai item. 
+Coba masukkan animals = ['anjing', 'anoa', 'angsa', 'albert'] ke dalam shell interaktif untuk menyimpan daftar hewan dalam variabel animals. Tanda kurung kotak juga dapat digunakan untuk mengambil item dalam list. Coba masukkan animals[0] atau animals[1] atau animals[2], atau animals[3] dalam shell interaktif untuk melihat nilai hasil evaluasi.
+
+>>> animals = ['anjing', 'anoa', 'angsa', 'albert']
+>>> animals[0]
+'anjing'
+>>> animals[1]
+'anoa'
+>>> animals[2]
+'angsa'
+>>> animals[3]
+'albert'
+
+Angka dalam kurung kotak disebut indeks list. Dalam Python, indeks dimulai dari 0. Item berikutnya ada di indeks 1, item ketiga ada di indeks 2, dan seterusnya.
+List bagus untuk menyimpan beberapa nilai tanpa harus membuat variabel untuk tiap nilai itu. Tanpa list, kode di atas akan seperti:
+
+>>> animals1 = 'anjing'
+>>> animals2 = 'anoa'
+>>> animals3 = 'angsa'
+>>> animals4 = 'albert'
+
+Cara diatas akan mempersulitmu jika kamu punya ratusan atau ribuan string. List dapat mengandung sebanyak mungkin nilai-nilai. Kamu dapat memperlakukan item dalam list seperti nilai lainnya. Coba masukkan animals[0] + animals[2] dalam shell interaktif:
+
+>>> animals[0] + animals[2]
+'anjinganoa'
+
+Evaluasinya tampak sebagai berikut:
+
+animals[0] + animals[2]
+           ▼
+'anjing' + animals[2]
+           ▼
+'anjing' + 'anoa'
+           ▼
+  'anjinganoa'
+
+Jika kamu mencoba mengakses indeks yang terlalu besar, kamu akan mendapat error indeks dan membuat program crash. Coba masukkan animals[9999] dalam shell interaktif:
+
+>>> animals = ['anjing', 'anoa', 'angsa', 'albert']
+>>> animals[9999]
+Traceback (most recent call last):
+File "", line 1, in
+animals[9999]
+IndexError: list index out of range
+
+Merubah Nilai Item dalam list dengan Pengisian Indeks
+
+Kamu juga dapat melakukan perubahan nilai item dalam list dengan menggunakan kurung kotak. Coba masukkan animals[1] = 'ANOA', lalu ketik animals untuk melihat daftar animals baru. 
+
+>>> animals = ['anjing', 'anoa', 'angsa', 'albert']
+>>> animals[1] = 'ANOA'
+>>> animals
+['anjing', 'ANOA', 'angsa', 'albert']
+
+String baru 'ANOA' menimpa item kedua dalam list animals. Jadi kode animals[1] tidak hanya tereksekusi menjadi nilai dalam item kedua, tetapi bisa juga digunakan dalam pernyataan pengisian untuk mengisi nilai dalam item kedua di list animals.
+
+Perangkaian list
+
+Kamu bisa menggabungkan beberapa list menjadi satu list dengan operator +, sama seperti ketika kamu menggabungkan string. Proses menggabungkan list dengan operator + disebut perangkaian list. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> [1, 2, 3, 4] + ['apel', 'jeruk'] + ['Alice', 'Bob']
+[1, 2, 3, 4, 'apel', 'jeruk', 'Alice', 'Bob']
+Pernyataan ['apel'] + ['jeruk'] akan terevaluasi menjadi ['apel', 'jeruk']. Namun, ['apel'] + 'jeruk' akan menyebabkan error. Kamu tidak dapat menambahkan nilai list dan nilai string. Jika kamu ingin menambahkan nilai yang bukan list ke dalam suatu list, maka gunakan method append() (yang akan dijelaskan nanti).
+
+Operator in
+
+Operator in dapat memberitahumu apakah suatu nilai ada dalam list atau tidak. Ekspresi yang menggunakan operator in akan mengembalikan nilai Boolean, yaitu True jika nilai itu ada dalam list atau False jika tidak ada. Untuk mencobanya masukkan kode berikut dalam shell interaktif:
+
+>>> animals = ['anjing', 'anoa', 'angsa', 'albert']
+>>> 'angsa' in animals
+True
+
+Ekspresi 'angsa' in animals mengembalikan nilai True karena string 'angsa' memang ada dalam list animals, yaitu di indeks 2.
+Jika kamu mengetikkan 'semut' in animals, maka keluarannya akan False karena string 'semut' tidak terdapat di list animals.
+
+>>> animals = ['anjing', 'anoa', 'angsa', 'albert']
+>>> 'angsa' in animals
+True
+>>> 'semut' in animals
+False
+Operator in juga dapat diterapkan pada string untuk mengecek apakah suatu string terkandung dalam string lainnya. Coba masukkan 'halo' in '"halo Ben," sapa Ulami.' dalam shell interaktif:
+>>> 'halo' in '"halo Ben," sapa Ulami.'
+True
+
+Menghapus Item dari list dengan Pernyataan del
+
+Pernyataan del akan menghapus sebuah item pada indeks tertentu dalam list. "del" kependekan dari "delete", yaitu hapus dalam bahasa Indonesia. Coba buat daftar bilangan dengan mengetikkan: spam = [2, 4, 6, 8, 10], lalu del spam[1], kemudian lihat lagi nilai spam:
+
+>>> spam = [2, 4, 6, 8, 10]
+>>> del spam[1]
+>>> spam
+[2, 6, 8, 10]
+
+Perhatikan bahwa jika kamu menghapus item pada indeks 1, maka item yang sebelumnya ada pada indeks 2 akan menjadi nilai baru di indeks 1. Item yang sebelumnya ada di indeks 3 maju menjadi nilai baru pada indeks 2. Semua item di atas item yang dihapus akan maju satu indeks ke bawah.
+Kamu dapat mengetikkan del spam[1] berkali-kali untuk terus menghapus item dalam list spam.
+
+>>> spam = [2, 4, 6, 8, 10]
+>>> del spam[1]
+>>> spam
+[2, 6, 8, 10]
+>>> del spam[1]
+>>> spam
+[2, 8, 10]
+>>> del spam[1]
+>>> spam
+[2, 10]
+
+Pernyataan del adalah sebuah pernyataan, bukan fungsi atau operator. Pernyataan ini tidak perlu tanda kurung dan tidak terevaluasi menjadi suatu nilai
+
+Daftar suatu daftar
+
+list adalah suatu tipe data yang dapat mengandung nilai lainnya. list juga dapat menjadi sebuah item dalam list lainnya. Misalnya, kamu punya daftar belanjaan, daftar tugas, dan daftar pie yang masing-masing ditulis secara berurutan dalam variabel gloceries, chores, dan favoritePies. Kamu dapat mengabungkan ketiga list itu menajadi satu list baru. Coba masukkan kode berikut:
+
+>>> groceries = ['telur', 'susu', 'sup', 'apel', 'roti']
+>>> chores = ['bersih-bersih', 'potong rumput', 'berbelanja']
+>>> favoritePies = ['apel', 'frumbleberry']
+>>> listOfLists = [groceries, chores, favoritePies]
+>>> listOfLists
+[['telur', 'susu', 'sup', 'apel', 'roti'], ['bersih-bersih', 'potong rumput', 'berbelanja'], ['apel', 'frumbleberry']]
+
+Untuk mendapatkan item dalam daftar suatu daftar, kamu dapat menggunakan dua rangkap tanda kurung kotak, seperti: listOfLists[1][2] yang akan terevaluasi menjadi 'berbelanja'.
+Nilai itu dihasilkan karena listOfLists[1] terevaluasi menjadi ['bersih-bersih', 'potong rumput', 'berbelanja'] dan ['bersih-bersih', 'potong rumput', 'berbelanja'][2] yang lalu terevaluasi menjadi 'berbelanja':
+
+listOfLists[1][2]
+         ▼
+[['telur', 'susu', 'sup', 'apel', 'roti'], ['bersih-bersih', 'potong rumput', 'berbelanja'], ['apel', 'frumbleberry']][1][2]
+         ▼
+['bersih-bersih', 'potong rumput', 'berbelanja'][2]
+         ▼
+'berbelanja'
+
+Gambar 9-1 menunjukkan contoh lain suatu daftar dalam daftar beserta indeks yang merujuk pada suatu item dalam daftar itu. Tanda panah menunjukkan indeks dalam list di dalam list. Gambar itu juga dibalik pada sisinya untuk mepermudah dibaca.
+
+Gambar 9-1: Indeks list dalam list.
+
+Method
+
+Method adalah fungsi yang dipasang pada suatu nilai. Sebagai contoh, semuan nilai string punya method lower() yang akan mengembalikan satu kopian nilai string itu dalam huruf kecil. Kamu tidak bisa membanggil lower() saja dan tidak perlu melemparkan argument string ke lower() (seperti lower('Halo')). Kamu harus memasang pemanggilan method itu pada nilai string tertentu dengan menggunakan satu tanda titik. bagian berikutnya akan menjelaskan dua method string.
+
+Method string lower() dan upper()
+
+Coba masukkan 'Halo Dunia!'.lower() dalam shell interaktif:
+
+>>> 'Halo Dunia!'.lower()
+'halo dunia!'
+
+String juga punya method upper yang akan mengembalikan satu string yang semua hurufnya dalam huruf kapital. Coba masukkan 'Halo Dunia!'.upper() dalam shell interaktif:
+
+>>> 'Halo Dunia!'.upper()
+'HALO DUNIA!'
+
+Karena method upper() mengembalikan satu string, maka kamu juga dapat memanggil method lain untuk string. Coba masukkan 'Halo Dunia!'.upper().lower() dalam shell interaktif:
+
+>>> 'Halo Dunia!'.upper().lower()
+'halo dunia!'
+
+'Halo Dunia!'.upper() terevaluasi menjadi string 'HALO DUNIA!', lalu method lower() dipasang pada string itu. Kembaliannya adalah string 'halo dunia!' yang merupakan nilai terakhir hasi evaluasi.
+
+'Halo Dunia!'.upper().lower()
+                    ▼
+        'HALO DUNIA!'.lower()
+                    ▼
+               'halo dunia!'
+
+Urutan harus diperhatikan. 'Halo dunia!'.lower().upper() tidak sama dengan 'Halo dunia!'.upper().lower():
+
+>>> 'Halo dunia!'.lower().upper()
+'HALO DUNIA!'
+
+Evaluasinya tampak seperti:
+
+'Halo Dunia!'.upper().lower()
+                    ▼
+        'halo dunia!'.lower()
+                    ▼
+               'HALO DUNIA!'
+
+Jika suatu variabel berisi string, maka kamu bisa memanggil method untuk string pada variabel itu. Perhatikan contoh berikut:
+
+>>> spam = 'Halo dunia!'
+>>> spam.upper()
+'HALO DUNIA!'
+
+Kode terakhir di atas tidak akan merubah isi spam. Variabel spam akan tetap berisi 'Halo dunia!'.
+
+Method list reverse() dan append()
+
+Tipe data list juga punya beberapa method. Method reverse() akan membalik urutan item-item dalam list. Coba masukkan spam = [1, 2, 3, 4, 5, 6, 'miow', 'guk'], lalu spam.reverse() untuk membalik urutan spam. Ketik spam untuk melihat isinya:
+
+>>> spam = [1, 2, 3, 4, 5, 6, 'miow', 'guk']
+>>> spam.reverse()
+>>> spam
+['guk', 'miow', 6, 5, 4, 3, 2, 1]
+
+Method yang akan sering digunakan pada list adalah append(). Method ini akan menambahkan nilai yang kamu lemparkan sebagai argument pada akhir list. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> eggs = []
+>>> eggs.append('beruang')
+>>> eggs
+['beruang']
+>>> eggs.append('dompet')
+>>> eggs
+['beruang', 'dompet']
+>>> eggs.append(42)
+>>> eggs
+['beruang', 'dompet', 42]
+
+Sebagai catatan tipe data int dan float tidak punya method. 
+
+Method list split()
+
+Di baris 59 tampak panjang. Sebenarnya baris ini hanya satu pernyataan pengisian. Pada baris ini juga terdapat penggunaan method split() yang merupakan method untuk string, seperti lower() dan upper(). 
+
+ 59. words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra semut babon musang kelelawar beruang unta kucing kerang kobra gagak anjing rusa bebek keledai elang musang rubah katak kambing angsa elang singa kadal monyet keledai tikus hiu kadal panda beo merpati piton kelinci tikus gagak badak salmon domba sigung kukang ular bangau angsa harimau kodok kalkun penyu musang paus serigala zebra'.split()
+Pernyataan pengisian itu berisi satu string yang panjang berisi kata-kata yang dipisahkan spasi. Pada bagian akhir dipanggil method split(). Method split() akan mengembalikan satu list berisi setiap kata dalam string sebagai item-item list. "Pemisahan" dilakukan setiap kali satu spasi muncul.
+Lebih mudah menulis kode itu dengan split(). Jika kamu membuat daftar kata dengan list, maka kamu harus mengetikkan: ['ant', 'baboon', 'badger',... dan seterusnya dengan kutip dan koma untuk tiap kata.
+Sebagai contoh, untuk memahami bagaimana method split bekerja, coba masukkan kode berikut dalam shell interaktif:
+
+>>> sentence = input()
+Mamaku yang penuh semangat baru saja membuatkan kami sarapan.
+>>> sentence.split()
+['Mamaku', 'yang', 'penuh', 'semangat', 'baru', 'saja', 'membuatkan', 'kami', 'sarapan.']
+
+Hasil split() di atas adalah sembilan string, satu string untuk tiap kata dalam string yang dimasukkan. Tanda spasi tidak disertakan dalam dalam setiap item.
+Kamu juga dapat menambahkan kata-kata pilihanmu sendiri dalam string di baris 59 atau menghapus kata yang tidak kau inginkan dalam game. Pastikan saja setiap kata dipisahkan dengan spasi.
+
+Bagaimana Kode Game Hangman Bekerja
+
+Baris 61 mendefinisikan fungsi getRandomWord() yang punya satu parameter, yaitu wordList. Fungsi ini akan mengembalikan satu kata rahasia dari daftar dalam parameter wordList.
+
+ 61. def getRandomWord(wordList):
+ 62.     # Fungsi ini mengembalikan satu string acak dari daftar string dalam list yang dilemparkan.
+ 63.     wordIndex = random.randint(0, len(wordList) - 1)
+ 64.     return wordList[wordIndex]
+
+Di baris 63, kita akan mengambil item dari list dalam variabel wordList di suatu indeks yang dipilih secara acak. Pertama, panggil randint() dengan dua argument. Argument pertama sama dengan 0 dan argument kedua adalah nilai yang terevaluasi dari ekspresi len(wordList) - 1.
+Indeks list mulai dari 0, bukan 1. Jika kita punya list dengan tiga item, maka indeks item pertama adalah 0, indeks item kedua adalah 1, dan indeks item ketiga adalah 2. Panjang list ini adalah 3, tetapi indeks 3 berada setelah indeks terakhir. Inilah sebabnya pada baris 63 terdapat pengurangan satu dari panjang list.
+Variabel wordIndex akan menjadi indeks acak untuk list yang dilemparkan sebagai parameter wordList. Baris 64 akan mengembalikan item dalam wordList pada indeks yang tersimpan dalam wordIndex.
+Misalkan list ['apel, 'jeruk', 'anggur'] dilemparkan sebagai argument getRandomWord() dan randint(0, 2) mengembalikan nilai 2. Maka baris 64 akan menjadi return wordList[2], yang akan terevaluasi menjadi return 'anggur'. Begitulah cara getRandomWord() mengembalikan kata dari list wordList secara acak.
+Jadi masukan getRandomWord() adalah suatu list string-string dan keluarannya adalah string yang dipilih secara acak dari list itu. Fungsi ini akan berguna untuk game Hangman.
+
+Menampilkan Papan Game untuk Pemain
+
+Berikutnya, kamu perlu satu fungsi untuk mencetak papan Hangman pada layar. Fungsi ini juga akan menampilkan berapa banyak huruf yang sudah ditebak dengan tepat (atau tidak). 
+
+ 66. def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
+ 67.     print(HANGMANPICS[len(missedLetters)])
+ 68.     print()
+
+Kode di atas mendefinisikan fungsi bernama displayBoard(). Fungsi ini punya empat parameter:
+
+• HANGMANPICS - Satu list multiline yang akan menampilkan papan sebagai seni ASCII. (variabel global HANGMANPICS akan dilemparkan sebagai parameter ini.)
+• missedLetters - String huruf-huruf yang sudah ditebak pemain, tetapi tidak ada dalam kata rahasia.
+• correctLetters - String huruf-huruf yang sudah ditebak pemain dan ada dalam kata rahasia.
+• secretWord - String kata rahasia yang harus ditebak pemain.
+
+Pemanggilan fungsi print() pertama akan menampilkan papan game. Variabel HANGMANPICS akan berisi list string untuk tiap papan yang mungkin. HANGMANPICS[0] menunjukkan gantungan kosong, HANGMANPICS[1] menunjukkan kepala (ketika pemain salah tebak satu kali), HANGMANPICS[2] menunjukkan kepala dan badan (ketika pemain salah tebak dua kali), dan seterusnya, sampai HANGMANPICS[6] yang menunjukkan orang digantung secara komplit.
+Banyaknya huruf dalam missedLetters akan menunjukkan sudah berapa kali pemain salah tebak. Untuk mengetahuinya, panggil len(missedLetters). Jadi jika missedLetters berisi 'aetr' maka len('aetr') sama dengan 4. Dengan memanggil print(HANGMANPICS[4]), maka papan Hangman ketika salah tebah 4 kali akan ditampilkan. Nilai itulah yang terevaluasi dari ekspresi HANGMANPICS[len(missedLetters)].
+
+ 70.     print('Huruf yang salah tebak:', end=' ')
+ 71.     for letter in missedLetters:
+ 72.         print(letter, end=' ')
+ 73.     print()
+
+Baris 70 akan mencetak string 'Huruf yang salah tebak:' diikuti oleh karakter spasi pada bagian akhir, bukan newline. Ingat, bahwa keyword argument end=' ' hanya menggunakan satu tanda = (seperti =), bukan dua (seperti ==).
+Baris 71 adalah tipe baru suatu putaran yang disebut putaran for. Putaran ini biasanya menggunakan fungsi range(). Keduanya dijelaskan pada dua bagian berikut ini.
+
+Fungsi range() dan list()
+
+Fungsi range(), jika dipanggil dipanggil dengan satu argument, akan mengembalikan satu objek rentang suatu bilangan bulat dari 0 sampai (tidak termasuk) nilai dalam argument. Objek rentang dapat diubah menjadi tipe data list yang lebih familiar dengan bantuan fungsi list(). Coba masukkan list(range(10)) dalam shell interaktif:
+
+>> list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> list('Halo')
+['H', 'a', 'l', 'o']
+
+Fungsi list() mirip fungsi str() dan int(). Fungsi ini mengubah objek yang dilemparkan padanya menjadi sebuah list. Mudah sekali membuat list yang besar dengan fungsi range(). Coba masukkan list(range(10000)) dalam shell interaktif:
+
+>>> list(range(10000))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
+      ...teks di sini dilewatkan untuk menyingkatnya...
+...9989, 9990, 9991, 9992, 9993, 9994, 9995, 9996, 9997, 9998, 9999]
+
+List itu sangat besar yang mungkin tidak akan muat dalam layar. Meski demikian, kamu bisa menyimpannya dalam variabel:
+
+>>> spam = list(range(10000))
+
+Jika kamu melemparkan dua argument pada range(), daftar bilangan bulat yang dikembalikannya akan dimulai dari argument pertama sampai (tapi, tidak termasuk) argument kedua. Berikut contohnya:
+
+>>> list(range(10, 20))
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+Fungsi range() sering dipakai di putaran for (yaitu, putaran seperti putaran while yang sudah pernah dibahas).
+
+Putaran for
+
+Putaran for berguna untuk berputar seputar nilai-nilai dalam list. Putaran ini berbeda dengan putaran while yang berputar selama suatu kondisi tetap True. Pernyataan for dimulai dengan katakunci for yang diikuti dengan nama variabel, katakunci in, sebuah barisan (seperti list), dan diakhiri tanda titik dua (:).
+Barisan itu biasanya merupakan objek range yang dikembalikan dari range(), tetapi bisa juga list.
+Setiap iterasi dalam putaran, eksekusi mengisi variabel dalam pernyataan for dengan nilai pada item berikutnya dalam barisan yang tersedia.
+
+>>> for i in range(5):
+...     print('i diisi ' + str(i))
+...
+i diisi 0
+i diisi 1
+i diisi 2
+i diisi 3
+i diisi 4
+
+Objek rentang yang dikembalikan range(5) ekuivalen dengan list [0, 1, 2, 3, 4]. Kali pertama eksekusi masuk blok for, variabel i akan diisi 0. Iterasi berikutnya, i akan diisi 1, begitu seterusnya.
+Pernyataan for secara otomatis mengubah objek range yang dikembalikan range() menjadi sebuah list, sehingga tidak perlu menulis pernyataan list(range(5)). Pakai saja range(5).
+list dan string juga termasuk tipe data barisan (sequence). Kamu dapat menggunakannya dalam pernyataan for. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> for thing in ['kucing', 'spageti', 'pemrograman', 'spam']:
+...     print('Aku suka sekali ', thing)
+...
+Aku sangat suka kucing
+Aku sangat suka spageti
+Aku sangat suka pemrograman
+Aku sangat suka spam
+
+>>> for in in 'Halo!':
+...     print(i)
+...
+H
+a
+l
+o
+!
+
+Putaran while yang Ekuivalen dengan Putaran for
+
+Putaran for mirip dengan putaran while, bedanya jika kamu hanya perlu mengiterasi item-item dalam list, kode dengan putaran for akan lebih singkat. Kamu dapat membuat putaran while sehinga bekerja seperti putaran for dengan menambahkan kode ekstra:
+
+>>> sequence = ['kucing', 'spageti', 'pemrograman', 'spam']
+>>> index = 0
+>>> while (index < len(sequence)):
+...     newVariable = sequence[index]
+...     print('Aku sangat suka ' + newVariable)
+...     index = index + 1
+...
+Aku sangat suka kucing
+Aku sangat suka spageti
+Aku sangat suka pemrograman
+Aku sangat suka spam
+
+Dengan menggunakan pernyataan for kode ekstra itu akan ditambahkan secara otomatis. Ini membuat pemrograman lebih mudah karena kamu perlu menulis lebih sedikit kode.
+Sisa kode fungsi displayBoard() menunjukkan huruf-huruf yang salah tebak dan membuat string kata rahasia dengan huruf yang belum tertebak sebagai garis.
+
+ 70.     print('Huruf yang salah tebak:', end=' ')
+ 71.     for letter in missedLetters:
+ 72.         print(letter, end=' ')
+ 73.     print()
+
+Putaran for pada baris 71 akan mengiterasi setiap karakter dalam string missedLetters, lalu mencetak karakternya pada layar. Ingat bahwa end=' ' akan mengganti karakter newline setelah string menjadi satu karakter spasi.
+Sebagai contoh, jika missedLetters adalah 'ajtw', maka putaran for itu akan menunjukkan a j t w.
+
+Mengiris
+
+Prose mengiris list (list slicing) akan membuat satu nilai list baru yang merupakan himpunan bagian dari item-item list lain. Caranya, tulis dua indeks (sebagai awal dan akhir) dan satu tanda titik dua dalam kurung kotak setelah list. Sebagai contoh, coba masukkan kode berikut dalam shell interaktif:
+
+>>> spam = ['apel', 'pisang', 'wortel', 'kurma']
+>>> spam[1:3]
+['pisang', 'wortel']
+
+Ekspresi spam[1:3] terevaluasi menjadi list baru dengan item dari list spam pada indeks 1 sampai (tapi tidak termasuk) indeks 3.
+Jika kamu tidak memngisikan indeks pertama, Python akan berpikir kamu ingin mendefinisikan indeks 0 sebagai indeks pertama:
+
+>>> spam = ['apel', 'pisang', 'wortel', 'kurma']
+>>> spam[:2]
+['apel', 'pisang']
+
+Jika kamu tidak mengisi indeks kedua, Python akan berpikir kamu ingin mendefinisikan semua sisa item dalam list:
+
+>>> spam = ['apel', 'pisang', 'wortel', 'kurma']
+>>> spam[2:]
+['wortel', 'kurma']
+
+Proses mengiris adalah cara untuk mendapatkan himpunan bagian item-item dalam sebuah list. Kamu dapat menggunakan pengirisan pada string dengan cara sama seperti pada list. Setiap karakter pada string sama seperti item dalam list. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> myName = 'Bruno si Kucing Jutek'
+>>> myName[4:12]
+'o si Kuc'
+>>> myName[:10]
+'Bruno si K'
+>>> myName[6:]
+'si Kucing Jutek'
+
+Bagian berikutnya dalam kode Hangman menggunakan pengirisan list.
+
+Menampilkan Kata Rahasia dengan Garis
+
+Sekarang kamu ingin kode yang menampilkan kata rahasia dengan garis-garis yang menunjukkan huruf yang belum ketebak. Kamu dapat menggunakan karakter _ (tanda garis bawah) sebagai garis. Pertama kamu dapat buat string kata rahasia yang hanya mengandung garis bawah untuk setiap huruf. Lalu setiap garis dapat diganti dengan huruf pada correctLetters.
+Jadi jika kata rahasia itu adalah 'piton' maka string bergarisnya adalah '_____' (lima garis bawah). Jika string dalam correctLetters adalah 'op', maka string bergarisnya menjadi 'p__o_'. Kode untuk proses ini terdapat di baris 75 sampai 79.
+
+ 75.     blanks = '_' * len(secretWord)
+
+Baris 75 akan membuat variabel blanks penuh garis bawah dengan menggunakan penggantian string. Ingat bahwa operator * dapat pula digunakan untuk string dan bilangan bulat. Jadi ekspresi '_' * 5 akan terevaluasi menjadi '_____'. Cara ini memastikan banyaknya garis bawah sama dengan panjang kata rahasia.
+
+ 77.     for i in range(len(secretWord)): # ganti garis dengan huruf yang ditebak dengan tepat
+ 78.         if secretWord[i] in correctLetters:
+ 79.             blanks = blanks[:i] + secretWord[i] + blanks[i+1:]
+
+Baris 77 mengandung putaran for yang akan mengiterasi setiap huruf dalam secretWord dan mengganti garis bawah dengan huruf yang ada dalam correctLetters.
+Misalkan nilai secretWord adalah 'piton' dan correctLetters bernilai 'po', maka string yang harus ditunjukkan adalah 'p__o_'. Mari kita cari tahu bagaimana membuat string seperti itu.
+Pemanggilan fungsi len(secretWord) di baris 77 akan mengembalikan nilai 5. Pemanggilan range(len(secretWord)) menjadi range(5) yang akan mengembalikan list [0, 1, 2, 3, 4].
+Karena nilai i akan berisi setiap nilai dalam [0, 1, 2, 3, 4], maka kode putaran for itu akan sama dengan:
+
+if secretWord[0] in correctLetters:
+    blanks = blanks[:0] + secretWord[0] + blanks[1:]
+
+if secretWord[1] in correctLetters:
+    blanks = blanks[:1] + secretWord[1] + blanks[2:]
+
+if secretWord[2] in correctLetters:
+    blanks = blanks[:2] + secretWord[2] + blanks[3:]
+
+if secretWord[3] in correctLetters:
+    blanks = blanks[:3] + secretWord[3] + blanks[4:]
+
+if secretWord[4] in correctLetters:
+    blanks = blanks[:4] + secretWord[4] + blanks[5:]
+
+Jika kamu bingung tentang apa nilai dari ekspresi seperti secretWord[0] atau blanks[3:], maka coba lihat Gambar 9-2. Gambar itu menunjukkan nilai dari variabel secretWord dan blanks beserta indeks untuk tiap huruf dalam string masing-masing.
+
+Gambar 9-2: Indeks pada string blanks dan secretWord.
+
+Jika kamu mengganti pengirisan list dan indeks list dengan nilai-nilai yang tersimpan, kode putaran itu akan sama dengan:
+
+if 'p' in 'po': # False
+    blanks = '' + 'p' + '____' # Baris ini dieksekusi.
+
+if 'i' in 'po': # True
+    blanks = 'p' + 'i' + '___' # Baris ini dilewati.
+
+if 't' in 'po': # True
+    blanks = 'pt' + 't' + '__' # Baris ini dilewati.
+
+if 'o' in 'po': # False
+    blanks = 'p__' + 'o' + '_' # Baris ini dieksekusi.
+
+if 'n' in 'po': # True
+    blanks = 'p__o' + 'n' + '' # Baris ini dilewati.
+
+# sekarang blanks berisi 'p__o_'
+
+Ketiga kelompok kode di atas akan melalukan hal yang sama ketika secretWord berisi 'piton' dan correctLetters berisi 'po'. Kotak pertama menunjukkan kode yang kita punya untuk game. Kotak kedua menunjukkan kode yang melakukan hal yang sama, kecuali tanpa putaran for. Kotak ketiga sama dengan kotak kedua, hanya saja semua nilainya sudah terevaluasi dari kota kedua.
+Beberapa baris kode berikutnya akan menunjukkan nilai baru blanks yang dipisahkan dengan spasi.
+
+ 81.     for letter in blanks: # tampilkan kata rahasia dengan huruf-huruf yang dipisahkan satu spasi
+ 82.         print(letter, end=' ')
+ 83.     print()
+
+Putaran for ini akan mencetak setiap karakter dalam string blanks. Ingat bahwa sekarang, garis bawah pada blanks mungkin sudah diganti huruf dalam secretWord. Keyword argument end dalam baris 82 akan membuat print() menambahkan satu spasi pada akhir string, bukan newline. Baris 83 adalah akhir kode untuk fungsi displayBoard().
+
+Ambil Tebakan Pemain
+
+Fungsi getGuess() akan dipanggil ketika pemain mengetikkan huruf sebagai tebakan. Fungsi ini akan mengembalikan huruf yang ditebak pemain sebagai string. Lebih lanjut, fungsi getGuess() akan memastikan bahwa pemain memasukkan huruf yang valid sebelum mengembalikan nilai.
+
+ 85. def getGuess(alreadyGuessed):
+ 86.     # Mengembalikan huruf yang dimasukkan pemain. Fungsi ini memastikan pemain memasukkan satu huruf, bukan string lainnya.
+
+Fungsi getGuess() memiliki parameter bernama alreadyGuessed yang sebaiknya bertipe string yang mengandung huruf yang telah ditebak pemain. Lalu fungsi ini akan meminta pemain untuk menebak satu huruf. Huruf ini akan dikembalikan fungsi.
+
+ 87.     while True:
+ 88.         print('Tebak satu huruf.')
+ 89.         guess = input()
+ 90.         guess = guess.lower()
+
+Putaran while pada baris 87 akan terus meminta pemain satu huruf tebakan sampai pemain memasukkan teks yang:
+
+1.  terdiri dari satu huruf.
+2.  merupakan satu huruf yang belum pernah ditebak.
+
+Kondisi putaran while itu adalah nilai Boolean True. Artinya, satu-satunya cara agar eksekusi bisa keluar putaran adalah sampai di pernyataan break (yang akan melompat keluar putaran) atau pernyataan return (yang keluar dari fungsi).
+Kode dalam putaran meminta pemain memasukkan satu huruf yang akan disimpan dalam variabel guess. Jika pemain memasukkan huruf kapital, baris 90 akan mengubahnya menjadi versi huruf kecil.
+
+Pernyataan elif:
+
+Coba lihat kode berikut:
+
+if catName == 'Onye':
+    print('Kucing kamu oranye.')
+elif catName == 'Puput':
+    print('Kucing kamu putih.')
+else:
+    print('Kucing kamu tidak oranye atau putih.')
+
+Jika variabel catName sama dengan string 'Onye', maka kondisi pernyataan if bernilai True dan kita beritahu pengguna kalau kucingnya oranye. Namun, jika kondisinya False, Python akan mencoba kondisi elif (jika tidak) berikutnya. Jika kucing bernama 'Puput', maka string 'Kucing kamu putih.' akan ditampilkan. Jika keduanya tidak terpenuhi, maka kita beritahu pengguna kalau kucingnya tidak oranye atau putih.
+Pernyataan if-elif-else sama seperti berkata "Jika ini benar, maka lakukan ini. Atau jika kondisi berikutnya benar, lakukan itu. Atau jika tidak ada kondisi yang benar, lakukan hal terakhir."
+Kamu dapat membuat pernyataan elif sebanyak yang kamu mau:
+
+if catName == 'Onye':
+    print('Kucing kamu oranye.')
+elif catName == 'Puput':
+    print('Kucing kamu putih.')
+elif catName == 'Hitam':
+    print('Kucing kamu hitam.')
+elif catName == 'Abu':
+    print('Kucing kamu abu-abu.')
+else:
+    print('Kucing kamu tidak oranye atau putih atau hitam atau abu-abu.')
+
+Ketika suatu kondisi elif True, kode berikutnya dieksekusi, lalu loncat ke baris pertama di luar blok else. Jadi hanya satu blok dalam pernyataan if-elif-else ini yang akan dieksekusi. Kamu juga bisa tidak menggunakan blok elif, jika memang tidak perlu, dan hanyak menggunakan pernyataan if-else.
+
+Memastikan Pemain Memasukkan Tebakan Valid
+
+ 91.         if len(guess) != 1:
+ 92.             print('Please enter a single letter.')
+ 93.         elif guess in alreadyGuessed:
+ 94.             print('Kamu sudah menebak huruf itu. Pilih lagi.')
+ 95.         elif guess not in 'abcdefghijklmnopqrstuvwxyz':
+ 96.             print('Masukkan huruf alfabet.')
+ 97.         else:
+ 98.             return guess
+
+variabel guess mengandung tebakan huruf pemain. Program harus memastikan bahwa pemain hanya memasukkan satu huruf. Jika tidak, putaran berlanjut dan meminta tebakan lagi.
+Kondisi pada baris 91 mengecek apakah guess terdiri dari tepat satu huruf. Kondisi 93 mengecek apakah nilai guess sudah ada di variabel alreadyGuessed. Kondisi baris 95 mengecek apakah guess merupakan huruf alfabet.
+Jika tidak ada kondisi yang benar, maka pernyataan dalam blok else akan tereksekusi dan fungsi mengembalikan nilai guess (baris 98).
+Ingat, hanya satu dari blok pernyataan if-elif-else yang akan dieksekusi.
+
+Bertanya pada Pemain Apakah Ingin Main Lagi
+
+100. def playAgain():
+101.     # Fungsi ini mengembalikan True jika pemain ingin bermain lagi, jika tidak maka False yang dikembalikan.
+102.     print('Kamu mau main lagi? (ya or tidak)')
+103.     return input().lower().startswith('y')
+
+Fungsi playAgain() hanya mengandung pemanggilan fungsi call() dan satu pernyataan return. Pernyataan return memiliki ekspresi yang terlihat rumit, tetapi kita dapat memecahnya satu-satu.
+Berikut langkah demi langkah yang akan terjadi ketika Python mengevaluasi ekspresi ini untuk masukan YA dari pemain.
+
+input().lower().startswith('y')
+            ▼
+  'YA'.lower().startswith('y')
+            ▼
+          'ya'.startswith('y')
+            ▼
+           True
+
+Poin fungsi playAgain() adalah membuat pemain mengetikkan ya atau tidak untuk memberitahu program apakah pemain mau main Hangman lagi atau tidak. Jika pemain mengetikkan Ya, maka kembalian fungsi input() adalah string 'YA'. Lalu 'YA'.lower() mengembalikan versi huruf kecil dari string yang terpasang. Jadi kembalian 'YA'.lower() adalah 'ya'.
+Ada method kedua yang dipanggil, yaitu startswith('y'). Fungsi ini mengembalikan True jika string yang bersangkutan dimulai dengan string pada parameter diantara tanda kurung, jika tidak maka akan dikembalikan False. Kembalian 'ya'.startswith('y') adalah True.
+Sekarang kita telah mengevaluasi ekspresi itu! Apa yang dilakukannya adalah membolehkan pemain mengetikkan respon, membuat respon itu jadi huruf kecil semua, mengecek apakah hasilnya dimulai dengan huruf 'y', lalu mengembalikan True jika memang demikian, lainnya False.
+Sebagai catatan, ada juga method string endswith(someString) yang akan mengembalikan True jika string berakhir dengan string dalam someString dan False jika tidak demikian. Fungsi endswith() seperti kebalikan dari startswith().
+
+Ulasan Fungsi dalam Game Hangman
+
+Semua fungsi yang dipakai dalam game Hangman sudah dibahas!
+
+• getRandomWord(wordList) akan mengambil list string yang dilemparkan padanya, lalu mengembalikan satu string dari parameter itu. Begitulah cara satu kata dipilih untuk coba ditebak pemain.
+• displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord) akan menunjukkan status papan game, termasuk berapa banyak huruf yang telah ditebak sejauh ini dan huruf-huruf yang salah tebak. Fungsi ini butuh empat parameter agar dapat bekerja dengan benar. HANGMANPICS adalah list string yang menyimpan seni ASCII untuk setiap papan game yang mungkin. correctLetters dan missedLetters adalah string yang dibuat dari huruf-huruf yang telah ditebak pemain yang berturut-turut untuk tebakan benar dan salah. Terakhir adalah secretWord yaitu kata rahasia yang akan ditebak pemain. Fungsi ini tidak mengembalikan suatu nilai.
+• getGuess(alreadyGuessed) mengambil satu string huruf-huruf yang sudah ditebak pemain dan akan terus meminta pemain memasukkan satu huruf yang belum pernah dimasukkan. (yaitu, huruf yang tidak dalam alreadyGuessed.) Fungsi ini mengembalikan string huruf valid sebagai tebakan pemain.
+• playAgain() adalah fungsi yang bertanya pada pemain apakah ingin main lagi. Fungsi mengembalikan True jika demikian, False jika tidak.
+
+Setelah fungsi-fungsi itu, kode utama dimulai. Bagian utama kode akan memanggil fungsi itu sesuai kebutuhan.
+
+Kode Utama Game Hangman
+
+Bagian utama kode dimulai dari baris 106. Baris sebelumnya hanya mengandung definisi fungsi dan pernyataan pengisian variabel HANGMANPICS.
+
+Menyiapkan Variabel
+
+106. print('H A N G M A N')
+107. missedLetters = ''
+108. correctLetters = ''
+109. secretWord = getRandomWord(words)
+110. gameIsDone = False
+
+Fungsi print() pada baris 106 adalah fungsi yang dieksekusi pertama saat game dimulai. Lalu variabel missedLetters dan correctLetters diisi dengan string kosong karena pemain belum menebak huruf apapun.
+Pemanggilan fungsi getRandomWord(words) akan terevaluasi menjadi kata yang dipilih secara acak dari daftar kata-kata dalam words.
+Variabel gameIsDone awalnya akan diisi False. Kode selanjutnya akan mengisi variabel ini menjadi True ketika game sudah berakhir dan program akan bertanya pada pemain apakah ingin main lagi.
+
+Menampilkan Papan Game pada Pemain
+
+112. while True:
+113.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+
+Kondisi putaran while akan selalu True yang berarti bahwa interasi akan berputar terus sampai pernyataan break dieksekusi.
+Baris 113 memanggil fungsi displayBoard() dengan argumen list seni ASCII orang digantung dan tiga variabel lain yang diisi pada baris 107, 108, dan 109. Fungsi ini akan menampilkan papan Hangman yang sesuai berdasarkan berapa banyak huruf yang sudah ditebak dengan tepat dan yang salah tebak.
+
+Mempersilakan Pemain Memasukkan Tebakan
+
+115.     # Ambil masukan satu huruf dari pemain.
+116.     guess = getGuess(missedLetters + correctLetters)
+
+Fungsi getGuess() butuh semua huruf dalam missedLetters dan correctLetters yang digabungkan sebelum jadi argument. Argument ini diperlukan oleh getGuess() karena fungsi punya kode yang mengecek apakah pemain memasukkan huruf yang sudah pernah ditebak.
+
+Mengecek Apakah Huruf Tebakan Ada dalam Kata Rahasia
+
+118.     if guess in secretWord:
+119.         correctLetters = correctLetters + guess
+
+Jika string guess ada dalam secretWord, maka serangkaikan guess pada akhir string correctLetters. Nilai ini akan menjadi nilai correctLetters yang baru.
+
+Mengecek Apakah Pemain Sudah Menang
+
+121.         # Cek apakah pemain sudah menang
+122.         foundAllLetters = True
+123.         for i in range(len(secretWord)):
+124.             if secretWord[i] not in correctLetters:
+125.                 foundAllLetters = False
+126.                 break
+
+Bagaimana program mengetahui apakah pemain sudah menebak semua huruf dalam kata rahasia dengan tepat? Variabel correctLetters berisi setiap huruf yang sudah ditebak pemain dengan tepat, sedangkan secretWord adalah kata rahasia yang akan ditebak. Namun, kita tidak bisa hanya mengecek kondisi correctLetters == secretWord karena situasi seperti ini: jika secretWord berisi 'piton' dan correctLetters berisi 'ontpi', maka kondisi correctLetters == secretWord akan False, meskipun pemain sudah menebak semua huruf kata rahasia dengan tepat.
+Salah satu cara untuk mengatasi situasi itu adalah dengan mengiterasi setiap huruf pada secretWord dan cek apakah huruf itu ada dalam correctLetters. Maka pemain menang jika dan hanya jika setiap huruf dalam secretWord ada dalam correctLetters. (Dapatkah kamu menemukan cara lain? penj.)
+Dalam iterasi itu cek apakah kita menemukan satu huruf yang tidak ada dalam correctLetters, jika ditemukan kita tahu bahwa pemain belum menebak semua huruf. Variabel foundAllLetters diisi True pada baris 122 sebelum masuk putaran. Putaran dimulai dengan asumsi semua huruf sudah ditebak dengan tepat. Baru dalam putaran foundAllLetters diisi False pada kali pertama ditemukan huruf dalam secretWord yang tidak ada dalam correctLetters (baris 125).
+
+127.         if foundAllLetters:
+128.             print('Ya! Kata rahasia itu adalah "' + secretWord + '"! Kamu menang!')
+129.             gameIsDone = True
+
+Jika semua huruf dalam kata rahasia sudah ditemukan, pemain diberitahu bahwa dia sudah menang dan variabel gameIsDone diisi True.
+
+Ketika Pemain Salah Menebak Huruf
+
+130.     else:
+131.         missedLetters = missedLetters + guess
+
+Ini merupakan awal blok else. Ingat, kode dalam blok else akan dieksekusi jika kondisi salah. Tapi kondisi yang mana? Untuk mengetahuinya, arahkan jarimu pada awal katakunci else, lalu maju lurus ke atas seperti pada Gambar 9-3. Kamu akan melihat bahwa tekukan katakunci else sama dengan tekukan katakunci if pada baris 118.
+
+Gambar 9-3: Tekukan pernyataan else sama dengan tekukan pernyataan if.
+
+Jadi jika kondisi pada baris 118 (guess in secretWord) salah, yaitu bernilai False, maka eksekusi akan maju ke dalam blok else. Jika tidak, maka eksekusi akan melewati blok else dan sampai di baris 140.
+Huruf-huruf yang tidak dalam kata rahasia diserangkaikan menjadi string missedLetters. Sama seperti yang telah kamu lakukan untuk huruf-huruf yang ditebak dengan tepat pada baris 119.
+
+133.         # Cek apakah pemain sudah coba menebak terlalu banyak dan kalah
+134.         if len(missedLetters) == len(HANGMANPICS) - 1:
+135.             displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+136.             print('Kamu sudah tidak bisa menebak lagi!\nSetelah salah menebak ' + str(len(missedLetters)) + ' kali dan ' + str(len(correctLetters)) + ' tebakan yang tepat, kata itu adalah "' + secretWord + '"')
+137.             gameIsDone = True
+
+Setiap kali pemain menebak huruf yang salah, kode ini menyerangkaikan huruf-huruf itu ke dalam string missedLetters. Jadi panjang missedLetters (dalam kode ditulis len(missedLetters)) merupakan banyaknya huruf yang sudah ditebak, tapi salah.
+Variabel list HANGMANPICS terdiri dari 7 string seni ASCII. Jadi jika len(missedLetters) sama dengan 6, kita tahu bahwa pemain telah kalah karena gambar orang digantung akan lengkap. Ingat, HANGMANPICS[0] adalah item pertama dalam list itu, sedangkan HANGMANPICS[6] adalah item terakhir.
+Jadi jika panjang missedLetters sama dengan len(HANGMANPICS) -1 (yaitu, 6), maka pemain tidak bisa menebak lagi. Kata rahasia ditampilkan dan variabel gameIsDone diisi True.
+
+139.     # Tanya apakah pemain ingin main lagi (tapi, hanya jika game sudah selesai).
+140.     if gameIsDone:
+141.         if playAgain():
+142.             missedLetters = ''
+143.             correctLetters = ''
+144.             gameIsDone = False
+145.             secretWord = getRandomWord(words)
+
+Jika pemain sudah menebak huruf-huruf dan dinyatakan menang atau kalah, game akan bertanya apakah pemain ingin main lagi. Fungsi playAgain() menangai masukan ya atau tidak dari pemain, sehingga fungsi ini dipanggil pada baris 141.
+Jika pemain ingin main lagi, nilai dalam missedLetters dan correctLetters harus berisi string kosong lagi, gameIsDone berisi False, dan kata rahasia baru dibuat. Dengan demikian ketika eksekusi memutar balik ke awal putaran pada baris 112, papan game akan kembali baru.
+
+146.         else:
+147.             break
+
+Jika pemain memasukkan 'no' ketika ditanya apakah mau main lagi, maka kondisi pada baris 141 salah dan blok else dieksekusi. Pernyataan break akan menyebabkan eksekusi lompat ke baris pertama setelah blok putaran while. Namun, karena tidak ada lagi kode setelah putaran itu, maka program akan mati.
+
+Ringkasan
+
+Bab ini cukup panjang dan kamu sudah dikenalkan pada beberapa konsep baru. Game Hangman sejauh ini merupakan game paling canggih yang telah kamu buat. Seiring dengan bertambah rumitnya game yang akan kamu buat, maka membuat diagram alir tentang apa yang terjadi dalam programmu merupakan ide bagus.

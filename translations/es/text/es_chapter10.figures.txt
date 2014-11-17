@@ -1,0 +1,32 @@
+Fig 10-1:
+Start
+Ask for player's letter.
+Decide who goes first.
+Player's Turn
+Show the board.
+Get player's move.
+Check if player won.
+Check for tie.
+Computer's Turn
+Get computer's move.
+Check if computer won.
+Check for tie.
+Ask player to play again.
+End
+
+Fig 10-3:
+Corner
+Side
+Center
+
+Fig 10-4:
+1. Make winning move.
+2. Block player's winning move.
+3. Move on corner.
+4. Move on center.
+5. Move on side.
+
+Fig 10-5:
+Reference
+(a list value)
+

@@ -1,0 +1,10 @@
+Fig 4-2:
+...maju ke dalam blok while di sini.
+...maju melewati blok while ke sini.
+
+Fig 4-3:
+fizzy
+katakunci if
+kondisi
+katakunci while
+

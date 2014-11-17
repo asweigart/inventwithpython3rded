@@ -1,0 +1,196 @@
+    Bab 7
+    MENGGUNAKAN DEBUGGER
+
+Cakupan Topik dalam Bab ini:
+•   Tiga Tipe Error yang Berbeda
+•   Debugger dari IDLE
+•   Melangkah Masuk, Melalui, dan Keluar
+•   Go dan Quit
+•   Titik Henti
+
+Bug!
+
+“On two occasions I have been asked, 'Pray, Mr. Babbage, if you put into the machine wrong figures, will the right answers come out?' I am not able rightly to apprehend the kind of confusion of ideas that could provoke such a question.”
+-Charles Babbage, pionir konsep komputer yang dapat diprogram pada abad ke-19.
+
+Jika kamu memasukkan kode yang salah, komputer tidak akan memberimu jawaban yang benar. Komputer akan melakukan apa yang kamu perintahkan, tapi apa yang kamu perintahkan mungkin tidak sama dengan apa yang kamu inginkan. Error seperti itu disebug bug dalam program komputer. Bug terjadi ketika programmer tidak berpikir hati-hati tentang apa yang secara persis akan program lakukan. Ada tiga jenis bug yang dapat terjadi di programmu:
+
+•   Sintaks error merupakan jenis bug yang terjadi karena salah ketik. Interpreter Python akan mengeluarkan pesan sintaks error jika kodemu tidak ditulis dengan bahasa Python yang benar. Program Python tidak akan jalan jika ada bahkan hanya satu sintaks error.
+•   Error runtime merupakan bug yang terjadi ketika program sedang berjalan. Program akan bekerja baik sampai tiba di baris kode yang error, lalu program akan mati dengan suatu pesan error (proses ini biasa disebut program crash). Interpreter Python akan menampilkan informasi "traceback" dan menunjukkan di baris mana error terjadi. 
+•   Error semantik merupakan error yang cukup sulit diperbaiki. Bug ini tidak membuat program crash, tapi tidak melakukan apa yang diharapkan oleh programmer. Sebagai contoh, jika programmer ingin variabel total menyimpan jumlah nilai dalam variabel a, b, dan c, tapi malah menulis total = a * b * c, maka nilai dalam total tidak seperti yang diinginkan. Error ini dapat membuat program crash suatu saat, tapi tidak langsung jelas dimana error semantik ini terjadi. 
+
+Mencari bug dalam program bisa sangat sulit, bahkan jika kamu sudah mengalaminya! Ketika menjalankan program, kamu mungkin menemukan bahwa kadang-kadang fungsi tidak terpanggil ketika seharusnya terpanggil, atau mungkin terpanggil terlalu sering. Kode pada kondisi while mungkin salah, sehingga eksekusi berputar terlalu banyak. (Suatu putaran dalam program yang tidak pernah keluar putaran biasa disebut putaran takhingga - infinite loop. Untuk menghentikan program ini, tekan Ctrl-C dalam shell interaktif.) Bug tadi dapat terjadi dalam kodemu jika kamu tidak hati-hati.
+Untuk membuat putaran takhingga, cobalah masukkan kode berikut dalam shell interaktif (kamu harus mengetikkan Enter dua kali untuk memberitahu shell interaktif bahwa kamu sudah selesai mengetik kode untuk putaran while):
+
+>>> while True: print('Tekan Ctrl-C untuk menghentikan putaran takhingga ini!!!')
+...
+Sekarang tekan dan tahan tombol Ctrl, lalu tekan C untuk menghentikan instruksi di atas. Shell interaktif akan terlihat seperti ini:
+Tekan Ctrl-C untuk menghentikan putaran takhingga ini!!!')
+Tekan Ctrl-C untuk menghentikan putaran takhingga ini!!!')
+Tekan Ctrl-C untuk menghentikan putaran takhingga ini!!!')
+Tekan Ctrl-C untuk menghentikan putaran takhingga ini!!!')
+Tekan Ctrl-C untuk menghentikan putaran takhingga ini!!!')
+Traceback (most recent call last):
+  File "<pyshell#1>", line 1, in <module>
+    while True: print('Tekan Ctrl-C untuk menghentikan putaran takhingga ini!!!')')
+KeyboardInterrupt
+
+Debugger IDLE
+
+Bisa sangat sulit mengetahui bagaimana kode dapat menyebabkan bug. Baris-baris kode tereksekusi dengan cepat dan nilai dalam variabel-variabel sering berubah. Debugger adalah sebuah program yang membuat kamu dapat melangkah melalui kodemu satu baris tiap langkah dengan urutan yang sama dengan eksekusi oleh Python. Debugger juga menunjukkan nilai yang tersimpan dalam variabel pada tiap langkah. 
+Video tutorial tentang bagaimana menggunakan debugger yang disediakan IDLE dapat diperoleh di alamat situs buku ini, yaitu http://invpy.com/videos.
+
+Memulai Debugger
+
+Dalam IDLE, buka game Alam Naga yang kamu buat di bab sebelumnya. Dalam shell interaktif, klik File, lalu Open, kemudian pilih naga.py (atau nama apapun yang kau buat ketika menyimpannya). 
+Setelah membuka file naga.py, klik Debug ► Debugger. Jendela Debug Control akan muncul (Gambar 7-1).
+
+Gambar 7-1: Jendela Debug Control. 
+
+Sekarang ketika kamu menjalankan game Alam Naga dengan menekan F5, Debugger IDLE akan aktif. Proses ini disebut menjalankan program "dalam debugger". Dalam jendela Debug Control, centang checkbox Source and Globals.
+
+Gambar 7-2: Menjalankan game Alam Naga dalam debugger. 
+
+Ketika kamu menjalankan program Python dengan debugger yang aktif, program akan berhenti sebelum mengeksekusi baris pertama kode. Jika kamu mengeklik bar judul jendela file editor (dan kamu telah mencentang checkbox Source dalam jendela Debug Control), maka baris pertama kode akan tersorot dengan warna abu-abu. Jendela Debug Control menunjukkan eksekusi ada di baris 1, yaitu baris import random.
+
+Melangkah
+
+Debugger membuatmu bisa melangkah satu baris kode tiap langkah, yang disebut melangkah (stepping). Untuk mengeksekusi satu instruksi, klik tombol Step dalam jendela Debug Window. Ayo, coba lakukan. Python akan mengeksekusi instruksi import random, lalu akan berhenti sebelum mengeksekusi instruksi berikutnya. Jendela Debug Control akan menunjukkan bahwa eksekusi sekarang ada di baris 2, baris import time. Klik tombol Quit untuk menghentikan program. 
+Berikut adalah ringkasan apa yang terjadi ketika kamu mengeklik tombol Step saat kamu menjalankan game Alam Naga dalam debugger. Tekan F5 untuk menjalankan game Alam Naga lagi, lalu ikuti instruksi berikut:
+
+1.  Klik tombol Step dua kali untuk menjalankan dua baris import. 
+2.  Klik tombol Step tiga kali untuk mengeksekusi tiga pernyataan def. 
+3.  Klik tombol Step lagi untuk mendefinisikan variabel playAgain. 
+4.  Klik Go untuk menjalankan sisa programnya, atau klik Quit untuk mengakhiri program. 
+
+Jendela Debug Control akan menunjukkan baris berapa yang akan dieksekusi ketika kamu mengeklik tombol Step. Debugger akan melewati baris 3 karena baris itu kosong. Perhatikan bahwa kamu hanya bisa melangkah maju, tidak bisa mundur.
+
+Area Globals
+
+Area Globals dalam jendela Debug Control menunjukkan semua variabel global. Ingat, variabel global adalah variabel yang dibuat diluar semua fungsi (yaitu, dalam cakupan global).
+Ketiga pernyataan def mengeksekusi dan mendefinisikan fungsi, sehingga akan muncul dalam area Globals dalam jendela Debug Control. 
+Teks setelah nama fungsi dalam area Globals akan tampak seperti "<function checkCave at 0x012859B0>". Teks setelah nama module juga terlihat sangat membingungkan, seperti "<module 'random' from 'C:\\Python31\\lib\\random.pyc'>". Detil informasi ini sangat berguna bagi para programmer Python yang sudah mahir, tapi kamu tidak perlu mengetahui apa maksudnya untuk mendebug programmu. Dengan melihat fungsi dan module yang ada di area Globals, maka kamu tahu bahwa fungsi sudah terdefinisi dan module sudah diimpor. 
+Kamu juga dapat mengabaikan baris __builtins__, __doc__, dan __name__ dalam area Globals. (Baris itu adalah variabel yang muncul disetiap program Python.)
+Ketika variabel playAgain dibuat, maka variabel ini akan muncul di area Globals. Teks setelah nama variabel ini adalah nilai yang tersimpan, yaitu string 'yes'. Debugger dapat menunjukkan nilai semua variabel dalam program ketika programnya dijalankan. Kemampuan ini berguna untuk memperbaiki bug dalam programmu. 
+
+Area Locals
+
+Area Locals menunjukkan variabel dengan cakupan lokal beserta nilainya. Area lokal hanya akan diisi jika eksekusi program ada di dalam fungsi. Jika eksekusi ada pada cakupan global, area ini kosong. 
+Tombol Go dan Quit
+Jika kamu sudah bosan mengeklik tombol Step berkali-kali dan ingin agar program berjalan secara normal, klik tombol Go pada bagian atas jendela Debug Control. Dengan demikian, program akan berjalan normal, tidak melangkah per baris. 
+Untuk mematikan program, klik saja tombol Quit pada bagian atas jendela Debug Control. Program akan langsung keluar. Proses ini berguna jika kamu ingin memulai ulang proses program dalam debugger dari awal. 
+
+Melangkah Masuk, Melalui, dan Keluar
+
+Mulailah program Alam Naga dengan debugger. Teruslah melangkah sampai eksekusi ada di baris 38. Seperti terlihat di Gambar 7-3, baris itu adalah baris berisi displayIntro(). Ketika kamu mengeklik Step lagi, debugger akan melompat kedalam pemanggilan fungsi dan sampai di baris 5 yang merupakan baris pertama fungsi displayIntro(). Jenis langkah yang sudah kamu lakukan disebut melangkah masuk, karena debugger akan melangkah ke dalam fungsi yang dipanggil. Jenis ini berbeda dengan melangkah melalui yang akan dijelaskan berikutnya.
+
+Gambar 7-3: Teruslah melangkah sampai tiba di baris 38.
+
+Ketika eksekusi berhenti di baris 5, klik Step sekali lagi dan kamu akan masuk ke fungsi print(). Fungsi print() adalah salah satu fungsi build-in Python, sehingga tidak ada gunanya jika melangkah mengikutinya. Fungsi bawaan Python seperti print(), input(), str(), atau random.randint() telah secara hati-hati dites. Kamu dapat berasumsi bahwa fungsi-fungsi itu bukan bagian yang menyebabkan bug dalam programmu.
+Jadi kamu tidak usah buang-buang waktu melangkah dalam fungsi internal print(). Klik saja tombol Over, supaya kamu tidak melangkah ke dalam fungsi print(). Kode dalam print() akan dieksekusi dengan kecepatan normal, lalu debugger akan berhenti ketika eksekusi sudah kembali dari print().
+Melangkah melalui (over) merupakan cara untuk melewati proses melangkah dalam fungsi. Sekarang, debugger akan berhenti di baris 40, baris berisi caveNumber = chooseCave().
+Klik Step sekali lagi untuk melangkah ke dalam fungsi chooseCave(). Teruskan melangkah mengikuti kode sampai baris 15, yaitu pemanggilan fungsi input(). Program akan menunggu sampai kamu mengetikkan respon ke dalam shell interaktif, sama seperti ketika program dijalankan secara normal. Jika kamu mengeklik tombol Step sekarang, maka tidak akan terjadi apa-apa karena program sedang menunggu respon dari keyboard.
+Klik jendela shell interaktif, lalu ketik gua mana yang ingin kau jelajahi. Kursor berkedip harus ada di baris terbawah dalam shell interaktif sebelum mulai mengetik. Jika tidak, teks yang kamu ketik tidak akan ditampilkan.
+Ketika kamu menekan ENTER, debugger akan melanjutkan melangkahi kode lagi. Klik tombol Out pada jendela Debug Control. Proses ini disebut melangkah keluar karena akan menyebabkan debugger melangkah melalui baris-baris sampai eksekusi fungsi memberi kembalian. Setelah keluar, eksekusi akan ada di baris setelah baris yang memanggil fungsi itu.
+Sebagai contoh, klik Out dalam fungsi displayIntro() di baris 6 akan membuat eksekusi melangkah sampai fungsi memberi kembalian dan sampai ke baris setelah pemanggilan fungsi displayIntro(). Melangkah keluar dapat menghemat proses mengeklik Step berkali-kali sampai keluar fungsi.
+Jika eksekusi tidak berada di dalam fungsi, mengeklik Out akan menyebabkan debugger mengeksekusi semua sisa baris dalam program. Proses ini sama seperti mengeklik tombol Go.
+Berikut ringkasan apa yang dapat dilakukan setiap tombol:
+
+•   Go - Mengeksekusi sisa kode secara normal atau sampai menemui titik henti. (titik henti dijelaskan berikutnya.)
+•   Step - Melangkahi satu baris kode. Jika baris berisi pemanggilan fungsi, debugger akan melangkah masuk fungsi itu. 
+•   Over - Melangkahi satu baris kode. Jika baris berisi pemanggilan fungsi, debugger tidak akan melangkah masuk ke fungsi, tapi melangkah melewatinya.
+•   Out - Ketika Out diklik debugger akan terus melangkah melalui baris-baris kode sampai debugger meninggalkan fungsi. Proses ini melangkah keluar fungsi. 
+•   Quit - Langsung mematikan program. 
+
+Mencari Bug
+
+Debugger akan membantumu mencari penyebab bug dalam programmu. Sebagai contoh, berikut sebuah program dengan satu bug. Program ini akan mengandung satu masalah untuk diselesaikan pengguna. Dalam jendela shell interaktif, klik File, lalu New Window untuk membuka jendela file editor baru. Tulis program berikut dalam jendela itu, dan simpan sebagai ngebug.py
+
+1. import random
+2. number1 = random.randint(1, 10)
+3. number2 = random.randint(1, 10)
+4. print('Berapa ' + str(number1) + ' + ' + str(number2) + '?')
+5. answer = input()
+6. if answer == number1 + number2:
+7.     print('Tepat!')
+8. else:
+9.     print('Bukan! Jawabannya adalah ' + str(number1 + number2))
+
+Ketikkan program persis seperti di atas, bahkan jika kamu sudah melihat bug-nya. Lalu jalankan program dengan menekan F5. Program itu merupakan kuis aritmatika sederhana yang membuat dua bilangan acak dan memintamu untuk menjumlahkan kedua bilangan itu. Berikut contoh keluaran ketika kamu melarikan program itu. 
+
+Berapa 5 + 1?
+6
+Bukan! Jawabannya adalah 6
+
+Ada bug! Program itu tidak crash, tapi tidak berjalan dengan tepat. Program itu berkata bahwa pengguna salah, bahkan ketika jawaban yang benar diberikan.
+Jalankan program dalam debugger untuk mencaritahu penyebab bug itu. Pada bagian atas jendela shell interaktif, klik Debug ► Debugger untuk menampilkan jendela Debug Control. Dalam jendela ini, centang keempat checkbox (Stack, Source, Locals, dan Globals). Dengan demikian, jendela Debug Control akan menyediakan informasi paling lengkap. Lalu jalankan program dengan menekan F5 pada jendela file editor. Kali ini program akan jalan dalam debugger. 
+Debugger akan mulai pada baris import random. Tidak ada yang spesial di sini, jadi klik saja Step untuk mengeksekusinya. Kamu akan melihat module random ditambahkan ke area Globals.
+Klik lagi Step untuk menjalankan baris 2. Jendela file editor akan muncul dengan file random.py. Kamu telah melangkah masuk fungsi randint() dalam module random. Fungsi build-in Python tidak akan menjadi sumber bug, jadi klik Out untuk melangkah keluar fungsi randint() dan kembali ke programmu. Lalu tutup jendela file random.py.
+Kemudian, kamu bisa klik Over untuk melangkah melalui fungsi randint(), bukan melangkah ke dalamnya. Baris 3 juga merupakan pemanggilan fungsi randint(). Lewati kode ini dengan mengeklik tombol Over.
+Baris 4 adalah pemanggilan print() untuk menunjukkan angka acak yang dihasilkan. Kamu akan tahu bilangan apa yang akan dicetak bahkan sebelum program mencetaknya! Lihat saja area Globals di jendela Debug Control. Kamu akan melihat variabel number1 dan number2 dengan nilai yang tersimpan setelah nama variabel-variabel itu.
+Variabel number1 bernilai 4 dan variabel number2 bernilai 8. Ketika kamu klik Step, program akan menampilkan string hasil print() dengan kedua nilai itu. Fungsi str() akan merangkaikan versi string kedua bilangan bulat itu. Ketika kujalankan debugger, hasilnya seperti Gambar 7-4. (Angka acakmu mungkin berbeda.)
+
+Gambar 7-4: number1 diisi 4 dan number2 diisi 8.
+
+Dengan mengeklik Step pada baris 5, input() akan dieksekusi. Debugger akan menunggu sampai pemain memasukkan respon untuk program. Masukkan jawaban yang benar (dalam kasusku, 12) ke dalam shell interaktif. Debugger akan lanjut sampai ke baris 6.
+Baris 6 adalah pernyataan if. Kondisinya adalah nilai dalam answer harus cocok dengan jumlah number1 dan number2. Jika benar, True, maka debugger akan maju ke baris 7. Jika salah, False, debugger akan maju ke baris 9. Klik Step sekali lagi untuk mengetahui kemana pergi eksekusi ini.
+Debugger sekarang ada di baris 9! Apa yang terjadi? Kondisi pada pernyataan if pasti bernilai False. Lihatlah nilai dalam number1, number2, dan answer. Perhatikan bahwa number1 dan number2 adalah bilangan bulat, sehinga jumlahnya akan bilangan bulat juga. Sedangkan answer adalah string.
+Itu berarti answer == number1 + number2 akan terevaluasi menjadi '12' == 12. Sebuah nilai string dan nilai bilangan bulat tidak akan pernah sama satu sama lainnya, sehingga kondisi itu terevaluasi menjadi False.
+Itulah bug program itu. Bug-nya adalah bahwa kita menggunakan answer yang seharusnya adalah int(answer). Ubahlah baris 6 menjadi int(answer) == number1 + number2, lalu jalankan lagi programnya.
+
+Berapa 2 + 3?
+5
+Tepat!
+
+Kali ini, program berjalan dengan tepat. Jalankan lagi program, lalu masukkan jawaban yang salah dengan sengaja. Dengan demikian, program akan dites secara lengkap. Ingatlah, komputer akan berjalan sesuai apa yang kamu ketik secara tepat, bahkan jika apa yang kamu ketik bukan apa yang kamu mau.
+
+Titik Henti (Break Point)
+
+Melangkah mengikuti kode satu baris tiap langkah bisa jadi proses yang lambat. Sering kali, kamu ingin program berjalan dengan kecepatan normal sampai bertemu baris tertentu. Titik henti bisa diset pada suatu baris jika kamu ingin debugger baru aktif ketika eksekusi sampai di baris itu. Jika menurutmu ada masalah dengan programmu di baris, misalnya 17, set saja titik henti pada baris 17 (atau beberapa baris sebelumnya).
+Ketika eksekusi sampai di baris itu, debugger akan "berhenti kedalam debugger". Lalu kamu bisa melangkah mengikuti baris satu baris per langkah untuk melihat apa yang terjadi. Dengan mengeklik Go program akan berjalan normal kembali sampai bertemu titik henti lainnya atau sampai di akhir program.
+Untuk memasang titik henti, klik kanan pada baris dalam file editor, lalu pilih Set Breakpoint dari menu yang muncul. File editor akan menyorot baris itu dengan warna kuning. Kamu dapat memasang titik henti sebanyak yang kamu mau. Untuk melepasnya, klik kanan pada baris itu lalu pada menu yang muncul pilih Clear Breakpoint.
+
+Gambar 7-5: File editor dengan dua titik henti terpasang.
+
+Contoh Menggunakan Titik Henti
+
+Berikut adalah program yang menyimulasikan lemparan koin dengan cara memanggil random.randint(0, 1). Kita sebut "kepala" jika fungsi mengembalikan nilai 1, dan "ekor" jika fungsi mengembalikan nilai 0. Variabel flips akan merekam berapa banyak lemparan koin yang sudah dilakukan. Variabel heads akan menyimpan berapa banyak "kepala" yang telah muncul.
+Program akan melakukan "lemparan koin" sebanyak 1000 kali. Proses ini akan memakan waktu sejam jika dilakukan sesesorang, tapi komputer akan melakukannya selama satu detik! Ketikkan kode berikut ke dalam file editor dan simpan sebagai lemparKoin.py. Kode ini dapat pula diunduh dari http://invpy.com/lemparKoin.py.
+Jika kamu mendapatkan error setelah mengetikkannya, bandingkan dengan kode dari buku ini dengan perkakas pembeda online di http://invpy.com/diff/lemparkoin.
+
+lemparKoin.py
+ 1. import random
+ 2. print('Akan kulemparkan sebuah koin 1000 kali. Tebak berapa kali muncul kepala. (Tekan ENTER untuk memulai)')
+ 3. input()
+ 4. flips = 0
+ 5. heads = 0
+ 6. while flips < 1000:
+ 7.     if random.randint(0, 1) == 1:
+ 8.         heads = heads + 1
+ 9.     flips = flips + 1
+10. 
+11.     if flips == 900:
+12.         print('900 lembaran dan sudah muncul kepala sebanyak ' + str(heads) + ' kali.')
+13.     if flips == 100:
+14.         print('Setelah lemparan 100, kepala muncul ' + str(heads) + ' kali.')
+15.     if flips == 500:
+16.         print('Baru setengah perjalanan dan kepala telah muncul ' + str(heads) + ' kali.')
+17. 
+18. print()
+19. print('Setelah 1000 kali lemparan koin, kepala muncul ' + str(heads) + ' kali!')
+20. print('Apa tebakanmu dekat?')
+
+Program akan berjalan cukup cepat. Butuh lebih lama menunggu pengguna menekan ENTER daripada melakukan lemparan koin. Misalnya, kita ingin melihat program melakukan lemparan koin satu per satu. Pada jendela shell interaktif, klik Debug ► Debugger untuk membuka jendela Debug Control. Lalu tekan F5 untuk menjalankan program.
+Program akan berjalan dalam debugger mulai dari baris 1. Tekan Step tiga kali dalam jendela Debug Control untuk mengeksekusi tiga baris pertama (yaitu, baris 1, 2, dan 3). Kamu akan melihat tombol Step menjadi tidak aktif karena fungsi input() dipanggil dan jendela shell interaktif menunggu masukan pengguna. Klik pada jendela shell interaktif, lalu tekan ENTER. (Pastikan klik dibawah teks dalam jendela shell interaktif, jika tidak IDLE mungkin tidak akan menerima masukan itu.)
+Kamu dapat mengeklik Step beberapa kali lagi, sayangnya kamu akan sadar bahwa butuh waktu lama untuk dapat melewati setiap baris program itu. Pasang saja titik henti pada baris 12, 14 dan 16. File editor akan menyorot baris-baris ini seperti tampak pada Gambar 7-6.
+
+Gambar 7-6: Tiga titik henti terpasang.
+
+Setelah memasang titik henti, klik Go dalam jendela Debug Control. Program akan berjalan dengan kecepatan normal sampai tiba di titik henti berikutnya. Ketika variabel flips bernilai 100, kondisi pernyataan if pada baris 13 bernilai True. Ini akan menyebabkan baris 14 (dimana terpasang titik henti) akan dieksekusi, sehingga debugger akan menghentikan program dan mengambil alih. Lihatlah area Globals dalam jendela Debug Control untuk melihat berapa nilai flips dan heads.
+Klik lagi Go untuk menjalankan lagi programnya sampai tiba di titik henti pada baris 16. Coba lihat lagi perubahan nilai flips dan heads.
+Jika Go diklik lagi, eksekusi akan berlanjut sampai titik henti berikutnya tercapai, yaitu baris 12.
+
+Ringkasan
+
+Menulis program adalah bagian awal pemrograman. Bagian berikutnya adalah memastikan kode yang telah kamu tulis berjalan dengan benar. Debugger membuatmu bisa menelusuri kode satu baris per langkah. Kamu dapat meneliti baris mana yang dieksekusi dengan urutan bagaimana dan nilai dalam variabel-variabel. Ketika proses ini cukup lambat, kamu dapat memasang titik henti untuk menghentikan debugger pada baris yang kau inginkan.
+Menggunakan debugger adalah cara paling baik untuk mengerti apa yang program lakukan secara tepat. Meski buku ini menyediakan penjelasan tentang semua kode game yang dibuat, debugger dapat membantumu mencaritahu lebih banyak sendiri.

@@ -1,0 +1,160 @@
+    Capítulo 5
+    CHISTES
+
+Temas Tratados En Este Capítulo:
+
+•   Utilizando el argumento palabra clave final (end) de print() para evitar nuevas lineas
+•   Caracteres de escape
+•   Utilizando comillas simples y comillas dobles para las cadenas.
+
+Aprovechar print() al Máximo
+
+La mayoría de los juegos en este libro tendrán un texto simple de entrada y salida. La entrada es escrita por el usuario desde el teclado e introducida a la computadora. La salida es el texto mostrado en la pantalla. En Python, la función print() se puede usar para mostrar salidas de texto en la pantalla. Pero hay mas para aprender sobre cómo funcionan las cadenas y el print() en Python.
+
+El programa de este capítulo le cuenta chistes al usuario.
+
+Ejecución de Muestra de Chistes
+
+¿Qué sale de la cruza entre un mono y un pato?
+¡Un monopatín!
+¿Qué le dijo un pez a otro pez?
+¡Nada!
+¿En qué se parecen una familia, un bombero y un barco?
+No sé... ¿en qué se parecen?
+'En que el bombero y el barco tienen casco.'
+¿Y la familia? -Bien, gracias.
+
+
+El Código Fuente de Chistes
+
+Escriba el siguiente código fuente en el editor de archivos y guárdelo como chistes.py
+
+¡NOTA IMPORTANTE! Los programas en este libro solo correrán en Python 3, no en Python 2. Cuando la ventana de IDLE inicie, dirá algo como “Python 3.4.0” en la parte superior. Si ha instalado Python 2, puede tener Python 3 instalado al mismo tiempo. Para descargar Python 3, vaya a https://python.org/download/.
+
+Si obtiene errores después de escribir este código, compárelo con el código del libro con la herramienta diff en línea en http://invpy.com/diff/chistes.
+
+chistes.py
+
+ 1. print('¿Qué sale de la cruza entre un mono y un pato?')
+ 2. input()
+ 3. print('¡Un monopatín!')
+ 4. print()
+ 5. print('¿Porqué vuelan los pájaros pa\'l sur?')
+ 6. input()
+ 7. print('¡Porque caminando tardarían muchísimo!')
+ 8. print()
+ 9. print('¿En qué se parecen una familia, un bombero y un barco?')
+10. input()
+11. print("No sé... ¿en qué se parecen?")
+12. input()
+13. print('En que el bombero y el barco tienen casco.')
+14. input()
+15. print('¿Y la familia?', end='')
+16. print(' -Bien, gracias.')
+
+No te preocupes si no entiendes todo el código. Sólo tienes que guardar y correr el programa. Recuerda, si tu programa tiene fallos, puedes utilizar la herramienta diff en línea en http://invpy.com/chap5.
+
+Cómo Funciona el Código
+
+ 1. print('¿Qué sale de la cruza entre un mono y un pato?')
+ 2. input()
+ 3. print('¡Un monopatín!')
+ 4. print()
+
+Las líneas de la 1 a la 4 tienen tres llamadas a la función print(). No quieres que el jugador lea de inmediato el remate del chiste, así que hay una llamada a la función print() después del primer print(). El jugador puede leer la primera línea, presionar Intro, y entonces leer el remate del chiste.
+
+El usuario todavía puede escribir una cadena y pulsar Intro, pero esta cadena devuelta no está siendo almacenada en ninguna variable. El programa tan solo lo olvidará y se moverá a la siguiente línea de código.
+
+La última llamada a la función print() no tiene argumento de cadena. Esto le indica al programa que solamente escriba una línea en blanco. Las líneas en blanco pueden ser útiles para evitar que el texto quede unido.
+
+Caracteres de Escape
+
+ 5. print('¿Porqué vuelan los pájaros pa\'l sur?')
+ 6. input()
+ 7. print('¡Porque caminando tardarían muchísimo!')
+ 8. print()
+
+En el primer print() de arriba, ha una barra invertida justo antes de la comillas simple (esto es, el apóstrofo). Note que \ es una barra inversa, y / es una barra inclinada. Esta barra inversa indica que la letra que está a su derecha es una caracter de escape. Un caracter de escape te permite imprimir caracteres que son difíciles de introducir en el código fuente. En esta llamada a print() el caracter de escape es una comilla simple.
+
+El caracter de escape comilla simple está allí porque de otra manera Python pensaría que la comilla indica el final de la cadena. Pero esta comilla necesita formar parte de la cadena. La comilla simple de escape le indica a Python que la comilla simple es literalmente una parte de la cadena en lugar de indicar el final del valor de la cadena.
+
+Algunos Otros Caracteres de Escape
+
+¿Qué pasa si realmente quisieras escribir una barra invertida?. Esta línea de código no funcionaría:
+
+>>> print('Él se fue volando en un helicóptero verde\turquesa.')
+
+La llamada a la función print() mostraría:
+
+Él se fue volando en un helicóptero verde    urquesa.
+
+Esto es porque la "t" en "turquesa" fue vista como un caracter de escape debido a que estaba después de una barra inversa. El caracter de escape t simula la pulsación de la tecla Tab de tu teclado. Hay caracteres de escape para que las cadenas puedan tener caracteres que no se pueden escribir.
+
+En lugar de eso, prueba con esta línea:
+
+>>> print('Él se fue volando en un helicóptero verde\\turquesa.')
+Él se fue volando en un helicóptero verde\turquesa.
+
+La tabla 5-1 es una lista de caracteres de escape en Python.
+
+Table 5-1: Caracteres de Escape
+Caracter de Escape      Lo que imprime
+\\                      Barra inversa (\)
+\'                      Comilla simple (')
+\"                      Comilla doble (")
+\n                      Salto de línea
+\t                      Tabulador
+
+
+Comillas Simples y Dobles
+
+La cadenas en Python no tienen que estar siempre entre comillas simples. También puedes ponerlas entre comilas dobles. Estados dos líneas imprimen lo mismo:
+
+>>> print('Hola mundo')
+Hola mundo
+>>> print("Hola mundo")
+Hola mundo
+
+Pero no puedes mexzclar las comillas. Esta línea devolverá un error si intentas utilizarla:
+
+>>> print('Hola mundo")
+SyntaxError: EOL while scanning single-quoted string
+
+Me gusta utilizar las comillas simples, así no tengo que pulsar la tecla shift (mayúsculas) para escribirlas. Es más fácil de escribir, y a Python le da igual de cualquier manera.
+
+Del mismo modo en que necesitas el caracter de escape \' para obtener una comilla simple en una cadena rodeada de comillas simples, se necesita un caracter de escape \" para imprimir una comilla doble en una cadena rodeada de comillas dobles. Por ejemplo, mira estas dos líneas:
+
+>>> print('Le pedí prestado el carro a Pedro pa\'ir al pueblo. El dijo, "Seguro."')
+
+Le pedí prestado el carro a Pedro pa'ir al pueblo. El dijo, "Seguro."
+
+>>> print("Él dijo, \"No puedo creer que lo dejaste llevarse el carro pa'l pueblo\"")
+
+Él dijo, "No puedo creer que lo dejaste llevarse el carro pa'l pueblo"
+
+En las cadenas de comillas simples no necesitas escapar las comillas dobles, y en las cadenas de comillas dobles no necesitas escapar las comillas simples. El intérprete de Python tiene inteligencia suficiente para saber que si una cadena comienza con un tipo de comillas, el otro tipo de comillas no significa que la cadena está terminando.
+
+El Argumento end
+
+ 9. print('¿En qué se parecen una familia, un bombero y un barco?')
+10. input()
+11. print("No sé... ¿en qué se parecen?")
+12. input()
+13. print('En que el bombero y el barco tienen casco.')
+14. input()
+15. print('¿Y la familia?', end='')
+16. print(' -Bien, gracias.')
+
+¿Te diste cuenta del segundo parámetro en el print de la línea 15?. Normalmente, print() añade un salto de línea al final de la cadena que imprime. Por esta razón, una función print() en blanco tan solo imprimirá una nueva línea. Pero la función print() tiene la opción de un segundo parámetro (que tiene nombre "end").
+
+La cadena en blanco dada se llama argumento de palabra clave. El parámetro final tiene un nombre específico, y para pasar un argumento a ese parámetro en particular necesitamos utilizar la sintáxis end=.
+
+Pasando una cadena en blanco usando end, la función print() no añadirá un salto de linea al final de la cadena, en lugar de esto añadirá una cadena en blanco. Por esta razón ' -Bien, gracias.' aparece junto a la línea anterior, en lugar una línea nueva aparte. No hubo salto de línea después de la cadena '¿Y la familia?'.
+
+Resumen
+
+Este capítulo explora las diferentes formas en las que se puede utilizar la función print(). Los caracteres de escape se utilizan para los caracteres que son difíciles o imposibles de escribir en código usando el teclado. Los caracteres de escape se escriben en las cadenas comienzando con una barra inversa \ seguida de una sola letra para el carácter de escape. Por ejemplo, \n sería un salto de línea. Para incluir una barra invertida en una cadena, deberás utilizar el carácter de escape \\.
+
+La función print() añade automáticamente un carácter de salto de línea al final de la cadena que se pasa para imprimr en pantalla. La mayor parte del tiempo, es un atajo útil. Pero a veces no quieres un carácter de salto de línea al final. Para cambiar esto, puedes pasar el argumento de palabra clave end con una cadena en blanco. Por ejemplo, para imprimir "spam" en la pantalla sin un carácter de salto de línea, podrías hacer el llamado print("spam", end='').
+
+Al añadir este nivel de control sobre el texto que mostraremos en la pantalla, puedes tener formas más flexibles para hacerlo.

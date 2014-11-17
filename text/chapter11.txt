@@ -244,7 +244,7 @@ The getClues() function will return a string with the fermi, pico, and bagels cl
 21.         elif guess[i] in secretNum:
 22.             clue.append('Pico')
 
-If the guess isn’t the same as the secret number, you need to figure out what clues to give the player. The list in clue will start empty and have 'Fermi' and 'Pico' strings added as needed.
+If the guess isn’t the same as the secret number, the code must figure out what clues to give the player. The list in clue will start empty and have 'Fermi' and 'Pico' strings added as needed.
 Do this by looping through each possible index in guess and secretNum (the strings in both variables will be the same length, so the code could have either len(guess) or len(secretNum) and work the same). As the value of i changes from 0 to 1 to 2, and so on, line 19 checks if the first, second, third, etc. letter of guess is the same as the number in the same index of secretNum. If so, line 20 will add a string 'Fermi' to clue.
 Otherwise, line 21 will check if the number at the ith position in guess exists anywhere in secretNum. If so, you know that the number is somewhere in the secret number but not in the same position. Line 22 will then add 'Pico' to clue.
 
@@ -312,7 +312,7 @@ Finding out if the Player Wants to Play Again
 42.     print('Do you want to play again? (yes or no)')
 43.     return input().lower().startswith('y')
 
-The playAgain() function is the same one we used in Hangman and Tic Tac Toe. The long expression on line 43 evaluates to either True or False based on the answer given by the player.
+The playAgain() function is the same one you used in Hangman and Tic Tac Toe. The long expression on line 43 evaluates to either True or False based on the answer given by the player.
 The Start of the Game
 
 45. NUMDIGITS = 3
@@ -380,7 +380,7 @@ Creating the Secret Number
 59.     numGuesses = 1
 60.     while numGuesses <= MAXGUESS:
 
-Start with an infinite while loop that has a condition of True so it will loop forever until a break statement. Inside the infinite loop, you get a secret number from our getSecretNum() function (passing it NUMDIGITS to tell how many digits we want the secret number to have) and assign it to secretNum. Remember, the value in secretNum is a string not an integer.
+Start with an infinite while loop that has a condition of True so it will loop forever until a break statement. Inside the infinite loop, you get a secret number from our getSecretNum() function (passing it NUMDIGITS to tell how many digits you want the secret number to have) and assign it to secretNum. Remember, the value in secretNum is a string not an integer.
 Line 57 tells the player how many digits is in the secret number by using string interpolation instead of string concatenation. Set variable numGuesses to 1 to mark this is as the first guess. Then line 60 has a new while loop that keeps looping as long as numGuesses is less than or equal to MAXGUESS.
 
 Getting the Player’s Guess
@@ -411,8 +411,8 @@ Checking if the Player Won or Lost
 73.             print('You ran out of guesses. The answer was %s.' % (secretNum))
 
 If guess is the same value as secretNum, the player has correctly guessed the secret number and line 71 breaks out of this loop (the while loop that was started on line 60).
-If not, then execution continues to line 72, where we check if the player ran out of guesses. If the number of guess the player took is greater than MAXGUESS, then the program tells the player they’ve lost.
-At this point, execution jumps back to the while loop on line 60 where we let the player have another guess. If the player ran out of guesses (or we broke out of the loop with the break statement on line 71), then execution would proceed past the loop and to line 75.
+If not, then execution continues to line 72, where it checks if the player ran out of guesses. If the number of guess the player took is greater than MAXGUESS, then the program tells the player they’ve lost.
+At this point, execution jumps back to the while loop on line 60 where it lets the player have another guess. If the player ran out of guesses (or it broke out of the loop with the break statement on line 71), then execution would proceed past the loop and to line 75.
 
 Asking the Player to Play Again
 
@@ -420,7 +420,7 @@ Asking the Player to Play Again
 76.         break
 
 Line 75 asks the player if they want to play again by calling the playAgain() function. If playAgain() returns False, break out of the while loop (the one that started on line 55). Since there is no more code after this loop, the program terminates.
-If playAgain() returned True, then we would not execute the break statement and execution would jump back to line 55. The program generates a new secret number so that the player can play a new game.
+If playAgain() returned True, then the execution would not execute the break statement and execution would jump back to line 55. The program generates a new secret number so that the player can play a new game.
 
 Summary
 

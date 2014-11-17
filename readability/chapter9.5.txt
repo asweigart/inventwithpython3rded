@@ -1,26 +1,20 @@
-Making New Changes to the Hangman Program
-
 This program was much bigger than the Dragon Realm program, but this program is also more sophisticated. It really helps to make a flow chart or small sketch to remember how you want everything to work.
 
 Now that you’ve created a basic Hangman game, let’s look at some ways you can extend it with new features..
 
 After you’ve played Hangman a few times, you might think that six guesses aren't enough to get many of the words. We can easily give the player more guesses by adding more multi-line strings to the HANGMANPICS list.
 
-Save your hangman.py program as hangman2.py, then add the following:
-
 There are two new multi-line strings to the HANGMANPICS list, one with the hangman's left ear drawn, and the other with both ears drawn. Because the program will tell the player they have lost when the number of guesses is the same as the number of strings in HANGMANPICS (minus one), this is the only change you need to make.
 
-We can also change the list of words by changing the words on line 59. Instead of animals, we could have colors:
+Change the list of words by changing the words on line 59. Instead of animals, we could have colors:
 
-With some modification, we can change our code so that our Hangman game can use all of these words as separate sets. The program can tell the player which set (animal, color, shape, or fruit) the secret word is from.
+With some modification, we can change our code so that our Hangman game can use all of these words as separate sets.
 
-To make this change, you will need a new data type called a dictionary. A dictionary is a collection of values like a list is. But instead of accessing the items in the dictionary with an integer index, you access them with an index of any data type. For dictionaries, these indexes are called keys.
+To make this change, you will need a new data type called a dictionary. A dictionary can store multiple values like a list does. But instead of accessing the items in the dictionary with an integer index, you can access them with an index of any data type. For dictionaries, these indexes are called keys.
 
 Dictionaries use { and } curly braces instead of [ and ] square brackets. Try entering the following into the interactive shell:
 
-The values in between the curly braces are key-value pairs. The keys are on the left of the colon and the key’s values are on the right. You can access the values like items in lists by using the key. Try entering into the interactive shell stuff['hello'] and stuff['chat'] and stuff['goodbye']:
-
-Instead of putting an integer in between the square brackets, you use a string key. This will evaluate to the value for that key.
+Instead of putting an integer between the square brackets, you use a string key. This will evaluate to the value for that key.
 
 You can get the number of key-value pairs in the dictionary with the len() function. Try entering the following into the interactive shell:
 
@@ -30,7 +24,7 @@ The keys in dictionaries can also be looped over using a for loop. Try entering 
 
 Dictionaries are different from lists because the values inside them are unordered. The first item in a list named listStuff would be listStuff[0]. But there is no “first” item in a dictionary, because dictionaries do not have any sort of order. Try entering the following into the interactive shell:
 
-The expression favorites1 == favorites2 evaluates to True because dictionaries are unordered and considered the same if they have the same key-value pairs in them. Meanwhile, lists are ordered, so two lists with the same values in a different order are not the same. Try entering this into the interactive shell:
+The expression favorites1 == favorites2 evaluates to True because dictionaries are unordered. Two dictionaries are considered the same if they have the same key-value pairs in them, typed in any order. Meanwhile, lists are ordered, so two lists with the same values in a different order are not the same. Try entering this into the interactive shell:
 
 Dictionaries have two useful methods, keys() and values(). These will return values of a type called dict_keys and dict_values, respectively. Much like range objects, values of those data types can easily convert to lists with the list() function. Try entering the following into the interactive shell:
 
@@ -46,15 +40,13 @@ Change the getRandomWord() function so that its parameter will be a dictionary o
 
 Change the code in this function so that it looks like this:
 
-The name of the parameter is changed to wordDict to be more descriptive. Now instead of choosing a random word from a list of strings, first the function chooses a random key in the wordDict dictionary by calling random.choice().
+The name of the wordList parameter is changed to wordDict to be more descriptive. Now instead of choosing a random word from a list of strings, first the function chooses a random key in the wordDict dictionary by calling random.choice().
 
-Now instead of returning the string wordList[wordIndex], the function returns a list with two items. The first item is wordDict[wordKey][wordIndex]. The second item is wordKey. We return a list because we actually want the getRandomWord() to return two values: the random word and the set of words it was taken from.
+Instead of return wordList[wordIndex], the function returns a list with two items. The first item is wordDict[wordKey][wordIndex]. The second item is wordKey.
 
 The wordDict[wordKey][wordIndex] expression may look complicated, but it is just an expression you can evaluate one step at a time like anything else. First, imagine that wordKey had the value 'Fruits' (which was chosen on line 65) and wordIndex has the value 5 (chosen on line 68). Here is how wordDict[wordKey][wordIndex] would evaluate:
 
 In the above case, the item in the list this function returns would be the string 'watermelon'. (Remember that indexes start at 0, so [5] refers to the 6th item in the list.)
-
-There are just three more changes to make to the program. The first two are on the lines that we call the getRandomWord() function. The function is called on lines 109 and 145 in the original program:
 
 Because the getRandomWord() function now returns a list of two items instead of a string, secretWord will be assigned a list, not a string. You can assign these two items into two separate variables using the multiple assignment trick.
 
@@ -66,13 +58,11 @@ Change your code in Hangman to use this trick with the return value of getRandom
 
 The last change you’ll make is to tell the player which set of words they are trying to guess. This way, when the player plays the game they will know if the secret word is an animal, color, shape, or fruit. Add this line of code after line 112. Here is the original code:
 
-Now you’re done with our changes to the Hangman program. Instead of just a single list of strings, the secret word is chosen from many different lists of strings. The program also tells the player which set of words the secret word is from. Try playing this new version. You can easily change the words dictionary on line 59 to include more sets of words.
+Now you’re done with our changes to the Hangman program. Instead of just a single list of strings, the secret word is chosen from many different lists of strings. The program also tells the player which set of words the secret word is from.
+
+Try playing this new version. You can later change the words dictionary on line 59 to include more sets of words. Now your Hangman program can be easily be extended with new words!
 
 We're done with Hangman. Even after you’ve finished writing a game, you can always add more features after you learn more programming.
 
-Dictionaries are similar to lists except that they can use any value for an index. The indexes in dictionaries are called keys. Keys can be strings, integers, or any value of any data type.
-
-The multiple assignment trick is also a simple way to assign multiple variables the values in a list.
-
-Hangman was fairly advanced compared to the previous games in this book. But at this point, you know much of the basic concepts in writing programs: variables, loops, functions, and Python’s data types such as lists and dictionaries. The later programs in this book will still be a challenge to master, but you have finished the steepest part of the climb.
+Hangman is fairly advanced compared to all of the previous games in this book. But at this point, you know much of the basic concepts in writing programs: variables, loops, functions, and Python’s data types such as lists and dictionaries. The later programs in this book will still be a challenge to master, but you’ve just finished the steepest part of the climb.
 

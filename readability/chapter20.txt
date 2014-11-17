@@ -1,252 +1,242 @@
-The last three chapters have gone over the Pygame software library and demonstrated how to use its many features. (You don’t need to read those chapters before reading this chapter, though it may make this chapter easier to understand.) In this chapter, we will use that knowledge to create a graphical game with sound that receives input from the keyboard and mouse.
+The last three chapters went over the Pygame module and demonstrated how to use its many features. In this chapter, we’ll use that knowledge to create a graphical game called Dodger.
 
-The Dodger game has the player control a small man (which we call the player’s character) who must dodge a whole bunch of baddies that fall from the top of the screen. The longer the player can keep dodging the baddies, the higher the score they will get.
+The Dodger game has the player control a small person (which we call the player’s character) who must dodge a whole bunch of baddies that fall from the top of the screen. The longer the player can keep dodging the baddies, the higher the score they will get.
 
-Just for fun, we will also add some cheat modes to the game. If the player holds down the “x” key, every baddie's speed will be reduced to a super slow rate. If the player holds down the “z” key, the baddies will reverse their direction and travel up the screen instead of downwards.
+Just for fun, we’ll also add some cheat modes to the game. If the player holds down the “x” key, every baddie’s speed is reduced to a super slow rate. If the player holds down the “z” key, the baddies will reverse their direction and travel up the screen instead of downwards.
 
-Let’s review some of the basic data types used in the Pygame library:
+•   pygame.Rect - Rect objects represent a rectangular space’s location and size. The location can be determined by the Rect object’s topleft attribute (or the topright, bottomleft, and bottomright attributes). These corner attributes are a tuple of integers for the X- and Y-coordinates. The size can be determined by the width and height attributes, which are integers of how many pixels long or high the rectangle area is. Rect objects have a colliderect() method to check if they are intersecting with another Rect object.
 
-pygame.Rect - Rect objects represent a rectangular space's location and size. The location can be determined by the Rect object's topleft attribute (or the topright, bottomleft, and bottomright attributes). These corner attributes are a tuple of integers for the X- and Y-coordinates. The size can be determined by the width and height attributes, which are integers of how many pixels long or high the rectangle area is. Rect objects have a colliderect() method to check if they are intersecting with another Rect object.
-
-•   pygame.Surface - Surface objects are areas of colored pixels. Surface objects represent a rectangular image, while Rect objects only represent a rectangular space and location. Surface objects have a blit() method that is used to draw the image on one Surface object onto another Surface object. The Surface object returned by the pygame.display.set_mode() function is special because anything drawn on that Surface object will be displayed on the user’s screen.
-
-•   Remember that Surface have things drawn on them, but we cannot see this because it only exists in the computer's memory. We can only see a Surface object when it is “blitted” (that is, drawn) on the screen. This is just the same as it is with any other piece of data. If you think about it, you cannot see the string that is stored in a variable until the variable is printed to the screen.
+•   pygame.Surface - Surface objects are areas of colored pixels. Surface objects represent a rectangular image, while Rect objects only represent a rectangular space and location. Surface objects have a blit() method that is used to draw the image on one Surface object onto another Surface object. The Surface object returned by the pygame.display.set_mode() function is special because anything drawn on that Surface object is displayed on the user’s screen when pygame.display.update() is called.
 
 •   pygame.event.Event - The Event data type in the pygame.event module generates Event objects whenever the user provides keyboard, mouse, or another kind of input. The pygame.event.get() function returns a list of Event objects. You can check what type of event the Event object is by checking its type attribute. QUIT, KEYDOWN, and MOUSEBUTTONUP are examples of some event types.
 
-•   pygame.font.Font - The pygame.font module has the Font data type which represent the typeface used for text in Pygame. You can create a Font object by calling the pygame.font.SysFont() constructor function. The arguments to pass are a string of the font name and an integer of the font size, however it is common to pass None for the font name to get the default system font. For example, the common function call to create a Font object is pygame.font.SysFont(None, 48).
+•   pygame.font.Font - The pygame.font module has the Font data type which represents the typeface used for text in Pygame. The arguments to pass to pygame.font.SysFont() are a string of the font name and an integer of the font size. However it is common to pass None for the font name to get the default system font.
 
-•   pygame.time.Clock - The Clock object in the pygame.time module are helpful for keeping our games from running as fast as possible. (This is often too fast for the player to keep up with the computer, and makes the games not fun.) The Clock object has a tick() method, which we pass how many frames per second (FPS) we want the game to run at. The higher the FPS, the faster the game runs. Normally we use 40 FPS. Notice that the pygame.time module is a different module than the time module which contains the sleep() function.
+•   pygame.time.Clock - The Clock object in the pygame.time module are helpful for keeping our games from running as fast as possible. The Clock object has a tick() method, which we pass how many frames per second (FPS) we want the game to run at. The higher the FPS, the faster the game runs. Normally we use 40 FPS.
 
-Type in the following code and save it to a file named dodger.py. This game also requires some other image and sound files which you can download from the URL http://invpy.com/downloads.
+Type in the following code and save it to a file named dodger.py. This game also requires some other image and sound files, which you can download from the URL http://invpy.com/downloads.
 
-The Dodger game will import the same modules that our previous Pygame games have: pygame, random, sys, and pygame.locals. The pygame.locals module contains several constant variables that the Pygame library uses such as the event types (QUIT, KEYDOWN, etc.) and keyboard keys (K_ESCAPE, K_LEFT, etc.). By using the from pygame.locals import * syntax, we can just type QUIT instead of pygame.locals.QUIT.
+The Dodger game imports the same modules previous Pygame games have: pygame, random, sys, and pygame.locals. The pygame.locals module contains several constant variables that Pygame uses such as the event types (QUIT, KEYDOWN, etc.) and keyboard keys (K_ESCAPE, K_LEFT, etc.). By using the from pygame.locals import * syntax, you can just type QUIT instead of pygame.locals.QUIT.
 
-There are several constant variables in this game. We use constant variables because the variable name is much more descriptive than a number. For example, from the line windowSurface.fill(BACKGROUNDCOLOR) we know that the argument being sent is a color for the background. However, the line windowSurface.fill(BACKGROUNDCOLOR) isn’t as clear what the argument being passed means.
+There are several constant variables in this game. The constant variables are much more descriptive than typing out the values. For example, from the line windowSurface.fill(BACKGROUNDCOLOR) is more understandable than windowSurface.fill((0, 0, 0)).
 
-We can also easily change some simple aspects about our game without having the change much of the code by changing the values stored in these constant variables. By changing WINDOWWIDTH on line 4, we automatically change the code everywhere WINDOWWIDTH is used. If we had used the value 600 instead, then we would have to change each occurrence of 600 in the code. This would be especially confusing because 600 would also be used for the height of the window also, and we would not want to change those values.
+You can easily change the game by changing the constant variables. By changing WINDOWWIDTH on line 4, you automatically change the code everywhere WINDOWWIDTH is used. If you had used the value 600 instead, then you would have to change each occurrence of 600 in the code. It is easier to change the value in the constant once.
 
-Here we set the height and width of the main window. Since the rest of our code works off of these constant variables, changing the value here will change it everywhere in the program.
+The mainClock.tick() method call on line 189 will slow the game down enough to be playable. You pass an integer to mainClock.tick() so that the function knows how long to pause the program. This integer is the number of frames per second you want the game to run.
 
-Instead of storing color tuples into a variable named WHITE or BLACK, we will use constant variables for the color of the text and background. Remember that the three integers in the color tuples range from 0 to 255 and stand for red, green, and blue.
+A “frame” is the drawing of graphics on the screen for a single iteration through the game loop. You can set FPS to 40, and always call mainClock.tick(FPS). Then you can change FPS to a higher value to have the game run faster or a lower value to slow the game down.
 
-Just so the computer doesn’t run the game too fast for the user to handle, we will call mainClock.tick() on each iteration of the game loop to slow it down. We need to pass an integer to mainClock.tick() so that the function knows how long to pause the program. This integer will be the number of frames per second we want the game to run. A “frame” is the drawing of graphics on the screen for a single iteration through the game loop. We will set up a constant variable FPS to 40, and always call mainClock.tick(FPS). You can change FPS to a higher value to have the game run faster or a lower value to slow the game down.
+Lines 9 to 13 set some more constant variables that will describe the falling baddies. The width and height of the baddies will be between BADDIEMINSIZE and BADDIEMAXSIZE. The rate at which the baddies fall down the screen will be between BADDIEMINSPEED and BADDIEMAXSPEED pixels per iteration through the game loop. And a new baddie will be added to the top of the window every ADDNEWBADDIERATE iterations through the game loop.
 
-Here we set some more constant variables that will describe the falling baddies. The width and height of the baddies will be between BADDIEMINSIZE and BADDIEMAXSIZE. The rate at which the baddies fall down the screen will be between BADDIEMINSPEED and BADDIEMAXSPEED pixels per iteration through the game loop. And a new baddie will be added to the top of the window every ADDNEWBADDIERATE iterations through the game loop.
+The PLAYERMOVERATE will store the number of pixels the player’s character moves in the window on each iteration through the game loop if the character is moving. By increasing this number, you can increase the speed the character moves.
 
-The PLAYERMOVERATE will store the number of pixels the player’s character moves in the window on each iteration through the game loop (if the character is moving). By increasing this number, you can increase the speed the character moves. If you set PLAYERMOVERATE to 0, then the player’s character won't be able to move at all (the player would move 0 pixels per iteration). This wouldn't be a very fun game.
+Pygame requires that you call both pygame.quit() and sys.exit(). Put them both into a function called terminate(). This makes it so that you only need to call terminate(), instead of both of the pygame.quit() and sys.exit() functions.
 
-We will create several functions for our game. By putting code into functions, we can avoid having to type the same code several times. And because the code is in one place, if we find a bug the code only needs to be fixed in one place.
+Sometimes you’ll want to pause the game until the player to press a key. Create a new function called waitForPlayerToPressKey(). Inside this function, there is an infinite loop that only breaks when a KEYDOWN or QUIT event is received. At the start of the loop, pygame.event.get() to return a list of Event objects to check out.
 
-There are several places in our game that we want to terminate the program. In our other programs, this just required a single call to sys.exit(). But since Pygame requires that we call both pygame.quit() and sys.exit(), we will put them into a function called terminate() and just call the function. This keeps us from repeating the same code. And remember, the more we type, the more likely we will make a mistake and create a bug.
+If the player has closed the window while the program is waiting for the player to press a key, Pygame will generate a QUIT event. In that case, call the terminate() function here.
 
-There are also a couple places where we want the game to pause and wait for the player to press a key. We will create a new function called waitForPlayerToPressKey() to do this. Inside this function, we have an infinite loop that only breaks when a KEYDOWN or QUIT event is received. At the start of the loop, we call pygame.event.get() to return a list of Event objects to check out.
+If you receive a KEYDOWN event, then you should first check if it is the ESC key that was pressed. If the player presses the ESC key, the program should terminate. If that wasn't the case, then execution will skip the if-block on line 27 and go straight to the return statement, which exits the waitForPlayerToPressKey() function.
 
-If the player has closed the window while the program is waiting for the player to press a key, Pygame will generate a QUIT event and we should terminate the program. We will call our terminate() function here, rather than call pygame.quit() and sys.exit() themselves.
+If a QUIT or KEYDOWN event isn’t generated, then the code keeps looping. This will make it look like the game has frozen until the player presses a key.
 
-If we receive a KEYDOWN event, then we should first check if it is the Esc key that was pressed. If we are waiting for the player to press a key, and the player presses the Esc key, we want to terminate the program. If that wasn't the case, then execution will skip the if-block on line 27 and go straight to the return statement, which exits the waitForPlayerToPressKey() function.
+The playerHasHitBaddie() function will return True if the player’s character has collided with one of the baddies. The baddies parameter is a list of “baddie” dictionaries. Each of these dictionaries has a 'rect' key, and the value for that key is a Rect object that represents the baddie’s size and location.
 
-If a QUIT or KEYDOWN event isn’t generated, then this loop will keep looping until it is. This will freeze the game until the player presses a key or closes the window.
+playerRect is also a Rect object. Rect objects have a method named colliderect() that returns True if the Rect object has collided with the Rect object that is passed to it. Otherwise, colliderect() will return False.
 
-We will also define a function named playerHasHitBaddie() which will return True if the player’s character has collided with one of the baddies. The baddies parameter is a list of baddie data structures. These data structures are just dictionaries, so it is accurate to say that baddies is a list of dictionary objects. Each of these dictionaries has a 'rect' key, and the value for that key is a Rect object that represents the baddie's size and location.
+The for loop on line 31 iterates through each baddie dictionary in the baddies list. If any of these baddies collide with the player’s character, then playerHasHitBaddie() will return True. If the code manages to iterate through all the baddies in the baddies list without colliding with any of them, it will return False.
 
-playerRect is also a Rect object. Remember that Rect objects have a method named colliderect() that returns True if the Rect object has collided with the Rect object that is passed to the method. Otherwise, colliderect() will return False.
+Drawing text on the window involves a few steps. First, line 37 creates a Surface object that has the string rendered in a specific font on it by calling the render() method.
 
-We can use this method in our playerHasHitBaddie() function. First we iterate through each baddie data structure in the baddies list. If any of these baddies collide with the player’s character, then playerHasHitBaddie() will return True. If the code manages to iterate through all the baddies in the baddies list without colliding with any of them, we will return False.
+Next, you need to know the size and location of the Surface object you just made. You can get a Rect object with this information with the get_rect() method for Surface objects.
 
-Drawing text on the window involves many different steps. First, we must create a Surface object that has the string rendered in a specific font on it. The render() method does this. Next, we need to know the size and location of the Surface object we just made. We can get a Rect object with this information with the get_rect() method for Surface objects.
+The Rect object returned on line 38 from get_rect()has a copy of the width and height information from the Surface object. Line 39 changes the location of the Rect object by setting a new tuple value for its topleft attribute.
 
-This Rect object has no special connection to the Surface object with the text drawn on it, other than the fact that it has a copy of the width and height information from the Surface object. We can change the location of the Rect object by setting a new tuple value for its topleft attribute.
+Finally, line 40 blits the Surface object of the rendered text onto the Surface object that was passed to our drawText() function. Displaying text in Pygame take a few more steps than simply calling the print() function. But if you put this code into a single function named drawText(), then you only need to call this function to display text on the screen.
 
-Finally, we blit the Surface object of the rendered text onto the Surface object that was passed to our drawText() function. Displaying text in Pygame take a few more steps than simply calling the print() function, but if we put this code into a single function (drawText()), then we only need to call the function instead of typing out all the code every time we want to display text on the screen.
+Now that the constant variables and functions are finished, start calling the Pygame functions that set up the window and clock.
 
-Now that the constant variables and functions are finished, we can start calling the Pygame functions that will set up Pygame for use in our code. Many of these function calls are to set up the GUI window and create objects that we will use in the game.
+Line 43 sets up the Pygame by calling the pygame.init() function. Line 44 creates a pygame.time.Clock() object and stores it in the mainClock variable. This object will help us keep the program from running too fast.
 
-Line 43 sets up the Pygame library. Remember, the pygame.init() function must be called before we can use any of Pygame’s functions or data types. Line 44 creates a pygame.time.Clock() object and stores it in the mainClock variable. This object will help us keep the program from running too fast.
+Line 45 creates a new Surface object which is used for the window displayed on the screen. You can specify the width and height of this Surface object (and the window) by passing a tuple with the WINDOWWIDTH and WINDOWHEIGHT constant variables. Notice that there is only one argument passed to pygame.display.set_mode(): a tuple. The arguments for pygame.display.set_mode() are not two integers but a tuple of two integers.
 
-Line 45 creates a new Surface object which will be used for the window displayed on the screen. We will specify the width and height of this Surface object (and the window) by passing a tuple with the WINDOWWIDTH and WINDOWHEIGHT constant variables. Notice that there is only one argument passed to pygame.display.set_mode(): a tuple. The arguments for pygame.display.set_mode() are not two integers but a tuple of two integers.
+Line 46 sets the caption of the window to the string 'Dodger'. This caption will appear in the title bar at the top of the window.
 
-On line 46, the caption of the window is set to the string 'Dodger'. This caption will appear in the title bar at the top of the window.
+In Dodger, the mouse cursor shouldn’t be visible. This is because you want the mouse to be able to move the player’s character around the screen, but the mouse cursor would get in the way of the character’s image on the screen.
 
-In our game, we do not want the mouse cursor (the mouse cursor is the arrow that moves around the screen when we move the mouse) to be visible. This is because we want the mouse to be able to move the player’s character around the screen, and the arrow cursor would get in the way of the character's image on the screen. We pass False to tell Pygame to make the cursor invisible. If we wanted to make the cursor visible again at some point in the program, we could call pygame.mouse.set_visible(True).
+Pass False to pygame.mouse.set_visible() to tell Pygame to make the cursor invisible. To make the cursor visible again at some point in the program, call pygame.mouse.set_visible(True).
 
-The pygame.display.set_mode() function has a second, optional parameter you can pass to it. The value you can pass for this parameter is pygame.FULLSCREEN, like this modification to line 45 in our Dodger program:
+The pygame.display.set_mode() function has a second, optional parameter. You can pass pygame.FULLSCREEN to make the window take up the entire screen instead of being in a window. Look at this modification to line 45:
 
-Passing pygame.FULLSCREEN will make the program take up the entire space of the screen. It will still be WINDOWWIDTH and WINDOWHEIGHT in size for the windows width and height, but the image will be stretched larger to fit the screen. There may be wasted space along the top and bottom (or the left and right) sides of the screen if you didn’t set the window size in proportion with the screen's resolution.) To avoid the wasted space, you should set the size of the window to a 4:3 ratio (for every 4 pixels of width, have 3 pixels for height).
+It will still be WINDOWWIDTH and WINDOWHEIGHT in size for the windows width and height, but the image will be stretched larger to fit the screen.
 
-If you do not use the fullscreen mode, then you do not need to worry about using a 4:3 ratio for the width and height. Just use whatever width and height works best for your game.
+Line 49 creates a Font object to use by calling pygame.font.SysFont(). Passing None uses the default font , and passing 48 so that the font has a size of 48 points.
 
-We need to create a Font object to use when we create a Surface object with the image of text drawn on it. (This process is called “rendering”.) We want to create a generic font, so we will use the default Font object that the pygame.font.SysFont() constructor function returns. We pass None so that the default font is used, and we pass 48 so that the font has a size of 48 points.
+Next, create the Sound objects and set up the background music. The background music will constantly be playing during the game, but Sound objects will only be played when the player loses the game.
 
-Next we want to create the Sound objects and also set up the background music. The background music will constantly be playing during the game, but Sound objects will only be played when we specifically want them to. In this case, the Sound object will be played when the player loses the game.
-
-You can use any .wav or .mid file for this game. You can download these sound files from this book’s website at the URL http://invpy.com/resources. Or you can use your own sound files for this game, as long as they have the filenames of gameover.wav and background.mid. (Or you can change the strings used on lines 53 and 54 to match the filenames.)
+You can use any .wav or .mid file for this game. Some sound are available at this book’s website at http://invpy.com/downloads. Or you can use your own sound files for this game, as long as they have the filenames of gameover.wav and background.mid. (Or you can change the strings used on lines 53 and 54 to match the filenames.)
 
 The pygame.mixer.Sound() constructor function creates a new Sound object and stores a reference to this object in the gameOverSound variable. In your own games, you can create as many Sound objects as you like, each with a different sound file that it will play.
 
 The pygame.mixer.music.load() function loads a sound file to play for the background music. This function doesn’t create any objects, and only one sound file can be loaded at a time.
 
-Next we will load the image files that used for the player’s character and the baddies on the screen. The image for the character is stored in player.png and the image for the baddies is stored in baddie.png. All the baddies look the same, so we only need one image file for them. You can download these images from the book’s website at the URL http://invpy.com/downloads.
+Next you’ll load the image files that used for the player’s character and the baddies on the screen. The image for the character is stored in player.png and the image for the baddies is stored in baddie.png. All the baddies look the same, so you only need one image file for them. You can download these images from the book’s website at http://invpy.com/downloads.
 
-When the game first starts, we want to display the name of the game on the screen. We also want to instruct the player that they can start the game by pushing any key. This screen appears so that the player has time to get ready to start playing after running the program. Also, before each game starts, we want to reset the value of the top score back to 0.
+When the game first starts, you want to display the name of the game on the screen. You also want to instruct the player that they can start the game by pushing any key. This screen appears so that the player has time to get ready to start playing after running the program.
 
-On lines 62 and 63, we call our drawText() function and pass it five arguments: 1) the string of the text we want to appear, 2) the font that we want the string to appear in, 3) the Surface object onto which to render the text, and 4) and 5) the X and Y coordinate on the Surface object to draw the text at.
-
-This may seem like many arguments to pass for a function call, but keep in mind that this function call replaces five lines of code each time we call it. This shortens the program and makes it easier to find bugs since there is less code to check.
+This may seem like many arguments to pass for a function call, but keep in mind that this function call replaces five lines of code each time you call it. This shortens the program and makes it easier to find bugs since there is less code to check.
 
 The waitForPlayerToPressKey() function will pause the game by entering into a loop that checks for any KEYDOWN events. Once a KEYDOWN event is generated, the execution breaks out of the loop and the program continues to run.
 
-We have finished defining the helper functions and variables that we need for this game. Line 68 is the start of the main game code. The value in the topScore variable starts at 0 only when the program first runs. Whenever the player loses and has a score larger than the current top score, the top score is replaced with the player’s score.
+The value in the topScore variable starts at 0 when the program first runs. Whenever the player loses and has a score larger than the current top score, the top score is replaced with this score.
 
-The infinite loop started on line 69 is technically not the “game loop”. (The main game loop handles events and drawing the window while the game is running.) Instead, this while loop will iterate each time the player starts a new game. We will set up the code so that when the player loses and we need to reset the game, the program’s execution will go back to the start of this loop.
+The infinite loop started on line 69 is technically not the “game loop”. (The main game loop handles events and drawing the window while the game is running.) Instead, this while loop will iterate each time the player starts a new game. When the player loses and the game resets, the program’s execution will loop back to line 69.
 
-At the beginning, we want to set the baddies list to an empty list. The baddies list will be a list of dictionary objects with the following keys:
+At the beginning, you want to set the baddies list to an empty list. The baddies variable is a list of dictionary objects with the following keys:
 
-•   'rect' - The Rect object that describes where and what size the baddie is.
+Line 72 resets the player’s score to 0.
 
-•   'speed' - How fast the baddie falls down the screen. This integer represents pixels per iteration through the game loop.
+The starting location of the player is in the center of the screen and 50 pixels up from the bottom. The first item in line 73’s tuple is the X-coordinate of the left edge. The second item in the tuple is the Y-coordinate of the top edge.
 
-•   'surface' - The Surface object that has the scaled image of the baddie image drawn on it. This is the Surface object that will be blitted to the Surface object returned by pygame.display.set_mode() and drawn on the screen.
+The movement variables moveLeft, moveRight, moveUp, and moveDown are set to False. The reverseCheat and slowCheat variables are also set to False. They will be set to True only when the player enables these cheats by holding down the “z” and “x” keys, respectively.
 
-Next, we want to reset the player’s score to 0.
+The baddieAddCounter variable is a  counter to tell the program when to add a new baddie at the top of the screen. The value in baddieAddCounter increments by one each time the game loop iterates.
 
-The starting location of the player will be in the center of the screen and 50 pixels up from the bottom. The tuple that we set the topleft attribute to will change the location of the playerRect object. The first item in the tuple is the X-coordinate of the left edge. The second item in the tuple is the Y-coordinate of the top edge.
+When baddieAddCounter is equal to ADDNEWBADDIERATE, then the baddieAddCounter counter resets to 0 and a new baddie is added to the top of the screen.
 
-Also at the start of the game, we want to have the movement variables moveLeft, moveRight, moveUp, and moveDown set to False. The reverseCheat and slowCheat variables will be set to True only when the player enables these cheats by holding down the “z” and “x” keys, respectively.
+The background music starts playing with a call to pygame.mixer.music.play(). The first argument is the number of times the music should repeat itself. -1 is a special value that tells Pygame you want the music to repeat endlessly.
 
-The baddieAddCounter variable is used for a counter to tell the program when to add a new baddie at the top of the screen. The value in baddieAddCounter will be incremented by one each time the game loop iterates. When the baddieAddCounter counter is equal to the value in ADDNEWBADDIERATE, then the baddieAddCounter counter is reset back to 0 and a new baddie is added to the top of the screen.
+The second argument is a float that says how many seconds into the music you want it to start playing. Passing 0.0 means the music starts from the beginning of the music file.
 
-At the start of the game, we want the background music to begin playing. We can do this with a call to pygame.mixer.music.play(). The first argument is the number of times the music should repeat itself. -1 is a special value that tells Pygame we want the music to repeat endlessly. The second argument is a float that says how many seconds into the music we want it to start playing. Passing 0.0 means we want to play the music starting from the beginning of the music file. (Passing 2.0, for example, would have started the music two seconds into the music file.)
+The game loop’s code constantly updates the state of the game world by changing the position of the player and baddies, handling events generated by Pygame, and drawing the game world on the screen. All of this happens several dozen times a second, which makes it run in “real time”.
 
-The game loop contains the code that is executed while the game is being played. The game loop constantly updates the state of the game world by changing the position of the player and baddies, handling events generated by Pygame, and drawing the state of the game world on the screen. All of this happens several dozen times a second, which makes it seem that the game is happening in real time to the player.
+Line 79 is the start of the main game loop. Line 80 increases the player’s score on each iteration of the game loop. The longer the player can go without losing, the higher their score. The loop will only exit when the player either loses the game or quits the program.
 
-Line 79 is the start of the main game loop. In the main game loop, we will increase the player’s score, handle any events that were generated, add any baddies to the top of the screen if needed, move the baddies down a little, and then draw everything on the screen. This code will be executed repeatedly as the program execution iterates through the game loop. The loop will only exit when the player either loses the game or quits the program.
+There are four different types of events the program will handle: QUIT, KEYDOWN, KEYUP, and MOUSEMOTION.
 
-First, we will increment the player’s score. The longer the player can go without losing, the higher their score will be.
+Line 82 is the start of the event-handling code. It calls pygame.event.get(), which returns a list of Event objects. Each Event object represents an event that has been created since the last call to pygame.event.get(). The code will check the type attribute of the event object to see what type of event it is, and handle the event accordingly.
 
-There are four different types of events we will handle in our game: QUIT, KEYDOWN, KEYUP, and MOUSEMOTION. The QUIT event is generated by Pygame if the player closes the program’s window or shuts down the computer. In that case, we want the program to close itself. The KEYDOWN and KEYUP events are generated when the player pushes down and releases the keyboard keys, respectively. These events will be how we can tell which direction the player wants to move the character. The player could also have pressed the Esc key to signal that they want to shut down the program. Each time the player moves the mouse, Pygame will generate a MOUSEMOTION event which will tell us the X- and Y-coordinates of the mouse cursor over the window.
+If the type attribute of the Event object is equal to QUIT, then the user has closed the program. The QUIT constant variable was imported from the pygame.locals module. But pygame.locals import * instead of simply import pygame.locals, you only need to type QUIT and not pygame.locals.QUIT.
 
-Line 82 is the start of the event-handling code. First we call pygame.event.get(), which returns a list of Event objects. Each Event object represents an event that has been created since the last call to pygame.event.get(). We will check the type attribute of the event object to see what type of event it is, and handle the event accordingly.
+If the event’s type is KEYDOWN, the player has pressed down a key. The Event object for keyboard events will also have a key attribute that is set to the numeric ASCII value of the key pressed. The ord() function will return the ASCII value of the letter passed to it.
 
-If the type attribute of the Event object is equal to QUIT, then this tells us that the user has closed the program somehow. The QUIT constant variable was imported from the pygame.locals module, but since we imported that module with the line from pygame.locals import * instead of simply import pygame.locals, we only need to type QUIT and not pygame.locals.QUIT.
+For example, line 87 checks if the event describes the “z” key being pressed down with event.key == ord('z'). If this condition is True, set the reverseCheat variable to True to indicate that the reverse cheat has been activated. Line 89 checks if the “x” key has been pressed to activate the slow cheat.
 
-If the event's type is KEYDOWN, then we know that the player has pressed down a key. The Event object for keyboard events will also have a key attribute that is set to the numeric ASCII value of the key pressed. The ord() function will return the ASCII value of the letter passed to it.
+Pygame’s keyboard events always use the ASCII values of lowercase letters, not uppercase. Always use event.key == ord('z') instead of event.key == ord('Z'). Otherwise, your program may act as though the key wasn’t pressed.
 
-For example, on line 87, we can check if the event describes the “z” key being pressed down by checking if event.key == ord('z'). If this condition is True, then we want to set the reverseCheat variable to True to indicate that the reverse cheat has been activated. We will also check if the “x” key has been pressed to activate the slow cheat in a similar way.
+Lines 91 to 102 check if the event was generated by the player pressing one of the arrow keys. There isn’t an ASCII value for every key on the keyboard, such as the arrow keys or the ESC key. Instead, the pygame.locals module provides constant variables to use instead.
 
-Pygame’s keyboard events always use the ASCII values of lowercase letters, not uppercase. Always use event.key == ord('z') instead of event.key == ord('Z'). Otherwise, your program may act as though the key hasn’t been pressed at all.
+Line 91 checks if the player has pressed the left arrow key with event.key == K_LEFT. Noticed that pressing down on one of the arrow keys not only sets one of the movement variables to True, but it also sets the movement variable in the opposite direction to False.
 
-We also want to check if the event was generated by the player pressing one of the arrow keys. There isn’t an ASCII value for every key on the keyboard, such as the arrow keys or the Esc key. Instead, Pygame provides some constant variables to use instead.
+For example, if the left arrow key is pushed down, then the code on line 93 sets moveLeft to True, but it also sets moveRight to False. This prevents the player from confusing the program into thinking that the player’s character should move in two opposite directions at the same time.
 
-We can check if the player has pressed the left arrow key with the condition: event.key == K_LEFT. Again, the reason we can use K_LEFT instead of pygame.locals.K_LEFT is because we imported pygame.locals with the line from pygame.locals import * instead of import pygame.locals.
+Table 20-1 lists commonly-used constant variables for the key attribute of keyboard-related Event objects:
 
-Noticed that pressing down on one of the arrow keys not only sets one of the movement variables to True, but it also sets the movement variable in the opposite direction to False. For example, if the left arrow key is pushed down, then the code on line 93 sets moveLeft to True, but it also sets moveRight to False. This prevents the player from confusing the program into thinking that the player’s character should move in two opposite directions at the same time.
+The KEYUP event is created whenever the player stops pressing down on a keyboard key and it release it. KEYUP objects with a type of KEYUP also have a key attribute just like KEYDOWN events.
 
-Here is a list of commonly-used constant variables for the key attribute of keyboard-related Event objects:
-
-The KEYUP event is created whenever the player stops pressing down on a keyboard key and it returns to its normal, up position. KEYUP objects with a type of KEYUP also have a key attribute just like KEYDOWN events.
-
-On line 105, we check if the player has released the “z” key, which will deactivate the reverse cheat. In that case, we set reverseCheat to False and reset the score to 0. The score reset is to discourage the player for using the cheats.
+Line 105 checks if the player has released the “z” key, which will deactivate the reverse cheat. In that case, line 106 sets reverseCheat to False and line 107 resets the score to 0. The score reset is to discourage the player for using the cheats.
 
 Lines 108 to 110 do the same thing for the “x” key and the slow cheat. When the “x” key is released, slowCheat is set to False and the player’s score is reset to 0.
 
-At any time during the game, the player can press the Esc key on the keyboard to quit the game. Here we check if the key that was released was the Esc key by checking event.key == K_ESCAPE. If so, we call our terminate() function which will exit the program.
+At any time during the game, the player can press the ESC key on the keyboard to quit the game. Here we check if the key that was released was the ESC key by checking event.key == K_ESCAPE. If so, call the terminate() function to exit the program.
 
-Lines 114 to 121 check if the player has stopped holding down one of the arrow keys (or the corresponding WASD key). In that event, we will set the corresponding movement variable to False. For example, if the player was holding down the left arrow key, then the moveLeft would have been set to True on line 93. When they release it, the condition on line 114 will evaluate to True, and the moveLeft variable will be set to False.
+Lines 114 to 121 check if the player has stopped holding down one of the arrow keys (or the corresponding WASD key). In that case, the code sets the corresponding movement variable to False.
 
-Now that we have handled the keyboard events, let’s handle any mouse events that may have been generated. In the Dodger game we don’t do anything if the player has clicked a mouse button, but the game does respond when the player moves the mouse. This gives the player two ways of controlling the player character in the game: the keyboard and the mouse.
+For example, if the player was holding down the left arrow key, then the moveLeft would have been set to True on line 93. When they release it, the condition on line 114 will evaluate to True, and the moveLeft variable will be set to False.
 
-If the event's type is MOUSEMOTION, then we want to move the player’s character to the location of the mouse cursor. The MOUSEMOTION event is generated whenever the mouse is moved. Event objects with a type set to MOUSEMOTION also have an attribute named pos. The pos attribute stores a tuple of the X- and Y-coordinates of where the mouse cursor moved in the window.
+Now that you’ve handled the keyboard events, let’s handle any mouse events that may have been generated. The Dodger game doesn’t do anything if the player has clicked a mouse button, but it does respond when the player moves the mouse. This gives the player two ways of controlling the player character in the game: the keyboard or the mouse.
+
+The MOUSEMOTION event is generated whenever the mouse is moved. Event objects with a type set to MOUSEMOTION also have an attribute named pos. The pos attribute stores a tuple of the X- and Y-coordinates of where the mouse cursor moved in the window. If the event’s type is MOUSEMOTION, the player’s character moves to the location of the mouse cursor.
 
 The move_ip() method for Rect objects will move the location of the Rect object horizontally or vertically by a number of pixels. For example, playerRect.move_ip(10, 20) would move the Rect object 10 pixels to the right and 20 pixels down. To move the Rect object left or up, pass negative values. For example, playerRect.move_ip(-5, -15) will move the Rect object left by 5 pixels and up 15 pixels.
 
-The “ip” at the end of move_ip() stands for “in place”. This is because the method changes the Rect object itself, in its own place. There is also a move() method which doesn’t change the Rect object, but instead creates a new Rect object that has the new location. This is useful if you want to keep the original Rect object's location the same but also have a Rect object with the new location.
+The “ip” at the end of move_ip() stands for “in place”. This is because the method changes the Rect object itself, in its own place. There is also a move() method which doesn’t change the Rect object, but instead creates and returns a new Rect object in the new location.
 
-On each iteration of the game loop, we want to increment the baddieAddCounter variable by one. However, we only want to do this if the cheats are not enabled. Remember that reverseCheat and slowCheat: are only set to True as long as the “z” and “x” keys are being held down, respectively. And while those keys are being held down, baddieAddCounter isn’t incremented. This means that no new baddies will appear at the top of the screen.
+On each iteration of the game loop, increment the baddieAddCounter variable by one. This only happens if the cheats are not enabled. Remember that reverseCheat and slowCheat are set to True as long as the “z” and “x” keys are being held down, respectively
 
-When the baddieAddCounter reaches the value in ADDNEWBADDIERATE, then the condition on line 130 is True and it is time to add a new baddie to the top of the screen. First, the baddieAddCounter counter is reset back to 0 (otherwise, when it keeps incrementing it will always be greater than ADDNEWBADDIERATE and never equal to it. This will cause baddies to stop appearing at the top of the screen.)
+And while those keys are being held down, baddieAddCounter isn’t incremented. Therefore, no new baddies will appear at the top of the screen.
 
-Line 132 generates a size for the baddie in pixels. The size will be between BADDIEMINSIZE and BADDIEMAXSIZE, which we have set to 10 and 40 in this program.
+When the baddieAddCounter reaches the value in ADDNEWBADDIERATE, it is time to add a new baddie to the top of the screen. First, the baddieAddCounter counter is reset back to 0.
+
+Line 132 generates a size for the baddie in pixels. The size will be a random integer between BADDIEMINSIZE and BADDIEMAXSIZE, which is set to 10 and 40 on lines 9 and 10.
 
 Line 133 is where a new baddie data structure is created. Remember, the data structure for baddies is simply a dictionary with keys 'rect', 'speed', and 'surface'. The 'rect' key holds a reference to a Rect object which stores the location and size of the baddie. The call to the pygame.Rect() constructor function has four parameters: the X-coordinate of the top edge of the area, the Y-coordinate of the left edge of the area, the width in pixels, and the height in pixels.
 
-We want the baddie to appear randomly across the top of the window, so we pass random.randint(0, WINDOWWIDTH-baddieSize) for the X-coordinate of the left edge. This will evaluate to a random place across the top of the window. The reason we pass WINDOWWIDTH-baddieSize instead of WINDOWWIDTH is because this value is for the left edge of the baddie. If the left edge of the baddie is too far on the right side of the screen, then part of the baddie will be off the edge of the window and not visible.
+The baddie needs to appear randomly across the top of the window, so pass random.randint(0, WINDOWWIDTH-baddieSize) for the X-coordinate of the left edge. The reason you pass WINDOWWIDTH-baddieSize instead of WINDOWWIDTH is because this value is for the left edge of the baddie. If the left edge of the baddie is too far on the right side of the screen, then part of the baddie will be off the edge of the window and not visible.
 
-We want the bottom edge of the baddie to be just above the top edge of the window. The Y-coordinate of the top edge of the window is 0, so to put the baddie's bottom edge there, we want to set the top edge to 0 - baddieSize.
+The bottom edge of the baddie should be just above the top edge of the window. The Y-coordinate of the top edge of the window is 0. To put the baddie’s bottom edge there, set the top edge to 0 - baddieSize.
 
-The baddie's width and height should be the same (the image is a square), so we will pass baddieSize for the third and fourth argument.
+The baddie’s width and height should be the same (the image is a square), so pass baddieSize for the third and fourth argument.
 
-The rate of speed that the baddie moves down the screen will be set in the 'speed' key, and is set to a random integer between BADDIEMINSPEED and BADDIEMAXSPEED.
+The rate of speed that the baddie moves down the screen is set in the 'speed' key, and is set to a random integer between BADDIEMINSPEED and BADDIEMAXSPEED.
 
-Line 138 will add the newly created baddie data structure to the list of baddie data structures. The program will use this list to check if the player has collided with any of the baddies and to know where to draw baddies on the window.
-
-Moving the Player’s Character
+Line 138 will add the newly created baddie data structure to the list of baddie data structures. The program will use this list to check if the player has collided with any of the baddies, and to know where to draw baddies on the window.
 
 The four movement variables moveLeft, moveRight, moveUp and moveDown are set to True and False when Pygame generates the KEYDOWN and KEYUP events, respectively. (This code is from line 86 to line 121.)
 
-If the player’s character is moving left and the left edge of the player’s character is greater than 0 (which is the left edge of the window), then we want to move the character's Rect object (stored in playerRect).
+If the player’s character is moving left and the left edge of the player’s character is greater than 0 (which is the left edge of the window), then playerRect should be moved to the left.
 
-We will always move the playerRect object by the number of pixels in PLAYERMOVERATE. To get the negative form of an integer, you can simply multiple it by -1. So on line 142, since 5 is stored in PLAYERMOVERATE, the expression -1 * PLAYERMOVERATE evaluates to -5.
+You’ll always move the playerRect object by the number of pixels in PLAYERMOVERATE. To get the negative form of an integer, multiple it by -1. On line 142, since 5 is stored in PLAYERMOVERATE, the expression -1 * PLAYERMOVERATE evaluates to -5.
 
-This means that calling playerRect.move_ip(-1 * PLAYERMOVERATE, 0) will change the location of playerRect by 5 pixels to the left of its current location.
+Therefore, calling playerRect.move_ip(-1 * PLAYERMOVERATE, 0) will change the location of playerRect by 5 pixels to the left of its current location.
 
-We want to do the same thing for the other three directions: right, up, and down. Each of the three if statements in lines 143 to 148 checks that their movement variable is set to True and that the edge of the Rect object of the player is inside the window before calling the move_ip() method to move the Rect object.
+Lines 143 to 148 do the same thing for the other three directions: right, up, and down. Each of the three if statements in lines 143 to 148 checks that their movement variable is set to True and that the edge of the Rect object of the player is inside the window. Then it calls move_ip() to move the Rect object.
 
-Line 151 moves the mouse cursor to the same position as the player’s character. The pygame.mouse.set_pos() function moves the mouse cursor to the X- and Y-coordinates you pass it. Specifically, the cursor will be right in the middle of the character's Rect object because we pass the centerx and centery attributes of playerRect for the coordinates. The mouse cursor still exists and can be moved, even though it is invisible because we called pygame.mouse.set_visible(False) on line 47.
+Line 151 moves the mouse cursor to the same position as the player’s character. The pygame.mouse.set_pos() function moves the mouse cursor to the X- and Y-coordinates you pass it. This is so that the mouse cursor and player’s character are always in the same place.
 
-The reason we want the mouse cursor to match the location of the player’s character is to avoid sudden jumps. Imagine that the mouse cursor and the player’s character are at the same location on the left side of the window. When the player holds down the right arrow key, the character moves to the right edge of the window but the mouse cursor would stay at the left edge of the screen. If the player then moves the mouse just a little bit, the player’s character would jump immediately to the location of the mouse cursor on the left edge of the screen. By moving the mouse cursor along with the player’s character, any mouse movements would not result in a sudden jump across the window.
+Specifically, the cursor will be right in the middle of the character’s Rect object because you passed the centerx and centery attributes of playerRect for the coordinates. The mouse cursor still exists and can be moved, even though it is invisible because of the pygame.mouse.set_visible(False) call on line 47.
 
-Now we want to loop through each baddie data structure in the baddies list to move them down a little.
+Now loop through each baddie data structure in the baddies list to move them down a little.
 
-If neither of the cheats have been activated (by the player pushing the “z” or “x” keys which sets reverseCheat or slowCheat to True, respectively), then move the baddie's location down a number of pixels equal to its speed, which is stored in the 'speed' key.
+If neither of the cheats have been activated (by the player pushing the “z” or “x” keys which sets reverseCheat or slowCheat to True, respectively), then move the baddie’s location down a number of pixels equal to its speed, which is stored in the 'speed' key.
 
-If the reverse cheat has been activated, then the baddie should actually be moved up by five pixels. Passing -5 for the second argument to move_ip() will move the Rect object upwards by five pixels.
+If the reverse cheat is activated, then the baddie should move up by five pixels. Passing -5 for the second argument to move_ip() will move the Rect object upwards by five pixels.
 
-If the slow cheat has been activated, then the baddie should move downwards, but only by the slow speed of one pixel per iteration through the game loop. The baddie's normal speed (which is stored in the 'speed' key of the baddie's data structure) will be ignored while the slow cheat is activated.
+If the slow cheat has been activated, then the baddie should move downwards, but only by the slow speed of one pixel per iteration through the game loop. The baddie’s normal speed (which is stored in the 'speed' key of the baddie’s data structure) is ignored while the slow cheat is activated.
 
-After moving the baddies down the window, we want to remove any baddies that fell below the bottom edge of the window from the baddies list. Remember that we while we are iterating through a list, we should not modify the contents of the list by adding or removing items. So instead of iterating through the baddies list with our for loop, we will iterate through a copy of the baddies list.
+Any baddies that fell below the bottom edge of the window should be removed from the baddies list. Remember that while iterating through a list, do not modify the contents of the list by adding or removing items. So instead of iterating through the baddies list with the for loop, iterate through a copy of the baddies list.
 
-Remember that a list slice will evaluate a copy of a list's items. For example, spam[2:4] will return a new list with the items from index 2 up to (but not including) index 4. Leaving the first index blank will indicate that index 0 should be used. For example, spam[:4] will return a list with items from the start of the list up to (but not including) the item at index 4. Leaving the second index blank will indicate that up to (and including) the last index should be used. For example, spam[2:] will return a list with items from index 2 all the way to (and including) the last item in the list.
+The for loop on line 163 uses a variable b for the current item in the iteration through baddies[:].
 
-But leaving both indexes in the slice blank is a way to represent the entire list. The baddies[:] expression is a list slice of the whole list, so it evaluates to a copy of the entire list. T his is useful because while we are iterating on the copy of the list, we can modify the original list and remove any baddie data structures that have fallen past the bottom edge of the window.
+Let’s evaluate the expression b['rect'].top. b is the current baddie data structure from the baddies[:] list. Each baddie data structure in the list is a dictionary with a 'rect' key, which stores a Rect object. So b['rect'] is the Rect object for the baddie.
 
-Our for loop on line 163 uses a variable b for the current item in the iteration through baddies[:].
+Finally, the top is the Y-coordinate of the top edge of the rectangular area. Remember that the Y-coordinates increase going down. So b['rect'].top > WINDOWHEIGHT will check if the top edge of the baddie is below the bottom of the window.
 
-Let’s evaluate the expression b['rect'].top. b is the current baddie data structure from the baddies[:] list. Each baddie data structure in the list is a dictionary with a 'rect' key, which stores a Rect object. So b['rect'] is the Rect object for the baddie. Finally, the top is the Y-coordinate of the top edge of the rectangular area. Remember that in the coordinate system, the Y-coordinates increase going down. So b['rect'].top > WINDOWHEIGHT will check if the top edge of the baddie is below the bottom of the window.
+If this condition is True, then line 165 removes the baddie data structure from the baddies list.
 
-If this condition is True, then the we will remove the baddie data structure from the baddies list.
+After all the data structures have been updated, the game world should be drawn using Pygame’s image functions. Because the game loop is executed several times a second, drawing the baddies and player in new positions makes their movement look smooth and natural.
 
-It isn’t enough that our game updates the state of the game world in its memory. The program will also have to display the game world to the player. We can do this by drawing the graphics of the baddies and player’s character on the screen. Because the game loop is executed several times a second, drawing the baddies and player in new positions makes their movement look smooth and natural. But every element on the screen must be drawn one at a time by calling the appropriate Pygame function.
+First, before drawing anything else on the Surface object referred to by windowSurface, line 168 blacks out the entire screen to erase anything drawn on it previously.
 
-Now that we have updated all the data structures for the baddies and the player’s character, let’s draw everything on the screen. First, before we draw anything else on the Surface object referred to by windowSurface, we want to black out the entire screen to erase anything drawn on it in a previous iteration through the game loop.
+Remember that the Surface object in windowSurface is the special Surface object because it was the one returned by pygame.display.set_mode(). Therefore, anything drawn on that Surface object will appear on the screen after pygame.display.update()is called.
 
-Remember that the Surface object in windowSurface is the special Surface object because it was the one returned by pygame.display.set_mode(). This means that anything drawn on that Surface object will appear on the screen, but only after the pygame.display.update() function is called.
+Lines 171 and 172 render the text for score and top score to the top left corner of the window. The 'Score: %s' % (score) uses string interpolation to insert the value in the score variable into the string. This is the same thing as 'Score: ' + str(score).
 
-Next we will render the text for score and top score to the top left corner of the window. The 'Score: %s' % (score) uses string interpolation to insert the value in the score variable into the string. This is the same thing as 'Score: ' + str(score). We pass this string, the Font object stored in the font variable, the Surface object on which to draw the text on, and the X- and Y-coordinates of where the text should be placed. Remember that our drawText() will handle the call to the render() and blit() methods.
+Pass this string, the Font object stored in the font variable, the Surface object on which to draw the text on, and the X- and Y-coordinates of where the text should be placed. The drawText() will handle the call to the render() and blit() methods.
 
-For the top score, we do the same thing. We pass 40 for the Y-coordinate instead of 0 (like we do for the score) so that the top score text appears beneath the score text.
+For the top score, do the same thing. Pass 40 for the Y-coordinate instead of 0 so that the top score text appears beneath the score text.
 
-Remember that the information about the player is kept in two different variables. playerImage is a Surface object that contains all the colored pixels that make up the player’s character's image. playerRect is a Rect object that stores the information about the size and location of the player’s character.
+The information about the player is kept in two different variables. playerImage is a Surface object that contains all the colored pixels that make up the player’s character’s image. playerRect is a Rect object that stores the information about the size and location of the player’s character.
 
-We call the blit() method on windowSurface and pass playerImage and playerRect. This draws the player character's image on windowSurface at the appropriate location.
+The blit() method draws the player character’s image (in playerImage) on windowSurface at the location in playerRect.
 
-We use a for loop here to draw every baddie on the windowSurface object. Remember that each item in the baddies list is a dictionary with 'surface' and 'rect' keys containing the Surface object with the baddie image and the Rect object with the position and size information, respectively.
+Line 178’s for loop here to draw every baddie on the windowSurface object. Each item in the baddies list is a dictionary. The dictionaries’ 'surface' and 'rect' keys contain the Surface object with the baddie image and the Rect object with the position and size information, respectively.
 
-Now that we have finished drawing everything to the windowSurface object, we should draw this surface to the screen with a call to pygame.display.update().
+Now that everything has been drawn to the windowSurface object, draw this surface to the screen by calling pygame.display.update().
 
-Now let’s check if the player has collided with any of the baddies. We already wrote a function to check for this: playerHasHitBaddie(). This function will return True if the player’s character has collided with any of the baddies in the baddies list. Otherwise, the function will return False.
+Lines 184 checks if the player has collided with any of the baddies by calling your playerHasHitBaddie(). This function will return True if the player’s character has collided with any of the baddies in the baddies list. Otherwise, the function will return False.
 
-If the player’s character has hit a baddie, then we check if the player’s current score is greater than the top score. If it is, we set the new top score to be the player’s current score. Either way, we break out of the game loop. The program’s execution will jump down to line 191.
+If the player’s character has hit a baddie, lines 185 and 186 update the top score if the current score is greater than it. Either way, the execution breaks out of the game loop at line 187. The program’s execution will move to line 191 from here.
 
-To keep the computer from running through the game loop as fast as possible (which would be much too fast for the player to keep up with), we call mainClock.tick() to pause for a brief amount of time. The pause will be long enough to ensure that about 40 (the value we stored inside the FPS variable) iterations through the game loop occur each second.
+To keep the computer from running through the game loop as fast as possible (which would be much too fast for the player to keep up with), call mainClock.tick() to pause for a brief amount of time. The pause will be long enough to ensure that about 40 (the value stored inside the FPS variable) iterations through the game loop occur each second.
 
-When the player loses, we want to stop playing the background music and play the “game over” sound effect. We call the stop() function in the pygame.mixer.music module to stop the background music. Then we call the play() method on the Sound object stored in gameOverSound.
+When the player loses, the game stops playing the background music and plays the “game over” sound effect. Line 192 calls the stop() function in the pygame.mixer.music module to stop the background music. Then line 193 calls the play() method on the Sound object stored in gameOverSound.
 
-Now we want to display text on the window to tell the player that the game is over, and they should press a key to start playing a new game. The two calls to our drawText() function will draw this text to the windowSurface object, and the call to pygame.display.update() will draw this Surface object to the screen.
+Lines 195 and 196 call to your drawText() function to draw the “game over” text to the windowSurface object. Line 197 calls to pygame.display.update() will draw this Surface object to the screen.
 
-After displaying this text, we want the game to stop until the player presses a key, so we call our waitForPlayerToPressKey() function.
+After displaying this text, the game stops until the player presses a key by calling the waitForPlayerToPressKey() function.
 
-After the player presses a key, the program execution will return from the waitForPlayerToPressKey() call on line 198. Depending on how long the player takes to press a key, the “game over” sound effect may or may not still be playing. We want to stop this sound effect before this loop ends and we start a new game, so we have a call to gameOverSound.stop() here.
+After the player presses a key, the program execution will return from the waitForPlayerToPressKey() call on line 198. Depending on how long the player takes to press a key, the “game over” sound effect may or may not still be playing. To stop this sound effect before a new game starts, line 200 calls gameOverSound.stop().
 
 That’s it for our graphical game. You may find that the game is too easy or too hard. But the game is easy to modify because we took the time to use constant variables instead of typing in the values directly. Now all we need to do to change the game is modify the value set in the constant variables.
 
@@ -260,11 +250,11 @@ While the basic game remains the same, you can modify any of the constant variab
 
 Unlike our previous text-based games, Dodger really looks like the kind of modern computer game we usually play. It has graphics and music and uses the mouse. While Pygame provides functions and data types as building blocks, it is you the programmer who puts them together to create fun, interactive games.
 
-And it is all because you know exactly how to instruct the computer to do it, step by step, line by line. You can speak the computer's language, and get it to do large amounts of number crunching and drawing for you. This is a useful skill, and I hope you’ll continue to learn more about Python programming. (And there is still more to learn!)
+And it is all because you know how to instruct the computer to do it, step by step, line by line. You can speak the computer’s language, and get it to do large amounts of number crunching and drawing for you. This is a useful skill, and I hope you’ll continue to learn more about Python programming. (And there is still much more to learn!)
 
 Here are several websites that can teach you more about programming Python:
 
-Or you can find out more about Python by searching the World Wide Web. Go to the search website http://google.com and search for “Python programming” or “Python tutorials” to find web sites that can teach you more about Python programming.
+Or you can find out more about Python by searching the web. Go to the search website http://google.com and search for “Python programming” or “Python tutorials” to find web sites that can teach you more about Python programming.
 
 Now get going and invent your own games. And good luck!
 

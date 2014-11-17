@@ -10,7 +10,6 @@ Topics Covered In This Chapter:
 • Operators
 • Evaluating Expressions
 • Storing Values in Variables
-• Overwriting variables
 
 Before you can make games, you need to learn a few basic programming concepts. You won't make games in this chapter, but learning these concepts is the first step to programming video games. Start by learning how to use Python’s interactive shell.
 
@@ -58,7 +57,7 @@ Figure 2-2: What the IDLE window looks like after entering instructions.
 
 Figure 2-3: An expression is a made up of values and operators.
 
-An expression is made up of values (such as integers like 8 and 6) connected by an operator (such as the * multiplication sign). A single value by itself is also an expression. In the 2  +       2 example, notice that there can be any amount of spaces between the values and operators. However, don’t put any spaces at the beginning of the instruction when entering them into the interactive shell.
+An expression consists of values (such as integers like 8 and 6) connected by an operator (such as the * multiplication sign). A single value by itself is also an expression. In the 2  +       2 example, notice that there can be any amount of spaces between the values and operators. However, don’t put any spaces at the beginning of the instruction when entering them into the interactive shell.
 
 In the next chapter, you will learn about working with text in expressions. Python isn’t limited to just numbers; it’s more than a calculator!
 

@@ -1,0 +1,168 @@
+  Bab 8
+  DIAGRAM ALIR
+
+Cakupan Topik dalam Bab ini:
+•   Bagaimana cara bermain Hangman
+•   Seni ASCII
+•   Mendesain program dengan diagram alir
+
+Bab ini akan mengarahkanmu mendesain game Hangman. Game ini lebih rumit dari game sebelumnya, tapi tetap menyenangkan. Karena game ini cukup canggih, pertama-tama kamu harus merencanakannya dulu dengan membuat diagram alir (dijelaskan nanti). Pada bab berikutnya, kita akan menulis kode untuk game Hangman.
+
+Bagaimana cara Bermain "Hangman"
+
+Game Hangman dimainkan oleh dua pemain dengan bantuan kertas dan pensil. Satu pemain memikirkan satu kata, lalu menggambarkan garis-garis untuk tiap huruf dalam kata yang dipikirkannya. Lalu pemain kedua menebak huruf yang mungkin ada dalam kata tersebut.
+Jika tebakannya tepat, pemain pertama menulis huruf itu pada garis yang sesuai. Jika tebakannya salah, pemain pertama menggambar bagian tubuh orang yang digantung. Jika pemain kedua dapat menebak semua huruf sebelum gambar orang yang digantung itu lengkap, maka pemain itu menang. Jika pemain kedua tidak bisa menebak kata rahasia, maka orang dalam gambar tergantung dan pemain kedua kalah!
+
+Contoh Menjalankan "Hangman"
+
+Berikut contoh apa yang pemain akan lihat ketika menjalankan program Hangman yang akan ditulis nanti. Teks yang dimasukkan pemain ditampilkan dengan huruf tebal. 
+
+H A N G M A N
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+Huruf yang salah tebak:
+_ _ _
+Tebak satu huruf.
+a
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+Huruf yang salah tebak:
+_ a _
+Tebak satu huruf.
+o
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+Huruf yang salah tebak: o
+_ a _
+Tebak satu huruf.
+r
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+Huruf yang salah tebak: or
+_ a _
+Tebak satu huruf.
+t
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+Huruf yang salah tebak: or
+_ a t
+Tebak satu huruf.
+a
+Kamu sudah menebak huruf itu. Pilih lagi.
+Tebak satu huruf.
+c
+Ya! Kata rahasia itu adalah "cat"! Kamu menang!
+Kamu mau main lagi? (ya or tidak)
+tidak
+
+Seni ASCII
+
+Grafik yang ditampilkan pada game Hangman adalah karakter keyboard yang dicetak ke layar. Grafik seperti ini disebut seni ASCII. Berikut gambar kucing dalam seni ASCII:
+
+                   __________________
+             _____/   xx      xxx    \_____
+           _/xxx       xx      xxx   xxx   \__
+        __/     xxx     xxx     xx    xxx     \__
+       /xxxxxxxxx   xx     xx      xx    xx    xxx\
+      /          xx  /\                    xx     xx\
+     /              /  \                   x      xx \
+     |    /\       |    \                        xx  x\
+     |   |  \      |     \____        Z            x   \
+     |   |   \____/           \     z            xxx   |
+     |   |                     \  z                    |
+      \/                        \                       \
+      /                 ____/    |                      |
+   __|        \____              |                   xxx|
+  /  |               ___   ___-------          __/     x|
+ /   |              |   |   _______       ____/         |
+ |  o\    --------   \_/       _/     ___/          xx /
+ |oo  \      _____/          _/______/              xx/
+ \     \__                __/                    xx  /
+  \       \______________/                        x_/
+    \____                                 _______/
+         \_______________________________/
+
+Mendesain Program dengan Diagram Alir
+
+Game Hangman sedikit lebih kompleks daripada game lain yang sudah dibahas sejauh ini, sehingga perlu ambil waktu sebentar untuk memikirkan bagaimana game ini dibuat. Pertama kamu perlu membuat diagram alir (seperti pada bagian akhir bab Alam Naga) untuk membantu memvisualisasikan apa yang akan program lakukan. Bab ini akan menjelaskan apa itu diagram alir dan mengapa diagram alir sangat berguna. Pada bab berikutnya, kamu akan menulis game Hangman.
+Diagram alir adalah diagram yang menunjukkan satu barisan langkah-langkah berupa kotak yang dihubungkan dengan tanda panah. Setiap kotak menggambarkan satu langkah dan tanda panah menunjukkan arah ke langkah berikutnya. Letakkan jarimu pada kotak "Mulai" pada diagram alir, lalu jejaki program dengan cara mengikuti panah-panah ke kotak lain sampai kamu tiba di kota "Akhir".
+Gambar 8-1 menunjukkan diagram alir Hangman secara komplit. Kamu hanya dapat maju dari satu kotak ke kotak lainnya jika searah dengan tanda panah. Kamu tidak bisa berjalan mundur, kecuali ada panah lain yang mengarah ke belakang, seperti pada kotak "Pemain sudah menebak huruf ini".
+
+Gambar 8-1: Diagram alir komplit yang menunjukkan apa yang terjadi dalam game Hangman.
+
+Tentu saja, kamu tidak perlu membuat diagram alir. Kamu bisa langsung menulis kodemu. Namun, seringkali ketika sudah mulai pemrograman beberapa hal yang perlu ditambah atau diubah baru terpikirkan. Ahirnya kamu akan menghapus banyak kode yang tentu saja sama dengan memboroskan usahamu. Untuk mengindarinya, selalu rencanakan bagaimana program akan bekerja adalah ide bagus.
+Membuat Diagram Alir
+Diagram alir tidak harus terlihat seperti yang di sini. Selama kamu mengerti diagram alir yang kamu buat, diagram itu akan membantumu memulai menulis kode. Diagram alir yang dimulai dengan masing-masing satu kotak "Mulai" dan "Akhir" ditunjukkan pada Gambar 8-2:
+
+Gambar 8-2: Mulailah membuat diagram alir dengan masing-masing satu kotak Mulai dan Akhir.
+
+Sekarang pikirkan apa yang akan terjadi jika kamu memainkan game Hangman. Pertama, komputer memikirkan satu kata rahasia. Lalu, pemain akan menebak kata-kata yang mungkin. Tambahkan kotak-kotak untuk peristiwa ini, seperti pada Gambar 8-3. Kotak yang baru masuk diagram alir ditandai dengan garis putus-putus disekelilingnya.
+Panah menunjukkan urutan yang akan dijalankan program. Pertama, program harus membuat kata rahasia, setelah itu program harus bertanya ke pemain untuk menebak kata itu.
+
+Gambar 8-3: Gambar dua langkah pertama sebagai kotak dengan deskripsi dalam game Hangman.
+
+Game belum berakhir setelah pemain menebak satu huruf. Tebakan itu harus dicek apakah terkandung dalam kata rahasia atau tidak.
+Cabang dari Kotak Diagram Alir
+Ada dua kemungkinan: huruf tebakan terkandung dalam kata rahasia atau tidak. Hal ini berarti kamu harus menambah dua kotak lagi pada diagram alir, satu untuk tiap kasus. Dengan demikian, satu cabang terjadi, seperti ditunjukkan dalam gambar 8-4:
+
+Gambar 8-4: Cabang punya dua panah yang mengarah ke dua kotak berbeda.
+
+Jika huruf tebakan ada dalam kata rahasia, cek apakah pemain sudah menebak semua huruf dan memenangkan game. Jika huruf tebakan tidak ada dalam kata rahasia, tambahkan bagian tubuh lain pada gambar orang yang digantung. Tambahkan kotak untuk kasus-kasus itu.
+Kamu tidak perlu panah dari kotak "Huruf ada dalam kata rahasia" ke kotak "Bagian tubuh yang tesisa sudah habis dan pemain kalah", karena tidak mungkin pemain kalah selama pemain berhasil menebak huruf dengan tepat. Pemain tidak mungkin juga menang selama pemain menebak dengan salah. Jadi, kita tidak perlu menggambar kedua panah itu. Diagram alir sekarang akan tampak seperti Gambar 8-5.
+
+Gambar 8-5: Setelah cabang, langkah berlanjut untuk masing-masing jalur.
+
+Mengakhiri atau Memulai Ulang Game
+
+Ketika pemain sudah menang atau kalah, tanya pemain apakah ingin main lagi dengan kata rahasia yang baru. Jika pemain tidak ingin main lagi, program akan berakhir. Jika program masih berjalan, maka kata rahasia harus dibuat lagi. Proses ini ditunjukkan seperti Gambar 8-6.
+
+Gambar 8-6: Cabang diagram alir ketika pemain akan memutuskan untuk main lagi atau tidak.
+
+Menebak Lagi
+
+Pemain tidak hanya menebak satu huruf. Pemain harus terus menebak huruf-huruf sampai menang atau kalah. Kamu akan perlu menggambar dua panah baru, seperti ditunjukkan dalam Gambar 8-7.
+
+Gambar 8-7: Panah baru menunjukkan bahwa pemain dapat menebak lagi.
+
+Bagaimana jika pemain menebak huruf yang telah ditebak? Pada kasus ini, daripada memutuskan pemain menang atau kalah, lebih baik membiarkan pemain menebak huruf lainnya. Kotak baru untuk kasus ini akan tampak seperti Gambar 8-8.
+
+Gambar 8-8: Menambahkan langkah dalam kasus pemain menebak huruf yang sudah ditebak sebelumnya.
+
+Menawarkan Umpan Balik pada Pemain
+
+Pemain perlu tahu bagaimana kemanjuan mereka selama memainkan game. Program harus menunjukkan papan gantungan dan kata rahasia (dengan garis yang menggambarkan huruf yang belum ketebak). Visualisasi ini akan membuat pemain tahu seberapa jauh lagi mereka akan menang atau kalah.
+Informasi ini harus diperbarui setiap kali pemain menebak satu huruf. Tambahhkan kotak "Tampilkan papan dan garis pada pemain" ke diagram alir antara kotak "Buat kata rahasia" dan kotak "Tanya pemain untuk menebak satu huruf". Diagram alir baru tampak seperti Gambar 8-9.
+
+Gambar 8-9: Menambahkan kotak "Tampilkan papan dan garis pada pemain" untuk memberi umpan balik.
+
+Diagram alir itu terlihat bagus! Diagram alir itu memetakan dengan komplit semua yang bisa terjadi dalam game Hangman dalam urutan tertentu. Ketika kamu mendesain game-mu sendiri, diagram alir akan membantumu mengingat semua kode yang perlu ditulis
+
+Ringkasan
+
+Sekilas, membuat diagram alir untuk program tampak perlu banyak usaha. Bukankah orang ingin memainkan game, bukan melihat diagram alir? Dengan memikirkan bagaimana program akan bekerja terlebih dahulu, kamu akan lebih mudah membuat perubahan dan melihat masalah yang muncul.
+Jika kamu langsung membuat kode, kamu mungkin akan menemukan masalah yang mengharuskanmu merubah kode yang sudah ditulis. Setiap kali kamu merubah kode, sedikit atau banyak, kemungkinan membuat bug akan semakin besar. Akan lebih baik jika kamu tahu apa yang akan kamu bangun sebelum kamu mulai membangunnya.
