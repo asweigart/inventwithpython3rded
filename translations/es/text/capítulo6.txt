@@ -432,24 +432,24 @@ Preguntando al Jugador si quiere Jugar de Nuevo
 Sin importar que el jugador gane o pierda, se le pregunta si quiere jugar de nuevo. La variable jugarDeNuevo almacena la cadena ingresada por el jugador. La línea 45 es la última línea del bloque while, de modo que el programa vuelve a la línea 36 para comprobar la condición: jugarDeNuevo == 'sí' or jugarDeNuevo == 's'
 Si el jugador ingresa la cadena 'sí' o 's', la ejecución entrará nuevamente al bucle en la línea 38.
 Si el jugador ingresa 'no' o 'n', o una tontería como 'Abraham Lincoln', entonces la condición será False. La ejecución del programa continúa a la línea a continuación del bloque while. Pero dado que no hay más líneas después del bloque while, el programa termina.
-One thing to note: the string 'YES' is not equal to the string 'yes'. If the player typed in the string 'YES', then the while statement’s condition would evaluate to False and the program would still terminate. Later programs in this book will show you how to avoid this problem.
-You've just completed your second game! In Dragon Realm, you used a lot of what you learned in the “Guess the Number” game and picked up a few new tricks. If you didn't understand some of the concepts in this program, then read the summary at the end of this chapter. Or go over each line of the source code again, and try changing the source code and see how the program changes.
-In the next chapter you won't create a game, but instead learn how to use a feature of IDLE called the debugger.
+Una cosa a tener en cuenta: la cadena 'SÍ' no es igual a la cadena 'sí'. Si el jugador ingresa la cadena 'SÍ', entonces la condición de la sentencia while se evaluará a False y el programa terminará igualmente. Otros programas más adelante en este libro te mostrarán cómo evitar este problema.
+¡Acabas de completar tu segundo juego! En Reino de Dragones, has usado mucho de cuanto aprendiste en el juego “Adivina el Número” y has aprendido unos cuantos trucos nuevos. Si no entendiste algunos de los conceptos en este programa, puedes leer el resumen al final de este capítulo. O recorrer cada línea del código fuente otra vez, y tratar de cambiar el código fuente y ver cómo cambia el programa.
+En el siguiente capítulo no crearás un juego, pero aprenderás cómo usar una funcionalidad de IDLE llamada depurador.
 
-Designing the Program
+Diseñando el Programa
 
-Dragon Realm is a simple game. The other games in this book will be a bit more complicated. It sometimes helps to write down everything you want your game or program to do before you start writing code. This is called “designing the program.”
-For example, it may help to draw a flow chart. A flow chart is a picture that shows every possible action that can happen in the game, and which actions lead to which other actions. Figure 6-2 is a flow chart for Dragon Realm.
+Reino de Dragones es un juego simple. El resto de los juegos en este libro serán un poco más complicados. A veces ayuda escribir en papel todo lo que quieres que tu juego o programa haga antes de comenzar a escribir el código. Esto se llama “diseñar el programa”.
+Por ejemplo, puede ayudar dibujar un diagrama de flujo. Un diagrama de flujo es una ilustración que muestra cada posible acción que puede ocurrir en el juego, y qué acciones llevan a qué otras acciones. La Figura 6-2 es un diagrama de flujo para Reino de Dragones.
 
-Figure 6-2: Flow chart for the Dragon Realm game.
+Figura 6-2: Diagrama de flujo para el juego Reino de Dragones.
 
-To see what happens in the game, put your finger on the “Start” box. Then follow one arrow from the box to another box. Your finger is like the program execution. The program terminates when your finger lands on the “End” box.
-When you get to the “Check for friendly or hungry dragon” box, you can go to the “Player wins” box or the “Player loses” box. This branching point shows how the program can do different things. Either way, both paths will end up at the “Ask to play again” box.
+Para ver qué pasa en el juego, coloca tu dedo sobre el recuadro “Inicio”. Luego sigue una flecha desde ese recuadro hasta otro recuadro. Tu dedo es como la ejecución del programa. El programa termina cuando tu dedo llega al recuadro “Fin”.
+Cuando llegas al recuadro “Comprobar dragón amistoso o hambriento”, puedes ir al recuadro “Jugador gana” o al recuadro “Jugador pierde”. Esta bifurcación muestra cómo el programa puede hacer diferentes cosas. De cualquier forma, ambos caminos conducirán al recuadro “Ofrece jugar de nuevo”.
 
-Summary
+Resumen
 
-In the “Dragon Realm” game, you created your own functions. Functions are a mini-program within your program. The code inside the function runs when the function is called. By breaking up your code into functions, you can organize your code into smaller and easier to understand sections.
-Arguments are values passed to the function’s code when the function is called. The function call itself evaluates to a value called the return value.
-You also learned about variable scopes. Variables created inside of a function exist in the local scope, and variables created outside of all functions exist in the global scope. Code in the global scope cannot make use of local variables. If a local variable has the same name as a variable in the global scope, Python considers it a separate variable and assigning new values to the local variable won’t change the value in the global variable.
-Variable scopes might seem complicated, but they are useful for organizing functions as separate pieces of code from the rest of the program. Because each function has its own local scope, you can be sure that the code in one function won’t cause bugs in other functions.
-Almost every program uses functions because they are so useful. By understanding how functions work, you can save ourselves a lot of typing and make bugs easier to fix.
+En el juego “Reino de Dragones”, has creado tus propias funciones. Las funciones son un mini-programa dentro de tu programa. El código dentro de la función se ejecuta cuando la función es llamada. Al descomponer tu código en funciones, puedes organizar tu código en secciones más pequeñas y fáciles de entender.
+Los argumentos son valores pasados al código de la función cuando la función es llamada. La propia llamada a la función se evalúa a un valor llamado el valor de retorno.
+También has aprendido acerca de entornos de variables. Las variables creadas dentro de una función existen en el entorno local, y las variables creadas fuera de todas las funciones existen en el entorno global. El código en el entorno global no puede usar las variables locales. Si una variable local tiene el mismo nombre que una variable en el entorno global, Python la considera una variables separada y asignar nuevos valores a la variable local no cambiará el valor de la variable global.
+Los entornos de variables pueden parecer complicados, pero son útiles para organizar funciones como fragmentos de código separados del resto del programa. Dado que cada función tiene su propio entorno local, puedes estar seguro de que el código en una función no ocasionará errores en otras funciones.
+Las funciones son tan útiles que casi todos los programas las usan. Entendiendo cómo funcionan las funciones, podemos ahorrarnos escribir muchas líneas de código y hacer que los errores sean más fáciles de arreglar.
