@@ -21,9 +21,9 @@ About Cryptography
 The science of writing secret codes is called cryptography. For thousands of years cryptography has made secret messages that only the sender and recipient could read, even if someone captured the messenger and read the coded message. A secret code system is called a cipher. The cipher used by the program in this chapter is called the Caesar cipher.
 In cryptography, we call the message that we want to be secret the plaintext. The plaintext could look like this:
 Hello there! The keys to the house are hidden under the flower pot.
-When we convert the plaintext into the encoded message, we call this encrypting the plaintext. The plaintext is encrypted into the ciphertext. The ciphertext looks like random letters, and we cannot understand what the original plaintext was just by looking at the ciphertext. Here is the previous example encrypted into ciphertext:
+When we convert the plaintext into the encoded message, we call this encrypting the plaintext. The plaintext is encrypted into the ciphertext. The ciphertext looks like random letters, and youcannot understand what the original plaintext was just by looking at the ciphertext. Here is the previous example encrypted into ciphertext:
 Yvccf kyviv! Kyv bvpj kf kyv yfljv riv yzuuve leuvi kyv wcfnvi gfk.
-But if you know about the cipher used to encrypt the message, we can decrypt the ciphertext back to the plaintext. (Decryption is the opposite of encryption.)
+But if you know about the cipher used to encrypt the message, you can decrypt the ciphertext back to the plaintext. (Decryption is the opposite of encryption.)
 Many ciphers also use keys. Keys are secret values that let you decrypt ciphertext that was encrypted using a specific cipher. Think of the cipher as being like a door lock. You can have many door locks of the same kind, but a particular lock will only unlock if for a particular key.
 If you are interested in writing cryptography programs, you can read my other book, “Hacking Secret Ciphers with Python”. It is free to download from http://inventwithpython.com/hacking.
 The Caesar Cipher
@@ -35,8 +35,8 @@ To get each shifted letter, draw out a row of boxes with each letter of the alph
 
 Figure 14-2: The entire alphabet shifted by three spaces.
 The number of spaces you shift is the key in the Caesar Cipher. The example above shows the letter translations for the key 3.
-Using a key of 3, if we encrypt the plaintext “Howdy”, then the “H” becomes “K”. The letter “o” becomes “r”. The letter “w” becomes “z”. The letter “d” becomes “g”. And the letter “y” becomes “b”. The ciphertext of “Hello” with key 3 becomes “Krzgb”.
-We will keep any non-letter characters the same. In order to decrypt “Krzgb” with the key 3, we go from the bottom boxes back to the top. The letter “K” becomes “H”, the letter “r” becomes “o”, the letter “z” becomes “w”, the letter “g” becomes “d”, and the letter “b” becomes “y” to form “Howdy”.
+Using a key of 3, if you encrypt the plaintext “Howdy”, then the “H” becomes “K”. The letter “o” becomes “r”. The letter “w” becomes “z”. The letter “d” becomes “g”. And the letter “y” becomes “b”. The ciphertext of “Hello” with key 3 becomes “Krzgb”.
+Keep any non-letter characters the same. In order to decrypt “Krzgb” with the key 3, we go from the bottom boxes back to the top. The letter “K” becomes “H”, the letter “r” becomes “o”, the letter “z” becomes “w”, the letter “g” becomes “d”, and the letter “b” becomes “y” to form “Howdy”.
 ASCII, and Using Numbers for Letters
 How do we implement this shifting of the letters as code? We can do this by representing each letter as a number (called an ordinal), and then adding or subtracting from this number to form a new number (and a new letter). ASCII (pronounced “ask-ee” and stands for American Standard Code for Information Interchange) is a code that connects each character to a number between 32 and 126.
 The capital letters “A” through “Z” have the ASCII numbers 65 through 90. The lowercase letters “a” through “z” have the ASCII numbers 97 through 122. The numeric digits “0” through “9” have the ASCII numbers 48 through 57.
@@ -100,7 +100,7 @@ Enter the key number (1-26)
 Your translated text is:
 Gur fxl nobir gur cbeg jnf gur pbybe bs gryrivfvba, gharq gb n qrnq punaary.
 
-Now we will run the program and decrypt the text that we just encrypted.
+Now run the program and decrypt the text that you just encrypted.
 
 Do you wish to encrypt or decrypt a message?
 decrypt
@@ -244,8 +244,8 @@ getTranslatedMessage() does the encrypting and decrypting. It has three paramete
 •   message is the plaintext (or ciphertext) to be encrypted (or decrypted).
 •   key is the key that is used in this cipher.
 
-Line 27 checks if the first letter in the mode variable is the string 'd'. If so, then the program is in decryption mode. The only difference between the decryption and encryption mode is that in decryption mode the key is set to the negative version of itself. If key was the integer 22, then in decryption mode we set it to -22. This will be explained later.
-translated is the string that will hold the result: either the ciphertext (if we are encrypting) or the plaintext (if we are decrypting). It starts as the blank string and has encrypted or decrypted characters concatenated to the end of it.
+Line 27 checks if the first letter in the mode variable is the string 'd'. If so, then the program is in decryption mode. The only difference between the decryption and encryption mode is that in decryption mode the key is set to the negative version of itself. If key was the integer 22, then in decryption mode set it to -22. This will be explained later.
+translated is the string that will hold the result: either the ciphertext (if you are encrypting) or the plaintext (if you are decrypting). It starts as the blank string and has encrypted or decrypted characters concatenated to the end of it.
 
 The isalpha() String Method
 
@@ -388,7 +388,7 @@ Modify and add the following changes to the main part of the program:
 62.         print(key, getTranslatedMessage('decrypt', message, key))
 
 These changes ask the user for a key if they are not in “brute force” mode. The original getTranslatedMessage() call is made and the translated string is printed.
-However, if the user is in “brute force” mode then getTranslatedMessage() loop that iterates from 1 all the way up to MAX_KEY_SIZE (which is 26). Remember that when the range() function returns a list of integers up to but not including the second parameter, which is why we have + 1. This program will print every possible translation of the message (including the key number used in the translation). Here is a sample run of this modified program:
+However, if the user is in “brute force” mode then getTranslatedMessage() loop that iterates from 1 all the way up to MAX_KEY_SIZE (which is 26). Remember that when the range() function returns a list of integers up to but not including the second parameter, which is why you have + 1. This program will print every possible translation of the message (including the key number used in the translation). Here is a sample run of this modified program:
 
 Do you wish to encrypt or decrypt or brute force a message?
 brute

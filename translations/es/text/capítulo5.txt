@@ -11,7 +11,7 @@ Aprovechar print() al Máximo
 
 La mayoría de los juegos en este libro tendrán un texto simple de entrada y salida. La entrada es escrita por el usuario desde el teclado e introducida a la computadora. La salida es el texto mostrado en la pantalla. En Python, la función print() se puede usar para mostrar salidas de texto en la pantalla. Pero hay mas para aprender sobre cómo funcionan las cadenas y el print() en Python.
 
-El programa de este capítulo le cuenta distintos chistes al usuario.
+El programa de este capítulo le cuenta chistes al usuario.
 
 Ejecución de Muestra de Chistes
 
@@ -39,9 +39,9 @@ chistes.py
  2. input()
  3. print('¡Un monopatín!')
  4. print()
- 5. print('¿Qué le dijo un pez a otro pez?')
+ 5. print('¿Porqué vuelan los pájaros pa\'l sur?')
  6. input()
- 7. print('¡Nada!')
+ 7. print('¡Porque caminando tardarían muchísimo!')
  8. print()
  9. print('¿En qué se parecen una familia, un bombero y un barco?')
 10. input()
@@ -67,96 +67,94 @@ El usuario todavía puede escribir una cadena y pulsar Intro, pero esta cadena d
 
 La última llamada a la función print() no tiene argumento de cadena. Esto le indica al programa que solamente escriba una línea en blanco. Las líneas en blanco pueden ser útiles para evitar que el texto quede unido.
 
-Escape Characters
+Caracteres de Escape
 
- 5. print('What do dentists call a astronaut's cavity?')
+ 5. print('¿Porqué vuelan los pájaros pa\'l sur?')
  6. input()
- 7. print('A black hole!')
+ 7. print('¡Porque caminando tardarían muchísimo!')
  8. print()
 
-In the first print() above, there is a backslash right before the single quote (that is, the apostrophe). Note that \ is a backslash, and / is a forward slash. This backslash tells you that the letter right after it is an escape character. An escape character lets you print characters that are hard to enter into the source code. In this print() call the escape character is the single quote.
+En el primer print() de arriba, ha una barra invertida justo antes de la comillas simple (esto es, el apóstrofo). Note que \ es una barra inversa, y / es una barra inclinada. Esta barra inversa indica que la letra que está a su derecha es una caracter de escape. Un caracter de escape te permite imprimir caracteres que son difíciles de introducir en el código fuente. En esta llamada a print() el caracter de escape es una comilla simple.
 
-The single quote escape character is there because otherwise Python would think the quote meant the end of the string. But this quote needs to be a part of the string. The escaped single quote tells Python that the single quote is literally a part of the string rather than marking the end of the string value.
+El caracter de escape comilla simple está allí porque de otra manera Python pensaría que la comilla indica el final de la cadena. Pero esta comilla necesita formar parte de la cadena. La comilla simple de escape le indica a Python que la comilla simple es literalmente una parte de la cadena en lugar de indicar el final del valor de la cadena.
 
-Some Other Escape Characters
+Algunos Otros Caracteres de Escape
 
-What if you really want to display a backslash? This line of code would not work:
+¿Qué pasa si realmente quisieras escribir una barra invertida?. Esta línea de código no funcionaría:
 
->>> print('He flew away in a green\teal helicopter.')
+>>> print('Él se fue volando en un helicóptero verde\turquesa.')
 
-That print() function call would show up as:
+La llamada a la función print() mostraría:
 
-He flew away in a green    eal helicopter.
+Él se fue volando en un helicóptero verde    urquesa.
 
-This is because the “t” in “teal” was seen as an escape character since it came after a backslash. The escape character t simulates pushing the Tab key on your keyboard. Escape characters are there so that strings can have characters that cannot be typed in.
+Esto es porque la "t" en "turquesa" fue vista como un caracter de escape debido a que estaba después de una barra inversa. El caracter de escape t simula la pulsación de la tecla Tab de tu teclado. Hay caracteres de escape para que las cadenas puedan tener caracteres que no se pueden escribir.
 
-Instead, try this line:
+En lugar de eso, prueba con esta línea:
 
->>> print('He flew away in a green\\teal helicopter.')
-He flew away in a green\teal helicopter.
+>>> print('Él se fue volando en un helicóptero verde\\turquesa.')
+Él se fue volando en un helicóptero verde\turquesa.
 
-Table 5-1 is a list of escape characters in Python.
+La tabla 5-1 es una lista de caracteres de escape en Python.
 
-Table 5-1: Escape Characters
-Escape Character        What Is Actually Printed
-\\                      Backslash (\)
-\'                      Single quote (')
-\"                      Double quote (")
-\n                      Newline
-\t                      Tab
+Table 5-1: Caracteres de Escape
+Caracter de Escape      Lo que imprime
+\\                      Barra inversa (\)
+\'                      Comilla simple (')
+\"                      Comilla doble (")
+\n                      Salto de línea
+\t                      Tabulador
 
 
+Comillas Simples y Dobles
 
-Quotes and Double Quotes
+La cadenas en Python no tienen que estar siempre entre comillas simples. También puedes ponerlas entre comilas dobles. Estados dos líneas imprimen lo mismo:
 
-Strings don’t always have to be in between single quotes in Python. You can also put them in between double quotes. These two lines print the same thing:
+>>> print('Hola mundo')
+Hola mundo
+>>> print("Hola mundo")
+Hola mundo
 
->>> print('Hello world')
-Hello world
->>> print("Hello world")
-Hello world
+Pero no puedes mexzclar las comillas. Esta línea devolverá un error si intentas utilizarla:
 
-But you cannot mix quotes. This line will give you an error if you try to use them:
-
->>> print('Hello world")
+>>> print('Hola mundo")
 SyntaxError: EOL while scanning single-quoted string
 
-I like to use single quotes so I don’t have to hold down the shift key to type them. It’s easier to type, and Python doesn’t care either way.
+Me gusta utilizar las comillas simples, así no tengo que pulsar la tecla shift (mayúsculas) para escribirlas. Es más fácil de escribir, y a Python le da igual de cualquier manera.
 
-Just like you need the escape character \' to have a single quote in a string surrounded by single quotes, you need the escape character \" to have a double quote in a string surrounded by double quotes. For example, look at these two lines:
+Del mismo modo en que necesitas el caracter de escape \' para obtener una comilla simple en una cadena rodeada de comillas simples, se necesita un caracter de escape \" para imprimir una comilla doble en una cadena rodeada de comillas dobles. Por ejemplo, mira estas dos líneas:
 
->>> print('I asked to borrow Abe\'s car for a week. He said, "Sure."')
+>>> print('Le pedí prestado el carro a Pedro pa\'ir al pueblo. El dijo, "Seguro."')
 
-I asked to borrow Abe's car for a week. He said, "Sure."
+Le pedí prestado el carro a Pedro pa'ir al pueblo. El dijo, "Seguro."
 
->>> print("He said, \"I can’t believe you let him borrow your car.\"")
+>>> print("Él dijo, \"No puedo creer que lo dejaste llevarse el carro pa'l pueblo\"")
 
-He said, "I can’t believe you let him borrow your car."
+Él dijo, "No puedo creer que lo dejaste llevarse el carro pa'l pueblo"
 
-In the single quote strings you don’t need to escape double quotes, and in the double quote strings you don’t need to escape single quotes. The Python interpreter is smart enough to know that if a string starts with one type of quote, the other type of quote doesn’t mean the string is ending.
+En las cadenas de comillas simples no necesitas escapar las comillas dobles, y en las cadenas de comillas dobles no necesitas escapar las comillas simples. El intérprete de Python tiene inteligencia suficiente para saber que si una cadena comienza con un tipo de comillas, el otro tipo de comillas no significa que la cadena está terminando.
 
-The end Keyword Argument
+El Argumento end
 
- 9. print('Knock knock.')
+ 9. print('¿En qué se parecen una familia, un bombero y un barco?')
 10. input()
-11. print("Who's there?")
+11. print("No sé... ¿en qué se parecen?")
 12. input()
-13. print('Interrupting cow.')
+13. print('En que el bombero y el barco tienen casco.')
 14. input()
-15. print('Interrupting cow wh', end='')
-16. print('-MOO!')
+15. print('¿Y la familia?', end='')
+16. print(' -Bien, gracias.')
 
-Did you notice the second parameter on line 15's print()? Normally, print() adds a newline character to the end of the string it prints. This is why a blank print() function will just print a newline. But the print() function can optionally have a second parameter (which has the name “end”.)
+¿Te diste cuenta del segundo parámetro en el print de la línea 15?. Normalmente, print() añade un salto de línea al final de la cadena que imprime. Por esta razón, una función print() en blanco tan solo imprimirá una nueva línea. Pero la función print() tiene la opción de un segundo parámetro (que tiene nombre "end").
 
-The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter we need to use the end= syntax.
+La cadena en blanco dada se llama argumento de palabra clave. El parámetro final tiene un nombre específico, y para pasar un argumento a ese parámetro en particular necesitamos utilizar la sintáxis end=.
 
-By passing a blank string for the end, the print() function won’t add a newline at the end of the string, but instead add a blank string. This is why '-MOO!' appears next to the previous line, instead of on its own new line. There was no newline after the 'Interrupting cow wh' string.
+Pasando una cadena en blanco usando end, la función print() no añadirá un salto de linea al final de la cadena, en lugar de esto añadirá una cadena en blanco. Por esta razón ' -Bien, gracias.' aparece junto a la línea anterior, en lugar una línea nueva aparte. No hubo salto de línea después de la cadena '¿Y la familia?'.
 
-Summary
+Resumen
 
-This chapter explores the different ways you can use the print() function. Escape characters are used for characters that are difficult or impossible to type into the code with the keyboard. Escape characters are typed into strings beginning with a backslash \ followed by a single letter for the escape character. For example, \n would be a newline. To include a backslash in a string, you would use the escape character \\.
+Este capítulo explora las diferentes formas en las que se puede utilizar la función print(). Los caracteres de escape se utilizan para los caracteres que son difíciles o imposibles de escribir en código usando el teclado. Los caracteres de escape se escriben en las cadenas comienzando con una barra inversa \ seguida de una sola letra para el carácter de escape. Por ejemplo, \n sería un salto de línea. Para incluir una barra invertida en una cadena, deberás utilizar el carácter de escape \\.
 
-The print() function automatically appends a newline character to the end of the string we pass it to be displayed on the screen. Most of the time, this is a helpful shortcut. But sometimes you don’t want a newline character at the end. To change this, you can pass the end keyword argument with a blank string. For example, to print “spam” to the screen without a newline character, you would call print('spam', end='').
+La función print() añade automáticamente un carácter de salto de línea al final de la cadena que se pasa para imprimr en pantalla. La mayor parte del tiempo, es un atajo útil. Pero a veces no quieres un carácter de salto de línea al final. Para cambiar esto, puedes pasar el argumento de palabra clave end con una cadena en blanco. Por ejemplo, para imprimir "spam" en la pantalla sin un carácter de salto de línea, podrías hacer el llamado print("spam", end='').
 
-By adding this level of control to the text we display on the screen, you can be more flexible ways in how you display text on the screen
-
+Al añadir este nivel de control sobre el texto que mostraremos en la pantalla, puedes tener formas más flexibles para hacerlo.

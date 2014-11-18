@@ -18,29 +18,3 @@ while flips < 1000:
 print()
 print('Setelah 1000 kali lemparan koin, kepala muncul ' + str(heads) + ' kali!')
 print('Apa tebakanmu dekat?')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

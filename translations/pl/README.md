@@ -1,17 +1,18 @@
-Translators
+Tłumacze
 ===========
 
+Michał Niklas https://github.com/michal-niklas
 
 
+(Zawsze warto sprawdzić w historii plików w tym katalogu, czy są inni tłumacze)
 
-(You can always check the commit history of the files in this folder to find other translators, if this README is not up to date.)
-
-Title
+Tytuł
 =====
 
-(Put translated book title here.)
+Twórz własne gry komputerowe używając Pythona, wydanie 3
 
-General Notes
+
+Uwagi ogólne
 =============
 
-Add notes here.
+Na potrzebę szybkiego znajdywania wspólnych fraz i by zachować w miarę jednolite tłumaczena danych fraz stworzyłem plik glossary.txt z moimi propozycjami. Przykładowo chciałbym, by 'file' zawsze było tłumaczone jako plik.

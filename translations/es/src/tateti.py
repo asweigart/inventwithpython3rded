@@ -35,9 +35,9 @@ def ingresaLetraJugador():
 def quienComienza():
     # Elije al azar que jugador comienza.
     if random.randint(0, 1) == 0:
-        return 'computadora'
+        return 'La computadora'
     else:
-        return 'jugador'
+        return 'El jugador'
 
 def jugarDeNuevo():
     # Esta funcion devuelve True (Verdadero) si el jugador desea volver a jugar, de lo contrario devuelve False (Falso).
@@ -144,7 +144,7 @@ while True:
     elTablero = [' '] * 10
     letraJugador, letraComputadora = ingresaLetraJugador()
     turno = quienComienza()
-    print(("El " if turno == "jugador" else "La ") + turno + ' irá primero.') 
+    print(turno + ' irá primero.')
     juegoEnCurso = True
 
     while juegoEnCurso:
@@ -164,7 +164,7 @@ while True:
                     print('¡Es un empate!')
                     break
                 else:
-                    turno = 'computadora'
+                    turno = 'La computadora'
 
         else:
             # Turno de la computadora
@@ -181,7 +181,7 @@ while True:
                     print('¡Es un empate!')
                     break
                 else:
-                    turno = 'jugador'
+                    turno = 'El jugador'
 
     if not jugarDeNuevo():
         break

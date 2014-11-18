@@ -38,7 +38,6 @@ KeyboardInterrupt
 The Debugger
 
 It can be hard to figure out how your code could be causing a bug.  The lines of code get executed quickly and the values in variables change so often. A debugger is a program that lets you step through your code one line at a time in the same order that Python executes them. The debugger also shows you what values are stored in variables at each step.
-A video tutorial on using the debugger that comes with IDLE can be found on this book’s website at http://invpy.com/videos
 
 Starting the Debugger
 
@@ -78,7 +77,7 @@ Locals Area
 There is also a Locals area, which shows you the local scope variables and their values. The local area will only have variables in it when the program execution is inside of a function. When the execution is in the global scope, this area is blank.
 The Go and Quit Buttons
 If you get tired of clicking the Step button repeatedly and just want the program to run normally, click the Go button at the top of the Debug Control window. This will tell the program to run normally instead of stepping.
-To terminate the program entirely, just click the Quit button at the top of the Debug Control window. The program will exit immediately. This is helpful if you need to start debugging again from the beginning of the program.
+To terminate the program entirely, just click the Quit button at the top of the Debug Control window. The program will exit immediately. This is helpful if you must start debugging again from the beginning of the program.
 
 Stepping Into, Over, and Out
 
@@ -136,7 +135,7 @@ Clicking on Step from line 5 will execute input(). The debugger waits until the 
 Line 6 is an if statement. The condition is that the value in answer must match the sum of number1 and number2. If the condition is True, then the debugger will move to line 7. If the condition is False, the debugger will move to line 9. Click Step one more time to find out where it goes.
 The debugger is now on line 9! What happened? The condition in the if statement must have been False. Take a look at the values for number1, number2, and answer. Notice that number1 and number2 are integers, so their sum would have also been an integer. But answer is a string.
 That means that answer == number1 + number2 would have evaluated to '12' == 12. A string value and an integer value will always not equal each other, so the condition evaluated to False.
-That is the bug in the program. The bug is that we use answer when we should be using int(answer). Change line 6 to use int(answer) == number1 + number2 instead of answer == number1 + number2, and run the program again.
+That is the bug in the program. The bug is that the code used answer when it should have int(answer). Change line 6 to use int(answer) == number1 + number2 instead of answer == number1 + number2, and run the program again.
 
 What is 2 + 3?
 5
@@ -180,13 +179,13 @@ coinFlips.py
 19. print('Out of 1000 coin tosses, heads came up ' + str(heads) + ' times!')
 20. print('Were you close?')
 
-The program runs pretty fast. It spent more time waiting for the user to press ENTER than doing the coin flips. Let’s say we wanted to see it do coin flips one by one. On the interactive shell's window, click on Debug ► Debugger to bring up the Debug Control window. Then press F5 to run the program.
+The program runs pretty fast. It spent more time waiting for the user to press ENTER than doing the coin flips. Let’s say you wanted to see it do coin flips one by one. On the interactive shell's window, click on Debug ► Debugger to bring up the Debug Control window. Then press F5 to run the program.
 The program starts in the debugger on line 1. Press Step three times in the Debug Control window to execute the first three lines (that is, lines 1, 2, and 3). You’ll notice the buttons become disabled because input() was called and the interactive shell window is waiting for the user to type something. Click on the interactive shell window and press ENTER. (Be sure to click beneath the text in the interactive shell window, otherwise IDLE might not receive your keystrokes.)
 You can click Step a few more times, but you’ll find that it would take quite a while to get through the entire program. Instead, set a break point on lines 12, 14, and 16. The file editor will highlight these lines as shown in Figure 7-6.
 
 Figure 7-6: Three break points set.
 
-After setting the breakpoints, click Go in the Debug Control window. The program will run at normal speed until it reaches the next break point. When flips is set to 100, the condition for the if statement on line 13 is True. This causes line 14 (where we have a break point set) to execute, which tells the debugger to stop the program and take over. Look at the Debug Control window in the Globals section to see what the value of flips and heads are.
+After setting the breakpoints, click Go in the Debug Control window. The program will run at normal speed until it reaches the next break point. When flips is set to 100, the condition for the if statement on line 13 is True. This causes line 14 (where there’s a break point set) to execute, which tells the debugger to stop the program and take over. Look at the Debug Control window in the Globals section to see what the value of flips and heads are.
 Click Go again and the program will continue until it reaches the next break point on line 16. Again, see how the values in flips and heads have changed.
 If you click Go again, the execution will continue until the next break point is reached, which is on line 12.
 

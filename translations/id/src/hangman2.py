@@ -56,12 +56,21 @@ HANGMANPICS = ['''
  / \  |
       |
 =========''']
-words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra semut babon musang kelelawar beruang unta kucing kerang kobra gagak anjing rusa bebek keledai elang musang rubah katak kambing angsa elang singa kadal monyet keledai tikus hiu kadal panda beo merpati piton kelinci tikus gagak badak salmon domba sigung kukang ular bangau angsa harimau kodok kalkun penyu musang paus serigala zebra'.split() # juga mengandung hewan dalam bahasa indonesia (satu suku kata)
+words = {'Warna': 'merah oranye kuning hijau biru violet putih hitam coklat'.split(),
+'Bentuk':'persegi segitiga persegipanjang lingkaran elips jajargenjang segilima segienam segitujuh segidelapan.'split(),
+'Buah-buahan':'apel jeruk lemon jeruknipis pir semangka anggur jerukbali ceri pisang melon mangga strowberi tomat'.split(),
+'Binatang':'semut babon musang kelelawar beruang unta kucing kerang kobra gagak anjing rusa bebek keledai elang musang rubah katak kambing angsa elang singa kadal monyet keledai tikus hiu kadal panda beo merpati piton kelinci tikus gagak badak salmon domba sigung kukang ular bangau angsa harimau kodok kalkun penyu musang paus serigala zebra'.split()}
 
-def getRandomWord(wordList):
-    # Fungsi ini mengembalikan satu string acak dari daftar string dalam list yang dilemparkan.
-    wordIndex = random.randint(0, len(wordList) - 1)
-    return wordList[wordIndex]
+def getRandomWord(wordDict):
+    # Fungsi ini mengembalikan satu string acak dari dictionary berisi list string yang dilemparkan dan kunci string itu.
+    # Pertama, pilih acak kunci dalam dictionary
+    wordKey = random.choice(list(wordDict.keys()))
+    
+    # Kedua, pilih acak kata pada nilai list dalam kunci
+    wordIndex = random.randint(0, len(wordDict[wordKey]) - 1)
+    
+    return [wordDict[wordKey][wordIndex], wordKey]
+
 
 def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
     print(HANGMANPICS[len(missedLetters)])
@@ -106,10 +115,11 @@ def playAgain():
 print('H A N G M A N')
 missedLetters = ''
 correctLetters = ''
-secretWord = getRandomWord(words)
+secretWord, secretKey = getRandomWord(words)
 gameIsDone = False
 
 while True:
+    print('Kata rahasia ada dalam himpunan: ' + secretKey)
     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
 
     # Ambil masukan satu huruf dari pemain.
@@ -142,6 +152,6 @@ while True:
             missedLetters = ''
             correctLetters = ''
             gameIsDone = False
-            secretWord = getRandomWord(words)
+            secretWord, secretKey = getRandomWord(words)
         else:
             break

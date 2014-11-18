@@ -3,12 +3,10 @@
 
 Topics Covered In This Chapter:
 •   The bool() Function
-•   Evaluating Non-Boolean Values as Booleans
 •   How to Play Reversi
 
-In this chapter, we will make a game called Reversi (also called Othello). Reversi is a board game that is played on a grid, so we will use a Cartesian coordinate system with XY coordinates. It is a game played with two players. Our version of the game will have a computer AI that is more advanced than the AI we made for Tic Tac Toe. In fact, this AI is so good that it will probably beat you almost every time you play. (I know I lose whenever I play against it!)
-The web page http://invpy.com/reversi has a video of Reversi being played.
-Reversi has an 8 × 8 board and tiles that are black on one side and white on the other (our game will use O’s and X’s instead). The starting board looks like Figure 15-1. The black player and white player take turns placing down a new tile of their color. Any of the opponent’s tiles that are between the new tile and the other tiles of that color is flipped. The goal of the game is to have as many of the tiles with your color as possible. For example, Figure 15-2 is what it looks like if the white player places a new white tile on space 5, 6.
+In this chapter, we’ll make a game called Reversi (also called Othello). Reversi is a board game that is played on a grid, so we’ll use a Cartesian coordinate system with XY coordinates. It is a game played with two players. Our version of the game will have a computer AI that is more advanced than the AI we made for Tic Tac Toe. In fact, this AI is so good that it will probably beat you almost every time you play. (I know I lose whenever I play against it!)
+Reversi has an 8 × 8 board and tiles that are black on one side and white on the other (our game will use Os and X’s instead). The starting board looks like Figure 15-1. The black player and white player take turns placing down a new tile of their color. Any of the opponent’s tiles that are between the new tile and the other tiles of that color is flipped. The goal of the game is to have as many of the tiles with your color as possible. For example, Figure 15-2 is what it looks like if the white player places a new white tile on space 5, 6.
 
 Figure 15-1: The starting Reversi board has two white tiles and two black tiles.
 
@@ -188,7 +186,7 @@ As you can see, the AI was pretty good at beating me. To help the player out, we
 Reversi’s Source Code
 
 Reversi is a mammoth program compared to our previous games. It’s over 300 lines long! But don’t worry, many of these lines are comments or blank lines to space out the code and make it more readable.
-As with our other programs, we will first create several functions to carry out Reversi-related tasks that the main section will call. Roughly the first 250 lines of code are for these helper functions, and the last 50 lines of code implement the Reversi game itself.
+As with our other programs, we’ll first create several functions to carry out Reversi-related tasks that the main section will call. Roughly the first 250 lines of code are for these helper functions, and the last 50 lines of code implement the Reversi game itself.
 If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/reversi.
 
 reversi.py
@@ -503,7 +501,7 @@ How the Code Works
 
 The Game Board Data Structure
 
-Before we get into the code, we should talk about the board’s data structure. This data structure is a list of lists, just like the one in the previous Sonar game. The list of lists is created so that board[x][y] will represent the character on space located at position x on the X-axis (going left/right) and position y on the Y-axis (going up/down).
+Before getting into the code, let’s figure out the board’s data structure. This data structure is a list of lists, just like the one in the previous Sonar game. The list of lists is created so that board[x][y] will represent the character on space located at position x on the X-axis (going left/right) and position y on the Y-axis (going up/down).
 This character can either be a ' ' space character (to represent a blank space), a '.' period character (to represent a possible move in hint mode), or an 'X' or 'O' (to represent a player’s tile). Whenever you see a parameter named board, it is meant to be this kind of list of lists data structure.
 
 Importing Other Modules
@@ -682,7 +680,7 @@ But if the first space does have the other player’s tile, then the program sho
  75.                 continue
 
 The while loop on line 69 keeps looping  that x and y keep going in the current direction as long as it keep seeing a trail of the other player’s tiles. If x and y move off of the board, the execution breaks out of the for loop and the flow of execution moves to line 74.
-What we really want to do is break out of the while loop but continue in the for loop. But if we put a continue statement on line 73, that would only continue to the while loop on line 69.
+What you really want to do is break out of the while loop but continue in the for loop. But if you put a continue statement on line 73, that would only continue to the while loop on line 69.
 Instead, line 74 rechecks not isOnBoard(x, y) and runs continue, which moves execution to the next direction in line 59’s for statement. Remember, break and continue statements will only break or continue in the innermost loop they are in.
 
 Finding Out if There are Pieces to Flip Over
@@ -877,7 +875,7 @@ Getting the Player’s Move
 191.     DIGITS1TO8 = '1 2 3 4 5 6 7 8'.split()
 
 The getPlayerMove() function is called to let the player type in the coordinates of their next move (and check if the move is valid). The player can also type in 'hints' to turn hints mode on (if it is off) or off (if it is on). The player can also type in 'quit' to quit the game.
-The DIGITS1TO8 constant variable is the list ['1', '2', '3', '4', '5', '6', '7', '8']. The DIGITS1TO8 constant is used because it is easier to type than the entire list. We can’t use the isdigit() method because that would allow 0 and 9 to be entered, which are not valid coordinates on our 8 × 8 board.
+The DIGITS1TO8 constant variable is the list ['1', '2', '3', '4', '5', '6', '7', '8']. The DIGITS1TO8 constant is used because it is easier to type than the entire list. You can’t use the isdigit() method because that would allow 0 and 9 to be entered, which are not valid coordinates on our 8 × 8 board.
 
 192.     while True:
 193.         print('Enter your move, or type quit to end the game, or hints to turn off/on hints.')
@@ -952,15 +950,15 @@ Get a List of the Best Scoring Moves
 235.             bestScore = score
 236.     return bestMove
 
-If there are no corner moves, loop through the entire list and find out which move results in the highest score. Line 229’s for loop will set x and y to every move in possibleMoves. bestMove is set to the highest scoring move we’ve found so far, and bestScore is set to the best move’s score.
+If there are no corner moves, loop through the entire list and find out which move results in the highest score. Line 229’s for loop will set x and y to every move in possibleMoves. bestMove is set to the highest scoring move you’ve found so far, and bestScore is set to the best move’s score.
 When the code in the loop finds a move that scores higher than bestScore, it will store that move and score as the new values of bestMove and bestScore (see lines 233 to 235).
 Simulate All Possible Moves on Duplicate Board Data Structures
 Before simulating a move, line 230 makes a duplicate game board data structure by calling getBoardCopy(). You’ll want a copy so you can modify without changing the real game board data structure stored in the board variable.
 Then line 231 calls makeMove(), passing the duplicate board (stored in dupeBoard) instead of the real board. makeMove() will handle placing the computer’s tile and the flipping the player’s tiles on the duplicate board.
 Line 232 calls getScoreOfBoard()with the duplicate board, which returns a dictionary where the keys are 'X' and 'O', and the values are the scores.
 Pretend that getScoreOfBoard() returns the dictionary {'X':22, 'O':8} and computerTile is 'X'. Then getScoreOfBoard(dupeBoard)[computerTile] would evaluate to {'X':22, 'O':8}['X'], which would then evaluate to 22. If 22 is larger than bestScore, bestScore is set to 22 and bestMove is set to the current x and y values.
-By the time this for loop is finished, we can be sure that bestScore is the highest possible score a move can make, and that move is stored in bestMove.
-Line 228 first sets bestScore to -1 so that the first move will be set to the first bestMove. This will guarantee that bestMove is set to one of the moves when we return it.
+By the time this for loop is finished, you can be sure that bestScore is the highest possible score a move can make, and that move is stored in bestMove.
+Line 228 first sets bestScore to -1 so that the first move will be set to the first bestMove. This will guarantee that bestMove is set to one of the moves when it returns.
 Say that the highest scoring move in possibleMoves would give the computer a score of 42. What if there was more than one move in possibleMoves that would give this score? The for loop would always go with the first move that scored 42 points, because bestMove and bestScore only change if the move is greater than the highest score. A tie won’t change bestMove and bestScore.
 Even though the code always chooses the first in the list of these tied moves, it’s random because the list order was shuffled on line 220. This ensures that the AI won’t be predictable when there is more than one best move.
 
@@ -987,8 +985,8 @@ The Start of the Game
 254.     turn = whoGoesFirst()
 255.     print('The ' + turn + ' will go first.')
 
-The while loop on line 248 is the main game loop. The program will loop back to line 248 when a new game starts. First we get a new game board data structure by calling getNewBoard() and set the starting tiles by calling resetBoard(). mainBoard is the main game board data structure we will use for this program. The call to enterPlayerTile() will let the player type in whether they want to be 'X' or 'O', which is then stored in playerTile and computerTile.
-showHints is a Boolean value that determines if hints mode is on or off. It starts as off by setting showHints to False.
+The while loop on line 248 is the main game loop. The program will loop back to line 248 when a new game starts. First get a new game board data structure by calling getNewBoard() and set the starting tiles by calling resetBoard(). mainBoard is the main game board data structure for the program. The call to enterPlayerTile() will let the player type in whether they want to be 'X' or 'O', which is then stored in playerTile and computerTile.
+showHints is a Boolean value that determines if hints mode is on or off. It starts as off as False on line 253.
 The turn variable is a string will either have the string value 'player' or 'computer', and will keep track of whose turn it is. It is set to the return value of whoGoesFirst(), which randomly chooses who will go first.
 
 Running the Player’s Turn
@@ -1003,16 +1001,16 @@ Running the Player’s Turn
 264.                 drawBoard(mainBoard)
 265.             showPoints(playerTile, computerTile)
 
-The while loop that starts on line 257 will keep looping each time the player or computer takes a turn. We will break out of this loop when the current game is over.
+The while loop that starts on line 257 will keep looping each time the player or computer takes a turn. The execution will break out of this loop when the current game is over.
 Line 258 has an if statement whose body has the code that runs if it is the player’s turn. (The else-block that starts on line 282 has the code for the computer’s turn.)
 First the board is displayed on the screen. If hints mode is on (which it is if showHints is True), then the board data structure needs to have '.' period characters on every valid space the player could move.
 The getBoardWithValidMoves() function does that. It is passed a game board data structure and returns a copy that also contains '.' period characters. Line 262 passes this board to the drawBoard() function.
-If hints mode is off, then we pass mainBoard to drawBoard() on line 264.
-After printing out the game board to the player, we also want to print the current score by calling showPoints() on line 265.
+If hints mode is off, then pass mainBoard to drawBoard() on line 264.
+After printing out the game board to the player, also want to print the current score by calling showPoints() on line 265.
 
 266.             move = getPlayerMove(mainBoard, playerTile)
 
-Next we let the player type in their move. getPlayerMove() handles this, and its return value is a two-item list of the XY coordinate of the player’s move. getPlayerMove() makes sure that the move the player typed in is a valid move, so we don’t have to worry about it here.
+Next, let the player type in their move. getPlayerMove() handles this, and its return value is a two-item list of the XY coordinate of the player’s move. getPlayerMove() has already made sure that the move the player typed in is a valid move.
 
 Handling the Quit or Hints Commands
 
@@ -1025,9 +1023,9 @@ Handling the Quit or Hints Commands
 273.             else:
 274.                 makeMove(mainBoard, playerTile, move[0], move[1])
 
-If the player typed in the string 'quit' for their move, then getPlayerMove() would have returned the string 'quit'. In that case, we should call the sys.exit() to terminate the program.
-If the player typed in the string 'hints' for their move, then getPlayerMove() would have returned the string 'hints'. In that case, we want to turn hints mode on (if it was off) or off (if it was on).
-The showHints = not showHints assignment statement handles both of these cases, because not False evaluates to True and not True evaluates to False. Then the continue statement moves the execution to the start of the loop (turn has not changed, so it will still be the player’s turn when we continue).
+If the player typed in the string 'quit' for their move, then getPlayerMove() would have returned the string 'quit'. In that case, call the sys.exit() to terminate the program.
+If the player typed in the string 'hints' for their move, then getPlayerMove() would have returned the string 'hints'. In that case, you want to turn hints mode on (if it was off) or off (if it was on).
+The showHints = not showHints assignment statement handles both of these cases, because not False evaluates to True and not True evaluates to False. Then the continue statement moves the execution to the start of the loop (turn has not changed, so it will still be the player’s turn).
 Otherwise, if the player didn’t quit or toggle hints mode, line 274 calls makeMove() to make the player’s move on the board.
 
 Make the Player’s Move
@@ -1050,8 +1048,8 @@ Running the Computer’s Turn
 286.             x, y = getComputerMove(mainBoard, computerTile)
 287.             makeMove(mainBoard, computerTile, x, y)
 
-After printing out the board with drawBoard(), we also want to print the current score with a call to showPoints() on line 284.
-Next we have a call to input() on line 285 to pause the script while the player can look at the board. This is much like how we use input() to pause the program in our Jokes chapter. Instead of using a print() call to print a string before a call to input(), you can do the same thing by passing the string to print to input().
+After printing out the board with drawBoard(), also print the current score with a call to showPoints() on line 284.
+Line 285 calls input() on line 285 to pause the script while the player can look at the board. This is much like how input() was used to pause the program in the Jokes chapter. Instead of using a print() call to print a string before a call to input(), you can do the same thing by passing the string to print to input().
 After the player has looked at the board and pressed Enter, line 286 calls getComputerMove() to get the XY coordinates of the computer’s next move. These coordinates in variables x and y using the multiple assignment trick.
 Finally, pass x and y, along with the game board data structure and the computer’s tile, to the makeMove() function. This places the computer’s tile on the game board in mainBoard to reflect the computer’s move. Our call to getComputerMove() on line 286 got the computer’s move (and stored it in variables x and y), and the call to makeMove() on line 287 makes the move on the board.
 
@@ -1076,9 +1074,9 @@ Drawing Everything on the Screen
 302.     else:
 303.         print('The game was a tie!')
 
-Line 294 is the first line beyond the while-block that started on line 257. This code is executed when the execution breaks out of that while loop from line 290 or 277. The while statement’s condition on line 257 is simply the value True, so we can only exit the loop through break statements.
+Line 294 is the first line beyond the while-block that started on line 257. This code is executed when the execution breaks out of that while loop from line 290 or 277. The while statement’s condition on line 257 is simply the value True, so it can only exit the loop through break statements.
 At this point, the game is over. Now the program should print the board and scores and determine who won the game.
-getScoreOfBoard() will return a dictionary with keys 'X' and 'O' and values of both players' scores. By checking if the player’s score is greater than, less than, or equal to the computer’s score, we can know if the player won, if the player lost, or if the player and computer tied.
+getScoreOfBoard() will return a dictionary with keys 'X' and 'O' and values of both players' scores. By checking if the player’s score is greater than, less than, or equal to the computer’s score, you can know if the player won, if the player lost, or if the player and computer tied.
 
 Ask the Player to Play Again
 
@@ -1090,7 +1088,7 @@ Otherwise, playAgain() has returned True (making the if statement’s condition 
 
 Changing the drawBoard() Function
 
-The board we draw for our Reversi game is large. But you could change the drawBoard() function’s code to draw out a much smaller board, while keeping the rest of the game code the same. The new, smaller board would look like this:
+The board you draw for the Reversi game is large. But you could change the drawBoard() function’s code to draw out a much smaller board, while keeping the rest of the game code the same. The new, smaller board would look like this:
 
   12345678
  +--------+
