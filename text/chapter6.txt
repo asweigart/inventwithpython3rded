@@ -271,7 +271,7 @@ while     False   and     True:
                    ▼
 while            False:
 
-But if the player typed 3 or 4 or HELLO, that response would be invalid. The condition will still be True and enters the while-block to ask the player again. The program will keep asking until the player types 1 or 2. This will guarantee that once the execution moves on, the cave variable contains a valid response.
+But if the player typed 3 or 4 or HELLO, that response would be invalid. The condition will still be True and enter the while-block to ask the player again. The program will keep asking until the player types 1 or 2. This will guarantee that once the execution moves on, the cave variable contains a valid response.
 
 Return Values
 
@@ -283,7 +283,7 @@ Skip down and look at line 40 for a moment:
 
 40.     caveNumber = chooseCave()
 
-When the chooseCave() is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
+When the chooseCave() function is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
 So when line 17 returns a string, the function call on line 40 evaluates to this string, which is then stored in caveNumber.
 
 Global Scope and Local Scope
@@ -308,7 +308,7 @@ def bacon():
 spam = 42 # A global variable named "spam":
 print(spam) # 42
 bacon() # Call the bacon() function:
-# The global variable was not changed in funky():
+# The global variable was not changed in bacon():
 print(spam)    # 42
 
 When run, this code will output the following:
