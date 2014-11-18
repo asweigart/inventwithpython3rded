@@ -128,4 +128,49 @@ Weil die randint() Funktion von vom random Modul präsentiert wird muss ihm rand
 
 Die randint() Funktion wird eine Zufallszahl zwischen (und inklusive) den beiden übergebenen Integerargumenten zurückgeben. Zeile 9 übergibt 1 und 20 zwischen den Klammern die dem Funktionsnamen folgen (unterteilt durch ein Komma). Die Zufallszahl die von randint() zurück gibt wird einer Variable namens zahl gespeichert; das ist die geheime Zahl die der Spieler erraten muss. 
 
+Wechsle für einen Moment in die interaktive Shell und gib import random ein, um das random modul zu importieren. Dann tippe random.randint(1,20) und drücke die Eingabetaste um zu sehen zu was der Funktionsaufruf ausgewertet wird. Wenn du die Eingabe wiederholst wird der Funktionsaufruf wahrscheinlich zu einer anderen Zahl ausgewertet. Die randint() Funktion gibt jedesmal irgendeine Zufallszahl zurück, genau so wie Würfel bei jedem Wurf eine Zufallszahl zurück geben.
+
+>>> import random
+>>> random.randint(1, 20)
+12
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+3
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+7
+
+Verwende die randint() Funktion wenn du einen Teil deines Spiels zufällig statt vorhersagbar zu machen. Die meisten Spiele brauchen Zufälligkeit - wie zum Beispiel in Brettspiele, in denen aus diesem Grund oft Würfel verwendet werden.
+
+Mit den Argumenten der randint Funktion kannst du den Bereich aus dem die Zufallszahlen Gewählt werden einstellen. Gib - zum Beispiel - random.randint(1,4) ein um nur ganze Zahlen von 1 bis 4 zurück zu bekommen. Oder versuche random.randint(1000,2000) um ganze Zahlen zwischen 1000 und 2000 zu erhalten. Probier die Beispiele in der Eingabezeile ein. Natürlich wirst du andere Ergebnisse erhalten, wenn du random.randint() ausführst (es sind ja Zufallszahlen).
+
+>>> random.randint(1, 4)
+3
+>>> random.randint(1000, 2000)
+1294
+
+Du kannst den Programmcode des Spiels leicht abändern um sein Verhalten zu ändern. Wenn du Zeilen 9 und 10:
+
+ 9. zahl = random.randint(1, 20)
+10. print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 20.')
+
+... folgendermaßen abänderst:
+
+ 9. zahl = random.randint(1, 100)
+10. print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 100.')
+
+Jetzt wird der Computer an eine Zahl zwischen 1 und 100 statt an eine zwischen 1 und 20 denken. Durch ändern der Zeile 9 wird der Zahlenbereich der Zufallszahlen geändert, vergiss dabei nicht auch Zeile 10 zu ändern damit das Spiel dem Spieler den geänderten Zahlenbereich mitteilt. 
+
+Hallo Spieler
+
+10. print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 20.')
+
+In Zeile 10 heißt die print() Funktion den Spieler willkommen und teilt ihm mit, dass der Computer an eine Zufallszahl denkt.
+
+Es sieht so aus als wäre mehr als ein string Argument in Zeile 10, aber schau dir die Zeile genau an. Die Pluszeichen verketten die drei strings zu einem einzigen. Und das ist das einzige string Argument das and die print() Funktion übergeben wird. Wenn du genau schaust, siehst du, dass die Kommas innerhalb der Anführungszeichen und damit Teile der strings selbst sind.
+
+Schleifen
+
 
