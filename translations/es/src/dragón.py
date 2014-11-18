@@ -28,7 +28,7 @@ def explorarCueva(cuevaElegida):
     cuevaAmigable = random.randint(1, 2)
 
     if cuevaElegida == str(cuevaAmigable):
-         print('¡Te da su tesoro!')
+         print('¡Te regala su tesoro!')
     else:
          print('¡Te engulle de un bocado!')
 
@@ -41,5 +41,5 @@ while jugarDeNuevo == 'sí' or jugarDeNuevo == 's':
 
     explorarCueva(númeroDeCueva)
 
-    print('¿Quieres jugar de nuevo? (sí or no)')
+    print('¿Quieres jugar de nuevo? (sí o no)')
     jugarDeNuevo = input()
