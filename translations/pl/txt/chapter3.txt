@@ -87,8 +87,8 @@ WAŻNA UWAGA! Programy w tej książe da się uruchomić jedynie z użyciem Pyth
 1. # Ten program wypisuje napisy i pyta o imię
 2. print('Witaj świecie!')
 3. print('Jak masz na imię?')
-4. myName = input()
-5. print(myName + ', miło Cię poznać')
+4. mojeImie = input()
+5. print(mojeImie + ', miło Cię poznać')
 
 
 Edytor IDLE będzie używał różnych kolorów dla różnych typów instrukcji. Gdy skończysz wpisywanie kody okno edytora będzie wyglądało podobnie do:
@@ -130,7 +130,7 @@ Jak masz na imię?
 Albert
 Traceback (most recent call last):
   File "C:/Python26/test1.py", line 4, in <module>
-    myName = input()
+    mojeImie = input()
   File "<string>", line 1, in <module>
 NameError: name 'Albert' is not defined
 
@@ -167,71 +167,72 @@ Linie 2 i 3 są wywołaniami funkcji print(). Wartość pomiędzy nawiasami to a
 
 W tej książce nazwy funkcji mają nawiasy na końcu. Dzięki temu jasne jest, że mamy do czynienia z funkcją o nazwie print(), a nie ze zmienną print. To troche jak cudzysłowia otaczające numer '42', które mówią Pythonowi, że ma do czynienia z napisem '42', a nie z liczbą całkowitą 43.
 
-The input() function
+Funkcja input()
 
-4. myName = input()
+4. mojeImie = input()
 
-This line has an assignment statement with a variable (myName) and a function call (input()). When input() is called, the program waits for the user to enter text. The text string that the user enters becomes the value that the function call evaluates to. Function calls can be used in expressions anywhere a value can be used.
+Ta linia ma dyrektywę podstawienia ze zmienną (mojeImie) i wywołaniem funkcji (input()). Kiedy wołana jest funkcja input(), program czeka, aż użytkownik wprowadzi tekst. Tekst jaki wprowadzi użytkownik staje się wartością jaką zwraca wywołanie funkcji. Wywołanie funkcji może być użyte w wyrażenia w dowolnym miejscu, gdzie można użyć wartości.
 
-The value that the function call evaluates to is the return value. (In fact, “the value a function call returns” means the same thing as “the value a function call evaluates to”.) In this case, the return value of the input() function is the string that the user typed in-their name. If the user typed in “Albert”, the input() function call evaluates to the string 'Albert'. This evaluation looks like this:
+Wartość wyliczana przez funkcję jest wartością zwracaną. (Czyli “wartość zwracana przez funkcję” oznacza to samo co “wartość do jakiej funkcja jest wyliczana”.) W tym wypadku wartością zwracaną przez funkcję input()jest napis jaki wpisał użytkownik jako swoje imię. Jeśli użytkownik wpisał “Albert” funkcja input() zwraca napis 'Albert'. Wygląda to tak:
 
-myName = input()
+mojeImie = input()
             ▼
-myName = 'Albert'
+mojeImie = 'Albert'
 
-This is how the string value 'Albert' gets stored in the myName variable.
+W ten sposób napis 'Albert' zostaje zapisany w zmienney mojeImie.
 
-Using Expressions in Function Calls
+Używanie wyrażeń w wywołaniach funkcji
 
-5. print('It is good to meet you, ' + myName)
+5. print(mojeImie + ', miło Cię poznać')
 
-The last line is another print() function call. The expression 'It is good to meet you, ' + myName is passed to print(). However, arguments are always single values. Python will first evaluate this expression and then pass the value as the argument. If 'Albert' is stored in myName, the evaluation looks like this:
+Ostatnia linia jest kolejnym wywołanienm funkcji print(). Wyrażenienie mojeImie + ', miło Cię poznać' jest przekazywane do print(). Argumenty są zawsze pojedynczymi wartościami. Python najpierw wyliczy te wyrażenie, a potem przekaże je funkcji jako argument. Jeśli 'Albert' jest zapisany w mojeImie, wyliczanie wygląda tak:
 
-print('It is good to meet you, ' + myName)
+print(mojeImie + ', miło Cię poznać')
                          ▼
-print('It is good to meet you, ' + 'Albert')
+print('Albert' + ', miło Cię poznać')
                          ▼
-print('It is good to meet you, Albert')
+print('Albert, miło Cię poznać')
 
-This is how the program greets the user by name.
+W ten sposób program pozdrawia użytkownika używając jego imienia.
 
-Ending the Program
+Zakończenie działania programu
 
-Once the program executes the last line, it terminates or exits. This means the program stops running. Python forgets all of the variables, including the string stored in myName. If you run the program again with a different name, the program will think that different string is your name.
+Jak program wykonana ostatnią linię, to kończy swoją pracę, lub wychodzi. Python zapomina wszystkie zmienne włącznie z napisem zapamiętanym w mojeImie. Jeśli uruchomisz program znowu i podasz inne imię, to program uzna, że ten inny napis jest twoim iminiem.
 
-Hello świecie!
-What is your name?
-Carolyn
-It is good to meet you, Carolyn
+Witaj świecie
+Jak masz na imię?
+Karolina
+Karolina, miło Cię poznać
 
-Remember, the computer does exactly what you program it to do. Computers are dumb. The computer doesn’t care if you type in your name, someone else’s name, or just something silly. Type in anything you want. The computer will treat it the same way:
 
-Hello świecie!
-What is your name?
+Pamiętaj, że komputer zrobi dokładnie to, co zaprogramujesz. Komputery są bezmyślne. Nie przejmują się czy wpisałeś swoje imię, imię kogoś innego, czy coś zupełnie głupiego. Możesz wpisać dowolną rzecz. Komputer potraktuje to tak samo:
+
+Witaj świecie
+Jak masz na imię?
 poop
-It is good to meet you, poop
+poop, miło Cię poznać
 
-Variable Names
+Nazwy zmiennych
 
-Giving variables descriptive names makes it easier to understand what a program does. Imagine if you were moving to a new house and you labeled every moving box “Stuff”. That wouldn’t be helpful at all!
+Nazywanie zmiennych nazwami opisowymi sprawia, że łatwiej zrozumieć co program robi. Wyoraż sobie przeprowadzke do nowego domu, gdzie każdy z kartonów opisałeś “rzeczy”. To nie będzie ułatwiało przeprowadzki!
 
-Instead of myName, you could have called this variable abrahamLincoln or nAmE. Python doesn’t care. It will run the program just the same.
+Zamiast mojeImie, mogłeś nazwać tą zmienną mieszko1 albo iMiE. Dla Pythona nie jest to ważne. Wykona program w identyczny sposób.
 
-Variable names are case-sensitive. Case-sensitive means the same variable name in a different case is a different variable. So spam, SPAM, Spam, and sPAM are four different variables in Python. They each contain their own separate values.
+Wielkość liter w nazwach zmiennych ma znaczenie. Oznacza to, że ta sama nazwa napisana z użyciem innej wielkości liter tworzy różne zmienne. Tak więc spam, SPAM, Spam i sPAM to cztery różne zmienne w Pythonie. Każda z nich zawiera swoją własną wartość.
 
-It’s a bad idea to have differently cased variables in your program. If you stored your first name in the variable name and your last name in the variable NAME, it would be confusing when you read your code weeks after you first wrote it. Did name mean first and NAME mean last, or the other way around?
+Złym pomysłem jest mieć dwie nazwy zmiennych różniące się wielkością liter. Jeśli zapiszesz swoje imię w zmienne nazwa, a nazwisko w zmiennej NAZWA, będzie to mylące gdy po kilku tygodniach będziesz czytał swój kod. Czy nazwa oznacza imię, a NAZWA nazwisko, czy odwrotnie?
 
-Variable names are usually lowercase. If there is more than one word in the variable name, capitalize each word after the first. This makes your code more readable. For example, the variable name whatIHadForBreakfastThisMorning is much easier to read than whatihadforbreakfastthismorning. This is a convention: an optional but standard way of doing things) in Python programming.
+Zwykle w nazwach zmiennych używa się małych liter. Jeśli w nazwie zmiennej jest więcej słów można użyć dużych liter na początku każdego kolejnego słowa. Dzięki temu kod będzie bardziej czytelny. Przykładowo zmienna coJadlemNaSniadanie jest łatwiejsza do odczytania niż cojadlemnasniadanie. Taki jest zyczaj: opcjonalny, ale standardowy w programowaniu w Pythonie.
 
-This book’s interactive shell examples use variable names like spam, eggs, ham, and bacon. This is because the variable names in these examples don’t matter. However, this book’s programs all use descriptive names. Your programs should also use descriptive variable names.
+W przykładach działających w powłoce interakcyjnej użyte są zmienne o nazwach: spam, eggs, ham i bacon (mielonka, jajka, szynka i bekon). Jest tak dlatego, że nazwy zmiennych w tych przykładach nie mają znaczenia. Jednak wszystkie programy w tej książce używają opisowych nazw zmiennych. Twoje programy także powinny używac opisowych nazw zmiennych.
 
-Summary
+Podsumowanie
 
-Once you learn about strings and functions, you can start making programs that interact with users. This is important because text is the main way the user and the computer will communicate with each other. The user enters text through the keyboard with the input() function, and the computer will display text on the screen with the print() function.
+Jak już nauczyłeś się o napisach i funkcjach możesz zacząć pisać programy które komunikaują się z użytkownikiem. Jest to ważne, bo tekst jest głównym sposoboem w jaki użytkownik i komputer komunikują się między sobą. Użytkownik wprowadza tekst za pomocą klawiatury funkcją input(), a komputer wyświetla tekst na ekranie funkcją print().
 
-Strings are just values of a new data type. All values have a data type, and there are many data types in Python. The + operator can concatenate strings together.
+Napisy są wartościami nowego typu danych. Wszystkie wartości mają swój typ i w Pythonie mamy wiele typów danych. Operator + może łączyć napisy.
 
-Variables let you remember values to use in later parts of the program. Functions are used to carry out some complicated instruction as part of your program. Python has many built-in functions that you’ll learn about in this book. Variables and function calls can be used in expressions anywhere a value is used.
+Zmienne pozwalają na zapamiętanie wartości, by użyć je w dalszej części programu. Funkcje są używane by wydzielić niektóre skomplikowane instrukcje jako część programu. Python ma wiele wbudowanych funkcji które poznasz w dalszej części książki. Zmienne i wywołania funkcji mogą być użyte w wyrażeniach tam, gdzie można użyć wartości.
 
-The instruction in your program that Python is currently following is the execution. In the next chapter, you’ll learn more about making the execution move in ways other than just straight down the program. Once you learn this, you’ll be ready to create games.
+Instrukcje jakimi podąża aktualnie twój program w Pythonie to przepływ sterowania (wykonanie). W następnym rozdziale nauczymy się więcej o przepływie sterowania i o tym, że może ono iść różnymi ścieżkami, a nie tylko prostą ścieżką od góry do dołu programu. Jak tylko się tego nauczysz, to będziesz gotowy do tworzenia gier.
 
