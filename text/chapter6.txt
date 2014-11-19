@@ -271,7 +271,7 @@ while     False   and     True:
                    ▼
 while            False:
 
-But if the player typed 3 or 4 or HELLO, that response would be invalid. The condition will still be True and enters the while-block to ask the player again. The program will keep asking until the player types 1 or 2. This will guarantee that once the execution moves on, the cave variable contains a valid response.
+But if the player typed 3 or 4 or HELLO, that response would be invalid. The condition will still be True and enter the while-block to ask the player again. The program will keep asking until the player types 1 or 2. This will guarantee that once the execution moves on, the cave variable contains a valid response.
 
 Return Values
 
@@ -283,7 +283,7 @@ Skip down and look at line 40 for a moment:
 
 40.     caveNumber = chooseCave()
 
-When the chooseCave() is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
+When the chooseCave() function is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
 So when line 17 returns a string, the function call on line 40 evaluates to this string, which is then stored in caveNumber.
 
 Global Scope and Local Scope
@@ -308,7 +308,7 @@ def bacon():
 spam = 42 # A global variable named "spam":
 print(spam) # 42
 bacon() # Call the bacon() function:
-# The global variable was not changed in funky():
+# The global variable was not changed in bacon():
 print(spam)    # 42
 
 When run, this code will output the following:
@@ -452,4 +452,4 @@ In the “Dragon Realm” game, you created your own functions. Functions are a 
 Arguments are values passed to the function’s code when the function is called. The function call itself evaluates to a value called the return value.
 You also learned about variable scopes. Variables created inside of a function exist in the local scope, and variables created outside of all functions exist in the global scope. Code in the global scope cannot make use of local variables. If a local variable has the same name as a variable in the global scope, Python considers it a separate variable and assigning new values to the local variable won’t change the value in the global variable.
 Variable scopes might seem complicated, but they are useful for organizing functions as separate pieces of code from the rest of the program. Because each function has its own local scope, you can be sure that the code in one function won’t cause bugs in other functions.
-Almost every program uses functions because they are so useful. By understanding how functions work, you can save ourselves a lot of typing and make bugs easier to fix.
+Almost every program uses functions because they are so useful. By understanding how functions work, we can save ourselves a lot of typing and make bugs easier to fix.
