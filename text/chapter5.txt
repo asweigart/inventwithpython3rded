@@ -157,5 +157,5 @@ This chapter explores the different ways you can use the print() function. Escap
 
 The print() function automatically appends a newline character to the end of the string passed it to be displayed on the screen. Most of the time, this is a helpful shortcut. But sometimes you don’t want a newline character at the end. To change this, you can pass the end keyword argument with a blank string. For example, to print “spam” to the screen without a newline character, you would call print('spam', end='').
 
-By adding this level of control to the text displayed on the screen, you can be more flexible ways in how you display text on the screen
+The print() function provides many flexible ways to display text on the screen.
 
