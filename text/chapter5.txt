@@ -38,7 +38,7 @@ jokes.py
  2. input()
  3. print('Frostbite!')
  4. print()
- 5. print('What do dentists call a astronaut's cavity?')
+ 5. print('What do dentists call a astronaut\'s cavity?')
  6. input()
  7. print('A black hole!')
  8. print()
@@ -68,7 +68,7 @@ The last print() function call has no string argument. This tells the program to
 
 Escape Characters
 
- 5. print('What do dentists call a astronaut's cavity?')
+ 5. print('What do dentists call a astronaut\'s cavity?')
  6. input()
  7. print('A black hole!')
  8. print()
