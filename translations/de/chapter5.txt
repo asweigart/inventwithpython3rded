@@ -135,7 +135,8 @@ Escape-Zeichen
 15. print('Anna wer?')
 16. print('-MOO!')
 16. input()
-17. print('An\'na Tür hat wer geklingelt')
+17. print('An\'na Tür hat wer geklingelt', end='')
+18. print('-HAHA!')
 
 In the first print() above, there is a backslash right before the single quote (that is, the apostrophe). Note that \ is a backslash, and / is a forward slash. This backslash tells you that the letter right after it is an escape character. An escape character lets you print characters that are hard to enter into the source code. In this print() call the escape character is the single quote.
 Der letzte print()-Aufruf im obigen Ausschnitt beinhaltet einen Backslash vor dem zweiten einfachen Anführungszeichen (auch Apostroph genannt). Beachte, dass \ ein Backslash ist, während / ein Schrägstrich ist. Der Backslash verrät uns, dass das unmittelbar darauf folgende Zeichen ein Escape-Zeichen ist. Escape-Zeichen erlauben es uns Sonderzeichen auszugeben (Zeichen, die normalerweise den Programmablauf beeinflussen würden oder die nicht darstellbar sind (z.B. Tabulator)) und die Ausgabe zu formatieren.
@@ -216,39 +217,63 @@ I like to use single quotes so I don’t have to hold down the shift key to type
 [trifft nicht zu: Auslassen]
 
 Just like you need the escape character \' to have a single quote in a string surrounded by single quotes, you need the escape character \" to have a double quote in a string surrounded by double quotes. For example, look at these two lines:
+Genauso wie das Escape-Zeichen \' benötigt wird, um ein einfaches Anführungszeichen als Teil einer von einfachen Anführungszeichen umschlossenen Zeichenkette auszugeben, wird das Escape-Zeichen \" benötigt, um ein doppeltes Anführungszeichen als Teil einer von doppelten Anführungszeichen umschlossenen Zeichenkette auszugeben. Schauen wir uns die folgenden zwei Zeilen an:
 
 >>> print('I asked to borrow Abe\'s car for a week. He said, "Sure."')
+>>> print('In der Stadt ist \'n Zirkus namens "Charles Knie".')
 
 I asked to borrow Abe's car for a week. He said, "Sure."
+In der Stadt ist 'n Zirkus namens "Charles Knie".
 
 >>> print("He said, \"I can’t believe you let him borrow your car.\"")
+>>> print("Er fragte: \"Wollen wir eine Vorstellung besuchen?\"")
 
 He said, "I can’t believe you let him borrow your car."
+Er fragte: "Wollen wir eine Vorstellung besuchen?"
 
 In the single quote strings you don’t need to escape double quotes, and in the double quote strings you don’t need to escape single quotes. The Python interpreter is smart enough to know that if a string starts with one type of quote, the other type of quote doesn’t mean the string is ending.
+In der von einfachen Anführungszeichen umschlossenen Zeichenkette braucht man nicht die doppelten Anführungszeichen zu escapen und vice versa. Wenn nämlich eine Zeichenkette mit einer Art von Anführungszeichen beginnt, dann muss sie auch mit derselben enden.
 
 The end Keyword Argument
+Das end Schlüsselwort-Argument
 
  9. print('Knock knock.')
+ 9. print('Klopf, klopf.')
+10. input()
 10. input()
 11. print("Who's there?")
+11. print("Wer da?")
+12. input()
 12. input()
 13. print('Interrupting cow.')
+13. print('Anna!')
+14. input()
 14. input()
 15. print('Interrupting cow wh', end='')
+15. print('Anna wer?')
 16. print('-MOO!')
+16. input()
+17. print('An\'na Tür hat wer geklingelt', end='')
+18. print('-HAHA!')
 
 Did you notice the second parameter on line 15's print()? Normally, print() adds a newline character to the end of the string it prints. This is why a blank print() function will just print a newline. But the print() function can optionally have a second parameter (which has the name “end”.)
+Ist Dir der zweite Parameter der print()-Funktion in Zeile 17 aufgefallen? Normalerweise fügt print() automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Deshalb resultiert der Aufruf print() auch in einer leeren Zeile auf dem Bildschirm. print() kann jedoch einen zweiten Parameter mit dem Namen “end” entgegennehmen.
 
 The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter you must type end=.
+Die leere Zeichenkette, die im Code-Beispiel übergeben wird, wird als Schlüsselwort-Argument bezeichnet. Schlüsselwort-Argument haben Namen. Um Parameter an sie zu übergeben, schreibt man [name]= (in diesem Fall end=).
 
 By passing a blank string for the end, the print() function won’t add a newline at the end of the string, but instead add a blank string. This is why '-MOO!' appears next to the previous line, instead of on its own new line. There was no newline after the 'Interrupting cow wh' string.
+Indem wir eine leere Zeichenkette an end übergeben, verhindern wir, dass print() eine leere Zeile an das Ende unseres Texts anhängt. Deswegen erscheint "-HAHA!" gleich hinter "An'na Tür hat wer geklingelt", und nicht darunter.
 
 Summary
+Zusammenfassung
 
 This chapter explores the different ways you can use the print() function. Escape characters are used for characters that are difficult or impossible to type into the code with the keyboard. Escape characters are typed into strings beginning with a backslash \ followed by a single letter for the escape character. For example, \n would be a newline. To include a backslash in a string, you would use the escape character \\.
+Dieses Kapitel untersucht die verschiedenen Arten, auf die man die print()-Funktion nutzen kann. Escape-Zeichen erlauben es uns Zeichen auszugeben, die sonst den Programmablauf beeinflussen würden, oder die nicht darstellbar sind. Escape-Zeichen bestehen aus einem Backslash \, gefolgt von einem einzelnen Zeichen. Zum Beispiel symbolisiert \n eine neue Zeile. Um den Backslash selbst auszugeben, schreibt man \\.
 
 The print() function automatically appends a newline character to the end of the string passed it to be displayed on the screen. Most of the time, this is a helpful shortcut. But sometimes you don’t want a newline character at the end. To change this, you can pass the end keyword argument with a blank string. For example, to print “spam” to the screen without a newline character, you would call print('spam', end='').
+Die Funktion print() hängt automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Oft ist dies das gewünschte Verhalten. Manchmal jedoch möchten wir das verhindern. Dazu übergeben wir eine leere Zeichenkette an das Schlüsselwort-Argument end der Funktion print(). Um zum Beispiel “spam” auf dem Bildschirm auszugeben -- ohne in die nächste Zeile zu wechseln -- würden wir print('spam', end='') aufrufen.
 
 By adding this level of control to the text displayed on the screen, you can be more flexible ways in how you display text on the screen
+[unverständlich]
 
