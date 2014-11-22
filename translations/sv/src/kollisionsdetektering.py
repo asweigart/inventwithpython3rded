@@ -21,12 +21,12 @@ def ärPunktInutiRektangel(x, y, rect):
 
 # initiera pygame
 pygame.init()
-huvudKlocka = pygame.time.Clock()
+huvudklocka = pygame.time.Clock()
 
 # initiera fönstret
-FÖNSTER_BREDD = 400
-FÖNSTER_HÖJD = 400
-fönsterYta = pygame.display.set_mode((FÖNSTER_BREDD, FÖNSTER_HÖJD), 0, 32)
+FÖNSTERBREDD = 400
+FÖNSTERHÖJD = 400
+fönsteryta = pygame.display.set_mode((FÖNSTERBREDD, FÖNSTERHÖJD), 0, 32)
 pygame.display.set_caption('Kollisionsdetektering')
 
 # skapa riktningskonstanter
@@ -43,13 +43,13 @@ GRÖN = (0, 255, 0)
 VIT = (255, 255, 255)
 
 # skapa studsbollen och matbitarnas datastruktur
-matbitsRäknare = 0
+matbitsräknare = 0
 NY_MATBIT = 40
-MATBIT_STORLEK = 20
+MATBITSTORLEK = 20
 studsboll = {'rektangel':pygame.Rect(300, 100, 50, 50), 'riktning':UPP_VÄNSTER}
 matbitar = []
 for i in range(20):
-    matbitar.append(pygame.Rect(random.randint(0, FÖNSTER_BREDD - MATBIT_STORLEK), random.randint(0, FÖNSTER_HÖJD - MATBIT_STORLEK), MATBIT_STORLEK, MATBIT_STORLEK))
+    matbitar.append(pygame.Rect(random.randint(0, FÖNSTERBREDD - MATBITSTORLEK), random.randint(0, FÖNSTERHÖJD - MATBITSTORLEK), MATBITSTORLEK, MATBITSTORLEK))
 
 # kör spelslingan
 while True:
@@ -59,14 +59,14 @@ while True:
             pygame.quit()
             sys.exit()
 
-    matbitsRäknare += 1
-    if matbitsRäknare >= NY_MATBIT:
+    matbitsräknare += 1
+    if matbitsräknare >= NY_MATBIT:
         # addera mera matbitar
-        matbitsRäknare = 0
-        matbitar.append(pygame.Rect(random.randint(0, FÖNSTER_BREDD - MATBIT_STORLEK), random.randint(0, FÖNSTER_HÖJD - MATBIT_STORLEK), MATBIT_STORLEK, MATBIT_STORLEK))
+        matbitsräknare = 0
+        matbitar.append(pygame.Rect(random.randint(0, FÖNSTERBREDD - MATBITSTORLEK), random.randint(0, FÖNSTERHÖJD - MATBITSTORLEK), MATBITSTORLEK, MATBITSTORLEK))
 
     # rita svart bakgrund på ytan
-    fönsterYta.fill(SVART)
+    fönsteryta.fill(SVART)
 
     # flytta studsbollens datastruktur
     if studsboll['riktning'] == NER_VÄNSTER:
@@ -89,7 +89,7 @@ while True:
             studsboll['riktning'] = NER_VÄNSTER
         if studsboll['riktning'] == UPP_HÖGER:
             studsboll['riktning'] = NER_HÖGER
-    if studsboll['rektangel'].bottom > FÖNSTER_HÖJD:
+    if studsboll['rektangel'].bottom > FÖNSTERHÖJD:
         # studsbollen har passerat undersidan
         if studsboll['riktning'] == NER_VÄNSTER:
             studsboll['riktning'] = UPP_VÄNSTER
@@ -101,7 +101,7 @@ while True:
             studsboll['riktning'] = NER_HÖGER
         if studsboll['riktning'] == UPP_VÄNSTER:
             studsboll['riktning'] = UPP_HÖGER
-    if studsboll['rektangel'].right > FÖNSTER_BREDD:
+    if studsboll['rektangel'].right > FÖNSTERBREDD:
         # studsbollen har passerat höger sida
         if studsboll['riktning'] == NER_HÖGER:
             studsboll['riktning'] = NER_VÄNSTER
@@ -109,7 +109,7 @@ while True:
             studsboll['riktning'] = UPP_VÄNSTER
 
     # rita studsbollen på ytan
-    pygame.draw.rect(fönsterYta, VIT, studsboll['rektangel'])
+    pygame.draw.rect(fönsteryta, VIT, studsboll['rektangel'])
 
     # kontrollera om studsbollen korsar någon matbit
     for matbit in matbitar[:]:
@@ -118,8 +118,8 @@ while True:
 
     # rita matbitarna
     for i in range(len(matbitar)):
-        pygame.draw.rect(fönsterYta, GRÖN, matbitar[i])
+        pygame.draw.rect(fönsteryta, GRÖN, matbitar[i])
 
     # rita fönstret på skärmen
     pygame.display.update()
-    huvudKlocka.tick(40)
+    huvudklocka.tick(40)

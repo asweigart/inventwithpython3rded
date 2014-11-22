@@ -1,6 +1,6 @@
-# Caesar Cipher
+# Caesarchiffer
 
-MAX_NYCKEL_STORLEK = 58
+MAX_NYCKELSTORLEK = 58
 
 def hämtaRiktning():
     while True:
@@ -18,9 +18,9 @@ def hämtaMeddelande():
 def hämtaNyckel():
     nyckel = 0
     while True:
-        print('Mata in nyckel (1-%s)' % (MAX_NYCKEL_STORLEK))
+        print('Mata in nyckel (1-%s)' % (MAX_NYCKELSTORLEK))
         nyckel = int(input())
-        if (nyckel >= 1 and nyckel <= MAX_NYCKEL_STORLEK):
+        if (nyckel >= 1 and nyckel <= MAX_NYCKELSTORLEK):
             return nyckel
             
 def hämtaÖversattMeddelande(riktning, meddelande, nyckel):

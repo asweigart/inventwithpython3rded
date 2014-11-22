@@ -5,9 +5,9 @@ from pygame.locals import *
 pygame.init()
 
 # initiera fönstret
-FÖNSTER_BREDD = 400
-FÖNSTER_HÖJD = 400
-fönsterYta = pygame.display.set_mode((FÖNSTER_BREDD, FÖNSTER_HÖJD), 0, 32)
+FÖNSTERBREDD = 400
+FÖNSTERHÖJD = 400
+fönsteryta = pygame.display.set_mode((FÖNSTERBREDD, FÖNSTERHÖJD), 0, 32)
 pygame.display.set_caption('Animering')
 
 # skapa riktningskonstanter
@@ -39,7 +39,7 @@ while True:
             sys.exit()
 
     # rita svart bakgrund på ytan
-    fönsterYta.fill(SVART)
+    fönsteryta.fill(SVART)
 
     for b in block:
         # flytta blockets datastruktur
@@ -63,7 +63,7 @@ while True:
                 b['riktning'] = NER_VÄNSTER
             if b['riktning'] == UPP_HÖGER:
                 b['riktning'] = NER_HÖGER
-        if b['rektangel'].bottom > FÖNSTER_HÖJD:
+        if b['rektangel'].bottom > FÖNSTERHÖJD:
             # blocket har hamnat utanför undersidan
             if b['riktning'] == NER_VÄNSTER:
                 b['riktning'] = UPP_VÄNSTER
@@ -75,7 +75,7 @@ while True:
                 b['riktning'] = NER_HÖGER
             if b['riktning'] == UPP_VÄNSTER:
                 b['riktning'] = UPP_HÖGER
-        if b['rektangel'].right > FÖNSTER_BREDD:
+        if b['rektangel'].right > FÖNSTERBREDD:
             # blocket har hamnat utanför höger sida
             if b['riktning'] == NER_HÖGER:
                 b['riktning'] = NER_VÄNSTER
@@ -83,7 +83,7 @@ while True:
                 b['riktning'] = UPP_VÄNSTER
 
         # rita blocket på ytan
-        pygame.draw.rect(fönsterYta, b['färg'], b['rektangel'])
+        pygame.draw.rect(fönsteryta, b['färg'], b['rektangel'])
 
     # rita fönstret på skärmen
     pygame.display.update()

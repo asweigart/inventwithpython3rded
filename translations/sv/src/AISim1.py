@@ -185,7 +185,7 @@ def ärEttHörn(x, y):
     return (x == 0 and y == 0) or (x == 7 and y == 0) or (x == 0 and y == 7) or (x == 7 and y == 7)
 
 
-def hämtaSpelarensDrag(bräde, spelarensBricka):
+def hämtaSpelardrag(bräde, spelarensBricka):
     # Låt spelaren mata in sitt drag.
     # Returnerar draget som [x, y] (eller en av strängarna 'ledtrådar' eller 'sluta')
     SIFFROR_1_8 = '1 2 3 4 5 6 7 8'.split()
@@ -211,7 +211,7 @@ def hämtaSpelarensDrag(bräde, spelarensBricka):
     return [x, y]
 
 
-def hämtaDatornsDrag(bräde, datornsBricka):
+def hämtaDatordrag(bräde, datornsBricka):
     # Givet ett bräde och datorns bricka, avgör
     # dragen och returnera dem som en [x, y] lista.
     möjligaDrag = hämtaKorrektaDrag(bräde, datornsBricka)
@@ -238,7 +238,7 @@ def hämtaDatornsDrag(bräde, datornsBricka):
 
 def visaPoäng(spelarensBricka, datornsBricka):
     # Skriv ut nuvarande poäng.
-    poäng = hämtaBrädetsPoäng(huvudBräde)
+    poäng = hämtaBrädetsPoäng(huvudbräde)
     print('Du har %s poäng. Datorn har %s poäng.' % (poäng[spelarensBricka], poäng[datornsBricka]))
 
 
@@ -247,8 +247,8 @@ print('Välkommen till Reversi!')
 
 while True:
     # Nollställ brädet och spelet.
-    huvudBräde = hämtaNyttBräde()
-    tömBrädet(huvudBräde)
+    huvudbräde = hämtaNyttBräde()
+    tömBrädet(huvudbräde)
     if vemBörjar() == 'spelare':
         iTur = 'X'
     else:
@@ -256,30 +256,30 @@ while True:
     print('' + iTur + ' börjar spela.')
 
     while True:
-         ritaBräde(huvudBräde)
-         poäng = hämtaBrädetsPoäng(huvudBräde)
+         ritaBräde(huvudbräde)
+         poäng = hämtaBrädetsPoäng(huvudbräde)
          print('X har %s poäng. O har %s poäng' % (poäng['X'], poäng['O']))
          input('Tryck på Retur för att fortsätta.')
 
          if iTur == 'X':
               # X står i tur.
               annanBricka = 'O'
-              x, y = hämtaDatornsDrag(huvudBräde, 'X')
-              utförDrag(huvudBräde, 'X', x, y)
+              x, y = hämtaDatordrag(huvudbräde, 'X')
+              utförDrag(huvudbräde, 'X', x, y)
          else:
               # O står i tur.
               annanBricka = 'X'
-              x, y = hämtaDatornsDrag(huvudBräde, 'O')
-              utförDrag(huvudBräde, 'O', x, y)
+              x, y = hämtaDatordrag(huvudbräde, 'O')
+              utförDrag(huvudbräde, 'O', x, y)
 
-         if hämtaKorrektaDrag(huvudBräde, annanBricka) == []:
+         if hämtaKorrektaDrag(huvudbräde, annanBricka) == []:
               break
          else:
               iTur = annanBricka
 
     # Visa slutlig poäng.
-    ritaBräde(huvudBräde)
-    poäng = hämtaBrädetsPoäng(huvudBräde)
+    ritaBräde(huvudbräde)
+    poäng = hämtaBrädetsPoäng(huvudbräde)
     print('X fick %s poäng. O fick %s poäng.' % (poäng['X'], poäng['O']))
 
     if not spelaIgen():

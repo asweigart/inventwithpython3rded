@@ -186,7 +186,7 @@ while True:
         else: kiständelse = 'a'
         print('Du har %s ekolod%s kvar. %s skattkist%s återstår.' % (antalEkolod, ekolodändelse, len(kistorna), kiständelse))
 
-        x, y = hämtaSpelarDrag()
+        x, y = hämtaSpelardrag()
         tidigareDrag.append([x, y]) # vi måste spara alla drag så att ekoloden kan uppdateras
 
         resultatAvDrag = utförDrag(brädet, kistorna, x, y)

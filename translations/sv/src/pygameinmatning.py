@@ -3,12 +3,12 @@ from pygame.locals import *
 
 # initiera pygame
 pygame.init()
-huvudKlocka = pygame.time.Clock()
+huvudklocka = pygame.time.Clock()
 
 # initiera fönstret
-FÖNSTER_BREDD = 400
-FÖNSTER_HÖJD = 400
-fönsterYta = pygame.display.set_mode((FÖNSTER_BREDD, FÖNSTER_HÖJD), 0, 32)
+FÖNSTERBREDD = 400
+FÖNSTERHÖJD = 400
+fönsteryta = pygame.display.set_mode((FÖNSTERBREDD, FÖNSTERHÖJD), 0, 32)
 pygame.display.set_caption('Inmatning')
 
 # skapa färgkonstanter
@@ -17,13 +17,13 @@ GRÖN = (0, 255, 0)
 VIT = (255, 255, 255)
 
 # skapa spelaren och matbitarnas datastruktur
-matbitsRäknare = 0
+matbitsräknare = 0
 NY_MATBIT = 40
-MATBIT_STORLEK = 20
+MATBITSTORLEK = 20
 spelare = pygame.Rect(300, 100, 50, 50)
 matbitar = []
 for i in range(20):
-    matbitar.append(pygame.Rect(random.randint(0, FÖNSTER_BREDD - MATBIT_STORLEK), random.randint(0, FÖNSTER_HÖJD - MATBIT_STORLEK), MATBIT_STORLEK, MATBIT_STORLEK))
+    matbitar.append(pygame.Rect(random.randint(0, FÖNSTERBREDD - MATBITSTORLEK), random.randint(0, FÖNSTERHÖJD - MATBITSTORLEK), MATBITSTORLEK, MATBITSTORLEK))
 
 # skapa rörelsevariabler
 flyttaVänster = False
@@ -68,33 +68,33 @@ while True:
             if event.key == K_DOWN or event.key == ord('s'):
                 flyttaNer = False
             if event.key == ord('x'):
-                spelare.top = random.randint(0, FÖNSTER_HÖJD - spelare.height)
-                spelare.left = random.randint(0, FÖNSTER_BREDD - spelare.width)
+                spelare.top = random.randint(0, FÖNSTERHÖJD - spelare.height)
+                spelare.left = random.randint(0, FÖNSTERBREDD - spelare.width)
 
         if event.type == MOUSEBUTTONUP:
-            matbitar.append(pygame.Rect(event.pos[0], event.pos[1], MATBIT_STORLEK, MATBIT_STORLEK))
+            matbitar.append(pygame.Rect(event.pos[0], event.pos[1], MATBITSTORLEK, MATBITSTORLEK))
 
-    matbitsRäknare += 1
-    if matbitsRäknare >= NY_MATBIT:
+    matbitsräknare += 1
+    if matbitsräknare >= NY_MATBIT:
         # addera mera matbitar
-        matbitsRäknare = 0
-        matbitar.append(pygame.Rect(random.randint(0, FÖNSTER_BREDD - MATBIT_STORLEK), random.randint(0, FÖNSTER_HÖJD - MATBIT_STORLEK), MATBIT_STORLEK, MATBIT_STORLEK))
+        matbitsräknare = 0
+        matbitar.append(pygame.Rect(random.randint(0, FÖNSTERBREDD - MATBITSTORLEK), random.randint(0, FÖNSTERHÖJD - MATBITSTORLEK), MATBITSTORLEK, MATBITSTORLEK))
 
     # rita svart bakgrund på ytan
-    fönsterYta.fill(SVART)
+    fönsteryta.fill(SVART)
 
     # flytta spelaren
-    if flyttaNer and spelare.bottom < FÖNSTER_HÖJD:
+    if flyttaNer and spelare.bottom < FÖNSTERHÖJD:
         spelare.top += HASTIGHET
     if flyttaUpp and spelare.top > 0:
         spelare.top -= HASTIGHET
     if flyttaVänster and spelare.left > 0:
         spelare.left -= HASTIGHET
-    if flyttaHöger and spelare.right < FÖNSTER_BREDD:
+    if flyttaHöger and spelare.right < FÖNSTERBREDD:
         spelare.right += HASTIGHET
 
     # rita spelaren på ytan
-    pygame.draw.rect(fönsterYta, VIT, spelare)
+    pygame.draw.rect(fönsteryta, VIT, spelare)
 
     # kontrollera om spelaren överlappar med någon matbit.
     for matbit in matbitar[:]:
@@ -103,8 +103,8 @@ while True:
 
     # rita matbitarna
     for i in range(len(matbitar)):
-        pygame.draw.rect(fönsterYta, GRÖN, matbitar[i])
+        pygame.draw.rect(fönsteryta, GRÖN, matbitar[i])
 
     # rita fönstret på skärmen
     pygame.display.update()
-    huvudKlocka.tick(40)
+    huvudklocka.tick(40)
