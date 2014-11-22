@@ -42,10 +42,10 @@ def spelaIgen():
     print('Vill du spela igen? (ja eller nej)')
     return input().lower().startswith('j')
 
-ANTALSIFFROR = 3
+ANTAL_SIFFROR = 3
 MAX_ANTAL_GISSNINGAR = 10
 
-print('Jag tänker på ett %s-siffrigt tal. Försök att gissa talet.' % (ANTALSIFFROR))
+print('Jag tänker på ett %s-siffrigt tal. Försök att gissa talet.' % (ANTAL_SIFFROR))
 print('Här får du några ledtrådar:')
 print('När jag säger:    Betyder det:')
 print('  Pico            En siffra är korrekt men på fel position.')
@@ -53,13 +53,13 @@ print('  Fermi           En siffra är korrekt och på rätt position.')
 print('  Bagels          Ingen siffra är korrekt.')
 
 while True:
-    hemligtTal = hämtaHemligtTal(ANTALSIFFROR)
+    hemligtTal = hämtaHemligtTal(ANTAL_SIFFROR)
     print('Jag har kommit på ett tal. Du får %s gissningar på dig för att räkna ut det.' % (MAX_ANTAL_GISSNINGAR))
 
     antalGissningar = 1
     while antalGissningar <= MAX_ANTAL_GISSNINGAR:
         gissning = ''
-        while len(gissning) != ANTALSIFFROR or not ärBaraSiffror(gissning):
+        while len(gissning) != ANTAL_SIFFROR or not ärBaraSiffror(gissning):
             print('Gissning #%s: ' % (antalGissningar))
             gissning = input()
 

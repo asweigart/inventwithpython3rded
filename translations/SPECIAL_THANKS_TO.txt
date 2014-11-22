@@ -5,3 +5,6 @@ made Invent with Python that much better:
 Alejandro Pernin - ale.pernin@gmail.com
 Alfredo R. Carella - alfredocarella@gmail.com
 David Fleury - dfleury2@free.fr
+Christer Nilsson - janchrister.nilsson@gmail.com
+Jakob Malm - jakob.malm@gmail.com
+Mats Rörbecker - mats@rorbecker.com

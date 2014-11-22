@@ -56,12 +56,21 @@ HANGMANBILDER = ['''
  / \  |
       |
 =========''']
-ord = 'anka apa babian bagge björn bäver duva fladdermus forell får get groda grävling gås haj hund hök iller kalkon kamel kanin katt kobra korp kråka lama lax lejon mullvad mulåsna mus mussla myra noshörning orm padda panda papegoja prärievarg puma pytonorm rådjur råtta räv sengångare skunk sköldpadda spindel stork svan säl tiger uggla utter val vattenödla varg vessla vombat zebra åsna älg ödla örn'.split()
+ord = {'Färger':'röd orange gul grön blå indigo violett vit svart brun'.split(),
+'Former':'kvadrat triangel rektangel cirkel ellips romb trapets pentagon hexagon heptagon oktogon'.split(),
+'Frukter':'äpple apelsin citron lime päron vattenmelon vindruva grapefrukt körsbär banan nätmelon mango jordgubbe tomat'.split(),
+'Djur':'anka apa björn bläckfisk bäver fisk fladdermus igel lejon get groda haj hund får katt kalkon kanin krabba mus puma panda pytonorm rådjur råtta skunk sköldpadda tiger uggla utter vessla val varg vombat zebra älg åsna ödla örn'.split()}
 
-def slumpaOrd(ordlista):
-    # Den här funktionen slumpar fram en sträng ur den lista av strängar som skickats in.
-    ordindex = random.randint(0, len(ordlista) - 1)
-    return ordlista[ordindex]
+def slumpaOrd(ordbok):
+    # Den här funktionen returnerar en slumpmässigt vald sträng från den "uppslagsbok" med ord som skickats in. Även nyckeln returneras.
+    # Först slumpas en av nycklarna fram:
+    ordnyckel = random.choice(list(ordbok.keys()))
+
+    # Sedan väljs ett av orden ur uppslagsbokens lista för nyckeln:
+    ordindex = random.randint(0, len(ordbok[ordnyckel]) - 1)
+
+    return [ordbok[ordnyckel][ordindex], ordnyckel]
+
 
 def visaBräde(HANGMANBILDER, missar, träffar, hemligtOrd):
     print(HANGMANBILDER[len(missar)])
@@ -106,10 +115,11 @@ def spelaIgen():
 print('H A N G M A N')
 missar = ''
 träffar = ''
-hemligtOrd = slumpaOrd(ord)
+hemligtOrd, hemligNyckel = slumpaOrd(ord) 
 speletSlut = False
 
 while True:
+    print('Det hemliga ordet finns i kategorin: ' + hemligNyckel)
     visaBräde(HANGMANBILDER, missar, träffar, hemligtOrd)
 
     # Låt spelaren skriva in en bokstav.
@@ -142,6 +152,6 @@ while True:
             missar = ''
             träffar = ''
             speletSlut = False
-            hemligtOrd = slumpaOrd(ord)
+            hemligtOrd, hemligNyckel = slumpaOrd(ord)
         else:
             break
