@@ -1,0 +1,7 @@
+Fig 17-3:
+Pemrograman itu menyenangkan!
+
+Fig 17-4:
+Teraliasi
+Anti-alias
+
