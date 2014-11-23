@@ -8,5 +8,5 @@ La letra está en la palabra secreta.
 La letra no está en la palabra secreta.
 El jugador ha adivinado todas las letras y gana.
 El jugador se ha quedado sin partes del cuerpo y pierde.
-Ask player to play again.
+Preguntar al jugador si quiere jugar de nuevo.
 Fin
