@@ -1,12 +1,12 @@
-Fig 8-1 through 8-9:
-Start
-Come up with a secret word.
-Show the board and blanks to the player.
-Ask player to guess a letter.
-Player already guessed this letter.
-Letter is in secret word.
-Letter is not in secret word.
-Player has guessed all letters and wins.
-Player has run out of body parts and loses.
+Fig 8-1 a 8-9:
+Inicio
+Generar una palabra secreta.
+Mostrar el tablero y los espacios vacíos al jugador.
+Invitar al jugador a adivinar una letra.
+El jugador ya ha probado esa letra.
+La letra está en la palabra secreta.
+La letra no está en la palabra secreta.
+El jugador ha adivinado todas las letras y gana.
+El jugador se ha quedado sin partes del cuerpo y pierde.
 Ask player to play again.
-End
+Fin
