@@ -34,4 +34,4 @@ Kapitel 1
 Kapitel 5
 ---------
 
-- Zeile 121: "SyntaxError: EOL while scanning single-quoted string" wurde nicht übersetzt. Gibt es eine deutsche Version von Python und ist diese komplett übersetzt?
+- Zeile 130: "SyntaxError: EOL while scanning single-quoted string" wurde nicht übersetzt. Gibt es eine deutsche Version von Python und ist diese komplett übersetzt?

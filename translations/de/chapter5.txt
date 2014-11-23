@@ -1,279 +1,170 @@
-    Chapter 5
     Kapitel 5
-    JOKES
-    Scherze
+    Witze
 
-Topics Covered In This Chapter:
 In diesem Kapitel behandelte Themen:
 
-•   Using print()’s end keyword argument to skip newlines
-•   ???
-•   Escape characters
+•   print()s Schlüsselwort-Argument end
 •   Escape-Zeichen
-•   Using single quotes and double quotes for strings
 •   Verwendung von einfachen und doppelten Anführungszeichen für Zeichenketten
 
-Making the Most of print()
 Das Meiste aus print() herausholen
 
-Most of the games in this book will have simple text for input and output. The input is typed by the user on the keyboard and entered to the computer. The output is the text displayed on the screen. In Python, the print() function is used for displaying textual output on the screen. But there is more to learn about how strings and print() work in Python.
-Die meisten Spiele in diesem Buch werden einfachen Text für die Ein- und Ausgabe verwenden. Der Benutzer tippt Eingaben über die Tastatur und die Ausgaben werden auf dem Bildschrim dargestellt. In Python dient die Funktion print() zur Ausgabe von Text auf dem Bildschirm. Es gibt aber noch viel darüber zu lernen, wie Zeichenketten und print() in Python funktionieren.
+Die meisten Spiele in diesem Buch verwenden einfachen Text für die Ein- und Ausgabe: Der Benutzer tippt Eingaben über die Tastatur ein und die Ausgaben werden auf dem Bildschirm dargestellt. In Python dient die Funktion print() zur Ausgabe von Text auf dem Bildschirm. Schauen wir uns genauer an, wie Zeichenketten und print() in Python funktionieren.
 
-This chapter’s program tells a few different jokes to the user.
-Das Programm in diesem Kapitel erzählt dem Benutzer Scherze.
+Das Programm in diesem Kapitel erzählt dem Benutzer Witze.
 
-Sample Run of Jokes
-Probelauf von Scherze
+Probelauf von Witze
 
-What do you get when you cross a snowman with a vampire?
 Warum sind Geisterfahrer die freundlichsten Menschen?
-Frostbite!
 Weil sie so entgegenkommend sind!
-What do dentists call an astronaut's cavity?
 Was ist der Unterschied zwischen einem Bäcker und einem Teppich?
-A black hole!
 Der Bäcker muss morgens um 4 aufstehen. Der Teppich kann liegen bleiben.
-Knock knock.
 Klopf, klopf.
-Who's there?
 Wer ist da?
-Interrupting cow.
-Feuer!
-Interrupting cow wh-MOO!
-Feuer wer?
-Wo brennt es?
+Anna!
+Anna wer?
+An'na Tür hat wer geklingelt-HAHA!
 
-Joke’s Source Code
-Quellcode von Scherze
+Der Quellcode zu Witze
 
-Type the following source code into the file editor and save it as jokes.py.
-Tippe den folgenden Quellcode in den Editor und speichere ihn als scherze.py ab.
+Tippe den folgenden Quellcode in den Editor ein und speichere ihn als witze.py ab.
 
-IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
-WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Aufschrift am oberen Rand des IDLE-Fensters verrät Dir, welche Version Du installiert hast. Falls es Python 2 ist, kannst Du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
+WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät Dir, welche Version installiert ist. Falls es Python 2 ist, kannst Du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
 
-If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/jokes.
 Falls Du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/diff/jokes.
 
-jokes.py
-scherze.py
+witze.py
 
- 1. print('What do you get when you cross a snowman with a vampire?')
  1. print('Warum sind Geisterfahrer die freundlichsten Menschen?')
  2. input()
- 2. input()
- 3. print('Frostbite!')
  3. print('Weil sie so entgegenkommend sind!')
  4. print()
- 4. print()
- 5. print('What do dentists call a astronaut's cavity?')
  5. print('Was ist der Unterschied zwischen einem Bäcker und einem Teppich?')
  6. input()
- 6. input()
- 7. print('A black hole!')
  7. print('Der Bäcker muss morgens um 4 aufstehen. Der Teppich kann liegen bleiben.')
  8. print()
- 8. print()
- 9. print('Knock knock.')
  9. print('Klopf, klopf.')
 10. input()
-10. input()
-11. print("Who's there?")
 11. print("Wer da?")
 12. input()
-12. input()
-13. print('Interrupting cow.')
 13. print('Anna!')
 14. input()
-14. input()
-15. print('Interrupting cow wh', end='')
 15. print('Anna wer?')
-16. print('-MOO!')
-16. input()
-17. print('An\'na Tür hat wer geklingelt')
-
-Don’t worry if you don’t understand all the code. Just save and run the program. Remember, if your program has bugs in it, you can use the online diff tool at http://invpy.com/chap5.
-Keine Sorge, falls Du nicht den kompletten Code verstehst. Speichere ihn einfach und führe ihn aus. Und vergiss nicht: Falls Dein Programm Fehler enthält, kannst Du das Online-Diff-Werkzeug unter http://invpy.com/chap5 benutzen.
-
-How the Code Works
-Wie der Code funktioniert
-
- 1. print('What do you get when you cross a snowman with a vampire?')
- 1. print('Warum sind Geisterfahrer die freundlichsten Menschen?')
- 2. input()
- 2. input()
- 3. print('Frostbite!')
- 3. print('Weil sie so entgegenkommend sind!')
- 4. print()
- 4. print()
-
-Lines 1 to 4 have three print() function calls. You don’t want the player to immediately read the joke's punch line, so there’s a call to the input() function after the first print(). The player can read the first line, press Enter, and then read the punch line.
-Die Zeilen 1 bis 4 enthalten drei print()-Aufrufe. Um zu vermeiden, dass der Spieler sofort die Pointe des Scherzes zu lesen bekommt, folgt nach dem print()-Aufruf ein Aufruf der input()-Funktion. Der Spieler kann die erste Zeile lesen, Enter drücken, und dann die Pointe lesen.
-
-The user can still type in a string and hit Enter, but this returned string isn’t being stored in any variable. The program will just forget about it and move to the next line of code.
-Der Benutzer kann zwar Text eingeben, bevor er Enter drückt, aber dieser Text wird in keiner Variablen gespeichert. Das Programm ignoriert daher jegliche Eingaben und fährt mit der Ausführung der nächsten Codezeile fort.
-
-The last print() function call has no string argument. This tells the program to just print a blank line. Blank lines are useful to keep the text from being bunched up.
-Der letzte print()-Aufruf enthält kein Zeichenketten-Argument. Dies weist das Programm an, eine leere Zeile auszugeben. Leerzeilen sind nützlich, um Ausgaben leserlich zu halten.
-
-Escape Characters
-Escape-Zeichen
-
- 9. print('Knock knock.')
- 9. print('Klopf, klopf.')
-10. input()
-10. input()
-11. print("Who's there?")
-11. print("Wer da?")
-12. input()
-12. input()
-13. print('Interrupting cow.')
-13. print('Anna!')
-14. input()
-14. input()
-15. print('Interrupting cow wh', end='')
-15. print('Anna wer?')
-16. print('-MOO!')
 16. input()
 17. print('An\'na Tür hat wer geklingelt', end='')
 18. print('-HAHA!')
 
-In the first print() above, there is a backslash right before the single quote (that is, the apostrophe). Note that \ is a backslash, and / is a forward slash. This backslash tells you that the letter right after it is an escape character. An escape character lets you print characters that are hard to enter into the source code. In this print() call the escape character is the single quote.
-Der letzte print()-Aufruf im obigen Ausschnitt beinhaltet einen Backslash vor dem zweiten einfachen Anführungszeichen (auch Apostroph genannt). Beachte, dass \ ein Backslash ist, während / ein Schrägstrich ist. Der Backslash verrät uns, dass das unmittelbar darauf folgende Zeichen ein Escape-Zeichen ist. Escape-Zeichen erlauben es uns Sonderzeichen auszugeben (Zeichen, die normalerweise den Programmablauf beeinflussen würden oder die nicht darstellbar sind (z.B. Tabulator)) und die Ausgabe zu formatieren.
+Keine Sorge, falls Du nicht den kompletten Code auf Anhieb verstehst. Speichere ihn einfach ab und führe ihn aus. Und vergiss nicht: Falls Dein Programm Fehler enthält, kannst Du das Online-Diff-Werkzeug unter http://invpy.com/chap5 benutzen.
 
-The single quote escape character is there because otherwise Python would think the quote meant the end of the string. But this quote needs to be a part of the string. The escaped single quote tells Python that the single quote is literally a part of the string rather than marking the end of the string value.
+Wie der Code funktioniert
+
+ 1. print('Warum sind Geisterfahrer die freundlichsten Menschen?')
+ 2. input()
+ 3. print('Weil sie so entgegenkommend sind!')
+ 4. print()
+
+Die Zeilen 1 bis 4 enthalten drei print()-Aufrufe. Um zu vermeiden, dass der Spieler sofort die Pointe des Witzes zu lesen bekommt, folgt nach dem print()-Aufruf ein Aufruf der input()-Funktion. Der Spieler kann die erste Zeile lesen, Enter drücken, und dann die Pointe lesen.
+
+Der Benutzer kann zwar Text eingeben, bevor er Enter drückt, aber dieser Text wird in keiner Variablen gespeichert. Das Programm ignoriert daher jegliche Eingaben und fährt mit der Ausführung der nächsten Codezeile fort.
+
+Der letzte print()-Aufruf enthält kein Zeichenketten-Argument. Dies weist das Programm an, eine leere Zeile auszugeben. Leerzeilen sind nützlich zur Formatierung von Ausgaben.
+
+Escape-Zeichen
+
+ 9. print('Klopf, klopf.')
+10. input()
+11. print("Wer da?")
+12. input()
+13. print('Anna!')
+14. input()
+15. print('Anna wer?')
+16. input()
+17. print('An\'na Tür hat wer geklingelt', end='')
+18. print('-HAHA!')
+
+Der vorletzte print()-Aufruf im obigen Ausschnitt beinhaltet einen Backslash vor dem zweiten einfachen Anführungszeichen (auch Apostroph genannt). Beachte, dass \ ein Backslash ist, während / ein Schrägstrich ist. Der Backslash verrät uns, dass das unmittelbar darauf folgende Zeichen ein Escape-Zeichen ist. Escape-Zeichen erlauben es uns Sonderzeichen auszugeben (Zeichen, die normalerweise den Programmablauf beeinflussen würden oder die nicht darstellbar sind (z.B. Tabulator)) und die Ausgabe zu formatieren.
+
 Der Backslash im obigen Beispiel wird deshalb benötigt, weil Python sonst annehmen würde, dass das darauf folgende Anführungszeichen das Ende der Zeichenkette markiert. Es ist jedoch Teil der Zeichenkette. Backslashes weisen den Python-Interpreter an, die auf sie folgenden Zeichen anders zu interpretieren, als sonst.
 
-Some Other Escape Characters
-Andere Escape-Zeichen
+Weitere Escape-Zeichen
 
-What if you really want to display a backslash? This line of code would not work:
-Was, wenn wir tatsächlich einen Backslash anzeigen lassen wollten? Die folgende Codezeile würde nicht funktionieren:
+Was, wenn wir tatsächlich einen Backslash ausgeben wollten? Die folgende Codezeile würde nicht funktionieren:
 
->>> print('He flew away in a green\teal helicopter.')
 >>> print('Er flog in einem grünen\tannengrünen Hubschrauber davon.')
 
-That print() function call would show up as:
 Dieses Programm würde die folgende Ausgabe liefern:
 
-He flew away in a green    eal helicopter.
 Er flog in einem grünen    annengrünen Hubschrauber davon.')
 
-This is because the “t” in “teal” was seen as an escape character since it came after a backslash. The escape character t simulates pushing the Tab key on your keyboard. Escape characters are there so that strings can have characters that cannot be typed in.
-Dies liegt daran, dass das “t” in “tannengrün” als Escape-Zeichen interpretiert wird, weil es ja nach einem Backslash folgt. Das Escape-Zeichen t simuliert den Druck auf die Tabulatortaste -- ein Beispiel für ein nicht darstellbares Zeichen.
+Dies liegt daran, dass das “t” in “tannengrün” als Escape-Zeichen interpretiert wird (weil es nach einem Backslash folgt). Das Escape-Zeichen t simuliert den Druck auf die Tabulatortaste — ein Beispiel für ein nicht darstellbares Zeichen.
 
-Instead, try this line:
 Stattdessen, versuche folgendes:
 
->>> print('He flew away in a green\\teal helicopter.')
 >>> print('Er flog in einem grünen\\tannengrünen Hubschrauber davon.')
-He flew away in a green\teal helicopter.
-Er flog in einem grünen\tannengrünen Hubschrauber davon.')
+Er flog in einem grünen\tannengrünen Hubschrauber davon.
 
-Table 5-1 is a list of escape characters in Python.
-Tabelle 5-1 listet die Escape-Zeichen in Python auf.
+Tabelle 5-1 ist eine Liste aller Escape-Zeichen in Python.
 
-Table 5-1: Escape Characters
 Tabelle 5-1: Escape-Zeichen
-Escape Character        What Is Actually Printed
 Escape-Zeichen          Was tatsächlich ausgegeben wird
 \\                      Backslash (\)
-\\                      Backslash (\)
-\'                      Single quote (')
 \'                      Einfaches Anführungszeichen (')
-\"                      Double quote (")
 \"                      Doppeltes Anführungszeichen (")
-\n                      Newline
 \n                      Neuer Zeilenanfang
-\t                      Tab
 \t                      Tabulator
 
 
 
-Quotes and Double Quotes
 Einfache und doppelte Anführungszeichen
 
-Strings don’t always have to be in between single quotes in Python. You can also put them in between double quotes. These two lines print the same thing:
 Zeichenketten in Python können sowohl in einfachen, als auch in doppelten Anführungszeichen eingeschlossen werden. Diese zwei Zeilen resultieren in derselben Ausgabe:
 
->>> print('Hello world')
 >>> print('Hallo Welt')
-Hello world
 Hallo Welt
->>> print("Hello world")
 >>> print("Hallo Welt")
-Hello world
 Hallo Welt
 
-But you cannot mix quotes. This line will give you an error if you try to use them:
 Man kann jedoch die verschiedenen Anführungszeichen nicht miteinander vermischen. Diese Zeile resultiert in einem Fehler:
 
->>> print('Hello world")
 >>> print('Hallo Welt")
 SyntaxError: EOL while scanning single-quoted string
-SyntaxError: EOL while scanning single-quoted string
 
-I like to use single quotes so I don’t have to hold down the shift key to type them. It’s easier to type, and Python doesn’t care either way.
-[trifft nicht zu: Auslassen]
-
-Just like you need the escape character \' to have a single quote in a string surrounded by single quotes, you need the escape character \" to have a double quote in a string surrounded by double quotes. For example, look at these two lines:
 Genauso wie das Escape-Zeichen \' benötigt wird, um ein einfaches Anführungszeichen als Teil einer von einfachen Anführungszeichen umschlossenen Zeichenkette auszugeben, wird das Escape-Zeichen \" benötigt, um ein doppeltes Anführungszeichen als Teil einer von doppelten Anführungszeichen umschlossenen Zeichenkette auszugeben. Schauen wir uns die folgenden zwei Zeilen an:
 
->>> print('I asked to borrow Abe\'s car for a week. He said, "Sure."')
 >>> print('In der Stadt ist \'n Zirkus namens "Charles Knie".')
 
-I asked to borrow Abe's car for a week. He said, "Sure."
 In der Stadt ist 'n Zirkus namens "Charles Knie".
 
->>> print("He said, \"I can’t believe you let him borrow your car.\"")
 >>> print("Er fragte: \"Wollen wir eine Vorstellung besuchen?\"")
 
-He said, "I can’t believe you let him borrow your car."
 Er fragte: "Wollen wir eine Vorstellung besuchen?"
 
-In the single quote strings you don’t need to escape double quotes, and in the double quote strings you don’t need to escape single quotes. The Python interpreter is smart enough to know that if a string starts with one type of quote, the other type of quote doesn’t mean the string is ending.
 In der von einfachen Anführungszeichen umschlossenen Zeichenkette braucht man nicht die doppelten Anführungszeichen zu escapen und vice versa. Wenn nämlich eine Zeichenkette mit einer Art von Anführungszeichen beginnt, dann muss sie auch mit derselben enden.
 
-The end Keyword Argument
-Das end Schlüsselwort-Argument
+Das Schlüsselwort-Argument end
 
- 9. print('Knock knock.')
  9. print('Klopf, klopf.')
 10. input()
-10. input()
-11. print("Who's there?")
 11. print("Wer da?")
 12. input()
-12. input()
-13. print('Interrupting cow.')
 13. print('Anna!')
 14. input()
-14. input()
-15. print('Interrupting cow wh', end='')
 15. print('Anna wer?')
-16. print('-MOO!')
 16. input()
 17. print('An\'na Tür hat wer geklingelt', end='')
 18. print('-HAHA!')
 
-Did you notice the second parameter on line 15's print()? Normally, print() adds a newline character to the end of the string it prints. This is why a blank print() function will just print a newline. But the print() function can optionally have a second parameter (which has the name “end”.)
 Ist Dir der zweite Parameter der print()-Funktion in Zeile 17 aufgefallen? Normalerweise fügt print() automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Deshalb resultiert der Aufruf print() auch in einer leeren Zeile auf dem Bildschirm. print() kann jedoch einen zweiten Parameter mit dem Namen “end” entgegennehmen.
 
-The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter you must type end=.
-Die leere Zeichenkette, die im Code-Beispiel übergeben wird, wird als Schlüsselwort-Argument bezeichnet. Schlüsselwort-Argument haben Namen. Um Parameter an sie zu übergeben, schreibt man [name]= (in diesem Fall end=).
+Die leere Zeichenkette, die im Code-Beispiel übergeben wird, wird als Schlüsselwort-Argument bezeichnet. Schlüsselwort-Argument haben Namen. Um Parameter an sie zu übergeben, schreibt man [Name]= (in diesem Fall end=).
 
-By passing a blank string for the end, the print() function won’t add a newline at the end of the string, but instead add a blank string. This is why '-MOO!' appears next to the previous line, instead of on its own new line. There was no newline after the 'Interrupting cow wh' string.
 Indem wir eine leere Zeichenkette an end übergeben, verhindern wir, dass print() eine leere Zeile an das Ende unseres Texts anhängt. Deswegen erscheint "-HAHA!" gleich hinter "An'na Tür hat wer geklingelt", und nicht darunter.
 
-Summary
 Zusammenfassung
 
-This chapter explores the different ways you can use the print() function. Escape characters are used for characters that are difficult or impossible to type into the code with the keyboard. Escape characters are typed into strings beginning with a backslash \ followed by a single letter for the escape character. For example, \n would be a newline. To include a backslash in a string, you would use the escape character \\.
 Dieses Kapitel untersucht die verschiedenen Arten, auf die man die print()-Funktion nutzen kann. Escape-Zeichen erlauben es uns Zeichen auszugeben, die sonst den Programmablauf beeinflussen würden, oder die nicht darstellbar sind. Escape-Zeichen bestehen aus einem Backslash \, gefolgt von einem einzelnen Zeichen. Zum Beispiel symbolisiert \n eine neue Zeile. Um den Backslash selbst auszugeben, schreibt man \\.
 
-The print() function automatically appends a newline character to the end of the string passed it to be displayed on the screen. Most of the time, this is a helpful shortcut. But sometimes you don’t want a newline character at the end. To change this, you can pass the end keyword argument with a blank string. For example, to print “spam” to the screen without a newline character, you would call print('spam', end='').
-Die Funktion print() hängt automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Oft ist dies das gewünschte Verhalten. Manchmal jedoch möchten wir das verhindern. Dazu übergeben wir eine leere Zeichenkette an das Schlüsselwort-Argument end der Funktion print(). Um zum Beispiel “spam” auf dem Bildschirm auszugeben -- ohne in die nächste Zeile zu wechseln -- würden wir print('spam', end='') aufrufen.
+Die Funktion print() hängt automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Oft ist dies das gewünschte Verhalten. Manchmal jedoch möchten wir das verhindern. Dazu übergeben wir eine leere Zeichenkette an das Schlüsselwort-Argument end der Funktion print(). Um zum Beispiel “Spam” auf dem Bildschirm auszugeben — ohne in die nächste Zeile zu wechseln — würden wir print('Spam', end='') aufrufen.
 
-By adding this level of control to the text displayed on the screen, you can be more flexible ways in how you display text on the screen
-[unverständlich]
+Die Funktion print() ermöglicht es Text auf viele verschiedene Arten und Weisen auf dem Bildschirm auszugeben.
 
