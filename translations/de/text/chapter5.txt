@@ -1,0 +1,170 @@
+    Kapitel 5
+    Witze
+
+In diesem Kapitel behandelte Themen:
+
+•   print()s Schlüsselwort-Argument end
+•   Escape-Zeichen
+•   Verwendung von einfachen und doppelten Anführungszeichen für Zeichenketten
+
+Das Meiste aus print() herausholen
+
+Die meisten Spiele in diesem Buch verwenden einfachen Text für die Ein- und Ausgabe: Der Benutzer tippt Eingaben über die Tastatur ein und die Ausgaben werden auf dem Bildschirm dargestellt. In Python dient die Funktion print() zur Ausgabe von Text auf dem Bildschirm. Schauen wir uns genauer an, wie Zeichenketten und print() in Python funktionieren.
+
+Das Programm in diesem Kapitel erzählt dem Benutzer Witze.
+
+Probelauf von Witze
+
+Warum sind Geisterfahrer die freundlichsten Menschen?
+Weil sie so entgegenkommend sind!
+Was ist der Unterschied zwischen einem Bäcker und einem Teppich?
+Der Bäcker muss morgens um 4 aufstehen. Der Teppich kann liegen bleiben.
+Klopf, klopf.
+Wer ist da?
+Anna!
+Anna wer?
+An'na Tür hat wer geklingelt-HAHA!
+
+Der Quellcode zu Witze
+
+Tippe den folgenden Quellcode in den Editor ein und speichere ihn als witze.py ab.
+
+WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät Dir, welche Version installiert ist. Falls es Python 2 ist, kannst Du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
+
+Falls Du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/diff/jokes.
+
+witze.py
+
+ 1. print('Warum sind Geisterfahrer die freundlichsten Menschen?')
+ 2. input()
+ 3. print('Weil sie so entgegenkommend sind!')
+ 4. print()
+ 5. print('Was ist der Unterschied zwischen einem Bäcker und einem Teppich?')
+ 6. input()
+ 7. print('Der Bäcker muss morgens um 4 aufstehen. Der Teppich kann liegen bleiben.')
+ 8. print()
+ 9. print('Klopf, klopf.')
+10. input()
+11. print("Wer da?")
+12. input()
+13. print('Anna!')
+14. input()
+15. print('Anna wer?')
+16. input()
+17. print('An\'na Tür hat wer geklingelt', end='')
+18. print('-HAHA!')
+
+Keine Sorge, falls Du nicht den kompletten Code auf Anhieb verstehst. Speichere ihn einfach ab und führe ihn aus. Und vergiss nicht: Falls Dein Programm Fehler enthält, kannst Du das Online-Diff-Werkzeug unter http://invpy.com/chap5 benutzen.
+
+Wie der Code funktioniert
+
+ 1. print('Warum sind Geisterfahrer die freundlichsten Menschen?')
+ 2. input()
+ 3. print('Weil sie so entgegenkommend sind!')
+ 4. print()
+
+Die Zeilen 1 bis 4 enthalten drei print()-Aufrufe. Um zu vermeiden, dass der Spieler sofort die Pointe des Witzes zu lesen bekommt, folgt nach dem print()-Aufruf ein Aufruf der input()-Funktion. Der Spieler kann die erste Zeile lesen, Enter drücken, und dann die Pointe lesen.
+
+Der Benutzer kann zwar Text eingeben, bevor er Enter drückt, aber dieser Text wird in keiner Variablen gespeichert. Das Programm ignoriert daher jegliche Eingaben und fährt mit der Ausführung der nächsten Codezeile fort.
+
+Der letzte print()-Aufruf enthält kein Zeichenketten-Argument. Dies weist das Programm an, eine leere Zeile auszugeben. Leerzeilen sind nützlich zur Formatierung von Ausgaben.
+
+Escape-Zeichen
+
+ 9. print('Klopf, klopf.')
+10. input()
+11. print("Wer da?")
+12. input()
+13. print('Anna!')
+14. input()
+15. print('Anna wer?')
+16. input()
+17. print('An\'na Tür hat wer geklingelt', end='')
+18. print('-HAHA!')
+
+Der vorletzte print()-Aufruf im obigen Ausschnitt beinhaltet einen Backslash vor dem zweiten einfachen Anführungszeichen (auch Apostroph genannt). Beachte, dass \ ein Backslash ist, während / ein Schrägstrich ist. Der Backslash verrät uns, dass das unmittelbar darauf folgende Zeichen ein Escape-Zeichen ist. Escape-Zeichen erlauben es uns Sonderzeichen auszugeben (Zeichen, die normalerweise den Programmablauf beeinflussen würden oder die nicht darstellbar sind (z.B. Tabulator)) und die Ausgabe zu formatieren.
+
+Der Backslash im obigen Beispiel wird deshalb benötigt, weil Python sonst annehmen würde, dass das darauf folgende Anführungszeichen das Ende der Zeichenkette markiert. Es ist jedoch Teil der Zeichenkette. Backslashes weisen den Python-Interpreter an, die auf sie folgenden Zeichen anders zu interpretieren, als sonst.
+
+Weitere Escape-Zeichen
+
+Was, wenn wir tatsächlich einen Backslash ausgeben wollten? Die folgende Codezeile würde nicht funktionieren:
+
+>>> print('Er flog in einem grünen\tannengrünen Hubschrauber davon.')
+
+Dieses Programm würde die folgende Ausgabe liefern:
+
+Er flog in einem grünen    annengrünen Hubschrauber davon.')
+
+Dies liegt daran, dass das “t” in “tannengrün” als Escape-Zeichen interpretiert wird (weil es nach einem Backslash folgt). Das Escape-Zeichen t simuliert den Druck auf die Tabulatortaste — ein Beispiel für ein nicht darstellbares Zeichen.
+
+Stattdessen, versuche folgendes:
+
+>>> print('Er flog in einem grünen\\tannengrünen Hubschrauber davon.')
+Er flog in einem grünen\tannengrünen Hubschrauber davon.
+
+Tabelle 5-1 ist eine Liste aller Escape-Zeichen in Python.
+
+Tabelle 5-1: Escape-Zeichen
+Escape-Zeichen          Was tatsächlich ausgegeben wird
+\\                      Backslash (\)
+\'                      Einfaches Anführungszeichen (')
+\"                      Doppeltes Anführungszeichen (")
+\n                      Neuer Zeilenanfang
+\t                      Tabulator
+
+
+
+Einfache und doppelte Anführungszeichen
+
+Zeichenketten in Python können sowohl in einfachen, als auch in doppelten Anführungszeichen eingeschlossen werden. Diese zwei Zeilen resultieren in derselben Ausgabe:
+
+>>> print('Hallo Welt')
+Hallo Welt
+>>> print("Hallo Welt")
+Hallo Welt
+
+Man kann jedoch die verschiedenen Anführungszeichen nicht miteinander vermischen. Diese Zeile resultiert in einem Fehler:
+
+>>> print('Hallo Welt")
+SyntaxError: EOL while scanning single-quoted string
+
+Genauso wie das Escape-Zeichen \' benötigt wird, um ein einfaches Anführungszeichen als Teil einer von einfachen Anführungszeichen umschlossenen Zeichenkette auszugeben, wird das Escape-Zeichen \" benötigt, um ein doppeltes Anführungszeichen als Teil einer von doppelten Anführungszeichen umschlossenen Zeichenkette auszugeben. Schauen wir uns die folgenden zwei Zeilen an:
+
+>>> print('In der Stadt ist \'n Zirkus namens "Charles Knie".')
+
+In der Stadt ist 'n Zirkus namens "Charles Knie".
+
+>>> print("Er fragte: \"Wollen wir eine Vorstellung besuchen?\"")
+
+Er fragte: "Wollen wir eine Vorstellung besuchen?"
+
+In der von einfachen Anführungszeichen umschlossenen Zeichenkette braucht man nicht die doppelten Anführungszeichen zu escapen und vice versa. Wenn nämlich eine Zeichenkette mit einer Art von Anführungszeichen beginnt, dann muss sie auch mit derselben enden.
+
+Das Schlüsselwort-Argument end
+
+ 9. print('Klopf, klopf.')
+10. input()
+11. print("Wer da?")
+12. input()
+13. print('Anna!')
+14. input()
+15. print('Anna wer?')
+16. input()
+17. print('An\'na Tür hat wer geklingelt', end='')
+18. print('-HAHA!')
+
+Ist Dir der zweite Parameter der print()-Funktion in Zeile 17 aufgefallen? Normalerweise fügt print() automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Deshalb resultiert der Aufruf print() auch in einer leeren Zeile auf dem Bildschirm. print() kann jedoch einen zweiten Parameter mit dem Namen “end” entgegennehmen.
+
+Die leere Zeichenkette, die im Code-Beispiel übergeben wird, wird als Schlüsselwort-Argument bezeichnet. Schlüsselwort-Argument haben Namen. Um Parameter an sie zu übergeben, schreibt man [Name]= (in diesem Fall end=).
+
+Indem wir eine leere Zeichenkette an end übergeben, verhindern wir, dass print() eine leere Zeile an das Ende unseres Texts anhängt. Deswegen erscheint "-HAHA!" gleich hinter "An'na Tür hat wer geklingelt", und nicht darunter.
+
+Zusammenfassung
+
+Dieses Kapitel untersucht die verschiedenen Arten, auf die man die print()-Funktion nutzen kann. Escape-Zeichen erlauben es uns Zeichen auszugeben, die sonst den Programmablauf beeinflussen würden, oder die nicht darstellbar sind. Escape-Zeichen bestehen aus einem Backslash \, gefolgt von einem einzelnen Zeichen. Zum Beispiel symbolisiert \n eine neue Zeile. Um den Backslash selbst auszugeben, schreibt man \\.
+
+Die Funktion print() hängt automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Oft ist dies das gewünschte Verhalten. Manchmal jedoch möchten wir das verhindern. Dazu übergeben wir eine leere Zeichenkette an das Schlüsselwort-Argument end der Funktion print(). Um zum Beispiel “Spam” auf dem Bildschirm auszugeben — ohne in die nächste Zeile zu wechseln — würden wir print('Spam', end='') aufrufen.
+
+Die Funktion print() ermöglicht es Text auf viele verschiedene Arten und Weisen auf dem Bildschirm auszugeben.
+
