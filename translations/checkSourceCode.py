@@ -158,6 +158,8 @@ class TestPrograms(unittest.TestCase):
         self._check('id', 'hangman2', 'hangman2')
         self._check('id', 'animation', 'animasi')
         self._check('id', 'pygameHelloWorld', 'pygameHaloDunia')
+        self._check('id', 'collisionDetection', 'deteksiTumbukan')
+        self._check('id', 'pygameInput', 'pygameMasukan')
 
 
     def test_fr_programs(self):
