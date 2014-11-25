@@ -20,13 +20,13 @@ Tematy omówione w tym rozdziale:
 
 Gra “Zgadnij liczbę”
 
-In this chapter, you’re going to make a “Guess the Number” game. The computer will think of a random number from 1 to 20, and ask you to guess it. The computer will tell you if each guess is too high or too low. You win if you guess the number within six tries.
+W tym rozdziale stworzymy grę “Zgadnij numer”. Komputer wymyśli losową liczbę między 1, a 20 i poprosi, byś ją odgadł. Przy każdej próbie komputer powie, czy podana liczba jest za mała, albo zbyt duża. Wygrasz jeśli zgadniesz liczbę do szóstej próby.
 
-This is a good game to code because it uses random numbers, loops, and input from the user in a fairly short program. You’ll learn how to convert values to different data types (and why you would need to do this). Since this program is a game, call the user the player, but “user” would be correct too.
+To jest dobra gra ponieważ wykorzystuje liczby losowe, pętle i pobiera dane id użytkownika w dość krótkim programie. Nauczysz się jak zmieniać typ wartości (i do czego to można wykorzystać). Ponieważ program jest grą, nazwiemy użytkownika graczem, choć nazwa "użytkownik" też jest prawidłowa.
 
-Sample Run of “Guess the Number”
+Przykładowy przebieg gry “Zgadnij liczbę”
 
-Here’s what the program looks like to the player when run. The text that the player types in is in bold.
+Oto co zobaczy gracz który uruchomi grę. Tekst wpisany przez gracza jest pogrubiony.
 
 Cześć! Jak masz na imię?
 Albert
@@ -43,13 +43,13 @@ Gratuluję Albert! Zgadłeś moją liczbę w 3 próbach!
 
 
 
-Enter this code exactly as it appears here, and then save it by clicking on File ► Save As. Give it the filename guess.py. Then press F5 to run the program. Don’t worry if you don’t understand the code now, I'll explain it step by step.
+Wprowadź ten kod dokładnie tak, jak tu podano i zachowaj go klikając File ► Save As (Plik ► Zapisz jako). Nazwij plik guess.py. Wciśniej F5 by uruchomić program. Nie mart się jeśli nie rozumiesz tego kodu. Wytłumaczę go krok po kroku.
 
-Guess the Number’s Source Code
+Kod źródłowy zgadywania liczby
 
-Here’s the source code for the “Guess the Number” game. When you enter this code into the file editor, be sure to pay attention to the spacing at the front of some of the lines. Some lines have four or eight spaces of indentation.
+Oto kod źródłowy gry “Zgadnij liczbę”. Podczas wpisywanie tego kody w edytorze zwróć uwagę na liczbę spacji na początku niektórych linii. Niektóre linie mają cztery, lub osiem spacji wcięcia (przesunięcia).
 
-IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
+WAŻNA UWAGA! Programy z tej książki da sie uruchomić tylko w Pythonie 3, a nie w Pythonie 2. Gdy pojawi sie okno IDLE, to na górze pojawi sie tekst “Python 3.4.0”, lub podobnie. Jeśli masz zainstalowanego Pythona 2, to możesz jednocześnie mieć Pythona 3. Aby pobrać Pythona 3, odwiedź https://python.org/download/.
 
 You can download this code from http://invpy.com/guess.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/guess.
 
