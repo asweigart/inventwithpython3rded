@@ -51,59 +51,59 @@ Oto kod źródłowy gry “Zgadnij liczbę”. Podczas wpisywanie tego kody w ed
 
 WAŻNA UWAGA! Programy z tej książki da sie uruchomić tylko w Pythonie 3, a nie w Pythonie 2. Gdy pojawi sie okno IDLE, to na górze pojawi sie tekst “Python 3.4.0”, lub podobnie. Jeśli masz zainstalowanego Pythona 2, to możesz jednocześnie mieć Pythona 3. Aby pobrać Pythona 3, odwiedź https://python.org/download/.
 
-You can download this code from http://invpy.com/guess.py. If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/guess.
+Poniższy kod możesz pobrać z http://invpy.com/guess.py. Jeśli uzyskasz jakiekolwiek błedy po wpisaniu kego kodu porównaj go z kodem z książki za pomocą narzędzia jakie znajdziesz na http://invpy.com/diff/guess.
 
 guess.py
 
- 1. # This is a guess the number game.
+ 1. # To jest gra w zgadywanie liczby
  2. import random
- 3.
- 4. guessesTaken = 0
- 5.
- 6. print('Hello! What is your name?')
- 7. myName = input()
- 8.
- 9. number = random.randint(1, 20)
-10. print('Well, ' + myName + ', I am thinking of a number between 1 and 20.')
-11.
-12. while guessesTaken < 6:
-13.     print('Take a guess.') # There are four spaces in front of print.
-14.     guess = input()
-15.     guess = int(guess)
-16.
-17.     guessesTaken = guessesTaken + 1
-18.
-19.     if guess < number:
-20.         print('Your guess is too low.') # There are eight spaces in front of print.
-21.
-22.     if guess > number:
-23.         print('Your guess is too high.')
-24.
-25.     if guess == number:
+ 3. 
+ 4. probyZgadniecia = 0
+ 5. 
+ 6. print('Cześć! Jak masz na imię?')
+ 7. mojeImie = input()
+ 8. 
+ 9. tajemnaLiczba = random.randint(1, 20)
+10. print('Dobrze ' + mojeImie + ', myślę sobie o liczbie między 1 i 20.')
+11. 
+12. while probyZgadniecia < 6:
+13.     print('Spróbuj ją zgadnąć.') # Na początku linii są cztery spacje.
+14.     podanaLiczba = input()
+15.     podanaLiczba = int(podanaLiczba)
+16. 
+17.     probyZgadniecia = probyZgadniecia + 1
+18. 
+19.     if podanaLiczba < tajemnaLiczba:
+20.         print('Podałeś za małą liczbę.') # Na początku linii jest osiem spacji.
+21. 
+22.     if podanaLiczba > tajemnaLiczba:
+23.         print('Podałeś zbyt dużą liczbę.')
+24. 
+25.     if podanaLiczba == tajemnaLiczba:
 26.         break
-27.
-28. if guess == number:
-29.     guessesTaken = str(guessesTaken)
-30.     print('Good job, ' + myName + '! You guessed my number in ' + guessesTaken + ' guesses!')
-31.
-32. if guess != number:
-33.     number = str(number)
-34.     print('Nope. The number I was thinking of was ' + number)
+27. 
+28. if podanaLiczba == tajemnaLiczba:
+29.     probyZgadniecia = str(probyZgadniecia)
+30.     print('Gratuluję ' + mojeImie + '! Zgadłeś moją liczbę w ' + probyZgadniecia + ' próbach!')
+31. 
+32. if podanaLiczba != tajemnaLiczba:
+33.     tajemnaLiczba = str(tajemnaLiczba)
+34.     print('Niestety. Numer o jakim myślałem to ' + tajemnaLiczba)
 
-Take a look at each line of code in turn to see how this program works.
+Przyjrzyjmy się każdej linii kodu by zobaczyc jak ten program działa.
 
-The import statement
+Dyrektywa import
 
-1. # This is a guess the number game.
+1. # To jest gra w zgadywanie liczby
 2. import random
+ 
+Pierwsza linia to komentarz. Pamiętaj, że Python zignoruje wszystko po znaku #. Ten jest po to, by przypomnieć nam co robi program.
 
-The first line is a comment. Remember that Python will ignore everything after the # sign. This just reminds us what this program does.
+Druga linia to dyrektywa import. Pamiętaj, że dyrektywy są instrukcjami które wykonują jakąś czynność, ale w odróżnieniu od wyrażeń nie są wyliczne do jakiejś wartości. Już widziałeś dyrektywy: dyrektywa podstawienia zachowuje wartość w zmiennej (ale dyrektywa sama w sobie nie jest wyliczana do żadnej wartości).
 
-The second line is an import statement. Remember, statements are instructions that perform some action but don’t evaluate to a value like expressions do. You’ve already seen statements: assignment statements store a value into a variable (but the statement itself doesn’t evaluate to anything).
+Choć Python ma wiele wbudowanych funkcji, niektóe funkcje są w oddzielnych programach zwanych modułami. Moduły to programy które zwawierają dodatkowe funkcje. Aby ich używać trzeba zaimportować ich moduły do własnego programu używając dyrektywy import.
 
-While Python includes many built-in functions, some functions exist in separate programs called modules. Modules are Python programs that contain additional functions. Use the functions by importing their modules into your program with an import statement.
-
-The import statement has the import keyword followed by the module name. Line 2 imports the module named random. The random module contains several functions related to random numbers. One of these functions will come up with the random number for the user to guess.
+Dyrektywa import to słowo kluczowe import i nazwa modułu. Linia 2 importuje moduł o nazwie random. Moduł random zawiera kilka funkcji związanych z liczbami losowymi. Jedna z takich funkcji dostarczy liczby losowej jaką będzie zgadywał użytkownik programu.
 
 4. guessesTaken = 0
 
