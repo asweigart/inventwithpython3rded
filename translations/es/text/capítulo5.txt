@@ -31,7 +31,7 @@ Escriba el siguiente código fuente en el editor de archivos y guárdelo como ch
 
 ¡NOTA IMPORTANTE! Los programas en este libro solo correrán en Python 3, no en Python 2. Cuando la ventana de IDLE inicie, dirá algo como “Python 3.4.0” en la parte superior. Si ha instalado Python 2, puede tener Python 3 instalado al mismo tiempo. Para descargar Python 3, vaya a https://python.org/download/.
 
-Si obtiene errores después de escribir este código, compárelo con el código del libro con la herramienta diff en línea en http://invpy.com/diff/chistes.
+Si obtiene errores después de escribir este código, compárelo con el código del libro con la herramienta diff en línea en http://invpy.com/es/diff/chistes.
 
 chistes.py
 
@@ -52,7 +52,7 @@ chistes.py
 15. print('¿Y la familia?', end='')
 16. print(' -Bien, gracias.')
 
-No te preocupes si no entiendes todo el código. Sólo tienes que guardar y correr el programa. Recuerda, si tu programa tiene fallos, puedes utilizar la herramienta diff en línea en http://invpy.com/chap5.
+No te preocupes si no entiendes todo el código. Sólo tienes que guardar y correr el programa. Recuerda, si tu programa tiene fallos, puedes utilizar la herramienta diff en línea en http://invpy.com/es/chap5.
 
 Cómo Funciona el Código
 

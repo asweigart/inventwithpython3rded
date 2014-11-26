@@ -120,7 +120,7 @@ Figura 3-5: La consola interactiva luego de ejecutar hola.py.
 
 Cuando escribas tu nombre y pulses INTRO, el programa te saludará por tu nombre. ¡Felicitaciones! Haz escrito tu primer programa y ahora eres un programador. Pulsa F5 de nuevo y escribe con otro nombre.
 
-Si has obtenido un error, compara tu código con el de este libro usando la herramienta online diff en http://invpy.com/diff/hola.
+Si has obtenido un error, compara tu código con el de este libro usando la herramienta online diff en http://invpy.com/es/diff/hola.
 
 Si obtienes un error que se ve así:
 
