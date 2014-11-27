@@ -12,7 +12,7 @@ Hallo! Dieses Buch lehrt Dich die Programmierung anhand von Spieleentwicklung. S
 
 Als ich ein Kind war lehrte mich ein Buch wie dieses, meine ersten Programme und Spiele zu entwickeln. Es war einfach und machte viel Spaß. Heute als Erwachsener bereitet mir die Programmierung immer noch viel Freude und ich werde zusätzlich dafür bezahlt. Aber selbst falls Du später einmal kein Programmierer werden solltest, so ist Programmierung dennoch eine nützliche Fertigkeit mit viel Spaßpotential.
 
-Computer sind faszinierende Maschinen und sie zu programmieren ist einfach. Wenn man ein Buch lesen kann, dann kann man auch einen Computer programmieren. Ein Computer-Programm ist eine Reihe von Anweisungen, die der Computer versteht — genauso wie eine Geschichte eine Reihe von Sätzen ist, die der Leser versteht. Video-Spiele sind nichts anderes als Computer-Programme, d.h. auch sie sind nur Reihen von Anweisungen.
+Computer sind faszinierende Maschinen und sie zu programmieren ist einfach. Wenn man ein Buch lesen kann, dann kann man auch einen Computer programmieren. Ein Computer-Programm besteht aus einer Reihe von Anweisungen, die der Computer versteht — genauso wie eine Geschichte aus einer Reihe von Sätzen besteht, die der Leser versteht. Video-Spiele sind nichts anderes als Computer-Programme, d.h. auch sie sind nur Reihen von Anweisungen.
 
 Um einen Computer zu befehligen, schreibt man ein Programm in einer Sprache, die der Computer versteht. Dieses Buch lehrt die Programmier-Sprache “Python”. Darüber hinaus gibt es noch viele andere Programmier-Sprachen wie z.B. “BASIC”, “Java”, “JavaScript”, “PHP” oder “C++”.
 
@@ -22,9 +22,9 @@ Die Spiele, die wir in diesem Buch entwickeln werden, wirken simpel im Vergleich
 
 Herunterladen und installieren von Python
 
-Bevor wir mit dem Programmieren beginnen können, müssen wir zuerst den Python-Interpreter installieren. Der Python-Interpreter versteht in der Programmiersprache Python geschriebene Befehle. Von nun werde ich “Python-Interpreter” schlicht mit “Python” abkürzen.
+Bevor wir mit dem Programmieren beginnen können, müssen wir zuerst den Python-Interpreter installieren. Der Python-Interpreter versteht in der Programmiersprache Python geschriebene Befehle. Von nun an werde ich “Python-Interpreter” schlicht mit “Python” abkürzen.
 
-Lade Python 3.4 oder eine neuere Version von der offiziellen Python-Internetseite http://www.python.org herunter. Wähle dabei die 32bit-Version von Python aus, unabhängig davon ob Du ein 64bit-Betriebssystem verwendest. Das “Pygame”-Modul, das wir später im Buch verwenden werden, funktioniert nämlich nur mit der 32bit-Version von Python.
+Lade Python 3.4 oder eine neuere Version von der offiziellen Internetseite http://www.python.org herunter. Wähle dabei die 32bit-Version von Python aus, unabhängig davon ob Du ein 64bit-Betriebssystem verwendest. Das “Pygame”-Modul, das wir später im Buch verwenden werden, funktioniert nämlich nur mit der 32bit-Version von Python.
 
 Wichtiger Hinweis! Stelle sicher, dass Du Python 3 installierst und nicht Python 2. Die Programme in diesem Buch sind in Python 3 geschrieben und führen zu Fehlern, wenn man versucht sie mit Python 2 zu starten. Ich habe sogar einen Zeichentrick-Pinguin in Abbildung 1-1 hinzugefügt, um Dich daran zu erinnern.
 
@@ -88,14 +88,14 @@ Hilfe im Internet finden
 
 Die zum Buch gehörende Internetseite findest Du unter http://inventwithpython.com. Sie enthält zahlreiche Hilfsmittel über den Inhalt des Buches hinaus. Außerdem nutzen viele Verweise in diesem Buch invpy.com, um die Adressen kurz zu halten.
 
-Das Subreddit http://reddit.com/r/inventwithpython ist ein großartiger Ort, um mit dem Buch verwandte Programmier-Fragen zu stellen. Allgemeine Fragen zur Python-Programmierung sollten hingegen in den Subreddits http://reddit.com/r/learnprogramming und http://reddit.com/r/learnpython gestellt werden.
+Das Subreddit http://reddit.com/r/inventwithpython ist ein großartiger Ort, um mit dem Buch verwandte Programmier-Fragen zu stellen. Allgemeine Fragen zur Python-Programmierung sollten hingegen in den Subreddits http://reddit.com/r/learnprogramming oder http://reddit.com/r/learnpython gestellt werden.
 
 Ich beantworte Deine Prgrammier-Fragen auch gerne per email. Schreib mir unter al@inventwithpython.com.
 
 Bitte sei rücksichtsvoll, wenn Du Fragen stellst: Vergewissere Dich zuerst, ob Deine Frage nicht schon in der “Häufig gestellte Fragen”-Rubrik beantwortet wurde und beachte etwaige Regeln zum Stellen von Fragen auf der jeweiligen Internetseite. Hier ein paar Tipps:
 
 •   Falls bei der Ausführung Deiner Programme Fehler auftreten, obwohl Du sie vom Buch abgetippt hast, stelle sicher, dass sie keine Tippfehler enthalten. Das Diff-Werkzeug unter http://invpy.com/diff ist hierzu besonders gut geeignet. Kopiere einfach Deinen Code in das Werkzeug hinein um herauszufinden, ob er Tippfehler enthält.
-•   Erläutere, was Du mit Deinem Code erreichen möchtest. Es kann nämlich sein, dass Du eine komplett falsche Fährte verfolgst.
+•   Erläutere, was Du mit Deinem Code erreichen möchtest. Es kann nämlich sein, dass Du die falsche Fährte verfolgst.
 •   Kopiere stets die gesamte Fehlermeldung und Deinen kompletten Code — nicht nur Ausschnitte.
 •   Erkundige Dich, ob Deine Frage bereits im Internet beantwortet wurde.
 •   Teile mit, welche Ansätze Du bereits ausprobiert hast, um Dein Problem zu lösen. Auf diese Art und Weise lässt Du Andere wissen, dass Du bereits selbst Bemühungen angestellt hast.

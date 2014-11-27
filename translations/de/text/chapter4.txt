@@ -1,0 +1,231 @@
+    Kapitel 4
+
+    Rate die Zahl
+
+In diesem Kapitel lernst du:
+
+•   import Kommandos
+•   Module
+•   Argumente
+•   while Kommandos
+•   Bedingungen
+•   Blöcke
+•   Boolean-Datentypen
+•   Vergleichsoperatoren
+•   Den Unterschied zwischen = und ==
+•   if Kommandos
+•   Das break Kommando
+•   Die str() und int() Funktionen
+•   Die random.randint() Funktion
+
+Das "Rate die Zahl" Spiel
+
+In diesem Kapitel wirst du ein "Rate die Zahl" Spiel schreiben. Der Computer wird an eine Zufallzahl zwischen 1 und 20 denken und dich bitten, sie zu erraten. Der Computer wird dir bei jedem Tipp, den du abgibst, sagen ob er zu hoch oder zu niedrig war. Du gewinnst wenn du die Zahl innerhalb von sechs Versuchen errätst.
+
+"Rate die Zahl" ist interessant zu programmieren weil es Zufallszahlen, Schleifen und Benutzereingaben in einem ziemlich kurzen Programm verwendet. Du wirst lernen, wie man Werte in unterschiedliche Datentypen umwandelt (und warum das notwendig ist). Weil unser Programm ein Spiel ist, nennen wir den Benutzer Spieler, aber "Benutzer" wäre auch ok.
+
+Beispiel Lauf zu "Rate die Zahl"
+
+So sieht das Programm für den Spieler aus, wenn es ausgeführt wird. Der Text den der Spieler eintippt ist fett geschrieben.
+
+Hallo! Was ist dein Name?
+Albert
+Also, Albert, ich denke an eine Zahl zwischen 1 und 20.
+Los, rate.
+10
+Los, rate.
+Dein Tipp ist zu hoch.
+Los, rate.
+2
+Dein Tipp ist zu niedrig.
+Los, rate.
+4
+Gut gemacht, Albert! Du hast meine Zahl in 3 Zügen erraten.
+
+Gib diesen Programmcode genau so wie er hier steht ein und klick dann auf Datei►Speichern unter. Verwende zahlenRaten.py als Dateinamen. Dann drück F5 um das Programm auszuführen. Keine Sorge wenn du den Code jetzt noch nicht verstehst, ich werde ihn dir Schritt für Schritt erklären.
+
+Der Quellcode von "Rate die Zahl"
+
+Hier ist der Quellcode von "Rate dir Zahl". Gib auf die Leerzeichen vor manchen der Zeilen acht, wenn du den Quellcode in den Dateieditor eingibst. Manche der Zeilen haben vier, manche haben acht Leerzeichen.  
+
+WICHTIGER HINWEIS! Die Programme in diesem Buch können nur in Python 3 ausgeführt werden, nicht in Python 2. Wenn IDLE startet sollte es so etwas wie "Python 3.4.0" oben anzeigen. Du kannst Python 2 und Python 3 zur selben Zeit auf deinem Computer installiert haben. Um Python 3 herunter zu laden geh zu http://python.org/download/.
+
+Du kannst diesen Code von http://invpy.com/de/zahlenRaten.py herunterladen. Wenn du nach dem Eintippen des Codes Fehlermeldungen bekommst, verwende das Online diff Werkzeug unter http://invpy.com/diff/de/zahlenRaten um deinen Code mit dem Code aus dem Buch zu vergleichen.
+
+zahlenRaten.py
+    
+ 1.  # Das ist ein Zahlenratespiel.
+ 2.  import random
+ 3.  
+ 4.  abgegebenTipps = 0
+ 5.  
+ 6.  print('Hallo! Was ist dein Name?')
+ 7.  meinName = input()
+ 8.  
+ 9.  zahl = random.randint(1, 20)
+10.  print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 20.')
+11.  
+12.  while abgegebenTipps < 6:
+13.      print('Los, rate.') # Vor print sind vier Leerzeichen.
+14.      tipp = input()
+15.      tipp = int(tipp)
+16.  
+17.      abgegebenTipps = abgegebenTipps + 1
+18.  
+19.      if tipp < zahl:
+20.          print('Dein Tipp ist zu niedrig.') # Hier sind acht Leerzeichen vor print.
+21.  
+22.      if tipp > zahl:
+23.          print('Dein Tipp ist zu hoch.')
+24.  
+25.      if tipp == zahl:
+26.          break
+27.  
+28.  if tipp == zahl:
+29.      abgegebenTipps = str(abgegebenTipps)
+30.      print('Gut gemacht, ' + meinName + '! Du hast meine Zahl in ' + abgegebenTipps + ' Zügen erraten!')
+31.  
+32.  if tipp != zahl:
+33.      zahl = str(zahl)
+34.      print('Nene. Die Nummer an die ich gedacht habe war ' + zahl)
+
+Jetzt schauen wir uns den Code Zeile für Zeile an um zu verstehen wie das Programm funktioniert.
+
+Der import Befehl.
+
+ 1.  # Das ist ein Zahlenratespiel.
+ 2.  import random
+ 
+Die erste Zeile ist ein Kommentar. Python ignoriert alles nach dem # Zeichen. Diese Zeile dient nur dazu, uns daran zu erinnern was das Programm macht.
+
+#TODO: Check that we really already know that.
+Zeile Zwei ist ein import Befehl. Befehle sind Instruktionen die eine Handlung durchführen aber nicht wie Ausdrücke ausgewertete werden können. Wir haben bereits Befehle kennengelernt: Zuweisungsbefehle speichern einen Wert in einer Variable (aber der Befehl selbst kann nicht ausgwertet werden).
+
+Python bringt viele Funktionen mit, ein großer Teil davon befindet sich aber in getrennten Programmen die Module genannt werden. Module sind Python Programme die zusätzliche Funktionen beinhalten. Um diese Funktionen zu verwenden musst du die zugerhörigen Module mit einem import Befehl in dein Programm importieren.
+
+Der import Befehl besteht aus dem import Schlüsselwort gefolgt vom Modulnamen. Zeile 2 importiert das modul mit dem Namen random (engl. zufällig). Das random module enthält einige Funktionen die mit Zufallszahlen zu tun haben. Eine dieser Funktionen liefert die Zufallszahlen die der Benutzer erraten muss.
+
+4. abgegebeneTipps = 0
+
+Diese Zeile erstellt eine neue Variable mit dem Namen agbgebeneTipps. In dieser Variable wird die Anzahl der Tipps, die der Spieler abgegeben hat, gespeichert. Wir setzen die Variable hier auf den Integer 0 weil der Spieler noch keinen Tipp abgegeben hat. 
+
+6.  print('Hallo! Was ist dein Name?')
+7.  meinName = input() 
+
+Zeilen 6 und 7 sind wie im Hallo Welt Programm aus Kapitel 3. Programmierer verwenden Programmcode aus alten Programmen oft wieder um sich Arbeit zu sparen.
+
+Zeile 6 ist ein Funktionsaufruf, hier wird die print() Funktion aufgerufen. Erinner dich, dass ein Funktionsaufruf wie ein Miniprogramm in deinem Programm ist. Wenn dein Programm eine Funktion aufruft, dann führt es dieses Miniprogramm aus. Der Programmcode in der print() Funktion zeigt den Text, der im String Argument übergeben wird, auf dem Bildschirm an.
+
+Zeile 7 lässt den Benutzer seinen Name eingeben und speichert die Eingabe in der Variable meinName. (Der String muss nicht wirklich der Name des Spieler sein sondern ist einfach genau der String, den der Spieler eintippt. Computer sind dumm und folgen einfach stur ihrem Programm.)
+
+Die random.randint() Funktion
+
+9.  zahl = random.randint(1, 20)
+
+Zeile 9 ruft eine  neue Funktion mit dem Namen randint() auf und speichert den Rückgabewert in zahl ab. Funktionsaufrufe können Teil eines Ausdrucks sein, weil sie zu einem Wert ausgewerteten haben. 
+
+Weil die randint() Funktion von vom random Modul präsentiert wird muss ihm random vorangestellt werden (Vergiss nicht auf den Punkt!) um Python mitzuteilen, dass die Funktion randint() im Modul random zu finden ist.
+
+Die randint() Funktion wird eine Zufallszahl zwischen (und inklusive) den beiden übergebenen Integerargumenten zurückgeben. Zeile 9 übergibt 1 und 20 zwischen den Klammern die dem Funktionsnamen folgen (unterteilt durch ein Komma). Die Zufallszahl die von randint() zurück gibt wird einer Variable namens zahl gespeichert; das ist die geheime Zahl die der Spieler erraten muss. 
+
+Wechsle für einen Moment in die interaktive Shell und gib import random ein, um das random modul zu importieren. Dann tippe random.randint(1,20) und drücke die Eingabetaste um zu sehen zu was der Funktionsaufruf ausgewertet wird. Wenn du die Eingabe wiederholst wird der Funktionsaufruf wahrscheinlich zu einer anderen Zahl ausgewertet. Die randint() Funktion gibt jedesmal irgendeine Zufallszahl zurück, genau so wie Würfel bei jedem Wurf eine Zufallszahl zurück geben.
+
+>>> import random
+>>> random.randint(1, 20)
+12
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+3
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+7
+
+Verwende die randint() Funktion wenn du einen Teil deines Spiels zufällig statt vorhersagbar zu machen. Die meisten Spiele brauchen Zufälligkeit - wie zum Beispiel in Brettspiele, in denen aus diesem Grund oft Würfel verwendet werden.
+
+Mit den Argumenten der randint Funktion kannst du den Bereich aus dem die Zufallszahlen Gewählt werden einstellen. Gib - zum Beispiel - random.randint(1,4) ein um nur ganze Zahlen von 1 bis 4 zurück zu bekommen. Oder versuche random.randint(1000,2000) um ganze Zahlen zwischen 1000 und 2000 zu erhalten. Probier die Beispiele in der Eingabezeile ein. Natürlich wirst du andere Ergebnisse erhalten, wenn du random.randint() ausführst (es sind ja Zufallszahlen).
+
+>>> random.randint(1, 4)
+3
+>>> random.randint(1000, 2000)
+1294
+
+Du kannst den Programmcode des Spiels leicht abändern um sein Verhalten zu ändern. Wenn du Zeilen 9 und 10:
+
+ 9. zahl = random.randint(1, 20)
+10. print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 20.')
+
+... folgendermaßen abänderst:
+
+ 9. zahl = random.randint(1, 100)
+10. print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 100.')
+
+Jetzt wird der Computer an eine Zahl zwischen 1 und 100 statt an eine zwischen 1 und 20 denken. Durch ändern der Zeile 9 wird der Zahlenbereich der Zufallszahlen geändert, vergiss dabei nicht auch Zeile 10 zu ändern damit das Spiel dem Spieler den geänderten Zahlenbereich mitteilt. 
+
+Hallo Spieler
+
+10. print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 20.')
+
+In Zeile 10 heißt die print() Funktion den Spieler willkommen und teilt ihm mit, dass der Computer an eine Zufallszahl denkt.
+
+Es sieht so aus als wäre mehr als ein string Argument in Zeile 10, aber schau dir die Zeile genau an. Die Pluszeichen verketten die drei strings zu einem einzigen. Und das ist das einzige string Argument das and die print() Funktion übergeben wird. Wenn du genau schaust, siehst du, dass die Kommas innerhalb der Anführungszeichen und damit Teile der strings selbst sind.
+
+Schleifen
+
+12. while abgegebenTipps < 6:
+
+Zeile 12 ist ein while Befehl, das den Beginn einer while Schleife anzeigt. Schleifen lassen dich einen immer wieder ausführen. Wir müssen jedoch ein paar andere Konzepte durchgehen, bevor wir uns Schleifen genauer ansehen. Diese Konzepte sind Blocks, Booleans, Vergleichsoperatoren, Bedingungen und das while Statement.
+
+Blocks
+
+Einige Zeilen Programmcode können in einem Block gruppiert werden. Ein Block von Code hat die selbe minimale Einrückung. An der Anzahl an Leerzeichen am Anfang der Zeile siehst du wo ein Block beginnt. Das ist die Einrückung (engl: indentation) der Zeile. 
+
+Ein Block beginnt wenn die Einrückung der Zeile sich erhöht (normalerweise um vier Leerzeichen). Alle folgenden Zeilen, die auch gleich weit Eingerückt sind, sind auch Teil des Blocks. Der Block endet, sobald eine der Zeilen, die eine geringere Einrückung - so wie der darüber liegende Block hat, beginnt. Das heißt, dass ein Block innerhalb eines anderen Blocks liegt.
+
+Abbildung 4-1 ist ein Diagramm des Codes, in dem die Blocks angezeichnet und durchnummeriert sind. Die Leerzeichen sind als schwarze Quadrate eingezeichnet um sie besser zählbar zu machen. 
+
+Abbildung 4-1: Blöcke und ihre Einrückung. Die schwarzen Quadrate zeigen Leerzeichen an. 
+
+In Abbildung 4-1, in Zeile 12 gibt es keine Einrückung daher ist diese Zeile nicht in einem Block. Zeile 13 hat einem Einrückung von vier Leerzeichen. Da diese Einrückung eine größer ist als die der vorigen beginnt die hier ein neuer Block. Der Block ist in Abbildung 4-1 mit (1) bezeichnet. Dieser Block geht wird weiter gehen, bis eine Zeile ohne Einrückung (so wie bevor der Block gebonnen hat). Leere Zeilen werden ignoriert.
+
+Zeile 20 hat eine Einrückung von acht Leerzeichen. Acht Leerzeichen sind mehr als vier Leerzeichen, was wiederum einen neuen Block beginnt. Dieser Block ist in Abbildung 4-1 mit (2) gekennzeichnet. Dieser Block ist in einem anderen Block.
+
+Zeile 22 hat nur vier Einrückungen. Die Einrückung ist also weniger geworden, du daher ist der Block beendet. Zeile 20 ist die einzige Zeile in diesem Block. Zeile 22 ist im selben Block wie die anderen Zeilen mit vier Leerzeichen.
+
+Zeile 23 erhöht die Einrückung wieder auf 8 Leerzeichen, es beginnt also wieder eine neuer Block. Es ist in Abbildung 4-1 mit (3) bezeichnet. 
+
+Zusammengefasst, Zeile 12 ist in keinem Block. Zeilen 13 bis 23 sind alle in einem Block (markiert als Block 1).  Zeile 20 ist einem Block innerhalb eines Blocks (markiert als Block 2). Und Zeile 23 ist die einzige Zeile in einem weiterem Block in einem Block (markiert als Block 3).
+
+Der Boolean Datentyp
+
+Der Boolean Datentyp kann nur zwei Werte haben: True (engl. für wahr) oder False (engl. für falsch). Diese Werte müssen mit einem Großem "T" oder "F" geschrieben werden. Der Rest der Namen der Werte muss klein geschrieben sein. Du wirst Boolean Werte (auch bools genannt) mit Vergleichsoperatoren verwenden um Bedingungen zu bilden. (Bedingungen werden später erklärt.)
+
+Die Datentypen die bis jetzt vorgestellt wurden sind integer, strings und jetzt bools.
+
+Vergleichsoperatoren
+
+Zeile 12 hat ein while statement:
+
+12. while abgegebenTipps < 6:
+
+Der Ausdruck der dem while Schlüsselwort folgt ( der abgegebenTipps < 6 Teil) enthält zwei Werte ( der Wert in der Variable abgegebeneTipps, und den integer Wert 6) verbinden mit einem Operator (das < Zeichen, das "kleiner als" Zeichen). Das < Zeichen ist ein Vergleichsoperator.
+
+Vergleichsoperatoren vergleichen zwei Werte und werden entweder zu True oder False Boolean Werte ausgewertet. Eine Liste von allen Vergleichoperatoren findest du in Tabelle 4-1.
+
+Tabelle 4-1: Vergleichsoperatoren
+Operator Zeichen	Operato Name
+<			Kleiner als
+>			Größer als
+<=			Kleiner als oder gleich
+>=			Mehr als oder gleich
+==			Gleich
+!=			Ungleich
+
+Du kennst jetzt also schon die mathematischen Operatoren +, -, * und /. Wie alle Operatoren werden die Vergleichsoperatoren mit Werten verknüpft um Ausdrücke wie abgegebenTipps < 6 zu bilden.
+
+Bedingungen
+
+Eine Bedingung ist ein Ausdruck der zwei Werte mit einem Vergleichsoperator verbindet (so wie < oder >) und zu einem Boolean Wert auswertet. Bedingung ist nur ein anderer Name für Ausdruck der zu True oder False ausgwertet wird. Bedingungen werden in while Statements verwendet (und an ein paar anderen Orten, wie später erklärt wird.)
+
+Die Bedingung abgegebeneTipps < 6 fragt, zum Beispiel, 

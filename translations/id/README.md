@@ -83,4 +83,5 @@ General Notes
 - list, 
 - item
 - keyword argument, keyword argument (istilah python), argumen keyword
-
+- font, font, jenis huruf cetak
+- constructor, constructor, istilah OOP

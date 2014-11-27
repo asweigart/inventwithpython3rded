@@ -1,0 +1,452 @@
+  Bab 18
+  DETEKSI TUMBUKAN DAN MASUKAN KEYBOARD/MOUSE
+Cakutan Topik dalam Bab ini:
+• Deteksi Tumbukan
+• Jangan Merubah list Ketika Mengiterasikannya
+• Masukan Keyboard dalam Pygame
+• Masukan Mouse dalam Pygame
+Deteksi tumbukan adalah proses mengetahui apakah dua objek dalam layar saling bersentuhan (bertubrukan) satu sama lainnya. Sebagai contoh, jika pemain menyentuh musuh, maka pemain bisa mengurangi kesehatannya. Contoh lain, ketika program harus tahu kapan pemain menyentuh satu koin, sehingga pemain bisa mengambilnya. Deteksi tumbukan dapat membantu menentukan apakah karakter dalam game berdiri pada permukaan keras atau tidak ada apa-apa hanya udara kosong di bawah karakter itu.
+Dalam game ini, deteksi tumbukan akan menentukan apakah dua persegi panjang saling tumpang tindih satu sama lainnya atau tidak. Contoh program berikutnya akan membahas teknik dasar ini.
+Dalam bab ini, kamu akan melihat bagaimana program Pygame dapat menerima masukan dari pengguna melalui keyboard dan mouse. Proses ini lebih rumit daripada pemanggilan fungsi input() dalam game berbasis teks saja. Namun, menggunakan keyboard akan lebih interaktif dalam program GUI. Bahkan penggunaan mouse tidak mungkin dilakukan pada game berbasis teks. Kedua konsep ini akan membuat game lebih menarik!
+Sumber Kode Program Deteksi Tumbukan
+Kode ini kebanyakan mirip dengan program animasi, sehingga penjelasan tentang memindahkan dan memantulkan objek dilewati. (Lihat program animasi pada Bab 17.) Suatu pemantul akan mental-mental dalam jendela. Daftar objek Rect akan merepresentasikan kotak makanan.
+Pada tiap iterasi dalam putaran game, program akan menbaca setiap objek Rect dalam daftar dan menggambar kotak hijau pada jendela. Setiap iterasi keempat puluhdalam putaran game, objek Rect baru akan ditambahkan pada daftar, sehingga layar akan secara konstan punya kotak makanan baru.
+Pemantul akan direpresentasikan dengan satu dictionary. Objek ini punya kunci bernama 'rect' (yang nilainya adalah objek pygame.Rect) dan 'dir' (yang nilainya adalah menunjukkan arah konstan seperti yang dilakukan pada program animasi di bab sebelumnya).
+Selama pemantul mental-mental dalam jendela, cek apakah objek ini bertubrukan dengan sembarang kotak makanan. Jika ya, maka kota makanan akan dihapus, sehingga tidak lagi tampak pada layar. Proses ini akan terlihat seperti pemantul yang "memakan" kotak makanan dalam jendela.
+Ketikkan kode berikut dalam file baru dan simpan sebagai deteksiTumbukan.py. Jika kamu tidak ingin mengetikkan semua kode ini, kamu dapat mengunduh kode dari situs buku ini di http://invpy.com/chap18.
+Kalau kamu dapat error setelah mengetikkan kodenya, coba bandingkan dengan kode dari buku ini dengan perangkat pembanding online di http://invpy.com/diff/deteksiTumbukan.
+  1. import pygame, sys, random
+  2. from pygame.locals import *
+  3. 
+  4. def doRectsOverlap(rect1, rect2):
+  5.     for a, b in [(rect1, rect2), (rect2, rect1)]:
+  6.    # cek apakah sudut a ada dalam b
+  7.         if ((isPointInsideRect(a.left, a.top, b)) or
+  8.             (isPointInsideRect(a.left, a.bottom, b)) or
+  9.             (isPointInsideRect(a.right, a.top, b)) or
+ 10.             (isPointInsideRect(a.right, a.bottom, b))):
+ 11.             return True
+ 12. 
+ 13.     return False
+ 14. 
+ 15. def isPointInsideRect(x, y, rect):
+ 16.     if (x > rect.left) and (x < rect.right) and (y > rect.top) and (y < rect.bottom):
+ 17.         return True
+ 18.     else:
+ 19.         return False
+ 20. 
+ 21. 
+ 22. # menyiapkan pygame
+ 23. pygame.init()
+ 24. mainClock = pygame.time.Clock()
+ 25. 
+ 26. # menyiapakan jendela
+ 27. WINDOWWIDTH = 400
+ 28. WINDOWHEIGHT = 400
+ 29. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
+ 30. pygame.display.set_caption('Collision Detection')
+ 31. 
+ 32. # menyiapkan variabel arah
+ 33. DOWNLEFT = 1
+ 34. DOWNRIGHT = 3
+ 35. UPLEFT = 7
+ 36. UPRIGHT = 9
+ 37. 
+ 38. MOVESPEED = 4
+ 39. 
+ 40. # menyiapakan warna
+ 41. BLACK = (0, 0, 0)
+ 42. GREEN = (0, 255, 0)
+ 43. WHITE = (255, 255, 255)
+ 44. 
+ 45. # menyiapkan pemantul dan data struktur makanan
+ 46. foodCounter = 0
+ 47. NEWFOOD = 40
+ 48. FOODSIZE = 20
+ 49. bouncer = {'rect':pygame.Rect(300, 100, 50, 50), 'dir':UPLEFT}
+ 50. foods = []
+ 51. for i in range(20):
+ 52.     foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
+ 53. 
+ 54. # menjalankan putaran game
+ 55. while True:
+ 56.     # cek apakah ada peristiwa QUIT
+ 57.     for event in pygame.event.get():
+ 58.         if event.type == QUIT:
+ 59.             pygame.quit()
+ 60.             sys.exit()
+ 61. 
+ 62.     foodCounter += 1
+ 63.     if foodCounter >= NEWFOOD:
+ 64.         # tambah makanan baru
+ 65.         foodCounter = 0
+ 66.         foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
+ 67. 
+ 68.     # gambar latar belakang hitam pada permukaan
+ 69.     windowSurface.fill(BLACK)
+ 70. 
+ 71.     # pindahkan data struktur pemantul
+ 72.     if bouncer['dir'] == DOWNLEFT:
+ 73.         bouncer['rect'].left -= MOVESPEED
+ 74.         bouncer['rect'].top += MOVESPEED
+ 75.     if bouncer['dir'] == DOWNRIGHT:
+ 76.         bouncer['rect'].left += MOVESPEED
+ 77.         bouncer['rect'].top += MOVESPEED
+ 78.     if bouncer['dir'] == UPLEFT:
+ 79.         bouncer['rect'].left -= MOVESPEED
+ 80.         bouncer['rect'].top -= MOVESPEED
+ 81.     if bouncer['dir'] == UPRIGHT:
+ 82.         bouncer['rect'].left += MOVESPEED
+ 83.         bouncer['rect'].top -= MOVESPEED
+ 84. 
+ 85.     # cek apakah pemantul sudah pindah keluar jendela
+ 86.     if bouncer['rect'].top < 0:
+ 87.         # pemantul sudah melewati sisi atas jendela
+ 88.         if bouncer['dir'] == UPLEFT:
+ 89.             bouncer['dir'] = DOWNLEFT
+ 90.         if bouncer['dir'] == UPRIGHT:
+ 91.             bouncer['dir'] = DOWNRIGHT
+ 92.     if bouncer['rect'].bottom > WINDOWHEIGHT:
+ 93.         # pemantul sudah melewati sisi bawah jendela
+ 94.         if bouncer['dir'] == DOWNLEFT:
+ 95.             bouncer['dir'] = UPLEFT
+ 96.         if bouncer['dir'] == DOWNRIGHT:
+ 97.             bouncer['dir'] = UPRIGHT
+ 98.     if bouncer['rect'].left < 0:
+ 99.         # pemantul sudah melewati sisi kiri jendela
+100.         if bouncer['dir'] == DOWNLEFT:
+101.             bouncer['dir'] = DOWNRIGHT
+102.         if bouncer['dir'] == UPLEFT:
+103.             bouncer['dir'] = UPRIGHT
+104.     if bouncer['rect'].right > WINDOWWIDTH:
+105.         # pemantul sudah melewati sisi kanan jendela
+106.         if bouncer['dir'] == DOWNRIGHT:
+107.             bouncer['dir'] = DOWNLEFT
+108.         if bouncer['dir'] == UPRIGHT:
+109.             bouncer['dir'] = UPLEFT
+110. 
+111.     # gambar pemantul pada permukaan
+112.     pygame.draw.rect(windowSurface, WHITE, bouncer['rect'])
+113. 
+114.     # cek apakah pemantul saling tumpang tindih dengan kotak makanan.
+115.     for food in foods[:]:
+116.         if doRectsOverlap(bouncer['rect'], food):
+117.             foods.remove(food)
+118. 
+119.     # gambar makanan
+120.     for i in range(len(foods)):
+121.         pygame.draw.rect(windowSurface, GREEN, foods[i])
+122. 
+123.     # gambar jendela pada layar
+124.     pygame.display.update()
+125.     mainClock.tick(40)
+Program akan tampak seperti Gambar 18-1. Kotak putih (si pemantul) akan mental-mental dalam jendela. Ketika kotak ini bertubrukan dengan kotak hijau (makanannya), kotak makanan itu akan hilang dari layar.
+
+Gambar 18-1: Program Deteksi Tumbukan.
+Mengimpor Module
+  1. import pygame, sys, random
+  2. from pygame.locals import *
+Program deteksi tumbukan mengimpor module yang sama dengan program Animasi pada bab sebelumnya, ditambah dengan module random.
+Fungsi Deteksi Tumbukan
+  4. def doRectsOverlap(rect1, rect2):
+Untuk dapat mendeteksi suatu tubrukan, kamu perlu satu fungsi yang akan menentukan apakah dua persegi panjang saling tumpang tindih satu sama lainnya. Gambar 8-2 adalah gambar persegi panjang yang saling tumpang tindih (di kiri) dan persegi panjang yang tidak tumpang tindih (di kanan):
+
+Gambar 18-2: Contoh persegi panjang yang saling tumpang tindih (kiri) dan persegi panjang yang tidak saling tumpang tindih (kanan).
+Fungsi doRectsOverlap() menerima dua parameter objek pygame.Rect. Fungsi ini akan mengembalikan True jika dua objek itu bertubrukan atau False jika tidak.
+Ada aturan senderhana yang bisa diikuti untuk menentukan apakah dua persegi panjang saling tumpang tindih (tubrukan). Lihat keempat sudut kedua persegi panjang. Jika paling tidak ada satu sudut yang berada dalam persegi panjang lainnya, maka kamu tahu bahwa kedua persegi panjang itu saling tumpang tindih. Kamu dapat menggunakan fakta ini untuk menentukan apakah doRectsOverlap() mengembalikan True atau False.
+  5.     for a, b in [(rect1, rect2), (rect2, rect1)]:
+  6.    # cek apakah sudut a ada dalam b
+  7.         if ((isPointInsideRect(a.left, a.top, b)) or
+  8.             (isPointInsideRect(a.left, a.bottom, b)) or
+  9.             (isPointInsideRect(a.right, a.top, b)) or
+ 10.             (isPointInsideRect(a.right, a.bottom, b))):
+ 11.             return True 
+Baris 5 sampai 11 mengecek apakah sudut suatu persegi panjang ada dalam persegi panjang lainnya. Lebih lanjut kamu akan membuat satu fungsi bernama isPointInsideRect() yang mengembalikan True jika koordinat XY titik itu ada dalam persegi panjang. Panggil fungsi ini untuk setiap sudut-sudut (ada delapan) dan jika ada satu pemanggilan yang keluarannya True, maka operator or akan membuat seluruh kondisi menjadi True.
+Parameter fungsi doRectsOverlap() adalah rect1 dan rect2. Pertama cek apakah sudut rect1 ada dalam rect2, lalu cek apakah sudut rect2 ada dalam rect1. 
+Jangan ulangi kode yang mengecek keempat sudut masing masing objek rect1 dan rect2. Lebih baik, gunakan variabel a dan b pada baris 7 sampai 10. Putaran for pada bari 5 menggunakan trik pengisian banyak variabel. Pada iterasi pertama, a adalah rect1 dan b adalah rect2. Pada iterasi kedua dalam putaran for, a menjadi rect2 dan b menjadi rect1.
+13.     return False
+Jika baris 11 tidak dieksekusi, maka tidak ada satupun dari delapan sudut-sudut itu yang ada dalam persegi lainnya. Pada kasus ini, persegi panjang tidak bertubrukan dan baris 13 terekseskusi.
+Menentukan Apakah Suatu Titik ada Dalam Persegi Panjang
+ 15. def isPointInsideRect(x, y, rect):
+ 16.     if (x > rect.left) and (x < rect.right) and (y > rect.top) and (y < rect.bottom):
+ 17.         return True
+Fungsi isPointInsideRect() dipanggil dari doRectsOverlapt(). Fungsi ini akan mengembalikan True jika koordinat XY yang dilemparkan padanya sebagai parameter pertama dan kedua ada dalam objek pygame.Rect yang dilemparkan sebagai parameter ketiga. Jika tidak, fungsi ini akan mengembalikan False.
+Gambar 18-3 adalah contoh persegi panjang dan beberapa titik. Titik-titik dan sudut-sudut persegi panjang itu dilabeli dengan koordinatnya.
+Suatu titik ada dalam persegi panjang jika keempat kondisi berikut terpenuhi:
+• Koordinat X titik lebih besar dari koordinat X sisi kiri persegi panjang.
+• Koordinat X titik lebih kecil dari koordinat X sisi kanan persegi panjang.
+• Koordinat Y titik lebih besar dari koordinat Y sisi kanan persegi panjang.
+• Koordinat Y titik lebih kecil dari koordinat Y sisi bawah persegi panjang.
+Jika ada satu kondisi diatas yang False, maka titik ada di luar persegi panjang. Baris 16 mengombinasikan semua kondisi menjadi satu kondisi untuk pernyataan if dengan operator and.
+
+Gambar 18-3: Contoh koordinat yang ada di luar dan di dalam sebuah persegi panjang. Titik (50, 30), (85, 30), dan (50, 50) ada di dalam persegi panjang. Titik lainnya ada di luar.
+ 18.     else:
+ 19.         return False
+Fungsi ini dipanggil dari fungsi doRectsOverlap() untuk melihat apakah ada sudut dalam dua objek pygame.Rect yang berada dalam objek satu sama lainnya. Kedua fungsi ini dapat mendeteksi tumbukan antara dua persegi panjang.
+Objek pygame.time.Clock dan Method tick()
+Beberapa baris dari baris 22 sampai 43 melakukan hal yang sama seperti pada program Animasi, yaitu menginsiasi Pygame, menyiapakan WINDOWHEIGHT dan WINDOWWIDTH, serta mengisi warna dan arah konstan.
+Namun, ada yang baru di baris 24:
+ 24. mainClock = pygame.time.Clock()
+Pada program Animasi sebelumnya, pemanggilan time.sleep(0.02) akan memperlambat eksekusi program, sehingga program tidak berjalan terlalu cepat. Masalah pada time.sleep() adalah bahwa prosesnya mungkin akan sangat lambat pada komputer yang lambat atau tidak cukup lamat berhentinya pada komputer yang cepat.
+Objek pygame.time.Clock dapat menyetop program pada selang waktu yang sama pada komputer apapun. Baris 125 memanggil mainClock.tick(40) dalam putaran game. Pemanggilan ini menunggu cukup lama, sehingga putaran berputar 40 iterasi per detik, tidak terpengaruh seberapa cepat komputer yang dipakai. Proses ini memastikan game tidak bergerak terlalu cepat dibandingkan dengan yang kamu harapkan. Pastikan hanya memanggil method tick() hanya satu kali dalam putaran game.
+Menyiapkan Jendela dan Struktur Data
+ 45. # menyiapkan pemantul dan data struktur makanan
+ 46. foodCounter = 0
+ 47. NEWFOOD = 40
+ 48. FOODSIZE = 20
+Baris 46 samapi 48 menyiapkan beberapa variabel untuk blok-blok makanan yang akan muncul di layar. Variabel foodCounter akan dimulai dengan nilai 0, NEWFOOD = 40, dan FOODSIZE = 20.
+ 49. bouncer = {'rect':pygame.Rect(300, 100, 50, 50), 'dir':UPLEFT}
+Baris 49 menyiapakan satu struktur data baru bernama pemantul. Pemantul adalah sebuah dictionary dengan dua kunci. Nilai yang disimpan pada kunci 'rect' adalah objek pygame.Rect yang merepresentasikan ukuran dan posisi pemantul.
+Nilai yang disimpan pada kunci 'dir' adalah arah pemantul yang sedang bergerak. Pemantul akan bergerak dengan cara yang sama seperti blok pada program Animasi di Bab 17.
+ 50. foods = []
+ 51. for i in range(20):
+ 52.     foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
+Program akan mengikuti setiap langkah kotak makanan dengan satu list objek-objek Rect dalam variabel foods. Baris 51 dan 52 membuat dua puluh kota makanan yang ditempatkan secara acak dalam jendela. Kamu dapat menggunakan fungsi random.randint() untuk mendapatkan koordinat XY secara acak.
+
+Gambar 18-4: Untuk satu persegi panjang 20 x 20, jika sudut kiri atas ada di koordinat (400, 200) dalam jendela berukuran 400 x 400, maka persegi panjang itu ada di luar jendela. Untuk berada di dalamnya, sudut kiri atas harus berada di (380, 200).
+Pada baris 52, kamu memanggil fungsi constructor pygame.Rect() yang akan mengembalikan objek pygame.Rect yang merepresetasikan posisi dan ukuran kotak makanan. Dua parameter pertama untuk pygame.Rect() adalah koordinat XY sudut kiri atas. Kamu harus membuat koordinat acak ada antara 0 dan besar jendela dikurangi ukuran kotak makanan. Jika kamu punya koordinat acak antara 0 dan besar jendela, maka kotak makanan mungkin akan terdorong keluar jendela, seperti dalam Gambar 18-4.
+Parameter ketiga untuk pygame.Rect() adalah tuple yang mengandung lebar dan tinggi kotak makanan. Lebar dan tinggi sama dengan nilai dalam variabel konstan FOODSIZE.
+Menggambar Pemantul pada Layar
+Baris 71 sampai 109 membuat pemantul bergerak dalam jendela dan memantul ketika betubrukan dengan sisi jendela. Kode ini mirip dengan baris 44 sampai 83 pada program Animasi di bab sebelumnya, sehingga tidak akan dijelaskan lagi.
+111.     # gambar pemantul pada permukaan
+112.     pygame.draw.rect(windowSurface, WHITE, bouncer['rect'])
+Setelah menggerakkan pemantul, baris 112 akan menggambar pemantul pada posisi baru. Objek Surface windowSurface dilemparkan sebagai parameter pertama untuk memberitahu Python objek Surface mana yang digunakan untuk menggambar persegi panjang. Variabel WHITE dengan isi (255, 255, 255), akan memberitahu Python untuk menggambar persegi panjang putih. Objek Rect yang tersimpan dalam dictionary pemantul bounce pada kunci 'rect' menunjukkan posisi dan ukuran persegi panjang yang akan digambar.
+Tumbukan dengan Kotak Makanan
+114.     # cek apakah pemantul saling tumpang tindih dengan kotak makanan.
+115.     for food in foods[:]:
+Sebelum menggambar kotak-kotak makanan, cek dulu apakah pemantul sudah tumpang tindih dengan suatu kotak makanan. Jika ya, hapus kotak makanan itu dalam variabel foods. Dengan demikian, Python tidak akan menggambarkan kotak makanan yang sudah "dimakan" oleh si pemantul bouncer.
+Pada tiap iterasi dalam putaran for, kotak makanan yang sedang diproses dimasukkan dalam variabel food yang diambil dari variabel foods.
+Jangan Menambahkan atau Menghapus Item dalam list Ketika list Sedang Diiterasi
+Perhatikan bahwa ada sedikit perbedaan dengan putaran for ini. Jika kamu teliti, pada baris 116 yang diiterasi adalah foods[:] bukan foods.
+Ingat bagaimana kerja pengirisan list. foods[:2] terevaluasi menjadi satu kopian list dengan item-item dimulai dari awal sampai (tapi tidak termasuk) item di indeks 2. foods[3:] terevaluasi menjadi satu kopian list dengan item-item dari indeks 3 sampai akhir list.
+foods[:] akam memberimu satu kopian list dengan item-item dari awal sampai akhir list. Pada dasarnya, foods[:] akan membuat list baru dengan satu kopian dari semua item-item dalam variable foods. Cara ini lebih pendek daripada cara dalam fungsi getBoardCopy() pada game Tic Tac Toe sebelumnya.
+Kamu tidak dapat menambahkan atau menghapus item dari list ketika list itu sedang diiterasi. Python akan kehilangan jejak variabel food apa berikutnya jika ukuran list berubah-ubah. Bayangkan bagaimana sulitnya menghitung banyaknya kacang jeli ketika seseorang sedang menambahkan atau mengurangi kumpulan kacang jeli itu.
+Namun, jika kamu mengiterasi dari kopian list (dan kopian ini tidak pernah berubah), maka menambahkan atau menghapus item dalam list asli tidak akan menjadi masalah.
+Menghapus Kotak Makanan
+116.         if doRectsOverlap(bouncer['rect'], food):
+117.             foods.remove(food)
+Baris 116 menggunakan fungsi doRectsOverlap(). Jika pemantul dan kotak makanan food saling tumpang tindih, maka doRectsOverlap() akan mengembalikan True dan baris 117 menghapus kotak makanan dari list foods.
+Menggambar Kotak-Kotak Makanan pada Layar
+119.     # gambar makanan
+120.     for i in range(len(foods)):
+121.         pygame.draw.rect(windowSurface, GREEN, foods[i])
+Kode pada baris 120 dan 121 mirip dengan bagaimana kotak putih untuk pemain digambarkan. Baris 120 berputar untuk setiap kotak makanan dalam variabel foods. Baris 121 menggambar persegi panjang pada objek Surface windowSurface. Program ini mirip dengan program pemantulan dalam bab sebelumnya, kecuali sekarang kotak pemantul akan "memakan" kotak lain yang bertubrukan dengannya.
+Program ini menarik untuk diperhatikan, tetapi pengguna tidak dapat mengontrol apapun. Pada program berikutnya, kamu akan belajar bagaimana mendapatkan masukan dari keyboard.
+Sumber Kode Program Masukan Keyboard
+Mulailah file baru dan ketikkan kode berikut, lalu simpan sebagai pygameMasukan.py. Jika kamu mendapatkan error setelah menyimpannya, coba bandingkan dengan kode dari buku ini dengan perangkat pembanding online di http://invpy.com/diff/pygameMasukan.
+  1. import pygame, sys, random
+  2. from pygame.locals import *
+  3. 
+  4. # menyiapkan pygame
+  5. pygame.init()
+  6. mainClock = pygame.time.Clock()
+  7. 
+  8. # menyiapkan jendela
+  9. WINDOWWIDTH = 400
+ 10. WINDOWHEIGHT = 400
+ 11. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
+ 12. pygame.display.set_caption('Masukan')
+ 13. 
+ 14. # menyiapkan warna
+ 15. BLACK = (0, 0, 0)
+ 16. GREEN = (0, 255, 0)
+ 17. WHITE = (255, 255, 255)
+ 18. 
+ 19. # menyiapkan data struktur pemain dan makanan
+ 20. foodCounter = 0
+ 21. NEWFOOD = 40
+ 22. FOODSIZE = 20
+ 23. player = pygame.Rect(300, 100, 50, 50)
+ 24. foods = []
+ 25. for i in range(20):
+ 26.     foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
+ 27. 
+ 28. # menyiapkan variabel arah gerak
+ 29. moveLeft = False
+ 30. moveRight = False
+ 31. moveUp = False
+ 32. moveDown = False
+ 33. 
+ 34. MOVESPEED = 6
+ 35. 
+ 36. 
+ 37. # menjalankan putaran game
+ 38. while True:
+ 39.     # mengecek peristiwa yang terjadi
+ 40.     for event in pygame.event.get():
+ 41.         if event.type == QUIT:
+ 42.             pygame.quit()
+ 43.             sys.exit()
+ 44.         if event.type == KEYDOWN:
+ 45.             # mengubah variabel keyboard
+ 46.             if event.key == K_LEFT or event.key == ord('a'):
+ 47.                 moveRight = False
+ 48.                 moveLeft = True
+ 49.             if event.key == K_RIGHT or event.key == ord('d'):
+ 50.                 moveLeft = False
+ 51.                 moveRight = True
+ 52.             if event.key == K_UP or event.key == ord('w'):
+ 53.                 moveDown = False
+ 54.                 moveUp = True
+ 55.             if event.key == K_DOWN or event.key == ord('s'):
+ 56.                 moveUp = False
+ 57.                 moveDown = True
+ 58.         if event.type == KEYUP:
+ 59.             if event.key == K_ESCAPE:
+ 60.                 pygame.quit()
+ 61.                 sys.exit()
+ 62.             if event.key == K_LEFT or event.key == ord('a'):
+ 63.                 moveLeft = False
+ 64.             if event.key == K_RIGHT or event.key == ord('d'):
+ 65.                 moveRight = False
+ 66.             if event.key == K_UP or event.key == ord('w'):
+ 67.                 moveUp = False
+ 68.             if event.key == K_DOWN or event.key == ord('s'):
+ 69.                 moveDown = False
+ 70.             if event.key == ord('x'):
+ 71.                 player.top = random.randint(0, WINDOWHEIGHT - player.height)
+ 72.                 player.left = random.randint(0, WINDOWWIDTH - player.width)
+ 73. 
+ 74.         if event.type == MOUSEBUTTONUP:
+ 75.             foods.append(pygame.Rect(event.pos[0], event.pos[1], FOODSIZE, FOODSIZE))
+ 76. 
+ 77.     foodCounter += 1
+ 78.     if foodCounter >= NEWFOOD:
+ 79.         # menambahkan makanan baru
+ 80.         foodCounter = 0
+ 81.         foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
+ 82. 
+ 83.     # menggambar latar belakang hitam pada permukaan
+ 84.     windowSurface.fill(BLACK)
+ 85. 
+ 86.     # menggerakkan pemain
+ 87.     if moveDown and player.bottom < WINDOWHEIGHT:
+ 88.         player.top += MOVESPEED
+ 89.     if moveUp and player.top > 0:
+ 90.         player.top -= MOVESPEED
+ 91.     if moveLeft and player.left > 0:
+ 92.         player.left -= MOVESPEED
+ 93.     if moveRight and player.right < WINDOWWIDTH:
+ 94.         player.right += MOVESPEED
+ 95. 
+ 96.     # menggambar pemain pada permukaan
+ 97.     pygame.draw.rect(windowSurface, WHITE, player)
+ 98. 
+ 99.     # mengecek apakah pemain saling tumpang tindih dengan suatu kotak makanan
+100.     for food in foods[:]:
+101.         if player.colliderect(food):
+102.             foods.remove(food)
+103. 
+104.     # menggambar makanan
+105.     for i in range(len(foods)):
+106.         pygame.draw.rect(windowSurface, GREEN, foods[i])
+107. 
+108.     # menggambar jendela pada layar
+109.     pygame.display.update()
+110.     mainClock.tick(40)
+Program ini hampir identik dengan program deteksi tumbukan. Dalam program ini, pemantul hanya bergerak ketika pemain menekan dan menahan tombol di keyboard.
+Kamu juga akan bisa mengeklik dimanapun dalam jendela dan membuat objek makanan baru pada koordinat titik yang diklik. Tambahannya, tombol ESC akan keluar program dan tombol "X" akan memindahkan pemantul ke lokasi acak dalam jendela.
+Menyiapakan Jendela dan Struktur Data
+Dimulai dari baris 29, kode menyiapkan beberapa variabel yang merekam jejak gerakan pemantul.
+ 28. # menyiapkan variabel arah gerak
+ 29. moveLeft = False
+ 30. moveRight = False
+ 31. moveUp = False
+ 32. moveDown = False
+Keempat variabel ini punya nilai Boolean yang menyimpan jejak tombol panah mana yang sedang ditekan. Sebagai contoh, ketika pemain menekan tombol panah kiri pada keyboard, moveLeft diset menjadi True. Ketika pemain melepaskan tombol itu, moveLeft diset ulang ke False.
+Baris 34 dan 43 serupa dengan kode pada program Pygame sebelumnya. Baris-baris ini mengurus awal putaran game dan menentukan apa yang akan dilakukan ketika pengguna keluar program. Penjelasan kode ini dilewati karena sudah dibahas pada bab sebelumnya.
+Peristiwa dan Penanganan Peristiwa KEYDOWN
+Tabel 18-1: Peristiwa-peristiwa dan apa penyebabnya.
+Peristiwa	Desripsi
+QUIT	Dipicu ketika pengguna menutup jendela.
+KEYDOWN	Dipicu ketika pengguna menekan satu tombol. Peristiwa ini punya atribut key yang menunjukkan tombol apa yang ditekan. Juga punya atribut mod untuk menunjukkan apakah tombol Shift, Ctrl, Alt, atau lainnya masih ditahan ketika tombol ditekan.
+KEYUP	Dipicu ketika pengguna melepaskan penekanan tombol. Peristiwa ini punya atribut key dan mod yang fungsinya sama seperti pada KEYDOWN.
+MOUSMOTION	Dipicu ketika mouse digerakkan dalam jendela. Punya atribut pos yang mengembalikan tuple (x, y) untuk koordinat posisi mouse dalam jendela. Atribut rel yang juga mengembalikan tuple (x, y), tetapi memberikan koordinat relatif dari peristiwa USEMOTIOIN terakhir.
+Sebagai contoh, jika mouse maju empat pixel dari (200, 200) ke (196, 200), maka rel akan mengembalikan tuple (-4, 0). Atribut buttons mengembalikan tuple tiga bilangan bulat. Bilangan bulat pertama dalam tuple ini adalah tombol kiri mouse, bilangan bulat kedua untuk tombol tengah mouse, dan bilangan bulat ketiga untuk tombol kanan mouse. Bilangan-bilangan bulat ini akan bernilai 0 jika tidak sedang ditekan ketika mouse digerakkan dan 1 ketika tombol ikut ditekan.
+MOUSEBUTTONDOWN	Dipicu ketika tombol mouse ditekan dalam jendela. Peristiwa ini punya atribut pos yang menunjukkan tuple (x, y) untuk koordinat lokasi mouse ketika tombolnya ditekan. Ada juga atribut button yang bernilai 1 samai 5 untuk menunjukkan tombol mouse mana yang ditekan (dijelaskan pada Table 18-2).
+MOUSEBUTTONUP	Dipicu ketika tombol mouse dilepaskan. Peristiwa ini punya atribut yang sama dengan MOUSEBUTTONDOWN.
+
+Tabel 18-2: Nilai atribut button dan tombol mouse.
+Nilai tombol	Tombol Mouse
+1	Tombol Kiri
+2	Tombol Tengah
+3	Tombol Kanan
+4	Roda mouse maju ke atas
+5	Roda mouse maju ke bawah
+
+Kode yang mengurusi peristiwa penekanan dan pelepasan tombol dimulai dari baris 44. Pada awal program, semua variabel arah diisi FALSE.
+ 44.         if event.type == KEYDOWN:
+Pygame mendefinisikan tipe peristiwa yang disebut KEYDOWN. Baris 44 mengecek apakah atribut event.type sama dengan nilai QUIT untuk menentukan apakah program harus keluar. Disamping tipe ini, ada tipe-tipe lainnya yang dibangkitkan Pygame. Tabel 18-1 mendaftarkan dengan ringkas peristiwa-peristiwa yang dapat dikembalikan oleh pygame.event.get().
+Menyiapkan Keempat Variabel Keyboard
+ 45.             # mengubah variabel keyboard
+ 46.             if event.key == K_LEFT or event.key == ord('a'):
+ 47.                 moveRight = False
+ 48.                 moveLeft = True
+ 49.             if event.key == K_RIGHT or event.key == ord('d'):
+ 50.                 moveLeft = False
+ 51.                 moveRight = True
+ 52.             if event.key == K_UP or event.key == ord('w'):
+ 53.                 moveDown = False
+ 54.                 moveUp = True
+ 55.             if event.key == K_DOWN or event.key == ord('s'):
+ 56.                 moveUp = False
+ 57.                 moveDown = True
+Jika tipe peristiwa sama dengan KEYDOWN, maka objek Event akan punya atribut key yang menunjukkan tombol mana yang ditekan. Baris 46 membandingkan atribut ini dengan K_LEFT yang merupakan variabel konstan dari pygame.locals dan menunjukkan tombol panah kiri pada keyboard. Baris 46 sampai 57 mengecek untuk tombol-tombol: K_LEFT, K_RIGHT, KUP, dan K_DOWN.
+Ketika salah satu dari tombol ini ditekan, set variabel arah yang sesuai menjadi True. Juga, set variabel arah yang berlawanan menjadi False.
+Sebagai contoh, jika program mengeksekusi baris 47 dan 48, maka tombol panah kiri telah ditekan. Dalam kasus ini, set moveLeft menjadi True dan moveRight menjadi False (mesiki moveRight sudah bernilai False, set saja lagi untuk memastikan).
+Pada baris 46, nilai event.key bisa sama dengan K_LEFT atau ord('a'). Nilai dalam event.key diisi dengan nilai bilangan bulat ASCII dari tombol yang ditekan pada keyboard. (Tidak ada nilai ASCII untuk tombol panah, sehingga digunakanlah variabel konstan K_LEFT.) Kamu dapat menggunakan fungsi ord() untuk mendapatkan nilai ASCII dari karakter tunggal apapun, sehingga dapat dibandingkan dengan event.key.
+Dengan mengeksekusi kode pada baris 47 dan 48 jika tombol yang ditekan adalah K_LEFT atau ord('a'), maka tombol panah kiri atau tombol A akan melakukan hal yang sama. Tombol W, A, S, dan D digunakan sebagai alternatif untuk mengubah variabel arah. Tombol WASD (dilafalkan sebagai "wazz-dee" dalam bahasa inggris) membiarkanmu menggunakan tangan kiri. Sedangkan tombol panah dapat digunakan dengan tangan kananmu.
+
+Gambar 18-5: Tombol WASD dapat diprogram untuk melakukan hal yang sama dengan tombol panah.
+Mengurus Peristiwa KEYUP
+ 58.         if event.type == KEYUP:
+Ketika pengguna melepaskan tombol yang sedang ditahan ke bawah, peristiwa bertipe KEYUP dibangkitkan.
+ 59.             if event.key == K_ESCAPE:
+ 60.                 pygame.quit()
+ 61.                 sys.exit()
+Jika tombol yang dilepaskan adalah tombol ESC, maka program akan berhenti. Ingat, dalam Pygame kamu harus memanggil fungsi pygame.quit() sebelum memanggil fungsi sys.exit().
+Baris 62 sampai 69 akan mengeset variabel arah menjadi False jika tombol arah dilepaskan.
+ 62.             if event.key == K_LEFT or event.key == ord('a'):
+ 63.                 moveLeft = False
+ 64.             if event.key == K_RIGHT or event.key == ord('d'):
+ 65.                 moveRight = False
+ 66.             if event.key == K_UP or event.key == ord('w'):
+ 67.                 moveUp = False
+ 68.             if event.key == K_DOWN or event.key == ord('s'):
+ 69.                 moveDown = False
+Memindahkan Pemain
+ 70.             if event.key == ord('x'):
+ 71.                 player.top = random.randint(0, WINDOWHEIGHT - player.height)
+ 72.                 player.left = random.randint(0, WINDOWWIDTH - player.width)
+Jika kamu juga dapat menambahkan fitur teleportasi dalam game. Jika pengguna menekan tombol "X", maka baris 71 dan 72 posisi kotak pengguna akan diset ke lokasi acak dalam jendela. Proses ini akan memberi pengguna kemambuan untuk berpindah-pindah dalam jendela dengan menekan tombol "X". Namun, pengguna tidak dapat mengontrol kemana arah teleportasi, perpindahannya acak.
+Mengurus Peristiwa MOUSEBUTTONUP
+ 74.         if event.type == MOUSEBUTTONUP:
+ 75.             foods.append(pygame.Rect(event.pos[0], event.pos[1], FOODSIZE, FOODSIZE))
+Masukan mouse diurus oleh peristiwa sama seperti masukan keyboard. Peristiwa MOUSEBUTTONUP muncul ketika pengguna melepaskan tombol mouse setelah mengekliknya. Atribu post pada objek Event diset menjadi tuple dua bilangan bulat yang menunjukkan koordinat XY dimana posisi kursor mouse pada saat diklik.
+Pada baris 75, koordinat-X disimpan dalam event.pos[0] dan koordinat Y disimpan dalam event.post[1]. Baris 75 membuat objek Rect baru untuk menunjukkan makanan baru dan ditempatkan dimana peristiwa MOUSEBUTTONUP terjadi. Dengan menambahkan objek Rect baru ke dalam list foods, kotak makanan baru akan ditampilkan pada layar.
+Mengerakkan Pemantul dalam Layar
+ 86.     # menggerakkan pemain
+ 87.     if moveDown and player.bottom < WINDOWHEIGHT:
+ 88.         player.top += MOVESPEED
+ 89.     if moveUp and player.top > 0:
+ 90.         player.top -= MOVESPEED
+ 91.     if moveLeft and player.left > 0:
+ 92.         player.left -= MOVESPEED
+ 93.     if moveRight and player.right < WINDOWWIDTH:
+ 94.         player.right += MOVESPEED
+Sejauh ini kamu sudah mengeset variabel arah (moveDown, moveUp, moveLeft, dan moveRight) menjadi True atau False tergantung tombol apa yang ditekan pengguna. Sekarang pindahkan kotak pemain (yang direpresentasikan dengan objek pygame.Rect dalam variabel player) dengan menyesuaikan koordinat pemain.
+Jika moveDown bernilai True (dan bagian bawah kotak pemain tidak lebih bawah daripada bagian bawah jendela), maka pindahkan kotak pemain ke bawah dengan menambahkan MOVESPEED pada atribut top player. Lakukan hal yang serupa untuk tiga arah lainnya.
+Method colliderect()
+ 99.     # mengecek apakah pemain saling tumpang tindih dengan suatu kotak makanan
+100.     for food in foods[:]:
+101.         if player.colliderect(food):
+102.             foods.remove(food)
+Pada program Deteksi Tumbukan sebelumnya, fungsi doRectsOverlap() mengecek apakah suatu persegi panjang saling bertubrukan dengan yang lain. Fungsi itu ditulis dalam buku ini supaya kamu mengerti bagaimana kode dibalik pendeteksi tumbukan bekerja.
+Pada program ini, kamu akan menggunakan fungsi pendeteksi tumbukan yang disediakan Pygame. Method colliderect() untuk objek pygame.Rect dilemparkan objek pygame.Rect lainnya sebagai argument dan mengembalikan True jika kedua persegi panjang saling bertubrukan dan False jika tidak.
+110.     mainClock.tick(40)
+Sisa kode mirip dengan kode dalam program Masukan yang juga mirip dengan program Deteksi Tumbukan sebelumnya.
+Ringkasan
+Bab ini mengenalkan konsep deteksi tumbukan yang diperlukan di banyak game bergrafik. Mendeteksi tumbukan antara dua persegi panjang cukup mudah: cek apakah keempat sudut suatu persegi panjang ada dalam persegi panjang lainnya. Proses ini cukup sering dilakukan, sehingga Pygame menyediakan method pendeteksi tumbukan bernama colliderect() pada objek pygame.Rect.
+Beberapa game pertama dalam buku ini berbasis teks. Keluaran program adalah teks yang dicetak pada layar dan masukannya juga teks yang diketik pengguna melalui keyboard. Program bergrafik dapat menerima masukan keyboard dan mouse.
+Lebih lanjut, program-program bergrafik dapat merespon satu ketikkan, yaitu ketika pengguna menekan ke bawah atau melepaskan ke atas suatu tombol. Pengguna tidak harus mengetikkan seluruh respon dan menekan ENTER. Dengan demikian umpan balik dapat dilakukan secara cepat setelah pemain menekan suatu tombol pada keyboard, sehingga game lebih interaktif.
+Program Pygame yang telah dibuat sejauh ini hanya menggambarkan bentuk sederhana pada layar. Mungkin kamu juga ingin menambahkan gambar dan foto-foto. Bab berikutnya akan mengajarimu bagaimana menggambar objek dari file gambar. Kamu juga akan belajar bagaimana memainkan suara dan musik yang dapat didengar pemain.
