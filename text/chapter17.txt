@@ -120,8 +120,7 @@ Let’s go over each of these lines of code and find out what they do.
  2. from pygame.locals import *
 
 First we need to import the pygame module so we can call Pygame’s functions. You can import several modules on the same line by delimiting the module names with commas. Line 1 imports both the pygame and sys modules.
-The second line imports the pygame.locals module. This module contains many constant variables that we will use with Pygame such as QUIT or K_ESCAPE (which we will explain later). However, using the form from moduleName import * you can import the pygame.locals module but not have to type pygame.locals in front of the module’s functions.
-The pygame.locals module contains some constant variables we will use in this program.
+The second line imports the pygame.locals module. This module contains many constant variables that we will use with Pygame such as QUIT or K_ESCAPE (explained later). However, using the form from moduleName import * you can import the pygame.locals module but not have to type pygame.locals in front of the module’s functions.
 If you have from sys import * instead of import sys in your program, you could call exit() instead of sys.exit() in your code. But most of the time it is better to use the full function name so you know which module the function is in.
 
 The pygame.init() Function
@@ -184,7 +183,7 @@ Figure 17-3: Examples of different fonts.
 
 A font is a complete set of letters, numbers, symbols, and characters drawn in a single style. Figure 17-3 shows the same sentence printed in different fonts.
 In our earlier games, we only told Python to print text. The color, size, and font that was used to display this text was completely determined by your operating system. The Python program couldn’t change the font. However, Pygame can draw text in any font on your computer.
-Line 19 creates a pygame.font.Font object (which we will call Font objects for short) by calling the pygame.font.SysFont() function. The first parameter is the name of the font, but we will pass the None value to use the default system font. The second parameter is the size of the font (which is measured in units called points).
+Line 19 creates a pygame.font.Font object (called Font objects for short) by calling the pygame.font.SysFont() function. The first parameter is the name of the font, but we will pass the None value to use the default system font. The second parameter is the size of the font (which is measured in units called points).
 
 The render() Method for Font Objects
 
@@ -202,7 +201,7 @@ Attributes
 24. textRect.centerx = windowSurface.get_rect().centerx
 25. textRect.centery = windowSurface.get_rect().centery
 
-The pygame.Rect data type (which we will call Rect for short) makes working with rectangle-shaped things easy. To create a new Rect object call the function pygame.Rect(). The parameters are integers for the XY coordinates of the top left corner, followed by the width and height, all in pixels.
+The pygame.Rect data type (called Rect for short) makes working with rectangle-shaped things easy. To create a new Rect object call the function pygame.Rect(). The parameters are integers for the XY coordinates of the top left corner, followed by the width and height, all in pixels.
 The function name with the parameters looks like this: pygame.Rect(left, top, width, height)
 Just like methods are functions that are associated with an object, attributes are variables that are associated with an object. The Rect data type (that is, the data type of all Rect objects) has many attributes that describe the rectangle they represent. Here is a list of attributes of a Rect object named myRect:
 
@@ -337,7 +336,7 @@ The pygame.PixelArray Data Type
 48. pixArray = pygame.PixelArray(windowSurface)
 49. pixArray[480][380] = BLACK
 
-On line 48 we create a pygame.PixelArray object (which we will call a PixelArray object for short). The PixelArray object is a list of lists of color tuples that represents the Surface object you passed it.
+On line 48 we create a pygame.PixelArray object (called a PixelArray object for short). The PixelArray object is a list of lists of color tuples that represents the Surface object you passed it.
 Line 48 passes windowSurface to the pygame.PixelArray() call, so assigning BLACK to pixArray[480][380] will change the pixel at the coordinates (480, 380) to be a black pixel. Pygame will automatically modify the windowSurface object with this change.
 The first index in the PixelArray object is for the X-coordinate. The second index is for the Y-coordinate. PixelArray objects make it easy to set individual pixels on a PixelArray object to a specific color.
 
@@ -351,7 +350,7 @@ The blit() Method for Surface Objects
 53. windowSurface.blit(text, textRect)
 
 The blit() method will draw the contents of one Surface object onto another Surface object. Line 54 will draw the “Hello world!” Surface object in text and draws it to the Surface object stored in the windowSurface variable.
-The second parameter to blit() specifies where on the windowSurface surface the text surface should be drawn. We will pass the Rect object we got from calling text.get_rect() (which was stored in textRect on line 23).
+The second parameter to blit() specifies where on the windowSurface surface the text surface should be drawn. Pass the Rect object we got from calling text.get_rect() (which was stored in textRect on line 23).
 
 The pygame.display.update() Function
 

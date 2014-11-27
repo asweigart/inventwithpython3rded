@@ -1,0 +1,430 @@
+    Bab 14
+    SANDI CAESAR
+
+Cakupan Topik dalam Bab ini:
+•   Kriptografi dan sandi
+•   Enkripsi dan dekripsi
+•   Tekssandi, teksdasar, kunci, dan simbol
+•   Sandi Caesar
+•   Nilai ordinal ASCII
+•   Fungsi chr() dan ord()
+•   Method string isalpha()
+•   Method string isupper() dan islower()
+•   Kritanalisis
+•   Teknis brute force
+
+Program dalam bab ini bukan game, tetapi program yang cukup menyenangkan. Program ini akan mengonversi bahasa Indonesia biasa menjadi suatu kode rahasia. Program ini juga bisa mengonversi kode rahasia itu kembali menjadi bahasa Indonesia biasa. Hanya seseorang yang mengetahui kode rahasia yang bisa mengerti pesan rahasia itu.
+Karena program ini memanipulasi teks untuk mengonversinya menjadi pesan rahasia, kamu akan belajar beberapa fungsi dan method baru untuk manipulasi string. Kamu juga akan belajar bagaimana program bisa melakukan operasi matematika dengan teks string sama seperti pada bilangan.
+
+Tentang Kriptografi
+
+Ilmu untuk menulis kode rahasia disebut kriptografi. Selama ribuan tahun kriptografi sudah dipakai untuk membuat pesan rahasia yang hanya pengirim dan penerimanya saja yang dapat membacanya, bahkan jika seseorang menangkap pengirim pesannya. Sistem kode rahasia disebut sandi. Sandi yang digunakan pada program dalam bab ini disebut sandi Caesar.
+Dalam kriptografi, pesan yang akan dibuat menjadi pesan rahasia disebut teksdasar. Teksdasar bisa terlihat seperti ini:
+Hai kamu! Kunci untuk membuka pintu rumah ini disimpan di bawah pot bunga.
+Proses mengubah teksdasar menjadi pesan ter-encode disebut proses mengenkripsi teksdasar. Teksdasar terenkripsi menjadi tekssandi. Tekssandi akan tampak seperti huruf-huruf acak dan kamu tidak akan mengerti maksudnya dengan hanya melihatnya saja. Berikut adalah tekssandi dari teksdasar sebelumnya:
+Yrz brdl! Bletz leklb dvdslbr gzekl ildry zez uzjzdgre uz srnry gfk slexr.
+Namun, jika kamu tahu tentang sandi yang digunakan untuk enkripsi, maka kamu dapat mendekripsi tekssandi menjadi teksdasar kembali. (Dekripsi adalah proses kebalikan dari enkripsi.)
+Banyak sandi yang menggunakan kunci. Kunci adalah nilai rahasia yang membuatmu dapat mendekripsi tekssandi yang dienripsi dengan menggunakan sandi tertentu. Bayangkan sandi sebagai gembok pintu. Kamu bisa punya banyak gembok yang serupa, tetapi suatu gembok hanya dapat dibuka oleh kunci tertentu.
+Jika kamu tertarik untuk menulis program kriptografi, kamu dapat membaca buku yang kubuat lainnya, "Hacking Secret Ciphers with Pyhton". Buku ini dapat diunduh dengan gratis dari http://inventwithpython.com/hacking.
+Sandi Caesar
+Kunci dari sandi Caesar adalah bilangan dari 1 sampai 26. Kamu hanya bisa mendekripsi kode rahasia jika kamu punya kuncinya (yaitu, tahu bilangan yang dipakai untuk mengenkrip pesan).
+Sandi Caesar adalah salah satu sandi pertama yang pernah dibuat. Dalam sandi ini, kamu mendekripsi satu pesan dengan mengambil setiap huruf dalam pesan (dalam kriptografi, huruf-huruf ini disebut simbol karena teksdasar bisa mencakup huruf, bilangan atau tanda lainnya), lalu menggantinya dengan huruf yang "digeser". Jika kamu menggeser huruf A sejauh dua huruf, maka kamu akan dapat huruf C. Gambar 14-1 menunjukkan beberapa huruf yang digeser sejauh 3 huruf.
+
+Gambar 14-1: Huruf-huruf yang digeser sejauh tiga huruf, contohnya B menjadi E.
+Untuk mendapatkan huruf yang digeser, gambar satu baris kotak-kotak yang dilabeli setiap huruf dalam alfabet. Lalu gambar pada baris kedua urutan alfabet yang dimulai dari suatu kotak di bawah baris pertama. Ketika sudah sampai akhir, lanjutkan ke kolom pertama baris pertama. Berikut contoh urutan huruf-huruf yang digeser tiga huruf:
+
+Gambar 14-2: Alfabet yang digeser tiga huruf.
+
+Perbedaan huruf yang digeser adalah kunci Sandi Caesar. Pada contoh di atas ditunjukkan kunci tiga untuk menerjemahkan huruf.
+Dengan menggunakan 3 sebagai kunci, jika kamu menenkrip teksdasar "Halo", maka "H" menjadi "K", huruf "a" menjadi "d", "l" menjadi "o", dan "o" menjadi "r". Jadi tekssandi untuk teksdasar "Halo" dengan kunci 3 adalah "Kdor".
+ASCII dan Penggunaan Angka pada Huruf
+Bagaimana mengimplementasikan pergeseran huruf sebagai kode? Kamu melakukannya dengan merepresentasikan setiap huruf sebagai bilangan (yang disebut ordinal), lalu menambahkan atau menguranginya untuk membuat bilangan baru (yaitu huruf baru). ASCII adalah kode yang menghubungkan setiap karakter yang dapat dicetak menjadi bilangan antara 32 dan 126.
+Huruf kapital "A" sampai "Z" bilangan ASCII-nya adalah 65 sampai 90. Huruf kecil "a" sampai "z" bilangan ASCII-nya adalah 97 sampai 122. Dijit bilangan "0" sampai "9" bilangan ASCII-nya adalah 48 sampai 57.
+
+Tabel 14-1: Tabel ASCII
+32  (spasi) 48  0   64  @   80  P   96  `   112 p
+33  !   49  1   65  A   81  Q   97  a   113 q
+34  "   50  2   66  B   82  R   98  b   114 r
+35  #   51  3   67  C   83  S   99  c   115 s
+36  $   52  4   68  D   84  T   100 d   116 t
+37  %   53  5   69  E   85  U   101 e   117 u
+38  &   54  6   70  F   86  V   102 f   118 v
+39  '   55  7   71  G   87  W   103 g   119 w
+40  (   56  8   72  H   88  X   104 h   120 x
+41  )   57  9   73  I   89  Y   105 i   121 y
+42  *   58  :   74  J   90  Z   106 j   122 z
+43  +   59  ;   75  K   91  [   107 k   123 {
+44  ,   60  <   76  L   92  \   108 l   124 |
+45  -   61  =   77  M   93  ]   109 m   125 }
+46  .   62  >   78  N   94  ^   110 n   126 ~
+47  /   63  ?   79  O   95  _   111 o
+
+Jadi jika kamu ingin menggeser "A" tiga huruf, kamu harus lakukan ini:
+
+•   Ubah "A" menjadi bilangan, yaitu 65.
+•   Tambah 3 ke 65, menjadi 68.
+•   Ubah bilangan 68 kembali menjadi huruf, yaitu "D".
+
+Fungsi chr() dan ord() dapat mengubah antara huruf dan bilangan.
+Sebagai contoh, huruf "A" direpresentasikan sebagai bilangan 65. Huruh "m" direpresentasikan sebagai bilangan 109. Tabel 14-1 menunjukkan semua karakter ASCII.
+
+Fungsi chr() dan ord()
+
+Fungsi chr() (singkatan dari "character") mengambil bilangan ASCII dan mengembalikan satu karakter string. Fungsi ord() (singkatan dari "ordinal") mengambil string satu karakter dan mengembalikan bilangan ASCII-nya. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> chr(65)
+'A'
+>>> ord('A')
+65
+>>> chr(65+8)
+'I'
+>>> chr(52)
+'4'
+>>> chr(ord('F'))
+'F'
+>>> ord(chr(68))
+68
+
+Pada baris ketiga, chr(65+8) terevaluasi menjadi char(73). Jika kamu lihat tabel ASCII, 73 adalah bilangan ordinal untuk huruf kapital "I".
+Pada baris kelima, chr(ord('F')) terevaluasi menjadi chr(70) yang lalu terevaluasi menjadi 'F'. Fungsi ord() dan chr() saling melakukan kebalikannya.
+
+Contoh Menjalankan Sandi Caesar
+
+Berikut adalah contoh menjalankan program Sandi Caesar untuk mengenkripsi suatu pesan.
+Apa kamu ingin mengenkripsi atau mendekripsi suatu pesan?
+enkripsi
+Masukkan pesanmu:
+Untuk memahami apa itu rekursif, kamu harus mengerti konsep rekursif.
+Masukkan bilangan kunci (1-26)
+13
+Pesan hasil pergeserannya adalah:
+Haghx zrznunzv ncn vgh erxhefvs, xnzh unehf zratregv xbafrc erxhefvs.
+
+Sekarang jalankan program untuk mendekripsi pesan yang telah terenkripsi.
+
+Apa kamu ingin mengenkripsi atau mendekripsi suatu pesan?
+dekripsi
+Masukkan pesanmu:
+Haghx zrznunzv ncn vgh erxhefvs, xnzh unehf zratregv xbafrc erxhefvs.
+Masukkan bilangan kunci (1-26)
+13
+Pesan hasil pergeserannya adalah:
+Untuk memahami apa itu rekursif, kamu harus mengerti konsep rekursif.
+
+Jika kamu tidak memasukkan kunci yang tepat, teks hasil dekripsinya akan seperti data acak:
+
+Apa kamu ingin mengenkripsi atau mendekripsi suatu pesan?
+d
+Masukkan pesanmu:
+Haghx zrznunzv ncn vgh erxhefvs, xnzh unehf zratregv xbafrc erxhefvs.
+Masukkan bilangan kunci (1-26)
+7
+Pesan hasil pergeserannya adalah:
+Atzaq sksgngso gvg oza xkqaxyol, qgsa ngxay sktmkxzo qutykv xkqaxyol.
+
+Sumber Kode Sandi Caesar
+
+Berikut adalah sumber kode program Sandi Caesar. Setelah kamu mengetikkan kode ini, simpan sebagai sandi.py. Jjika kamu mendapatkan error setelah mengetikkannya, coba bandingkan dengan kode dari buku ini dengan perangkat online di http://invpy.com/diff/sandi.
+
+sandi.py
+ 1. # Sandi Caesar
+ 2. 
+ 3. MAX_KEY_SIZE = 26
+ 4. 
+ 5. def getMode():
+ 6.     while True:
+ 7.         print('Apa kamu ingin mengenkripsi atau mendekripsi suatu pesan?')
+ 8.         mode = input().lower()
+ 9.         if mode in 'enkripsi e dekripsi d'.split():
+10.             return mode
+11.         else:
+12.             print('Masukkan "enkripsi" atau "e" atau "dekripsi" atau "d".')
+13. 
+14. def getMessage():
+15.     print('Masukkan pesanmu:')
+16.     return input()
+17. 
+18. def getKey():
+19.     key = 0
+20.     while True:
+21.         print('Masukkan bilangan kunci (1-%s)' % (MAX_KEY_SIZE))
+22.         key = int(input())
+23.         if (key >= 1 and key <= MAX_KEY_SIZE):
+24.             return key
+25. 
+26. def getTranslatedMessage(mode, message, key):
+27.     if mode[0] == 'd':
+28.         key = -key
+29.     translated = ''
+30. 
+31.     for symbol in message:
+32.         if symbol.isalpha():
+33.             num = ord(symbol)
+34.             num += key
+35. 
+36.             if symbol.isupper():
+37.                 if num > ord('Z'):
+38.                     num -= 26
+39.                 elif num < ord('A'):
+40.                     num += 26
+41.             elif symbol.islower():
+42.                 if num > ord('z'):
+43.                     num -= 26
+44.                 elif num < ord('a'):
+45.                     num += 26
+46. 
+47.             translated += chr(num)
+48.         else:
+49.             translated += symbol
+50.     return translated
+51. 
+52. mode = getMode()
+53. message = getMessage()
+54. key = getKey()
+55. 
+56. print('Pesan hasil pergeserannya adalah:')
+57. print(getTranslatedMessage(mode, message, key))
+
+Bagaimana Kode Bekerja
+
+Proses enkripsi dan dekripsi saling berkebalikan dan banyak menggunakan kode yang sama. Mari lihat bagaimana tiap baris bekerja.
+
+ 1. # Sandi Caesar
+ 2. 
+ 3. MAX_KEY_SIZE = 26
+
+Baris pertama adalah komentar. MAX_KEY_SIZE adalah variabel yang menyimpan bilangan bulat 26. Variabel ini akan mengingatkanmu bahwa kunci yang digunakan sandi harus antara 1 dan 26.
+
+Memilih antara Enkripsi atau Dekripsi
+
+ 5. def getMode():
+ 6.     while True:
+ 7.         print('Apa kamu ingin mengenkripsi atau mendekripsi suatu pesan?')
+ 8.         mode = input().lower()
+ 9.         if mode in 'enkripsi e dekripsi d'.split():
+10.             return mode
+11.         else:
+12.             print('Masukkan "enkripsi" atau "e" atau "dekripsi" atau "d".')
+
+fungsi getMode() akan membiarkan pengguna mengetikkan mode enkripsi atau dekripsi untuk program. Nilai yang dikembalikan input() dan lower() disimpan dalam variabel mode. Kondisi pernyataan if mengecek apakah string yang disimpan dalam mode ada dalam list yang dikembalikan 'enkripsi e dekripsi d'.split().
+list itu adalah ['enkripsi', 'e', 'dekripsi', 'd'], tetapi lebih mudah bagi programmer untuk menulis 'enkripsi e dekripsi d'.split() karena tidak harus menulis semua tanda kutip dan koma. Gunakanlah cara yang termudah untukmu; keduanya menghasilkan nilai list yang sama.
+Fungsi ini akan mengembalikan nilai mode jika mode sama dengan 'enkripsi', 'e', 'dekripsi', atau 'd'.  
+
+Mengambil Pesan dari Pemain
+
+14. def getMessage():
+15.     print('Masukkan pesanmu:')
+16.     return input()
+
+Fungsi getMessage() akan mengambil pesan yang akan dienkripsi atau didekripsi dari pengguna, lalu mengembalikannya.
+
+Mengambil Kunci dari Pemain
+
+18. def getKey():
+19.     key = 0
+20.     while True:
+21.         print('Masukkan bilangan kunci (1-%s)' % (MAX_KEY_SIZE))
+22.         key = int(input())
+23.         if (key >= 1 and key <= MAX_KEY_SIZE):
+24.             return key
+
+Funsi getKey() akan mengambil kunci yang dimasukkan pemain yang akan digunakan untuk enkripsi atau dekripsi. Putaran while akan memastikan bahwa putaran tetep berjalan samapi pengguna memasukkan kunci yang valid.
+Di sini kunci valid adalah bilangan bulat antara 1 dan 26 (ingat bahwa MAX_KEY_SIZE berisi 26). Lalu fungsi ini mengembalikan kunci ini. Baris 22 mengeset nilai yang dimasukkan pengguna menjadi versi bilangan bulat, jadi getKey() akan mengembalikan bilangan bulat.
+
+Enkripsi dan Dekripsi Pesan dengan Kunci yang Diberikan
+
+26. def getTranslatedMessage(mode, message, key):
+27.     if mode[0] == 'd':
+28.         key = -key
+29.     translated = ''
+
+getTranslatedMessage() melakukan enkripsi atau dekripsi. Fungsi ini punya tiga parameter.
+
+•   mode untuk menandai apakah fungsi harus mengenkripsi atau mendekripsi pesan.
+•   message, yaitu pesan untuk dienkripsi atau dekripsi.
+•   key, yaitu kunci yang digunakan sandi.
+
+Baris 27 mengecek apakah huruf pertama dalam variabel mode sama dengan string 'd'. Jika ya, maka program akan dalam mode dekripsi. Satu perbedaan antara mode enkripsi dan dekripsi adalah bahwa dalam mode dekripsi kunci sama dengan nilai negatifnya. Jika kunci sama dengan 22, maka mode dekripsi mengeset kunci sama dengan -22. Alasannya akan dijelaskan kemudian.
+Variabel translated adalah string yang menyimpan hasilnya, yaitu tekssandi (mode enkripsi) atau teksdasar (mode dekripsi). Awalnya akan berisi string kosong dan selama proses penyandian karakter-karakter akan diserangkaikan padanya. 
+
+Method string isalpha()
+
+Method string isalpha() akan mengembalikan True jika string adalah huruf alfabet. Jika string mengandung karakter yang bukan huruf, maka isalpha() akan mengembalikan nilai False. Coba masukkan kode berikut dalam shell interaktif:
+
+>>> 'Halo'.isalpha()
+True
+>>> 'Empat puluh dua'.isalpha()
+False
+>>> 'Empatpuluhdua'.isalpha()
+True
+>>> '42'.isalpha()
+False
+>>> ''.isalpha()
+False
+
+Seperti yang kamu lihat, 'Empat puluh dua'.isalpha() mengembalikan False karena 'Empat puluh dua' mengandung spasi yang bukan merupakan huruf alfabet. 'Empatpuluhdua'.isalpha() mengembalikan True karena string itu tidak mengandung spasi.
+'42'.isalpha() mengembalikan False karena baik '4' dan '2' adalah bukan alfabet. Dan ''.isalpha() sama dengan False karena isalpha hanya mengembalikan True jika string hanya terdiri dari huruf alfabet dan tidak kosong.
+Method isalpha() digunakan pada beberapa baris berikutnya.
+
+31.     for symbol in message:
+32.         if symbol.isalpha():
+33.             num = ord(symbol)
+34.             num += key
+
+Putaran for pada baris 31 mengiterasi setiap huruf (disebut simbol) dalam string message. Pada setiap iterasi, variabel symbol akan berisi satu huruf dalam message.
+Baris 32 ditulis karena hanya huruf yang akan dienkripsi atau didekripsi. Bilangan, kata hubung, dan lainnya akan tetap sama. Variabel num akan berisi bilangan ordinal dari huruf yang disimpan di symbol. Baris 34 kemudian "menggeser" nilai dalam num sejauh nilai key.
+
+Method string isupper() dan islower()
+
+Method string isupper() dan islower() (yang ada di baris 36 dan 41) bekerja mirip seperti method isdigit() dan isalpha().
+Method isupper() akan mengembalikan True jika objek string yang memanggilnya mengandung paling tidak satu huruf kapital dan tidak ada huruf kecil. Method islower() akan mengembalikannya True jika objek string yang memanggilnya mengandung paling tidak satu huruf kecil dan tidak ada huruf kapital. Jika tidak kedua method yang mengembalikan False.
+Coba masukkan kode berikut dalam shell interaktif:
+
+>>> 'HALO'.isupper()
+True
+>>> 'hello'.isupper()
+False
+>>> 'hello'.islower()
+True
+>>> 'Hello'.islower()
+False
+>>> 'LIHAT DI BELAKANGMU!'.isupper()
+True
+>>> '42'.isupper()
+False
+>>> '42'.islower()
+False
+>>> ''.isupper()
+False
+>>> ''.islower()
+False
+
+Mengenkripsi atau Mendekripsi Setiap Huruf
+
+36.             if symbol.isupper():
+37.                 if num > ord('Z'):
+38.                     num -= 26
+39.                 elif num < ord('A'):
+40.                     num += 26
+
+Baris 36 mengecek apakah variabel symbol adalah huruf kapital. Jika ya, ada dua kasus yang harus dipertimbangkan. Bagaimana jika symbol berisi 'Z' dan kuncinya sama dengan 4? Jika demikian, maka nilai num akan sama dengan karakter '^' (ordinal '^' adalah 94). Namun, tanda topi ^ bukanlah suatu huruf. Kamu harus "melipat" hasil penyandian ke awal alfabet.
+Cek apakah num bernilai lebih besar  daripada nilai ASCII untuk 'Z'. Jika ya, maka kurangi num dengan 26 (karena total alfabet ada 26). Setelah pengurangan, nilai num adalah 68. Nilai ini adalah ASCII untuk 'D'.
+
+41.             elif symbol.islower():
+42.                 if num > ord('z'):
+43.                     num -= 26
+44.                 elif num < ord('a'):
+45.                     num += 26
+
+Jika simbol adalah huruf kecil, kode menjalankan kode yang mirip dengan kode pada baris 36 sampai 40. Perbedaannya adalah sekarang yang digunakan adalah ord('z') dan ord('a'), bukan ord('Z') dan ord('A').
+Dalam mode dekripsi, kunci bernilai negatif. Kasus spesialnya adalah ketika num -= 26 lebih kecil dari nilai ASCII untu 'a'. Pada kasus ini, tambahkan 26 untuk "melipat" ke akhir alfabet.
+
+47.             translated += chr(num)
+48.         else:
+49.             translated += symbol
+
+Baris 47 menyerangkaikan karakter hasilnya pada variabel string translated.
+Jika simbol bukan merupakan huruf kapital atau huruf kecil, maka baris 48 langung menyerangkaikan simbol aslinya pada string translated. Jadi tanda spasi, bilangan, tanda hubung, dan karakter lainnya tidak akan diolah.
+
+50.     return translated
+
+Baris terakhir fungsi getTranslatedMessage() mengembalikan string translated.
+
+Awal Program
+
+52. mode = getMode()
+53. message = getMessage()
+54. key = getKey()
+55. 
+56. print('Pesan hasil pergeserannya adalah:')
+
+Program dimulai dengan memanggil ketiga fungsi yang didefinisikan sebelumnya untuk mendapatkan mode, message, dan key dari pengguna. Ketika variabel ini dilemparkan ke fungsi getTranslatedMessage() yang kembaliannya (string translated) akan dicetak pada layar.
+
+Brute Force
+
+Itulah keseluruhan Sandi Caesar. Mungkin, sandi ini akan tidak dimengerti oleh orang yang tidak tahu kriptografi, tetapi sandi ini tidak akan tetap rahasia di tangan seseorang yang tahu kritanalisi. Sementara kriptografi adalah ilum untuk membuat kode rahasia, kritanalisi adalah ilmu untuk memecahkan kode rahasia.
+
+Apa kamu ingin mengenkripsi atau mendekripsi suatu pesan?
+e 
+Masukkan pesanmu:
+Ada 10 tipe orang di bumi. Mereka yang tahu biner dan yang tidak.
+Masukkan bilangan kunci (1-26)
+8
+Pesan hasil pergeserannya adalah:
+Ili 10 bqxm wzivo lq jcuq. Umzmsi givo bipc jqvmz liv givo bqlis.
+
+Poin kriptografi adlaah bahwa jika seseorang yang tidak diinginkan mendapatkan pesan terenkripsi, maka orang itu harus tidak bisa membaca pesan aslinya. Misalkan kamu adalah si pemecah kode dan hanya punya tekssandi ini:
+
+Ili 10 bqxm wzivo lq jcuq. Umzmsi givo bipc jqvmz liv givo bqlis.
+
+Brute force adalah suatu teknik yang mencoba semua kemungkinan kunci sampai kamu menemukan satu yang benar. Karena hanya ada 26 kunci yang mungkin, memecahkan sandi Caesar dapat dapat dilakukan dengan mudah. Program brute force ini dapat melihat kunci yang mendekripsi pesan ke bahasa Indonesia. Mari coba buat fitur ini pada program.
+
+Menambahkan Mode Brute Force
+
+Pertama, ubah baris 7, 9, dan 12 (dalam fungsi getMode()), sehingga menjadi seperti berikut ini:
+
+ 5. def getMode():
+ 6.     while True:
+ 7.         print('Apa kamu ingin mengenkripsi atau mendekripsi atau brute force suatu pesan?')
+ 8.         mode = input().lower()
+ 9.         if mode in 'enkripsi e dekripsi d brute b'.split():
+10.             return mode
+11.         else:
+12.             print('Masukkan "enkripsi" atau "e" atau "dekripsi" atau "d" atau "brute" atau "b".')
+
+Dengan perubahan ini pengguna dapat memilih "brute force" atau "b" sebagai mode program.
+Ubah dan tambahkan perubahan berikut pada bagian utama program:
+
+52. mode = getMode()
+53. message = getMessage()
+54. if mode[0] != 'b':
+55.     key = getKey()
+56.
+57. print('Pesan hasil pergeserannya adalah:')
+58. if mode[0] != 'b':
+59.     print(getTranslatedMessage(mode, message, key))
+60. else:
+61.     for key in range(1, MAX_KEY_SIZE + 1):
+62.         print(key, getTranslatedMessage('dekrip', message, key))
+
+Perubahan ini akan meminta kunci jika pengguna tidak meilih mode "brute force". Pada kasus ini pemanggilan getTranslatedMessage() dibuat dan string translated ditampilkan.
+Namun, jika pengguna memasukkan mode "brute force", maka getTranslatedMessage() akan diputar menurut urutan alfabet; dari 1 sampai MAX_KEY_SIZE (26). Ingat bahwa fungsi range() mengembalikan satu list bilangan bulat sampai, tapi tidak termasuk nilai di parameter kedua. Inilah sebabnya yang dilemparkan perlu + 1. Program akan mencetak semua pesan olahan yang mungkin (termasuk bilangan yang digunakan sebagai kunci). Berikut adalah contoh hasil melarikan program yang sudah dimodifikasi:
+
+Apa kamu ingin mengenkripsi atau mendekripsi atau brute force suatu pesan?
+b
+Masukkan pesanmu:
+Ili 10 bqxm wzivo lq jcuq. Umzmsi givo bipc jqvmz liv givo bqlis.
+Pesan hasil pergeserannya adalah:
+1 Hkh 10 apwl vyhun kp ibtp. Tlylrh fhun ahob ipuly khu fhun apkhr.
+2 Gjg 10 zovk uxgtm jo haso. Skxkqg egtm zgna hotkx jgt egtm zojgq.
+3 Fif 10 ynuj twfsl in gzrn. Rjwjpf dfsl yfmz gnsjw ifs dfsl ynifp.
+4 Ehe 10 xmti sverk hm fyqm. Qivioe cerk xely fmriv her cerk xmheo.
+5 Dgd 10 wlsh rudqj gl expl. Phuhnd bdqj wdkx elqhu gdq bdqj wlgdn.
+6 Cfc 10 vkrg qtcpi fk dwok. Ogtgmc acpi vcjw dkpgt fcp acpi vkfcm.
+7 Beb 10 ujqf psboh ej cvnj. Nfsflb zboh ubiv cjofs ebo zboh ujebl.
+8 Ada 10 tipe orang di bumi. Mereka yang tahu biner dan yang tidak.
+9 Zcz 10 shod nqzmf ch atlh. Ldqdjz xzmf szgt ahmdq czm xzmf shczj.
+10 Yby 10 rgnc mpyle bg zskg. Kcpciy wyle ryfs zglcp byl wyle rgbyi.
+11 Xax 10 qfmb loxkd af yrjf. Jbobhx vxkd qxer yfkbo axk vxkd qfaxh.
+12 Wzw 10 pela knwjc ze xqie. Ianagw uwjc pwdq xejan zwj uwjc pezwg.
+13 Vyv 10 odkz jmvib yd wphd. Hzmzfv tvib ovcp wdizm yvi tvib odyvf.
+14 Uxu 10 ncjy iluha xc vogc. Gylyeu suha nubo vchyl xuh suha ncxue.
+15 Twt 10 mbix hktgz wb unfb. Fxkxdt rtgz mtan ubgxk wtg rtgz mbwtd.
+16 Svs 10 lahw gjsfy va tmea. Ewjwcs qsfy lszm tafwj vsf qsfy lavsc.
+17 Rur 10 kzgv firex uz sldz. Dvivbr prex kryl szevi ure prex kzurb.
+18 Qtq 10 jyfu ehqdw ty rkcy. Cuhuaq oqdw jqxk ryduh tqd oqdw jytqa.
+19 Psp 10 ixet dgpcv sx qjbx. Btgtzp npcv ipwj qxctg spc npcv ixspz.
+20 Oro 10 hwds cfobu rw piaw. Asfsyo mobu hovi pwbsf rob mobu hwroy.
+21 Nqn 10 gvcr benat qv ohzv. Zrerxn lnat gnuh ovare qna lnat gvqnx.
+22 Mpm 10 fubq admzs pu ngyu. Yqdqwm kmzs fmtg nuzqd pmz kmzs fupmw.
+23 Lol 10 etap zclyr ot mfxt. Xpcpvl jlyr elsf mtypc oly jlyr etolv.
+24 Knk 10 dszo ybkxq ns lews. Wobouk ikxq dkre lsxob nkx ikxq dsnku.
+25 Jmj 10 cryn xajwp mr kdvr. Vnantj hjwp cjqd krwna mjw hjwp crmjt.
+26 Ili 10 bqxm wzivo lq jcuq. Umzmsi givo bipc jqvmz liv givo bqlis.
+
+Setelah melihat setiap baris, kamu lihat bahwa pesan pada baris ke-8 tidak acak, tapi dalam bahasa Indonesia! Seorang ahli kritanalisi dapat mendeduksikan bahwa kunci asli untuk pesan yang dienkripsi ini adalah 8. Proses brute force ini akan susah dilakukan pada massa Caesar dan Kerajaan Romawi, tetapi sekarang sudah ada komputer yang dapat melakukan proses seperti ini dengan cepat, bahkan jika ada jutaan atau milyaran kunci. Kamu juga dapat menulis sebuah program yang dapat mengenali pesan jika ditulis dalam Bahasa Indonesia, sehingga tidak perlu melihat seluruh pesan acak yang dihasilkan.
+
+Ringkasan
+
+Komputer jago melakukan perhitungan matematika. Ketika kamu membuat sistem yang dapat menerjemahkan satu bagian informasi menjadi bilangan (seperti yang dilakukan teks dan ASCII atau sistem ruang dan koordinat), komputer akan memprosesnya dengan cepat dan efisien.
+Meskipun program Sandi Caesar ini dapat mengenkripsi pesan yang akan membuatnya tetap rahasia dari orang yang hanya bisa menggunakan pinsil dan kertas, sandi ini tidak akan tetap rahasia dari orang yang bisa membuat komputer memproses informasi. (Mode brute force membuktikan hal ini.)

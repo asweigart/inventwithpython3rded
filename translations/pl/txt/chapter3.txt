@@ -1,0 +1,238 @@
+    Rozdział 3
+
+    Pisanie programów
+
+Tematy omówione w tym rozdziale:
+
+•   Przepływ sterowania
+•   Napisy
+•   Łączenie napisów
+•   Typy danych (takie jak napisy, lub liczby całkowite)
+•   Użycie IDLE do pisania kodów źródłowych
+•   Zapisywanie i uruchamianie programów w IDLE
+•   Funkcja print()
+•   Funkcja input()
+•   Komentarze
+•   Nazywanie zmiennych
+•   Rozróżnianie wielkości liter
+
+Na razie wystarczy już matematyki. Python to coś więcej, niż kalkulator. Zobaczmy co Python może zrobić z tekstem. W tym rozdziale nauczysz suę jak zachować napis w zmiennej, łączyć napisy i wyświetlać je na ekranie. Prawie wszystkie programy wyświetlają napisy użytkownikowo, a użytkownik wprowadza napisy do twojego programu przez klawiaturę. Stworzysz także swój pierwszy program. Ten program wyświetli powitanie: “Witaj świecie!” i spyta o twoje imię.
+
+Napisy
+
+W Pythonie wartości tekstowe są nazywane napisami, lub łańcuchami (ang: string). Napisy moga być używane podobnie do liczb całkowitych, lub zmiennoprzecinkowych. Możesz zapisywać je w zmiennych. W kodzie napist rozpoczynają się i kończą pojedynczym znakiem cudzysłowia ('). Spróbuj wpisać ten kod w powłoce:
+
+>>> spam = 'witaj'
+
+Pojedyncze cudzysłowia mówią Pythonowi gdzie napis się zaczyna i kończy. Nie są one częścią napisu. Gdy już wprowadziłeś spam w powłoce możesz zobaczyć zawartość zmiennej spam (napis 'witaj'). Pamiętaj, że Python wylicza zmienne do wartości, jaką zapisze w zmiennej. W tym wypadki jest to napis 'witaj':
+
+>>> spam = 'witaj'
+>>> spam
+'witaj'
+
+Napisy mogą zawierać dowolny znak z klawiatury. Tu są przykłady napisów:
+
+'witaj'
+'Jak się masz!'
+'KOCIAKI'
+'7 jabłek, 14 pomarańczy, 3 cytryny'
+'W sławnym mieście Pacanowie tacy sprytni są kowale.'
+'Dawno, dawno temu w odległej galaktyce...'
+'O*&#wY%*&OCfsdYO*&gfC%YO*&%3yc8r2'
+
+Napisy można łączyć za pomocą operatorów by tworzyć wyrażenia, podobnie jak było to z liczbami.
+
+Łączenie napisów
+
+Spróbuj połączyć dwa napisy operatorem +. Nazywa sie to łączniem napisów. Spróbuj wprowadzić 'witaj' + 'świecie!' w powłoce:
+
+>>> 'witaj' + 'świecie!'
+'witajświecie!'
+
+Wyrażenie jest obliczane do pojedynczego napisu: 'witajświecie!'. Aby słowa były oddzielone wstaw spację na końcy napisu 'witaj' , przed cudzysłowem:
+
+>>> 'witaj ' + 'świecie!'
+'witaj świecie!'
+
+Operator + działa inaczej dla napisów i inaczej dla liczb, bo są to różne typy danych. Wszystkie wartości mają swój typ. Typem dla wartości 'witaj' jest napis (ang: string). Typem wartości 5 jest liczba całkowita. Typ danej mówi Pythonowi jakie co operatory powinny zrobić by obliczyć wyrażenie. Oprator + połączy dwa napisy, ale doda liczby całkowite, lub zmiennoprzecinkowe.
+
+Pisanie programów w edytorze plikó IDLE
+
+Dotychczas wpisywałeś instrukcje w interaktywnej powłoce IDLE wykonując je pojedynczo. Jednak gdy piszesz program, wypisujesz wiele instrukcji i wykonujesz je razem. Napiszmy pierwszy program!
+
+IDLE ma wbudowany edytor plików. Kliknij na menu File (Plik) na górze okna Python Shell. Teraz wybierz New Window (Nowe okno). Pojawi się puste okno byś mógł wpisać w nim kod swojego programu.
+
+
+
+Rysunek 3-1: Okno edytora tekstu.
+
+Oba okna wyglądają podobnie, ale pamiętaj: okno powłoki ma znak zachęty >>>. Okno edytora plików go nie ma.
+
+witaj świecie!
+
+Tradycją programostów jest, by ich pierwszy program wyświetlał na ekranie napis "witaj świecie". Teraz stworzymy taki program.
+
+Kiedy wprowadzasz kod programu nie wpisuj numerów które są po lewej stronie kody. Są one po to, by w książce odnosić się do danej linii kodu. W dolnym prawym rogu okna edytora jest informacja gdzie znajduje się mrugający kursor. Rysunek 3-2 pokazuje przykład wskazania na położenie kursora w edytorze.
+
+
+
+Rysunek 3-2: Dolny prawy róg edytora tekstu pokazuje w jakiej linii jest kursor.
+
+hello.py
+
+Wprowadź następujący tekst w nowym oknie edytora tekstu. To jest tekst źródłowy programu. Zawiera on instrukcje jakie wykona Python, gdy proram zostanie uruchomiony. Pamiętaj, by nie wpisywać numerów linii!
+
+WAŻNA UWAGA! Programy w tej książe da się uruchomić jedynie z użyciem Pythona 3, a nie Pythona 2. Kiedy uruchomimy okno edytora IDLE, pokaż on coś w stylu “Python 3.4.0” an górze okna. Jeśli masz zainstalowanego Pythona 2, to możesz mieć także zainstalowanego Pythona 3. Aby pobrać Pythona 3 odwiedź https://python.org/download/.
+
+1. # Ten program wypisuje napisy i pyta o imię
+2. print('Witaj świecie!')
+3. print('Jak masz na imię?')
+4. mojeImie = input()
+5. print(mojeImie + ', miło Cię poznać')
+
+
+Edytor IDLE będzie używał różnych kolorów dla różnych typów instrukcji. Gdy skończysz wpisywanie kody okno edytora będzie wyglądało podobnie do:
+
+
+
+Rysunek 3-3: Wygląd okna edytora po wpisaniu kodu.
+
+Zapisywanie programu
+
+Jak już skończysz wprowadzanie kodu źródłowego zapisz go klikając menu File (Plik) na górze okna edytora. Później wybierz Save As (Zapisz jako). Rysunek 3-4 pokazuje otwarte okno Save As. Wpisz hello.py w polu File name (Nazwa pliku) i kliknij Save (Zapisz). Albo wciścij Ctrl-S co jest skrótem klawiaturowym tej operacji.
+
+
+
+Rysunek 3-4: Zapisywanie programu
+
+Powinieneś zapisywać programy w trakcie ich pisania. W ten sposób, jeśli komputer ulegnie awarii, albo przez pomyłkę wyjdziesz z edytora, to nie stracisz wiele pracy.
+
+Otwieranie programu jaki zapisałeś
+
+By wczytać zapisany program kliknij File ► Open (Plik ► Otwórz). Wybierz hello.py w oknie jakie się pojawu i kliknij przycisk Open (Otwórz). Zapisany wcześniej program hello.py pojawi się w oknie edytora.
+
+Nadszedł czas uruchomienia programu. Kliknij File ► Run ► Run Module (Plik ► Uruchom ► Uruchom modłuł), lub wciśnij F5 będąc w oknie edytora. Twój program zostanie uruchomiony w oknie interaktywnej powłoki.
+
+Podaj swoje imię, gdy program o nie spyta. Będzie to wyglądało jak na rysunku 3-5:
+
+
+
+Rysunek 3-5: Interaktywna powłoka po uruchomieniu hello.py.
+
+Kiedy wpiszesz swoje imię i naciśniesz ENTER origram cię pozdrowi używając twojego imienia. Gratulacje! Właśnie napisałeś swój pierwszy program i teraz jesteś programistą. Ponownie naciśnij F5 i podaj inne imię.
+
+Jeśli uzyskasz błąd, to porównaj swój kod z kodem z książki za pomocą narzędzia do porównywania ze strony http://invpy.com/diff/hello.
+
+Jeśli błąd wygląda jak:
+
+Witaj świecie!
+Jak masz na imię?
+Albert
+Traceback (most recent call last):
+  File "C:/Python26/test1.py", line 4, in <module>
+    mojeImie = input()
+  File "<string>", line 1, in <module>
+NameError: name 'Albert' is not defined
+
+...to oznacza, że używasz Pythona 2 zamiast Pythona 3. Zainstaluj Pythona 3 ze strony http://python.org. Potem urucho program ponownie, tym razem za pomocą Pythona 3.
+
+Jak działa program “Witaj świecie”
+
+Każda linia kodu jest instrukcją interpretowaną przez Pythona. Te instrukcje tworzą program. Instrukcje w programie sa jak kolejne kroki w przepisie na ciasto. Każda instrukcja jest wykonywana po kolei zaczynając og góry programu.
+
+Krokowe wykonywanie programu jest nazywane przepływem wykonania, lub po prostu wykonaniem. Kiedy program rozpoczyna pracę, to wykonuje pierwszą linię. Potem idzie w dół do następnej instrukcji.
+
+Przypatrzmy się każdej linii kodu i omówmy co one robą. Zaczniemy od linii o numerze 1.
+
+Komentarze
+
+1. # Ten program wypisuje napisy i pyta o imię
+
+Ta linia to komentarz. Dowolny tekst po znaku # (znanym także jako hasz, lub płotek) jest komentarzem. Komentarze nie są dla Pythona, ale dla ciebie, programisty. Python ignoruje komentarze. Komentarze są notatkami mówiącymi co robi kod i są skierowane dla ciebie, lub dla innych programistów analizujących kod źródłowy. Aby w tej książce było łatwiej czytać kod, komentarze są w jasno szarym kolorze.
+
+programiści zwykle wstawiają komentarze na górze swojego programu, by nadać mu tytuł. Program IDLEwyświetla komentarze kolorem czerwonym by je wyróżnić.
+
+Funkcje
+
+Funkcja jest rodzajem mini-programu w twoim programie. Funkcja zawiera instrukcje do wywołania gdy funkcja zostanie wywołana. Python dostarcza wiele wbudowanych funkcji. Dwie z nich: print() i input(), zaraz omówimy. Świetną rzeczą w funkcjach jest to, że potrzebujesz tylko wiedzę na temat tego, co funkcja robi, a nie jak to robi.
+
+Wywołanie funkcji to fragment kodu który mówi Pythonowi by wykonac kod znajdujący się w funkcji. Przykładowo program wywołuje funkcję print() by wyświetlić napis na ekranie. Funkcja print() pobiera napis jaki wpisałeś między nawiasami jako wejście i wypisuje go na ekranie. Aby wyposać Witaj świecie! na ekranie wspisz nazwę funkcji: print, potem otwórz nawias, wpisz napis 'Witah świecie!' i zamknij nawias.
+
+Funkcja print()
+
+2. print('Witaj świecie!')
+3. print('Jak masz na imię?')
+
+Linie 2 i 3 są wywołaniami funkcji print(). Wartość pomiędzy nawiasami to argument. Argumentem funkcji print() w linii 2 jest 'Witaj świecie!'. Argumentem funkcji pront() w linii 3 jest 'Jak masz na imię?'. Nazywane to jest przekazywaniem argumentów do funkcji print().
+
+W tej książce nazwy funkcji mają nawiasy na końcu. Dzięki temu jasne jest, że mamy do czynienia z funkcją o nazwie print(), a nie ze zmienną print. To troche jak cudzysłowia otaczające numer '42', które mówią Pythonowi, że ma do czynienia z napisem '42', a nie z liczbą całkowitą 43.
+
+Funkcja input()
+
+4. mojeImie = input()
+
+Ta linia ma dyrektywę podstawienia ze zmienną (mojeImie) i wywołaniem funkcji (input()). Kiedy wołana jest funkcja input(), program czeka, aż użytkownik wprowadzi tekst. Tekst jaki wprowadzi użytkownik staje się wartością jaką zwraca wywołanie funkcji. Wywołanie funkcji może być użyte w wyrażenia w dowolnym miejscu, gdzie można użyć wartości.
+
+Wartość wyliczana przez funkcję jest wartością zwracaną. (Czyli “wartość zwracana przez funkcję” oznacza to samo co “wartość do jakiej funkcja jest wyliczana”.) W tym wypadku wartością zwracaną przez funkcję input()jest napis jaki wpisał użytkownik jako swoje imię. Jeśli użytkownik wpisał “Albert” funkcja input() zwraca napis 'Albert'. Wygląda to tak:
+
+mojeImie = input()
+            ▼
+mojeImie = 'Albert'
+
+W ten sposób napis 'Albert' zostaje zapisany w zmienney mojeImie.
+
+Używanie wyrażeń w wywołaniach funkcji
+
+5. print(mojeImie + ', miło Cię poznać')
+
+Ostatnia linia jest kolejnym wywołanienm funkcji print(). Wyrażenienie mojeImie + ', miło Cię poznać' jest przekazywane do print(). Argumenty są zawsze pojedynczymi wartościami. Python najpierw wyliczy te wyrażenie, a potem przekaże je funkcji jako argument. Jeśli 'Albert' jest zapisany w mojeImie, wyliczanie wygląda tak:
+
+print(mojeImie + ', miło Cię poznać')
+                         ▼
+print('Albert' + ', miło Cię poznać')
+                         ▼
+print('Albert, miło Cię poznać')
+
+W ten sposób program pozdrawia użytkownika używając jego imienia.
+
+Zakończenie działania programu
+
+Jak program wykonana ostatnią linię, to kończy swoją pracę, lub wychodzi. Python zapomina wszystkie zmienne włącznie z napisem zapamiętanym w mojeImie. Jeśli uruchomisz program znowu i podasz inne imię, to program uzna, że ten inny napis jest twoim iminiem.
+
+Witaj świecie
+Jak masz na imię?
+Karolina
+Karolina, miło Cię poznać
+
+
+Pamiętaj, że komputer zrobi dokładnie to, co zaprogramujesz. Komputery są bezmyślne. Nie przejmują się czy wpisałeś swoje imię, imię kogoś innego, czy coś zupełnie głupiego. Możesz wpisać dowolną rzecz. Komputer potraktuje to tak samo:
+
+Witaj świecie
+Jak masz na imię?
+poop
+poop, miło Cię poznać
+
+Nazwy zmiennych
+
+Nazywanie zmiennych nazwami opisowymi sprawia, że łatwiej zrozumieć co program robi. Wyoraż sobie przeprowadzke do nowego domu, gdzie każdy z kartonów opisałeś “rzeczy”. To nie będzie ułatwiało przeprowadzki!
+
+Zamiast mojeImie, mogłeś nazwać tą zmienną mieszko1 albo iMiE. Dla Pythona nie jest to ważne. Wykona program w identyczny sposób.
+
+Wielkość liter w nazwach zmiennych ma znaczenie. Oznacza to, że ta sama nazwa napisana z użyciem innej wielkości liter tworzy różne zmienne. Tak więc spam, SPAM, Spam i sPAM to cztery różne zmienne w Pythonie. Każda z nich zawiera swoją własną wartość.
+
+Złym pomysłem jest mieć dwie nazwy zmiennych różniące się wielkością liter. Jeśli zapiszesz swoje imię w zmienne nazwa, a nazwisko w zmiennej NAZWA, będzie to mylące gdy po kilku tygodniach będziesz czytał swój kod. Czy nazwa oznacza imię, a NAZWA nazwisko, czy odwrotnie?
+
+Zwykle w nazwach zmiennych używa się małych liter. Jeśli w nazwie zmiennej jest więcej słów można użyć dużych liter na początku każdego kolejnego słowa. Dzięki temu kod będzie bardziej czytelny. Przykładowo zmienna coJadlemNaSniadanie jest łatwiejsza do odczytania niż cojadlemnasniadanie. Taki jest zyczaj: opcjonalny, ale standardowy w programowaniu w Pythonie.
+
+W przykładach działających w powłoce interakcyjnej użyte są zmienne o nazwach: spam, eggs, ham i bacon (mielonka, jajka, szynka i bekon). Jest tak dlatego, że nazwy zmiennych w tych przykładach nie mają znaczenia. Jednak wszystkie programy w tej książce używają opisowych nazw zmiennych. Twoje programy także powinny używac opisowych nazw zmiennych.
+
+Podsumowanie
+
+Jak już nauczyłeś się o napisach i funkcjach możesz zacząć pisać programy które komunikaują się z użytkownikiem. Jest to ważne, bo tekst jest głównym sposoboem w jaki użytkownik i komputer komunikują się między sobą. Użytkownik wprowadza tekst za pomocą klawiatury funkcją input(), a komputer wyświetla tekst na ekranie funkcją print().
+
+Napisy są wartościami nowego typu danych. Wszystkie wartości mają swój typ i w Pythonie mamy wiele typów danych. Operator + może łączyć napisy.
+
+Zmienne pozwalają na zapamiętanie wartości, by użyć je w dalszej części programu. Funkcje są używane by wydzielić niektóre skomplikowane instrukcje jako część programu. Python ma wiele wbudowanych funkcji które poznasz w dalszej części książki. Zmienne i wywołania funkcji mogą być użyte w wyrażeniach tam, gdzie można użyć wartości.
+
+Instrukcje jakimi podąża aktualnie twój program w Pythonie to przepływ sterowania (wykonanie). W następnym rozdziale nauczymy się więcej o przepływie sterowania i o tym, że może ono iść różnymi ścieżkami, a nie tylko prostą ścieżką od góry do dołu programu. Jak tylko się tego nauczysz, to będziesz gotowy do tworzenia gier.
+

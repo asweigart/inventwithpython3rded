@@ -353,7 +353,7 @@ Starting at line 29, the code sets up some variables that track the movement of 
  30. moveRight = False
  31. moveUp = False
  32. moveDown = False
-The four variables have Boolean values to keep track of which of the arrow keys are being held down. For example, when the user pushes the left arrow key on her keyboard, moveLeft is set to True. When they let go of the key, moveLeft is set back to False.
+The four variables have Boolean values to keep track of which of the arrow keys are being held down. For example, when the user pushes the left arrow key on their keyboard, moveLeft is set to True. When they let go of the key, moveLeft is set back to False.
 Lines 34 to 43 are identical to code in the previous Pygame programs. These lines handle the start of the game loop and what to do when the user quits the program. We’ll skip the explanation for this code here since we have already covered it in the last chapter.
 Events and Handling the KEYDOWN Event
 Table 18-1: Events and what generates them.

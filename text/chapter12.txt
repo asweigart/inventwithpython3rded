@@ -29,7 +29,7 @@ By doing some math with the coordinate numbers, you can figure out the distances
 
 Negative Numbers
 
-Another concept that Cartesian coordinates use is negative numbers. Negative numbers are numbers that are smaller than zero. We put a minus sign in front of a number to show that it is a negative number. -1 is smaller than 0. And -2 is smaller than -1. And -3 is smaller than -2. If you think of regular numbers (called positive numbers) as starting from 1 and increasing, you can think of negative numbers as starting from -1 and decreasing. 0 itself isn’t positive or negative. In Figure 12-3, you can see the positive numbers increasing to the right and the negative numbers decreasing to the left:
+Another concept that Cartesian coordinates use is negative numbers. Negative numbers are numbers that are smaller than zero. You put a minus sign in front of a number to show that it is a negative number. -1 is smaller than 0. And -2 is smaller than -1. And -3 is smaller than -2. If you think of regular numbers (called positive numbers) as starting from 1 and increasing, you can think of negative numbers as starting from -1 and decreasing. 0 itself isn’t positive or negative. In Figure 12-3, you can see the positive numbers increasing to the right and the negative numbers decreasing to the left:
 
 Figure 12-3: A number line.
 
@@ -43,7 +43,7 @@ Subtraction is done by moving the white knight to the left. Subtraction means de
 Figure 12-5: Moving the white knight to the left subtracts from the coordinate.
 
 The white knight ends up at position -2. That means 4 - 6 equals -2.
-If we add or subtract a negative number, the white knight would move in the opposite direction. If you add a negative number, the knight moves to the left. If you subtract a negative number, the knight moves to the right. The expression -6 - -4 would be equal to -2. The knight starts at -6 and moves to the right by 4 spaces. Notice that -6 - -4 has the same answer as -6 + 4.
+If you add or subtract a negative number, the white knight would move in the opposite direction. If you add a negative number, the knight moves to the left. If you subtract a negative number, the knight moves to the right. The expression -6 - -4 would be equal to -2. The knight starts at -6 and moves to the right by 4 spaces. Notice that -6 - -4 has the same answer as -6 + 4.
 
 Figure 12-6: Even if the white knight starts at a negative coordinate, moving right still adds to the coordinate.
 
@@ -97,7 +97,7 @@ Coordinate System of a Computer Screen
 
 Figure 12-12: The Cartesian coordinate system on a computer screen.
 
-It is common that computer screens use a coordinate system that has the origin (0, 0) at the top left corner of the screen, which increases going down and to the right. There are no negative coordinates. Most computer graphics use this coordinate system, and we will use it in our games.
+It is common that computer screens use a coordinate system that has the origin (0, 0) at the top left corner of the screen, which increases going down and to the right. There are no negative coordinates. Most computer graphics use this coordinate system, and you will use it in this book’s games.
 
 Summary
 

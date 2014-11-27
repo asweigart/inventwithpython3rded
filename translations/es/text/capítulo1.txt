@@ -6,7 +6,7 @@ Temas Tratados En Este Capítulo:
 •   Descargar e instalar el intérprete de Python
 •   La consola interactiva IDLE
 •   Cómo usar este libro
-•   La página web de este libro en http://inventwithpython.com
+•   La página web de este libro en http://inventwithpython.com/es
 
 ¡Hola! Este libro te enseñará a programar creando videojuegos. Una vez que aprendas cómo funcionan los juegos en este libro, serás capaz de crear tus propios juegos. Todo lo que necesitas es una computadora, un software llamado el intérprete de Python, y este libro. El intérprete de Python es libre para descargar de Internet.
 
@@ -86,7 +86,7 @@ La primera línea continúa en el siguiente renglón y da el aspecto de que hubi
 
 Buscando Ayuda Online
 
-El sitio web de este libro es http://inventwithpython.com. Puedes encontrar varios recursos relacionados con este libro allí. Varios enlaces de este libro utilizan el dominio invpy.com para direcciones URL acortadas.
+El sitio web de este libro es http://inventwithpython.com/es. Puedes encontrar varios recursos relacionados con este libro allí. Varios enlaces de este libro utilizan el dominio invpy.com para direcciones URL acortadas.
 
 El sitio web subreddit en http://reddit.com/r/inventwithpython es un lugar estupendo para para hacer preguntas de programación relacionadas con este libro. Publica preguntas generales sobre Python en los subreddits LearnProgramming y LearnPython en http://reddit.com/r/learnprogramming y http://reddit.com/r/learnpython respectivamente.
 
@@ -94,7 +94,7 @@ Asimismo, envíame pot correo electrónico tus preguntas de programación a al@i
 
 Ten presente que hay formas inteligentes para hacer preguntas de programación que ayudan otros a ayudarte. Asegúrate de leer las secciones de Preguntas Frecuentes que estos sitios web tienen acerca de la forma correcta de publicar preguntas. Cuando hagas preguntas de programación, haz lo siguiente:
 
-•   Si estás escribiendo a mano los programas de este libro y obtienes un error, primero busca errores tipográficos con la herramienta diff en http://invpy.com/diff. Copia y pega tu código en la herramienta diff para encontrar las diferencias entre el código del libro y tu programa.
+•   Si estás escribiendo a mano los programas de este libro y obtienes un error, primero busca errores tipográficos con la herramienta diff en http://invpy.com/es/diff. Copia y pega tu código en la herramienta diff para encontrar las diferencias entre el código del libro y tu programa.
 •   Explica lo que estás intentando hacer cuando expliques el error. Esto permitirá a quien te ayuda saber si estás equivocándote por completo.
 •   Copia y pega el mensaje de error completo y tu código.
 •   Busca en la web para ver si alguien ya ha formulado (y respondido) tu pregunta.
@@ -103,10 +103,10 @@ Ten presente que hay formas inteligentes para hacer preguntas de programación q
 
 Traza de los Programas Online
 
-Examinar la traza de un programa significa moverse por el código de a una línea por vez, del mismo modo que lo ejecutaría una computadora. Visita http://invpy.com/traces para ver la traza correspondiente a cada programa de este libro. El sitio web contiene notas y recordatorios útiles a cada paso de la traza para explicar qué está haciendo el programa, para poder ayudarte a entender mejor por qué estos programas funcionan de la manera en que lo hacen.
+Examinar la traza de un programa significa moverse por el código de a una línea por vez, del mismo modo que lo ejecutaría una computadora. Visita http://invpy.com/es/traces para ver la traza correspondiente a cada programa de este libro. El sitio web contiene notas y recordatorios útiles a cada paso de la traza para explicar qué está haciendo el programa, para poder ayudarte a entender mejor por qué estos programas funcionan de la manera en que lo hacen.
 
 Resumen
 
 Este capítulo te ha ayudado a comenzar con el software Python mostrándote el sitio web http://python.org, de donde puedes descargarlo gratis. Luego de instalar y lanzar el software Python IDLE, estarás listo para aprender a programar a comenzando en el próximo capítulo.
 
-El sitio web de este libro en http://inventwithpython.com contiene más información sobre cada uno de los capítulos, incluyendo un sitio web de trazado en línea y una herramienta diff que puede ayudarte a entender los programas de este libro.
+El sitio web de este libro en http://inventwithpython.com/es contiene más información sobre cada uno de los capítulos, incluyendo un sitio web de trazado en línea y una herramienta diff que puede ayudarte a entender los programas de este libro.

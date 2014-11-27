@@ -59,7 +59,7 @@ HANGMANBILDER = ['''
 ord = 'anka apa babian bagge björn bäver duva fladdermus forell får get groda grävling gås haj hund hök iller kalkon kamel kanin katt kobra korp kråka lama lax lejon mullvad mulåsna mus mussla myra noshörning orm padda panda papegoja prärievarg puma pytonorm rådjur råtta räv sengångare skunk sköldpadda spindel stork svan säl tiger uggla utter val vattenödla varg vessla vombat zebra åsna älg ödla örn'.split()
 
 def slumpaOrd(ordlista):
-    # Den här funktionern slumpar fram en sträng ur den lista av strängar som skickats in.
+    # Den här funktionen slumpar fram en sträng ur den lista av strängar som skickats in.
     ordindex = random.randint(0, len(ordlista) - 1)
     return ordlista[ordindex]
 

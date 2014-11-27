@@ -1,0 +1,10 @@
+Rys. 4-2:
+...tu idź do środka bloku while.
+...tu wyjdź z bloku while.
+
+Rys. 4-3:
+fizzy
+słowow kluczowe if
+warunek
+słowo kluczowe while
+

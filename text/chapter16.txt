@@ -166,15 +166,15 @@ Game #9: X scored 41 points. O scored 22 points.
 X wins 5 games (50.0%), O wins 4 games (40.0%), ties for 1 games (10.0%) of 10.0 games total.
 
 Because the algorithm does have a random part, your run might not have the exact numbers as above.
-Printing things out to the screen slows the computer down, but now that we have removed that code, the computer can run an entire game of Reversi in about a second or two. Think about it: Each time the program printed out one of those lines it ran through an entire game, each game with about fifty or sixty moves!
+Printing things out to the screen slows the computer down, but now that you have removed that code, the computer can run an entire game of Reversi in about a second or two. Think about it: Each time the program printed out one of those lines it ran through an entire game, each game with about fifty or sixty moves!
 
 Percentages
 
 Figure 16-1: A pie chart with 10%, 15%, 25%, and 50% portions.
 
 Percentages are a portion of a total amount, and range from 0% to 100%. If you had 100% of a pie, you would have the entire pie. If you had 0% of a pie, you wouldn't have any pie at all. 50% of the pie would be half of the pie. A pie is a common image to use for percentages. In fact, there is a kind of chart called a pie chart which shows how much of the full total a certain portion is. Here is a pie chart with 10%, 15%, 25%, and 50% portions below. Notice that 10% + 15% + 25% + 50% adds up to 100%.
-We can calculate the percentage with division. To get a percentage, divide the part you have by the total, and then multiply by one hundred. For example, if X won 50 out of 100 games, you would calculate the expression 50 / 100, which would evaluate to 0.5. We multiply this by 100 to get a percentage (in this case, 50%).
-Notice that if X won 100 out of 200 games, we could calculate the percentage with 100 / 200, which would also evaluate to 0.5. Multiply 0.5 by 100 to get the percentage. This comes to 50%. Winning 100 out of 200 games is the same percentage (that is, the same portion) as winning 50 out of 100 games.
+You can calculate the percentage with division. To get a percentage, divide the part you have by the total, and then multiply by one hundred. For example, if X won 50 out of 100 games, you would calculate the expression 50 / 100, which would evaluate to 0.5. Multiply this by 100 to get a percentage (in this case, 50%).
+Notice that if X won 100 out of 200 games, you could calculate the percentage with 100 / 200, which would also evaluate to 0.5. Multiply 0.5 by 100 to get the percentage. This comes to 50%. Winning 100 out of 200 games is the same percentage (that is, the same portion) as winning 50 out of 100 games.
 
 Division Evaluates to Floating Point
 
@@ -223,7 +223,7 @@ Displaying the Statistics
 
 The code at the bottom of the program will show the user how many wins X and O had, how many ties there were, and how what percentages these make up. Statistically, the more games you run, the more accurate your percentages will be.
 If you only ran ten games, and X won three of them, then it would seem that X’s algorithm only wins 30% of the time. However, if you run a hundred, or even a thousand games, then you may find that X’s algorithm wins closer to 50% (that is, half) of the games.
-To find the percentages, we divide the number of wins or ties by the total number of games. We convert numGames to a float to ensure we do not use integer division in our calculation. Then we multiply the result by 100.
+To find the percentages, divide the number of wins or ties by the total number of games. We convert numGames to a float to ensure we do not use integer division in our calculation. Then we multiply the result by 100.
 However, we may end up with a number like 66.66666666666667. So we pass this number to the round() function with the second parameter of 2 to limit the precision to two decimal places, so it will return a float like 66.67 instead (which is much more readable).
 Let’s try another experiment. Run AISim2.py again, but this time have it run a hundred games:
 

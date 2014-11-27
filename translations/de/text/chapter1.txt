@@ -1,0 +1,113 @@
+    Kapitel 1
+    PYTHON INSTALLIEREN
+
+In diesem Kapitel behandelte Themen:
+
+•   Herunterladen und installieren des Python-Interpreters
+•   IDLEs interaktiver Kommandozeileninterpreter
+•   Wie dieses Buch verwendet werden sollte
+•   Die zum Buch gehörende Internetseite http://inventwithpython.com/de
+
+Hallo! Dieses Buch lehrt Dich die Programmierung anhand von Spieleentwicklung. Sobald Du erst ein Mal verstehst, wie die Spiele in diesem Buch funktionieren, wirst Du in der Lage sein, Deine eigenen zu kreieren. Alles was Du hierzu benötigst ist ein Computer, ein Programm namens “Python-Interpreter” und dieses Buch. Den Python-Interpreter gibt es kostenlos im Internet.
+
+Als ich ein Kind war lehrte mich ein Buch wie dieses, meine ersten Programme und Spiele zu entwickeln. Es war einfach und machte viel Spaß. Heute als Erwachsener bereitet mir die Programmierung immer noch viel Freude und ich werde zusätzlich dafür bezahlt. Aber selbst falls Du später einmal kein Programmierer werden solltest, so ist Programmierung dennoch eine nützliche Fertigkeit mit viel Spaßpotential.
+
+Computer sind faszinierende Maschinen und sie zu programmieren ist einfach. Wenn man ein Buch lesen kann, dann kann man auch einen Computer programmieren. Ein Computer-Programm besteht aus einer Reihe von Anweisungen, die der Computer versteht — genauso wie eine Geschichte aus einer Reihe von Sätzen besteht, die der Leser versteht. Video-Spiele sind nichts anderes als Computer-Programme, d.h. auch sie sind nur Reihen von Anweisungen.
+
+Um einen Computer zu befehligen, schreibt man ein Programm in einer Sprache, die der Computer versteht. Dieses Buch lehrt die Programmier-Sprache “Python”. Darüber hinaus gibt es noch viele andere Programmier-Sprachen wie z.B. “BASIC”, “Java”, “JavaScript”, “PHP” oder “C++”.
+
+Zu meiner Kindeszeit war BASIC aufgrund ihrer Einfachheit eine gängige erste Sprache, die man lernte. Seitdem wurden jedoch zahlreiche neue Programmiersprachen (wie z.B. Python) erfunden. Python ist nicht nur einfacher zu erlernen als BASIC, es ist zudem eine professionelle Programmier-Sprache, die von vielen Programmierern beruflich genutzt wird.
+
+Die Spiele, die wir in diesem Buch entwickeln werden, wirken simpel im Vergleich zu Titeln, wie sie für Xbox, Playstation oder Wii erscheinen. Sie haben keine schicke Grafik und sind bewusst einfach gehalten, damit wir uns auf die Programmierung konzentrieren können. Außerdem brauchen Spiele nicht komplex sein, um Spaß zu bereiten.
+
+Herunterladen und installieren von Python
+
+Bevor wir mit dem Programmieren beginnen können, müssen wir zuerst den Python-Interpreter installieren. Der Python-Interpreter versteht in der Programmiersprache Python geschriebene Befehle. Von nun an werde ich “Python-Interpreter” schlicht mit “Python” abkürzen.
+
+Lade Python 3.4 oder eine neuere Version von der offiziellen Internetseite http://www.python.org herunter. Wähle dabei die 32bit-Version von Python aus, unabhängig davon ob Du ein 64bit-Betriebssystem verwendest. Das “Pygame”-Modul, das wir später im Buch verwenden werden, funktioniert nämlich nur mit der 32bit-Version von Python.
+
+Wichtiger Hinweis! Stelle sicher, dass Du Python 3 installierst und nicht Python 2. Die Programme in diesem Buch sind in Python 3 geschrieben und führen zu Fehlern, wenn man versucht sie mit Python 2 zu starten. Ich habe sogar einen Zeichentrick-Pinguin in Abbildung 1-1 hinzugefügt, um Dich daran zu erinnern.
+
+
+
+Abbildung 1-1: Ein unangebrachter Pinguin befiehlt Dir Python 3 zu installieren.
+
+IDLE starten
+
+IDLE steht für “Interactive DeveLopment Environment” (zu Deutsch “Interaktive Entwicklungsumgebung”). Die Entwicklungsumgebung ist vergleichbar mit einer Textverarbeitung für Python-Programme. Das Ausführen von IDLE gestaltet sich von System zu System unterschiedlich.
+
+Unter Windows, klicke auf den “Start”-Knopf in der linken unteren Ecke, gebe “IDLE” ein und wähle “IDLE (Python GUI)” aus.
+
+Unter Mac OS X, öffne das Finder-Fenster und klicke auf “Anwendungen”. Danach klicke auf “Python 3.4” und zuletzt auf das IDLE-Symbol.
+
+Unter Ubuntu/Linux, öffne ein Terminal-Fenster und gib “idle3” ein. Du magst auch in der Lage sein am oberen Bildschirmrand auf “Anwendungen” und dann auf “Programming and IDLE 3” zu klicken.
+
+
+
+Abbildung 1-2: IDLEs interaktiver Kommandozeileninterpreter unter Windows, OS X und Ubuntu Linux.
+
+Das Fenster, das bei der ersten Ausführung von IDLE erscheint, wird als interaktiver Kommandozeileninterpreter bezeichnet. Man kann in ihn Befehle eingeben und Python wird diese ausführen und die Ergebnisse im selben Fenster anzeigen.
+
+Wie dieses Buch verwendet werden sollte
+
+Die meisten Kapitel in diesem Buch beginnen mit einem Probelauf des jeweils vorgestellten Programms. Dieser Probelauf zeigt Dir, welche Ausgabe Du zu erwarten hast, wenn Du das Programm ausführst. Die Benutzereingaben sind in fetter Schrift dargestellt.
+
+Gib den Programmcode selbst in IDLE ein, anstatt ihn herunterzuladen. Auf diese Art und Weise wirst Du schneller fließend im Schreiben von Python-Programmen.
+
+Zeilennummern und Leerzeichen
+
+Tippe die Zeilennummern am Anfang jeder Zeile nicht beim Schreiben des Programmcodes ab. Zur Verdeutlichung, wenn Du Folgendes im Buch siehst:
+
+9. zahl = random.randint(1, 20)
+
+, dann brauchst Du weder die “9.” auf der linken Seite noch das unmittelbar folgende Leerzeichen abzutippen. Schreibe einfach:
+
+zahl = random.randint(1, 20)
+
+Die Zeilennummern sind nur dazu da, um uns die Diskussion von Programmen zu erleichtern. Sie sind nicht Teil des eigentlichen Programms.
+
+Abgesehen von den Zeilennummern (und dem unmittelbar darauf folgenden Leerzeichen), solltest Du den Code genauso, wie er erscheint, abtippen. Du wirst außerdem bemerken, dass einige Zeilen vier oder acht Leerzeichen eingerückt sind. Da jedes Zeichen in IDLE dieselbe Breite besitzt, ist es leicht die Anzahl der Leerzeichen zu ermitteln, indem man die Zeichen in der Zeile darüber oder darunter zählt.
+
+Im folgenden Beispiel sind Leerzeichen mit einem ▪ schwarzen Quadrat kenntlich gemacht:
+
+while rateVersuche < 10:
+▪▪▪▪if zahl == 42:
+▪▪▪▪▪▪▪▪print('Hallo')
+
+Zeilenumbruch in diesem Buch
+
+Einige Codezeilen sind so lang, dass sie im Buch auf mehreren Zeilen gedruckt werden mussten. Gib diesen Code in IDLE ohne Zeilenumbrüche (ohne die Enter-Taste zu betätigen) ein. Die Zeilennummern verraten Dir, ob eine neue Zeile beginnt, oder ob es sich um die Fortsetzung der Zeile darüber handelt. Das folgende Code-Beispiel besteht aus nur drei Zeilen:
+
+1. print('Dies ist die erste Zeile! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxx')
+2. print('Dies ist die zweite Zeile, nicht die dritte.')
+
+Die erste Codezeile ist aus Platzgründen auf zwei Zeilen im Buch gedruckt und erweckt den Eindruck, das Code-Beispiel bestünde insgesamt aus drei Zeilen. Es sind jedoch nur zwei.
+
+Hilfe im Internet finden
+
+Die zum Buch gehörende Internetseite findest Du unter http://inventwithpython.com/de. Sie enthält zahlreiche Hilfsmittel über den Inhalt des Buches hinaus. Außerdem nutzen viele Verweise in diesem Buch invpy.com, um die Adressen kurz zu halten.
+
+Das Subreddit http://reddit.com/r/inventwithpython ist ein großartiger Ort, um mit dem Buch verwandte Programmier-Fragen zu stellen. Allgemeine Fragen zur Python-Programmierung sollten hingegen in den Subreddits http://reddit.com/r/learnprogramming oder http://reddit.com/r/learnpython gestellt werden.
+
+Ich beantworte Deine Prgrammier-Fragen auch gerne per email. Schreib mir unter al@inventwithpython.com.
+
+Bitte sei rücksichtsvoll, wenn Du Fragen stellst: Vergewissere Dich zuerst, ob Deine Frage nicht schon in der “Häufig gestellte Fragen”-Rubrik beantwortet wurde und beachte etwaige Regeln zum Stellen von Fragen auf der jeweiligen Internetseite. Hier ein paar Tipps:
+
+•   Falls bei der Ausführung Deiner Programme Fehler auftreten, obwohl Du sie vom Buch abgetippt hast, stelle sicher, dass sie keine Tippfehler enthalten. Das Diff-Werkzeug unter http://invpy.com/de/diff ist hierzu besonders gut geeignet. Kopiere einfach Deinen Code in das Werkzeug hinein um herauszufinden, ob er Tippfehler enthält.
+•   Erläutere, was Du mit Deinem Code erreichen möchtest. Es kann nämlich sein, dass Du die falsche Fährte verfolgst.
+•   Kopiere stets die gesamte Fehlermeldung und Deinen kompletten Code — nicht nur Ausschnitte.
+•   Erkundige Dich, ob Deine Frage bereits im Internet beantwortet wurde.
+•   Teile mit, welche Ansätze Du bereits ausprobiert hast, um Dein Problem zu lösen. Auf diese Art und Weise lässt Du Andere wissen, dass Du bereits selbst Bemühungen angestellt hast.
+•   Sei höflich. Bestehe nicht auf Antworten und dränge Andere nicht auf schnelle Antworten.
+
+Programme online debuggen
+
+Programme zu debuggen bedeutet, sie Schritt für Schritt, Zeile für Zeile, durchzugehen, genauso wie ein Computer es tun würde. Besuche http://invpy.com/de/traces um ein Debug-Vorgang für jedes der Programme in diesem Buch zu sehen. Über den Debugger hinaus enthält die Internetseite nützliche Hinweise zu jedem Schritt, die erklären, was das Programm gerade tut. Debuggen kann sehr beim Verständnis von Programmen helfen.
+
+Zusammenfassung
+
+In diesem Kapitel haben wir uns mit der Python-Software vertraut gemacht. Wir suchten die Internetseite http://python.org auf, unter der Python kostenlos heruntergeladen werden kann. Nach der Installation und dem Ausführen von IDLE, sind wir bereit im nächsten Kapitel mit der eigentlichen Programmierung zu beginnen.
+
+Die zum Buch gehörende Internetseite http://inventwithpython.com/de enthält zusätzliche Informationen zu jedem Kapitel, inklusive eines Online-Debug- und Diff-Werkzeuges, welche beim Verständnis der Programme in diesem Buch helfen.
+

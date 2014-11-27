@@ -1,0 +1,2 @@
+Abb. 1-1:
+Stelle sicher Python 3 zu installieren, nicht Python 2!
