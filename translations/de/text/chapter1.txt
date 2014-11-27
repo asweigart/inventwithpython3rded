@@ -6,7 +6,7 @@ In diesem Kapitel behandelte Themen:
 •   Herunterladen und installieren des Python-Interpreters
 •   IDLEs interaktiver Kommandozeileninterpreter
 •   Wie dieses Buch verwendet werden sollte
-•   Die zum Buch gehörende Internetseite http://inventwithpython.com
+•   Die zum Buch gehörende Internetseite http://inventwithpython.com/de
 
 Hallo! Dieses Buch lehrt Dich die Programmierung anhand von Spieleentwicklung. Sobald Du erst ein Mal verstehst, wie die Spiele in diesem Buch funktionieren, wirst Du in der Lage sein, Deine eigenen zu kreieren. Alles was Du hierzu benötigst ist ein Computer, ein Programm namens “Python-Interpreter” und dieses Buch. Den Python-Interpreter gibt es kostenlos im Internet.
 
@@ -86,7 +86,7 @@ Die erste Codezeile ist aus Platzgründen auf zwei Zeilen im Buch gedruckt und e
 
 Hilfe im Internet finden
 
-Die zum Buch gehörende Internetseite findest Du unter http://inventwithpython.com. Sie enthält zahlreiche Hilfsmittel über den Inhalt des Buches hinaus. Außerdem nutzen viele Verweise in diesem Buch invpy.com, um die Adressen kurz zu halten.
+Die zum Buch gehörende Internetseite findest Du unter http://inventwithpython.com/de. Sie enthält zahlreiche Hilfsmittel über den Inhalt des Buches hinaus. Außerdem nutzen viele Verweise in diesem Buch invpy.com, um die Adressen kurz zu halten.
 
 Das Subreddit http://reddit.com/r/inventwithpython ist ein großartiger Ort, um mit dem Buch verwandte Programmier-Fragen zu stellen. Allgemeine Fragen zur Python-Programmierung sollten hingegen in den Subreddits http://reddit.com/r/learnprogramming oder http://reddit.com/r/learnpython gestellt werden.
 
@@ -94,7 +94,7 @@ Ich beantworte Deine Prgrammier-Fragen auch gerne per email. Schreib mir unter a
 
 Bitte sei rücksichtsvoll, wenn Du Fragen stellst: Vergewissere Dich zuerst, ob Deine Frage nicht schon in der “Häufig gestellte Fragen”-Rubrik beantwortet wurde und beachte etwaige Regeln zum Stellen von Fragen auf der jeweiligen Internetseite. Hier ein paar Tipps:
 
-•   Falls bei der Ausführung Deiner Programme Fehler auftreten, obwohl Du sie vom Buch abgetippt hast, stelle sicher, dass sie keine Tippfehler enthalten. Das Diff-Werkzeug unter http://invpy.com/diff ist hierzu besonders gut geeignet. Kopiere einfach Deinen Code in das Werkzeug hinein um herauszufinden, ob er Tippfehler enthält.
+•   Falls bei der Ausführung Deiner Programme Fehler auftreten, obwohl Du sie vom Buch abgetippt hast, stelle sicher, dass sie keine Tippfehler enthalten. Das Diff-Werkzeug unter http://invpy.com/de/diff ist hierzu besonders gut geeignet. Kopiere einfach Deinen Code in das Werkzeug hinein um herauszufinden, ob er Tippfehler enthält.
 •   Erläutere, was Du mit Deinem Code erreichen möchtest. Es kann nämlich sein, dass Du die falsche Fährte verfolgst.
 •   Kopiere stets die gesamte Fehlermeldung und Deinen kompletten Code — nicht nur Ausschnitte.
 •   Erkundige Dich, ob Deine Frage bereits im Internet beantwortet wurde.
@@ -103,11 +103,11 @@ Bitte sei rücksichtsvoll, wenn Du Fragen stellst: Vergewissere Dich zuerst, ob 
 
 Programme online debuggen
 
-Programme zu debuggen bedeutet, sie Schritt für Schritt, Zeile für Zeile, durchzugehen, genauso wie ein Computer es tun würde. Besuche http://invpy.com/traces um ein Debug-Vorgang für jedes der Programme in diesem Buch zu sehen. Über den Debugger hinaus enthält die Internetseite nützliche Hinweise zu jedem Schritt, die erklären, was das Programm gerade tut. Debuggen kann sehr beim Verständnis von Programmen helfen.
+Programme zu debuggen bedeutet, sie Schritt für Schritt, Zeile für Zeile, durchzugehen, genauso wie ein Computer es tun würde. Besuche http://invpy.com/de/traces um ein Debug-Vorgang für jedes der Programme in diesem Buch zu sehen. Über den Debugger hinaus enthält die Internetseite nützliche Hinweise zu jedem Schritt, die erklären, was das Programm gerade tut. Debuggen kann sehr beim Verständnis von Programmen helfen.
 
 Zusammenfassung
 
 In diesem Kapitel haben wir uns mit der Python-Software vertraut gemacht. Wir suchten die Internetseite http://python.org auf, unter der Python kostenlos heruntergeladen werden kann. Nach der Installation und dem Ausführen von IDLE, sind wir bereit im nächsten Kapitel mit der eigentlichen Programmierung zu beginnen.
 
-Die zum Buch gehörende Internetseite http://inventwithpython.com enthält zusätzliche Informationen zu jedem Kapitel, inklusive eines Online-Debug- und Diff-Werkzeuges, welche beim Verständnis der Programme in diesem Buch helfen.
+Die zum Buch gehörende Internetseite http://inventwithpython.com/de enthält zusätzliche Informationen zu jedem Kapitel, inklusive eines Online-Debug- und Diff-Werkzeuges, welche beim Verständnis der Programme in diesem Buch helfen.
 

@@ -49,7 +49,7 @@ Este es el código fuente del juego “Adivina el Número”. Cuando escribas es
 
 ¡NOTA IMPORTANTE! Los programas de este libro sólo podrán ejecutarse sobre Python 3, no Python 2. Al iniciar la ventana IDLE, dirá algo como “Python 3.4.0” en la parte superior. Si tienes Python 2 instalado, es posible instalar también Python 3 a la vez. Para descargar Python 3, dirígete a https://python.org/download/.
 
-Puedes descargar este código de http://invpy.com/adivinaElNúmero.py. Si obtienes errores luego de copiar este código, compáralo con el código del libro usando la herramienta diff online en http://invpy.com/diff/guess.
+Puedes descargar este código de http://invpy.com/es/adivinaElNúmero.py. Si obtienes errores luego de copiar este código, compáralo con el código del libro usando la herramienta diff online en http://invpy.com/diff/guess.
 
 adivinaElNúmero.py
 
