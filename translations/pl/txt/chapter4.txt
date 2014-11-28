@@ -105,28 +105,28 @@ Choć Python ma wiele wbudowanych funkcji, niektóe funkcje są w oddzielnych pr
 
 Dyrektywa import to słowo kluczowe import i nazwa modułu. Linia 2 importuje moduł o nazwie random. Moduł random zawiera kilka funkcji związanych z liczbami losowymi. Jedna z takich funkcji dostarczy liczby losowej jaką będzie zgadywał użytkownik programu.
 
-4. guessesTaken = 0
+4. probyZgadniecia = 0
 
-This line creates a new variable named guessesTaken. You’ll store the number of guesses the player has made in this variable. Since the player hasn’t made any guesses so far, store the integer 0 here.
+Ta linia tworzy nową zmienną o nazwie probyZgadniecia. Zapiszesz w niej ile razy użytkownik próbował zgadnąć liczbę. Na razie użytkownik jeszcze nie próbował, więc zapiszemy tam 0.
 
-6. print('Hello! What is your name?')
-7. myName = input()
+6. print('Cześć! Jak masz na imię?')
+7. mojeImie = input()
 
-Lines 6 and 7 are the same as the lines in the Hello World program that you saw in Chapter 3. Programmers often reuse code from their other programs to save themselves work.
+Linia 6 i 7 są takie same jak linie w programie "Witaj świecie" z rozdziału 3. Programiści częst używają kodu z ich innych programów by zaoszczędzić nieco pracy.
 
-Line 6 is a function call to the print() function. Remember that a function is like a mini-program inside your program. When your program calls a function, it runs this mini-program. The code inside the print() function displays on the screen the string argument you passed it.
+Linia 6 to wywołanie funkcji print(). Pamiętaj, że funkcja to taki mini-program w środku twojego programu. Kiedy twój program wywołuje funkcję, uruchamia ten mini-program. Kod w środku funkcji print() wyświetla podany napis na ekranie.
 
-Line 7 lets the user type in their name and stores it in the myName variable. (Remember, the string might not really be the player’s name. It’s just whatever string the player typed. Computers are dumb and just follow their programs no matter what.)
+Linia 7 pozwala użtkownikowi na podanie swojego imienia i zapisuje je w zmiennej mojeImie. (Pamiętaj, że podane imię noże nie być prawdziwym imieniem gracza. To może być dowolny tekst podany przez użytkownika. Komputery są tępe i po prostu robią to im się każe .)
 
-The random.randint() function
+Funkcja random.randint()
 
-9. number = random.randint(1, 20)
+ 9. tajemnaLiczba = random.randint(1, 20)
 
-Line 9 calls a new function named randint() and stores the return value in number. Remember, function calls can be part of expressions because they evaluate to a value.
+Linia 9 wywołuje nową funkcję o nazwie randint() i zapisuje liczbę, jaką ta funkcja zwraca. Pamiętaj, że wywołania funkcji mogą być częśćią wyrażeń ponieważ są wyliczane do wartości.
 
-Because the randint() function is provided by the random module, precede it with random. (don’t forget the period!) to tell Python that the function randint() is in the random module.
+Ponieważ funkcja randint() jest w module random należy poprzedzić ją random. (nie zapomnij o kropce!), by powiedzieć Pythonowi że funkcja randint() jest w module random.
 
-The randint() function will return a random integer between (and including) the two integer arguments you pass to it. Line 9 passes 1 and 20 between the parentheses that follow the function name (separated by a comma). The random integer that randint() returns is stored in a variable named number; this is the secret number the player is trying to guess.
+Funkcja randint() zwraca liczbę całkowitą pomiędzy (i włączając) dwiema liczbami function will return a random integer between (and including) the two integer arguments you pass to it. Line 9 passes 1 and 20 between the parentheses that follow the function name (separated by a comma). The random integer that randint() returns is stored in a variable named number; this is the secret number the player is trying to guess.
 
 Just for a moment, go back to the interactive shell and enter import random to import the random module. Then enter random.randint(1, 20) to see what the function call evaluates to. It will return an integer between 1 and 20. Repeat the code again and the function call will probably return a different integer. The randint() function returns some random integer each time, just as rolling dice you’ll get a random number each time.
 
@@ -153,13 +153,14 @@ You can also try out different ranges of numbers by changing the arguments. For 
 
 You can change the game’s code slightly to make the game behave differently. Try changing line 9 and 10 from this:
 
- 9. number = random.randint(1, 20)
-10. print('Well, ' + name + ', I am thinking of a number between 1 and 20.')
+ 9. tajemnaLiczba = random.randint(1, 20)
+10. print('Dobrze ' + mojeImie + ', myślę sobie o liczbie między 1 i 20.')
 
 …into these lines:
 
- 9. number = random.randint(1, 100)
-10. print('Well, ' + name + ', I am thinking of a number between 1 and 100.')
+ 9. tajemnaLiczba = random.randint(1, 100)
+10. print('Dobrze ' + mojeImie + ', myślę sobie o liczbie między 1 i 100.')
+
 
 And now the computer will think of an integer between 1 and 100 instead of 1 and 20. Changing line 9 will change the range of the random number, but remember to change line 10 so that the game also tells the player the new range instead of the old one.
 
