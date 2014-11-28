@@ -78,9 +78,9 @@ while guesses < 10:
 
 有一些行代码长度过长，在书页的一行中无法完全显示，会延伸到下一行。在输入这样的代码的时候，全都输入到一行，不要按回车键。根据代码左侧的行号可以判断是否出现了新的一行，例如，下面的代码只有两行：
 
-1. print('这是第一行！xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+1. print('This is the first line! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxx')
-2. print('这是第二行，而不是第三行。')
+2. print('This is the second line, not the third line.')
 
 第一行代码延伸到了下一行，让代码看起来好像一共有三行。那只是因为本书的书页不够宽，第一行显示不完整罢了。
 
