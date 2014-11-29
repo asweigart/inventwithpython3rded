@@ -126,9 +126,9 @@ Linia 9 wywołuje nową funkcję o nazwie randint() i zapisuje liczbę, jaką ta
 
 Ponieważ funkcja randint() jest w module random należy poprzedzić ją random. (nie zapomnij o kropce!), by powiedzieć Pythonowi że funkcja randint() jest w module random.
 
-Funkcja randint() zwraca liczbę całkowitą pomiędzy (i włączając) dwiema liczbami function will return a random integer between (and including) the two integer arguments you pass to it. Line 9 passes 1 and 20 between the parentheses that follow the function name (separated by a comma). The random integer that randint() returns is stored in a variable named number; this is the secret number the player is trying to guess.
+Funkcja randint() zwraca liczbę całkowitą pomiędzy (i włączając) dwoma przekazanymi jako argumenty. W linii 9 między nawiasami jakie są po nazwie funkcji mamy 1 i 20 oddzielone przecinkiem. Losowa liczba zwracana przez randint() jest zapisywana z w zmiennej tajemnaLiczba; to jest tajemnicza liczba jaką gracz będzie próbował zganąć.
 
-Just for a moment, go back to the interactive shell and enter import random to import the random module. Then enter random.randint(1, 20) to see what the function call evaluates to. It will return an integer between 1 and 20. Repeat the code again and the function call will probably return a different integer. The randint() function returns some random integer each time, just as rolling dice you’ll get a random number each time.
+Na chwilkę wróć do interaktywnej powłoki i wpis import random by zaimportować moduł random. Potem wprowadź random.randint(1, 20), by zobaczyć co ta funkcja zwróci. Będzie zwracała liczby całowite pomiędzy 1 i 20. Powtórz ten kod i wywołanie funkcji prawdopodobnie zwróci inną liczbę. Funkcja randint() zwraca jakąś liczbę losową podobniej jak rzuty kostką do grania za każdym razem zwracają liczbę losową.
 
 >>> import random
 >>> random.randint(1, 20)
@@ -142,31 +142,31 @@ Just for a moment, go back to the interactive shell and enter import random to i
 >>> random.randint(1, 20)
 7
 
-Use the randint() function when you want to add randomness to your games. And you’ll use randomness in most games. Think of how many board games use dice.
+Uzyj funkcji randint() kiedy potrzebujesz losowości w swojej grze. W większości gier użyjesz losowości. Pomyśl jak wiele gier planszowych używa kostek.
 
-You can also try out different ranges of numbers by changing the arguments. For example, enter random.randint(1, 4) to only get integers between 1 and 4 (including both 1 and 4). Or try random.randint(1000, 2000) to get integers between 1000 and 2000. For example, enter the following into the interactive shell. The results you get when you call the random.randint() function will probably be different (it is random, after all).
+Możesz także spróbować z różnymi zakresami liczb przez zmianę argumentów. Przykładowo wpisz random.randint(1, 4) i będziesz dostawał jedynie liczby całowite z zakresu od 1 do 4 (włączając zarówno 1 jak i 4). Spróbuje też random.randint(1000, 2000) by uzyskać liczby całkowite pomiędzy 1000 i 2000. Przykładowo wprowadź w interaktywnej powłoce następujący kod. Wyniki jakie uzyskasz wywołując random.randint() prawdodpodobnie będę inne (w końcu są losowe).
 
 >>> random.randint(1, 4)
 3
 >>> random.randint(1000, 2000)
 1294
 
-You can change the game’s code slightly to make the game behave differently. Try changing line 9 and 10 from this:
+Możesz lekko zmienić kod gry, by gra zachowywała się nieco inaczej. Spróbuj zmienić linię 9 i 10 z:
 
  9. tajemnaLiczba = random.randint(1, 20)
 10. print('Dobrze ' + mojeImie + ', myślę sobie o liczbie między 1 i 20.')
 
-…into these lines:
+…na te linie:
 
  9. tajemnaLiczba = random.randint(1, 100)
 10. print('Dobrze ' + mojeImie + ', myślę sobie o liczbie między 1 i 100.')
 
 
-And now the computer will think of an integer between 1 and 100 instead of 1 and 20. Changing line 9 will change the range of the random number, but remember to change line 10 so that the game also tells the player the new range instead of the old one.
+Teraz komputer będzie myślał o liczbie pomiędzy 1 i 100, zamiast 1 i 20. Zmiana w linii 9 zmieni zakres liczby losowej, ale pamiętaj by zmienić także linię 10 by gra pokazywała graczowi nowy zakres zamiast starego.
 
-Welcoming the Player
+Przywitanie gracza
 
-10. print('Well, ' + myName + ', I am thinking of a number between 1 and 20.')
+10. print('Dobrze ' + mojeImie + ', myślę sobie o liczbie między 1 i 100.')
 
 On line 10 the print() function welcomes the player by name, and tells them that the computer is thinking of a random number.
 
