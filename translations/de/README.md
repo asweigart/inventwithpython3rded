@@ -36,3 +36,8 @@ Kapitel 5
 ---------
 
 - Zeile 130: "SyntaxError: EOL while scanning single-quoted string" wurde nicht übersetzt. Gibt es eine deutsche Version von Python und ist diese komplett übersetzt?
+
+Kapitel 6
+---------
+
+- Zeile 23: "File ► New Window" wurde vorerst nicht übersetzt. Gibt es eine deutsche Version von IDLE und ist diese eingedeutscht? 
