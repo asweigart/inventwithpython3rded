@@ -65,7 +65,7 @@ Wie der Code funktioniert
 
 Die Zeilen 1 bis 4 enthalten drei print()-Aufrufe. Um zu vermeiden, dass der Spieler sofort die Pointe des Witzes zu lesen bekommt, folgt nach dem print()-Aufruf ein Aufruf der input()-Funktion. Der Spieler kann die erste Zeile lesen, Enter drücken, und dann die Pointe lesen.
 
-Der Benutzer kann zwar Text eingeben, bevor er Enter drückt, aber dieser Text wird in keiner Variablen gespeichert. Das Programm ignoriert daher jegliche Eingaben und fährt mit der Ausführung der nächsten Codezeile fort.
+Der Benutzer könnte zwar Text eingeben, bevor er Enter drückt, aber dieser Text wird in keiner Variablen gespeichert. Das Programm ignoriert daher jegliche Eingaben und fährt mit der Ausführung der nächsten Codezeile fort.
 
 Der letzte print()-Aufruf enthält kein Zeichenketten-Argument. Dies weist das Programm an, eine leere Zeile auszugeben. Leerzeilen sind nützlich zur Formatierung von Ausgaben.
 
