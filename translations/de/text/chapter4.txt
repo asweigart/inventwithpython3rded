@@ -46,45 +46,45 @@ Gib diesen Programmcode genau so wie er hier steht ein und klick dann auf Datei�
 
 Der Quellcode von "Rate die Zahl"
 
-Hier ist der Quellcode von "Rate dir Zahl". Gib auf die Leerzeichen vor manchen der Zeilen acht, wenn du den Quellcode in den Dateieditor eingibst. Manche der Zeilen haben vier, manche haben acht Leerzeichen.  
+Hier ist der Quellcode von "Rate dir Zahl". Gib auf die Leerzeichen vor manchen der Zeilen acht, wenn du den Quellcode in den Dateieditor eingibst. Manche der Zeilen haben vier, manche haben acht Leerzeichen.
 
 WICHTIGER HINWEIS! Die Programme in diesem Buch können nur in Python 3 ausgeführt werden, nicht in Python 2. Wenn IDLE startet sollte es so etwas wie "Python 3.4.0" oben anzeigen. Du kannst Python 2 und Python 3 zur selben Zeit auf deinem Computer installiert haben. Um Python 3 herunter zu laden geh zu http://python.org/download/.
 
-Du kannst diesen Code von http://invpy.com/de/zahlenRaten.py herunterladen. Wenn du nach dem Eintippen des Codes Fehlermeldungen bekommst, verwende das Online diff Werkzeug unter http://invpy.com/diff/de/zahlenRaten um deinen Code mit dem Code aus dem Buch zu vergleichen.
+Du kannst diesen Code von http://invpy.com/de/zahlenRaten.py herunterladen. Wenn du nach dem Eintippen des Codes Fehlermeldungen bekommst, verwende das Online diff Werkzeug unter http://invpy.com/de/diff/zahlenRaten um deinen Code mit dem Code aus dem Buch zu vergleichen.
 
 zahlenRaten.py
-    
+
  1.  # Das ist ein Zahlenratespiel.
  2.  import random
- 3.  
+ 3.
  4.  abgegebenTipps = 0
- 5.  
+ 5.
  6.  print('Hallo! Was ist dein Name?')
  7.  meinName = input()
- 8.  
+ 8.
  9.  zahl = random.randint(1, 20)
 10.  print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 20.')
-11.  
+11.
 12.  while abgegebenTipps < 6:
 13.      print('Los, rate.') # Vor print sind vier Leerzeichen.
 14.      tipp = input()
 15.      tipp = int(tipp)
-16.  
+16.
 17.      abgegebenTipps = abgegebenTipps + 1
-18.  
+18.
 19.      if tipp < zahl:
 20.          print('Dein Tipp ist zu niedrig.') # Hier sind acht Leerzeichen vor print.
-21.  
+21.
 22.      if tipp > zahl:
 23.          print('Dein Tipp ist zu hoch.')
-24.  
+24.
 25.      if tipp == zahl:
 26.          break
-27.  
+27.
 28.  if tipp == zahl:
 29.      abgegebenTipps = str(abgegebenTipps)
 30.      print('Gut gemacht, ' + meinName + '! Du hast meine Zahl in ' + abgegebenTipps + ' Zügen erraten!')
-31.  
+31.
 32.  if tipp != zahl:
 33.      zahl = str(zahl)
 34.      print('Nene. Die Nummer an die ich gedacht habe war ' + zahl)
@@ -95,7 +95,7 @@ Der import Befehl.
 
  1.  # Das ist ein Zahlenratespiel.
  2.  import random
- 
+
 Die erste Zeile ist ein Kommentar. Python ignoriert alles nach dem # Zeichen. Diese Zeile dient nur dazu, uns daran zu erinnern was das Programm macht.
 
 #TODO: Check that we really already know that.
@@ -107,10 +107,10 @@ Der import Befehl besteht aus dem import Schlüsselwort gefolgt vom Modulnamen. 
 
 4. abgegebeneTipps = 0
 
-Diese Zeile erstellt eine neue Variable mit dem Namen agbgebeneTipps. In dieser Variable wird die Anzahl der Tipps, die der Spieler abgegeben hat, gespeichert. Wir setzen die Variable hier auf den Integer 0 weil der Spieler noch keinen Tipp abgegeben hat. 
+Diese Zeile erstellt eine neue Variable mit dem Namen agbgebeneTipps. In dieser Variable wird die Anzahl der Tipps, die der Spieler abgegeben hat, gespeichert. Wir setzen die Variable hier auf den Integer 0 weil der Spieler noch keinen Tipp abgegeben hat.
 
 6.  print('Hallo! Was ist dein Name?')
-7.  meinName = input() 
+7.  meinName = input()
 
 Zeilen 6 und 7 sind wie im Hallo Welt Programm aus Kapitel 3. Programmierer verwenden Programmcode aus alten Programmen oft wieder um sich Arbeit zu sparen.
 
@@ -122,11 +122,11 @@ Die random.randint() Funktion
 
 9.  zahl = random.randint(1, 20)
 
-Zeile 9 ruft eine  neue Funktion mit dem Namen randint() auf und speichert den Rückgabewert in zahl ab. Funktionsaufrufe können Teil eines Ausdrucks sein, weil sie zu einem Wert ausgewerteten haben. 
+Zeile 9 ruft eine  neue Funktion mit dem Namen randint() auf und speichert den Rückgabewert in zahl ab. Funktionsaufrufe können Teil eines Ausdrucks sein, weil sie zu einem Wert ausgewerteten haben.
 
 Weil die randint() Funktion von vom random Modul präsentiert wird muss ihm random vorangestellt werden (Vergiss nicht auf den Punkt!) um Python mitzuteilen, dass die Funktion randint() im Modul random zu finden ist.
 
-Die randint() Funktion wird eine Zufallszahl zwischen (und inklusive) den beiden übergebenen Integerargumenten zurückgeben. Zeile 9 übergibt 1 und 20 zwischen den Klammern die dem Funktionsnamen folgen (unterteilt durch ein Komma). Die Zufallszahl die von randint() zurück gibt wird einer Variable namens zahl gespeichert; das ist die geheime Zahl die der Spieler erraten muss. 
+Die randint() Funktion wird eine Zufallszahl zwischen (und inklusive) den beiden übergebenen Integerargumenten zurückgeben. Zeile 9 übergibt 1 und 20 zwischen den Klammern die dem Funktionsnamen folgen (unterteilt durch ein Komma). Die Zufallszahl die von randint() zurück gibt wird einer Variable namens zahl gespeichert; das ist die geheime Zahl die der Spieler erraten muss.
 
 Wechsle für einen Moment in die interaktive Shell und gib import random ein, um das random modul zu importieren. Dann tippe random.randint(1,20) und drücke die Eingabetaste um zu sehen zu was der Funktionsaufruf ausgewertet wird. Wenn du die Eingabe wiederholst wird der Funktionsaufruf wahrscheinlich zu einer anderen Zahl ausgewertet. Die randint() Funktion gibt jedesmal irgendeine Zufallszahl zurück, genau so wie Würfel bei jedem Wurf eine Zufallszahl zurück geben.
 
@@ -161,7 +161,7 @@ Du kannst den Programmcode des Spiels leicht abändern um sein Verhalten zu änd
  9. zahl = random.randint(1, 100)
 10. print('Also, ' + meinName + ', ich denke an eine Zahl zwischen 1 und 100.')
 
-Jetzt wird der Computer an eine Zahl zwischen 1 und 100 statt an eine zwischen 1 und 20 denken. Durch ändern der Zeile 9 wird der Zahlenbereich der Zufallszahlen geändert, vergiss dabei nicht auch Zeile 10 zu ändern damit das Spiel dem Spieler den geänderten Zahlenbereich mitteilt. 
+Jetzt wird der Computer an eine Zahl zwischen 1 und 100 statt an eine zwischen 1 und 20 denken. Durch ändern der Zeile 9 wird der Zahlenbereich der Zufallszahlen geändert, vergiss dabei nicht auch Zeile 10 zu ändern damit das Spiel dem Spieler den geänderten Zahlenbereich mitteilt.
 
 Hallo Spieler
 
@@ -179,13 +179,13 @@ Zeile 12 ist ein while Befehl, das den Beginn einer while Schleife anzeigt. Schl
 
 Blocks
 
-Einige Zeilen Programmcode können in einem Block gruppiert werden. Ein Block von Code hat die selbe minimale Einrückung. An der Anzahl an Leerzeichen am Anfang der Zeile siehst du wo ein Block beginnt. Das ist die Einrückung (engl: indentation) der Zeile. 
+Einige Zeilen Programmcode können in einem Block gruppiert werden. Ein Block von Code hat die selbe minimale Einrückung. An der Anzahl an Leerzeichen am Anfang der Zeile siehst du wo ein Block beginnt. Das ist die Einrückung (engl: indentation) der Zeile.
 
 Ein Block beginnt wenn die Einrückung der Zeile sich erhöht (normalerweise um vier Leerzeichen). Alle folgenden Zeilen, die auch gleich weit Eingerückt sind, sind auch Teil des Blocks. Der Block endet, sobald eine der Zeilen, die eine geringere Einrückung - so wie der darüber liegende Block hat, beginnt. Das heißt, dass ein Block innerhalb eines anderen Blocks liegt.
 
-Abbildung 4-1 ist ein Diagramm des Codes, in dem die Blocks angezeichnet und durchnummeriert sind. Die Leerzeichen sind als schwarze Quadrate eingezeichnet um sie besser zählbar zu machen. 
+Abbildung 4-1 ist ein Diagramm des Codes, in dem die Blocks angezeichnet und durchnummeriert sind. Die Leerzeichen sind als schwarze Quadrate eingezeichnet um sie besser zählbar zu machen.
 
-Abbildung 4-1: Blöcke und ihre Einrückung. Die schwarzen Quadrate zeigen Leerzeichen an. 
+Abbildung 4-1: Blöcke und ihre Einrückung. Die schwarzen Quadrate zeigen Leerzeichen an.
 
 In Abbildung 4-1, in Zeile 12 gibt es keine Einrückung daher ist diese Zeile nicht in einem Block. Zeile 13 hat einem Einrückung von vier Leerzeichen. Da diese Einrückung eine größer ist als die der vorigen beginnt die hier ein neuer Block. Der Block ist in Abbildung 4-1 mit (1) bezeichnet. Dieser Block geht wird weiter gehen, bis eine Zeile ohne Einrückung (so wie bevor der Block gebonnen hat). Leere Zeilen werden ignoriert.
 
@@ -193,7 +193,7 @@ Zeile 20 hat eine Einrückung von acht Leerzeichen. Acht Leerzeichen sind mehr a
 
 Zeile 22 hat nur vier Einrückungen. Die Einrückung ist also weniger geworden, du daher ist der Block beendet. Zeile 20 ist die einzige Zeile in diesem Block. Zeile 22 ist im selben Block wie die anderen Zeilen mit vier Leerzeichen.
 
-Zeile 23 erhöht die Einrückung wieder auf 8 Leerzeichen, es beginnt also wieder eine neuer Block. Es ist in Abbildung 4-1 mit (3) bezeichnet. 
+Zeile 23 erhöht die Einrückung wieder auf 8 Leerzeichen, es beginnt also wieder eine neuer Block. Es ist in Abbildung 4-1 mit (3) bezeichnet.
 
 Zusammengefasst, Zeile 12 ist in keinem Block. Zeilen 13 bis 23 sind alle in einem Block (markiert als Block 1).  Zeile 20 ist einem Block innerhalb eines Blocks (markiert als Block 2). Und Zeile 23 ist die einzige Zeile in einem weiterem Block in einem Block (markiert als Block 3).
 
@@ -228,4 +228,4 @@ Bedingungen
 
 Eine Bedingung ist ein Ausdruck der zwei Werte mit einem Vergleichsoperator verbindet (so wie < oder >) und zu einem Boolean Wert auswertet. Bedingung ist nur ein anderer Name für Ausdruck der zu True oder False ausgwertet wird. Bedingungen werden in while Statements verwendet (und an ein paar anderen Orten, wie später erklärt wird.)
 
-Die Bedingung abgegebeneTipps < 6 fragt, zum Beispiel, 
+Die Bedingung abgegebeneTipps < 6 fragt, zum Beispiel,

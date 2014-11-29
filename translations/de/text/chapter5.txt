@@ -31,7 +31,7 @@ Tippe den folgenden Quellcode in den Editor ein und speichere ihn als witze.py a
 
 WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät Dir, welche Version installiert ist. Falls es Python 2 ist, kannst Du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
 
-Falls Du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/diff/jokes.
+Falls Du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/de/diff/jokes.
 
 witze.py
 
@@ -54,7 +54,7 @@ witze.py
 17. print('An\'na Tür hat wer geklingelt', end='')
 18. print('-HAHA!')
 
-Keine Sorge, falls Du nicht den kompletten Code auf Anhieb verstehst. Speichere ihn einfach ab und führe ihn aus. Und vergiss nicht: Falls Dein Programm Fehler enthält, kannst Du das Online-Diff-Werkzeug unter http://invpy.com/chap5 benutzen.
+Keine Sorge, falls Du nicht den kompletten Code auf Anhieb verstehst. Speichere ihn einfach ab und führe ihn aus. Und vergiss nicht: Falls Dein Programm Fehler enthält, kannst Du das Online-Diff-Werkzeug unter http://invpy.com/de/chap5 benutzen.
 
 Wie der Code funktioniert
 
