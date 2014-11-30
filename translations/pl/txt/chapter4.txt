@@ -178,27 +178,27 @@ Pętle
 
 Linia 12 jest dyrektywą while, która oznacza początek pętli while. Pętle pozwalają na wykonywanie kodu wiele razy. Jednak najpierw musisz nauczyć się kilku innych rzeczy nim nauczysz się o pętlach. Te rzeczy to bloki kodu, wartości typu Boolean (prawda-fałsz), operatory porównaina, warunki i dyrektywa while.
 
-Blocks
+Bloki kodu
 
-Several lines of code can group together in a block. A block of code has the same minimum amount of indentation. You can tell where a block begins and ends by looking at the number of spaces at the front of the lines. This is the line’s indentation.
+Kilka linii kodu może być pogrupowane razem w kod bloku. Blok kodu ma taki same minimalną wielkość wcięcia. Możesz powiedzieć gdzie blok się zaczyna i kończy potrząc na liczbę spacji na początku linii. Te spacje to właśnie wcięcie linii.
 
-A block begins when a line’s indentation increases (usually by four spaces). Any following line also indented by four spaces is part of the block. The block ends when there is a line of code with the same indentation before the block started. This means blocks can exist within other blocks.
+Blok kodu zaczyna się, gdy zwiększa się wcięcie (zwykle przez użycie czterech spacji). Każda kolejna linia która jest wcięta za pomocą czterech spacji jest częścią tego bloku kodu. Blok ten kończy się, gdy wcięcie wraca do poziomu sprzed rozpoczęcia bloku. To oznacza, że w danym bloku kodu mogą istnieć inne bloki kodu.
 
-Figure 4-1 is a diagram of code with the blocks outlined and numbered. The spaces are black squares to make them easier to count.
+Rysunek 4-1 to diagram kodu w blokach outlined and numbered. Spacje są oznaczone czarnymi prostokątami by było je łatwiej zliczyć.
 
 
 
-Figure 4-1: Blocks and their indentation. The black dots represent spaces.
+Rysunek 4-1: Bloki i ich wcięcia. Czarne kropki oznaczają spacje.
 
-In Figure 4-1, line 12 has no indentation and isn’t inside any block. Line 13 has an indentation of four spaces. Since this indentation is larger than the previous line’s indentation, a new block has started. This block is labeled (1) in Figure 4-1. This block will continue until a line with zero spaces (the original indentation before the block began). Blank lines are ignored.
+Na rysunku 4-1, linia 12 nie ma wcięcia i nie jest w żadnym bloku. Linia 13 ma wcięcie z czterech spacji. Ponieważ wcięcie to jest większe niż wcięcie w poprzedniej linii, to znaczy, że zaczął się nowy blok kodu. Ten blok jest oznaczony (1) na rysunku 4-1. Ten blok będzie kontynuowany aż do linii bez spacji na początku (oryginalna wielkość wcięcia nim zaczął się blok). Puste linie są ignorowane.
 
-Line 20 has an indentation of eight spaces. Eight spaces is more than four spaces, which starts a new block. This block is labeled (2) in Figure 4-1. This block is inside of another block.
+Linia 20 ma wcięcie z ośmiu spacji. To więcej niż cztery spacje, więc zaczyna to nowy blok. Then blok jest oznaczony (2) na rysunku 4-1. Ten blok jest we wnętrzu innego bloku.
 
-Line 22 only has four spaces. Because the indentation has decreased, you know that block has ended. Line 20 is the only line in that block. Line 22 is in the same block as the other lines with four spaces.
+Linia 22 ma tylko cztery spacje. Ponieważ wielkość wcięcia się zmniejszyła, wiemy, że blok się zakończył. Linia 20 jest jedyną linią tego bloku. Linia 22 jest w tym samym bloku co inne linie mające cztery spacje wcięcia.
 
-Line 23 increases the indentation to eight spaces, so again a new block has started. It is labeled (3) in Figure 4-1.
+Linia 23 zwiększa wcięcie do ośmiu spacji, więc znowy zaczął się nowy blok. Jest on oznaczony (3) na rysunku 4-1.
 
-To recap, line 12 isn’t in any block. Lines 13 to 23 all in one block (marked as block 1). Line 20 is in a block in a block (marked as block 2). And line 23 is the only line in another block in a block (marked as block 3).
+Dla przypomnienia, linia 12 nie jest w żadnym bloku. Linie od 13 do 23 są w tym samym bloku (oznaczonym jako blok 1). Linia 20 jest w bloku w bloku (oznaczonym jako blok 2). A linia 23 jest jedyną linią kolejnego bloku w bloku (oznaczonego jako blok 3).
 
 The Boolean Data Type
 
@@ -302,9 +302,9 @@ A while statement always has a colon (the : sign) after the condition.
 
 
 
-Figure 4-2: The while loop’s condition.
+Rysunek 4-2: The while loop’s condition.
 
-Figure 4-2 shows how the execution flows depending on the condition. If the condition evaluates to True (which it does the first time, because the value of guessesTaken is 0), execution will enter the while-block at line 13 and keep going down. Once the program reaches the end of the while-block, instead of going down to the next line, the execution loops back up to the while statement’s line (line 12) and re-evaluates the condition. As before, if the condition is True the execution enters the while-block again. Each time the execution goes through the loop is called an iteration.
+Rysunek 4-2 shows how the execution flows depending on the condition. If the condition evaluates to True (which it does the first time, because the value of guessesTaken is 0), execution will enter the while-block at line 13 and keep going down. Once the program reaches the end of the while-block, instead of going down to the next line, the execution loops back up to the while statement’s line (line 12) and re-evaluates the condition. As before, if the condition is True the execution enters the while-block again. Each time the execution goes through the loop is called an iteration.
 
 This is how the loop works. As long as the condition is True, the program keeps executing the code inside the while-block repeatedly until the first time the condition is False. Think of the while statement as saying, “while this condition is true, keep iterating through the code in this block”.
 
@@ -386,11 +386,11 @@ Is the Player’s Guess Too Low?
 
 Line 19 checks if the player’s guess is less than the computer’s secret number. If so, then the execution moves to line 20 and prints a message telling the player this. Line 19 is an if statement. The execution will run the code in the following block if the if statement’s condition evaluates to True. If the condition is False, then the code in the if-block is skipped. Using if statements, you can make the program only run certain code when you want it to.
 
-The if statement works almost the same as a while statement, too. But unlike the while-block, the execution doesn’t jump back to the if statement at the end of the if-block. It just continues down to the next line. In other words, if statements don’t loop. See Figure 4-3 for a comparison of the two statements.
+The if statement works almost the same as a while statement, too. But unlike the while-block, the execution doesn’t jump back to the if statement at the end of the if-block. It just continues down to the next line. In other words, if statements don’t loop. See Rysunek 4-3 for a comparison of the two statements.
 
 
 
-Figure 4-3: if and while statements.
+Rysunek 4-3: if and while statements.
 
 Is the Player’s Guess Too High?
 
@@ -467,5 +467,5 @@ If someone asked you, “What exactly is programming anyway?” what could you s
 
 And that’s it, just those four things. Of course, there are many details about those four types of instructions. In this book you’ll learn about new data types and operators, new flow control statements, and many other functions that come with Python. There are also different types of I/O such as input from the mouse or outputting sound and graphics instead of just text.
 
-For the person using your programs, they only care about that last type, I/O. The user types on the keyboard and then sees things on the screen or hears things from the speakers. But for the computer to figure out what sights to show and what sounds to play, it needs a program, and programs are just a bunch of instructions you, the programmer, have written.
+For the person using your programs, they only care about that last type, I/O. The user types on the keyboard and then sees things on the screen or hears things from the speakers. But for the computer to Rysunek out what sights to show and what sounds to play, it needs a program, and programs are just a bunch of instructions you, the programmer, have written.
 
