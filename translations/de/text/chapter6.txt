@@ -394,32 +394,49 @@ You can read the value of global variables from the local scope, but attempting 
 Look at this example to see what happens when you try to change a global variable from inside a local scope. The comments explain what is going on:
 
 def bacon():
+def speck():
     # We create a local variable named "spam"
+    # Wir deklarieren eine lokale Variable names "zwiebeln"
     # instead of changing the value of the global
+	# anstelle den Wert der globalen Variablen "zwiebeln"
     # variable "spam":
+	# zu ändern:
     spam = 99
+    zwiebeln = 99
     # The name "spam" now refers to the local
+    # Der Name "zwiebeln" bezieht sich nun auf die lokale
     # variable only for the rest of this
+    # Variable bis zum Ende dieser
     # function:
+    # Funktion:
     print(spam)    # 99
+    print(zwiebeln)    # 99
 
 spam = 42 # A global variable named "spam":
+zwiebeln = 42 # Eine globale Variable namens "zwiebeln":
 print(spam) # 42
+print(zwiebeln) # 42
 bacon() # Call the bacon() function:
+speck() # Aufruf der speck()-Funktion:
 # The global variable was not changed in bacon():
+# Die globale Variable wurde in speck() nicht verändert:
 print(spam)    # 42
+print(zwiebeln)    # 42
 
 When run, this code will output the following:
+Dieser Code produziert die folgende Ausgabe:
 
 42
 99
 42
 
 Where a variable is created determines what scope it is in. When the Dragon Realm program first executes the line:
+Der Ort, an dem eine Variable deklariert wird, bestimmt ihren Geltungsbereich. Wenn Drachen-Reich folgende Zeile ausführt:
 
-12.     cave = ''
+12.     hoehle = ''
 
 ...the variable cave is created inside the chooseCave() function. This means it is created in the chooseCave() function’s local scope. It will be forgotten when chooseCave() returns, and will be recreated if chooseCave() is called a second time. The value of a local variable isn’t remembered in between function calls.
+...ist die Variable hoehle innerhalb der sucheHoehleAus()-Funktion deklariert. Das bedeutet, sie ist nur innerhalb der Funktion gültig. Sie wird vergessen, wenn sucheHoehleAus() endet, und wird beim nächsten Aufruf von sucheHoehleAus() neu deklariert. Der Wert von lokalen Variablen bleibt zwischen Funktionsaufrufen nicht erhalten.
 
 Defining the checkCave() Function
 
