@@ -42,149 +42,198 @@ Open a new file editor window by clicking on the File ► New Window. In the bla
 Öffne ein neues Editor-Fenster, indem Du auf File ► New Window. Es öffnet sich ein neues, leeres Fenster. Tippe den Quellcode ab und speichere ihn als drachen.py ab. Dann führe das Programm durch einen Druck auf F5 aus.
 
 Sample Run of Dragon Realm
+Probelauf von Drachen-Reich
 
 You are in a land full of dragons. In front of you,
+Du bist ein einem Land voller Drachen. Vor Dir
 you see two caves. In one cave, the dragon is friendly
+siehst Du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,
 and will share his treasure with you. The other dragon
+der seine Schätze mit Dir teilt. Der andere Drache
 is greedy and hungry, and will eat you on sight.
+ist gierig und hungrig, und wird Dich bei Sichtkontakt auffressen.
 Which cave will you go into? (1 or 2)
+In welche Höhle wirst Du gehen? (1 oder 2)
+1
 1
 You approach the cave...
+Du näherst Dich der Höhle...
 It is dark and spooky...
+Es ist dunkel und gruselig...
 A large dragon jumps out in front of you! He opens his jaws and...
+Ein großer Drache spring vor Deine Füße! Er öffnet sein Maul und...
 Gobbles you down in one bite!
+Verschlingt Dich in einem Mal!
 Do you want to play again? (yes or no)
+Möchtest Du noch einmal spielen? (ja oder nein)
 no
+nein
 
 Dragon Realm’s Source Code
+Der Quellcode zu Drachen-Reich
 
 One thing to know as you read the code below: The blocks that follow the def lines define a function. This is different from executing the code. That code doesn’t execute until the function is called. You will read more details about that later in this chapter.
+Bitte beachte: Die Blöcke, die auf die Zeilen mit def folgen, definieren Funktionen. Der in ihnen enthaltene Code wird erst dann ausgeführt, wenn die entsprechende Funktion aufgerufen wurde. Mehr dazu später.
 
 IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
+WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät Dir, welche Version installiert ist. Falls es Python 2 ist, kannst Du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
 If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/dragon.
+Falls Du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/de/diff/dragon.
 
 dragon.py
+drachen.py
  1. import random
  2. import time
  3.
- 4. def displayIntro():
- 5.     print('You are in a land full of dragons. In front of you,')
- 6.     print('you see two caves. In one cave, the dragon is friendly')
- 7.     print('and will share his treasure with you. The other dragon')
- 8.     print('is greedy and hungry, and will eat you on sight.')
+ 4. def zeigeEinfuehrungAn():
+ 5.     print('Du bist ein einem Land voller Drachen. Vor Dir')
+ 6.     print('siehst Du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,')
+ 7.     print('der seine Schätze mit Dir teilt. Der andere Drache')
+ 8.     print('ist gierig und hungrig, und wird Dich bei Sichtkontakt auffressen.')
  9.     print()
 10.
-11. def chooseCave():
-12.     cave = ''
-13.     while cave != '1' and cave != '2':
-14.         print('Which cave will you go into? (1 or 2)')
-15.         cave = input()
+11. def sucheHoehleAus():
+12.     hoehle = ''
+13.     while hoehle != '1' and hoehle != '2':
+14.         print('In welche Höhle wirst Du gehen? (1 oder 2)')
+15.         hoehle = input()
 16.
-17.     return cave
+17.     return hoehle
 18.
-19. def checkCave(chosenCave):
-20.     print('You approach the cave...')
+19. def ueberpruefeHoehle(ausgewaehlteHoehle):
+20.     print('Du näherst Dich der Höhle...')
 21.     time.sleep(2)
-22.     print('It is dark and spooky...')
+22.     print('Es ist dunkel und gruselig...')
 23.     time.sleep(2)
-24.     print('A large dragon jumps out in front of you! He opens his jaws and...')
+24.     print('Ein großer Drache spring vor Deine Füße! Er öffnet sein Maul und...')
 25.     print()
 26.     time.sleep(2)
 27.
-28.     friendlyCave = random.randint(1, 2)
+28.     freundlicheHoehle = random.randint(1, 2)
 29.
-30.     if chosenCave == str(friendlyCave):
-31.          print('Gives you his treasure!')
+30.     if ausgewaehlteHoehle == str(freundlicheHoehle):
+31.         print('Gibt Dir seinen Schatz!')
 32.     else:
-33.          print('Gobbles you down in one bite!')
+33.         print('Verschlingt Dich in einem Mal!')
 34.
-35. playAgain = 'yes'
-36. while playAgain == 'yes' or playAgain == 'y':
+35. spieleNochEinmal = 'ja'
+36. while spieleNochEinmal == 'ja' or spieleNochEinmal == 'j':
 37.
-38.     displayIntro()
+38.     zeigeEinfuehrungAn()
 39.
-40.     caveNumber = chooseCave()
+40.     hoehlenNummer = sucheHoehleAus()
 41.
-42.     checkCave(caveNumber)
+42.     ueberpruefeHoehle(hoehlenNummer)
 43.
-44.     print('Do you want to play again? (yes or no)')
-45.     playAgain = input()
+44.     print('Möchtest Du noch einmal spielen? (ja oder nein)')
+45.     spieleNochEinmal = input()
 
 How the Code Works
+Wie der Code funktioniert
 
 Let’s look at the source code in more detail.
+Schaun wir uns den Quellcode genauer an.
 
  1. import random
  2. import time
 
 This program imports two modules. The random module will provide the random.randint() function like it did in the “Guess the Number” game. You will also want time-related functions that the time module includes, so import that too.
+Dieses Programm importiert zwei Module. Das Modul random beinhaltet die Funktion random.randint(), wie sie schon im Spiel “Rate die Zahl” verwendet wurde. Wir benötigen außerdem Funktionen zur zeitabhängigen Programmsteuerung, weshalb wir das Modul time importieren.
 
 def Statements
+Die Anweisung def
 
- 4. def displayIntro():
- 5.     print('You are in a land full of dragons. In front of you,')
- 6.     print('you see two caves. In one cave, the dragon is friendly')
- 7.     print('and will share his treasure with you. The other dragon')
- 8.     print('is greedy and hungry, and will eat you on sight.')
+ 4. def zeigeEinfuehrungAn():
+ 5.     print('Du bist ein einem Land voller Drachen. Vor Dir')
+ 6.     print('siehst Du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,')
+ 7.     print('der seine Schätze mit Dir teilt. Der andere Drache')
+ 8.     print('ist gierig und hungrig, und wird Dich bei Sichtkontakt auffressen.')
  9.     print()
 
 Line 4 is a def statement. The def statement creates, that is, defines, a new function that you can call later in the program. After you define this function, you can call it the same way you call other functions. When you call this function, the code inside the def-block executes.
+Zeile 4 ist eine def-Anweisung. Die def-Anweisung definiert eine neue Funktion, die später im Programm aufgerufen werden kann. Nachdem diese Funktion definiert wurde, kann sie wie jede andere Funktion aufgerufen werden. Beim Aufruf wird der Code innerhalb des def-Blocks ausgeführt.
 Figure 6-1 shows the parts of a def statement. It has the def keyword followed by a function name with parentheses and then a colon (the : sign). The block after the def statement is called the def-block.
+Abbildung 6-1 zeigt die Bestandteile einer def-Anweisung. Sie besteht aus dem Schlüsselwort def, gefolgt vom Funktionsnamen, Klammern, und einem Doppelpunkt. Der Block nach der def-Anweisung wird als def-Block bezeichnet.
 
 Figure 6-1: Parts of a def statement.
+Abbildung 6-1: Bestandteile einer def-Anweisung.
 
 Remember, the def statement doesn’t execute the code. It only defines what code to execute when you call the function. When the execution reaches a def statement it skips down to the first line after the def-block.
+Die def-Anweisung selbst weist Python nicht an, Code auszuführen. Sie definiert lediglich, welcher Code im Falle eines Funktionsaufrufes ausgeführt werden sollte. Wenn die Programm-Ausführung auf eine def-Anweisung trifft, überspringt sie den gesamten def-Block und fährt in der Zeile darunter fort.
 But when the displayIntro() function is called (such as on line 38), the execution moves inside of the displayIntro() function to the first line of the def-block.
+Wenn aber zeigeEinfuehrungAn() aufgerufen wird (wie dies z.B. in Zeile 38 der Fall ist), springt die Programm-Ausführung zur ersten Zeile in der Funktion zeigeEinfuehrungAn().
 
-38.     displayIntro()
+38.     zeigeEinfuehrungAn()
 
 All of the print() calls are run and the “You are in a land full of dragons...” introduction is displayed.
+Alle print()-Aufrufe werden ausgeführt und die Einführung “Du bist ein einem Land voller Drachen...” dargestellt.
 
 Where to Put Function Definitions
+Wo Funktionsdefinitionen platziert werden sollten
 
 A function's def statement and the def-block must come before you call the function. This is like how you must assign a value to a variable before you use the variable. If you put the function call before the function definition, you’ll get an error. Look at this code:
+Eine Funktionsdefinition muss vor ihrem Aufruf stehen. Genauso wie einer Variablen ein Wert zugewiesen werden muss, bevor diese verwendet werden kann. Steht der Funktionsaufruf vor der Definition, führt dies zu einem Fehler. Siehe folgenden Code:
 
 sayGoodbye()
+sagAufWiedersehen()
 
 def sayGoodbye():
+def sagAufWiedersehen():
     print('Goodbye!')
+    print('Auf Wiedersehen!')
 
 If you try to run it, Python will give you an error message that looks like this:
+Beim Versuch dieses Programm auszuführen, gibt Python eine Fehlermeldung ähnlich der folgenden aus:
 
 Traceback (most recent call last):
   File "C:\Python34\spam.py", line 1, in <module>
-sayGoodbye()
-NameError: name 'sayGoodbye' is not defined
+sagAufWiedersehen()
+NameError: name 'sagAufWiedersehen' is not defined
 
 To fix this, put the function definition before the function call:
+Dieser Fehler kann einfach behoben werden, indem man die Funktionsdefinition vor den Aufruf schreibt:
 
 def sayGoodbye():
+def sagAufWiedersehen():
     print('Goodbye!')
+    print('Auf Wiedersehen!')
 
 sayGoodbye()
+sagAufWiedersehen()
 
 Defining the chooseCave() Function
+Definition der sucheHoehleAus()-Funktion
 
-11. def chooseCave():
+11. def sucheHoehleAus():
 
 Here you are defining another function called chooseCave(). This function’s code asks the player which cave they want to go in, either 1 or 2.
+Hier definieren wir eine andere Funktion namens sucheHoehleAus(). Diese Funktion fragt den Spieler, in welche Höhle er gehen möchte (entweder 1 oder 2).
 
-12.     cave = ''
-13.     while cave != '1' and cave != '2':
+12.     hoehle = ''
+13.     while hoehle != '1' and hoehle != '2':
 
 This code needs to make sure the player typed 1 or 2, and not something else. A loop here will keep asking the player until they enter one of these two valid responses.
+Der Code muss sicherstellen, dass der Spieler 1 oder 2 eintippt und nichts anderes. Eine Schleife fragt den Spieler immer wieder, bis dieser eine der zwei gültigen Antworten eingibt.
 Line 12 creates a new variable called cave and stores a blank string in it. Then a while loop begins on line 13. The condition contains a new operator you haven't seen before called and. Just like the - or * are mathematical operators, and == or != are comparison operators, the and operator is a Boolean operator.
+Zeile 12 deklariert eine neue Variable namens hoehle und weist ihr eine leere Zeichenkette zu. In Zeile 13 beginnt eine while-Schleife. Die Bedingung enthält einen uns bisher unbekannten Operator namens and. Genauso wie - oder * mathematische Operatoren sind, und == oder != Vergleichsoperatoren, ist and ein boolescher Operator (manchmal auch logischer Operator oder Logikoperator genannt).
 
 Boolean Operators
+Boolesche Operatoren
 
 Boolean logic deals with things that are either True or False. Boolean operators compare two Boolean values and evaluate to a single Boolean value. The and Boolean operator combines two Boolean values to produce a new Boolean value.
+Boolesche Algebra beschäftigt sich mit Dingen, die wahr oder falsch (auf englisch “true” und “false”) sind. Boolesche Operatoren vergleichen zwei Wahrheitswerte und werten sie zu einem einzigen Wahrheitswert aus.
 Think of the sentence, “Cats have whiskers and dogs have tails.” “Cats have whiskers” is true and “dogs have tails” is also true, so the entire sentence “Cats have whiskers and dogs have tails” is true.
+Denken wir an den Satz “Katzen haben Schnurrhaare und Hunde haben Schwänze.” “Katzen haben Schnurrhaare” ist wahr und “Hunde haben Schwänze” ist auch wahr, also ist der gesamte Satz “Katzen haben Schnurrhaare und Hunde haben Schwänze” ebenfalls wahr.
 But the sentence, “Cats have whiskers and dogs have wings” would be false. Even though “cats have whiskers” is true, dogs do not have wings, so “dogs have wings” is false. In Boolean logic, things can only be entirely true or entirely false. Because of the word “and”, the entire sentence is only true if both parts are true. If one or both parts are false, then the entire sentence is false.
+Aber der Satz “Katzen haben Schnurrhaare und Hunde haben Flügel” ist falsch. Obwohl “Katzen haben Schnurrhaare” wahr ist, ist “Hunde haben Flügel” falsch. In der Booleschen Algebra ist eine Aussage, die sich aus zwei durch and verknüpften Teilaussagen besteht, nur dann wahr, wenn beide Teilaussagen ebenfalls wahr sind. Ist eine oder sind beide Teilaussagen falsch, so ist die gesamte Aussage ebenfalls falsch.
 
 The and and or Operators
+Die Operatoren and und or
 
 The and operator in Python is the same. If the Boolean values on both sides of the and keyword are True, then the expression with the and operator evaluates to True. If either of the Boolean values are False, or both of the Boolean values are False, then the expression evaluates to False.
+Der Operator and in Python entspricht dem Operator and in der Booleschen Algebra, wie er oben beschrieben ist.
 Try entering the following expressions with the and operator into the interactive shell:
+Versuche die folgenden Ausdrücke, die den Operator and enthalten, in den interaktiven Kommandozeileninterpreter einzugeben:
 
 >>> True and True
 True
@@ -194,11 +243,13 @@ False
 False
 >>> False and False
 False
->>> 10 < 20 and 'Hello' == 'Hello'
+>>> 10 < 20 and 'Hallo' == 'Hallo'
 True
 
 The or operator is similar to the and operator, except it will evaluate to True if either of the two Boolean values are True. The only time the or operator evaluates to False is if both of the Boolean values are False.
+Der Operator or vergleicht zwei Wahrheitswerte und wertet diese genau dann zu wahr aus, wenn mindestens einer der beiden Werte wahr ist, falsch sonst.
 Try entering the following into the interactive shell:
+Versuche folgende Ausdrücke in den interaktiven Kommandozeileninterpreter einzugeben:
 
 >>> True or True
 True
@@ -212,97 +263,123 @@ False
 True
 
 The not Operator
+Der Operator not
 
 The not operator only works on one value, instead of combining two values. The not operator evaluates to the opposite Boolean value. The expression not True will evaluate to False and not False will evaluate to True.
+Der Operator not arbeitet auf nur einem Wahrheitswert, anstatt zwei zu einem zu kombinieren. Der not-Operator kehrt einen Wahrheitswert in sein Gegenteil um. Der Ausdruck not True wird zu False ausgewertet und not False wird zu True ausgewertet.
 Try entering the following into the interactive shell:
+Versuche folgende Ausdrücke in den interaktiven Kommandozeileninterpreter einzugeben:
 
 >>> not True
 False
 >>> not False
 True
->>> not 'black' == 'white'
+>>> not 'schwarz' == 'weiss'
 True
 
 Truth Tables
+Wahrheitstabellen
 
 If you ever forget how the Boolean operators work, you can look at these charts, which are called truth tables:
+Die folgenden Tabellen, genannt “Wahrheitstabellen”, verraten Dir, wie die einzelnen booleschen Operatoren genau funktionieren:
 
 Table 6-1: The and operator's truth table.
+Tabelle 6-1: Die Wahrheitstabelle des Operators and
 A       and B       is  Entire statement
+A       and B       is  Gesamte Aussage
 True    and True    is  True
 True    and False   is  False
 False   and True    is  False
 False   and False   is  False
 
 Table 6-2: The or operator's truth table.
+Tabelle 6-2: Die Wahrheitstabelle des Operators or.
 A       and B       is  Entire statement
+A       and B       is  Gesamte Aussage
 True    and True    is  True
 True    and False   is  False
 False   and True    is  False
 False   and False   is  False
 
 Table 6-3: The not operator's truth table.
+Tabelle 6-3: Die Wahrheitstabelle des Operators not.
 not A       is  Entire statement
+not A       is  Gesamte Aussage
 not True    is  False
 not False   is  True
 
 Evaluating Boolean Operators
+Boolesche Operatoren auswerten
 
 Look at line 13 again:
+Sehen wir uns noch einmal Zeile 13 an:
 
-13.     while cave != '1' and cave != '2':
+13.     while hoehle != '1' and hoehle != '2':
 
 The condition has two parts connected by the and Boolean operator. The condition is True only if both parts are True.
+Die gesamte Bedingung besteht aus zwei durch den and-Operator verknüpften Teilbedingungen. Damit ist die gesamte Bedinung nur dann wahr, wenn beide Teilbedingungen wahr sind.
 The first time the while statement’s condition is checked, cave is set to the blank string, ''. The blank string is not equal to the string '1', so the left side evaluates to True. The blank string is also not equal to the string '2', so the right side evaluates to True.
+Wenn die Bedingung in der while-Anweisung das erste mal überprüft wird, hat hoehle noch seinen Initialwert ''. Dieser ist ungleich '1' und ungleich '2', sodass beide Teilbedingungen zu True ausgewertet werden.
 So the condition then turns into True and True. Because both Boolean values are True, the condition finally evaluates to True. So the program execution enters the while-block.
+True and True ergibt dann unseren Wahrheitstabellen zufolge True. Die Programm-Ausführung begibt sich in den while-Block.
 This is what the evaluation of the condition looks like (if the value of cave is the blank string):
+Hier ist die Auswertung der while-Bedingung Schritt für Schritt veranschaulicht:
 
-while cave != '1' and cave != '2':
-                   ▼
-while  ''  != '1' and cave != '2':
-                   ▼
-while     True    and cave != '2':
-                   ▼
-while     True    and  ''  != '2':
-                   ▼
-while     True    and     True:
-                   ▼
-while             True:
+while hoehle != '1' and hoehle != '2':
+					 ▼
+while   ''   != '1' and hoehle != '2':
+					 ▼
+while       True    and hoehle != '2':
+					 ▼
+while       True    and   ''   != '2':
+					 ▼
+while       True    and       True:
+					 ▼
+while              True:
 
 Getting the Player’s Input
+Benutzereingaben abfragen
 
-13.     while cave != '1' and cave != '2':
-14.         print('Which cave will you go into? (1 or 2)')
-15.         cave = input()
+13.     while hoehle != '1' and hoehle != '2':
+14.         print('In welche Höhle wirst Du gehen? (1 oder 2)')
+15.         hoehle = input()
 
 Line 14 asks the player which cave they choose. Line 15 lets the player type the response and hit ENTER. This response is stored in cave. After this code is executed, the execution loops back to the top of the while statement and rechecks the condition.
+Zeile 14 fragt den Spieler, in welche Höhle er gehen wird. Zeile 15 lässt den Spieler eine Antwort eingeben und ENTER drücken. Diese Antwort wird in hoehle gespeichert. Die Programm-Ausführung springt zurück zur while-Anweisung und überprüft die Bedingung erneut.
 If the player typed in 1 or 2, then cave will either be '1' or '2'. This makes the condition False, and the program execution will continue past the while loop. For example, if the user entered '1' then the evaluation would look like this:
+Falls der Spieler 1 oder 2 eingetippt hat, dann wird hoehle entweder den Wert 1 oder 2 haben. Dies macht die Bedingung falsch und die Programm-Ausführung fährt nach der while-Schleife fort. Hier ist die Auswertung der while-Bedingung, unter der Annahme, dass der Benutzer '1' eingetippt hat, Schritt für Schritt veranschaulicht:
 
-while cave != '1' and cave != '2':
-                   ▼
-while  '1' != '1' and cave != '2':
-                   ▼
-while     False   and cave != '2':
-                   ▼
-while     False   and  '1' != '2':
-                   ▼
-while     False   and     True:
-                   ▼
-while            False:
+while hoehle != '1' and hoehle != '2':
+					 ▼
+while  '1'   != '1' and hoehle != '2':
+					 ▼
+while      False    and hoehle != '2':
+					 ▼
+while      False    and  '1'   != '2':
+					 ▼
+while      False    and       True:
+					 ▼
+while              False:
 
 But if the player typed 3 or 4 or HELLO, that response would be invalid. The condition will still be True and enter the while-block to ask the player again. The program will keep asking until the player types 1 or 2. This will guarantee that once the execution moves on, the cave variable contains a valid response.
+Hätte der Spieler hingegen 3, 4, HALLO oder einen anderen ungültigen Wert eingegeben, dann wäre die Bedingung wahr. Das Programm fragt den Spieler so lange, bis dieser 1 oder 2 eintippt. Dies stellt sicher, dass wenn die Programm-Ausführung nach dem while-Block fortfährt, hoehle einen gültigen Wert besitzt.
 
 Return Values
+Rückgabe-Werte
 
-17.     return cave
+17.     return hoehle
 
 This is a return statement, which only appears inside def-blocks. Remember how the input() function returns a string value that the player typed in? The chooseCave() function will also return a value. Line 17 returns the string that is stored in cave, either '1' or '2'.
+Dies ist eine return-Anweisung. Sie tritt nur innerhalb von def-Blöcken auf. Genauso wie die input()-Funktion eine Zeichenkette zurückgibt, die der Spieler eingetippt hat, gibt die sucheHoehleAus()-Funktion den in hoehle gespeicherten Wert zurück, entweder '1' oder '2'.
 Once the return statement executes, the program execution jumps immediately out of the def-block. (This is like how the break statement will make the execution jump out of a while-block.) The program execution moves back to the line with the function call. The function call itself will evaluate to the return value.
+Wird eine return-Anweisung ausgeführt, springt die Programm-Ausführung sofort aus dem def-Block (ähnlich wie sie bei break aus einem while-Block springt) heraus und fährt an Stelle des Funktionsaufrufes fort. Der Funktionsaufruf selbst nimmt den Wert des Rückgabe-Wertes an.
 Skip down and look at line 40 for a moment:
+Schauen wir uns Zeile 40 an:
 
-40.     caveNumber = chooseCave()
+40.     hoehlenNummer = sucheHoehleAus()
 
 When the chooseCave() function is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
+
 So when line 17 returns a string, the function call on line 40 evaluates to this string, which is then stored in caveNumber.
 
 Global Scope and Local Scope

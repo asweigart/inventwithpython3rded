@@ -1,16 +1,16 @@
-Fig 6-1:
-def keyword
-parentheses
-function name
-colon
+Abb 6-1:
+Das Schlüsselwort def
+Klammern
+Funktionsname
+Doppelpunkt
 
-Fig 6-2:
+Abb 6-2:
 Start
-Show introduction
-Player chooses a cave
-Check for friendly or hungry dragon
-Player wins
-Player loses
-Ask to play again
-End
+Zeige Einführung
+Spieler sucht Höhle aus
+Auf freundlichen oder hungrigen Drachen überprüfen
+Spieler gewinnt
+Spieler verliert
+Frage Spieler, ob er nochmal spielen möchte
+Ende
 

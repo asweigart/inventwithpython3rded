@@ -40,4 +40,6 @@ Kapitel 5
 Kapitel 6
 ---------
 
-- Zeile 23: "File ► New Window" wurde vorerst nicht übersetzt. Gibt es eine deutsche Version von IDLE und ist diese eingedeutscht? 
+- Zeile 23: "File ► New Window" wurde vorerst nicht übersetzt. Gibt es eine deutsche Version von IDLE und ist diese eingedeutscht?
+
+- Zeilen 135-138: Wurden bis auf 'sayGoodbye' nicht übersetzt. Gibt es eine deutsche Version des Python-Interpreters und ist diese eingedeutscht?
