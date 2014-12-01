@@ -379,10 +379,12 @@ Schauen wir uns Zeile 40 an:
 40.     hoehlenNummer = sucheHoehleAus()
 
 When the chooseCave() function is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
-
+Wenn die Funktion sucheHoehleAus() in Zeile 40 aufgerufen wird, wird ihr Rückgabe-Wert in der Variablen hoehlenNummer gespeichert. Die while-Schleife garantiert, dass sucheHoehleAus() nur die Werte '1' oder '2' zurückgibt.
 So when line 17 returns a string, the function call on line 40 evaluates to this string, which is then stored in caveNumber.
+Wenn also Zeile 17 eine Zeichenkette zurückgibt, dann nimmt der Funktionsaufruf in Zeile 40 diese Zeichenkette als Wert an, der dann in hoehlenNummer gespeichert wird. Dies ist mit “Der Funktionsaufruf selbst nimmt den Wert des Rückgabe-Wertes an” gemeint.
 
 Global Scope and Local Scope
+Globale und lokale Geltungsbereiche
 
 Your program’s variables are forgotten after the program terminates. These variables created while the execution is inside a function call are the same. The variables are created when the function is called and forgotten when the function returns.
 Not only that, but when execution is inside the function, you cannot change the variables outside of the function, including variables inside other functions. This is because these variables exist in a different “scope”. All variables exist in either the global scope or a function call’s local scope.
