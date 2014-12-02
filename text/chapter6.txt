@@ -331,7 +331,7 @@ def bacon():
 spam = 42 # A global variable named "spam":
 print(spam) # 42
 bacon() # Call the bacon() function:
-# The global variable was not changed in funky():
+# The global variable was not changed in bacon():
 print(spam)    # 42
 
 When run, this code will output the following:
