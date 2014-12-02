@@ -1,5 +1,5 @@
     Bab 6
-    DUNIA NAGA
+    ALAM NAGA
 
 Cakupan topik dalam Bab ini:
 
@@ -15,82 +15,76 @@ Cakupan topik dalam Bab ini:
 
 Memperkenalkan Fungsi-Fungsi
 
-You’ve already used a few functions: print(), input(), random.randint(), str(), and int(). You’ve called these functions to execute the code inside them. In this chapter, you’ll write your own functions for your programs to call. A function is like a mini-program inside a program. Functions let you run the same code multiple times without copying and pasting the source code. Instead, you can put that code inside a function and call the function several times. This has the added benefit that if the function’s code has a mistake, you only have one place in the program to change it.
-The game you will create in this chapter is called “Dragon Realm”. The player decides between two caves which hold either treasure or certain doom.
+Sejauh ini kamu telah menggunakan beberapa fungsi: print(), input(), random.randint(), str(), dan int(). Kamu telah memanggil fungsi-fungsi tersebut untuk menjalankan kode di dalamnya. Dalam bab ini, kamu akan menulis sendiri fungsi-fungsi sendiri yang akan dipanggil oleh program buatanmu. Sebuah fungsi mirip seperti program mini dalam sebuah program. Fungsi membuatmu dapat menjalankan sebuah kode berulang kali tanpa harus melakukan copy-paste kode tersebut dalam kode sumber. Sebaliknya, kamu dapat menaruh kode tersebut dalam sebuah fungsi dan memanggil fungsi tersebut berkali-kali. Ini memberikan keuntungan ketika terjadi kesalahan pada kode sebuah fungsi. Kamu hanya perlu mengubah kode fungsi tersebut.
 
-Sejauh ini kamu telah menggunakan beberapa fungsi: print(), input(), random.randint(), str(), dan int(). [???]. Dalam bab ini, kamu akan menulis sendiri fungsi-fungsi sendiri yang akan dipanggil oleh program buatanmu. Sebuah fungsi mirip seperti program mini dalam sebuah program. Fungsi membuatmu dapat menjalankan sebuah kode berulang kali tanpa harus melakukan copy-paste kode tersebut dalam kode sumber. Sebaliknya, kamu dapat menaruh kode tersebut dalam sebuah fungsi dan memanggil fungsi tersebut berkali-kali. Ini memberikan keuntungan ketika terjadi kesalahan pada kode sebuah fungsi. Kamu hanya perlu mengubah kode fungsi tersebut.
+Game yang akan kamu buat pada bab ini bernama "Alam Naga". Pemain akan memilih diantara dua gua dimana dapat berisi harta karun atau kematian bagi pemain.
 
-Game yang akan kamu buat pada bab ini bernama "Dunia Naga". Pemain akan memilih diantara dua gua dimana dapat berisi harta karun atau kematian bagi pemain.
-
-How to Play “Dragon Realm”
-
-Bagaimana Cara Memainkan "Dunia Naga"
+Bagaimana Cara Memainkan "Alam Naga"
 
 Dalam game ini pemain berada dalam sebuah dunia penuh dengan naga. Naga-naga hidup dalam gua yang penuh dengan tumpukan harta karun. Ada beberapa naga yang jinak dan mau berbagi harta karun denganmu. Namun ada juga naga-naga yang lapar dan akan memakan siapapun yang memasuki gua mereka. Pemain berada di antara dua gua: satu gua berisi naga jinak dan lainnya berisi naga kelaparan. Pemain harus memilih salah satu dari dua gua tersebut.
 
 Bukalah sebuah jendela file editor baru dengan mengeklik File - New Window. Pada jendela yang kosong, ketikkan kode sumber dan simpan sebagai dragon.py. Kemudian jalankan programnya dengan menekan F5.
 
-Contoh Penjalanan Dunia Naga
+Contoh Alur Alam Naga
 
-You are in a land full of dragons. In front of you,
-you see two caves. In one cave, the dragon is friendly
-and will share his treasure with you. The other dragon
-is greedy and hungry, and will eat you on sight.
-Which cave will you go into? (1 or 2)
+Kamu ada di pulau yang dihuni banyak naga. Di depanmu,
+kamu melihat dua gua. Di salah satu gua dihuni oleh naga ramah
+dan mau berbagi harta karun bersamamu. Naga lain
+tamak dan lapar. Kamu bisa dimakan olehnya jika terlihat.
+Gua mana yang ingin kau jelajahi? (1 atau 2)
 1
-You approach the cave...
-It is dark and spooky...
-A large dragon jumps out in front of you! He opens his jaws and...
-Gobbles you down in one bite!
-Do you want to play again? (yes or no)
-no
+Kamu memasuki gua...
+Gua ini gelap dan menakutkan...
+Naga besar lompat didepanmu! Dia membuka mulutnya dan...
+Mengunyahmu dalam satu gigitan!
+Mau main lagi? (ya atau tidak)
+tidak
 
-Kode Sumber Dunia Naga
-
-One thing to know as you read the code below: The blocks that follow the def lines define a function. This is different from executing the code. That code doesn’t execute until the function is called. You will read more details about that later in this chapter.
+Kode Sumber Alam Naga
 
 Satu hal yang perlu kamu ketahui ketika membaca kode di bawah ini: Blok-blok setelah baris-baris def mendefinisikan sebuah fungsi. Ini berbeda dari menjalankan kode. Potongan kode tersebut tidak akan dijalankan hingga fungsi tersebut dipanggil. Kamu akan membaca lebih banyak mengenai pemanggilan fungsi di bab ini.
 
-IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
-If you get errors after typing this code in, compare it to the book’s code with the online diff tool at http://invpy.com/diff/dragon.
+PERLU DIPERHATIKAN! Program-program dalam buku ini hanya dapat dijalankan di Python 3. Kamu dapat melihat versi Python yang kamu gunakan dengan melihat angka versi pada jendela IDLE. Jika kamu telah memiliki instalasi Python 2, kamu dapat memiliki instalasi Python 3 dalam satu komputer secara bersamaan. Silakan buka https://python.org/download untuk mengunduh Python 3.
 
-dragon.py
+Jika kamu mendapatkan error setelah mengetikkan kode dalam kode sumber berikut, coba bandingkan dengan kode sumber pada buku melalui perangkat diff online di http://invpy.com/diff/naga
+
+naga.py
  1. import random
  2. import time
  3.
  4. def displayIntro():
- 5.     print('You are in a land full of dragons. In front of you,')
- 6.     print('you see two caves. In one cave, the dragon is friendly')
- 7.     print('and will share his treasure with you. The other dragon')
- 8.     print('is greedy and hungry, and will eat you on sight.')
+ 5.     print('Kamu ada di pulau yang dihuni banyak naga. Di depanmu,')
+ 6.     print('kamu melihat dua gua. Di salah satu gua dihuni oleh naga ramah')
+ 7.     print('dan mau berbagi harta karun bersamamu. Naga lain')
+ 8.     print('tamak dan lapar. Kamu bisa dimakan olehnya jika terlihat.')
  9.     print()
 10.
 11. def chooseCave():
 12.     cave = ''
 13.     while cave != '1' and cave != '2':
-14.         print('Which cave will you go into? (1 or 2)')
+14.         print('Gua mana yang ingin kau jelajahi? (1 atau 2)')
 15.         cave = input()
 16.
 17.     return cave
 18.
 19. def checkCave(chosenCave):
-20.     print('You approach the cave...')
+20.     print('Kamu memasuki gua...')
 21.     time.sleep(2)
-22.     print('It is dark and spooky...')
+22.     print('Gua ini gelap dan menakutkan...')
 23.     time.sleep(2)
-24.     print('A large dragon jumps out in front of you! He opens his jaws and...')
+24.     print('Naga besar lompat didepanmu! Dia membuka mulutnya dan...')
 25.     print()
 26.     time.sleep(2)
 27.
 28.     friendlyCave = random.randint(1, 2)
 29.
 30.     if chosenCave == str(friendlyCave):
-31.          print('Gives you his treasure!')
+31.          print('Memberimu harta karunnya!')
 32.     else:
-33.          print('Gobbles you down in one bite!')
+33.          print('Mengunyahmu dalam satu gigitan!')
 34.
-35. playAgain = 'yes'
-36. while playAgain == 'yes' or playAgain == 'y':
+35. playAgain = 'ya'
+36. while playAgain == 'ya' or playAgain == 'y':
 37.
 38.     displayIntro()
 39.
@@ -98,7 +92,7 @@ dragon.py
 41.
 42.     checkCave(caveNumber)
 43.
-44.     print('Do you want to play again? (yes or no)')
+44.     print('Mau main lagi? (ya atau tidak)')
 45.     playAgain = input()
 
 Bagaimana Kode Bekerja
@@ -113,50 +107,43 @@ Program ini melakukan impor terhadap dua modul. Modul random akan menyediakan fu
 Pernyataan-pernyataan def
 
  4. def displayIntro():
- 5.     print('You are in a land full of dragons. In front of you,')
- 6.     print('you see two caves. In one cave, the dragon is friendly')
- 7.     print('and will share his treasure with you. The other dragon')
- 8.     print('is greedy and hungry, and will eat you on sight.')
+ 5.     print('Kamu ada di pulau yang dihuni banyak naga. Di depanmu,')
+ 6.     print('kamu melihat dua gua. Di salah satu gua dihuni oleh naga ramah')
+ 7.     print('dan mau berbagi harta karun bersamamu. Naga lain')
+ 8.     print('tamak dan lapar. Kamu bisa dimakan olehnya jika terlihat.')
  9.     print()
 
 Baris 4 adalah pernyataan def. Pernyataan def membuat, atau mendefinisikan, sebuah fungsi baru yang dapat kamu panggil di lain waktu pada program. Setelah kamu mendefinisikan fungsi, kamu dapat memanggilnya seperti kamu memanggil fungsi-fungsi lainnya. Ketika kamu memanggil fungsi, program akan menjalankan kode-kode dalam def-block.
 
-Figure 6-1 shows the parts of a def statement. It has the def keyword followed by a function name with parentheses and then a colon (the : sign). The block after the def statement called the def-block.
+Gambar 6-1 menampilkan bagian-bagian dari sebuah pernyataan def. Terdapat keyword def diikuti dengan nama fungsi dengan tanda kurung dan tanda titik dua (:). Blok setelah pernyataan def disebut sebagai def-block.
 
-Figure 6-1 menampilkan bagian-bagian dari sebuah pernyataan def. Terdapat keyword def diikuti dengan nama fungsi dengan tanda kurung dan tanda titik dua (:). Blok setelah pernyataan def disebut sebagai def-block.
-
-Figure 6-1: Parts of a def statement.
-
-Figure 6-1: Bagian-bagian sebuah pernyataan def.
-
-Remember, the def statement doesn’t execute the code. It only defines what code to execute when you call the function. When the execution reaches a def statement it skips down to the first line after the def-block.
+Gambar 6-1: Bagian-bagian sebuah pernyataan def.
 
 Perlu diingat bahwa pernyataan def tidak menjalankan kode. Pernyataan def hanya mendefinisikan kode-kode apa yang akan dijalankan ketika fungsi dipanggil. Ketika eksekusi program mencapai pernyataan def, alur eksekusi program akan berpindah ke baris pertama setelah def-block.
-
-But when the displayIntro() function is called (such as on line 38), the execution moves inside of the displayIntro() function to the first line of the def-block.
 
 Tapi ketika fungsi displayIntro() dipanggil (seperti pada baris 38), eksekusi program berpindah ke dalam fungsi displayIntro() pada baris pertama def-block.
 
 38.     displayIntro()
 
-All of the print() calls are run and the “You are in a land full of dragons...” introduction is displayed.
+Semua pemanggilan print() akan dijalankan dan teks pengantar 'Kamu ada di pulau yang dihuni banyak naga...' akan ditampilkan.
 
-Where to Put Function Definitions
+Meletakkan Definisi Fungsi-Fungsi
 
-A function's def statement and the def-block must come before you call the function. This is like how you must assign a value to a variable before you use the variable. If you put the function call before the function definition, you’ll get an error. Look at this code:
+Sebuah pernyataan def sebuah fungsi dan blok def miliknya harus dibuat terlebih dahulu sebelum fungsi tersebut dapat dipanggil. Ini seperti kamu harus memasukkan sebuah nilai pada variabel terlebih dahulu sebelum kamu dapat menggunakannya. Jika kamu meletakkan pemanggilan fungsi sebelum fungsi tersebut didefinisikan, maka kamu akan mendapatkan error. Coba perhatikan kode berikut:
+
 sayGoodbye()
 
 def sayGoodbye():
     print('Goodbye!')
 
-If you try to run it, Python will give you an error message that looks like this:
+Jika kamu mencoba menjalankannya, Python akan memberikan pesan error yang terlihat seperti ini:
 
 Traceback (most recent call last):
   File "C:\Python34\spam.py", line 1, in <module>
 sayGoodbye()
 NameError: name 'sayGoodbye' is not defined
 
-To fix this, put the function definition before the function call:
+Untuk membetulkannya, letakkan definisi fungsi sebelum pemanggilan fungsi:
 
 def sayGoodbye():
     print('Goodbye!')
@@ -167,20 +154,18 @@ Mendefinisikan Fungsi chooseCave()
 
 11. def chooseCave():
 
-Here you are defining another function called chooseCave(). This function’s code asks the player which cave they want to go in, either 1 or 2.
+Disini kamu mendefinisikan sebuah fungsi lain bernama chooseCave(). Fungsi ini meminta pemain untuk memilih antara gua 1 atau gua 2 untuk dijelajahi.
 
 12.     cave = ''
 13.     while cave != '1' and cave != '2':
 
-This code needs to make sure the player typed 1 or 2, and not something else. A loop here will keep asking the player until they enter one of these two valid responses.
-Line 12 creates a new variable called cave and stores a blank string in it. Then a while loop begins on line 13. The condition contains a new operator you haven't seen before called and. Just like the - or * are mathematical operators, and == or != are comparison operators, the and operator is a Boolean operator.
+Kode ini dibutuhkan untuk menjamin pemain hanya memasukkan 1 atau 2, dan bukan lainnya. Sebuah perulangan disini akan terus meminta pemain hingga ia memasukkan salah satu masukan yang sah.
 
-Boolean Operators
+Baris 12 membuat variabel baru bernama cave dan menyimpan sebuah string kosong di dalamnya. Kemudian sebuah perulangan while mulai pada baris 13. Kondisinya mengandung sebuah operator yang belum pernah kamu lihat sebelumnya, yaitu operator and. Sama seperti - atau * yang berupa operator matematika, dan == atau != yang berupa operator perbandingan, and merupakan sebuah operator Boolean.
+
 Operator-Operator Boolean
 
 Logika Boolean berhubungan dengan hal-hal yang bernilai Benar (True) atau Salah (False). Operator-operator Boolean membandingkan dua nilai Boolean dan dievaluasi menjadi nilai Boolean tunggal. Operator Boolean and menggabungkan dua nilai Boolean untuk menghasil sebuah nilai Boolean baru.
-
-Think of the sentence, “Cats have whiskers and dogs have tails.” “Cats have whiskers” is true and “dogs have tails” is also true, so the entire sentence “Cats have whiskers and dogs have tails” is true.
 
 Misalkan terdapat sebuah kalimat "Kucing memiliki kumis dan anjing memiliki ekor." "Kucing memiliki kumis" adalah benar, begitu pula dengan "anjing memiliki ekor." Oleh karena itu, keseluruhan kalimat "Kucing memiliki kumis dan anjing memiliki ekor" adalah benar.
 
@@ -260,10 +245,13 @@ Lihat kembali baris 13:
 
 13.     while cave != '1' and cave != '2':
 
-The condition has two parts connected by the and Boolean operator. The condition is True only if both parts are True.
-The first time the while statement’s condition is checked, cave is set to the blank string, ''. The blank string is not equal to the string '1', so the left side evaluates to True. The blank string is also not equal to the string '2', so the right side evaluates to True.
-So the condition then turns into True and True. Because both Boolean values are True, the condition finally evaluates to True. So the program execution enters the while-block.
-This is what the evaluation of the condition looks like (if the value of cave is the blank string):
+Kondisi di atas memiliki dua bagian yang dihubungkan dengan sebuah operator Boolean and. Kondisinya bernilai True hanya jika kedua bagiannya bernilai True.
+
+Pertama kalinya kondisi dalam pernyataan while dicek, cave bernilai string kosong ''. String kosong tidak sama dengan string '1', maka sisi kiri kondisi dalam while dievaluasi menjadi True. String kosong juga tidak sama dengan string '2', maka sisi kanan kondisi juga dievaluasi menjadi True.
+
+Pada akhirnya, kondisi dalam pernyataan while menjadi True dan True. Karena kedua nilai Boolean bernilai true dan dievaluasi menggunakan operator and, maka hasilnya menjadi True. Oleh karena itu, eksekusi program masuk ke dalam blok while.
+
+Ini merupakan gambaran bagaimana proses evaluasi dalam kondisi (jika nilai dalam cave berupa string kosong):
 
 while cave != '1' and cave != '2':
                    ▼
@@ -277,14 +265,15 @@ while     True    and     True:
                    ▼
 while             True:
 
-Getting the Player’s Input
+Mendapatkan Masukan dari Pemain
 
 13.     while cave != '1' and cave != '2':
-14.         print('Which cave will you go into? (1 or 2)')
+14.         print('Gua mana yang ingin kau jelajahi? (1 atau 2)')
 15.         cave = input()
 
-Line 14 asks the player which cave they choose. Line 15 lets the player type the response and hit ENTER. This response is stored in cave. After this code is executed, the execution loops back to the top of the while statement and rechecks the condition.
-If the player typed in 1 or 2, then cave will either be '1' or '2'. This makes the condition False, and the program execution will continue past the while loop. For example, if the user entered '1' then the evaluation would look like this:
+Baris 14 meminta pemain untuk memilih gua. Baris 15 memungkinkan pemain untuk mengetikkan respon dan menekan ENTER. Respon ini kemudian disimpan dalam variabel cave. Setelah kode ini dijalankan, eksekusi program berulang kembali ke atas pernyataan while dan mengecek kembali kondisi.
+
+Jika pemain memasukkan 1 atau 2, maka cave akan bernilai antara 1 atau 2. Ini akan menyebabkan kondisi False dan eksekusi program akan berlanjut melewati perulangan while. Sebagai contoh, jika pengguna memasukkan '1', maka evaluasinya akan terlihat seperti ini:
 
 while cave != '1' and cave != '2':
                    ▼
@@ -298,22 +287,25 @@ while     False   and     True:
                    ▼
 while            False:
 
-But if the player typed 3 or 4 or HELLO, that response would be invalid. The condition will still be True and enters the while-block to ask the player again. The program will keep asking until the player types 1 or 2. This will guarantee that once the execution moves on, the cave variable contains a valid response.
+Namun jika pemain memasukkan 3 atau 4 atau HELLO, respon tersebut tidak sah. Kondisinya akan tetap True dan kembali ke blok while untuk meminta kembali pada pemain. Program akan tetap meminta pemain hingga pemain memasukkan 1 atau 2. Ini akan menjamin eksekusi akan berlanjut ketika variabel cave mengandung respon yang sah.
 
-Return Values
+Nilai Kembalian
 
 17.     return cave
 
-This is a return statement, which only appears inside def-blocks. Remember how the input() function returns a string value that the player typed in? The chooseCave() function will also return a value. Line 17 returns the string that is stored in cave, either '1' or '2'.
-Once the return statement executes, the program execution jumps immediately out of the def-block. (This is like how the break statement will make the execution jump out of a while-block.) The program execution moves back to the line with the function call. The function call itself will evaluate to the return value.
-Skip down and look at line 40 for a moment:
+Ini merupakan pernyataan return yang hanya akan muncul dalam blok-blok def.  Ingat bagaimana fungsi input() mengembalikan sebuah nilai string yang dimasukkan oleh pemain? Fungsi chooseCave() juga akan mengembalikan sebuah nilai. Baris 17 mengembalikan string yang tersimpan dalam cave, yaitu antara '1' atau '2'.
+
+Ketika pernyataan return dijalankan, eksekusi program langsung loncat keluar blok def. (Ini seperti bagaimana pernyataan break akan membuat eksekusi program loncat keluar blok while.) Eksekusi program kemudian berpindah kembali ke baris dengan pemanggilan fungsi. Pemanggilan fungsi tersebut akan menghasilkan sebuah nilai kembalian.
+
+Coba perhatikan sebentar baris 40 di bawah ini:
 
 40.     caveNumber = chooseCave()
 
-When the chooseCave() is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
-So when line 17 returns a string, the function call on line 40 evaluates to this string, which is then stored in caveNumber.
+Ketika chooseCave() nanti dipanggil oleh program pada baris 40, nilai kembaliannya disimpan pada variabel caveNumber. Perulangan while menjamin bahwa chooseCave() hanya akan mengembalikan antara '1' atau '2' sebagai nilai kembalian.
 
-Global Scope and Local Scope
+Jadi ketika baris 17 mengembalikan sebuah string, pemanggilan fungsi pada baris 40 menghasilkan string yang sebelumnya tersimpan dalam caveNumber. 
+
+Cakupan Global dan Cakupan Lokal
 
 Your program’s variables are forgotten after the program terminates. These variables created while the execution is inside a function call are the same. The variables are created when the function is called and forgotten when the function returns.
 Not only that, but when execution is inside the function, you cannot change the variables outside of the function, including variables inside other functions. This is because these variables exist in a different “scope”. All variables exist in either the global scope or a function call’s local scope.
@@ -435,7 +427,8 @@ Where the Main Part Begins
 
 Line 35 is the first line that isn’t a def statement or inside a def-block. This line is where the main part of the program begins. The previous def statements merely defined the functions. It didn’t run the code inside of the functions.
 Line 35 and 36 are setting up a loop that the rest of the game code fits in. At the end of the game, the player can enter if they want to play again. If they do, the execution enters the while loop to run the entire game all over again. If they don’t, the while statement’s condition will be False and the execution will move on to the end of the program and terminate.
-The first time the execution comes to this while statement, line 35 will have just assigned 'yes' to the playAgain variable. That means the condition will be True.
+
+Pertama kalinya ekseuki program mencapai pernyatan while ini, baris 35 akan langsung memasukkan 'ya' ke dalam variabel playAgain. Itu berarti kondisinya akan menjadi True.
 
 Memanggil Fungsi-Fungsi Dalam Program
 
@@ -449,28 +442,28 @@ Baris 40 juga memanggil sebuah fungsi yang telah kamu buat. Ingat bahwa fungsi c
 
 42.     checkCave(caveNumber)
 
-Baris ini memanggil fungsi checkCave() buatanmu, lalu melemparkan nilai dalam variabel caveNumber sebagai argumen. Eksekusi tidak hanya loncat ke baris 20, namun nilai dalam caveNumber disalin ke parameter chosenCave dalam fungsi checkCave(). Fungsi ini yang akan menampilkan 'Gives you his treasure!' atau 'Gobbles you down in one bit!', tergantung pilihan gua yang dipilih oleh pemain.
+Baris ini memanggil fungsi checkCave() buatanmu, lalu melemparkan nilai dalam variabel caveNumber sebagai argumen. Eksekusi tidak hanya loncat ke baris 20, namun nilai dalam caveNumber disalin ke parameter chosenCave dalam fungsi checkCave(). Fungsi ini yang akan menampilkan 'Memberimu harta karunnya!' atau 'Mengunyahmu dalam satu gigitan!', tergantung pilihan gua yang dipilih oleh pemain.
 
 Meminta Pemain Untuk Kembali Bermain
 
-44.     print('Do you want to play again? (yes or no)')
+44.     print('Mau main lagi? (ya atau tidak)')
 45.     playAgain = input()
 
-Walaupun pemain kalah atau kalah, pemain akan diminta apakah mereka ingin bermain kembali. Variabel playAgain menyimpan string yang diketikkan oleh pemain. Baris 46 adalah baris terakhir pada while-block. Oleh karena itu, program akan kembali loncat ke baris 36 untuk memeriksa kondisi: playAgain == 'yes' or playAgain == 'y'
+Walaupun pemain kalah atau kalah, pemain akan diminta apakah mereka ingin bermain kembali. Variabel playAgain menyimpan string yang diketikkan oleh pemain. Baris 46 adalah baris terakhir pada while-block. Oleh karena itu, program akan kembali loncat ke baris 36 untuk memeriksa kondisi: playAgain == 'ya' or playAgain == 'y'
 
-Jika pemain mengetikkan string 'yes' atau 'y', maka eksekusi akan berulang kembali ke baris 38.
+Jika pemain mengetikkan string 'ya' atau 'y', maka eksekusi akan berulang kembali ke baris 38.
 
-Jika pemain mengetikkan 'no' atau 'n' atau sesuatu yang tidak relevan seperti 'Abraham Lincoln', maka evaluasi kondisi tetap menghasilkan False. Eksekusi program akan berlanjut ke baris setelah while-block. Namun karena tidak ada baris setelah while-block, maka program akan berhenti.
+Jika pemain mengetikkan 'tidak' atau 't' atau sesuatu yang tidak relevan seperti 'Abraham Lincoln', maka evaluasi kondisi tetap menghasilkan False. Eksekusi program akan berlanjut ke baris setelah while-block. Namun karena tidak ada baris setelah while-block, maka program akan berhenti.
 
-Satu hal yang perlu dicatat: string 'YES' tidak sama dengan string 'yes'. Jika pemain mengetikkan string 'YES', maka kondisi dalam pernyataan while akan dievaluasi menjadi False dan program akan tetap berhenti. Program-program dalam bab-bab selanjutnya akan menunjukkan cara bagaimana menghindari masalah ini.
+Satu hal yang perlu dicatat: string 'YA' tidak sama dengan string 'ya'. Jika pemain mengetikkan string 'ya', maka kondisi dalam pernyataan while akan dievaluasi menjadi False dan program akan tetap berhenti. Program-program dalam bab-bab selanjutnya akan menunjukkan cara bagaimana menghindari masalah ini.
 
-Kamu baru saja menyelesaikan game kedua kamu! Pada Dunia Naga, kamu telah menggunakan hal-hal yang telah kamu pelajari pada game "Tebak Angka" dan belajar trik-trik baru. Jika kamu belum mengerti beberapa konsep dalam program ini, maka bacalah ringkasan pada akhir bab ini. Atau kamu dapat kembali melihat setiap baris pada kode sumber dan mencoba mengubahnya dan lihat bagaimana program berubah.
+Kamu baru saja menyelesaikan game kedua kamu! Pada Alam Naga, kamu telah menggunakan hal-hal yang telah kamu pelajari pada game "Tebak Angka" dan belajar trik-trik baru. Jika kamu belum mengerti beberapa konsep dalam program ini, maka bacalah ringkasan pada akhir bab ini. Atau kamu dapat kembali melihat setiap baris pada kode sumber dan mencoba mengubahnya dan lihat bagaimana program berubah.
 
 Pada bab berikutnya kamu tidak akan membuat sebuah gim, tapi kamu akan belajar bagaimana menggunakan sebuah fitur IDLE yang disebut sebagai debugger.
 
 Merancang Program
 
-Dunia Naga merupakan game sederhana. Game-game lainnya dalam buku ini akan sedikit lebih rumit. Seringkali menuliskan apa saja yang kamu inginkan dari game atau program akan sangat membantu sebelum kamu mulai menulis kode. Kegiatan ini disebut "merancang program."
+Alam Naga merupakan game sederhana. Game-game lainnya dalam buku ini akan sedikit lebih rumit. Seringkali menuliskan apa saja yang kamu inginkan dari game atau program akan sangat membantu sebelum kamu mulai menulis kode. Kegiatan ini disebut "merancang program."
 
 Sebagai contoh, kamu dapat menggambar sebuah diagram alur. Diagram alur adalah sebuah gambar yang menunjukkan semua kemungkinan aksi yang dapat terjadi dalam permainan dan aksi-aksi tersebut akan mengarah kepada aksi-aksi yang lain. Gambar 6-2 merupakan diagram alur untuk Dunia Naga.
 
@@ -478,13 +471,11 @@ Gambar 6-2: Diagram alur permainan Dunia Naga.
 
 Untuk melihat apa yang terjadi dalam permainan, coba taruh jari kamu pada kotak "Mulai", lalu ikuti panah dari sana ke kotak lain. Jari kamu berfungsi layaknya eksekusi program. Program akan selesai ketika jari kamu mendarat pada kotak "Selesai".
 
-When you get to the “Check for friendly or hungry dragon” box, you can go to the “Player wins” box or the “Player loses” box. This branching point shows how the program can do different things. Either way, both paths will end up at the “Ask to play again” box.
-
-Ketika kamu mencapai kotak "Cek apakah ada naga baik atau lapar", kamu dapat pergi ke kotak "Pemain menang" atau "Pemain kalah". Titik percabangan ini menunjukkan bagaimana program dapat melakukan hal-hal yang berbeda. [Either way?], masing-masing jalur akan berakhir pada kotak "Apakah ingin bermain kembali".
+Ketika kamu mencapai kotak "Cek apakah ada naga baik atau naga lapar", kamu dapat pergi ke kotak "Pemain menang" atau "Pemain kalah". Titik percabangan ini menunjukkan bagaimana program dapat melakukan hal-hal yang berbeda. Bagaimanapun, masing-masing jalur akan berakhir pada kotak "Mau main lagi?".
 
 Ringkasan
 
-Pada permainan "Dunia Naga", kamu telah membuat fungsi buatanmu sendiri. Fungsi merupakan sebuah program mini di dalam program. Kode di dalam fungsi dijalankan ketika fungsi dipanggil. Dengan memecah kode kamu menjadi kumpulan fungsi, kamu dapat menyusun kode buatanmu menjadi bagian-bagian kecil yang lebih mudah dipahami.
+Pada permainan "Alam Naga", kamu telah membuat fungsi buatanmu sendiri. Fungsi merupakan sebuah program mini di dalam program. Kode di dalam fungsi dijalankan ketika fungsi dipanggil. Dengan memecah kode kamu menjadi kumpulan fungsi, kamu dapat menyusun kode buatanmu menjadi bagian-bagian kecil yang lebih mudah dipahami.
 
 Argumen merupakan nilai-nilai yang dimasukkan ke dalam fungsi ketika fungsi tersebut dipanggil. Pemanggilan fungsi dievaluasi hingga menghasilkan sebuah nilai yang disebut sebagai nilai kembalian.
 
