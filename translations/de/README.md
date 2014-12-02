@@ -29,15 +29,3 @@ Kapitel 1
 - Zeile 58: "shell" wurde nach "Kommandozeileninterpreter" übersetzt. Eindeutschen ja/nein?
 
 - Zeile 108: Wie sollte "diff" (Kontext: "diff tool") übersetzt werden? (Wurde vorläufig mit "Diff-Werkzeug" übersetzt.)
-
-Kapitel 5
----------
-
-- Zeile 130: "SyntaxError: EOL while scanning single-quoted string" wurde nicht übersetzt. Gibt es eine deutsche Version von Python und ist diese komplett übersetzt?
-
-Kapitel 6
----------
-
-- Zeile 23: "File ► New Window" wurde vorerst nicht übersetzt. Gibt es eine deutsche Version von IDLE und ist diese eingedeutscht?
-
-- Zeilen 135-138: Wurden bis auf 'sayGoodbye' nicht übersetzt. Gibt es eine deutsche Version des Python-Interpreters und ist diese eingedeutscht?
