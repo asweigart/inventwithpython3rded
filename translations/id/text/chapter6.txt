@@ -7,9 +7,9 @@ Cakupan topik dalam Bab ini:
 •   Fungsi time.sleep()
 •   Keyword return
 •   Membuat fungsi baru dengan keyword def
-•   Boolean operators Operator Boolean and dan or
+•   Operator Boolean and dan or
 •   Tabel kebenaran
-•   Cakupan variabel (Global dan Local)
+•   Cakupan variabel (Global dan Lokal)
 •   Parameter dan argumen
 •   Diagram alur
 
@@ -297,7 +297,7 @@ Ini merupakan pernyataan return yang hanya akan muncul dalam blok-blok def.  Ing
 
 Ketika pernyataan return dijalankan, eksekusi program langsung loncat keluar blok def. (Ini seperti bagaimana pernyataan break akan membuat eksekusi program loncat keluar blok while.) Eksekusi program kemudian berpindah kembali ke baris dengan pemanggilan fungsi. Pemanggilan fungsi tersebut akan menghasilkan sebuah nilai kembalian.
 
-Coba perhatikan sebentar baris 40 di bawah ini:
+Coba perhatikan sebentar baris 40 berikut ini:
 
 40.     caveNumber = chooseCave()
 
@@ -307,78 +307,84 @@ Jadi ketika baris 17 mengembalikan sebuah string, pemanggilan fungsi pada baris 
 
 Cakupan Global dan Cakupan Lokal
 
-Your program’s variables are forgotten after the program terminates. These variables created while the execution is inside a function call are the same. The variables are created when the function is called and forgotten when the function returns.
-Not only that, but when execution is inside the function, you cannot change the variables outside of the function, including variables inside other functions. This is because these variables exist in a different “scope”. All variables exist in either the global scope or a function call’s local scope.
-The scope outside of all functions is called the global scope. The scope inside of a function (for the duration of a particular function call) is called a local scope. The entire program has only one global scope, and each function has a local scope of its own.
-Variables defined in the global scope can be read outside and inside functions, but can only be modified outside of all functions. Variables created in a function call can only be read or modified during that function call.
-You can read the value of global variables from the local scope, but attempting to change a global variable from the local scope won’t work. What Python actually does in that case is create a local variable with the same name as the global variable. You could, for example, have a local variable named spam at the same time as having a global variable named spam. Python will consider these to be two different variables.
-Look at this example to see what happens when you try to change a global variable from inside a local scope. The comments explain what is going on:
+Variabel-variabel dalam program akan dilupakan setelah program selesai. Variabel-variabel yang dibuat ketika dalam eksekusi sebuah fungsi juga berlaku sama. Variabel-variabel tersebut dibuat ketika fungsi dipanggil dan dilupakan setelah fungsi selesai.
+
+Selain itu, ketika eksekusi dalam sebuah fungsi, kamu tidak dapat merubah variabel-variabel di luar fungsi tersebut dan variabel-variabel di dalam fungsi-fungsi lain. Ini karena variabel-variabel tersebut berada dalam "cakupan" yang berbeda. Semua variabel berada antara dalam cakupan global atau dalam cakupan lokal sebuah pemanggilan fungsi.
+
+Cakupan di luar semua fungsi disebut sebagai cakupan global. Cakupan dalam sebuah fungsi (selama dalam pemanggilan fungsi tertentu) disebut sebagai cakupan lokal. Keseluruhan program hanya memiliki satu cakupan global, dan setiap fungsi memiliki cakupan lokal masing-masing.
+
+Variabel-variabel yang dibuat dalam cakupan global dapat dibaca dari luar dan dalam fungsi, tapi hanya dapat diubah di luar semua fungsi. Variabel-variabel yang dibuat dalam pemanggilan fungsi hanya dapat dibaca atau diubah dalam pemanggilan fungsi tersebut.
+
+Kamu dapat membaca nilai variabel-variabel global dari dalam cakupan lokal. Namun ketika kamu mencoba untuk mengubah variabel global dari dalam cakupan lokal, kamu tidak akan berhasil. Dalam kasus ini, Python membuatkan variabel lokal baru dengan nama yang sama dengan variabel global. Kamu dapat, sebagai contoh, memiliki sebuah variabel lokal dan variabel global bernama spam secara bersamaan. Python akan menganggap kedua variabel sebagai variabel-variabel yang berbeda.
+
+Perhatikan contoh berikut untuk melihat apa yang terjadi ketika kamu mengubah sebuah variabel global dari dalam cakupan lokal. Komentar program menjelaskan lebih lanjut:
 
 def bacon():
-    # We create a local variable named "spam"
-    # instead of changing the value of the global
-    # variable "spam":
+    # Kita membuat sebuah variabel lokal bernama "spam"
+    # daripada mengubah nilai pada variabel global
+    # "spam":
     spam = 99
-    # The name "spam" now refers to the local
-    # variable only for the rest of this
-    # function:
+    # Nama "spam" sekarang merujuk hanya pada 
+    # variabel lokal dalam keseluruhan fungsi
+    # ini:
     print(spam)    # 99
 
-spam = 42 # A global variable named "spam":
+spam = 42 # Sebuah variabel global bernama "spam":
 print(spam) # 42
-bacon() # Call the bacon() function:
-# The global variable was not changed in funky():
+bacon() # Panggil fungsi bacon():
+# Variabel global tidak berubah oleh pemanggilan bacon():
 print(spam)    # 42
 
-When run, this code will output the following:
+Ketika dijalankan, kode ini akan menghasilkan keluaran berikut:
 
 42
 99
 42
 
-Where a variable is created determines what scope it is in. When the Dragon Realm program first executes the line:
+Lokasi pembuatan variabel menentukan cakupan variabel tersebut. Ketika program Alam Naga pertama kali menjalankan baris:
 
 12.     cave = ''
 
-...the variable cave is created inside the chooseCave() function. This means it is created in the chooseCave() function’s local scope. It will be forgotten when chooseCave() returns, and will be recreated if chooseCave() is called a second time. The value of a local variable isn’t remembered in between function calls.
+...variabel cave dibuat dalam fungsi chooseCave(). Ini berarti variabel tersebut berada dalam cakupan lokal fungsi chooseCave(). Variabel tersebut akan dilupakan ketika chooseCave() kembali, dan akan dibuat kembali ketika chooseCave() dipanggil untuk kedua kalinya. Nilai dalam sebuah variabel lokal tidak diingat di antara pemanggilan fungsi.
 
-Defining the checkCave() Function
+Mendefinisikan Fungsi checkCave()
 
 19. def checkCave(chosenCave):
 
-The next function the program defines is named checkCave(). Notice that the text chosenCave in between the parentheses. This is a parameter: a local variable that is assigned the argument passed in when this function is called.
-Remember how for some function calls like str() or randint(), you would pass an argument in between the parentheses:
+Fungsi selanjutnya yang didefinisikan dalam program adalah checkCave(). Perhatikan bahwa terdapat teks chosenCave di antara tanda buka-tutup kurung. Ini merupakan sebuah parameter: sebuah variabel lokal yang diisi dengan argumen ketika fungsi ini dipanggil.
+
+Ingat kembali ketika kamu memanggil fungsi-fungsi seperti str() atau randint(). Kamu akan melemparkan sebuah argumen ke dalam antara tanda buka-tutup kurung:
 
 >>> str(5)
 '5'
 >>> random.randint(1, 20)
 14
 
-You will also pass an argument when you call checkCave(). This argument is stored in a new variable named chosenCave. These variables are also called parameters.
+Kamu juga akan melemparkan sebuah argumen ketika kamu memanggil checkCave(). Argumen ini disimpan dalam sebuah variabel baru bernama chosenCave. Variabel-variabel tersebut juga disebut sebagai parameter.
 
-Parameters
+Parameter
 
-Parameters are local variables created when a function is called. For example, here is a short program that demonstrates defining a function with a parameter:
+Parameter adalah variabel lokal yang dibuat ketika sebuah fungsi dipanggil. Sebagai contoh, berikut ini merupakam program singkat yang menunjukkan pembuatan fungsi dengan sebuah parameter:
 
-def sayHello(name):
-    print('Hello, ' + name + '. Your name has ' + str(len(name)) + 'letters.')
+def bilangHalo(nama):
+    print('Halo, ' + nama + '. Namamu memiliki ' + str(len(nama)) + ' huruf.')
 
-sayHello('Alice')
-sayHello('Bob')
-spam = 'Carol'
-sayHello(spam)
+bilangHalo('Agus')
+bilangHalo('Bob')
+spam = 'Cantik'
+bilangHalo(spam)
 
-If you run this program, it would look like this:
+Jika kamu menjalankan program ini, keluarannya akan terlihat seperti ini:
 
-Hello, Alice. Your name has 5 letters.
-Hello, Bob. Your name has 3 letters.
-Hello, Carol. Your name has 5 letters.
+Halo, Agus. Namamu memiliki 4 huruf.
+Halo, Bob. Namamu memiliki 3 huruf.
+Halo, Cantik. Namamu memiliki 6 huruf.
 
-When you call sayHello(), the argument is assigned to the name parameter. Parameters are just ordinary local variables. Like all local variables, the values in parameters will be forgotten when the function call returns.
+Ketika kamu memanggil bilangHalo(), argumennya dimasukkan pada parameter nama. Parameter hanyalah sebuah variabel lokal. Seperti variabel-variabel lokal lainnya, nilai dalam parameter akan dilupakan ketika pemanggilan fungsi selesai.
 
-Displaying the Game Results
+Menampilkan Hasil Permainan
 
-Back to the game’s source code:
+Kembali pada kode sumber game:
 
 20.     print('You approach the cave...')
 21.     time.sleep(2)
@@ -394,7 +400,7 @@ Here the code prints some more text and waits for another 2 seconds. These short
 25.     print()
 26.     time.sleep(2)
 
-What happens next? And how does the program decide? This is explained in the next section.
+Apa yang akan terjadi selanjutnya? Bagaimana program akan memutuskan? Ini akan dijelaskan pada bagian selanjutnya.
 
 Deciding Which Cave has the Friendly Dragon
 
@@ -422,8 +428,8 @@ Remember to put the colon (the : sign) after the else keyword.
 
 Where the Main Part Begins
 
-35. playAgain = 'yes'
-36. while playAgain == 'yes' or playAgain == 'y':
+35. playAgain = 'ya'
+36. while playAgain == 'ya' or playAgain == 'y':
 
 Line 35 is the first line that isn’t a def statement or inside a def-block. This line is where the main part of the program begins. The previous def statements merely defined the functions. It didn’t run the code inside of the functions.
 Line 35 and 36 are setting up a loop that the rest of the game code fits in. At the end of the game, the player can enter if they want to play again. If they do, the execution enters the while loop to run the entire game all over again. If they don’t, the while statement’s condition will be False and the execution will move on to the end of the program and terminate.
@@ -453,7 +459,7 @@ Walaupun pemain kalah atau kalah, pemain akan diminta apakah mereka ingin bermai
 
 Jika pemain mengetikkan string 'ya' atau 'y', maka eksekusi akan berulang kembali ke baris 38.
 
-Jika pemain mengetikkan 'tidak' atau 't' atau sesuatu yang tidak relevan seperti 'Abraham Lincoln', maka evaluasi kondisi tetap menghasilkan False. Eksekusi program akan berlanjut ke baris setelah while-block. Namun karena tidak ada baris setelah while-block, maka program akan berhenti.
+Jika pemain mengetikkan 'tidak' atau 't' atau sesuatu yang tidak relevan seperti 'Balonku Ada Lima', maka evaluasi kondisi tetap menghasilkan False. Eksekusi program akan berlanjut ke baris setelah while-block. Namun karena tidak ada baris setelah while-block, maka program akan berhenti.
 
 Satu hal yang perlu dicatat: string 'YA' tidak sama dengan string 'ya'. Jika pemain mengetikkan string 'ya', maka kondisi dalam pernyataan while akan dievaluasi menjadi False dan program akan tetap berhenti. Program-program dalam bab-bab selanjutnya akan menunjukkan cara bagaimana menghindari masalah ini.
 
