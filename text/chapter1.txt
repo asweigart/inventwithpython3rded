@@ -28,22 +28,22 @@ Figure 1-1: An incongruous penguin tells you to install Python 3.
 
 On Windows, download the Python installer (the filename will end with .msi) and double-click it. Follow the instructions the installer displays on the screen to install Python, as listed here:
 
-•   Select Install for All Users and then click Next.
-•   Install to the C:\Python34 folder by clicking Next.
-•   Click Next to skip the Customize Python section.
+1.   Select Install for All Users and then click Next.
+2.   Install to the C:\Python34 folder by clicking Next.
+3.   Click Next to skip the Customize Python section.
 
 On Mac OS X, download the .dmg file that’s right for your version of OS X from the website and double-click it. Follow the instructions the installer displays on the screen to install Python, as listed here:
 
-•   When the DMG package opens in a new window, double-click the Python.mpkg file. You may have to enter the administrator password.
-•   Click Continue through the Welcome section and click Agree to accept the license.
-•   Select HD Macintosh (or whatever name your hard drive has) and click Install.
+1.   When the DMG package opens in a new window, double-click the Python.mpkg file. You may have to enter the administrator password.
+2.   Click Continue through the Welcome section and click Agree to accept the license.
+3.   Select HD Macintosh (or whatever name your hard drive has) and click Install.
 
 If you’re running Ubuntu, you can install Python from the Ubuntu Software Center by following these steps:
 
-•   Open the Ubuntu Software Center.
-•   Type Python in the search box in the top-right corner of the window.
-•   Select IDLE (using Python 3.4), or whatever is the latest version.
-•   Click Install. You may have to enter the administrator password to complete the installation.
+1.   Open the Ubuntu Software Center.
+2.   Type Python in the search box in the top-right corner of the window.
+3.   Select IDLE (using Python 3.4), or whatever is the latest version.
+4.   Click Install. You may have to enter the administrator password to complete the installation.
 
 Starting IDLE
 
