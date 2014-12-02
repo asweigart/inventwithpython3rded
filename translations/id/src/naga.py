@@ -1,17 +1,17 @@
-import random # Tolong namai game ini Alam Naga di chapter 6, jika sudah hapus komentar ini
+import random
 import time
 
 def displayIntro():
     print('Kamu ada di pulau yang dihuni banyak naga. Di depanmu,')
     print('kamu melihat dua gua. Di salah satu gua dihuni oleh naga ramah')
     print('dan mau berbagi harta karun bersamamu. Naga lain')
-    print('tamak dan lapar. Kamu bisa dimakan olehnya jika terlihat')
+    print('tamak dan lapar. Kamu bisa dimakan olehnya jika terlihat.')
     print()
 
 def chooseCave():
     cave = ''
     while cave != '1' and cave != '2':
-        print('Gua mana yang ingin kau jelajahi? (1 or 2)')
+        print('Gua mana yang ingin kau jelajahi? (1 atau 2)')
         cave = input()
 
     return cave
