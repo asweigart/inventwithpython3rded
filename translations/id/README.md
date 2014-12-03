@@ -79,3 +79,6 @@ General Notes
 - scope, cakupan
 - debug, debug
 - parantheses, tanda kurung buka-tutup
+- main, main dalam konteks main method program Python
+- def-block, blok def
+- while-block, blok while
