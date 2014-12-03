@@ -402,16 +402,22 @@ Global Scope and Local Scope
 Globale und lokale Geltungsbereiche
 
 Your program’s variables are forgotten after the program terminates. The variables created while the execution is inside a function call are the same. The variables are created when the function is called and forgotten when the function returns. Remember, functions are kind of like mini-programs in your program.
+Globale Variablen verlieren ihre Gültigkeit nach Beendigung eines Programms. Genauso verhält es sich mit lokalen Variablen und den Funktionen, in denen sie deklariert sind: Die Variablen werden mit dem Funktionsaufruf initialisiert und mit der Funktionsrückkehr zerstört. Vergiss nicht: Funktionen sind eine Art Mini-Programme innerhalb von Programmen.
 
 When execution is inside a function, you cannot change the variables outside of the function, including variables inside other functions. This is because these variables exist in a different “scope”. All variables exist in either the global scope or a function call’s local scope.
+Wenn sich die Programm-Ausführung innerhalb einer Funktion befindet, können nur die lokalen Variablen dieser Funktion verändert werden, weder globale Variablen, noch die lokalen Variablen anderer Funktionen. Diese existieren nämlich in einem anderen Geltungsbereich. Jede Variable gehört entweder zum globalen Geltungsbereich, oder zum lokalen Geltungsbereich einer Funktion.
 
 The scope outside of all functions is called the global scope. The scope inside of a function (for the duration of a particular function call) is called a local scope.
+Der Geltungsbereich außerhalb aller Funktionen heißt globaler Geltungsbereich. Der Geltungsbereich innerhalb einer Funktion (während sich die Programm-Ausführung in ihr befindet) heißt lokaler Geltungsbereich.
 
 The entire program has only one global scope. Variables defined in the global scope can be read outside and inside functions, but can only be modified outside of all functions. Variables created in a function call can only be read or modified during that function call.
+Das gesamte Programm hat nur einen globalen Geltungsbereich. Variablen, die im globalen Geltungsbereich definiert sind, können außerhalb und innerhalb von Funktionen gelesen werden, sie können aber nur außerhalb von Funktionen verändert werden. Variablen, die innerhalb einer Funktion definiert sind, können nur in dieser gelesen und verändert werden.
 
 You can read the value of global variables from the local scope, but attempting to change a global variable from the local scope won’t work. What Python actually does in that case is create a local variable with the same name as the global variable. You could, for example, have a local variable named spam at the same time as having a global variable named spam. Python will consider these to be two different variables.
+Man kann globale Variablen in lokalen Geltungsbereichen lesen, sie jedoch nicht verändern. Versucht man es trotzdem, dann führt dies nicht zum gewünschten Effekt: Python erzeugt eine lokale Variable mit demselben Namen, anstatt den Wert der globalen Variable zu ändern. Es ist z.B. möglich, zwei Variablen namens zwiebeln gleichzeitig definiert zu haben, eine global, die andere lokal. In Python sind dies zwei verschiedene Variablen.
 
 Look at this example to see what happens when you try to change a global variable from inside a local scope. The comments explain what is going on:
+Dieses Beispiel veranschaulicht, was passiert, wenn man versucht den Wert einer globalen Variable innerhalb eines lokalen Geltungsbereiches zu ändern. Die Kommentare beschreiben, was im Detail passiert:
 
 def bacon():
 def speck():
@@ -459,8 +465,9 @@ Der Ort, an dem eine Variable deklariert wird, bestimmt ihren Geltungsbereich. W
 ...ist die Variable hoehle innerhalb der sucheHoehleAus()-Funktion deklariert. Das bedeutet, sie ist nur innerhalb der Funktion gültig. Sie wird vergessen, wenn sucheHoehleAus() endet, und wird beim nächsten Aufruf von sucheHoehleAus() neu deklariert. Der Wert von lokalen Variablen bleibt zwischen Funktionsaufrufen nicht erhalten.
 
 Defining the checkCave() Function
+Definition der ueberpruefeHoehle()-Funktion
 
-19. def checkCave(chosenCave):
+19. def ueberpruefeHoehle(ausgewaehlteHoehle):
 
 The next function the program defines is named checkCave(). Notice that the text chosenCave in between the parentheses. This is a parameter: a local variable that is assigned the argument passed in when this function is called.
 Remember how for some function calls like str() or randint(), you would pass an argument in between the parentheses:
@@ -474,7 +481,20 @@ You will also pass an argument when you call checkCave(). This argument is store
 
 Parameters
 
-Parameters are local variables created when a function is called. For example, here is a short program that demonstrates defining a function with a parameter:
+19. def checkCave(chosenCave):
+
+The next function the program defines is named checkCave(). Notice the text chosenCave between the parentheses. This is a parameter: a local variable that is assigned the argument passed when this function is called.
+
+Remember how for some function calls like str() or randint(), you would pass one or more arguments between the parentheses:
+
+>>> str(5)
+'5'
+>>> random.randint(1, 20)
+14
+
+You will also pass an argument when you call checkCave(). This argument is stored in a new variable named chosenCave. These variables are also called parameters.
+
+For example, here is a short program that demonstrates defining a function with a parameter:
 
 def sayHello(name):
     print('Hello, ' + name + '. Your name has ' + str(len(name)) + 'letters.')
@@ -499,13 +519,12 @@ Back to the game’s source code:
 20.     print('You approach the cave...')
 21.     time.sleep(2)
 
-Remember that calling the function random.randint() required you execute import random first? In the Dragon Realm game, you imported the time module on line 2. The time module has a function called sleep() that pauses the program. This function will pause the program for a few seconds. Line 21 passes the integer value 2 so that time.sleep() will pause the program for 2 seconds.
+The time module has a function called sleep() that pauses the program. Line 21 passes the integer value 2 so that time.sleep() will pause the program for 2 seconds.
 
 22.     print('It is dark and spooky...')
 23.     time.sleep(2)
 
 Here the code prints some more text and waits for another 2 seconds. These short pauses add suspense to the game, instead of displaying the text all at once. In the previous chapter’s Jokes program, you called the input() function to pause until the player pressed the ENTER key. Here, the player doesn’t have to do anything except wait a couple seconds.
-
 24.     print('A large dragon jumps out in front of you! He opens his jaws and...')
 25.     print()
 26.     time.sleep(2)
@@ -516,24 +535,26 @@ Deciding Which Cave has the Friendly Dragon
 
 28.     friendlyCave = random.randint(1, 2)
 
-The program randomly choses which cave had the friendly dragon in it. Line 28 calls the random.randint() function which will return either 1 or 2. This integer value is stored in friendlyCave.
+Line 28 calls the random.randint() function which will return either 1 or 2. This integer value is stored in friendlyCave and is the cave with the friendly dragon.
 
 30.     if chosenCave == str(friendlyCave):
 31.          print('Gives you his treasure!')
 
 Line 30 checks if the player’s chosen cave in the chosenCave variable ('1' or '2') is equal to the       friendly dragon cave.
-The value in chosenCave is a string because input() returns strings. But the value in friendlyCave is an integer because random.randint() returns integers. You can’t compare strings and integers with the == sign, because they will always be not equal. '1' doesn’t equal 1 and '2' doesn’t equal 2.
-So friendlyCave is passed to str() function, which returns the string value of friendlyCave. This way the values will be the same data type and can be meaningfully compared to each other. This code could also have been used:
+
+But the value in friendlyCave is an integer because random.randint() returns integers. You can’t compare strings and integers with the == sign, because they will always be not equal to each other. '1' is not equal to 1 and '2' is not equal to 2.
+
+So friendlyCave is passed to str() function, which returns the string value of friendlyCave. This way the values will be the same data type and can be meaningfully compared to each other. This code could also have been used to convert chosenCave to an integer value:
 
     if int(chosenCave) == friendlyCave:
 
-The above if statement’s condition would compare the integer value returned by the int() function to the integer value in friendlyCave. This code would also work.
 If the condition is True, line 31 tells the player they have won the treasure.
 
 32.     else:
 33.          print('Gobbles you down in one bite!')
 
-Line 32 is an else statement. The else keyword always comes after the if-block. The else-block executes if the if statement’s condition was False. Think of it as the program’s way of saying, “If this condition is true then execute the if-block or else execute the else-block.”
+Line 32 is an else statement. The else statement can only come after an if-block. The else-block executes if the if statement’s condition was False. Think of it as the program’s way of saying, “If this condition is true then execute the if-block or else execute the else-block.”
+
 Remember to put the colon (the : sign) after the else keyword.
 
 Where the Main Part Begins
@@ -541,9 +562,11 @@ Where the Main Part Begins
 35. playAgain = 'yes'
 36. while playAgain == 'yes' or playAgain == 'y':
 
-Line 35 is the first line that isn’t a def statement or inside a def-block. This line is where the main part of the program begins. The previous def statements merely defined the functions. It didn’t run the code inside of the functions.
-Line 35 and 36 are setting up a loop that the rest of the game code fits in. At the end of the game, the player can enter if they want to play again. If they do, the execution enters the while loop to run the entire game all over again. If they don’t, the while statement’s condition will be False and the execution will move on to the end of the program and terminate.
-The first time the execution comes to this while statement, line 35 will have just assigned 'yes' to the playAgain variable. That means the condition will be True.
+Line 35 is the first line that isn’t a def statement or inside a def-block. This line is where the main part of the program begins. The previous def statements merely defined the functions. They didn’t run the code inside of the functions.
+
+Line 35 and 36 are setting up a loop that the rest of the game code is in. At the end of the game, the player can enter if they want to play again. If they do, the execution enters the while loop to run the entire game all over again. If they don’t, the while statement’s condition will be False and the execution will move on to the end of the program and terminate.
+
+The first time the execution comes to this while statement, line 35 will have just assigned 'yes' to the playAgain variable. That means the condition will be True. This guarantees that the execution enters the loop at least once.
 
 Calling the Functions in the Program
 
@@ -553,38 +576,49 @@ Line 38 calls the displayIntro() function. This isn’t a Python function, it is
 
 40.     caveNumber = chooseCave()
 
-Line 40 also calls a function that you defined. Remember that the chooseCave() function lets the player type in the cave they choose to go into. When the line 17’s return cave executes, the program execution jumps back to line 40, and the chooseCave() call evaluates to the return value. This return value is stored in a new variable named caveNumber. Then the program execution moves on to line 42.
+Line 40 also calls a function that you defined. Remember that the chooseCave() function lets the player type in the cave they want to go into. When the line 17’s return cave executes, the program execution jumps back to line 40, and the chooseCave() call evaluates to the return value. This return value is stored in a new variable named caveNumber. Then the program execution moves on to line 42.
 
 42.     checkCave(caveNumber)
 
-This line calls your checkCave() function, passing the value in caveNumber as an argument. Not only does execution jump to line 20, but the value in caveNumber is copied to the parameter chosenCave inside the checkCave() function. This is the function that will display either 'Gives you his treasure!' or 'Gobbles you down in one bite!' depending on the cave the player chose to go in.
+Line 42 calls your checkCave() function, passing the value in caveNumber as an argument. Not only does execution jump to line 20, but the value in caveNumber is copied to the parameter chosenCave inside the checkCave() function. This is the function that will display either 'Gives you his treasure!' or 'Gobbles you down in one bite!' depending on the cave the player chose to go into.
 
 Asking the Player to Play Again
 
 44.     print('Do you want to play again? (yes or no)')
 45.     playAgain = input()
 
-Whether the player won or lost, they are asked if they want to play again. The variable playAgain stores the string that the player typed in. Line 45 is the last line of the while-block, so the program jumps back to line 36 to check the condition: playAgain == 'yes' or playAgain == 'y'
+Whether the player won or lost, they are asked if they want to play again. The variable playAgain what the player typed. Line 45 is the last line of the while-block, so the program jumps back to line 36 to check the while loop’s condition: playAgain == 'yes' or playAgain == 'y'
+
 If the player typed in the string 'yes' or 'y', then the execution would enter the loop again at line 38.
-If the player typed in 'no' or 'n' or something silly like 'Abraham Lincoln', then the condition would be False. The program execution continues on to the line after the while-block. But since there are no more lines after the while-block, the program terminates.
+
+If the player typed in 'no' or 'n' or something silly like 'Abraham Lincoln', then the condition would be False. The program execution would continue on to the line after the while-block. But since there are no more lines after the while-block, the program terminates.
+
 One thing to note: the string 'YES' is not equal to the string 'yes'. If the player typed in the string 'YES', then the while statement’s condition would evaluate to False and the program would still terminate. Later programs in this book will show you how to avoid this problem.
-You've just completed your second game! In Dragon Realm, you used a lot of what you learned in the “Guess the Number” game and picked up a few new tricks. If you didn't understand some of the concepts in this program, then read the summary at the end of this chapter. Or go over each line of the source code again, and try changing the source code and see how the program changes.
-In the next chapter you won't create a game, but instead learn how to use a feature of IDLE called the debugger.
+
+You've just completed your second game! In Dragon Realm, you used a lot of what you learned in the Guess the Number game and picked up a few new tricks. If you didn't understand some of the concepts in this program, then go over each line of the source code again, and try changing the source code and see how the program changes.
+
+In the next chapter you won’t create a game, but instead learn how to use a feature of IDLE called the debugger.
 
 Designing the Program
 
 Dragon Realm is a simple game. The other games in this book will be a bit more complicated. It sometimes helps to write down everything you want your game or program to do before you start writing code. This is called “designing the program.”
+
 For example, it may help to draw a flow chart. A flow chart is a picture that shows every possible action that can happen in the game, and which actions lead to which other actions. Figure 6-2 is a flow chart for Dragon Realm.
 
-Figure 6-2: Flow chart for the Dragon Realm game.
-
 To see what happens in the game, put your finger on the “Start” box. Then follow one arrow from the box to another box. Your finger is like the program execution. The program terminates when your finger lands on the “End” box.
+
 When you get to the “Check for friendly or hungry dragon” box, you can go to the “Player wins” box or the “Player loses” box. This branching point shows how the program can do different things. Either way, both paths will end up at the “Ask to play again” box.
 
 Summary
 
-In the “Dragon Realm” game, you created your own functions. Functions are a mini-program within your program. The code inside the function runs when the function is called. By breaking up your code into functions, you can organize your code into smaller and easier to understand sections.
-Arguments are values passed to the function’s code when the function is called. The function call itself evaluates to a value called the return value.
+In the Dragon Realm game, you created your own functions. Functions are a mini-program within your program. The code inside the function runs when the function is called. By breaking up your code into functions, you can organize your code into smaller and easier to understand sections.
+
+Arguments are values copied to the function’s parameters when the function is called. The function call itself evaluates to the return value.
+
+Figure 6-2: Flow chart for the Dragon Realm game.
+
 You also learned about variable scopes. Variables created inside of a function exist in the local scope, and variables created outside of all functions exist in the global scope. Code in the global scope cannot make use of local variables. If a local variable has the same name as a variable in the global scope, Python considers it a separate variable and assigning new values to the local variable won’t change the value in the global variable.
+
 Variable scopes might seem complicated, but they are useful for organizing functions as separate pieces of code from the rest of the program. Because each function has its own local scope, you can be sure that the code in one function won’t cause bugs in other functions.
-Almost every program uses functions because they are so useful. By understanding how functions work, we can save ourselves a lot of typing and make bugs easier to fix.
+
+Almost every program uses functions because they are so useful. By understanding how functions work, you can save yourself a lot of typing and make bugs easier to fix.
