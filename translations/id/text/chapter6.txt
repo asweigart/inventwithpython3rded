@@ -102,7 +102,7 @@ Mari lihat kode sumber dengan lebih teliti.
  1. import random
  2. import time
 
-Program ini melakukan impor terhadap dua modul. Modul random akan menyediakan fungsi random.randint() seperti yang telah dilakukan dalam gim "Tebak Angka". Kamu juga akan membutuhkan fungsi-fungsi yang berhubungan dengan waktu. Oleh karena itu, imporlah juga modul time.
+Program ini melakukan impor terhadap dua module. Module random akan menyediakan fungsi random.randint() seperti yang telah dilakukan dalam gim "Tebak Angka". Kamu juga akan membutuhkan fungsi-fungsi yang berhubungan dengan waktu. Oleh karena itu, imporlah juga module time.
 
 Pernyataan-pernyataan def
 
@@ -113,15 +113,15 @@ Pernyataan-pernyataan def
  8.     print('tamak dan lapar. Kamu bisa dimakan olehnya jika terlihat.')
  9.     print()
 
-Baris 4 adalah pernyataan def. Pernyataan def membuat, atau mendefinisikan, sebuah fungsi baru yang dapat kamu panggil di lain waktu pada program. Setelah kamu mendefinisikan fungsi, kamu dapat memanggilnya seperti kamu memanggil fungsi-fungsi lainnya. Ketika kamu memanggil fungsi, program akan menjalankan kode-kode dalam def-block.
+Baris 4 adalah pernyataan def. Pernyataan def membuat, atau mendefinisikan, sebuah fungsi baru yang dapat kamu panggil di lain waktu pada program. Setelah kamu mendefinisikan fungsi, kamu dapat memanggilnya seperti kamu memanggil fungsi-fungsi lainnya. Ketika kamu memanggil fungsi, program akan menjalankan kode-kode dalam blok def.
 
-Gambar 6-1 menampilkan bagian-bagian dari sebuah pernyataan def. Terdapat keyword def diikuti dengan nama fungsi dengan tanda kurung dan tanda titik dua (:). Blok setelah pernyataan def disebut sebagai def-block.
+Gambar 6-1 menampilkan bagian-bagian dari sebuah pernyataan def. Terdapat keyword def diikuti dengan nama fungsi dengan tanda kurung dan tanda titik dua (:). Blok setelah pernyataan def disebut sebagai blok def.
 
 Gambar 6-1: Bagian-bagian sebuah pernyataan def.
 
-Perlu diingat bahwa pernyataan def tidak menjalankan kode. Pernyataan def hanya mendefinisikan kode-kode apa yang akan dijalankan ketika fungsi dipanggil. Ketika eksekusi program mencapai pernyataan def, alur eksekusi program akan berpindah ke baris pertama setelah def-block.
+Perlu diingat bahwa pernyataan def tidak menjalankan kode. Pernyataan def hanya mendefinisikan kode-kode apa yang akan dijalankan ketika fungsi dipanggil. Ketika eksekusi program mencapai pernyataan def, alur eksekusi program akan berpindah ke baris pertama setelah blok def.
 
-Tapi ketika fungsi displayIntro() dipanggil (seperti pada baris 38), eksekusi program berpindah ke dalam fungsi displayIntro() pada baris pertama def-block.
+Tapi ketika fungsi displayIntro() dipanggil (seperti pada baris 38), eksekusi program berpindah ke dalam fungsi displayIntro() pada baris pertama blok def.
 
 38.     displayIntro()
 
@@ -386,53 +386,60 @@ Menampilkan Hasil Permainan
 
 Kembali pada kode sumber game:
 
-20.     print('You approach the cave...')
+20.     print('Kamu memasuki gua...')
 21.     time.sleep(2)
 
-Remember that calling the function random.randint() required you execute import random first? In the Dragon Realm game, you imported the time module on line 2. The time module has a function called sleep() that pauses the program. This function will pause the program for a few seconds. Line 21 passes the integer value 2 so that time.sleep() will pause the program for 2 seconds.
+Apakah kamu ingat bahwa kamu perlu menjalankan import random terlebih dahulu sebelum dapat memanggil fungsi random.randint()? Pada gim Alam Naga, kamu mengimpor module time pada baris 2. Modul time memiliki sebuah fungsi bernama sleep() yang akan menghentikan sementara eksekusi program. Fungsi ini akan menghentikan sementara program selama beberapa detik. Baris 21 melemparkan nilai integer 2 sehingga pemanggilan time.sleep() akan menghentikan program selama 2 detik.
 
-22.     print('It is dark and spooky...')
+22.     print('Gua ini gelap dan menakutkan...')
 23.     time.sleep(2)
 
-Here the code prints some more text and waits for another 2 seconds. These short pauses add suspense to the game, instead of displaying the text all at once. In the previous chapter’s Jokes program, you called the input() function to pause until the player pressed the ENTER key. Here, the player doesn’t have to do anything except wait a couple seconds.
+Kode di atas mencetak teks dan kembali berhenti sementara selama 2 detik. Selaan-selaan singkat menambahkan ketegangan dalam permainan daripada hanya langsung menampilkan seluruh teks secara bersamaan. Pada program Lelucon di bab sebelumnya, kamu telah memanggil fungsi input() untuk berhenti sebentar hingga pemain menekan tombol ENTER. Di program ini, pemain tidak harus melakukan apa-apa kecuali menunggu selama beberapa detik.
 
-24.     print('A large dragon jumps out in front of you! He opens his jaws and...')
+24.     print('Naga besar lompat didepanmu! Dia membuka mulutnya dan...')
 25.     print()
 26.     time.sleep(2)
 
 Apa yang akan terjadi selanjutnya? Bagaimana program akan memutuskan? Ini akan dijelaskan pada bagian selanjutnya.
 
-Deciding Which Cave has the Friendly Dragon
+Memutuskan Gua Mana yang Memiliki Naga Ramah
 
 28.     friendlyCave = random.randint(1, 2)
 
 The program randomly choses which cave had the friendly dragon in it. Line 28 calls the random.randint() function which will return either 1 or 2. This integer value is stored in friendlyCave.
 
-30.     if chosenCave == str(friendlyCave):
-31.          print('Gives you his treasure!')
+Program secara acak memilih gua yang memiliki naga ramah di dalamnya. Baris 28 memanggil fungsi random.randint() yang akan mengembalikan antara nilai 1 atau 2. Nilai integer ini kemudian disimpan dalam variabel friendlyCave.
 
-Line 30 checks if the player’s chosen cave in the chosenCave variable ('1' or '2') is equal to the       friendly dragon cave.
-The value in chosenCave is a string because input() returns strings. But the value in friendlyCave is an integer because random.randint() returns integers. You can’t compare strings and integers with the == sign, because they will always be not equal. '1' doesn’t equal 1 and '2' doesn’t equal 2.
-So friendlyCave is passed to str() function, which returns the string value of friendlyCave. This way the values will be the same data type and can be meaningfully compared to each other. This code could also have been used:
+30.     if chosenCave == str(friendlyCave):
+31.          print('Memberimu harta karunnya!')
+
+Baris 30 mengecek apakah gua yang dipilih pemain dalam variabel chosenCave ('1' atau '2') sama dengan gua yang berisi naga ramah.
+
+Nilai dalam chosenCave adalah sebuah string karena pemanggilan input() mengembalikan string. Namun nilai pada friendlyCave berupa sebuah integer karena pemanggilan random.randint() mengembalikan integer. Kamu tidak dapat membandingkan string dan integer dengan tanda == karena hasil perbandingannya akan selalu tidak sama. '1' tidak sama dengan 1 dan '2' tidak sama dengan 2.
+
+Oleh karena itu, friendlyCave dilemparkan terlebih dahulu ke fungsi str() yang akan mengembalikan nilai string dari friendlyCave. Dengan menggunakan cara ini, nilainya akan sama-sama memiliki tipe data yang sama dan dapat dibandingkan. Kode berikut juga dapat digunakan:
 
     if int(chosenCave) == friendlyCave:
 
-The above if statement’s condition would compare the integer value returned by the int() function to the integer value in friendlyCave. This code would also work.
-If the condition is True, line 31 tells the player they have won the treasure.
+Kondisi dalam pernyataan if di atas akan membandingkan nilai integer yang dikembalikan oleh pemanggilan fungsi() dengan nilai integer dalam friendlyCave. Kode ini juga dapat bekerja.
+
+Jika kondisinya menghasilkan True, baris 31 memberitahukan pemain bahwa mereka berhasil mendapatkan harta karun.
 
 32.     else:
-33.          print('Gobbles you down in one bite!')
+33.          print('Mengunyahmu dalam satu gigitan!')
 
-Line 32 is an else statement. The else keyword always comes after the if-block. The else-block executes if the if statement’s condition was False. Think of it as the program’s way of saying, “If this condition is true then execute the if-block or else execute the else-block.”
-Remember to put the colon (the : sign) after the else keyword.
+Baris 32 adalah pernyataan else. Keyword else selalu ditempatkan setelah blok if. Blok else dieksekusi jika kondisi pada pernyataan if menghasilkan False. Anggaplah else sebagai cara program untuk menyampaikan, "Jika kondisi ini betul, maka jalankan kode di blok if, atau sebaliknya jalankan kode di blok else."
 
-Where the Main Part Begins
+Ingatlah untuk selalu menambahkan tanda titik dua (tanda :) setelah keyword else.
+
+Tempat Bagian Main Mulai
 
 35. playAgain = 'ya'
 36. while playAgain == 'ya' or playAgain == 'y':
 
-Line 35 is the first line that isn’t a def statement or inside a def-block. This line is where the main part of the program begins. The previous def statements merely defined the functions. It didn’t run the code inside of the functions.
-Line 35 and 36 are setting up a loop that the rest of the game code fits in. At the end of the game, the player can enter if they want to play again. If they do, the execution enters the while loop to run the entire game all over again. If they don’t, the while statement’s condition will be False and the execution will move on to the end of the program and terminate.
+Baris 35 adalah baris pertama yang bukan merupakan pernyataan def atau bagian dalam sebuah blok def. Baris ini adalah tempat bagian main program dimulai. Pernyataan-pernyataan def sebelumnya hanyalah mendefinisikan fungsi-fungsi dan tidak menjalankan kode di dalam masing-masing fungsi.
+
+Baris 35 dan 36 mempersiapkan sebuah perulangan yang menampung keseluruhan kode dari gim. Di akhir permainan, pemain dapat memutuskan apakah dia ingin bermain lagi atau tidak. Jika pemain bermain lagi, eksekusi program masuk ke perulangan while untuk menjalankan kembali keseluruhan permainan. Jika tidak, kondisi dalam pernyataan while akan menghasilkan False dan eksekusi akan pindah ke akhir program dan selesai.
 
 Pertama kalinya ekseuki program mencapai pernyatan while ini, baris 35 akan langsung memasukkan 'ya' ke dalam variabel playAgain. Itu berarti kondisinya akan menjadi True.
 
@@ -455,11 +462,11 @@ Meminta Pemain Untuk Kembali Bermain
 44.     print('Mau main lagi? (ya atau tidak)')
 45.     playAgain = input()
 
-Walaupun pemain kalah atau kalah, pemain akan diminta apakah mereka ingin bermain kembali. Variabel playAgain menyimpan string yang diketikkan oleh pemain. Baris 46 adalah baris terakhir pada while-block. Oleh karena itu, program akan kembali loncat ke baris 36 untuk memeriksa kondisi: playAgain == 'ya' or playAgain == 'y'
+Walaupun pemain kalah atau kalah, pemain akan diminta apakah mereka ingin bermain kembali. Variabel playAgain menyimpan string yang diketikkan oleh pemain. Baris 46 adalah baris terakhir pada blok while. Oleh karena itu, program akan kembali loncat ke baris 36 untuk memeriksa kondisi: playAgain == 'ya' or playAgain == 'y'
 
 Jika pemain mengetikkan string 'ya' atau 'y', maka eksekusi akan berulang kembali ke baris 38.
 
-Jika pemain mengetikkan 'tidak' atau 't' atau sesuatu yang tidak relevan seperti 'Balonku Ada Lima', maka evaluasi kondisi tetap menghasilkan False. Eksekusi program akan berlanjut ke baris setelah while-block. Namun karena tidak ada baris setelah while-block, maka program akan berhenti.
+Jika pemain mengetikkan 'tidak' atau 't' atau sesuatu yang tidak relevan seperti 'Balonku Ada Lima', maka evaluasi kondisi tetap menghasilkan False. Eksekusi program akan berlanjut ke baris setelah blok while. Namun karena tidak ada baris setelah blok while, maka program akan berhenti.
 
 Satu hal yang perlu dicatat: string 'YA' tidak sama dengan string 'ya'. Jika pemain mengetikkan string 'ya', maka kondisi dalam pernyataan while akan dievaluasi menjadi False dan program akan tetap berhenti. Program-program dalam bab-bab selanjutnya akan menunjukkan cara bagaimana menghindari masalah ini.
 
@@ -471,13 +478,13 @@ Merancang Program
 
 Alam Naga merupakan game sederhana. Game-game lainnya dalam buku ini akan sedikit lebih rumit. Seringkali menuliskan apa saja yang kamu inginkan dari game atau program akan sangat membantu sebelum kamu mulai menulis kode. Kegiatan ini disebut "merancang program."
 
-Sebagai contoh, kamu dapat menggambar sebuah diagram alur. Diagram alur adalah sebuah gambar yang menunjukkan semua kemungkinan aksi yang dapat terjadi dalam permainan dan aksi-aksi tersebut akan mengarah kepada aksi-aksi yang lain. Gambar 6-2 merupakan diagram alur untuk Dunia Naga.
+Sebagai contoh, kamu dapat menggambar sebuah diagram alur. Diagram alur adalah sebuah gambar yang menunjukkan semua kemungkinan aksi yang dapat terjadi dalam permainan dan aksi-aksi tersebut akan mengarah kepada aksi-aksi yang lain. Gambar 6-2 merupakan diagram alur untuk Alam Naga.
 
-Gambar 6-2: Diagram alur permainan Dunia Naga.
+Gambar 6-2: Diagram alur permainan Alam Naga.
 
 Untuk melihat apa yang terjadi dalam permainan, coba taruh jari kamu pada kotak "Mulai", lalu ikuti panah dari sana ke kotak lain. Jari kamu berfungsi layaknya eksekusi program. Program akan selesai ketika jari kamu mendarat pada kotak "Selesai".
 
-Ketika kamu mencapai kotak "Cek apakah ada naga baik atau naga lapar", kamu dapat pergi ke kotak "Pemain menang" atau "Pemain kalah". Titik percabangan ini menunjukkan bagaimana program dapat melakukan hal-hal yang berbeda. Bagaimanapun, masing-masing jalur akan berakhir pada kotak "Mau main lagi?".
+Ketika kamu mencapai kotak "Cek apakah ada naga ramah atau naga lapar", kamu dapat pergi ke kotak "Pemain menang" atau "Pemain kalah". Titik percabangan ini menunjukkan bagaimana program dapat melakukan hal-hal yang berbeda. Bagaimanapun, masing-masing jalur akan berakhir pada kotak "Mau main lagi?".
 
 Ringkasan
 

@@ -8,7 +8,7 @@ Fig 6-2:
 Mulai
 Tampilkan pengantar
 Pemain memilih sebuah gua
-Cek apakah ada naga baik atau naga lapar 
+Cek apakah ada naga ramah atau naga lapar 
 Pemain menang
 Pemain kalah
 Mau main lagi?
