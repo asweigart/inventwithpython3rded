@@ -10,7 +10,7 @@ Tematy omówione w tym rozdziale:
 •   Dyrektywa while
 •   Warunki
 •   Bloki
-•   Typ boolean
+•   Typ logiczny (boolean)
 •   Operatory porównania
 •   Różnica między = i ==
 •   Dyrektywa if
@@ -176,7 +176,7 @@ Pętle
 
 12. while probyZgadniecia < 6:
 
-Linia 12 jest dyrektywą while, która oznacza początek pętli while. Pętle pozwalają na wykonywanie kodu wiele razy. Jednak najpierw musisz nauczyć się kilku innych rzeczy nim nauczysz się o pętlach. Te rzeczy to bloki kodu, wartości typu Boolean (prawda-fałsz), operatory porównaina, warunki i dyrektywa while.
+Linia 12 jest dyrektywą while, która oznacza początek pętli while. Pętle pozwalają na wykonywanie kodu wiele razy. Jednak najpierw musisz nauczyć się kilku innych rzeczy nim nauczysz się o pętlach. Te rzeczy to bloki kodu, wartości typu logicznego (ang: boolean o wartości prawda, lub fałsz), operatory porównania, warunki i dyrektywa while.
 
 Bloki kodu
 
@@ -200,34 +200,34 @@ Linia 23 zwiększa wcięcie do ośmiu spacji, więc znowy zaczął się nowy blo
 
 Dla przypomnienia, linia 12 nie jest w żadnym bloku. Linie od 13 do 23 są w tym samym bloku (oznaczonym jako blok 1). Linia 20 jest w bloku w bloku (oznaczonym jako blok 2). A linia 23 jest jedyną linią kolejnego bloku w bloku (oznaczonego jako blok 3).
 
-The Boolean Data Type
+Typ logiczny (ang. boolean)
 
-The Boolean data type has only two values: True or False. These values must be typed with a capital “T” and “F”. The rest of the value’s name must be in lowercase. You will use Boolean values (also called bools) with comparison operators to form conditions. (Conditions are explained later.)
+Typ logiczny (ang. boolean) ma tylko dwie wartości: prawda (ang. True), lub fałsz (ang. False). Te wartości wpisujemy po angielsku z użyciem dużej litery na początku. Resztę wpisujemy małymi literami. Będziesz używał wartości logicznych z operatorami porównywania by tworzyć warunki. Warunki będą omówione później.
 
-The data types that have been introduced so far are integers, floats, strings, and now bools.
+Jak na razie zostałeś wprowadzony do typów liczb całkowitych, liczb zmiennoprzeninkowych, napisów i teraz typu logicznego.
 
-Comparison Operators
+Operatory porównania
 
-Line 12 has a while statement:
+Linia 12 ma dyrektywę while:
 
-12. while guessesTaken < 6:
+12. while probyZgadniecia < 6:
 
-The expression that follows the while keyword (the guessesTaken < 6 part) contains two values (the value in the variable guessesTaken, and the integer value 6) connected by an operator (the < sign, the “less than” sign). The < sign is called a comparison operator.
+Wyrażenie które następuje po słowie kluczowym while (część probyZgadniecia < 6) zawiera dwie wartości (wartość w zmiennej probyZgadniecia i liczbę całkowitą 6) połączone operatorem (znak <, czyli znak “mniejsze niż”). Znak < jest nazywany operatorem porównania.
 
-Comparison operators compare two values and evaluate to a True or False Boolean value. A list of all the comparison operators is in Table 4-1.
+Operatory porównania porównują dwie wartości i wyliczają z nich prawdę, lub fałsz (wartości logiczne True, lub False). Lista wszystkich operatorów porównania jest w tabeli  4-1.
 
-Table 4-1: Comparison operators.
-Operator Sign       Operator Name
-<                   Less than
->                   Greater than
-<=                  Less than or equal to
->=                  Greater than or equal to
-==                  Equal to
-!=                  Not equal to
+Tabela 4-1: Operatory porównania.
+Znak operatora      Nazwa operatora
+<                   Mniejsze niż
+>                   Większe niż
+<=                  Mniejsze niż, lub równe z
+>=                  Większe niż, lub równe z
+==                  Równe z
+!=                  Różne od
 
-You’ve already read about the +, -, *, and / math operators. Like any operator, the comparison operators combine with values to form expressions such as guessesTaken < 6.
+Czytałeś już o operatorach matematycznych: +, -, * i /. Podobnie do innych operatorów, operatory porównania robią operacje z wartościami by zbudować wyrażenie takie jak probyZgadniecia < 6.
 
-Conditions
+Warunki
 
 A condition is an expression that combines two values with a comparison operator (such as < or >) and evaluates to a Boolean value. A condition is just another name for an expression that evaluates to True or False. Conditions are used in while statements (and a few other places, explained later.)
 
