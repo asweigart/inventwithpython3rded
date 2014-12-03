@@ -392,7 +392,7 @@ Schauen wir uns Zeile 40 an:
 
 40.     hoehlenNummer = sucheHoehleAus()
 
-When the chooseCave() is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
+When the chooseCave() function is later called by the program on line 40, the return value is stored in the caveNumber variable. The while loop guarantees that chooseCave() will only return either '1' or '2' as its return value.
 Wenn die Funktion sucheHoehleAus() in Zeile 40 aufgerufen wird, wird ihr Rückgabe-Wert in der Variablen hoehlenNummer gespeichert. Die while-Schleife garantiert, dass sucheHoehleAus() nur die Werte '1' oder '2' zurückgibt.
 
 So when line 17 returns a string, the function call on line 40 evaluates to this string, which is then stored in caveNumber.
