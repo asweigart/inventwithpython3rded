@@ -229,21 +229,21 @@ Czytałeś już o operatorach matematycznych: +, -, * i /. Podobnie do innych op
 
 Warunki
 
-A condition is an expression that combines two values with a comparison operator (such as < or >) and evaluates to a Boolean value. A condition is just another name for an expression that evaluates to True or False. Conditions are used in while statements (and a few other places, explained later.)
+Warunek to wyrażenie składające się z dwóch wartości z operatorem porównania (takim jak <, lub >) i który zostaje wyliczony do wartości logicznej. Warunek jest po prostu inną nazwą na wyrażenie jakie zostanie wyliczone do wartości True, lub False. Warunki są używane w dyrektywach while (i w kilku innych miejscach, ale o tym później).
 
-For example, the condition guessesTaken < 6 asks, “is the value stored in guessesTaken less than the number 6?” If so, then the condition evaluates to True. If not, the condition evaluates to False.
+Przykładowo, wyrażenie probyZgadniecia < 6 pyta, “czy wartość zapisana w probyZgadniecia jes mniejsza niż liczba 6?” Jeśli tak, to wyrażenie daje wartość True (prawda). Jeśli nie, to wyrażenie daje wartość False (fałsz).
 
-In the case of the “Guess the Number” program, on line 4 you stored the value 0 in guessesTaken. Because 0 is less than 6, this condition evaluates to the Boolean value of True. The evaluation would look like this:
+W przypadku programu “Zgadnij numer”, w linii 4 zapisałeś wartość 0 do zmiennej probyZgadniecia. Ponieważ 0 jest mniejsze niż 6, to to wyrażenie daje wartość logiczną True. The wyliczanie wygląda tak:
 
-guessesTaken < 6
-             ▼
-           0 < 6
-             ▼
-            True
+probyZgadniecia < 6
+                ▼
+              0 < 6
+                ▼
+              True
 
-Experiment with Booleans, Comparison Operators, and Conditions
+Eksperymenty z wartościami logicznymi, operatorami porównania i warunkami
 
-Enter the following expressions in the interactive shell to see their Boolean results:
+Wprowadź następujące wyrażenia w interaktywnej powłoce by sprawdzić ich wyniki jako wartości logiczne:
 
 >>> 0 < 6
 True
@@ -256,11 +256,11 @@ True
 >>> 10 < 10
 False
 
-The condition 0 < 6 returns the Boolean value True because the number 0 is less than the number 6. But because 6 isn’t less than 0, the condition 6 < 0 evaluates to False. 50 isn’t less than 10, so 50 < 10 is False. 10 is less than 11, so 10 < 11 is True.
+Warunek 0 < 6 zwraca wartość logicznną True ponieważ liczba 0 jest mniejsza niż liczba 6. Ale ponieważ 6 nie jest mniejsze od 0, to warunek 6 < 0 wylicza się do False. 50 nie jest mniejsze od 10, więc 50 < 10 daje False. 10 jest mniejsze od 11, więc 10 < 11 daje True.
 
-Notice that 10 < 10 evaluates to False because the number 10 isn’t smaller than the number 10. They are exactly the same size. If Alice were the same height as Bob, you wouldn't say that Alice is taller than Bob or that Alice is shorter than Bob. Both of those statements would be false.
+Zauważ, że 10 < 10 daje False ponieważ 10 nie jest mniejsze od 10. One są równe. Jeśli Alicja jest tak samo wysoka jak Franek, to nie powiesz, że Alicja jest wyższa od Franka, albo że Alicja jest niższa od Franka. Oba te wyrażenia są fałszywe.
 
-Now try entering these expressions into the interactive shell:
+Teraz spróbuj wprowadzić kolejne wyrażenia w interaktywnej powłoce:
 
 >>> 10 == 10
 True
@@ -281,11 +281,11 @@ False
 >>> 'Goodbye' != 'Hello'
 True
 
-Try not to confuse the assignment operator (=) and the “equal to” comparison operator (==). The equal sign (=) is used in assignment statements to store a value to a variable, while the equal-equal sign (==) is used in expressions to see whether two values are equal. It’s easy to accidentally use one when you meant to use the other.
+Nie należy mylić operatora podstawienia (=) i operatora “równe z” (==). Znak równości (=) jest używany w dyrektywach podstawienia by zapisać wartość w zmiennej, podczas gdy podwójny znak równości (==) jest używany w wyrażeniach, by sprawdzić, czy dwie wartości są równe. Łatwo pomyłkowo użyć jednego z nich, gdy naprawdę chce się użyc drugiego.
 
-Just remember that the “equal to” comparison operator (==) has two characters in it, just as the “not equal to” comparison operator (!=) has two characters in it.
+Po prostu pamiętaj, że operator “równe z” (==) używa dwóch znaków, podobnie jak operator “różne od” (!=), który również używa dwóch znaków.
 
-String and integer values will not be equal to each other. For example, try entering the following into the interactive shell:
+Napisy i liczby całkowite nie będą równe. Sprawdź to wpisując następujący kod w powłoce interaktywnej:
 
 >>> 42 == 'Hello'
 False
