@@ -16,8 +16,7 @@ General Notes
 
 ## Convention ##
 
-- use "aku" and "kamu". 
-    - perlu diputuskan: apa perlu kata ganti "kita" diganti juga?
+- use "aku" and "kamu"
 - "Bab" for "chapter", dan "bagian" for "section"
 - "wrapped" <-> "terlipat" with text/paragraph context
 
@@ -79,9 +78,7 @@ General Notes
 - checkbox, checkbox
 - scope, cakupan
 - debug, debug
-- method, method istilah OOP termasuk dalam Python
-- list, 
-- item
-- keyword argument, keyword argument (istilah python), argumen keyword
-- font, font, jenis huruf cetak
-- constructor, constructor, istilah OOP
+- parantheses, tanda kurung buka-tutup
+- main, main dalam konteks main method program Python
+- def-block, blok def
+- while-block, blok while
