@@ -292,33 +292,33 @@ False
 >>> 42 != '42'
 True
 
-Looping with while statements
+Pętle używające dyrektywy while
 
-The while statement marks the beginning of a loop. Loops can execute the same code repeatedly. When the execution reaches a while statement, it evaluates the condition next to the while keyword. If the condition evaluates to True, the execution moves inside the while-block. (In your program, the while-block begins on line 13.) If the condition evaluates to False, the execution moves all the way past the while-block. (In “Guess the Number”, the first line after the while-block is line 28.)
+Dyrektywa while oznacza początek pętli. Pętle wykonują ten sam kawałek kodu wielokrotnie. Kiedy wykonanie programu dojdzie do dyrektywy while, to sprawdzany jest warunek wpisany zaraz po słowie kluczowym while. Jeśli ten warunek zwróci True, to wykoananie wchodzi do wnętrza bloku while (w twoim programie blok while zaczyna się w linii 13). Jeśli warunek zwróci False, to wykonanie przejdzie poza blok while (w “Zganij numer” pierwsza linia za blokiem while to linia 28).
 
-A while statement always has a colon (the : sign) after the condition.
+Dyrektywa while zawsze ma dwukropek (znak : ) za warunkiem.
 
-12. while guessesTaken < 6:
+12. while probyZgadniecia < 6:
 
 
 
-Rysunek 4-2: The while loop’s condition.
+Rysunek 4-2: Warunek pętli while
 
-Rysunek 4-2 shows how the execution flows depending on the condition. If the condition evaluates to True (which it does the first time, because the value of guessesTaken is 0), execution will enter the while-block at line 13 and keep going down. Once the program reaches the end of the while-block, instead of going down to the next line, the execution loops back up to the while statement’s line (line 12) and re-evaluates the condition. As before, if the condition is True the execution enters the while-block again. Each time the execution goes through the loop is called an iteration.
+Rysunek 4-2 pokazuje jak w zależności od warunku przebiega wykonanie kodu. Jeśli warunek zwraca True (co dzieje sie za pierwszym razem, ponieważ wartość probyZgadniecia wynosi 0), wykonanie wejdzie do bloku while w linii 13 i do kolejnych linii. Jak tylko program dotrze do końca bloku while, to zamiast iść dalej, do kolejnej linii, program zapętli się, wróci do linii z dyrektywą while (linia 12) i pownownie sprawdzi warunek. Podobnie jak wcześniej, jeśi warunek zwróci True wykonanie wchodzi do bliku while. Każde wykonanie kodu w pętli nazwyamy iteracją.
 
-This is how the loop works. As long as the condition is True, the program keeps executing the code inside the while-block repeatedly until the first time the condition is False. Think of the while statement as saying, “while this condition is true, keep iterating through the code in this block”.
+W ten sposób działają pętle. Jak długo warunek jest spełniony (zwraca True), program będzie wykonywał kod we wnętrzu bloku while, a zakończy gdy pierwszy raz warunek przestanie być spełniany (zwróci False). Myśl o  dyrektywie while jako: “dopóki warunek jest spełniony wykonuj kod w tym bloku”.
 
-The code inside the while-block handles accepting a guess from the player and checking if it is greater than, less than, or equal to the secret number. You can change the game’s difficulty by changing the number of guesses the player gets. To give the player only four guesses, change this line:
+Kod wewnątrz bloku while obsługuje pobieranie zgadywanych liczb od użytkownika i sprawdzanie, czy podana liczba jest większa, mniejsza, czy równa tajemnej liczbie. Możesz zmienić trudność gry zmieniając liczbę możliwych prób zgadywania. Aby dać graczowi tylko cztery szanse zmień linię:
 
-12. while guessesTaken < 6:
+12. while probyZgadniecia < 6:
 
-into this line:
+w linię:
 
-12. while guessesTaken < 4:
+12. while probyZgadniecia < 4:
 
-Code later in the while-block increases the guessesTaken variable by 1 on each iteration. By setting the condition to guessesTaken < 4, you ensure that the code inside the loop only runs four times instead of six. This makes the game much more difficult. To make the game easier, set the condition to guessesTaken < 8 or guessesTaken < 10. This will cause the loop to run a few more times and accept more guesses from the player.
+Kod w bloku while w każdej iteracji zwiększa zmienną probyZgadniecia o 1. Ustawiając warunek probyZgadniecia < 4 sprawisz, że kod wewnątrz pętli wykona się cztery razy, a nie sześć. To sprawi, że gra będzie trudniejsza. Aby zrobić ją łatwiejszą ustaw warunek naprobyZgadniecia < 8, lub probyZgadniecia < 10. To sprawi, że pętla wykona się kilka razy więcej i przyjmie więcej prób zgadnięcia od gracza.
 
-Of course, if you removed line 17 (guessesTaken = guessesTaken + 1) altogether then guessesTaken would never increase. The while loop’s condition would always be True! This would give the player an unlimited number of guesses. The player might like this, but a programmer would consider this a bug.
+Oczywiście jeśli usuniesz linię 17 (probyZgadniecia = probyZgadniecia + 1) to zmienna probyZgadniecia nigdy nie zostanie zwiększona. Warunek pętli while zawsze będzie spełniony (True)! To da graczowi nielimitowaną liczbę prób zgadnięcia. Graczowi może się to podobać, ale programista uważa to za błąd (ang. bug).
 
 The Player Guesses
 
