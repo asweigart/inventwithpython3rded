@@ -384,45 +384,47 @@ Czy liczba podana przez gracza jest zbyt mała?
 19.     if podanaLiczba < tajemnaLiczba:
 20.         print('Podałeś za małą liczbę.') # Na początku linii jest osiem spacji.
 
-Linia 19 sprawdza, czy liczba podana przez gracza jest mniejsza niż tajemna liczba wylosowana przez komputer. Jeśli tak jest, to wykoanie przechodzi do linii 20 i wypisuje komunikat graczowi. Linia 19 to derektywa if. Wykonanie przejdzie do kodu w bloku pod dyretywą if, jeśli warunek po if będzie spełniony (da True). Jeśli warunek nie będzie spełniony (da False), to kod w bloku-if zostanie ominięty. Używając dyrektyw if sprawiasz, że program uruchomi pewien kod tylko wtedy, gdy tego chcesz.
+Linia 19 sprawdza, czy liczba podana przez gracza jest mniejsza niż tajemna liczba wylosowana przez komputer. Jeśli tak jest, to wykonanie przechodzi do linii 20 i wypisuje komunikat graczowi. Linia 19 to derektywa if. Wykonanie przejdzie do kodu w bloku pod dyretywą if, jeśli warunek po if będzie spełniony (da True). Jeśli warunek nie będzie spełniony (da False), to kod w bloku-if zostanie ominięty. Używając dyrektyw if sprawiasz, że program uruchomi pewien kod tylko wtedy, gdy tego chcesz.
 
-The if statement works almost the same as a while statement, too. But unlike the while-block, the execution doesn’t jump back to the if statement at the end of the if-block. It just continues down to the next line. In other words, if statements don’t loop. See Rysunek 4-3 for a comparison of the two statements.
+Dyrektywa if działa prawie tak samo jak dyrektywa while. Jednak w odróżnieniu od bloku while, po dotarciu do końca blobu if wykonanie nie skacze na początek, do dyrektywy if. Wykonanie przechodzi po prostu do następnej linii. Innymi słowy dyrekrywa if nie zapętla się. Na rysuneku 4-3 pokazane jest porównanie tych dyrektyw.
 
 
 
-Rysunek 4-3: if and while statements.
+Rysunek 4-3: dyrekrywy if i while.
 
-Is the Player’s Guess Too High?
+Czy liczba podana przez gracza jest zbyt duża?
 
-22.     if guess > number:
-23.          print('Your guess is too high.')
+22.     if podanaLiczba > tajemnaLiczba:
+23.          print('Podałeś zbyt dużą liczbę.')
 
-Line 22 checks if the player’s guess is greater than the random integer. If this condition is True, then the print() function call tells the player that their guess is too big.
 
-Leaving Loops Early with the break statement
+Linia 22 sprawdza, czy liczba podana przez gracza jest większa niż tajemna liczba. Jeśli te sprawdzenia da True, wtedy funkcja print() powie użytkownikowo, że jego liczba jest zbyt duża.
 
-25.     if guess == number:
-26.          break
+Wcześniejsze opuszczenie pętli za pomocą dyrektywy break
 
-The if statement on line 25 checks if the guess is equal to the random integer. If it is, the program runs the break statement on line 26.
+25.     if podanaLiczba == tajemnaLiczba:
+26.         break
 
-A break statement tells the execution to jump immediately out of the while-block to the first line after the end of the while-block. (The break statement doesn’t bother rechecking the while loop’s condition, it just breaks out of the loop immediately.)
 
-The break statement is just the break keyword by itself, with no condition or colon.
+Dyrektywa if w linii 25 sprawdza, czy podana liczba jest równa tajmnej liczbue. Jeśli jest, to porogeam wykonuje dyrekktywę break z linii 26.
 
-If the player’s guess isn’t equal to the random integer, the execution reaches the bottom of the while-block. This means the execution will loop back to the top and recheck the condition on line 12 (guessesTaken < 6). Remember after the guessesTaken = guessesTaken + 1 line of code executed, the new value of guessesTaken is 1. Because 1 < 6 is True, the execution enters the loop again.
+Dyrektywa break sprawie, że wykonanie wyskakuje natychmiastowo z bloku whule i wychodzi do pierwszej linii za tym blokiem (dyrektywa break nie zawraca sobie głowy sprawdzaniem warunku while, po prostu natycmiastowo wychodzi z pętli).
 
-If the player keeps guessing too low or too high, the value of guessesTaken will change to 2, then 3, then 4, then 5, then 6. When guessesTaken has the number 6 stored in it, the while statement’s condition is False, since 6 isn’t less than 6. Because the while statement’s condition is False, the execution moves to the first line after the while-block.
+Dyrektywa break to samo słowo kluczowe break, bez żadnych warunków, ani dwukropków.
 
-If the player guessed the number correctly, the break statement would move the execution to the first line after the while-block.
+Jeśli liczba podana przez gracza nie jest róna tajemnej liczbie wykonanie dochodzi do końca bloku while. To oznacza, że wykonanie zapętla się i wraca na górę by ponownie sprawdzić warunej z linii 12 (probyZgadniecia < 6). Pamiętaj, że po wykonaniu kodu probyZgadniecia = probyZgadniecia + 1, nowa wartość probyZgadniecia to 1. Ponieważ 1 < 6 daje True, wykonanie znowu wchodzi do pętli.
 
-The remaining lines of code run when the player has finished guessing, either because the player guessed the correct number or run out of guesses.
+Jeśli liczby podawane przez gracza będą zbyt małe, lub zbyt duże, to wartość probyZgadniecia zmieni się na 2, potem na 3, na 4, na 5, na 6. Kiedy probyZgadniecia będzie miało wartość 6, warunek while da False, ponieważ 6 nie jest mniejsze od 6. Ponieważ warunek while dał False, wykonanie przechodzi do pierwszej linii za blokiem while.
 
-Check if the Player Won
+Jeśli gracz zgadł liczbę, dyrektywa break przeniesie wykonanie do pierwszej linii za blokiem while.
 
-28. if guess == number:
+Pozostałe linie kodu zostaną wykonane po tym jak gracz zakończył zgadywanie gdyż podał prawidłową liczbę, lub skończył sie limit prób zgadywania.
 
-Line 28 has no indentation, which means the while-block has ended and this is the first line after the while-block. The execution left the while-block either because the while statement’s condition was False (when the player runs out of guesses) or the break statement executed (when the player guesses the number correctly). Line 28 checks to see if the player guessed correctly. If so, the execution enter the if-block at line 29.
+Sprawdzenie, czy gracz wygrał
+
+28. if podanaLiczba == tajemnaLiczba:
+
+Linia 28 nie ma wcięcia, co oznacza, że skończył się tu blok while i jest ti pierwsza linia za tym blokiem. Wykonanie opuściło blok while gdyż ablo warunek w dyrektywie while dał False (kiedy gracz wyczerpał limit prób zgadywania), albo wykonała się dyrektywa break (kiedy gracz podał prawidłową liczbę). Linia 28 sprawdza, czy gracz podał prawidłową liczbę. Jeśli tak, to wykonanie przechodzi do bloku id w linii 29.
 
 29.     guessesTaken = str(guessesTaken)
 30.     print('Good job, ' + myName + '! You guessed my number in ' + guessesTaken + ' guesses!')
