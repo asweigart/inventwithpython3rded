@@ -426,48 +426,49 @@ Sprawdzenie, czy gracz wygrał
 
 Linia 28 nie ma wcięcia, co oznacza, że skończył się tu blok while i jest ti pierwsza linia za tym blokiem. Wykonanie opuściło blok while gdyż ablo warunek w dyrektywie while dał False (kiedy gracz wyczerpał limit prób zgadywania), albo wykonała się dyrektywa break (kiedy gracz podał prawidłową liczbę). Linia 28 sprawdza, czy gracz podał prawidłową liczbę. Jeśli tak, to wykonanie przechodzi do bloku id w linii 29.
 
-29.     guessesTaken = str(guessesTaken)
-30.     print('Good job, ' + myName + '! You guessed my number in ' + guessesTaken + ' guesses!')
+29.     probyZgadniecia = str(probyZgadniecia)
+30.     print('Gratuluję ' + mojeImie + '! Zgadłeś moją liczbę w ' + probyZgadniecia + ' próbach!')
 
-Lines 29 and 30 only execute if the condition in the if statement on line 28 was True (that is, if the player correctly guessed the computer’s number).
+Linie 29 i 30 wykonają się jedynie jeśli warunek w dyrektywie if z linii 28 zwrócił True (czyli jeśli gracz zgadł liczbę wylosowaną przez komputer).
 
-Line 29 calls the new function str(), which returns the string form of an argument. This code gets the string form of the integer in guessesTaken since only strings concatenate strings together.
+Linia 29 wywołuje nową funkcję str(), która zwraca napisową formę swojego argumentu. Ten kod daje napisową formę liczby całkowitej ze zmiennej probyZgadniecia, jako że tylko napisy mogą być łączone z innymi napisami.
 
-Line 30 concatenates strings together to tell the player they have won and how many guesses it took them. Only string values can concatenate to other strings. This is why line 29 had to change guessesTaken to the string form. Otherwise, trying to concatenate a string to an integer would cause Python to display an error.
+Linia 30 łączy napisy by powiedzieć graczowi że wygrał i w ilu próbach mu się to udało. Tylko napisy mogą się łączyć z innymi napisami. Z tego powodu w linii 29 zmienna probyZgadniecia musiała byc zmieniona na formę napisową. Próba łączenia napisu z liczbą całkowitą spowodowałaby zgłoszenie błędu przez Pythona.
 
-Check if the Player Lost
+Sprawdzenie, czy gracz przegrał
 
-32. if guess != number:
+32. if podanaLiczba != tajemnaLiczba:
 
-Line 32 uses the comparison operator != to check if player’s last guess is not equal to the secret number. If this condition evaluates to True, the exeution moves into the if-block on line 33.
 
-Lines 33 and 34 are inside the if-block, and only execute if the condition on line 32 was True.
+Linia 32 używa operatora porówania != by sprawdzić, czy ostatnia liczba podana przez gracza nie jest równa tajemnej liczbie. Jeśli ten warunek będzie spełniony (da True) wykonanie przejdzie do bloku if w linii 33.
 
-33.     number = str(number)
-34.     print('Nope. The number I was thinking of was ' + number)
+Linie 33 i 34 34 są wewnątrz bloku if i wykonają się tylko jeśli warunek z linii 32 był spełniony (dał True).
 
-In this block, the program tells the player what the secret number they failed to guess correctly was. This requires concatenating strings, but number stores an integer value. Line 33 will replace number with a string form so that it can be concatenated to the 'Nope. The number I was thinking of was ' string on line 34.
+33.     tajemnaLiczba = str(tajemnaLiczba)
+34.     print('Niestety. Numer o jakim myślałem to ' + tajemnaLiczba)
 
-At this point, the execution has reached the end of the code, and the program terminates. Congratulations! You’ve just programmed your first real game!
+W tym bloku program pokazuje graczowi tajną liczbę którą graczowi nie udało się zgadnąć. To wymaga łączenia napisów, ale tajemnaLiczba to zmienna całkowita. W linii 33 zostanie zastąpiona swoją formą napisową by można ją było połączyć z napisem 'Niestety. Numer o jakim myślałem to ' w linii 34.
 
-Flow Control Statements
+W tym momencie wykonanie doszło do końca kodu i program się zakończył. Gratulacje! Właśnie napisałeś swój pierwszy program!
 
-In previous chapters, the program execution started at the top instruction in program and went straight down, executing each instruction in order. But with the while, if, else, and break statements, you can cause the execution to loop and skip instructions based on conditions. The name for these kinds of statements is flow control statement, since they change the “flow” of the program execution as it moves around your program.
+Dyrektywy sterujące
 
-Summary
+W poprzednich rozdziałach wykonanie programu zaczęłą się od góry i szło prosto w dół wykonując każdą instrukcję po kolei. Ale dyrektywami while, if, else i break możesz powodować, że wykonanie będzie zapętlone i omijać instrukcje w zależności od warunków. Tego typu dyrektywy nazywamy dyrektywami sterującymi, ponieważ sterują przepływem wykonania programu przenosząc się w rózne jego części.
 
-If someone asked you, “What exactly is programming anyway?” what could you say to them? Programming is just the action of writing code for programs, that is, creating programs that can be executed by a computer.
+Podsumowanie
 
-“But what exactly is a program?” When you see someone using a computer program (for example, playing your “Guess the Number” game), all you see is some text appearing on the screen. The program decides what exact text to show on the screen (the program’s output), based on its instructions and on the text that the player typed on the keyboard (the program’s input). A program is just a collection of instructions that act on the user’s input.
+Jeśli ktoś zapyta cię: “Czym dokładnie jest programowanie?”, to co możesz mu odpowiedzieć? Programowanie to pisanie kodu programów, czyli tworzenie programów wykonywanych przez komputer.
 
-“What kind of instructions?” There are only a few different kinds of instructions, really.
+“Ale czym dokładnie jest program?” Kiedy widzisz kogoś używającego program komputerowy (na przykład grającego w twoją grę “Zgadnij liczbę”), wszystko co widzisz to jakiś tekst pojawiający sie na ekranie. Program decyduje jaki dokładnie napis pokazac na ekranie (czasem mówimy o urządzeniu wyjściowym programu), a robi to na podstawie instrukcji i danych wpisanych przez gracza na klawiaturze (czasem mówimy o urządzeniu wejściowym). Program to zbiów instrukcji które działają na danych wejściowych dostarczonych przez użytkownika.
 
-1.  Expressions. Expressions are values connected by operators. Expressions are all evaluated down to a single value, as 2 + 2 evaluates to 4 or 'Hello' + ' ' + 'World' evaluates to 'Hello World'. When expressions are next to the if and while keywords, you also call them conditions.
-2.  Assignment statements. Assignment statements store values in variables so you can remember the values later in the program.
-3.  The if, while, and break flow control statements. Flow control statements can cause the flow to skip instructions, loop over instructions, or break out of loops. Function calls also change the flow of execution by jumping to the start of a function.
-4.  The print() and input() functions. These functions display text on the screen and get text from the keyboard. This is called I/O (pronounced like the letters, “eye-oh”), because it deals with the Input and Output of the program.
+“Jakiego rodzaju są te instrukcje?” Tak naprawdę jest tylko kilka rodzajów takich instrukcji.
 
-And that’s it, just those four things. Of course, there are many details about those four types of instructions. In this book you’ll learn about new data types and operators, new flow control statements, and many other functions that come with Python. There are also different types of I/O such as input from the mouse or outputting sound and graphics instead of just text.
+1.  Wyrażenia. Wyrażenia są wartościami połączonymi operatorami. Wszystkie wyrażenia są wyliczane do pojedynczej wartości tak jak 2 + 2 wyliczane jest do 4, albo 'Witaj' + ' ' + 'świecie' daje 'Witaj świecie'. Kiedy wyrażenie jest zaraz po słowie kluczowym if, lub while, nazywame je tekże warunkami.
+2.  Dyrektywa podstawienia. Dyrektywy podstawienia zapisują zapisują wartości z zmiennych tak, by korzystać z nich później.
+3.  Dyrektywy sterujące if, while i break. Dyrektywy sterujące przepływem moga powodować ominięcie instrukcji, wykonywać instrukcje w pętli, albo przerywać pętle. Także wywołania funkcji zmieniają przepływ wykoanania przez skok na początek funkcji.
+4.  Funkcje print() i input(). Te funkcje wyświetlają napisy na monitorze i pobierają napisy z klawiatury. Nazwya się to operacjami wejścia-wyjścia (ang. operacje I/O od input-output wymawiane ajou), ponieważ zajmują się obsługą wejścia i wyjścia programu.
 
-For the person using your programs, they only care about that last type, I/O. The user types on the keyboard and then sees things on the screen or hears things from the speakers. But for the computer to Rysunek out what sights to show and what sounds to play, it needs a program, and programs are just a bunch of instructions you, the programmer, have written.
+I to tyle, tylko cztery rzeczy. Oczywiście jest jeszcze wiele szczegółów do tych czterech typów instrukcji. W tej książcenauczysz się o typach danych i operatorach, poznasz nowe dyrektywy sterujące i wiele innych funkcji jakie są dostępne w Pythonie. Istnieją także inne typy operacji wejścia-wyjścia (agn. I/O) takie jak odczyt położenia myszki, czy ogrywanie muzyki, albo drukowanie obrazów zamiast wypisywania napisów.
+
+Dla osoby używającej twoich programów jedyną rzeczą o jaką się martwią jest ta ostatnia rzecz: wejście-wyjście. Użytkownik wpisuje coś na klawiaturze i wtedy widzi rzeczy dziejące sie na ekrania, albo słyszy dżwięk z głośników. Ale komputer by wyświetlić odpowiedni rysunek, albo odegrać odpowiednią muzyję potrzebuje programu, a programy to zestawy instrukcji jakie ty, programista napisałeś.
 
