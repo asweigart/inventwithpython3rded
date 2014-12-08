@@ -464,119 +464,142 @@ Der Ort, an dem eine Variable deklariert wird, bestimmt ihren Geltungsbereich. W
 ...the variable cave is created inside the chooseCave() function. This means it is created in the chooseCave() function’s local scope. It will be forgotten when chooseCave() returns, and will be recreated if chooseCave() is called a second time. The value of a local variable isn’t remembered between function calls.
 ...ist die Variable hoehle innerhalb der sucheHoehleAus()-Funktion deklariert. Das bedeutet, sie ist nur innerhalb der Funktion gültig. Sie wird vergessen, wenn sucheHoehleAus() endet, und wird beim nächsten Aufruf von sucheHoehleAus() neu deklariert. Der Wert von lokalen Variablen bleibt zwischen Funktionsaufrufen nicht erhalten.
 
-Defining the checkCave() Function
-Definition der ueberpruefeHoehle()-Funktion
+Parameters
 
 19. def ueberpruefeHoehle(ausgewaehlteHoehle):
 
-The next function the program defines is named checkCave(). Notice that the text chosenCave in between the parentheses. This is a parameter: a local variable that is assigned the argument passed in when this function is called.
-Remember how for some function calls like str() or randint(), you would pass an argument in between the parentheses:
-
->>> str(5)
-'5'
->>> random.randint(1, 20)
-14
-
-You will also pass an argument when you call checkCave(). This argument is stored in a new variable named chosenCave. These variables are also called parameters.
-
-Parameters
-
-19. def checkCave(chosenCave):
-
 The next function the program defines is named checkCave(). Notice the text chosenCave between the parentheses. This is a parameter: a local variable that is assigned the argument passed when this function is called.
+Die nächste Funktion, die das Programm definiert, heißt ueberpruefeHoehle(). Beachte den Text ausgewaehlteHoehle zwischen den Klammern. Diest ist ein Parameter: eine lokale Variable, an die das beim Funktionsaufruf übergebene Argument gebunden wird.
 
 Remember how for some function calls like str() or randint(), you would pass one or more arguments between the parentheses:
+Vielleicht erinnerst Du Dich, dass Du bei einigen Funktionsaufrufen wie str() oder randint() Argumente zwischen den Klammern übergeben hast:
 
 >>> str(5)
+>>> str(5)
+'5'
 '5'
 >>> random.randint(1, 20)
+>>> random.randint(1, 20)
+14
 14
 
 You will also pass an argument when you call checkCave(). This argument is stored in a new variable named chosenCave. These variables are also called parameters.
+Das gleiche wirst Du beim Funktionsaufruf von ueberpruefeHoehle() tun. Das Argument wird in einer neuen Variable namens ausgewaehlteHoehle gespeichert. Diese Variablen nennt man Parameter.
 
 For example, here is a short program that demonstrates defining a function with a parameter:
+Als Beispiel folgt ein kurzes Programm, das die Definition von Funktionen mit Paramtern veranschaulicht:
 
 def sayHello(name):
+def sagHallo(name):
     print('Hello, ' + name + '. Your name has ' + str(len(name)) + 'letters.')
+    print('Hallo, ' + name + '. Dein Name hat ' + str(len(name)) + 'Buchstaben.')
 
 sayHello('Alice')
+sagHallo('Alice')
 sayHello('Bob')
+sagHallo('Bob')
 spam = 'Carol'
+speck = 'Carol'
 sayHello(spam)
+sagHallo(speck)
 
 If you run this program, it would look like this:
+Wenn Du dieses Programm ausführst, sieht die Ausgabe wie folgt aus:
 
 Hello, Alice. Your name has 5 letters.
+Hallo, Alice. Dein Name hat 5 Buchstaben.
 Hello, Bob. Your name has 3 letters.
 Hello, Carol. Your name has 5 letters.
 
 When you call sayHello(), the argument is assigned to the name parameter. Parameters are just ordinary local variables. Like all local variables, the values in parameters will be forgotten when the function call returns.
+Wenn Du sagHallo() aufrufst, wird das Argument an den Parameter name gebunden. Paramter sind herkömliche, lokale Variablen. Wie alle lokalen Variablen, werden sie zerstört, sobald die Funktion zurückkehrt.
 
 Displaying the Game Results
+Den Spielausgang anzeigen
 
 Back to the game’s source code:
+Zurück zum Quellcode des Spiels:
 
-20.     print('You approach the cave...')
+20.     print('Du näherst Dich der Höhle...')
 21.     time.sleep(2)
 
 The time module has a function called sleep() that pauses the program. Line 21 passes the integer value 2 so that time.sleep() will pause the program for 2 seconds.
+Das Modul time beinhaltet eine Funktion namens sleep(), die das Programm pausiert. Zeile 21 übergibt die Ganzzahl 2, sodass time.sleep() das Programm für 2 Sekunden pausieren wird.
 
-22.     print('It is dark and spooky...')
+22.     print('Es ist dunkel und gruselig...')
 23.     time.sleep(2)
 
 Here the code prints some more text and waits for another 2 seconds. These short pauses add suspense to the game, instead of displaying the text all at once. In the previous chapter’s Jokes program, you called the input() function to pause until the player pressed the ENTER key. Here, the player doesn’t have to do anything except wait a couple seconds.
-24.     print('A large dragon jumps out in front of you! He opens his jaws and...')
+Das Programm gibt weiteren Text aus und wartet erneut 2 Sekunden. Diese kurzen Pausen erzeugen Spannung um Spiel, was den ganzen Text auf einmal anzuzeigen nicht tun würde. Im Programm aus dem vorherigen Kapitel, Witze, hast Du die input()-Funktion aufgerufen, um das Programm zu pausieren, bis der Spieler die ENTER-Taste drückt. In diesem Fall braucht der Spieler nichts zu drücken, außer ein paar Sekunden zu warten.
+24.     print('Ein großer Drache spring vor Deine Füße! Er öffnet sein Maul und...')
 25.     print()
 26.     time.sleep(2)
 
 What happens next? And how does the program decide? This is explained in the next section.
+Was passiert als Nächstes? Und wie entscheidet das Programm? Dies wird im nächsten Abschnitt erklärt.
 
 Deciding Which Cave has the Friendly Dragon
+Entscheiden, welche Höhle den freundlichen Drachen beherbergt
 
-28.     friendlyCave = random.randint(1, 2)
+28.     freundlicheHoehle = random.randint(1, 2)
 
 Line 28 calls the random.randint() function which will return either 1 or 2. This integer value is stored in friendlyCave and is the cave with the friendly dragon.
+Zeile 28 ruft die random.randint()-Funktion auf, die entweder 1 oder 2 zurückgibt. Dieser Ganzzahlwert wird in freundlicheHoehle gespeichert und repräsentiert die Höhle mit dem freundlichen Drachen.
 
-30.     if chosenCave == str(friendlyCave):
-31.          print('Gives you his treasure!')
+30.     if ausgewaehlteHoehle == str(freundlicheHoehle):
+31.          print('Gibt Dir seinen Schatz!')
 
 Line 30 checks if the player’s chosen cave in the chosenCave variable ('1' or '2') is equal to the       friendly dragon cave.
+Zeile 30 überprüft, ob die vom Spieler ausgewählte Höhle in der ausgewaehlteHoehle-Variablen ('1' oder '2') gleich der       freundlichen Drachen-Höhle ist.
 
 But the value in friendlyCave is an integer because random.randint() returns integers. You can’t compare strings and integers with the == sign, because they will always be not equal to each other. '1' is not equal to 1 and '2' is not equal to 2.
+Aber der Wert von freundlicheHoehle ist eine Ganzzahl, weil random.randint() Ganzzahlen zurückgibt. Man kann Zeichenketten und Ganzzahlen nicht mit dem ==-Operator vergleichen, weil dieser immer falsch zurückgeben würde. '1' ist ungleich 1 und '2' ist ungleich 2.
 
 So friendlyCave is passed to str() function, which returns the string value of friendlyCave. This way the values will be the same data type and can be meaningfully compared to each other. This code could also have been used to convert chosenCave to an integer value:
+Deswegen wird freundlicheHoehle and die str()-Funktion übergeben, die sie in eine Zeichenkette umwandelt. Nun haben beide Werte den gleichen Typ und können miteinander verglichen werden. Dieser Code hätte ebenso verwendet werden können, um ausgewaehlteHoehle in eine Ganzzahl zu konvertieren:
 
     if int(chosenCave) == friendlyCave:
+    if int(ausgewaehlteHoehle) == freundlicheHoehle:
 
 If the condition is True, line 31 tells the player they have won the treasure.
+Falls die Bedingung wahr ist, informiert Zeile 31 den Spieler, dass dieser den Schatz gewonnen hat.
 
 32.     else:
-33.          print('Gobbles you down in one bite!')
+33.          print('Verschlingt Dich in einem Mal!')
 
 Line 32 is an else statement. The else statement can only come after an if-block. The else-block executes if the if statement’s condition was False. Think of it as the program’s way of saying, “If this condition is true then execute the if-block or else execute the else-block.”
+Zeile 32 ist ein else-Ausdruck (zu Deutsch “sonst”). Der else-Ausdruck kann nur auf einen if-Block folgen. Der else-Block wird ausgeführt, falls die Bedingung des if-Ausdrucks falsch war. Dies kann sich wie folgt veranschaulicht werden: “Wenn diese Bedingung wahr ist, dann führe den if-Block aus, sonst führe den else-Block aus.”
 
 Remember to put the colon (the : sign) after the else keyword.
+Merke Dir, nach dem else-Schlüsselwort einen Doppelpunkt : zu schreiben.
 
 Where the Main Part Begins
+Wo der Hauptteil beginnt
 
-35. playAgain = 'yes'
-36. while playAgain == 'yes' or playAgain == 'y':
+35. spieleNochEinmal = 'ja'
+36. while spieleNochEinmal == 'ja' or spieleNochEinmal == 'j':
 
 Line 35 is the first line that isn’t a def statement or inside a def-block. This line is where the main part of the program begins. The previous def statements merely defined the functions. They didn’t run the code inside of the functions.
+Zeile 35 ist die erste Zeile, die weder ein def-Ausdruck ist noch innerhalb eines def-Blocks steht. Hier beginnt der Hauptabschnitt unseres Programms. Die vorherigen def-Ausdrücke haben Funktionen lediglich definiert, sie jedoch nicht ausgeführt.
 
 Line 35 and 36 are setting up a loop that the rest of the game code is in. At the end of the game, the player can enter if they want to play again. If they do, the execution enters the while loop to run the entire game all over again. If they don’t, the while statement’s condition will be False and the execution will move on to the end of the program and terminate.
+Die Zeilen 35 und 36 definieren eine Schleife, die den Rest des Spielcodes enthält. Am Ende des Spiels kann der Spieler entscheiden, ob er nochmal spielen möchte. Falls ja, begibt sich die Programm-Ausführung zur Schleife und das gesamte Spiel läuft erneut ab. Falls nicht, wird die Bedingung der while-Schleife zu falsch ausgewertet und das Programm terminiert.
 
 The first time the execution comes to this while statement, line 35 will have just assigned 'yes' to the playAgain variable. That means the condition will be True. This guarantees that the execution enters the loop at least once.
+Wenn die Programm-Ausführung den while-Ausdruck das erste Mal erreicht, hat die Variable spieleNochEinmal den Wert 'ja'. Das bedeutet, dass die Bedingung zu wahr ausgewertet wird. Das Spiel wird also mindestens einmal ausgeführt.
 
 Calling the Functions in the Program
+Die Funktionen im Programm aufrufen
 
-38.     displayIntro()
+38.     zeigeEinfuehrungAn()
 
 Line 38 calls the displayIntro() function. This isn’t a Python function, it is your function that you defined earlier on line 4. When this function is called, the program execution jumps to the first line in the displayIntro() function on line 5. When all the lines in the function are done, the execution jumps back to line 38 and continues moving down.
+Zeile 38 ruft die zeigeEinfuehrungAn()-Funktion auf. Dies ist keine Python-Funktion, sondern unsere eigene, die wir in Zeile 4 definiert haben. Wenn diese Funktion aufgerufen wird, springt die Programm-Ausführung in die erste Zeile in der zeigeEinfuehrungAn()-Funktion in Zeile 5. Alle Zeilen innerhalb der Funktion abgearbeitet wurden, springt die Programm-Ausführung zurück zu Zeile 38 und fährt fort.
 
-40.     caveNumber = chooseCave()
+40.     hoehlenNummer = sucheHoehleAus()
 
 Line 40 also calls a function that you defined. Remember that the chooseCave() function lets the player type in the cave they want to go into. When the line 17’s return cave executes, the program execution jumps back to line 40, and the chooseCave() call evaluates to the return value. This return value is stored in a new variable named caveNumber. Then the program execution moves on to line 42.
+Zeile 40 ruft ebenso eine Funktion auf, die wir definiert haben. Die Funktion sucheHoehleAus erlaubt dem Spieler die Höhle einzugeben, in die er gehen möchte.
 
 42.     checkCave(caveNumber)
 
