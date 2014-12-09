@@ -41,7 +41,7 @@ def quienComienza():
 
 def jugarDeNuevo():
     # Esta funcion devuelve True (Verdadero) si el jugador desea volver a jugar, de lo contrario devuelve False (Falso).
-    print('¿Desea volver a jugar? (si/no)?')
+    print('¿Deseas volver a jugar? (si/no)?')
     return input().lower().startswith('s')
 
 def hacerJugada(tablero, letra, jugada):
