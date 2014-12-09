@@ -601,47 +601,67 @@ Zeile 38 ruft die zeigeEinfuehrungAn()-Funktion auf. Dies ist keine Python-Funkt
 Line 40 also calls a function that you defined. Remember that the chooseCave() function lets the player type in the cave they want to go into. When the line 17’s return cave executes, the program execution jumps back to line 40, and the chooseCave() call evaluates to the return value. This return value is stored in a new variable named caveNumber. Then the program execution moves on to line 42.
 Zeile 40 ruft ebenso eine Funktion auf, die wir definiert haben. Die Funktion sucheHoehleAus erlaubt dem Spieler die Höhle einzugeben, in die er gehen möchte.
 
-42.     checkCave(caveNumber)
+42.     ueberpruefeHoehle(hoehlenNummer)
 
 Line 42 calls your checkCave() function, passing the value in caveNumber as an argument. Not only does execution jump to line 20, but the value in caveNumber is copied to the parameter chosenCave inside the checkCave() function. This is the function that will display either 'Gives you his treasure!' or 'Gobbles you down in one bite!' depending on the cave the player chose to go into.
+Zeile 42 ruft die Funktion ueberpruefeHoehle() auf und übergibt den in hoehlenNummer gespeicherten Wert als Argument. Die Programm-Ausführung springt in Zeile 20 und der in hoehlenNummer gespeicherte Wert wird in den Parameter ausgewaehlteHoehle innerhalb der ueberpruefeHoehle()-Funktion kopiert. Diese Funktion ist dafür verantwortlich entweder 'Gibt Dir seinen Schatz!' oder 'Verschlingt Dich in einem Mal!' anzuzeigen, je nachdem für welche Höhle sich der Spieler entschied.
 
 Asking the Player to Play Again
+Den Spieler fragen, ob er erneut spielen möchte
 
-44.     print('Do you want to play again? (yes or no)')
-45.     playAgain = input()
+44.     print('Möchtest Du noch einmal spielen? (ja oder nein)')
+45.     spieleNochEinmal = input()
 
 Whether the player won or lost, they are asked if they want to play again. The variable playAgain what the player typed. Line 45 is the last line of the while-block, so the program jumps back to line 36 to check the while loop’s condition: playAgain == 'yes' or playAgain == 'y'
+Unabhängig davon, ob der Spieler gewonnen oder verloren hat, wird er gefragt, ob er nochmal spielen möchte. Die Variable spieleNochEinmal beinhaltet die Auswahl des Spielers. Zeile 45 ist die letzte Zeile des while-Blocks. Das Programm springt zurück zu Zeile 36, um die Schleifen-Bedingung zu überprüfen: spieleNochEinmal == 'ja' or spieleNochEinmal == 'j'
 
 If the player typed in the string 'yes' or 'y', then the execution would enter the loop again at line 38.
+Falls der Spieler 'ja' oder 'j' eingegeben hat, dann wird die Schleife in Zeile 38 wieder betreten.
 
 If the player typed in 'no' or 'n' or something silly like 'Abraham Lincoln', then the condition would be False. The program execution would continue on to the line after the while-block. But since there are no more lines after the while-block, the program terminates.
+Falls der Spieler 'nein', 'n' oder etwas Unsinniges, wie 'Abraham Linconl' eingibt, dann ist die Bedingung falsch. Die Programm-Ausführung fährt in der Zeile nach dem while-Block fort. Da es jedoch keine weiteren Zeilen nach dem while-Block gibt, terminiert das Programm.
 
 One thing to note: the string 'YES' is not equal to the string 'yes'. If the player typed in the string 'YES', then the while statement’s condition would evaluate to False and the program would still terminate. Later programs in this book will show you how to avoid this problem.
+Zu beachten: die Zeichenkette 'JA' ist ungleich der Zeichenkette 'ja'. Falls der Spieler 'JA' eingibt, dann evaluiert die Bedingung im while-Ausdruck zu falsch und das Programm terminiert trotzdem. Programme, die wir später im Buch kennen lernen werden, wissen dieses Problem zu vermeiden.
 
 You've just completed your second game! In Dragon Realm, you used a lot of what you learned in the Guess the Number game and picked up a few new tricks. If you didn't understand some of the concepts in this program, then go over each line of the source code again, and try changing the source code and see how the program changes.
+Du hast gerade Dein zweites Spiel fertiggestellt! In Drachen-Reich hast Du viel des Wissens aus dem Rate die Zahl-Spiel angewandt und ein paar neue Tricks dazugelernt. Falls Du nicht alle Konzepte in diesem Programm verstanden hast, dann gehe noch einmal durch jede Codezeile, und versuche den Quellcode zu verändern, um zu sehen, wie sich das Verhalten des Programms ändert.
 
 In the next chapter you won’t create a game, but instead learn how to use a feature of IDLE called the debugger.
+Im nächsten Kapitel werden wir kein Spiel erschaffen, sondern lernen, wie man IDLEs Debugger verwendet.
 
 Designing the Program
+Programmentwurf
 
 Dragon Realm is a simple game. The other games in this book will be a bit more complicated. It sometimes helps to write down everything you want your game or program to do before you start writing code. This is called “designing the program.”
+Drachen-Reich ist ein einfaches Spiel. Die anderen Spiele in diesem Buch fallen ein wenig komplexer aus. Oft hilft es, alles, was das Spiel oder Programm tun soll niederzuschreiben, bevor man mit dem Schreiben von Code beginnt. Diesen Vorgang nennt man “Programmentwurft”.
 
 For example, it may help to draw a flow chart. A flow chart is a picture that shows every possible action that can happen in the game, and which actions lead to which other actions. Figure 6-2 is a flow chart for Dragon Realm.
+Zum Beispiel kann es hilfreich sein ein Flussdiagramm zu zeichnen. Ein Flussdiagramm ist ein Bild, das jede mögliche Aktion zeigt, die in einem Spiel passieren kann und welche Aktionen zu welchen anderen Aktionen führen. Abbildung 6-2 ist ein Flussdiagramm zu Drachen-Reich.
 
 To see what happens in the game, put your finger on the “Start” box. Then follow one arrow from the box to another box. Your finger is like the program execution. The program terminates when your finger lands on the “End” box.
+Um zu sehen, was im Spiel passiert, lege Deinen Finger auf den “Start”-Kasten. Dann folge den Pfeilen von einem Kasten zum Nächsten. Dein Finger symbolisiert die Programm-Ausführung. Das Programm terminiert, wenn Dein Finger den “Ende”-Kasten erreicht.
 
 When you get to the “Check for friendly or hungry dragon” box, you can go to the “Player wins” box or the “Player loses” box. This branching point shows how the program can do different things. Either way, both paths will end up at the “Ask to play again” box.
+Wenn Du in den Kasten “Auf freundlichen oder hungrigen Drachen überprüfen” gelangst, kannst Du zum Kasten “Spieler gewinnt” oder “Spieler verliert” gehen. Diese Gabelung zeigt, wie das Programm verschiedene Dinge tun kann. Beide Pfade führen zum “Frage Spieler, ob er nochmal spielen möchte”-Kasten.
 
 Summary
+Zusammenfassung
 
 In the Dragon Realm game, you created your own functions. Functions are a mini-program within your program. The code inside the function runs when the function is called. By breaking up your code into functions, you can organize your code into smaller and easier to understand sections.
+Im Spiel Drachen-Reich hast Du Deine eigenen Funktionen geschrieben. Funktionen sind Mini-Programme innerhalb von Programmen. Der Code innerhalb einer Funktion wird ausgeführt, wenn diese aufgerufen wird. Das Aufteilen in Funktionen gliedert ein Programm in kleinere und einfacher zu verstehende Abschnitte.
 
 Arguments are values copied to the function’s parameters when the function is called. The function call itself evaluates to the return value.
+Argumente sind Werte, die in die Parameter einer Funktion zum Zeitpunkt ihres Aufrufs kopiert werden. Der Funktionsaufruf selbst nimmt den Wert des Rückgabe-Wertes an.
 
 Figure 6-2: Flow chart for the Dragon Realm game.
+Abbildung 6-2: Flussdiagramm zum Spiel Drachen-Reich.
 
 You also learned about variable scopes. Variables created inside of a function exist in the local scope, and variables created outside of all functions exist in the global scope. Code in the global scope cannot make use of local variables. If a local variable has the same name as a variable in the global scope, Python considers it a separate variable and assigning new values to the local variable won’t change the value in the global variable.
+Du hast ebenso vom Geltungsbereich von Variablen gelernt. Variablen, die innerhalb einer Funktion erstellt werden, existieren im lokalen Geltungsbereich, während Variablen, die außerhalb aller Funktionen erstellt werden, im globalen Geltungsbereich existieren. Auf lokale Variablen kann vom globalen Geltungsbereich aus nicht zugegriffen werden. Hat eine lokale Variable denselben Namen, wie eine globale Variable, so behandelt Python beide als separate Variablen. Änderungen an der lokalen Variable haben keine Auswirkungen auf die globale.
 
 Variable scopes might seem complicated, but they are useful for organizing functions as separate pieces of code from the rest of the program. Because each function has its own local scope, you can be sure that the code in one function won’t cause bugs in other functions.
+Variablen-Geltungsbereiche mögen kompliziert erscheinen, sind jedoch nützlich, um Programme in vom Rest des Programms unabhängige Abschnitte zu gliedern. Da jede Funktion ihren eigenen lokalen Geltungsbereich besitzt, kannst Du Dir sicher sein, dass der Code in einer Funktion keine Fehler in anderen Funktionen verursachen kann.
 
 Almost every program uses functions because they are so useful. By understanding how functions work, you can save yourself a lot of typing and make bugs easier to fix.
+Fast jedes Programm benutzt Funktionen aufgrund ihrer Nützlichkeit. Indem Du verstehst, wie Funktionen funktionieren, kannst Du Dir viel Tipparbeit ersparen und Fehler einfacher beheben.
