@@ -28,22 +28,22 @@ Abbildung 1-1: Ein unangebrachter Pinguin befiehlt Dir Python 3 zu installieren.
 
 Unter Windows, lade den Python-Installer herunter (welcher auf .msi endet) und doppelklicke darauf. Folge den Anweisungen des Installers, wie sie hier aufgelistet sind:
 
-•   Wähle “Install for All Users” aus und klicke auf “Next”.
-•   Installiere Python in den Ordner C:\Python34, indem Du “Next” klickst.
-•   Überspringe die benutzerdefinierte Anpassung durch einen Klick auf “Next”.
+1.   Wähle “Install for All Users” aus und klicke auf “Next”.
+2.   Installiere Python in den Ordner C:\Python34, indem Du “Next” klickst.
+3.   Überspringe die benutzerdefinierte Anpassung durch einen Klick auf “Next”.
 
 Unter Mac OS X, lade die für Deine Betriebssystem-Version geeignete .dmg-Datei herunter und doppelklicke darauf. Folge den Anweisungen des Installers, wie sie hier aufgelistet sind:
 
-•   Falls sich ein neues Fenster öffnet, doppelklicke auf die Datei Python.mpkg. Eventuell musst Du das Administrator-Passwort eingeben.
-•   Klicke mehrmals auf “Continue”, bis zur Lizenzvereinbarung gelangst. Akzeptiere diese.
-•   Wähle “HD Macintosh” (oder den Namen Deiner Festplatte) aus und klicke auf “Install”.
+1.   Falls sich ein neues Fenster öffnet, doppelklicke auf die Datei Python.mpkg. Eventuell musst Du das Administrator-Passwort eingeben.
+2.   Klicke mehrmals auf “Continue”, bis zur Lizenzvereinbarung gelangst. Akzeptiere diese.
+3.   Wähle “HD Macintosh” (oder den Namen Deiner Festplatte) aus und klicke auf “Install”.
 
 Unter Ubuntu, installiere Python über das “Ubuntu Software Center” wie folgt:
 
-•   Öffne das “Ubuntu Software Center”.
-•   Tippe “Python” in das Suchfeld oben rechts ein.
-•   Wähle “IDLE (using Python 3.4)” (bzw. die aktuellste Version) aus.
-•   Klicke auf “Installieren”. Eventuell musst Du das Administrator-Passwort eingeben.
+1.   Öffne das “Ubuntu Software Center”.
+2.   Tippe “Python” in das Suchfeld oben rechts ein.
+3.   Wähle “IDLE (using Python 3.4)” (bzw. die aktuellste Version) aus.
+4.   Klicke auf “Installieren”. Eventuell musst Du das Administrator-Passwort eingeben.
 
 IDLE starten
 
