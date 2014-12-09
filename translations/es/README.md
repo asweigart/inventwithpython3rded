@@ -11,7 +11,7 @@ Alejandro Pernin https://github.com/aleperno
 Title
 =====
 
-(Put translated book title here.)
+Inventa tus Propios Juegos de Computadora con Python
 
 General Notes
 =============
