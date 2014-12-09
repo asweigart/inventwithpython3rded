@@ -1,0 +1,16 @@
+Abb 6-1:
+Das Schlüsselwort def
+Klammern
+Funktionsname
+Doppelpunkt
+
+Abb 6-2:
+Start
+Zeige Einführung
+Spieler sucht Höhle aus
+Auf freundlichen oder hungrigen Drachen überprüfen
+Spieler gewinnt
+Spieler verliert
+Frage Spieler, ob er nochmal spielen möchte
+Ende
+

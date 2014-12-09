@@ -2,9 +2,7 @@
     PYTHON INSTALLIEREN
 
 In diesem Kapitel behandelte Themen:
-
 •   Herunterladen und installieren des Python-Interpreters
-•   IDLEs interaktiver Kommandozeileninterpreter
 •   Wie dieses Buch verwendet werden sollte
 •   Die zum Buch gehörende Internetseite http://inventwithpython.com/de
 
@@ -12,7 +10,7 @@ Hallo! Dieses Buch lehrt Dich die Programmierung anhand von Spieleentwicklung. S
 
 Als ich ein Kind war lehrte mich ein Buch wie dieses, meine ersten Programme und Spiele zu entwickeln. Es war einfach und machte viel Spaß. Heute als Erwachsener bereitet mir die Programmierung immer noch viel Freude und ich werde zusätzlich dafür bezahlt. Aber selbst falls Du später einmal kein Programmierer werden solltest, so ist Programmierung dennoch eine nützliche Fertigkeit mit viel Spaßpotential.
 
-Computer sind faszinierende Maschinen und sie zu programmieren ist einfach. Wenn man ein Buch lesen kann, dann kann man auch einen Computer programmieren. Ein Computer-Programm besteht aus einer Reihe von Anweisungen, die der Computer versteht — genauso wie eine Geschichte aus einer Reihe von Sätzen besteht, die der Leser versteht. Video-Spiele sind nichts anderes als Computer-Programme, d.h. auch sie sind nur Reihen von Anweisungen.
+Computer sind faszinierende Maschinen und sie zu programmieren ist nicht so schwer, wie man denken mag. Wenn man ein Buch lesen kann, dann kann man auch einen Computer programmieren. Ein Computer-Programm besteht aus einer Reihe von Anweisungen, die der Computer versteht — genauso wie eine Geschichte aus einer Reihe von Sätzen besteht, die der Leser versteht. Video-Spiele sind nichts anderes als Computer-Programme, d.h. auch sie sind nur Reihen von Anweisungen.
 
 Um einen Computer zu befehligen, schreibt man ein Programm in einer Sprache, die der Computer versteht. Dieses Buch lehrt die Programmier-Sprache “Python”. Darüber hinaus gibt es noch viele andere Programmier-Sprachen wie z.B. “BASIC”, “Java”, “JavaScript”, “PHP” oder “C++”.
 
@@ -24,13 +22,28 @@ Herunterladen und installieren von Python
 
 Bevor wir mit dem Programmieren beginnen können, müssen wir zuerst den Python-Interpreter installieren. Der Python-Interpreter versteht in der Programmiersprache Python geschriebene Befehle. Von nun an werde ich “Python-Interpreter” schlicht mit “Python” abkürzen.
 
-Lade Python 3.4 oder eine neuere Version von der offiziellen Internetseite http://www.python.org herunter. Wähle dabei die 32bit-Version von Python aus, unabhängig davon ob Du ein 64bit-Betriebssystem verwendest. Das “Pygame”-Modul, das wir später im Buch verwenden werden, funktioniert nämlich nur mit der 32bit-Version von Python.
-
 Wichtiger Hinweis! Stelle sicher, dass Du Python 3 installierst und nicht Python 2. Die Programme in diesem Buch sind in Python 3 geschrieben und führen zu Fehlern, wenn man versucht sie mit Python 2 zu starten. Ich habe sogar einen Zeichentrick-Pinguin in Abbildung 1-1 hinzugefügt, um Dich daran zu erinnern.
 
-
-
 Abbildung 1-1: Ein unangebrachter Pinguin befiehlt Dir Python 3 zu installieren.
+
+Unter Windows, lade den Python-Installer herunter (welcher auf .msi endet) und doppelklicke darauf. Folge den Anweisungen des Installers, wie sie hier aufgelistet sind:
+
+1.   Wähle “Install for All Users” aus und klicke auf “Next”.
+2.   Installiere Python in den Ordner C:\Python34, indem Du “Next” klickst.
+3.   Überspringe die benutzerdefinierte Anpassung durch einen Klick auf “Next”.
+
+Unter Mac OS X, lade die für Deine Betriebssystem-Version geeignete .dmg-Datei herunter und doppelklicke darauf. Folge den Anweisungen des Installers, wie sie hier aufgelistet sind:
+
+1.   Falls sich ein neues Fenster öffnet, doppelklicke auf die Datei Python.mpkg. Eventuell musst Du das Administrator-Passwort eingeben.
+2.   Klicke mehrmals auf “Continue”, bis zur Lizenzvereinbarung gelangst. Akzeptiere diese.
+3.   Wähle “HD Macintosh” (oder den Namen Deiner Festplatte) aus und klicke auf “Install”.
+
+Unter Ubuntu, installiere Python über das “Ubuntu Software Center” wie folgt:
+
+1.   Öffne das “Ubuntu Software Center”.
+2.   Tippe “Python” in das Suchfeld oben rechts ein.
+3.   Wähle “IDLE (using Python 3.4)” (bzw. die aktuellste Version) aus.
+4.   Klicke auf “Installieren”. Eventuell musst Du das Administrator-Passwort eingeben.
 
 IDLE starten
 
@@ -42,21 +55,19 @@ Unter Mac OS X, öffne das Finder-Fenster und klicke auf “Anwendungen”. Dana
 
 Unter Ubuntu/Linux, öffne ein Terminal-Fenster und gib “idle3” ein. Du magst auch in der Lage sein am oberen Bildschirmrand auf “Anwendungen” und dann auf “Programming and IDLE 3” zu klicken.
 
-
+Das Fenster, das bei der ersten Ausführung von IDLE erscheint, wird als interaktiver Kommandozeileninterpreter bezeichnet (siehe Abb. 1-2). Man kann in es Befehle eingeben und Python wird diese ausführen und die Ergebnisse im selben Fenster anzeigen.
 
 Abbildung 1-2: IDLEs interaktiver Kommandozeileninterpreter unter Windows, OS X und Ubuntu Linux.
-
-Das Fenster, das bei der ersten Ausführung von IDLE erscheint, wird als interaktiver Kommandozeileninterpreter bezeichnet. Man kann in ihn Befehle eingeben und Python wird diese ausführen und die Ergebnisse im selben Fenster anzeigen.
 
 Wie dieses Buch verwendet werden sollte
 
 Die meisten Kapitel in diesem Buch beginnen mit einem Probelauf des jeweils vorgestellten Programms. Dieser Probelauf zeigt Dir, welche Ausgabe Du zu erwarten hast, wenn Du das Programm ausführst. Die Benutzereingaben sind in fetter Schrift dargestellt.
 
-Gib den Programmcode selbst in IDLE ein, anstatt ihn herunterzuladen. Auf diese Art und Weise wirst Du schneller fließend im Schreiben von Python-Programmen.
+Gib den Programmcode selbst in IDLE ein, anstatt ihn herunterzuladen oder zu kopieren/einzufügen. Auf diese Art und Weise wirst Du schneller fließend im Schreiben von Python-Programmen.
 
 Zeilennummern und Leerzeichen
 
-Tippe die Zeilennummern am Anfang jeder Zeile nicht beim Schreiben des Programmcodes ab. Zur Verdeutlichung, wenn Du Folgendes im Buch siehst:
+Tippe die Zeilennummern am Anfang jeder Quellcode-Zeile in diesem Buch nicht beim Schreiben des Programmcodes ab. Zur Verdeutlichung, wenn Du Folgendes im Buch siehst:
 
 9. zahl = random.randint(1, 20)
 
@@ -76,19 +87,19 @@ while rateVersuche < 10:
 
 Zeilenumbruch in diesem Buch
 
-Einige Codezeilen sind so lang, dass sie im Buch auf mehreren Zeilen gedruckt werden mussten. Gib diesen Code in IDLE ohne Zeilenumbrüche (ohne die Enter-Taste zu betätigen) ein. Die Zeilennummern verraten Dir, ob eine neue Zeile beginnt, oder ob es sich um die Fortsetzung der Zeile darüber handelt. Das folgende Code-Beispiel besteht aus nur drei Zeilen:
+Einige Anweisungen sind zu lang, um sie im Buch in einer Zeile unterzubringen. Gib diesen Code in IDLE ohne Zeilenumbrüche (ohne die Enter-Taste zu betätigen) ein. Die Zeilennummern verraten Dir, ob eine neue Anweisung beginnt, oder ob es sich um die Fortsetzung der Anweisung in der Zeile darüber handelt. Das folgende Code-Beispiel besteht aus nur zwei Anweisungen:
 
-1. print('Dies ist die erste Zeile! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+1. print('Dies ist die erste Anweisung! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxx')
-2. print('Dies ist die zweite Zeile, nicht die dritte.')
+2. print('Dies ist die zweite Anweisung, nicht die dritte.')
 
-Die erste Codezeile ist aus Platzgründen auf zwei Zeilen im Buch gedruckt und erweckt den Eindruck, das Code-Beispiel bestünde insgesamt aus drei Zeilen. Es sind jedoch nur zwei.
+Die erste Anweisung ist aus Platzgründen auf zwei Zeilen im Buch gedruckt und erweckt den Eindruck, das Code-Beispiel bestünde insgesamt aus drei Anweisungen. Dies liegt jedoch nur daran, dass die Buchseiten nicht breit genug sind, um die erste Anweisung in einer Zeile zu drucken.
 
 Hilfe im Internet finden
 
 Die zum Buch gehörende Internetseite findest Du unter http://inventwithpython.com/de. Sie enthält zahlreiche Hilfsmittel über den Inhalt des Buches hinaus. Außerdem nutzen viele Verweise in diesem Buch invpy.com, um die Adressen kurz zu halten.
 
-Das Subreddit http://reddit.com/r/inventwithpython ist ein großartiger Ort, um mit dem Buch verwandte Programmier-Fragen zu stellen. Allgemeine Fragen zur Python-Programmierung sollten hingegen in den Subreddits http://reddit.com/r/learnprogramming oder http://reddit.com/r/learnpython gestellt werden.
+Die Internetseite http://reddit.com/r/inventwithpython ist ein großartiger Ort, um mit dem Buch verwandte Programmier-Fragen zu stellen. Allgemeine Fragen zur Python-Programmierung sollten hingegen auf den Internetseiten http://reddit.com/r/learnprogramming oder http://reddit.com/r/learnpython gestellt werden.
 
 Ich beantworte Deine Prgrammier-Fragen auch gerne per email. Schreib mir unter al@inventwithpython.com.
 
@@ -101,13 +112,4 @@ Bitte sei rücksichtsvoll, wenn Du Fragen stellst: Vergewissere Dich zuerst, ob 
 •   Teile mit, welche Ansätze Du bereits ausprobiert hast, um Dein Problem zu lösen. Auf diese Art und Weise lässt Du Andere wissen, dass Du bereits selbst Bemühungen angestellt hast.
 •   Sei höflich. Bestehe nicht auf Antworten und dränge Andere nicht auf schnelle Antworten.
 
-Programme online debuggen
-
-Programme zu debuggen bedeutet, sie Schritt für Schritt, Zeile für Zeile, durchzugehen, genauso wie ein Computer es tun würde. Besuche http://invpy.com/de/traces um ein Debug-Vorgang für jedes der Programme in diesem Buch zu sehen. Über den Debugger hinaus enthält die Internetseite nützliche Hinweise zu jedem Schritt, die erklären, was das Programm gerade tut. Debuggen kann sehr beim Verständnis von Programmen helfen.
-
-Zusammenfassung
-
-In diesem Kapitel haben wir uns mit der Python-Software vertraut gemacht. Wir suchten die Internetseite http://python.org auf, unter der Python kostenlos heruntergeladen werden kann. Nach der Installation und dem Ausführen von IDLE, sind wir bereit im nächsten Kapitel mit der eigentlichen Programmierung zu beginnen.
-
-Die zum Buch gehörende Internetseite http://inventwithpython.com/de enthält zusätzliche Informationen zu jedem Kapitel, inklusive eines Online-Debug- und Diff-Werkzeuges, welche beim Verständnis der Programme in diesem Buch helfen.
-
+Jemanden zu fragen “Warum funktioniert mein Programm nicht?” sagt ihm nichts. Erläutere, was Du erreichen möchtest, die genaue(n) Fehlermeldung(en), die Du erhältst, und welches Betriebssystem Du benutzt.

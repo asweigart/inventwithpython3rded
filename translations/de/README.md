@@ -1,6 +1,7 @@
 Translators
 ===========
 
+- Christian Schilter (schmittens)
 - Christian Von Aster
 - Dennis Bautembach (denniskb)
 - Frank Lehmann
@@ -21,17 +22,10 @@ General Notes
 Kapitel 1
 ---------
 
-- Zeile 6: "shell" wurde nach "Kommandozeileninterpreter" übersetzt. Eindeutschen ja/nein?
+- Zeile 27: "incongruous" wurde nach "unangebrachter" übersetzt. Abhängig vom Bild mag eine andere Übersetzung treffender sein.
 
-- Zeile 33: "incongruous" wurde nach "unangebrachter" übersetzt. Abhängig vom Bild mag eine andere Übersetzung treffender sein.
+- Zeile 56: "Programming and IDLE 3" muss ins Deutsche übersetzt werden (bitte jemand mit Ubuntu das Label in der deutschen Installation nachschlagen)
 
-- Zeile 43: "Programming and IDLE 3" muss ins Deutsche übersetzt werden (bitte jemand mit Ubuntu das Label in der deutschen Installation nachschlagen)
+- Zeile 58: "shell" wurde nach "Kommandozeileninterpreter" übersetzt. Eindeutschen ja/nein?
 
-- Zeile 97: Wie sollte "diff" (Kontext: "diff tool") übersetzt werden? (Wurde vorläufig mit "Diff-Werkzeug" übersetzt.)
-
-- Zeile 104: "Tracing" (Kontext: "Tracing the programs..") wurde mit "Debuggen" übersetzt. Bessere Vorschläge?
-
-Kapitel 5
----------
-
-- Zeile 130: "SyntaxError: EOL while scanning single-quoted string" wurde nicht übersetzt. Gibt es eine deutsche Version von Python und ist diese komplett übersetzt?
+- Zeile 108: Wie sollte "diff" (Kontext: "diff tool") übersetzt werden? (Wurde vorläufig mit "Diff-Werkzeug" übersetzt.)
