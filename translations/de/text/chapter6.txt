@@ -36,7 +36,7 @@ In welche Höhle wirst Du gehen? (1 oder 2)
 1
 Du näherst Dich der Höhle...
 Es ist dunkel und gruselig...
-Ein großer Drache spring vor Deine Füße! Er öffnet sein Maul und...
+Ein großer Drache springt vor Deine Füße! Er öffnet sein Maul und...
 Verschlingt Dich in einem Mal!
 Möchtest Du noch einmal spielen? (ja oder nein)
 nein
@@ -97,7 +97,7 @@ drachen.py
 
 Wie der Code funktioniert
 
-Schaun wir uns den Quellcode genauer an.
+Schauen wir uns den Quellcode genauer an.
 
  1. import random
  2. import time
@@ -163,7 +163,7 @@ Zeile 12 deklariert eine neue Variable namens hoehle und weist ihr eine leere Ze
 
 Boolesche Operatoren
 
-Boolesche Algebra beschäftigt sich mit Dingen, die wahr oder falsch (auf englisch “true” und “false”) sind. Boolesche Operatoren vergleichen Werte und werten sie zu einem einzigen Wahrheitswert aus.
+Boolesche Algebra beschäftigt sich mit Dingen, die wahr oder falsch (auf Englisch “true” und “false”) sind. Boolesche Operatoren vergleichen Werte und werten sie zu einem einzigen Wahrheitswert aus.
 
 Denken wir an den Satz “Katzen haben Schnurrhaare und Hunde haben Schwänze.” “Katzen haben Schnurrhaare” ist wahr und “Hunde haben Schwänze” ist auch wahr, also ist der gesamte Satz “Katzen haben Schnurrhaare und Hunde haben Schwänze” ebenfalls wahr.
 
@@ -244,9 +244,9 @@ Sehen wir uns noch einmal Zeile 13 an:
 
 13.     while hoehle != '1' and hoehle != '2':
 
-Die gesamte Bedingung besteht aus zwei durch den and-Operator verknüpften Teilbedingungen. Damit ist die gesamte Bedinung nur dann wahr, wenn beide Teilbedingungen wahr sind.
+Die gesamte Bedingung besteht aus zwei durch den and-Operator verknüpften Teilbedingungen. Damit ist die gesamte Bedingung nur dann wahr, wenn beide Teilbedingungen wahr sind.
 
-Wenn die Bedingung in der while-Anweisung das erste mal überprüft wird, hat hoehle noch seinen Initialwert ''. Dieser ist ungleich '1' und ungleich '2', sodass beide Teilbedingungen zu True ausgewertet werden.
+Wenn die Bedingung in der while-Anweisung das erste Mal überprüft wird, hat hoehle noch seinen Initialwert ''. Dieser ist ungleich '1' und ungleich '2', sodass beide Teilbedingungen zu True ausgewertet werden.
 
 True and True ergibt dann unseren Wahrheitstabellen zufolge True. Die Programm-Ausführung begibt sich in den while-Block.
 
@@ -272,7 +272,7 @@ Benutzereingaben abfragen
 
 Zeile 14 fragt den Spieler, in welche Höhle er gehen möchte. Zeile 15 lässt den Spieler eine Antwort eingeben und ENTER drücken. Diese Antwort wird in hoehle gespeichert. Die Programm-Ausführung springt zurück zur while-Anweisung und überprüft die Bedingung erneut.
 
-Falls der Spieler 1 oder 2 egegeben hat, dann wird hoehle entweder den Wert '1' oder '2' haben (da input() immer Zeichenketten zurückgibt). Dies macht die Bedingung falsch und die Programm-Ausführung fährt nach der while-Schleife fort. Hier ist die Auswertung der while-Bedingung, unter der Annahme, dass der Benutzer '1' eingegeben hat, Schritt für Schritt veranschaulicht:
+Falls der Spieler 1 oder 2 eingegeben hat, dann wird hoehle entweder den Wert '1' oder '2' haben (da input() immer Zeichenketten zurückgibt). Dies macht die Bedingung falsch und die Programm-Ausführung fährt nach der while-Schleife fort. Hier ist die Auswertung der while-Bedingung, unter der Annahme, dass der Benutzer '1' eingegeben hat, Schritt für Schritt veranschaulicht:
 
 while hoehle != '1' and hoehle != '2':
 					 ▼
@@ -359,9 +359,9 @@ Vielleicht erinnerst Du Dich, dass Du bei einigen Funktionsaufrufen wie str() od
 >>> random.randint(1, 20)
 14
 
-Das gleiche wirst Du beim Funktionsaufruf von ueberpruefeHoehle() tun. Das Argument wird in einer neuen Variable namens ausgewaehlteHoehle gespeichert. Diese Variablen nennt man Parameter.
+Das gleiche wirst Du beim Funktionsaufruf von ueberpruefeHoehle() tun. Das Argument wird in einer neuen Variablen namens ausgewaehlteHoehle gespeichert. Diese Variablen nennt man Parameter.
 
-Als Beispiel folgt ein kurzes Programm, das die Definition von Funktionen mit Paramtern veranschaulicht:
+Als Beispiel folgt ein kurzes Programm, das die Definition von Funktionen mit Parametern veranschaulicht:
 
 def sagHallo(name):
     print('Hallo, ' + name + '. Dein Name hat ' + str(len(name)) + 'Buchstaben.')
@@ -377,7 +377,7 @@ Hallo, Alice. Dein Name hat 5 Buchstaben.
 Hallo, Bob. Dein Name hat 3 Buchstaben.
 Hallo, Carol. Dein Name hat 5 Buchstaben.
 
-Wenn Du sagHallo() aufrufst, wird das Argument an den Parameter name gebunden. Paramter sind herkömliche, lokale Variablen. Wie alle lokalen Variablen, werden sie zerstört, sobald die Funktion zurückkehrt.
+Wenn Du sagHallo() aufrufst, wird das Argument an den Parameter name gebunden. Parameter sind herkömmliche, lokale Variablen. Wie alle lokalen Variablen, werden sie zerstört, sobald die Funktion zurückkehrt.
 
 Den Spielausgang anzeigen
 
@@ -484,7 +484,7 @@ Argumente sind Werte, die in die Parameter einer Funktion zum Zeitpunkt ihres Au
 
 Abbildung 6-2: Flussdiagramm zum Spiel Drachen-Reich.
 
-Du hast ebenso vom Geltungsbereich von Variablen gelernt. Variablen, die innerhalb einer Funktion deklariert sind, existieren im lokalen Geltungsbereich, während Variablen, die außerhalb aller Funktionen deklariert sind, im globalen Geltungsbereich existieren. Auf lokale Variablen kann vom globalen Geltungsbereich aus nicht zugegriffen werden. Hat eine lokale Variable denselben Namen, wie eine globale Variable, so behandelt Python beide als separate Variablen. Änderungen an der lokalen Variable haben keine Auswirkungen auf die globale.
+Du hast ebenso vom Geltungsbereich von Variablen gelernt. Variablen, die innerhalb einer Funktion deklariert sind, existieren im lokalen Geltungsbereich, während Variablen, die außerhalb aller Funktionen deklariert sind, im globalen Geltungsbereich existieren. Auf lokale Variablen kann vom globalen Geltungsbereich aus nicht zugegriffen werden. Hat eine lokale Variable denselben Namen, wie eine globale Variable, so behandelt Python beide als separate Variablen. Änderungen an der lokalen Variablen haben keine Auswirkungen auf die globale.
 
 Variablen-Geltungsbereiche mögen kompliziert erscheinen, sind jedoch nützlich, um Programme in unabhängige Abschnitte zu gliedern. Da jede Funktion ihren eigenen lokalen Geltungsbereich besitzt, kannst Du Dir sicher sein, dass der Code in einer Funktion keine Fehler in anderen Funktionen verursacht.
 

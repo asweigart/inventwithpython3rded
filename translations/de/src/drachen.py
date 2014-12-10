@@ -21,7 +21,7 @@ def ueberpruefeHoehle(ausgewaehlteHoehle):
     time.sleep(2)
     print('Es ist dunkel und gruselig...')
     time.sleep(2)
-    print('Ein großer Drache spring vor Deine Füße! Er öffnet sein Maul und...')
+    print('Ein großer Drache springt vor Deine Füße! Er öffnet sein Maul und...')
     print()
     time.sleep(2)
 
