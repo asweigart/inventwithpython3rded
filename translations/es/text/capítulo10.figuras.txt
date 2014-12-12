@@ -1,0 +1,32 @@
+Fig 10-1:
+Inicio
+Preguntar la letra del jugador.
+Decidir quién comienza.
+Turno del Jugador
+Mostrar el tablero.
+Obtener jugada del jugador.
+Comprobar si el jugador ha ganado.
+Comprobar si ha sido un empate.
+Turno de la Computadora
+Obtener movimiento de la computadora.
+Comprobar si la computadora ha ganado.
+Comprobar si ha sido un empate.
+Preguntar al jugador si desea jugar de nuevo.
+Fin
+
+Fig 10-3:
+Esquina
+Lado
+Centro
+
+Fig 10-4:
+1. Hacer jugada ganadora.
+2. Bloquear la jugada ganadora del jugador.
+3. Jugar en una esquina.
+4. Jugar en el centro.
+5. Jugar en un lado.
+
+Fig 10-5:
+Referencia
+(un valor de lista)
+
