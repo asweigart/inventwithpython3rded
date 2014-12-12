@@ -120,7 +120,7 @@ Figure 3-5: The interactive shell after running hello.py.
 
 When you type your name and push ENTER, the program will greet you by name. Congratulations! You’ve written your first program and are now a computer programmer. Press F5 again and enter another name.
 
-If you got an error, compare your code to this book’s code with the online diff tool at http://invpy.com/diff/hello.
+If you got an error, compare your code to this book’s code with the online diff tool at http://invpy.com/sv/diff/hello.
 
 If you get an error that looks like this:
 

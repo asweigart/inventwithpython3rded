@@ -13,11 +13,11 @@ Kode ini kebanyakan mirip dengan program animasi, sehingga penjelasan tentang me
 Pada tiap iterasi dalam putaran game, program akan menbaca setiap objek Rect dalam daftar dan menggambar kotak hijau pada jendela. Setiap iterasi keempat puluhdalam putaran game, objek Rect baru akan ditambahkan pada daftar, sehingga layar akan secara konstan punya kotak makanan baru.
 Pemantul akan direpresentasikan dengan satu dictionary. Objek ini punya kunci bernama 'rect' (yang nilainya adalah objek pygame.Rect) dan 'dir' (yang nilainya adalah menunjukkan arah konstan seperti yang dilakukan pada program animasi di bab sebelumnya).
 Selama pemantul mental-mental dalam jendela, cek apakah objek ini bertubrukan dengan sembarang kotak makanan. Jika ya, maka kota makanan akan dihapus, sehingga tidak lagi tampak pada layar. Proses ini akan terlihat seperti pemantul yang "memakan" kotak makanan dalam jendela.
-Ketikkan kode berikut dalam file baru dan simpan sebagai deteksiTumbukan.py. Jika kamu tidak ingin mengetikkan semua kode ini, kamu dapat mengunduh kode dari situs buku ini di http://invpy.com/chap18.
-Kalau kamu dapat error setelah mengetikkan kodenya, coba bandingkan dengan kode dari buku ini dengan perangkat pembanding online di http://invpy.com/diff/deteksiTumbukan.
+Ketikkan kode berikut dalam file baru dan simpan sebagai deteksiTumbukan.py. Jika kamu tidak ingin mengetikkan semua kode ini, kamu dapat mengunduh kode dari situs buku ini di http://invpy.com/id/chap18.
+Kalau kamu dapat error setelah mengetikkan kodenya, coba bandingkan dengan kode dari buku ini dengan perangkat pembanding online di http://invpy.com/id/diff/deteksiTumbukan.
   1. import pygame, sys, random
   2. from pygame.locals import *
-  3. 
+  3.
   4. def doRectsOverlap(rect1, rect2):
   5.     for a, b in [(rect1, rect2), (rect2, rect1)]:
   6.    # cek apakah sudut a ada dalam b
@@ -26,39 +26,39 @@ Kalau kamu dapat error setelah mengetikkan kodenya, coba bandingkan dengan kode 
   9.             (isPointInsideRect(a.right, a.top, b)) or
  10.             (isPointInsideRect(a.right, a.bottom, b))):
  11.             return True
- 12. 
+ 12.
  13.     return False
- 14. 
+ 14.
  15. def isPointInsideRect(x, y, rect):
  16.     if (x > rect.left) and (x < rect.right) and (y > rect.top) and (y < rect.bottom):
  17.         return True
  18.     else:
  19.         return False
- 20. 
- 21. 
+ 20.
+ 21.
  22. # menyiapkan pygame
  23. pygame.init()
  24. mainClock = pygame.time.Clock()
- 25. 
+ 25.
  26. # menyiapakan jendela
  27. WINDOWWIDTH = 400
  28. WINDOWHEIGHT = 400
  29. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
  30. pygame.display.set_caption('Collision Detection')
- 31. 
+ 31.
  32. # menyiapkan variabel arah
  33. DOWNLEFT = 1
  34. DOWNRIGHT = 3
  35. UPLEFT = 7
  36. UPRIGHT = 9
- 37. 
+ 37.
  38. MOVESPEED = 4
- 39. 
+ 39.
  40. # menyiapakan warna
  41. BLACK = (0, 0, 0)
  42. GREEN = (0, 255, 0)
  43. WHITE = (255, 255, 255)
- 44. 
+ 44.
  45. # menyiapkan pemantul dan data struktur makanan
  46. foodCounter = 0
  47. NEWFOOD = 40
@@ -67,7 +67,7 @@ Kalau kamu dapat error setelah mengetikkan kodenya, coba bandingkan dengan kode 
  50. foods = []
  51. for i in range(20):
  52.     foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
- 53. 
+ 53.
  54. # menjalankan putaran game
  55. while True:
  56.     # cek apakah ada peristiwa QUIT
@@ -75,16 +75,16 @@ Kalau kamu dapat error setelah mengetikkan kodenya, coba bandingkan dengan kode 
  58.         if event.type == QUIT:
  59.             pygame.quit()
  60.             sys.exit()
- 61. 
+ 61.
  62.     foodCounter += 1
  63.     if foodCounter >= NEWFOOD:
  64.         # tambah makanan baru
  65.         foodCounter = 0
  66.         foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
- 67. 
+ 67.
  68.     # gambar latar belakang hitam pada permukaan
  69.     windowSurface.fill(BLACK)
- 70. 
+ 70.
  71.     # pindahkan data struktur pemantul
  72.     if bouncer['dir'] == DOWNLEFT:
  73.         bouncer['rect'].left -= MOVESPEED
@@ -98,7 +98,7 @@ Kalau kamu dapat error setelah mengetikkan kodenya, coba bandingkan dengan kode 
  81.     if bouncer['dir'] == UPRIGHT:
  82.         bouncer['rect'].left += MOVESPEED
  83.         bouncer['rect'].top -= MOVESPEED
- 84. 
+ 84.
  85.     # cek apakah pemantul sudah pindah keluar jendela
  86.     if bouncer['rect'].top < 0:
  87.         # pemantul sudah melewati sisi atas jendela
@@ -124,19 +124,19 @@ Kalau kamu dapat error setelah mengetikkan kodenya, coba bandingkan dengan kode 
 107.             bouncer['dir'] = DOWNLEFT
 108.         if bouncer['dir'] == UPRIGHT:
 109.             bouncer['dir'] = UPLEFT
-110. 
+110.
 111.     # gambar pemantul pada permukaan
 112.     pygame.draw.rect(windowSurface, WHITE, bouncer['rect'])
-113. 
+113.
 114.     # cek apakah pemantul saling tumpang tindih dengan kotak makanan.
 115.     for food in foods[:]:
 116.         if doRectsOverlap(bouncer['rect'], food):
 117.             foods.remove(food)
-118. 
+118.
 119.     # gambar makanan
 120.     for i in range(len(foods)):
 121.         pygame.draw.rect(windowSurface, GREEN, foods[i])
-122. 
+122.
 123.     # gambar jendela pada layar
 124.     pygame.display.update()
 125.     mainClock.tick(40)
@@ -160,9 +160,9 @@ Ada aturan senderhana yang bisa diikuti untuk menentukan apakah dua persegi panj
   8.             (isPointInsideRect(a.left, a.bottom, b)) or
   9.             (isPointInsideRect(a.right, a.top, b)) or
  10.             (isPointInsideRect(a.right, a.bottom, b))):
- 11.             return True 
+ 11.             return True
 Baris 5 sampai 11 mengecek apakah sudut suatu persegi panjang ada dalam persegi panjang lainnya. Lebih lanjut kamu akan membuat satu fungsi bernama isPointInsideRect() yang mengembalikan True jika koordinat XY titik itu ada dalam persegi panjang. Panggil fungsi ini untuk setiap sudut-sudut (ada delapan) dan jika ada satu pemanggilan yang keluarannya True, maka operator or akan membuat seluruh kondisi menjadi True.
-Parameter fungsi doRectsOverlap() adalah rect1 dan rect2. Pertama cek apakah sudut rect1 ada dalam rect2, lalu cek apakah sudut rect2 ada dalam rect1. 
+Parameter fungsi doRectsOverlap() adalah rect1 dan rect2. Pertama cek apakah sudut rect1 ada dalam rect2, lalu cek apakah sudut rect2 ada dalam rect1.
 Jangan ulangi kode yang mengecek keempat sudut masing masing objek rect1 dan rect2. Lebih baik, gunakan variabel a dan b pada baris 7 sampai 10. Putaran for pada bari 5 menggunakan trik pengisian banyak variabel. Pada iterasi pertama, a adalah rect1 dan b adalah rect2. Pada iterasi kedua dalam putaran for, a menjadi rect2 dan b menjadi rect1.
 13.     return False
 Jika baris 11 tidak dieksekusi, maka tidak ada satupun dari delapan sudut-sudut itu yang ada dalam persegi lainnya. Pada kasus ini, persegi panjang tidak bertubrukan dan baris 13 terekseskusi.
@@ -233,25 +233,25 @@ Menggambar Kotak-Kotak Makanan pada Layar
 Kode pada baris 120 dan 121 mirip dengan bagaimana kotak putih untuk pemain digambarkan. Baris 120 berputar untuk setiap kotak makanan dalam variabel foods. Baris 121 menggambar persegi panjang pada objek Surface windowSurface. Program ini mirip dengan program pemantulan dalam bab sebelumnya, kecuali sekarang kotak pemantul akan "memakan" kotak lain yang bertubrukan dengannya.
 Program ini menarik untuk diperhatikan, tetapi pengguna tidak dapat mengontrol apapun. Pada program berikutnya, kamu akan belajar bagaimana mendapatkan masukan dari keyboard.
 Sumber Kode Program Masukan Keyboard
-Mulailah file baru dan ketikkan kode berikut, lalu simpan sebagai pygameMasukan.py. Jika kamu mendapatkan error setelah menyimpannya, coba bandingkan dengan kode dari buku ini dengan perangkat pembanding online di http://invpy.com/diff/pygameMasukan.
+Mulailah file baru dan ketikkan kode berikut, lalu simpan sebagai pygameMasukan.py. Jika kamu mendapatkan error setelah menyimpannya, coba bandingkan dengan kode dari buku ini dengan perangkat pembanding online di http://invpy.com/id/diff/pygameMasukan.
   1. import pygame, sys, random
   2. from pygame.locals import *
-  3. 
+  3.
   4. # menyiapkan pygame
   5. pygame.init()
   6. mainClock = pygame.time.Clock()
-  7. 
+  7.
   8. # menyiapkan jendela
   9. WINDOWWIDTH = 400
  10. WINDOWHEIGHT = 400
  11. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
  12. pygame.display.set_caption('Masukan')
- 13. 
+ 13.
  14. # menyiapkan warna
  15. BLACK = (0, 0, 0)
  16. GREEN = (0, 255, 0)
  17. WHITE = (255, 255, 255)
- 18. 
+ 18.
  19. # menyiapkan data struktur pemain dan makanan
  20. foodCounter = 0
  21. NEWFOOD = 40
@@ -260,16 +260,16 @@ Mulailah file baru dan ketikkan kode berikut, lalu simpan sebagai pygameMasukan.
  24. foods = []
  25. for i in range(20):
  26.     foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
- 27. 
+ 27.
  28. # menyiapkan variabel arah gerak
  29. moveLeft = False
  30. moveRight = False
  31. moveUp = False
  32. moveDown = False
- 33. 
+ 33.
  34. MOVESPEED = 6
- 35. 
- 36. 
+ 35.
+ 36.
  37. # menjalankan putaran game
  38. while True:
  39.     # mengecek peristiwa yang terjadi
@@ -306,19 +306,19 @@ Mulailah file baru dan ketikkan kode berikut, lalu simpan sebagai pygameMasukan.
  70.             if event.key == ord('x'):
  71.                 player.top = random.randint(0, WINDOWHEIGHT - player.height)
  72.                 player.left = random.randint(0, WINDOWWIDTH - player.width)
- 73. 
+ 73.
  74.         if event.type == MOUSEBUTTONUP:
  75.             foods.append(pygame.Rect(event.pos[0], event.pos[1], FOODSIZE, FOODSIZE))
- 76. 
+ 76.
  77.     foodCounter += 1
  78.     if foodCounter >= NEWFOOD:
  79.         # menambahkan makanan baru
  80.         foodCounter = 0
  81.         foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - FOODSIZE), random.randint(0, WINDOWHEIGHT - FOODSIZE), FOODSIZE, FOODSIZE))
- 82. 
+ 82.
  83.     # menggambar latar belakang hitam pada permukaan
  84.     windowSurface.fill(BLACK)
- 85. 
+ 85.
  86.     # menggerakkan pemain
  87.     if moveDown and player.bottom < WINDOWHEIGHT:
  88.         player.top += MOVESPEED
@@ -328,19 +328,19 @@ Mulailah file baru dan ketikkan kode berikut, lalu simpan sebagai pygameMasukan.
  92.         player.left -= MOVESPEED
  93.     if moveRight and player.right < WINDOWWIDTH:
  94.         player.right += MOVESPEED
- 95. 
+ 95.
  96.     # menggambar pemain pada permukaan
  97.     pygame.draw.rect(windowSurface, WHITE, player)
- 98. 
+ 98.
  99.     # mengecek apakah pemain saling tumpang tindih dengan suatu kotak makanan
 100.     for food in foods[:]:
 101.         if player.colliderect(food):
 102.             foods.remove(food)
-103. 
+103.
 104.     # menggambar makanan
 105.     for i in range(len(foods)):
 106.         pygame.draw.rect(windowSurface, GREEN, foods[i])
-107. 
+107.
 108.     # menggambar jendela pada layar
 109.     pygame.display.update()
 110.     mainClock.tick(40)

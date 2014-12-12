@@ -46,7 +46,7 @@ Satu hal yang perlu kamu ketahui ketika membaca kode di bawah ini: Blok-blok set
 
 PERLU DIPERHATIKAN! Program-program dalam buku ini hanya dapat dijalankan di Python 3. Kamu dapat melihat versi Python yang kamu gunakan dengan melihat angka versi pada jendela IDLE. Jika kamu telah memiliki instalasi Python 2, kamu dapat memiliki instalasi Python 3 dalam satu komputer secara bersamaan. Silakan buka https://python.org/download untuk mengunduh Python 3.
 
-Jika kamu mendapatkan error setelah mengetikkan kode dalam kode sumber berikut, coba bandingkan dengan kode sumber pada buku melalui perangkat diff online di http://invpy.com/diff/naga
+Jika kamu mendapatkan error setelah mengetikkan kode dalam kode sumber berikut, coba bandingkan dengan kode sumber pada buku melalui perangkat diff online di http://invpy.com/id/diff/naga
 
 naga.py
  1. import random
@@ -303,7 +303,7 @@ Coba perhatikan sebentar baris 40 berikut ini:
 
 Ketika chooseCave() nanti dipanggil oleh program pada baris 40, nilai kembaliannya disimpan pada variabel caveNumber. Perulangan while menjamin bahwa chooseCave() hanya akan mengembalikan antara '1' atau '2' sebagai nilai kembalian.
 
-Jadi ketika baris 17 mengembalikan sebuah string, pemanggilan fungsi pada baris 40 menghasilkan string yang sebelumnya tersimpan dalam caveNumber. 
+Jadi ketika baris 17 mengembalikan sebuah string, pemanggilan fungsi pada baris 40 menghasilkan string yang sebelumnya tersimpan dalam caveNumber.
 
 Cakupan Global dan Cakupan Lokal
 
@@ -324,7 +324,7 @@ def bacon():
     # daripada mengubah nilai pada variabel global
     # "spam":
     spam = 99
-    # Nama "spam" sekarang merujuk hanya pada 
+    # Nama "spam" sekarang merujuk hanya pada
     # variabel lokal dalam keseluruhan fungsi
     # ini:
     print(spam)    # 99

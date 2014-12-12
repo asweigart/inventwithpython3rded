@@ -6,7 +6,7 @@
 •   Hur man laddar ner och installerar Python-tolken
 •   IDLE:s interaktiva fönster
 •   Hur denna bok ska användas
-•   Bokens webbplats http://inventwithpython.com
+•   Bokens webbplats http://inventwithpython.com/sv
 
 Hej! Den här boken lär dig att programmera genom att skapa dataspel. När du väl har lärt dig hur spelen i boken fungerar så kommer du att kunna skapa dina egna spel. Allt du behöver är en dator, ett program som kallas för Python-tolken och den här boken. Python-tolken kan laddas ner gratis från internet.
 
@@ -86,7 +86,7 @@ Den första raden bryts vilket gör att det ser ut som att det är totalt tre ra
 
 Få hjälp på nätet
 
-Den här bokens webbplats finns på http://inventwithpython.com. Där hittar du flera olika resurser relaterade till boken. Flera länkar i den här boken använder domänen invpy.com för att adresserna ska bli kortare.
+Den här bokens webbplats finns på http://inventwithpython.com/sv. Där hittar du flera olika resurser relaterade till boken. Flera länkar i den här boken använder domänen invpy.com/sv för att adresserna ska bli kortare.
 
 Reddit-forumet på http://reddit.com/r/inventwithpython är ett bra stället att ställa programmeringsfrågor relaterade till boken. Skicka allmänna Python-frågor till underforumen LearnProgramming och LearnPython på adresserna http://reddit.com/r/learnprogramming respektive http://reddit.com/r/learnpython.
 
@@ -94,7 +94,7 @@ Du kan även mejla programmeringsfrågor till mig. Adressen är al@inventwithpyt
 
 När du vill ha svar på en programmeringsfråga så finns det smarta sätt som hjälper andra att hjälpa dig. Se till att läsa avsnitten Frequently Asked Questions på de här webbplatserna, där det står hur man skickar in en fråga på ett korrekt sätt. När du ska ställa en programmeringsfråga, gör följande:
 
-•   Om du skriver in programmen i den här boken och får felmeddelanden, kontrollera först om du har skrivit fel med hälp av verktyget på http://invpy.com/diff. Kopiera och klistra in din kod i verktyget för att upptäcka skillnader jämfört med bokens kod.
+•   Om du skriver in programmen i den här boken och får felmeddelanden, kontrollera först om du har skrivit fel med hälp av verktyget på http://invpy.com/sv/diff. Kopiera och klistra in din kod i verktyget för att upptäcka skillnader jämfört med bokens kod.
 •   Förklara vad det är du försöker göra när du beskriver felet. På så vis kan den som hjälper dig se om du är helt fel ute.
 •   Kopiera och klistra in hela felmeddelandet samt din kod.
 •   Sök på nätet för att se om någon annan redan har ställt (och fått svar på) din fråga.
@@ -103,11 +103,11 @@ När du vill ha svar på en programmeringsfråga så finns det smarta sätt som 
 
 //Tracing the Programs Online - Stega igenom, spåra exekveringen, avlusa...?//
 
-//Tracing a program// innebär att stega igenom koden en rad i taget, på samma sätt som den skulle exekveras av en dator. Besök http://invpy.com/traces //to see a trace through of each program// i den här boken. //The web page has notes and helpful reminders at each step of the trace to explain what the program is doing, so it can help you better understand why these programs work the way they do - Svårt att översätta detta pga att sajten i fråga ännu inte finns...//.
+//Tracing a program// innebär att stega igenom koden en rad i taget, på samma sätt som den skulle exekveras av en dator. Besök http://invpy.com/sv/traces //to see a trace through of each program// i den här boken. //The web page has notes and helpful reminders at each step of the trace to explain what the program is doing, so it can help you better understand why these programs work the way they do - Svårt att översätta detta pga att sajten i fråga ännu inte finns...//.
 
 Summering
 
 Det här kapitlet har hjälpt dig att komma igång med Python-mjukvaran genom att visa dig webbplatsen http://python.org där du kan ladda ner den gratis. Efter att ha installerat och startat Pythons IDLE-program så är du redo att lära dig programmera med början i nästa kapitel.
 
-På bokens webbplats http://inventwithpython.com finns mer information om varje kapitel, inklusive //an online tracing website and diff tool// som kan hjälpa dig att förstå programmen i boken.
+På bokens webbplats http://inventwithpython.com/sv finns mer information om varje kapitel, inklusive //an online tracing website and diff tool// som kan hjälpa dig att förstå programmen i boken.
 
