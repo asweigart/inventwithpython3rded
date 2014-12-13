@@ -241,4 +241,144 @@ Bedingungen
 
 Eine Bedingung ist ein Ausdruck der zwei Werte mit einem Vergleichsoperator verbindet (so wie < oder >) und zu einem Boolean Wert auswertet. Bedingung ist nur ein anderer Name für Ausdruck der zu True oder False ausgwertet wird. Bedingungen werden in while Statements verwendet (und an ein paar anderen Befehlen, wie später erklärt wird.)
 
-Die Bedingung abgegebeneTipps < 6 fragt, zum Beispiel,
+Die Bedingung abgegebeneTipps < 6 fragt, zum Beispiel, "Ist der Wert der in abgegebeneTipps gespeichert ist kleiner als die Zahl 6?" Wenn ja, dann wir die Bedingung zu True ausgewertet, wenn nein, dann wir sie zu False ausgewertet.
+
+In unserem "Rate die Zahl" Programm wird in Zeile 4 der Wert 0 in abgegebeneTipps gespeichert. Weill 0 weniger als 6 ist, wird diese Bedingung zu True ausgewertet. Die Ausertung würde in etwa so aussehen:
+
+abgegebeneTipps < 6
+             ▼
+           0 < 6
+             ▼
+            True
+Experimente mit Booleans, Vergleichsoperatoren, und Bedingungen
+
+Gib den folgenden Ausdruck in der Eingabezeile ein und sieh dir an, zu welchen Booleans sie ausgewertet werden:
+
+>>> 0 < 6
+True
+>>> 6 < 0 
+False
+>>> 50 < 10 
+False
+>>> 10 < 11
+True
+>>> 10 < 10
+False
+
+Die Bedingung 0 < 6 wird zu True ausgewertet weil die Zahl 0 kleiner als die Zahl 6 ist. Umgekehrt ist natürlich 6 nicht kleiner als 0 also ergibt 6 < 0 False. 50 ist nicht weniger als 10 also ist 50 < 10 False. 10 ist weniger als 11 also ist 10 < 11 True.
+
+10 < 10 wird zu False ausgewertet weil 10 nicht kleiner als 10 ist sonder gleich groß. Wenn Alice und Bertl gleich groß sind, dann würdest du auch nicht sagne, dass Alice größer als Bertl ist oder dass Bertl kleiner als Alice ist. Beide Aussagen wären falsch.
+
+Probier jetzt aus, wie die folgenden Ausdrücke in der Eingezeile ausgewertet werden:
+
+>>> 10 == 10
+True
+>>> 10 == 11
+False
+>>> 11 == 10
+False
+>>> 10 != 10
+False
+>>> 10 != 11
+True
+>>> 'Hallo' == 'Hallo'
+True
+>>> 'Hallo' == 'Tschüss'
+False
+>>> 'Hallo' == 'HALLO'
+False
+>>> 'Tschüss' != 'Hallo'
+True
+
+Der Unterschied zwischen = und ==
+
+Der Zuweisungsoperator (=) und der "ist gleich" Vergleichsoperator (==) sind leicht zu verwechseln. Das einfache Gleichzeichen (=) wird in Zuweisungsausdrücken verwendet um einen Wert in einer Variable zu speichern, das Doppelte Gleichzeichen (==) wird verwendet um zu testen ob zwei Werte gleich sind. Die beiden Operatoren können leicht vertauscht werden. 
+
+Es gibt eine Eselsbrücke um die beiden Operatoren auseinander zu halten:  Der "ist gleich" Verfleichsoperator (==) hat wie der "nicht gleich" Operator (!=) zwei Zeichen hat.
+
+String und integer Werte können niemals gleich zueinander sein. Hier sind ein zwei Beispiele dazu, die du in der Eingabezeile versuchen kannst:
+
+>>> 42 == 'Hallo'
+False
+>>> 42 != '42'
+True
+
+Schleifen mit while Befehlen
+
+Der while (engl. während) Befehl zeigt den Beginn einer Schleife an. Schleifen führen den selben Code wiederholt aus. Wenn die Ausführung den while Befehl erreicht, dann wird die Bedingungen neben dem while Befehl ausgewertet. Wenn die Bedingung True ist, dann wird der Block unter der while Bedingung ausgeführt. Dieser Block heisst while Block. (In diesem Program beginnt der while Block in Zeile 13.) Wenn die Bedingung zu False ausgewertet wird, dann wird der while Block übersprungen und die Ausführung in der ersten Zeile nach dem while Block fortgesetzt.  In Rate die Zahl ist Zeile 28 die erste Zahl nach dem while Block.
+
+Ein while Befehl hat immer einen Doppelpunkt : nach der Bedingung. Befehle die mit einem Doppelpunkt enden erwarten, dass in der nächsten Zeile ein neuer Block beginnt.
+
+12. while abgegebenTipps < 6:
+
+Abbildung 4-2: Die Bedingung der while Schleife
+
+Abbildung 4-2 zeigt wie den Verlauf der Ausführung je nach dem Wert der Bedingung. Wenn die Bedingung zu True ausgewertet wird (wie sie es beim ersten Durchlaufen des Programms der Falls ist, weil der Wert von abgegebeneTipps 0 ist), dann wird nach dem while Befehl der while Block beginnend mit Zeile 13 ausgeführt. Wenn das Programm das Ende des while Blocks erreicht, dann wird es nicht zur Zeile darunter weiter gehen sondern wieer zurück zum while Statement (Zeile 12) springen und diese auswerten. Wie beim ersten Mal wird die Bedingung ausgewertet, wenn sie zu True evaluiert wird, dann wird anschließend wieder der while Block ausgeführt. Jedes durchlaufen der Schleife wird Iteration genannt.
+
+Die while Schleife funktionier folgendermaßen: So lange die Bedingung True ist, wird das Programm weiter immer wieder den while Block ausführen bis Bedingung zum ersten Mal False ist. Den while Befehl könnten man in Worten auch so ausdrücken: "während (while) diese Bedingung wahr (True) ist, führe den Code im folgenden Block aus".
+
+Der Spieler rät
+
+13.    print('Los, rate.') # Vor print sind vier Leerzeichen.
+14.    tipp = input()
+
+Zeilen 13 bis 17 fordern den Spieler auf eine Zahl zu raten und diese einzugeben. Diese Zahl wird in der Variable tipp gespeichert. 
+
+Zahlen mit den Funktionen int(), float() und str() umwandeln
+
+15.    tipp = int(tipp)
+
+Zeile 15 ruft eine neue Funktion mit dem Namen int() auf. Die int() Funktion nimmt ein Argument und gibt den Integerwert zu diesem Argument zurück. Versuche es mit dem folgenden Befehlen in der Eingabgezeile:
+
+>>> int('42')
+42
+>>> 3 + int('2')
+5
+
+Der Funktionsaufruf int('42') gibt den integer Wert 42 zurück. int() kann allerdings nicht beliebige strings in integer umwandeln. Wenn 'zweiundvierzig' oder 'forty-two' übergeben wird, dann ist das Ergebnis ein Fehler. Der string der an int() übergeben wird muss aus Zahlen bestehen:
+
+>>> int('forty-two')
+Traceback (most recent call last):
+  File "<pyshell#5>", line 1, in <module>
+int('forty-two')
+ValueError: invalid literal for int() with base 10: 'forty-two'
+
+In der Zeile 3 + int('2') wir der Rückgabewert von int() als Teil eines Ausdrucks verwendet. Der Ausdruck wird zu integer 5 ausgewertet:
+
+3 + int('2')
+  ▼
+3 + 2
+  ▼
+  5
+
+Erinner dich, die input() Funktion gibt die Eingabe des Spielers als Text, also als string zurück. Wenn der Spieler 5 eintippt, dann gibt die input() Funktion den string Wert '5' zurück, nicht denn integer Wert 5. Python kann die Vergleichsoperatoren < und > nicht verwenden um einen string und einen integer wert zu vergleichen:
+
+>>> 4 < '5'
+Traceback (most recent call last):
+  File "<pyshell#0>", line 1, in <module>
+    4 < '5'
+TypeError: unorderable types: int() < str()
+
+In Zeile 15 enthält die Variable tipp zuerst den string Wert der Eingabe des Spielers. In Zeile 16 wird der string Wert mit einem integer Wert, der von int() zurück gegeben wird, überschrieben. Das erlaubt dem Code später im Programm zu testen ob der Tipp größer, kleiner oder gleich der Geheimzahl die in der Variable zahl gespeichert ist.
+
+Eine letzte Sachen noch:  Wenn int(tipp) aufgerufen wird ändert sich der Wert in tipp nicht. Der Code int(tipp) ist ein Ausdruck der zu einem integer ausgewertet wird. tipp wird erst durch den Zuweisungsoperator geändert: tipp = int(tipp)
+
+Die float(), str() und bool() Funktionen geben ähnlich wie int() float, string und Boolean Versionen der Argumente zurück. Versuche die folgenden Befehle in der Eingabezeile:
+
+>>> float('42')
+42.0
+>>> float(42)
+42.0
+>>> str(42)
+'42'
+>>> str(42.0)
+'42.0'
+>>> str(False)
+'False'
+>>> bool('')
+False
+>>> bool('any nonempty string')
+True
+ 
+Den int(), float(), str() und bool() Funktionen kannst du Werte eines Datentyps übergeben und ihn als Wert eines anderen Datentyps erhalten.
+
