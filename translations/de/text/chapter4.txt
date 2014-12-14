@@ -382,3 +382,47 @@ True
  
 Den int(), float(), str() und bool() Funktionen kannst du Werte eines Datentyps übergeben und ihn als Wert eines anderen Datentyps erhalten.
 
+Variablen inkrementieren
+
+17.    abgegebenTipps = abgegebenTipps + 1
+
+Wenn der Spieler einen Tipp abgegeben hat muss die Anzahl an agegebenen Tipps um eins erhöht werden.
+
+Bei der ersten Iteration der Schleife hat abgegebeneTipps den Wert 0. Python nimmt diesen Wert und addiert 1 dazu. 0 + 1 wird zu 1 ausgwertet. Dieser Wert wird dann als neuer Wert von abgegebeneTipps gespeichert. Du kannst dir vorstellen, dass Zeile 17 sagt: "abgegebeneTipps soll eins mehr sein soll als es gerade ist."
+
+Eins zum integer oder float Wert einer Variable zu addieren nennt man auch inkrementieren. Wenn man eins vom Wert einer Variable abzieht dann heißt das dekrementieren.
+
+if Befehl
+
+19.    if tipp < zahl:
+20.        print('Dein Tipp ist zu niedrig.') # Hier sind acht Leerzeichen vor print.
+
+Zeile 19 ist ein if Befehl. Die Ausführung wird den Programmcode im folgenden Block ausführen wenn die Bedingung im if Befehl als wahr ausgewertet wird. Wenn die Bedingung falsch ist dann wird der Programmcode im if-Block übersprungen. Durch if-Befehle kannst du dafür sorgen, dass Teile deines Programms nur dann ausgeführt werden, wenn du es willst.
+
+Zeile 19 überprüft ob der Tipp des Spielers weniger als die Geheimzahl des Computers ist. Ist das der Fall, dann wird die Ausführung auf Zeile 20 innerhalb des if-Blocks fortgesetzt, in dem der Computer dem Spieler mitteilt: "Dein Tipp ist zu niedrig."
+
+Der if Befehl funktioniert fast wie ein while-Befehl. Im Unterschied zum while-Block sprint die Ausführung am Ende des if-Blocks zurück zum if Befehl. Es setzt die Ausführung einfach in der nächsten Zeile fort. In anderen Worten, if statements werden nicht in Schleifen ausgeführt. In Abbildung 4-3 siehst du einen Vergleich der zwei Befehle.
+
+Abbildung 4-3: if und while Befehl
+
+22.    if tipp > zahl:
+23.        print('Dein Tipp ist zu hoch.')
+
+Zeile 22 überprüft ob der Tipp des Spielers größer als die Geheimzahl ist. Wenn die Bedingung True ist, dann teilt der Aufruf der print() Funktion dem Spieler mit, dass sein Tipp zu hoch ist.
+
+Schleifen vorzeitig mit dem break Befehl verlassen
+
+25.    if tipp == zahl:
+26.        break
+
+Der if-Befehl auf Zeile 25 überprüft ob der Tipp gleich der Geheimzahl ist. Ist das der Fall, dann wird auf Zeile 26 der break Befehl ausgeführt. 
+
+Ein break Befehl führt dazu, dass die Ausführung gleich nach dem while-Block fortgesetzt wird. Die Bedingung der while-Schleife wird nicht erneut überprüft.
+
+Der break-Statement findet sich nur in Schleifen, wie zum Beispiel in einem while-Block.
+
+Wenn der Tipp des Spielers nicht gleich der Geheimzahl ist, dann erreicht die Ausführung das Ende des while-Blocks. Das heißt, dass die Ausführung wieder zum Beginn zurück springt und dort die Bedingung in Zeile 12 überprüft (abgegebeneTipps < 6). Erinner dich daran, dass nach dem Ausführen von  abgegebeneTipps = abgegebeneTipps + 1, der neue Wert von abgegebeneTipps 1 ist. Weil 1 < 6 wahr ist, wird die Ausfürhung wieder in der Schleife fortgesetzt.
+
+Wenn der Spieler weiter zu hoch oder zu tief rät, dann wird abgegebeneTipps zuerst 2, dann drei, dann 4, dann 5, dann 6. Wenn in abgegebeneTipps die Zahl 6 gespeichert ist, dann wird die Bedingung (abgegebeneTipps < 6) falsch (False), weil 6 nicht weniger als 6 ist. Da die Bedingung des while-Befehls False ist, wir die Ausführung in der ersten Zeile nach dem while-Block fortgesetzt, Zeile 28.
+
+
