@@ -15,14 +15,14 @@ Ten rozdział opowie użytkownikowi kilka żarcików.
 
 Przykładowe uruchomienie Żarcików
 
-What do you get when you cross a snowman with a vampire?
-Frostbite!
-What do dentists call an astronaut's cavity?
-A black hole!
-Knock knock.
-Who's there?
-Interrupting cow.
-Interrupting cow wh-MOO!
+Co kłótliwy człowiek robi w pralce?
+Spiera się.
+Co powiedział chemik jak zjadł zimny brom??
+Chemik powiedział 'Br'!
+Puk, puk.
+Kto tam?
+Przerywająca krowa.
+Przerywająca krowa? O co-Muu!
 
 Kody źródłowe żarcików (jokes.py)
 
@@ -34,46 +34,46 @@ Jeśli po wpisaniu tych kodów dostaniesz komunikaty o błędach, to porównaj t
 
 jokes.py
 
- 1. print('What do you get when you cross a snowman with a vampire?')
+ 1. print('Co kłótliwy człowiek robi w pralce?')
  2. input()
- 3. print('Frostbite!')
+ 3. print('Spiera się.')
  4. print()
- 5. print('What do dentists call a astronaut's cavity?')
+ 5. print('Co powiedział chemik jak zjadł zimny brom??')
  6. input()
- 7. print('A black hole!')
+ 7. print('Chemik powiedział \'Br\'!')
  8. print()
- 9. print('Knock knock.')
+ 9. print('Puk, puk.')
 10. input()
-11. print("Who's there?")
+11. print("Kto tam?")
 12. input()
-13. print('Interrupting cow.')
+13. print('Przerywająca krowa.')
 14. input()
-15. print('Interrupting cow wh', end='')
-16. print('-MOO!')
+15. print('Przerywająca krowa? O co', end='')
+16. print('-Muu!')
 
-Nie mart się jeśli nie rozumiesz całego kodu. Po prostu zapisz i uruchom program. Pamiętaj, że jeśli twój program ma błędy, to możesz użyć narzędzia do porównywania kodu ze strony http://invpy.com/chap5.
+Nie martw się jeśli nie rozumiesz całego kodu. Po prostu zapisz i uruchom program. Pamiętaj, że jeśli twój program ma błędy, to możesz użyć narzędzia do porównywania kodu ze strony http://invpy.com/chap5.
 
 Jak ten kod działa
 
- 1. print('What do you get when you cross a snowman with a vampire?')
+ 1. print('Co kłótliwy człowiek robi w pralce?')
  2. input()
- 3. print('Frostbite!')
+ 3. print('Spiera się.')
  4. print()
 
 Linie od 1 do 4 trzykrotnie wywołują funkcję print(). Nie chcesz, by gracz od razu poznał odpowiedź na żartobliwe pytania, więc po pierwszym print() jest wywołanie funkcji input(). Gracz może odczytać pierwszą linię, nacisnąć Enter i odczytać odpowiedź.
 
-The user can still type in a string and hit Enter, but this returned string isn’t being stored in any variable. The program will just forget about it and move to the next line of code.
+Użytkownik nadal może wpisać coś i nacisnąć Enter, ale zwrócony napis nie jest zapisywany do żadnej zmiennej. Program po prostu o tym zapomni i przejdzie do kolejnej linii kodu.
 
-The last print() function call has no string argument. This tells the program to just print a blank line. Blank lines are useful to keep the text from being bunched up.
+Ostatnie wywołanie funkcji print() nie ma żadnego argumentu. To oznacza, by program wypisał pustą linię. Puste linie są przydatne by napisy nie zlewały się na ekranie.
 
-Escape Characters
+Znaki cytowania
 
- 5. print('What do dentists call a astronaut's cavity?')
+ 5. print('Co powiedział chemik jak zjadł zimny brom??')
  6. input()
- 7. print('A black hole!')
+ 7. print('Chemik powiedział \'Br\'!')
  8. print()
 
-In the first print() above, there is a backslash right before the single quote (that is, the apostrophe). Note that \ is a backslash, and / is a forward slash. This backslash tells you that the letter right after it is an escape character. An escape character lets you print characters that are hard to enter into the source code. In this print() call the escape character is the single quote.
+W drugim wywołaniu print() znajdziemy znak odwróconego ukośnika (ang. backslash) przez znakiem oznaczającym początek napisu (to jest pojedynczego apostrofu). Zwróć uwagę, że \ jest odwrócony ukośnikiem, a / jest ukośnikiem (ang. forward slash). Odrócony ukośnik oznacza, że litera za nim jest znakiem cytowania (ang. escape character). Znak cytowania pozwala wypisywać znaki które są trudne do wpowadzenia w kodach źródłowych. W tym wywołaniu print() znakiem cytowania jest pojedynczy apostrof.
 
 The single quote escape character is there because otherwise Python would think the quote meant the end of the string. But this quote needs to be a part of the string. The escaped single quote tells Python that the single quote is literally a part of the string rather than marking the end of the string value.
 
