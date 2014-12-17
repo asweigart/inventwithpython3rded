@@ -419,10 +419,66 @@ Der if-Befehl auf Zeile 25 überprüft ob der Tipp gleich der Geheimzahl ist. Is
 
 Ein break Befehl führt dazu, dass die Ausführung gleich nach dem while-Block fortgesetzt wird. Die Bedingung der while-Schleife wird nicht erneut überprüft.
 
-Der break-Statement findet sich nur in Schleifen, wie zum Beispiel in einem while-Block.
+Das break-Statement findet sich nur in Schleifen, wie zum Beispiel in einem while-Block.
 
 Wenn der Tipp des Spielers nicht gleich der Geheimzahl ist, dann erreicht die Ausführung das Ende des while-Blocks. Das heißt, dass die Ausführung wieder zum Beginn zurück springt und dort die Bedingung in Zeile 12 überprüft (abgegebeneTipps < 6). Erinner dich daran, dass nach dem Ausführen von  abgegebeneTipps = abgegebeneTipps + 1, der neue Wert von abgegebeneTipps 1 ist. Weil 1 < 6 wahr ist, wird die Ausfürhung wieder in der Schleife fortgesetzt.
 
 Wenn der Spieler weiter zu hoch oder zu tief rät, dann wird abgegebeneTipps zuerst 2, dann drei, dann 4, dann 5, dann 6. Wenn in abgegebeneTipps die Zahl 6 gespeichert ist, dann wird die Bedingung (abgegebeneTipps < 6) falsch (False), weil 6 nicht weniger als 6 ist. Da die Bedingung des while-Befehls False ist, wir die Ausführung in der ersten Zeile nach dem while-Block fortgesetzt, Zeile 28.
 
+Überprüfen, ob der Spieler gewonnen hat
 
+28. if tipp == zahl:
+
+Zeile 28 hat keine Einrückung, das heißt, dass der while-Block beendet ist und dass diese Zeile, die erste nach dem while-Block ist. Die Ausführung hat den while-Block entweder verlassen, weil die Bedingung des while-Blocks False war (weil der Spieler keine Tipps mehr übrig hat) oder, weil das break-Statement in Zeile 26 ausgeführt wurde (wenn der Spieler richtig geraten hat).
+
+Zeile 28 überprüft, ob der Spieler richtig geraten hat. Ist das der Fall, dann wird die Ausführung im if-Block fortgesetzt.
+
+29.    abgegebenTipps = str(abgegebenTipps)
+30.    print('Gut gemacht, ' + meinName + '! Du hast meine Zahl in ' + abgegebenTipps + ' Zügen erraten!')
+
+Die Zeilen 29 und 30 werden nur ausgeführt, wenn die Bedingung im if-Befehl auf Zeile 28 True ist(d.h. wenn der Spieler die Zahl des Computers richtig geraten hat).
+
+Zeile 29 ruft die str() Funktion auf, die die string Form von abgegebeneTipps zurück gibt. Zeile 30 verkettet die strings um dem Spieler mitzuteilen, dass er gewonnen hat und wieviele Tipps er dazu benötigt hat. Nur string Werte können mit anderen strings verkettet werden. Aus diesem Grunde musste in Zeile 29 angegebeneTipps in einen string umgewandelt werden. Wenn man versucht, einen string mit einem integer zu verketten dann gibt Python einen Fehler aus.
+
+Überprüfen, ob der Spieler verloren hat
+
+32. if tipp != zahl:
+
+Zeile 32 verwendet den "ungleich" Vergleichsoperator != um zu überprüfen, ob der letzte Tipp des Spielers nicht gleich der Geheimzahl war. Wenn diese Bedingung True ist, dann wird die Ausführung im if-Block auf Zeile 33 fortgeführt.
+
+Zeile 33 und 34 sind im if-Block und werden nur ausgeführt, wenn die Bedingung auf Zeile 32 True wahr.
+
+33.    zahl = str(zahl)
+34.    print('Nene. Die Nummer an die ich gedacht habe war ' + zahl)
+
+In diesem Block teilt das Programm dem Spieler mit, was die Geheimzahl war, die er nicht erraten hat. Dazu müssen wieder strings verkettet werden, aber zahl enthält wieder einen integer. Zeile 33 überschreit diese Zahl mit dem entsprechende string um die Verkettung mit dem string 'Nene. Die Nummer an die ich gedacht habe war ' in Zeile 34 zu ermöglichen.
+
+An diesem Punkt hat die Ausführung das Ende des Programmcodes erreicht und das Programm ist beendet. Gratuliere! Du hast gerade dein erstes richtiges Spiel geschrieben!
+
+Du kannst den Schwierigkeitsgrad des Spiels ändern, indem du die Anzahl an Tipps, die der Spieler bekommt, änderst. Um dem Spieler nur 4 Tipps zu geben, ändere Zeile 12 von
+
+12. while abgegebenTipps < 6:
+
+zu 
+
+12. while abgegebenTipps < 4:
+
+Der Code weiter unten im while-Block erhöht, die abgegebeneTipps Variable in jeder Iteration um 1. Indem die Bedingung zu abgegebeneTipps < 4 geändert wird, ist sichergestellt, dass der Code in der Schleife nur vier mal ausgeführt wird statt sechs mal. Das macht das Spiel viel schwieriger. Wenn du das Spiel einfacher machen willst, dann kannst du die Bedingung auf abgegebeneTipp < 8 oder abgegebenTipps < 10 ändern. So wird die Schleife noch einige Male öfter ausgeführt und der Spieler kann mehr Tipps abgegeben.
+
+Flusskontroll Statements
+#TODO: Better translation for Flow Control
+
+In den vorigen Kapiteln hat die Ausführung des Programms oben begonnen und ist dann stur nach unten forgesetzt worden, wobei jede Instruktion in der Reihenfolge ausgeführt wurde. Mit while, if, else und break Befehlen kannst du die Ausführung dazu bringen, Instruktionen wiederholt auszuführen oder sie zu überspringen, je nachdem ob eine Bedigung erfüllt ist oder nicht. Solche Befehle heißen Flusskontrolle, da sie den Fluss des Programms ändern können.
+
+Zusammenfassung
+
+Wenn jemand dich fragt, "Was ist denn nun Programmieren?" was könntest du dann antworten? Programmieren ist nur das Schreiben von Programmcode, d.h. ein Programm zu kreieren, dass von einem Computer ausgeführt werden kann.
+
+"Aber was genau ist denn ein Programm?" Wenn du jemanden ein Computerprogramm benutzen  (zum Beispiel, dein Rate die Zahl spielen) siehst, dann siehst du nur Text, der auf dem Bildschirm erscheint. Das Programm entscheidet was der genaue Text (die Ausgabe des Programms) ist, basierend auf seinem Programmcode und dem Text, den der Spieler eintippt (der Eingabe des Benutzers). Ein Programm is also nur eine Sammlung von Befehlen, die auf die Eingaben des Benutzers reagieren.
+
+"Welche Art von Befehlen?" Es gibt in WIrklichkeit nur wenige verschiedene Arten von Befehlen.
+
+1. Ausdrücke sind Werte, die durch Operatoren verbunden werden. Asudrücke werden immer bis zu einem einzelnen Wert hin ausgewertet, so wie 2 + 2 zu 4, oder 'Hello' + ' ' + 'World' zu 'Hello World' ausgewertet wird. Wenn ein Ausdruck neben einem if oder while steht, dann kannst du sie auch Bedingungen nennen.
+2. Zuweisungen speichern Werte in Variablen damit du später im Programm wieder auf diese Werte zugreifen kannst.
+3. if-, while- und break-Befehl dienen der Flusskontrolle. Sie können die die Ausführung dazu veranlassen Befehle zu überspringen, Befehle zu wiederholen, oder aus Schleifen auszubrechen. Funktionsaufrufe können den Fluss der Ausführung auch ändern, indem sie zu den Instruktionen in einer Funktion springen.
+4. Die print() und 
