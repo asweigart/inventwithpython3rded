@@ -73,40 +73,40 @@ Znaki cytowania
  7. print('Chemik powiedział \'Br\'!')
  8. print()
 
-W drugim wywołaniu print() znajdziemy znak odwróconego ukośnika (ang. backslash) przez znakiem oznaczającym początek napisu (to jest pojedynczego apostrofu). Zwróć uwagę, że \ jest odwrócony ukośnikiem, a / jest ukośnikiem (ang. forward slash). Odrócony ukośnik oznacza, że litera za nim jest znakiem cytowania (ang. escape character). Znak cytowania pozwala wypisywać znaki które są trudne do wpowadzenia w kodach źródłowych. W tym wywołaniu print() znakiem cytowania jest pojedynczy apostrof.
+W drugim wywołaniu print() znajdziemy znak odwróconego ukośnika (ang. backslash) przez znakiem oznaczającym początek napisu (to jest pojedynczego apostrofu). Zwróć uwagę, że \ jest odwróconym ukośnikiem, a / jest ukośnikiem (ang. forward slash). Odrócony ukośnik oznacza, że litera za nim jest znakiem cytowania (ang. escape character). Znak cytowania pozwala wypisywać znaki które są trudne do wpowadzenia w kodach źródłowych. W tym wywołaniu print() znakiem cytowania jest pojedynczy apostrof.
 
-The single quote escape character is there because otherwise Python would think the quote meant the end of the string. But this quote needs to be a part of the string. The escaped single quote tells Python that the single quote is literally a part of the string rather than marking the end of the string value.
+Znak cytowania (odwróconyo ukośnik) przed znakiem pojedynczego apostrofu jest, by Python nie traktował pojedynczego apostrofu jako zakończenia napisu. Ten apostrof jest częścią napisu. Zacytowany pojedynczy apostrof mówi Pythonowi by ten apostrof potraktować dosłownie jako część nappisu, a nie oznaczenie końca wartości napisowej.
 
-Some Other Escape Characters
+Inne znaki cytowania
 
-What if you really want to display a backslash? This line of code would not work:
+Co zrobić jeśli chcesz wyświetlić odwrócony ukośnik? Ta linia kody nie zadziała:
 
->>> print('He flew away in a green\teal helicopter.')
+>>> print('Odleciał zielono\turkusowym śmigłowcem.')
 
-That print() function call would show up as:
+Te wywołanie funkcji print() function powinno dać:
 
-He flew away in a green    eal helicopter.
+Odleciał zielono    urkusowym śmigłowcem.
 
-This is because the “t” in “teal” was seen as an escape character since it came after a backslash. The escape character t simulates pushing the Tab key on your keyboard. Escape characters are there so that strings can have characters that cannot be typed in.
+Dzieje się tak ponieważ “t” w “turkusowym” zostało potraktowane jako znak cytowania, ponieważ było poprzedzone odwróconym ukosnikiem. Cytowany znak t symuluje naciśnięcie klawisza Tab na twojej klawiaturze. Cytowanie jest tu potrzebne, gdyż w napisach są znaki jakich nie można wprowadzić z klawiatury.
 
-Instead, try this line:
+Zamiast tego spróbuj z linią:
 
->>> print('He flew away in a green\\teal helicopter.')
-He flew away in a green\teal helicopter.
+>>> print('Odleciał zielono\\turkusowym śmigłowcem.')
+Odleciał zielono\turkusowym śmigłowcem.
 
-Table 5-1 is a list of escape characters in Python.
+Tabela 5-1 pokazuje listę znaków cytowania w Pythonie.
 
-Table 5-1: Escape Characters
-Escape Character        What Is Actually Printed
-\\                      Backslash (\)
-\'                      Single quote (')
-\"                      Double quote (")
-\n                      Newline
-\t                      Tab
+Table 5-1: Znaki cytowania
+Znak cytowania          Co zostanie wypisane
+\\                      Odwrócony apostrof (\)
+\'                      Pojedynczy apostrof (')
+\"                      Podwójny apostrof (")
+\n                      Nowa linia
+\t                      Tabulacja
 
 
 
-Quotes and Double Quotes
+Pojedyncze i podwójne apostrofy
 
 Strings don’t always have to be in between single quotes in Python. You can also put them in between double quotes. These two lines print the same thing:
 
