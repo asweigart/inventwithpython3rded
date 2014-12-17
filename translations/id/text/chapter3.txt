@@ -1,5 +1,5 @@
     Bab 3
-    
+
     MEMBUAT PROGRAM
 
 Cakupan Topik dalam Bab ini:
@@ -40,7 +40,7 @@ String dapat tediri dari karakter yang tercetak di keyboard. Berikut contoh stri
 'Pada masa silam di galaxy yang jauh, jauh sekali...
 'O*&#wY%*&OCfsdYO*&gfC%YO*&%3yc8r2'
 
-Nilai string dapat dikombinasikan dengan operator untuk membuat ekspresi, sama seperti bilangan bulat dan float. 
+Nilai string dapat dikombinasikan dengan operator untuk membuat ekspresi, sama seperti bilangan bulat dan float.
 
 Perangkaian String
 
@@ -54,13 +54,13 @@ Ekspresi terevaluasi menjadi satu nilai string, 'HaloDunia!'. Untuk membuat kata
 >>> 'Halo ' + 'Dunia!'
 'Halo Dunia!
 
-Operator + bekerja dengan cara berbeda pada string dan bilangan bulat karena keduanya adalah dua tipe data berbeda. Semua nilai punya tipe data tertentu. Tipe data nilai 'Halo' adalah string. Tipe data nilai 5 adalah integer (istilah Python, penj.). Tipe data memberitahu Python apa yang harus dilakukan operator ketika mengevaluasi ekspresi. Operator + akan merangkaikan dua string atau menambahkan dua bilangan bulat (atau float). 
+Operator + bekerja dengan cara berbeda pada string dan bilangan bulat karena keduanya adalah dua tipe data berbeda. Semua nilai punya tipe data tertentu. Tipe data nilai 'Halo' adalah string. Tipe data nilai 5 adalah integer (istilah Python, penj.). Tipe data memberitahu Python apa yang harus dilakukan operator ketika mengevaluasi ekspresi. Operator + akan merangkaikan dua string atau menambahkan dua bilangan bulat (atau float).
 
 Membuat Program dalam File Editor EDLE
 
 Sampai sekarang, kamu sudah mengetikkan satu per satu instruksi dalam shell interaktif IDLE. Ketika menulis program, kamu mengetik beberapa instruksi dan menjalankannya sekaligus. Mari buat program pertamamu!
 
-IDLE punya bagian yang disebut file editor. Klik menu File pada bagian atas jendela Python Shell. Lalu pilih New Window. Jendela kosong akan ditampilkan untukmu. Kamu bisa menulis kode di sini. 
+IDLE punya bagian yang disebut file editor. Klik menu File pada bagian atas jendela Python Shell. Lalu pilih New Window. Jendela kosong akan ditampilkan untukmu. Kamu bisa menulis kode di sini.
 
 
 
@@ -70,13 +70,13 @@ Kedua jendela tampak serupa, tapi ingat ini: Jendela shell interaktif akan memil
 
 Halo Dunia!
 
-Sudah tradisi bagi programmer untuk membuat program pertamanya menampilkan "Halo Dunia!" pada layar. Kamu akan membuat sendiri program Halo Dunia-mu sekarang. 
+Sudah tradisi bagi programmer untuk membuat program pertamanya menampilkan "Halo Dunia!" pada layar. Kamu akan membuat sendiri program Halo Dunia-mu sekarang.
 
-Ketika kamu memasukkan programmu, jangan sertakan angka pada bagian sisi kode. Angka tersebut berguna untuk merujuk kode dengan nomer baris. Sudut kanan bawah jendela file editor akan memberitahumu dimana kursor berkedip. 
+Ketika kamu memasukkan programmu, jangan sertakan angka pada bagian sisi kode. Angka tersebut berguna untuk merujuk kode dengan nomer baris. Sudut kanan bawah jendela file editor akan memberitahumu dimana kursor berkedip.
 
 
 
-Gambar 3-2: Pada bagian kanan bawah jendela file editor terdapat angka yang menunjukkan baris di mana kursor berada. 
+Gambar 3-2: Pada bagian kanan bawah jendela file editor terdapat angka yang menunjukkan baris di mana kursor berada.
 
 halo.py
 
@@ -98,19 +98,19 @@ Gambar 3-3: Jendela file editor akan tampak seperti ini ketika kamu selesai meng
 
 Menyimpan Programmu
 
-Ketika sudah selesai memasukkan sumber kode, simpan file ini dengan cara mengeklik menu File pada bagian atas jendela File Editor. Lalu klik Save As. Gambar 3-4 menunjukkan jendela Save-As yang akan terbuka. Masukkan halo.py dalam kolom isian nama File, lalu klik Save. Atau tekan Ctrl-S untuk menyimpan dengan shortcut di keyboard. 
+Ketika sudah selesai memasukkan sumber kode, simpan file ini dengan cara mengeklik menu File pada bagian atas jendela File Editor. Lalu klik Save As. Gambar 3-4 menunjukkan jendela Save-As yang akan terbuka. Masukkan halo.py dalam kolom isian nama File, lalu klik Save. Atau tekan Ctrl-S untuk menyimpan dengan shortcut di keyboard.
 
 
 
 Gambar 3-4: Menyimpan program.
 
-Kamu sebaiknya menyimpan programmu ketika sedang mengetik. Dengan demikian, jika komputer crash atau secara tidak sengaja keluar dari IDLE, kamu tidak akan kehilangan banyak pekerjaan. 
+Kamu sebaiknya menyimpan programmu ketika sedang mengetik. Dengan demikian, jika komputer crash atau secara tidak sengaja keluar dari IDLE, kamu tidak akan kehilangan banyak pekerjaan.
 
 Membuka Program yang Tersimpan
 
-Untuk memuat program yang sudah tersimpan, klik File ► Open. Pilih halo.py dalam jendela yang muncul, lalu klik tombol Open. Program halo.py-mu akan dibuka dalam jendela File Editor. 
+Untuk memuat program yang sudah tersimpan, klik File ► Open. Pilih halo.py dalam jendela yang muncul, lalu klik tombol Open. Program halo.py-mu akan dibuka dalam jendela File Editor.
 
-Sekarang waktunya menjalankan program itu. Klik File ► Run ► Run Module atau tekan saja F5 dari jendela file editor. Programmu akan dijalankan dalam jendela shell interaktif. 
+Sekarang waktunya menjalankan program itu. Klik File ► Run ► Run Module atau tekan saja F5 dari jendela file editor. Programmu akan dijalankan dalam jendela shell interaktif.
 
 Masukkan namamu ketika program itu bertanya. Tampilannya akan seperti Gambar 3-5:
 
@@ -118,9 +118,9 @@ Masukkan namamu ketika program itu bertanya. Tampilannya akan seperti Gambar 3-5
 
 Gambar 3-5: Shell interaktif setelah menjalankan halo.py.
 
-Ketika kamu mengetikkan namamu dan menekan Enter, program itu akan menyapa namamu. Selamat! Kamu telah menulis program pertamamu dan sekarang kamu adalah programmer komputer. Tekan F5 lagi dan masukkan nama lain. 
+Ketika kamu mengetikkan namamu dan menekan Enter, program itu akan menyapa namamu. Selamat! Kamu telah menulis program pertamamu dan sekarang kamu adalah programmer komputer. Tekan F5 lagi dan masukkan nama lain.
 
-Jika kamu mendapatkan error, bandingkan kodemu dengan kode dari buku ini menggunakan perkakas pembeda di http://invpy.com/diff/hello.
+Jika kamu mendapatkan error, bandingkan kodemu dengan kode dari buku ini menggunakan perkakas pembeda di http://invpy.com/id/diff/hello.
 
 Jika kamu dapat error seperti berikut:
 
@@ -139,7 +139,7 @@ Bagaimana cara kerja program "Halo Dunia!"
 
 Setiap baris kode merupakan instruksi yang diterjemahkan oleh Python. Instruksi-instruksi ini membuat sebuah program. Instruksi program komputer sama seperti langkah membuat resep kue. Setiap instruksi dieksekusi secara berurutan, berawal dari atas lalu berjalan ke bawah daftar instruksi program.
 
-Langkah yang diambil Python dalam resep itu disebut aliran eksekusi atau hanya eksekusi singkatnya. Ketika program dimulai, eksekusi ada di baris pertama. Lalu bergerak ke bawah ke instruksi berikutnya. 
+Langkah yang diambil Python dalam resep itu disebut aliran eksekusi atau hanya eksekusi singkatnya. Ketika program dimulai, eksekusi ada di baris pertama. Lalu bergerak ke bawah ke instruksi berikutnya.
 
 Mari lihat tiap baris kode untuk mengetahui apa yang dilakukannya. Kita mulai dari nomer baris 1.
 
@@ -147,7 +147,7 @@ Komentar
 
 1. # Program ini berkata halo dan bertanya siapa namaku.
 
-Baris ini merupakan komentar. Setiap teks setelah tanda pagar # adalah sebuah komentar. Komentar bukan buat Python, tapi kamu, si programmer. Python mengabaikan komentar. Komentar adalah catatan mengenai apa yang kode lakukan untukmu atau programmer lain yang membaca sumber kode itu. Untuk mempermudah membaca sumber kode, buku ini mencetak komentar dalam teks berwarna abu-abu terang. 
+Baris ini merupakan komentar. Setiap teks setelah tanda pagar # adalah sebuah komentar. Komentar bukan buat Python, tapi kamu, si programmer. Python mengabaikan komentar. Komentar adalah catatan mengenai apa yang kode lakukan untukmu atau programmer lain yang membaca sumber kode itu. Untuk mempermudah membaca sumber kode, buku ini mencetak komentar dalam teks berwarna abu-abu terang.
 
 Programmer biasanya menambahkan komentar pada bagian atas kode mereka untuk memberi judul program. IDLE menampilkan komentar dengan teks warna merah agar lebih mencolok.
 
@@ -196,7 +196,7 @@ Begitulah cara program penyapa pengguna dengan namanya.
 
 Mengakhiri Program
 
-Ketika program mengeksekusi baris terakhir, program itu mati atau keluar. Artinya program itu berhenti bekerja. Python melupakan semua variabel, termasuk string yang tersimpan dalam myName. Jika kamu menjalankan program itu lagi dengan nama lain, program akan berpikir string lain itu namamu. 
+Ketika program mengeksekusi baris terakhir, program itu mati atau keluar. Artinya program itu berhenti bekerja. Python melupakan semua variabel, termasuk string yang tersimpan dalam myName. Jika kamu menjalankan program itu lagi dengan nama lain, program akan berpikir string lain itu namamu.
 
 Halo Dunia!
 Siapa namamu?
@@ -214,9 +214,9 @@ Nama Variabel
 
 Memberi variabel nama yang deskriptif membuat kode lebih mudah dimengerti apa yang akan dilakukannya. Bayangkan jika kamu pindah rumah dan kamu melabeli semua kotak bawaan dengan "Barang". Itu sama sekali tidak membantu!
 
-Bisa saja kamu tidak pakai myName, tapi bandungBandawasa atau nAme. Python tidak peduli dan akan menjalankan hal yang sama. 
+Bisa saja kamu tidak pakai myName, tapi bandungBandawasa atau nAme. Python tidak peduli dan akan menjalankan hal yang sama.
 
-Nama variabel case-sensitive, artinya nama variabel yang sama, tapi beda case (kapital/kecil), merupakan variabel berbeda. Jadi spam, SPAM, Spam, dan sPAM merupakan empat variabel berbeda dalam Python yang masing-masing punya nilai sendiri. 
+Nama variabel case-sensitive, artinya nama variabel yang sama, tapi beda case (kapital/kecil), merupakan variabel berbeda. Jadi spam, SPAM, Spam, dan sPAM merupakan empat variabel berbeda dalam Python yang masing-masing punya nilai sendiri.
 
 Punya variabel berbeda cara penulisan case adalah ide buruk. Jika kamu menyimpan nama pertama dalam variabel name dan nama belakangmu dalam variabel NAME, maka kamu akan kebingungan ketika membacanya lagi seminggu kemudian setelah menulisnya. Apa name berarti nama pertama dan NAME nama belakang, atau sebaliknya?
 

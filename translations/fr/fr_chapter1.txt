@@ -6,7 +6,7 @@ Les Sujets Traités dans ce Chapitre :
 •   Télécharger et Installer l'Interpréteur Python
 •   Le Mode Interactif d'IDLE
 •   Comment Utiliser ce Livre
-•   Le Site du Livre : http://inventwithpython.com
+•   Le Site du Livre : http://inventwithpython.com/fr
 
 Bonjour ! Ce livre va vous apprendre comment programmer en faisant des jeux vidéos. Une fois que vous aurez appris comment les jeux de ce livre fonctionnent, vous serez capable d'écrire vos propres jeux. Tout ce dont vous avez besoin est un ordinateur, un logiciel appelé interpréteur Python, et ce livre. L'interpréteur Python est gratuit et peut être téléchargé sur internet.
 
@@ -86,7 +86,7 @@ La première ligne est découpée ce qui ressemble à 3 lignes au final uniqueme
 
 Trouver de l'Aide en Ligne
 
-Le site du livre se trouve à l'adresse http://inventwithpython.com. Vous pouvez y trouver plusieurs ressources liées au livre. Quelques liens du livres utilisent invpy.com pour réduire la taille des URLs.
+Le site du livre se trouve à l'adresse http://inventwithpython.com/fr. Vous pouvez y trouver plusieurs ressources liées au livre. Quelques liens du livres utilisent invpy.com pour réduire la taille des URLs.
 
 Le site subreddit à http://reddit.com/r/inventwithpython est un endroit intéressant pour poser des questions liées à ce livre. Postez vos question générales sur Python sur LearnProgramming et LearnPython subreddits aux adresses http://reddit.com/r/learnprogramming et http://reddit.com/r/learnpython, respectivement.
 
@@ -109,5 +109,5 @@ Résumé
 
 Ce chapitre vous a aidé à débuter avec Python en vous montrant le site http://python.org où vous pouvez le télécharger gratuitement. Après l'installation et le démarrage de l'éditeur Python IDLE, vous êtes prêt à apprendre à programmer en commençant avec le chapitre suivant.
 
-Le site du livre http://inventwithpython.com contient plus d'informations sur chaque chapitre, inclut un site de traceur de code en ligne et un outil diff qui peuvent vous permettent de comprendre les programmes de ce livre.
+Le site du livre http://inventwithpython.com/fr contient plus d'informations sur chaque chapitre, inclut un site de traceur de code en ligne et un outil diff qui peuvent vous permettent de comprendre les programmes de ce livre.
 
