@@ -75,4 +75,8 @@ Der Globals-Bereich im Debug-Kontrollfenster zeigt alle globalen Variablen an. W
 
 Wenn die drei def-Statements ausgeführt werden, tauchen sie im Globals-Bereich des Debug-Kontrollfenster auf.
 
-Der Text neben den Funktionsnamen im Globals-Bereich wird etwa so aussehen: "<function checkCave at 0x012859B0>". 
+Der Text neben den Funktionsnamen im Globals-Bereich wird etwa so aussehen: "<function checkCave at 0x012859B0>". Neben den Modulnamen steht ebenfalls verwirrend aussehender Text wie "<module 'random' from 'C:\\Python31\\lib\\random.pyc'>". Du musst nicht wissen, was das heißt, um deine Programme zu debuggen. Aber zu sehen, dass die Funktionen und Module dort im Globals-Bereich aufgeführt werden, sagt dir, ob die Funktion definiert oder das Modul importiert wurde.
+
+Die Zeilen mit __builtins__, __doc__ und __name__ im Globals-Bereich kannst du ebenfalls ignorieren. (Das sind Variablen, die in jedem Python-Programm enthalten sind.)
+
+Wenn die [playAgain]-Variable definiert wird, erscheint sie im Globals-Bereich. Neben dem Variablennamen steht dann der [String] 'yes'. Der Debugger zeigt dir die Werte
