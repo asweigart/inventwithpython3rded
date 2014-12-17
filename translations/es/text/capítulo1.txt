@@ -2,9 +2,7 @@
     INSTALANDO PYTHON
 
 Temas Tratados En Este Capítulo:
-
 •   Descargar e instalar el intérprete de Python
-•   La consola interactiva IDLE
 •   Cómo usar este libro
 •   La página web de este libro en http://inventwithpython.com/es
 
@@ -12,25 +10,40 @@ Temas Tratados En Este Capítulo:
 
 Cuando era niño, un libro como este me enseñó cómo escribir mis primeros programas y juegos. Era divertido y fácil. Ahora, siendo un adulto, sigo divirtiéndome programando y me pagan por hacerlo. Pero incluso si no te conviertes en un programador cuando crezcas, programar es una habilidad divertida y útil para tener.
 
-Las computadoras son máquinas increíbles, y aprender a programarlas es fácil. Si puedes leer este libro, puedes programar una computadora. Un programa de computadora es un conjunto de instrucciones que la computadora puede entender, igual que un libro de cuentos es un conjunto de oraciones que el lector entiende. Los videojuegos no son más que programas de computadora, de modo que están compuestos por instrucciones.
+Las computadoras son máquinas increíbles, y aprender a programarlas no es tan difícil como la gente cree. Si puedes leer este libro, puedes programar una computadora. Un programa de computadora es un conjunto de instrucciones que la computadora puede entender, igual que un libro de cuentos es un conjunto de oraciones que el lector entiende. Ya que los videojuegos no son más que programas de computadora, también están compuestos por instrucciones.
 
 Para dar instrucciones a una computadora, escribes un programa en un lenguaje que la computadora comprende. Este libro enseña un lenguaje de programación llamado Python. Hay muchos otros lenguajes de programación, incluyendo BASIC, Java, JavaScript, PHP y C++.
 
 Cuando era niño, era común aprender BASIC como un primer lenguaje. Sin embargo, nuevos lenguajes de programación tales como Python han sido inventados desde entonces. ¡Python es aún más fácil de aprender que BASIC! Pero sigue siendo un lenguaje de programación muy útil utilizado por programadores profesionales. Muchos adultos usan Python en su trabajo y cuando programan por diversión.
 
-Los juegos que crearás a partir de este libro parecen simples comparados con los juegos para Xbox, Playstation, o Wii. Estos juegos no tienen gráficos sofisticados porque están pensados para enseñar conceptos básicos de programación. Son deliberadamente sencillos de modo que puedas enfocarte en aprender a programar. Además los juegos no precisan ser complicados para ser divertidos.
+Los juegos que crearás a partir de este libro parecen simples comparados con los juegos para Xbox, PlayStation, o Nintendo. Estos juegos no tienen gráficos sofisticados porque están pensados para enseñar conceptos básicos de programación. Son deliberadamente sencillos de modo que puedas enfocarte en aprender a programar. Los juegos no precisan ser complicados para ser divertidos.
 
 Descargar e Instalar Python
 
 Necesitarás instalar un software llamado el intérprete de Python. El programa intérprete entiende las instrucciones que escribirás en lenguaje Python. De ahora en adelante me referiré al "software intérprete de Python" simplemente como "Python".
 
-Descarga Python 3.4 o una versión posterior del sitio oficial de Python, http://www.python.org. Descarga la versión 32-bit de Python para tu sistema operativo, incluso si tienes una computadora de 64-bit. El módulo Pygame utilizado más adelante en este libro funciona actualmente sólo sobre Python 32-bit.
-
 ¡Nota importante! Asegúrate de instalar Python 3, y no Python 2. Los programas en este libro usan Python 3, y obtendrás errores si intentas ejecutarlos con Python 2. Esto es tan importante que he agregado la caricatura de un pingüino en la Figura 1-1 para decirte que instales Python 3 así no te pierdes este mensaje.
 
-
-
 Figura 1-1: Un pingüino extravagante te dice que instales Python 3.
+
+Si usas Windows, descarga el instalador de Python (el archivo tendrá la extensión .msi) y haz doble clic sobre él. Sigue las instrucciones que el instalador muestra en pantalla:
+
+•   Selecciona Instalar para Todos los Usuarios y haz clic en Siguiente.
+•   Elige C:\Python34 como carpeta de instalación haciendo clic en Siguiente.
+•   Haz clic en Siguiente para omitir la sección de configuración de Python.
+ 		 
+Si usas Mac OS X, descarga el archivo .dmg indicado para tu versión de OS X del sitio web y haz doble clic sobre él. Sigue las instrucciones que el instalador muestra en pantalla:
+ 		 
+•   Cuando el paquete DMG se abra en una nueva ventana, haz doble clic sobre el archivo Python.mpkg. Es posible que necesites ingresar la clave de administrador.
+•   Haz clic en Continuar para pasar la sección Bienvenido y en Aceptar para aceptar la licencia.
+•   Selecciona HD Macintosh (o como sea que se llame tu disco rígido) y haz clic en Instalar.
+
+Si usas Ubuntu, puedes instalar Python del Centro de Software de Ubuntu siguiendo estos pasos:
+
+•   Abre el Centro de Software de Ubuntu.
+•   Escribe Python en el cuadro de búsqueda en la esquina superior derecha de la ventana.
+•   Elige IDLE (con Python 3.4), o la que sea la última versión en este momento.
+•   Haz clic en Instalar. Tal vez necesites la clave de administrador para completar la instalación.
 
 Iniciando IDLE
 
