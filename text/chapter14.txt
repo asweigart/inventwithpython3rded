@@ -242,7 +242,7 @@ The getMode() function will let the user type in if they want encryption or decr
 
 This list is ['encrypt', 'e', 'decrypt', 'd'], but it is easier for the programmer to type 'encrypt e decrypt d'.split() and not type in all those quotes and commas. Use whichever is easiest for you; they both evaluate to the same list value.
 
-This function will return the first character in mode as long as mode is equal to 'encrypt', 'e', 'decrypt', or 'd'. Therefore, getMode() will return the string 'e' or the string 'd' (but the user can type in either “e”, “encrypt”, “d”, or “decrypt”.)
+This function will return the string in mode as long as mode is equal to 'encrypt', 'e', 'decrypt', or 'd'. Therefore, getMode() will return the string 'e' or the string 'd' (but the user can type in either “e”, “encrypt”, “d”, or “decrypt”.)
 
 Getting the Message from the Player
 

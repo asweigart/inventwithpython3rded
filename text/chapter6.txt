@@ -364,7 +364,7 @@ You will also pass an argument when you call checkCave(). This argument is store
 For example, here is a short program that demonstrates defining a function with a parameter:
 
 def sayHello(name):
-    print('Hello, ' + name + '. Your name has ' + str(len(name)) + 'letters.')
+    print('Hello, ' + name + '. Your name has ' + str(len(name)) + ' letters.')
 
 sayHello('Alice')
 sayHello('Bob')
@@ -407,7 +407,7 @@ Line 28 calls the random.randint() function which will return either 1 or 2. Thi
 30.     if chosenCave == str(friendlyCave):
 31.          print('Gives you his treasure!')
 
-Line 30 checks if the player’s chosen cave in the chosenCave variable ('1' or '2') is equal to the       friendly dragon cave.
+Line 30 checks if the player’s chosen cave in the chosenCave variable ('1' or '2') is equal to the friendly dragon cave.
 
 But the value in friendlyCave is an integer because random.randint() returns integers. You can’t compare strings and integers with the == sign, because they will always be not equal to each other. '1' is not equal to 1 and '2' is not equal to 2.
 
