@@ -261,6 +261,7 @@ animals[0] + animals[2]
 'aardvark' + 'antelope'
            ▼
   'aardvarkantelope'
+
 IndexError
 
 If you try accessing an index that is too large, you’ll get an IndexError that will crash your program. Try entering the following into the interactive shell:
