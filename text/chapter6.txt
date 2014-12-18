@@ -454,7 +454,7 @@ Asking the Player to Play Again
 44.     print('Do you want to play again? (yes or no)')
 45.     playAgain = input()
 
-Whether the player won or lost, they are asked if they want to play again. The variable playAgain what the player typed. Line 45 is the last line of the while-block, so the program jumps back to line 36 to check the while loop’s condition: playAgain == 'yes' or playAgain == 'y'
+Whether the player won or lost, they are asked if they want to play again. The variable playAgain stores what the player typed. Line 45 is the last line of the while-block, so the program jumps back to line 36 to check the while loop’s condition: playAgain == 'yes' or playAgain == 'y'
 
 If the player typed in the string 'yes' or 'y', then the execution would enter the loop again at line 38.
 
