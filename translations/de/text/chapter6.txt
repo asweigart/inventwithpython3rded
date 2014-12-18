@@ -183,8 +183,8 @@ False
 False
 >>> False and False
 False
->>> zwiebeln = "Hallo"
->>> 10 < 20 and zwiebeln == 'Hallo'
+>>> spam = "Hallo"
+>>> 10 < 20 and spam == 'Hallo'
 True
 
 Der Operator or vergleicht zwei Wahrheitswerte und wertet diese genau dann zu wahr aus, wenn mindestens einer der beiden Werte wahr ist, falsch sonst.
@@ -314,25 +314,25 @@ Der Geltungsbereich außerhalb aller Funktionen heißt globaler Geltungsbereich.
 
 Das gesamte Programm hat nur einen globalen Geltungsbereich. Variablen, die im globalen Geltungsbereich definiert sind, können außerhalb und innerhalb von Funktionen gelesen werden, sie können aber nur außerhalb von Funktionen verändert werden. Variablen, die innerhalb einer Funktion deklariert sind, können nur in dieser gelesen und verändert werden.
 
-Man kann globale Variablen in lokalen Geltungsbereichen lesen, sie jedoch nicht verändern. Versucht man es trotzdem, dann führt dies nicht zum gewünschten Effekt: Python erzeugt eine lokale Variable mit demselben Namen, anstatt den Wert der globalen Variable zu ändern. Es ist z.B. möglich, zwei Variablen namens zwiebeln gleichzeitig definiert zu haben, eine global, die andere lokal. In Python sind dies zwei verschiedene Variablen.
+Man kann globale Variablen in lokalen Geltungsbereichen lesen, sie jedoch nicht verändern. Versucht man es trotzdem, dann führt dies nicht zum gewünschten Effekt: Python erzeugt eine lokale Variable mit demselben Namen, anstatt den Wert der globalen Variable zu ändern. Es ist z.B. möglich, zwei Variablen namens spam gleichzeitig definiert zu haben, eine global, die andere lokal. In Python sind dies zwei verschiedene Variablen.
 
 Dieses Beispiel veranschaulicht, was passiert, wenn man versucht den Wert einer globalen Variablen innerhalb eines lokalen Geltungsbereiches zu ändern. Die Kommentare beschreiben, was im Detail passiert:
 
 def speck():
-    # Wir deklarieren eine lokale Variable names "zwiebeln"
-	# anstelle den Wert der globalen Variablen "zwiebeln"
+    # Wir deklarieren eine lokale Variable names "spam"
+	# anstelle den Wert der globalen Variablen "spam"
 	# zu ändern:
-    zwiebeln = 99
-    # Der Name "zwiebeln" bezieht sich nun auf die lokale
+    spam = 99
+    # Der Name "spam" bezieht sich nun auf die lokale
     # Variable bis zum Ende dieser
     # Funktion:
-    print(zwiebeln)    # 99
+    print(spam)    # 99
 
-zwiebeln = 42 # Eine globale Variable namens "zwiebeln":
-print(zwiebeln) # 42
+spam = 42 # Eine globale Variable namens "spam":
+print(spam) # 42
 speck() # Aufruf der speck()-Funktion:
 # Die globale Variable wurde in speck() nicht verändert:
-print(zwiebeln)    # 42
+print(spam)    # 42
 
 Dieser Code produziert die folgende Ausgabe:
 
@@ -364,12 +364,12 @@ Das gleiche wirst Du beim Funktionsaufruf von ueberpruefeHoehle() tun. Das Argum
 Als Beispiel folgt ein kurzes Programm, das die Definition von Funktionen mit Parametern veranschaulicht:
 
 def sagHallo(name):
-    print('Hallo, ' + name + '. Dein Name hat ' + str(len(name)) + 'Buchstaben.')
+    print('Hallo, ' + name + '. Dein Name hat ' + str(len(name)) + ' Buchstaben.')
 
 sagHallo('Alice')
 sagHallo('Bob')
-speck = 'Carol'
-sagHallo(speck)
+spam = 'Carol'
+sagHallo(spam)
 
 Wenn Du dieses Programm ausführst, sieht die Ausgabe wie folgt aus:
 
@@ -407,7 +407,7 @@ Zeile 28 ruft die random.randint()-Funktion auf, die entweder 1 oder 2 zurückgi
 30.     if ausgewaehlteHoehle == str(freundlicheHoehle):
 31.          print('Gibt Dir seinen Schatz!')
 
-Zeile 30 überprüft, ob die vom Spieler ausgewählte Höhle in der ausgewaehlteHoehle-Variablen ('1' oder '2') gleich der       freundlichen Drachen-Höhle ist.
+Zeile 30 überprüft, ob die vom Spieler ausgewählte Höhle in der ausgewaehlteHoehle-Variablen ('1' oder '2') gleich der freundlichen Drachen-Höhle ist.
 
 Jedoch ist der Wert von freundlicheHoehle eine Ganzzahl, weil random.randint() Ganzzahlen zurückgibt. Man kann Zeichenketten und Ganzzahlen nicht mit dem ==-Operator vergleichen, weil dieser immer falsch zurückgeben würde. '1' ist ungleich 1 und '2' ist ungleich 2.
 
