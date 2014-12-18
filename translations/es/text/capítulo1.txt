@@ -55,21 +55,19 @@ Sobre Mac OS X, abre la ventana de Finder y haz clic en Aplicaciones. Luego haz 
 
 Sobre Ubuntu o Linux, abre una terminal y teclea “idle3”. También puede ser posible hacer clic en Aplicaciones en el borde superior de la pantalla. Luego haz clic sobre Programación y después IDLE 3.
 
-
+La ventana que aparece la primera vez que ejecutas IDLE es la consola interactiva, como se muestra en la Figura 1-2. Puedes ingresar instrucciones de Python en la consola interactiva a a la derecha del prompt >>> y Python las ejecutará. Luego de mostrar los resultados de la instrucción, un nuevo prompt >>> estará esperando por tu próxima instrucción.
 
 Figura 1-2: La consola interactiva del programa IDLE en Windows, OS X, y Ubuntu Linux.
 
-La ventana que aparece cuando ejecutas IDLE por primera vez es la consola interactiva. Puedes ingresar instrucciones de Python en la consola interactiva y Python las ejecutará. Python retornará los resultados de las instrucciones sobre la consola interactiva.
-
 Cómo Usar este Libro
 
-La mayoría de los capítulos en este libro comenzará con una muestra de ejecución del programa presentado. Esta demostración revela cómo se ve el programa cuando lo ejecutas. El texto introducido por el usuario se muestra en negrita.
+La mayoría de los capítulos en este libro comenzará con una muestra de ejecución del programa presentado en el capítulo en cuestión. Esta demostración revela cómo se ve el programa cuando lo ejecutas. El texto introducido por el usuario se muestra en negrita.
 
-Teclea tú mismo el código del programa en el editor de archivos de IDLE, en lugar de descargarlo. Recordarás mejor cómo programar si tecleas el código.
+Teclea tú mismo el código del programa en el editor de archivos de IDLE, en lugar de descargarlo o copiarlo y pegarlo. Recordarás mejor cómo programar si te tomas el tiempo para escribir tú mismo el código.
 
 Números de Línea y Espacios
 
-Al teclear el código, no escribas los números de línea que aparecen al principio de cada línea. Por ejemplo, si ves esto en el libro:
+Al teclear el código de este libro, no escribas los números de línea que aparecen al principio de cada línea. Por ejemplo, si ves esto en el libro:
 
 9. número = random.randint(1, 20)
 
@@ -77,11 +75,11 @@ No necesitas teclear el “9.” a la izquierda, o el espacio a continuación. S
 
 número = random.randint(1, 20)
 
-Esos números están sólo para que este libro pueda referir a líneas específicas en los programas. No son parte de un programa real.
+Esos números están ahí sólo para que este libro pueda referir a líneas específicas del programa. No son parte del código fuente de un programa real.
 
-Aparte de los números de línea, escribe el código exactamente como aparece. Ten en cuenta que algunas de las líneas de código están indentadas por cuatro u ocho espacios. Cada caracter en IDLE ocupa el mismo ancho. Cuenta el número de espacios contando el número de caracteres en las líneas arriba o abajo.
+Aparte de los números de línea, escribe el código exactamente como aparece. Ten en cuenta que algunas de las líneas de código están indentadas por cuatro u ocho espacios. Cada caracter en IDLE ocupa el mismo ancho, de modo que puedes contar el número de espacios contando el número de caracteres en las líneas arriba o abajo.
 
-Por ejemplo, los espacios indentados aquí están marcados con un ▪ cuadrado negro:
+Por ejemplo, los espacios indentados aquí están marcados con un ▪ cuadrado negro para que puedas verlos:
 
 while intentos < 10:
 ▪▪▪▪if número == 42:
@@ -89,21 +87,21 @@ while intentos < 10:
 
 Ajuste de Texto en Este Libro
 
-Algunas líneas de código son demasiado largas para caber en una línea de la página por lo que continuarán en la línea siguiente. Escribe este código todo en una línea sin pulsar Intro. Puedes darte cuenta cuándo comienza una nueva línea mirando los números de línea a la izquierda del código. Por ejemplo, el código a continuación contiene sólo dos líneas:
+Algunas instrucciones son demasiado largas para caber en una línea de la página por lo que continuarán en la línea siguiente. Al tipear este código, escríbelo todo en una línea sin pulsar Intro. Puedes darte cuenta cuándo comienza una nueva instrucción mirando los números de línea a la izquierda del código. El ejemplo mostrado a continuación contiene sólo dos líneas:
 
-1. print('¡Esta es la primera línea! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+1. print('¡Esta es la primera instrucción! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxx')
-2. print('Esta es la segunda línea, no la tercera línea.')
+2. print('Esta es la segunda instrucción, no la tercera.')
 
-La primera línea continúa en el siguiente renglón y da el aspecto de que hubiera tres líneas en total. Esto es sólo porque las páginas de este libro no son lo suficientemente anchas para contener la primera línea de código en una sola línea de texto.
+La primera instrucción continúa en el siguiente renglón y da el aspecto de que hubiera tres instrucciones en total. Esto es sólo porque las páginas de este libro no son lo suficientemente anchas para contener la primera instrucción en una sola línea de texto.
 
 Buscando Ayuda Online
 
 El sitio web de este libro es http://inventwithpython.com/es. Puedes encontrar varios recursos relacionados con este libro allí. Varios enlaces de este libro utilizan el dominio invpy.com para direcciones URL acortadas.
 
-El sitio web subreddit en http://reddit.com/r/inventwithpython es un lugar estupendo para para hacer preguntas de programación relacionadas con este libro. Publica preguntas generales sobre Python en los subreddits LearnProgramming y LearnPython en http://reddit.com/r/learnprogramming y http://reddit.com/r/learnpython respectivamente.
+El sitio web en http://reddit.com/r/inventwithpython es un lugar estupendo para para hacer preguntas de programación relacionadas con este libro. Publica preguntas generales sobre Python en los sitios web LearnProgramming y LearnPython en http://reddit.com/r/learnprogramming y http://reddit.com/r/learnpython respectivamente.
 
-Asimismo, envíame pot correo electrónico tus preguntas de programación a al@inventwithpython.com.
+Asimismo, envíame por correo electrónico tus preguntas de programación a al@inventwithpython.com.
 
 Ten presente que hay formas inteligentes para hacer preguntas de programación que ayudan otros a ayudarte. Asegúrate de leer las secciones de Preguntas Frecuentes que estos sitios web tienen acerca de la forma correcta de publicar preguntas. Cuando hagas preguntas de programación, haz lo siguiente:
 
@@ -114,12 +112,4 @@ Ten presente que hay formas inteligentes para hacer preguntas de programación q
 •   Explica lo que ya has intentado hacer para resolver tu problema. Esto muestra a la gente que ya has hecho algo de trabajo para tratar de entender las cosas por tí mismo.
 •   Sé amable. No exijas ayuda o presiones a quienes te ayudan para que respondan rápido.
 
-Traza de los Programas Online
-
-Examinar la traza de un programa significa moverse por el código de a una línea por vez, del mismo modo que lo ejecutaría una computadora. Visita http://invpy.com/es/traces para ver la traza correspondiente a cada programa de este libro. El sitio web contiene notas y recordatorios útiles a cada paso de la traza para explicar qué está haciendo el programa, para poder ayudarte a entender mejor por qué estos programas funcionan de la manera en que lo hacen.
-
-Resumen
-
-Este capítulo te ha ayudado a comenzar con el software Python mostrándote el sitio web http://python.org, de donde puedes descargarlo gratis. Luego de instalar y lanzar el software Python IDLE, estarás listo para aprender a programar a comenzando en el próximo capítulo.
-
-El sitio web de este libro en http://inventwithpython.com/es contiene más información sobre cada uno de los capítulos, incluyendo un sitio web de trazado en línea y una herramienta diff que puede ayudarte a entender los programas de este libro.
+Preguntar a alguien, “¿Por qué no está funcionando mi programa?” no le brinda ninguna información. Comunica a la persona qué es lo que estás intentando hacer, exactamente qué mensaje de error obtienes y qué versión de sistema operativo estás usando.
