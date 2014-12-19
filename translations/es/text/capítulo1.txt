@@ -13,9 +13,7 @@ Cuando era niño, un libro como este me enseñó cómo escribir mis primeros pro
 Las computadoras son máquinas increíbles, y aprender a programarlas no es tan difícil como la gente cree. Si puedes leer este libro, puedes programar una computadora. Un programa de computadora es un conjunto de instrucciones que la computadora puede entender, igual que un libro de cuentos es un conjunto de oraciones que el lector entiende. Ya que los videojuegos no son más que programas de computadora, también están compuestos por instrucciones.
 
 Para dar instrucciones a una computadora, escribes un programa en un lenguaje que la computadora comprende. Este libro enseña un lenguaje de programación llamado Python. Hay muchos otros lenguajes de programación, incluyendo BASIC, Java, JavaScript, PHP y C++.
-
 Cuando era niño, era común aprender BASIC como un primer lenguaje. Sin embargo, nuevos lenguajes de programación tales como Python han sido inventados desde entonces. ¡Python es aún más fácil de aprender que BASIC! Pero sigue siendo un lenguaje de programación muy útil utilizado por programadores profesionales. Muchos adultos usan Python en su trabajo y cuando programan por diversión.
-
 Los juegos que crearás a partir de este libro parecen simples comparados con los juegos para Xbox, PlayStation, o Nintendo. Estos juegos no tienen gráficos sofisticados porque están pensados para enseñar conceptos básicos de programación. Son deliberadamente sencillos de modo que puedas enfocarte en aprender a programar. Los juegos no precisan ser complicados para ser divertidos.
 
 Descargar e Instalar Python
@@ -31,9 +29,9 @@ Si usas Windows, descarga el instalador de Python (el archivo tendrá la extensi
 •   Selecciona Instalar para Todos los Usuarios y haz clic en Siguiente.
 •   Elige C:\Python34 como carpeta de instalación haciendo clic en Siguiente.
 •   Haz clic en Siguiente para omitir la sección de configuración de Python.
- 		 
+
 Si usas Mac OS X, descarga el archivo .dmg indicado para tu versión de OS X del sitio web y haz doble clic sobre él. Sigue las instrucciones que el instalador muestra en pantalla:
- 		 
+
 •   Cuando el paquete DMG se abra en una nueva ventana, haz doble clic sobre el archivo Python.mpkg. Es posible que necesites ingresar la clave de administrador.
 •   Haz clic en Continuar para pasar la sección Bienvenido y en Aceptar para aceptar la licencia.
 •   Selecciona HD Macintosh (o como sea que se llame tu disco rígido) y haz clic en Instalar.
