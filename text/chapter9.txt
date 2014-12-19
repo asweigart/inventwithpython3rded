@@ -290,6 +290,7 @@ You can join lists into one list with the + operator, just like you can join str
 
 >>> [1, 2, 3, 4] + ['apples', 'oranges'] + ['Alice', 'Bob']
 [1, 2, 3, 4, 'apples', 'oranges', 'Alice', 'Bob']
+
 ['apples'] + ['oranges'] will evaluate to ['apples', 'oranges']. But ['apples'] + 'oranges' will result in an error. You cannot add a list value and string value instead of two list values. If you want to add non-list values to a list, use the append() method (described later).
 
 The in Operator
