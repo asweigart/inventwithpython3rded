@@ -1,5 +1,4 @@
   Capítulo 2
-
   LA CONSOLA INTERACTIVA
 
 Temas Tratados En Este Capítulo:
@@ -10,7 +9,6 @@ Temas Tratados En Este Capítulo:
 • Operadores
 • Evaluación de Expresiones
 • Almacenamiento de Valores en Variables
-• Sobreescritura de variables
 
 Antes de poder crear juegos, necesitas aprender algunos conceptos básicos de programación. No crearás juegos en este capítulo, pero aprender estos conceptos es el primer paso para programar videojuegos. Comenzaremos por aprender cómo usar la consola interactiva de Python.
 
@@ -18,11 +16,9 @@ Operaciones Matemáticas Sencillas
 
 Abre IDLE usando los pasos en el Capítulo 1, y haz que Python resuelva algunas operaciones matemáticas sencillas. La consola interactiva puede funcionar como una calculadora. Escribe 2 + 2 en la consola interactiva y presiona la tecla INTRO en tu teclado. (En algunos teclados, esta tecla se llama RETURN.) La Figura 2-1 muestra cómo IDLE responde con el número 4.
 
-
-
 Figura 2-1: Escribe 2+2 en la consola interactiva.
 
-Este pronlema matemático es una simple instrucción de programación. El signo + le dice a la computadora que sume los números 2 y 2. La Tabla 2-1 presenta los otros operadores matemáticos disponibles en Python. El signo - restará números. El asterisco * los multiplicará. La barra / los dividirá.
+Este problema matemático es una simple instrucción de programación. El signo + le dice a la computadora que sume los números 2 y 2. La Tabla 2-1 presenta los otros operadores matemáticos disponibles en Python. El signo - restará números. El asterisco * los multiplicará. La barra / los dividirá.
 
 Tabla 2-1: Los diferentes operadores matemáticos en Python.
 Operador      Operación
@@ -31,13 +27,11 @@ Operador      Operación
 *             multiplicación
 /             división
 
-
-
-Cuando se usan de esta forma, +, -, *, y / se llama operadores. Los operadores le dicen a Python qué operación matemática realizar sobre los números que los rodean.
+Cuando se usan de esta forma, +, -, *, y / se llama operadores. Los operadores le dicen a Python qué hacer con los números que los rodean.
 
 Enteros y Números de Punto Flotante
 
-En programación, los enteros o ints son precisamente números enteros como 4, 99, y 0. Los números de punto flotante o floats son fracciones o números con punto decimal como 3.5, 42.1 y 5.0. En Python, el número 5 is an integer, pero 5.0 es un float.
+Los enteros (o ints para abreviar) son precisamente números enteros como 4, 99, y 0. Los números de punto flotante (o floats para abreviar) son fracciones o números con punto decimal como 3.5, 42.1 y 5.0. En Python, el número 5 is an integer, pero 5.0 es un float. A estos números se los llama valores.
 
 Expresiones
 
