@@ -35,7 +35,7 @@ Los enteros (o ints para abreviar) son precisamente números enteros como 4, 99,
 
 Expresiones
 
-Estos problemas matemáticos son ejemplos de expresiones. Las computadoras pueden resolver millones de estos problemas en segundos. Las expresiones se componen de valores (los números) conectadas por operadores (los símbolos matemáticos). Vamos a aprender exactamente qué son los valores y operadores. Prueba escribir algunos de estos problemas matemáticos en la consola interactiva, presiona la tecla INTRO después de cada uno.
+Estos problemas matemáticos son ejemplos de expresiones. Las computadoras pueden resolver millones de estos problemas en segundos. Las expresiones se componen de valores (los números) conectadas por operadores (los símbolos matemáticos). Prueba escribir algunos de estos problemas matemáticos en la consola interactiva, presiona la tecla INTRO después de cada uno.
 
 2+2+2+2+2
 8*6
@@ -44,23 +44,15 @@ Estos problemas matemáticos son ejemplos de expresiones. Las computadoras puede
 
 Luego de introducir estas instrucciones, la consola interactiva se verá como la Figura 2-2.
 
-
-
 Figura 2-2: Así se ve la ventana de IDLE luego de introducir las instrucciones.
-
-
 
 Figura 2-3: Una expresión se compone de valores y operadores.
 
-Una expresión se compone de valores (por ejemplo enteros como 8 y 6) conectados por un operador (tal como el signo de multiplicación * ). Un solo valor es también en sí mismo una expresión. En el ejemplo 2  +       2, se ve que puede haber cualquier cantidad de espacios entre los valores y los operadores. Sin embargo, no pongas espacios al comienzo de la instrucción al escribirla en la consola interactiva.
-
-En el próximo capítulo, aprenderás a trabajar con texto en expresiones. Python no se limita sólo a los números; ¡es más que una calculadora!
+En el ejemplo 2  +       2, se ve que puede haber cualquier cantidad de espacios entre los valores y los operadores. Pero cada instrucción que escribas en la consola interactiva debe comenzar una línea.
 
 Evaluación de Expresiones
 
-Cuando una computadora resuelve la expresión 10 + 5y obtiene el valor 15, ha evaluado la expresión. Evaluar una expresión la reduce a un único valor, igual que resolver un problema de matemática lo reduce a un único número: la respuesta.
-
-Las expresiones 10 + 5 y 10 + 3 + 2 tienen el mismo valor. Ambas son evaluadas a 15.
+Cuando una computadora resuelve la expresión 10 + 5 y obtiene el valor 15, ha evaluado la expresión. Evaluar una expresión la reduce a un único valor, igual que resolver un problema de matemática lo reduce a un único número: la respuesta. Ambas expresiones 10 + 5 y 10 + 3 + 2 son evaluadas a 15.
 
 Las expresiones pueden ser de cualquier tamaño, pero siempre serán evaluadas a un valor único. Incluso valores únicos son expresiones: La expresión 15 se evalúa al valor 15. Por ejemplo, la expresión 8 * 3 / 2 + 2 + 7 - 9 se evalúa al valor 12.0 a través de los siguientes pasos:
 
@@ -81,7 +73,7 @@ No puedes ver todos estos pasos en la consola interactiva. La consola los realiz
 >>> 8 * 3 / 2 + 2 + 7 - 9
 12.0
 
-Observa que el operador división / se evalúa a un valor float, como ocurre cuando 24 / 2 devuelve 12.0. Además, las operaciones matemáticas con valores flotantes también devuelven valores flotantes, como cuando 12.0 + 2 devuelve 14.0.
+Observa que el operador división / se evalúa a un valor float, como ocurre cuando 24 / 2 devuelve 12.0. Las operaciones matemáticas con valores flotantes también devuelven valores flotantes, como cuando 12.0 + 2 devuelve 14.0.
 
 Errores de Sintaxis
 
@@ -90,32 +82,30 @@ Si escribes 5 + en la consola interactiva, obtendrás un mensaje de error.
 >>> 5 +
 SyntaxError: invalid syntax
 
-Este error ha ocurrido porque 5 + no es una expresión. Las expresiones conectan valores mediante operadores. Pero el operador + espera un valor después del signo +. Cuando este valor no se encuentra, aparece un mensaje de error.
+Este ocurre porque 5 + no es una expresión. Las expresiones conectan valores mediante operadores. Pero el operador + espera un valor después del signo +. Cuando este valor no se encuentra, aparece un mensaje de error.
 
-SyntaxError significa que Python no entiende la instrucción porque la has escrito de forma incorrecta. Una gran parte de programar computadoras se trata no sólo de decirle a la computadora qué hacer, sino también de saber exactamente cómo decírselo.
+SyntaxError significa que Python no entiende la instrucción porque la has escrito de forma incorrecta. Una gran parte de programar computadoras se trata no sólo de decirle a la computadora qué hacer, sino también de saber cómo decírselo.
 
 Pero no te preocupes por cometer errores. Los errores no dañan tu computadora. Simplemente vuelve a escribir la instrucción correctamente en la consola interactiva luego del siguiente indicador >>> de consola.
 
 Almacenamiento de Valores en Variables
 
-A menudo desearás guardar el valor al cual al cual una expresión es evaluada, para poder usarlo más adelante en el programa. Puedes guardar valores en variables. Piensa las variables como cajas que pueden contener valores.
+Puedes guardar el valor al cual al cual una expresión es evaluada para poder usarlo más adelante en el programa, almacenándolo en una variable. Piensa una variable como una caja capaz de contener un valor.
 
-Una instrucción de asignación guardará un valor (o el valor al que se evalúa una expresión) dentro de una variable. Inventa un nombre para una variable, seguido por el signo = (llamado operador de asignación), y luego el valor a almacenar en la variable. Por ejemplo, ingresa spam = 15 en la consola interactiva:
+Una instrucción de asignación guardará un valor dentro de una variable. Escribe el nombre de una variable seguido por el signo = (llamado operador de asignación), y luego el valor a almacenar en la variable. Por ejemplo, ingresa spam = 15 en la consola interactiva:
 
 >>> spam = 15
 >>>
 
+La caja de la variable spam tendrá guardado el valor 15, como se muestra en la Figura 2-4. El nombre “spam” es la etiqueta en la caja (para que Python pueda distinguir las variables) y el valor está escrito en una pequeña nota dentro de la caja.
 
+Cuando presiones INTRO no recibirás ninguna respuesta. En Python, si no aparece ningún mensaje de error significa que la instrucción se ha ejecutado correctamente. El indicador de consola >>> aparecerá para que puedas tipear la próxima instrucción.
 
 Figura 2-4: Las variables son como cajas que pueden contener valores.
 
-La caja de la variable spam tendrá guardado el valor 15, como se muestra en la Figura 2-4. El nombre “spam” es la etiqueta en la caja (para que Python pueda distinguir las variables) y el valor está escrito en una pequeña nota dentro de la caja.
+A diferencia de las expresiones, las sentencias no son evaluadas a ningún valor. Es por eso que no se muestra ningún valor en la siguiente línea de la consola interactiva a continuación de spam = 15. Puede ser confuso diferenciar cuáles instrucciones son expresiones y cuáles son sentencias. Sólo recuerda que las expresiones son evaluadas a un valor único. Cualquier otro tipo de instrucción es una sentencia.
 
-Cuando presiones INTRO no recibirás ninguna respuesta. En Python, si no aparece ningún mensaje de error puedes asumir que la instrucción se ha ejecutado correctamente. El indicador de consola >>> aparecerá para que puedas tipear la próxima instrucción.
-
-A diferencia de las expresiones, las sentencias no son evaluadas a ningún valor, por lo que no se muestra ningún valor en la siguiente línea de la consola interactiva. Puede ser confuso diferenciar cuáles instrucciones son expresiones y cuáles son sentencias. Sólo recuerda que las expresiones son evaluadas a un valor único. Cualquier otro tipo de instrucción es una sentencia.
-
-Las variables almacenan valores, no expresiones. Por ejemplo, considera la expresión en las sentencias spam = 10 + 5 y spam = 10 + 7 - 2. Ambas son evaluadas a 15. El resultado final es el mismo: Ambas sentencias almacenan el valor 15 en la variables spam.
+Las variables almacenan valores, no expresiones. Por ejemplo, considera la expresión en las sentencias spam = 10 + 5 y spam = 10 + 7 - 2. Ambas son evaluadas a 15. El resultado final es el mismo: Las dos sentencias de asignación almacenan el valor 15 en la variables spam.
 
 La primera vez que una variables es usada en una sentencia de asignación, Python creará esa variable. Para comprobar qué valor contiene una variable dada, escribe el nombre de la variable en la consola interactiva:
 
@@ -129,21 +119,26 @@ La expresión spam se evalúa al valor dentro de la variable spam: 15. Puedes us
 >>> spam + 5
 20
 
-Haz fijado el valor de la variable spam en 15, por lo que escribir spam + 5 es como escribir la expresión 15 + 5.
+Haz fijado el valor de la variable spam en 15, por lo que escribir spam + 5 es como escribir la expresión 15 + 5. Aquí se muestran los pasos para la evaluación de spam + 5:
 
-No puedes usar una variable antes de que sea creada por una sentencia de asignación. Python te dará un error porque tal variable todavía no existe. Escribir mal el nombre de la variable también causa este error:
+spam + 5
+     ▼
+ 15  + 5
+     ▼
+    20
+
+No puedes usar una variable antes de que sea creada por una sentencia de asignación. Python responderá con NameError porque todavía no existe una variable con ese nombre. Escribir mal el nombre de una variable también causa este error:
 
 >>> spam = 15
 >>> spma
-
 Traceback (most recent call last):
   File "<pyshell#8>", line 1, in <module>
     spma
 NameError: name 'spma' is not defined
 
-El error ha aparecido porque la variable se llama spam, no spma.
+El error aparece porque hay una variable llamada spam, pero ninguna llamada spma.
 
-Puedes cambiar el valor almacenado en una variable escribiendo otra sentencia de asignación. Por ejemplo, prueba lo siguiente:
+Puedes cambiar el valor almacenado en una variable escribiendo otra sentencia de asignación. Por ejemplo, prueba escribir lo siguiente en la consola interactiva:
 
 >>> spam = 15
 >>> spam + 5
@@ -152,7 +147,9 @@ Puedes cambiar el valor almacenado en una variable escribiendo otra sentencia de
 >>> spam + 5
 8
 
-La primera vez que escribes spam + 5, la expresión se evalúa a 20 porque has guardado 15 dentro de spam. Sin embargo, cuando escribes spam = 3, el valor 15 es reemplazado, o sobrescrito, con el valor 3. Ahora cuando escribes spam + 5, la expresión se evalúa a 8 porque el valor de spam es ahora 3.
+La primera vez que escribes spam + 5, la expresión se evalúa a 20 porque has guardado 15 dentro de spam. Sin embargo, cuando escribes spam = 3, el valor 15 es reemplazado, o sobrescrito, con el valor 3. Ahora cuando escribes spam + 5, la expresión se evalúa a 8 porque el valor de spam es ahora 3. La sobrescritura se muestra en la Figura 2-5.
+
+Figura 2-5: El valor 15 en spam es sobrescrito por el valor 3.
 
 Puedes incluso usar el valor en la variable spam para asignar un nuevo valor a spam:
 
@@ -160,7 +157,7 @@ Puedes incluso usar el valor en la variable spam para asignar un nuevo valor a s
 >>> spam = spam + 5
 20
 
-La sentencia de asignación spam = spam + 5 es como decir, “el nuevo valor de la variable spam será el valor actual de spam más cinco.” Continúa incrementando el valor de spam en 5 varias veces:
+La sentencia de asignación spam = spam + 5 es como decir, “el nuevo valor de la variable spam será el valor actual de spam más cinco”. Continúa incrementando el valor de spam en 5 varias veces escribiendo lo siguiente en la consola interactiva:
 
 >>> spam = 15
 >>> spam = spam + 5
@@ -169,33 +166,31 @@ La sentencia de asignación spam = spam + 5 es como decir, “el nuevo valor de 
 >>> spam
 30
 
-Usando Más Que Una Variable
+Usando Más De Una Variable
 
-Crea tantas variables como necesites en tus programas. Por ejemplo, asignemos diferentes valores a dos variables llamadas eggs y fizz, de esta forma:
+Crea tantas variables como necesites en tus programas. Por ejemplo, asignemos diferentes valores a dos variables llamadas eggs y bacon, de esta forma:
 
->>> fizz = 10
+>>> bacon = 10
 >>> eggs = 15
 
-Ahora la variable fizz almacena el valor 10, y eggs almacena el valor 15.
+Ahora la variable bacon almacena el valor 10, y eggs almacena el valor 15. Cada variable es una caja independiente con su propio valor, como en la Figura 2-6.
 
+Figura 2-6: Las variables “bacon” y “eggs” almacenan valores dentro de ellas.
 
+Intenta escribir spam = bacon + eggs en la consola interactiva, luego comprueba el nuevo valor de spam:
 
-Figura 2-5: Las variables “fizz” y “eggs” almacenan valores dentro de ellas.
-
-Intenta escribir spam = fizz + eggs en la consola interactiva, luego comprueba el nuevo valor de spam:
-
->>> fizz = 10
+>>> bacon = 10
 >>> eggs = 15
->>> spam = fizz + eggs
+>>> spam = bacon + eggs
 >>> spam
 25
 
-El valor de spam es ahora 25. Cuando sumas fizz y eggs estás sumando sus valores, que son 10 y 15 respectivamente.
+El valor de spam es ahora 25. Cuando sumas bacon y eggs estás sumando sus valores, que son 10 y 15 respectivamente. Las variables contienen valores, no expresiones. La variable spam recibió el valor 25, y no la expresión bacon + eggs. Luego de la sentencia de asignación spam = bacon + eggs, cambiar bacon o eggs no afecta a spam.
 
 Resumen
 
-En este capítulo, has aprendido los conceptos básicos para escribir instrucciones en Python. Python necesita que le digas exactamente qué hacer de forma estricta. Las computadoras no tienen sentido común, y sólo entienden instrucciones específicas.
+En este capítulo has aprendido los conceptos básicos para escribir instrucciones en Python. Python necesita que le digas exactamente qué hacer de forma estricta. Las computadoras no tienen sentido común y sólo entienden instrucciones específicas.
 
-Las expresiones son valores (tales como 2 ó 5) combinados con operadores (tales como + o -). Python puede evaluar expresiones (es decir, reducirlas a un valor único). Puedes almacenar valores dentro de las variables de modo que tu programa sea capaz de recordarlas y usarlas más adelante.
+Las expresiones son valores (tales como 2 ó 5) combinados con operadores (tales como + o -). Python puede evaluar expresiones, es decir, reducirlas a un valor único. Puedes almacenar valores dentro de las variables de modo que tu programa sea capaz de recordarlas y usarlas más adelante.
 
-Hay muchos otros tipos de operadores y valores en Python. En el próximo capítulo, repasaras algunos  conceptos más, ¡y escribirás tu primer programa!
+Hay muchos otros tipos de operadores y valores en Python. En el próximo capítulo, repasaras algunos  conceptos más y escribirás tu primer programa. Aprenderás a trabajar con texto en expresiones. Python no está limitado a números; ¡es más que sólo una calculadora!
