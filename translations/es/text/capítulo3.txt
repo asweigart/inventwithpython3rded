@@ -1,5 +1,4 @@
     Capítulo 3
-
     ESCRIBIENDO PROGRAMAS
 
 Temas Tratados En Este Capítulo:
@@ -8,19 +7,20 @@ Temas Tratados En Este Capítulo:
 •   Cadenas
 •   Concatenación de cadenas
 •   Tipos de datos (como cadenas o enteros)
-•   Usando IDLE para escribir código fuente
+•   Usando el editor de archivos para escribir programas
 •   Guardar y ejecutar programas en IDLE
 •   La función print()
 •   La función input()
 •   Comentarios
-•   Capitalización de variables
 •   Sensibilidad a mayúsculas
 
-Suficiente matemática por ahora. Python es más que sólo una calculadora. Ahora veamos qué puede hacer Python con texto. En este capítulo, aprenderás cómo almacenar texto en variables, combinar textos, y mostrar texto en pantalla. Casi todos los programas muestran texto al usuario, y el usuario ingresa texto en tus programas a través del teclado. También crearás tu primer programa. Este programa muestra el saludo “¡Hola Mundo!” y te pregunta tu nombre.
+Suficiente matemática por ahora. Ahora veamos qué puede hacer Python con texto. En este capítulo, aprenderás cómo almacenar texto en variables, combinar textos, y mostrar texto en pantalla. 
+
+Casi todos los programas muestran texto al usuario, y el usuario ingresa texto en tus programas a través del teclado. En este capítulo crearás tu primer programa. Este programa muestra el saludo “¡Hola Mundo!” y te pregunta tu nombre.
 
 Cadenas
 
-En Python, los valores de texto se llaman cadenas. Las cadenas pueden usarse como valores enteros o float. Puedes almacenar cadenas en variables. En código, las cadenas comienzan y terminan con una comilla simple ('). Prueba introducir este código en la consola interactiva:
+En Python, los valores de texto se llaman cadenas. Los valores cadena pueden usarse igual que valores enteros o float. Puedes almacenar cadenas en variables. En código, las cadenas comienzan y terminan con una comilla simple ('). Prueba introducir este código en la consola interactiva:
 
 >>> spam = 'hola'
 
