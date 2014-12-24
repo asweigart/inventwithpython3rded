@@ -24,13 +24,13 @@ En Python, los valores de texto se llaman cadenas. Los valores cadena pueden usa
 
 >>> spam = 'hola'
 
-Las comillas simples le dicen a Python dónde comienza y termina la cadena, pero no son parte de la cadena. Ahora bien, si escribes spam en la consola interactiva, podrás ver el contenido de la variable spam (la cadena 'hola'.) Recuerda, Python evalúa las variables al valor almacenado dentro de las mismas. En este caso, la cadena 'hola':
+Las comillas simples le dicen a Python dónde comienza y termina la cadena, pero no son parte del texto del valor de cadena. Ahora bien, si escribes spam en la consola interactiva, podrás ver el contenido de la variable spam. Recuerda, Python evalúa las variables al valor almacenado dentro de las mismas. En este caso, la cadena 'hola':
 
 >>> spam = 'hola'
 >>> spam
 'hola'
 
-Las cadenas pueden contener cualquier caracter del teclado. Todos estos son ejemplos de cadenas:
+Las cadenas pueden contener cualquier caracter del teclado y pueden ser tan largas como quieras. Todos estos son ejemplos de cadenas:
 
 'hola'
 '¡Oye tú!'
@@ -40,31 +40,27 @@ Las cadenas pueden contener cualquier caracter del teclado. Todos estos son ejem
 'Hace mucho tiempo en una galaxia muy, muy lejana...'
 'O*&#wY%*&OCfsdYO*&gfC%YO*&%3yc8r2'
 
-Las cadenas pueden combinarse con operadores para generar expresiones, al igual que hacen los números enteros y floats.
-
 Concatenación de cadenas
 
-Prueba combinar dos cadenas con el operador +. Esto es concatenación de cadenas. Prueba ingresando '¡Hola' + 'Mundo!' into the interactive shell:
+Las cadenas pueden combinarse con operadores para generar expresiones, al igual que los números enteros y floats. Puedes combinar dos cadenas con el operador +. Esto es concatenación de cadenas. Prueba ingresando '¡Hola' + 'Mundo!' into the interactive shell:
 
 >>> '¡Hola' + 'Mundo!'
 '¡HolaMundo!'
 
-La expresión se evalúa a un valor único de cadena, '¡HolaMundo!'. Para mantener las palabras separadas, coloca un espacio al final de la cadena 'Hola', antes de la comilla simple, así:
+La expresión se evalúa a un valor único de cadena, '¡HolaMundo!'. No hay un espacio entre las palabras porque no había espacios en ninguna de las cadenas concatenadas, a diferencia del siguiente ejemplo:
 
 >>> '¡Hola ' + 'Mundo!'
 '¡Hola Mundo!'
 
-El operador + funciona de forma diferente sobre valores enteros y cadenas, ya que son distintos tipos de datos. Todos los valores tienen un tipo de datos. El tipo de datos del valor 'Hola' es una cadena. El tipo de datos del valor 5 es un entero. El tipo de datos le dice a Python qué deben hacer los operadores al evaluar expresiones. El operador + concatenará dos valores del tipo cadena, pero sumará dos valores enteros (o float).
+El operador + funciona de forma diferente sobre valores enteros y cadenas, ya que son distintos tipos de datos. Todos los valores tienen un tipo de datos. El tipo de datos del valor 'Hola' es una cadena. El tipo de datos del valor 5 es un entero. El tipo de datos le dice a Python qué deben hacer los operadores al evaluar expresiones. El operador + concatena valores de tipo cadena, pero suma valores de tipo entero (o float).
 
 Escribir Programas en el Editor de Archivos de IDLE
 
 Hasta ahora has estado escribiendo instrucciones, una a la vez, en la consola interactiva de IDLE. Cuando escribes programas, sin embargo, escribes varias instrucciones y haces que se ejecuten a la vez. ¡Escribamos ahora tu primer programa!
 
-IDLE tiene otra parte llamada el editor de archivos. Haz clic en el menú Archivo en la parte superior de la ventana de la consola Python. Luego selecciona Nueva Ventana. Aparecerá una ventana vacía para que escribas el código de tu programa.
+IDLE tiene otra parte llamada el editor de archivos. Haz clic en el menú Archivo en la parte superior de la ventana de la consola interactiva. Luego selecciona Nueva Ventana. Aparecerá una ventana vacía para que escribas el código de tu programa, como se ve en la Figura 3-1.
 
-
-
-Figura 3-1: La ventana del editor de archivos.
+Figura 3-1: La ventana del editor de archivos (izquierda) y la consola interactiva (derecha).
 
 Las dos ventanas se ven parecidas, pero sólo recuerda esto: La ventana de la consola interactiva tendrá el símbolo de sistema >>>. La ventana del editor de archivos no lo tendrá.
 
@@ -72,17 +68,15 @@ Las dos ventanas se ven parecidas, pero sólo recuerda esto: La ventana de la co
 
 Es tradición entre programadores hacer que su primer programa muestre “¡Hola Mundo!” en la pantalla. Ahora crearás tu propio programa Hola Mundo.
 
-Al ingresar tu programa, no escribas los números a la izquierda del código. Están allí sólo para que este libro pueda referirse al código por número de línea. La esquina inferior derecha de la ventana del editor de archivos te indicará dónde está el cursor intermitente. La Figura 3-2 muestra un ejemplo de dónde está el cursor según el texto de la esquina.
-
-
+Al ingresar tu programa, no escribas los números a la izquierda del código. Están allí sólo para que este libro pueda referirse al código por número de línea. La esquina inferior derecha de la ventana del editor de archivos te indicará dónde está el cursor intermitente. La Figura 3-2 muestra que el cursor se encuentra sobre la línea 1 y sobre la columna 0.
 
 Figura 3-2: La parte inferior derecha de la ventana del editor de archivos te indica en qué línea está el cursor.
 
 hola.py
 
-Ingresa el siguiente texto en la nueva ventana del editor de archivos. Este es el código fuente del programa. Contiene las instrucciones que Python seguirá cuando el programa se ejecute. (Recuerda, ¡no escribas los números de línea!)
+Ingresa el siguiente texto en la nueva ventana del editor de archivos. Este es el código fuente del programa. Contiene las instrucciones que Python seguirá cuando el programa se ejecute.
 
-¡NOTA IMPORTANTE! Los programas de este libro sólo podrán ejecutarse sobre Python 3, no Python 2. Al iniciar la ventana IDLE, dirá algo como “Python 3.4.0” en la parte superior. Si tienes Python 2 instalado, es posible instalar también Python 3 a la vez. Para descargar Python 3, dirígete a https://python.org/download/.
+¡NOTA IMPORTANTE! Los programas de este libro sólo podrán ejecutarse sobre Python 3, no Python 2. Al iniciar la ventana IDLE, dirá algo como “Python 3.4.2” en la parte superior. Si tienes Python 2 instalado, es posible instalar también Python 3 a la vez. Para descargar Python 3, dirígete a https://python.org/download/.
 
 1. # Este programa saluda y pregunta por mi nombre.
 2. print('¡Hola mundo!')
@@ -92,37 +86,33 @@ Ingresa el siguiente texto en la nueva ventana del editor de archivos. Este es e
 
 El programa IDLE escribirá diferentes tipos de instrucciones en diferentes colores. Cuando hayas terminado de escribir el código, la ventana debería verse así:
 
-
-
 Figura 3-3: La ventana del editor de archivos se verá así luego de haber ingresado el código.
 
-Guardando tus programas
+Guardando tu programa
 
-Una vez que hayas entrado tu código, guárdalo haciendo clic en el menú Archivo en la parte superior de la ventana del Editor de Archivos. Luego haz clic en Guardar Como. La Figura 3-4 muestra la ventana Guardar Como que se abrirá. Escribe hola.py en el campo de texto Nombre del archivo y haz clic en Guardar. O pulsa Ctrl-S para guardar usando un acceso directo del teclado.
-
-
+Una vez que hayas ingresado tu código fuente, guárdalo haciendo clic en Archivo ► Guardar como. O pulsa Ctrl-S para guardar usando un acceso directo del teclado. La Figura 3-4 muestra la ventana Guardar como que se abrirá. Escribe hola.py en el campo de texto Nombre del archivo y haz clic en Guardar.
 
 Figura 3-4: Guardando el programa.
 
-Deberías guardar tus programas mientras los escribes. De esta manera, si el ordenador se bloquea o accidentalmente sales de IDLE no perderás mucho trabajo.
+Deberías guardar tus programas a menudo. De esta manera, si el ordenador se bloquea o accidentalmente sales de IDLE no perderás mucho trabajo.
 
 Abriendo tus Programas Guardados
 
-Para cargar un programa guardado, haz clic en Archivo ► Abrir. Elige hola.py en la ventana que aparece y haz clic en el botón Abrir. Tu programa hola.py se abrirá en la ventana del Editor de Archivos.
+Para cargar un programa guardado, haz clic en Archivo ► Abrir. Elige el archivo en la ventana que aparece y haz clic en el botón Abrir. Tu programa hola.py se abrirá en la ventana del Editor de Archivos.
 
 Es hora de ejecutar el programa. Haz clic en Archivo ► Ejecutar ► Ejecutar Módulo o simplemente pulsa F5 desde la ventana del editor de archivos. Tu programa se ejecutará en la ventana de la consola interactiva.
 
 Escribe tu nombre cuando el programa lo pida. Esto se verá como en la Figura 3-5:
 
-
-
 Figura 3-5: La consola interactiva luego de ejecutar hola.py.
 
-Cuando escribas tu nombre y pulses INTRO, el programa te saludará por tu nombre. ¡Felicitaciones! Haz escrito tu primer programa y ahora eres un programador. Pulsa F5 de nuevo y escribe con otro nombre.
+Cuando escribas tu nombre y pulses INTRO, el programa te saludará por tu nombre. ¡Felicitaciones! Haz escrito tu primer programa y ya eres un programador. Pulsa F5 de nuevo para volver a ejecutar el programa y esta vez escribe otro nombre.
 
-Si has obtenido un error, compara tu código con el de este libro usando la herramienta online diff en http://invpy.com/es/diff/hola.
+Si has obtenido un error, compara tu código con el de este libro usando la herramienta online diff en http://invpy.com/es/diff/hola. Copia y pega tu código del editor de archivos en la página web y haz clic en el botón Comparar. Esta herramienta resaltará cualquier diferencia entre tu código y el código en este libro, como en la Figura 3-6.
 
-Si obtienes un error que se ve así:
+Figure 3-6: La herramienta diff en http://invpy.com/diff
+
+Mientras escribes código, si obtienes un NameError que se ve así:
 
 ¡Hola mundo!
 ¿Cómo te llamas?
@@ -137,9 +127,9 @@ NameError: name 'Albert' is not defined
 
 Cómo Funciona el Programa “Hola Mundo”
 
-Cada línea de código es una instrucción interpretada por Python. Estas instrucciones constituyen el programa. Las instrucciones de un programa de computadora son como los pasos en la receta de una torta. Cada instrucción se ejecuta en orden, comenzando por la parte superior del programa y en dirección descendente hasta el final de la lista de instrucciones.
+Cada línea de código es una instrucción interpretada por Python. Estas instrucciones constituyen el programa. Las instrucciones de un programa de computadora son como los pasos en una receta de un libro de cocina. Cada instrucción se ejecuta en orden, comenzando por la parte superior del programa y en dirección descendente hasta el final de la lista de instrucciones.
 
-Seguir en qué paso de la receta del programa se encuentra Python es lo que se llama flujo de ejecución, o simplemente ejecución por brevedad. Cuando el programa comienza, la ejecución se encuentra en la primera línea. Luego se mueve hacia abajo hasta la próxima instrucción.
+El paso del programa en el cual Python se encuentra se llama ejecución. Cuando el programa comienza, la ejecución se encuentra en la primera instrucción. Luego de ejecutarla, la ejecución baja hasta la próxima instrucción.
 
 Veamos cada línea de código para entender qué es lo que hace. Comenzaremos por la línea número 1.
 
@@ -147,15 +137,17 @@ Comentarios
 
 1. # Este programa saluda y pregunta por mi nombre.
 
-Esta línea es un comentario. Cualquier texto a continuación del signo # (llamado símbolo almohadilla) es un comentario. Los comentarios no son para Python, sino para tí, el programador. Python ignora los comentarios. Los comentarios son notas acerca de lo que el código hace, para tí o cualquier otro programador que examina el código fuente. Para facilitar la lectura del código fuente, este libro muestra los comentarios en texto de color gris claro.
+Esta instrucción es un comentario. Cualquier texto a continuación del signo # (llamado símbolo almohadilla) es un comentario. Los comentarios no son para Python, sino para tí, el programador. Python ignora los comentarios. Los comentarios son notas del programador acerca de lo que el código hace. Puedes escribir lo que quieras en un comentario. Para facilitar la lectura del código fuente, este libro muestra los comentarios en texto de color gris claro.
 
-Los programadores usualmente colocan un comentario en la parte superior de su código para dar un título a su programa. El programa IDLE muestra los comentarios en texto rojo para ayudar a que resalten.
+Los programadores usualmente colocan un comentario en la parte superior de su código para dar un título a su programa.
 
 Funciones
 
-Una función es una especie de mini-programa dentro de tu programa. Contiene instrucciones que se ejecutan cuando la función es llamada. Python ya tiene algunas funciones integradas. Dos funciones, print() e input(), son descriptas a continuación. Lo maravilloso acerca de las funciones es que sólo necesitas saber lo que la función hace, pero no cómo lo hace.
+Una función es una especie de mini-programa dentro de tu programa. Las funciones contienen instrucciones que se ejecutan cuando la función es llamada. Python ya tiene algunas funciones integradas. Dos funciones, print() e input(), son descriptas a continuación. Lo maravilloso acerca de las funciones es que sólo necesitas saber lo que la función hace, pero no cómo lo hace.
 
-Una llamada a una función es un fragmento de código que dice a Python que ejecute el código dentro de una función. Por ejemplo, tu programa llama a la función print() para mostrar una cadena en la pantalla. La función print() toma la cadena que tú escribes entre los paréntesis como entrada y muestra el texto en la pantalla. Para mostrar ¡Hola mundo! en la pantalla, escribe el nombre de la función print, seguido por un paréntesis de apertura, seguido por la cadena '¡Hola mundo!' y un paréntesis de cierre.
+Una llamada a una función es un fragmento de código que dice a Python que ejecute el código dentro de una función. Por ejemplo, tu programa llama a la función print() para mostrar una cadena en la pantalla. La función print() toma la cadena que tú escribes entre los paréntesis como entrada y muestra el texto en la pantalla. 
+
+Para mostrar ¡Hola mundo! en la pantalla, escribe el nombre de la función print, seguido por un paréntesis de apertura, seguido por la cadena '¡Hola mundo!' y un paréntesis de cierre.
 
 La función print()
 
@@ -164,15 +156,15 @@ La función print()
 
 Las líneas 2 y 3 son llamadas a la función print(). Un valor entre los paréntesis de la llamada a una función es un argumento. El argumento en la llamada a la función print() de la línea 2 es '¡Hola mundo!'. El argumento en la llamada a print() de la línea 3 es '¿Cómo te llamas?'. Esto se llama pasar el argumento a la función print().
 
-En este libro los nombres de funciones tienen paréntesis al final. Esto deja en claro que se hace referencia a una función llamada print(), no a una variable llamada print. Esto es como el uso de comillas alrededor del número '42' para indicar a Python that que estás refiriéndote a la cadena '42' y no al entero 42.
+En este libro, los nombres de funciones tienen paréntesis al final. Esto deja en claro que print() hace referencia a una función llamada print(), y no a una variable llamada print. Esto es como el uso de comillas alrededor del número '42' para indicar a Python that que estás refiriéndote a la cadena '42' y no al entero 42.
 
 La función input()
 
 4. miNombre = input()
 
-Esta línea tiene una sentencia de asignación con una variable (miNombre) y una llamada a una función (input()). Cuando input() es llamada, el programa espera a que el usuario ingrese texto. La cadena de texto que el usuario ingresa se convierte en el valor al que se evalúa la llamada a la función. Las llamadas a funciones pueden usarse en expresiones, en cualquier lugar en que pueda usarse un valor.
+La línea 4 es una sentencia de asignación con una variable (miNombre) y una llamada a una función (input()). Cuando input() es llamada, el programa espera a que el usuario ingrese texto. La cadena de texto que el usuario ingresa se convierte en el valor al que se evalúa la llamada a la función. Las llamadas a funciones pueden usarse en expresiones, en cualquier lugar en que pueda usarse un valor.
 
-El valor al cual se evalúa la llamada a la función es el valor es el valor de retorno. (De hecho, “el valor devuelto por la llamada a una función” significa lo mismo que “el valor al que se evalúa la llamada a la función”.) En este caso, el valor devuelto por la función input() es la cadena que el usuario ha escrito (su nombre). Si el usuario ha ingresado “Albert”, la llamada a la función input() se evalúa a la cadena 'Albert'. Esta evaluación se ve así:
+El valor al cual se evalúa la llamada a la función es llamado valor de retorno. (De hecho, “el valor devuelto por la llamada a una función” significa lo mismo que “el valor al que se evalúa la llamada a la función”.) En este caso, el valor devuelto por la función input() es la cadena que el usuario ha escrito (su nombre). Si el usuario ha ingresado “Albert”, la llamada a la función input() se evalúa a la cadena 'Albert'. La evaluación se ve así:
 
 miNombre = input()
             ▼
@@ -184,7 +176,7 @@ Uso de Expresiones en Llamadas a Funciones
 
 5. print('Es un placer conocerte, ' + miNombre)
 
-La última línea es otra llamada a la función print(). La expresión 'Es un placer conocerte, ' + miNombre se pasa como argumento a print(). Sin embargo, los argumentos son siempre valores individuales. Python evaluará primero esta expresión y luego pasará el valor como argumento. Si 'Albert' está almacenado en miNombre, la evaluación ocurre así:
+La última línea es otra llamada a la función print(). La expresión 'Es un placer conocerte, ' + miNombre entre los paréntesis de print(). Sin embargo, los argumentos son siempre valores individuales. Python evaluará primero esta expresión y luego pasará este valor como argumento. Si 'Albert' está almacenado en miNombre, la evaluación ocurre así:
 
 print('Es un placer conocerte, ' + miNombre)
                          ▼
@@ -196,14 +188,14 @@ Así es como el programa saluda al usuario por su nombre.
 
 Terminando el Programa
 
-Una vez que el programa ejecuta la última línea, termina y se sale del programa. Esto quiere decir que el programa deja de ejecutarse. Python olvida todas las variables, incluyendo la cadena almacenada en miNombre. Si ejecutas el programa de nuevo con un nombre diferente, el programa pensará que esa otra cadena es tu nombre.
+Una vez que el programa ejecuta la última línea, termina y se sale del programa. Esto quiere decir que el programa deja de ejecutarse. Python olvida todos los valores almacenados en variables, incluyendo la cadena almacenada en miNombre. Si ejecutas el programa de nuevo y escribes un nombre diferente, el programa pensará que esa otra cadena es tu nombre.
 
 ¡Hola mundo!
 ¿Cómo te llamas?
 Carolyn
 Es un placer conocerte, Carolyn
 
-Recuerda, la computadora hace exactamente lo que la programas para hacer. Las computadoras son tontas. A la computadora no le importa si escribes tu nombre, el nombre de otra persona, o sólo algo absurdo. Escribe lo que quieras. La computadora lo tratará de la misma forma:
+Recuerda, la computadora hace exactamente lo que la programas para hacer. Las computadoras son tontas y sólo siguen tus instrucciones al pie de la letra. A la computadora no le importa si escribes tu nombre, el nombre de otra persona, o sólo algo absurdo. Escribe lo que quieras. La computadora lo tratará de la misma forma:
 
 ¡Hola mundo!
 ¿Cómo te llamas?
@@ -216,11 +208,11 @@ Dar nombres descriptivos a las variables facilita entender qué es lo que hace u
 
 En lugar de miNombre, podrías haber llamado a esta variable abrahamLincoln o nOmBrE. A Python no le importa. Ejecutará el programa de la misma forma.
 
-Los nombres de variables son sensibles a mayúsculas. Sensible a mayúsculas significa que el mismo nombre de variable con diferente capitalización es una variable diferente. De modo que spam, SPAM, Spam, y sPAM son cuatro variables diferentes en Python. Cada una de ellas contiene su propio valor independiente.
+Los nombres de variables son sensibles a mayúsculas. Sensible a mayúsculas significa que el mismo nombre de variable con diferente capitalización se considera una variable diferente. De modo que spam, SPAM, Spam, y sPAM son cuatro variables diferentes en Python. Cada una de ellas contiene su propio valor independiente. Es una mala idea tener variables con diferente capitalización en tu programa. En lugar de ello, usa nombres descriptivos para tus variables.
 
-Es una mala idea tener variables con diferente capitalización en tu programa. Si almacenaras tu nombre en la variable nombre y tu apellido en la variable NOMBRE, podría ser confuso cuando leyeses tu código algunas semanas después de haberlo escrito. ¿Significaba nombre el nombre y NOMBRE el apellido, o era al revés?
+Los nombres de variables se escriben habitualmente en minúscula. Si hay más de una palabra en el nombre de la variable, escribe en mayúscula la primera letra de cada palabra después de la primera. Esto hace que tu código sea más legible. Por ejemplo, el nombre de variable loQueHeDesayunadoEstaMañana es mucho más fácil de leer que loquehedesayunadoestamañana. Esto es una convención una forma opcional pero estándar de hacer las cosas en Python.
 
-Los nombres de variables se escriben habitualmente en minúscula. Si hay más de una palabra en el nombre de la variable, escribe en mayúscula la primera letra de cada palabra después de la primera. Esto hace que tu código sea más legible. Por ejemplo, el nombre de variable loQueHeDesayunadoEstaMañana es mucho más fácil de leer que loquehedesayunadoestamañana. Esto es una convención (una forma opcional pero estándar de hacer las cosas) en Python.
+Es preferible usar nombres cortos antes que largos a las variables: desayuno o comidaEstaMañana son más fáciles de leer que loQueHeDesayunadoEstaMañana.
 
 Los ejemplos en este libro de la consola interactiva usan nombres de variables como spam, eggs, ham, y bacon. Esto es porque los nombres de variables en estos ejemplos no importan. Sin embargo, todos los programas de este libro usan nombres descriptivos. Tus programas también deberían usar nombres de variables descriptivos.
 
@@ -230,7 +222,6 @@ Luego de haber aprendido acerca de cadenas y funciones, puedes empezar a crear p
 
 Las cadenas son simplemente valores de un nuevo tipo de datos. Todos los valores tienen un tipo de datos, y hay muchos tipos de datos en Python. El operador + se usa para unir cadenas.
 
-Las variables te permiten recordar valores para usarlos posteriormente en el programa. Las funciones se usan para ejecutar alguna instrucción complicada como parte de nuestro programa. Python tiene muchas funciones integradas acerca de las cuales aprenderás en este libro. Las variables y llamadas a funciones pueden ser usadas en expresiones en cualquier lugar donde se usa un valor.
+Las funciones se usan para llevar a cabo alguna instrucción complicada como parte de nuestro programa. Python tiene muchas funciones integradas acerca de las cuales aprenderás en este libro. Las llamadas a funciones pueden ser usadas en expresiones en cualquier lugar donde se usa un valor.
 
-La instrucción en tu programa que Python está siguiendo se denomina ejecución. En el próximo capítulo, aprenderás más acerca de cómo hacer que la ejecución proceda de otras formas que simplemente en forma descendente a través del programa. Una vez que aprendas esto, podrás comenzar a crear juegos.
-
+La instrucción de tu programa en que Python se encuentra se denomina ejecución. En el próximo capítulo, aprenderás más acerca de cómo hacer que la ejecución proceda de otras formas que simplemente en forma descendente a través del programa. Una vez que aprendas esto, podrás comenzar a crear juegos.
