@@ -481,4 +481,8 @@ Wenn jemand dich fragt, "Was ist denn nun Programmieren?" was könntest du dann 
 1. Ausdrücke sind Werte, die durch Operatoren verbunden werden. Asudrücke werden immer bis zu einem einzelnen Wert hin ausgewertet, so wie 2 + 2 zu 4, oder 'Hello' + ' ' + 'World' zu 'Hello World' ausgewertet wird. Wenn ein Ausdruck neben einem if oder while steht, dann kannst du sie auch Bedingungen nennen.
 2. Zuweisungen speichern Werte in Variablen damit du später im Programm wieder auf diese Werte zugreifen kannst.
 3. if-, while- und break-Befehl dienen der Flusskontrolle. Sie können die die Ausführung dazu veranlassen Befehle zu überspringen, Befehle zu wiederholen, oder aus Schleifen auszubrechen. Funktionsaufrufe können den Fluss der Ausführung auch ändern, indem sie zu den Instruktionen in einer Funktion springen.
-4. Die print() und 
+4. Die print() und input() Funktionen. Diese Funktionen zeigen Text auf dem Bildschirm an und holen Text von der Tastatur. Diese Funktionen werden I/O (sprich Ei-Oh) genannt weil man über sie Daten eingeben oder ausgeben kann (engl. input/output Eingabe/Ausgabe).
+
+So, und das sind schon alle vier  Arten von Befehlen. Natürlich gibt es zahlreiche Details zu diesen vier Arten. In diesem Burch lernst du neue Datentype und Operatoren, neue Flusskontrollstatements und zahlreiche Funktionen die Python mitbringt. Es gibt auch verschiedene Arten von I/O, so wie die Eingabe durch die Maus oder Ausgabe von Ton oder Graphiken anstatt nur Text.
+
+Die Personen, die deine Programme benutzen interessieren sich nur für I/O. Der Benutzer tippt auf der Tastatur und sieht dann Sachen auf dem Bildschirm und hört Dinge aus dem Lautsprecher. Der Computer benötigt ein Programm um zu wissen, was er anzeigen soll oder welche Töne er abspielen soll, und dieses Programm ist nur eine Folge von Befehlen die du, der Programmierer, geschrieben hast. 
