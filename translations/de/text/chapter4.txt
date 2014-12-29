@@ -49,7 +49,7 @@ Der Quellcode von "Rate die Zahl"
 
 Öffne ein neues Dateieditorfenster indem auf Datei►Neues Fenster klickst. Tippe in dem neu erschienen leeren Fenster  den Quellcode ein und speichere die Datei dann unter zahlenRaten.py ab. Drücke F5 um das Programm auszuführen. Wenn du den Programmcode eintippst muss du besonders auf die Leerzeichen am Beginn der Zeilen achten. Manche Zeilen haben vier und einige sogar acht Leerzeichen am Zeilenanfang.
 
-Hier ist der Quellcode von "Rate dir Zahl". Gib auf die Leerzeichen vor manchen der Zeilen acht, wenn du den Quellcode in den Dateieditor eingibst. Manche der Zeilen haben vier, manche haben acht Leerzeichen.
+Hier ist der Quellcode von "Rate die Zahl". Gib auf die Leerzeichen vor manchen der Zeilen acht, wenn du den Quellcode in den Dateieditor eingibst. Manche der Zeilen haben vier, manche haben acht Leerzeichen.
 
 WICHTIGER HINWEIS! Die Programme in diesem Buch können nur in Python 3 ausgeführt werden, nicht in Python 2. Wenn IDLE startet sollte es so etwas wie "Python 3.4.2" oben anzeigen. Du kannst Python 2 und Python 3 zur selben Zeit auf deinem Computer installiert haben. Um Python 3 herunter zu laden geh zu http://python.org/download/.
 
