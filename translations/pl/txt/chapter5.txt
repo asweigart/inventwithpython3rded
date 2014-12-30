@@ -75,7 +75,7 @@ Znaki cytowania
 
 W drugim wywołaniu print() znajdziemy znak odwróconego ukośnika (ang. backslash) przez znakiem oznaczającym początek napisu (to jest pojedynczego apostrofu). Zwróć uwagę, że \ jest odwróconym ukośnikiem, a / jest ukośnikiem (ang. forward slash). Odrócony ukośnik oznacza, że litera za nim jest znakiem cytowania (ang. escape character). Znak cytowania pozwala wypisywać znaki które są trudne do wpowadzenia w kodach źródłowych. W tym wywołaniu print() znakiem cytowania jest pojedynczy apostrof.
 
-Znak cytowania (odwróconyo ukośnik) przed znakiem pojedynczego apostrofu jest, by Python nie traktował pojedynczego apostrofu jako zakończenia napisu. Ten apostrof jest częścią napisu. Zacytowany pojedynczy apostrof mówi Pythonowi by ten apostrof potraktować dosłownie jako część nappisu, a nie oznaczenie końca wartości napisowej.
+Znak cytowania (odwrócony ukośnik) przed znakiem pojedynczego apostrofu jest, by Python nie traktował pojedynczego apostrofu jako zakończenia napisu. Ten apostrof jest częścią napisu. Zacytowany pojedynczy apostrof mówi Pythonowi by ten apostrof potraktować dosłownie jako część nappisu, a nie oznaczenie końca wartości napisowej.
 
 Inne znaki cytowania
 
@@ -98,7 +98,7 @@ Tabela 5-1 pokazuje listę znaków cytowania w Pythonie.
 
 Table 5-1: Znaki cytowania
 Znak cytowania          Co zostanie wypisane
-\\                      Odwrócony apostrof (\)
+\\                      Odwrócony ukośnik (\)
 \'                      Pojedynczy apostrof (')
 \"                      Podwójny apostrof (")
 \n                      Nowa linia
@@ -108,54 +108,55 @@ Znak cytowania          Co zostanie wypisane
 
 Pojedyncze i podwójne apostrofy
 
-Strings don’t always have to be in between single quotes in Python. You can also put them in between double quotes. These two lines print the same thing:
+W Pythonie napisy nie muszą być ograniczone pojedynczymi apostrofami. Można także użyć podwójnych apostrofów. Te dwie linie wypisują ten sam napis:
 
->>> print('Hello world')
-Hello world
->>> print("Hello world")
-Hello world
+>>> print('Witaj świecie')
+Witaj świecie
+>>> print("Witaj świecie")
+Witaj świecie
 
-But you cannot mix quotes. This line will give you an error if you try to use them:
+Nie można jednak mieszać róznych typów apostrofów. Próba wykonania tej linii skutkuje błędem:
 
->>> print('Hello world")
+>>> print('Witaj świecie")
 SyntaxError: EOL while scanning single-quoted string
+(Błąd składni: koniec linii podczas szukania końca napisu w pojedynczych apostrofach)
 
-I like to use single quotes so I don’t have to hold down the shift key to type them. It’s easier to type, and Python doesn’t care either way.
+Lubię używać pojedynczych apostrofów, bo nie trzeba naciskać Shift by go uzyskać. Łatwiej go napisać, a Pythonowi to i tak wszystko jedno.
 
-Just like you need the escape character \' to have a single quote in a string surrounded by single quotes, you need the escape character \" to have a double quote in a string surrounded by double quotes. For example, look at these two lines:
+Tak jak trzeba używać znakóœ cytowania \' by uzyskać pojedynczy apostrof w napisie otoczonym pojedynczymi aostrofami, taj potrzebujesz znaku cytowania \" by uzyskać podwójny apotrof w napisie ograniczonym podwójnymi apostrofami. Spójrz na te dwie linie:
 
->>> print('I asked to borrow Abe\'s car for a week. He said, "Sure."')
+>>> print('Poprosiłem kolegę, by pożyczył mi swojego \'Mustanga\' na tydzień. Odpowiedział: "Jasne".')
 
-I asked to borrow Abe's car for a week. He said, "Sure."
+Poprosiłem kolegę, by pożyczył mi swojego 'Mustanga' na tydzień. Odpowiedział: "Jasne".
 
->>> print("He said, \"I can’t believe you let him borrow your car.\"")
+>>> print("A ja na to: \"Nie mogę uwierzyć, że pożyczyłeś mi swoją bryczkę\".")
 
-He said, "I can’t believe you let him borrow your car."
+A ja na to: "Nie mogę uwierzyć, że pożyczyłeś mi swoją bryczkę".
 
-In the single quote strings you don’t need to escape double quotes, and in the double quote strings you don’t need to escape single quotes. The Python interpreter is smart enough to know that if a string starts with one type of quote, the other type of quote doesn’t mean the string is ending.
+W napisach ograniczonych pojedynczymi apostrofami nie musisz cytować podwójnych apostroów, a w napisach w podwójnych apostrofach nie musisz cytować pojedynczych apostrofów. Interpreter Pythona jest wystarczająco sprytny by wiedzieć, że jeśli napis zaczyna sie od danego typu apostrofu, to inny typ apostrofu nie oznacza koca napisu.
 
-The end Keyword Argument
+Agrument kluczowy end
 
- 9. print('Knock knock.')
+ 9. print('Puk, puk.')
 10. input()
-11. print("Who's there?")
+11. print("Kto tam?")
 12. input()
-13. print('Interrupting cow.')
+13. print('Przerywająca krowa.')
 14. input()
-15. print('Interrupting cow wh', end='')
-16. print('-MOO!')
+15. print('Przerywająca krowa? O co', end='')
+16. print('-Muu!')
 
-Did you notice the second parameter on line 15's print()? Normally, print() adds a newline character to the end of the string it prints. This is why a blank print() function will just print a newline. But the print() function can optionally have a second parameter (which has the name “end”.)
+Zauważyłęś drugi parametr w funkcji print() w linii 15? Normalnie pront() dodaje znak nowej linii po napisie jaki wypisuje. Dlatego też wywołanie samego print() wypisze jedynie nową linię. Ale funkcja print() może mieć drugi, opcjonalny parametr (którego nazwa to  “end”.)
 
-The blank string passed is called a keyword argument. The end parameter has a specific name, and to pass an argument to this specific parameter you must type end=.
+Pusty napis jaki przekazaliśmy jest nazywany argumentem kluczowym. Ten parametr ma swoją nazwę: "end" i aby go przekazać trzeba wpisać end=.
 
-By passing a blank string for the end, the print() function won’t add a newline at the end of the string, but instead add a blank string. This is why '-MOO!' appears next to the previous line, instead of on its own new line. There was no newline after the 'Interrupting cow wh' string.
+Przekazując pusty napis jako end do funkcji print() sprawiamy, że funkcja ta ne doda na końcy napisu znaku nowej linii, ale zamiast tego doda pusty napis. Dlatego właśnie '-Muu!' pojawia się w poprzedniej linii, a nie w swojej własnej, nowej linii. Nie było znaku końca linii po napisie 'Przerywająca krowa? O co'.
 
-Summary
+Podsumowanie
 
-This chapter explores the different ways you can use the print() function. Escape characters are used for characters that are difficult or impossible to type into the code with the keyboard. Escape characters are typed into strings beginning with a backslash \ followed by a single letter for the escape character. For example, \n would be a newline. To include a backslash in a string, you would use the escape character \\.
+Ten rozdział pokazał różne warianty użycia funkcji print(). Znaki cytowania są używane dla znaków któ©e są trudne, lub niemożliwe do wpisania za pomocą klawiatury. Znaki cytowania są wstawiane do napisów za pomocą odwróconego ukośnika (ang. backslash) \ po którym wpisujemy pojedynczą literę znaku cytowanego. Przykładowo \n oznacza znak nowj linii. Aby do napisu wstawić odwrócony ukośnik należy go zacytować używając \\.
 
-The print() function automatically appends a newline character to the end of the string passed it to be displayed on the screen. Most of the time, this is a helpful shortcut. But sometimes you don’t want a newline character at the end. To change this, you can pass the end keyword argument with a blank string. For example, to print “spam” to the screen without a newline character, you would call print('spam', end='').
+Funkcja print() automatycznie dodaje znak nowej linii do końca napisu jaki wypisuje na ekranie. W większości przypadków jest to pomocny skrót. Ale czasem nie chcesz tej nowej linii. Aby to zmienić możesz przekazać argument kluczowy end z pustym napisem. Przykładowo by wypisać “spam” bez znaku nowej linii należy wywołać print('spam', end='').
 
-By adding this level of control to the text displayed on the screen, you can be more flexible ways in how you display text on the screen
+Dodając ten poziom kontroli do napisów wyświetlanych na ekranie możesz łatwiej przystosowywać ich wyświetlania do potrzeb
 
