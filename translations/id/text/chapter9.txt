@@ -20,7 +20,7 @@ Game dalam bab ini lebih panjang daripada game-game sebelumnya, tetapi game ini 
 hangman.py
   1. import random
   2. HANGMANPICS = ['''
-  3. 
+  3.
   4.   +---+
   5.   |   |
   6.       |
@@ -28,7 +28,7 @@ hangman.py
   8.       |
   9.       |
  10. =========''', '''
- 11. 
+ 11.
  12.   +---+
  13.   |   |
  14.   O   |
@@ -36,7 +36,7 @@ hangman.py
  16.       |
  17.       |
  18. =========''', '''
- 19. 
+ 19.
  20.   +---+
  21.   |   |
  22.   O   |
@@ -44,7 +44,7 @@ hangman.py
  24.       |
  25.       |
  26. =========''', '''
- 27. 
+ 27.
  28.   +---+
  29.   |   |
  30.   O   |
@@ -52,7 +52,7 @@ hangman.py
  32.       |
  33.       |
  34. =========''', '''
- 35. 
+ 35.
  36.   +---+
  37.   |   |
  38.   O   |
@@ -60,7 +60,7 @@ hangman.py
  40.       |
  41.       |
  42. =========''', '''
- 43. 
+ 43.
  44.   +---+
  45.   |   |
  46.   O   |
@@ -68,7 +68,7 @@ hangman.py
  48.  /    |
  49.       |
  50. =========''', '''
- 51. 
+ 51.
  52.   +---+
  53.   |   |
  54.   O   |
@@ -77,31 +77,31 @@ hangman.py
  57.       |
  58. =========''']
  59. words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra semut babon musang kelelawar beruang unta kucing kerang kobra gagak anjing rusa bebek keledai elang musang rubah katak kambing angsa elang singa kadal monyet keledai tikus hiu kadal panda beo merpati piton kelinci tikus gagak badak salmon domba sigung kukang ular bangau angsa harimau kodok kalkun penyu musang paus serigala zebra'.split() # juga mengandung hewan dalam bahasa indonesia (satu suku kata)
- 60. 
+ 60.
  61. def getRandomWord(wordList):
  62.     # Fungsi ini mengembalikan satu string acak dari daftar string dalam list yang dilemparkan.
  63.     wordIndex = random.randint(0, len(wordList) - 1)
  64.     return wordList[wordIndex]
- 65. 
+ 65.
  66. def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
  67.     print(HANGMANPICS[len(missedLetters)])
  68.     print()
- 69. 
+ 69.
  70.     print('Huruf yang salah tebak:', end=' ')
  71.     for letter in missedLetters:
  72.         print(letter, end=' ')
  73.     print()
- 74. 
+ 74.
  75.     blanks = '_' * len(secretWord)
- 76. 
+ 76.
  77.     for i in range(len(secretWord)): # ganti garis dengan huruf yang ditebak dengan tepat
  78.         if secretWord[i] in correctLetters:
  79.             blanks = blanks[:i] + secretWord[i] + blanks[i+1:]
- 80. 
+ 80.
  81.     for letter in blanks: # tampilkan kata rahasia dengan huruf-huruf yang dipisahkan satu spasi
  82.         print(letter, end=' ')
  83.     print()
- 84. 
+ 84.
  85. def getGuess(alreadyGuessed):
  86.     # Mengembalikan huruf yang dimasukkan pemain. Fungsi ini memastikan pemain memasukkan satu huruf, bukan string lainnya.
  87.     while True:
@@ -116,28 +116,28 @@ hangman.py
  96.             print('Masukkan huruf alfabet.')
  97.         else:
  98.             return guess
- 99. 
+ 99.
 100. def playAgain():
 101.     # Fungsi ini mengembalikan True jika pemain ingin bermain lagi, jika tidak maka False yang dikembalikan.
 102.     print('Kamu mau main lagi? (ya or tidak)')
 103.     return input().lower().startswith('y')
-104. 
-105. 
+104.
+105.
 106. print('H A N G M A N')
 107. missedLetters = ''
 108. correctLetters = ''
 109. secretWord = getRandomWord(words)
 110. gameIsDone = False
-111. 
+111.
 112. while True:
 113.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
-114. 
+114.
 115.     # Ambil masukan satu huruf dari pemain.
 116.     guess = getGuess(missedLetters + correctLetters)
-117. 
+117.
 118.     if guess in secretWord:
 119.         correctLetters = correctLetters + guess
-120. 
+120.
 121.         # Cek apakah pemain sudah menang
 122.         foundAllLetters = True
 123.         for i in range(len(secretWord)):
@@ -149,13 +149,13 @@ hangman.py
 129.             gameIsDone = True
 130.     else:
 131.         missedLetters = missedLetters + guess
-132. 
+132.
 133.         # Cek apakah pemain sudah coba menebak terlalu banyak dan kalah
 134.         if len(missedLetters) == len(HANGMANPICS) - 1:
 135.             displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
 136.             print('Kamu sudah tidak bisa menebak lagi!\nSetelah salah menebak ' + str(len(missedLetters)) + ' kali dan ' + str(len(correctLetters)) + ' tebakan yang tepat, kata itu adalah "' + secretWord + '"')
 137.             gameIsDone = True
-138. 
+138.
 139.     # Tanya apakah pemain ingin main lagi (tapi, hanya jika game sudah selesai).
 140.     if gameIsDone:
 141.         if playAgain():
@@ -173,7 +173,7 @@ Bagaiman Kode Bekerja
 Program Hangman secara acak memilih satu kata dari daftar kata-kata rahasia. Module random akan menyediakan kemampuan ini.
 
   2. HANGMANPICS = ['''
-  3. 
+  3.
   4.   +---+
   5.   |   |
   6.       |
@@ -209,14 +209,14 @@ Seperti konvensi lainnya, kamu tidak perlu mengikutinya. Namun, mengikuti konven
 
 Tipe Data list
 
-Tipe data list adalah tipe data yang nilainya dapat mengandung beberapa nilai lain. Coba masukkan kode ini dalam shell interaktif: 
+Tipe data list adalah tipe data yang nilainya dapat mengandung beberapa nilai lain. Coba masukkan kode ini dalam shell interaktif:
 
 >>> spam = ['apel', 'jeruk', 'HALO DUNIA']
 >>> spam
 ['apel', 'jeruk', 'HALO DUNIA']
 
 Nilai list ini mengandung tidak nilai string. Sama seperti nilai lainnya, kamu dapat menyimpannya dalam satu variabel. Kamu harus memulai list dengan kurung kotak [ dan diakhiri dengan kurung kotak ].
-Tanda koma memisahkan nilai-nilai dalam list. Nilai-nilai itu disebut juga sebagai item. 
+Tanda koma memisahkan nilai-nilai dalam list. Nilai-nilai itu disebut juga sebagai item.
 Coba masukkan animals = ['anjing', 'anoa', 'angsa', 'albert'] ke dalam shell interaktif untuk menyimpan daftar hewan dalam variabel animals. Tanda kurung kotak juga dapat digunakan untuk mengambil item dalam list. Coba masukkan animals[0] atau animals[1] atau animals[2], atau animals[3] dalam shell interaktif untuk melihat nilai hasil evaluasi.
 
 >>> animals = ['anjing', 'anoa', 'angsa', 'albert']
@@ -263,7 +263,7 @@ IndexError: list index out of range
 
 Merubah Nilai Item dalam list dengan Pengisian Indeks
 
-Kamu juga dapat melakukan perubahan nilai item dalam list dengan menggunakan kurung kotak. Coba masukkan animals[1] = 'ANOA', lalu ketik animals untuk melihat daftar animals baru. 
+Kamu juga dapat melakukan perubahan nilai item dalam list dengan menggunakan kurung kotak. Coba masukkan animals[1] = 'ANOA', lalu ketik animals untuk melihat daftar animals baru.
 
 >>> animals = ['anjing', 'anoa', 'angsa', 'albert']
 >>> animals[1] = 'ANOA'
@@ -337,7 +337,7 @@ list adalah suatu tipe data yang dapat mengandung nilai lainnya. list juga dapat
 [['telur', 'susu', 'sup', 'apel', 'roti'], ['bersih-bersih', 'potong rumput', 'berbelanja'], ['apel', 'frumbleberry']]
 
 Untuk mendapatkan item dalam daftar suatu daftar, kamu dapat menggunakan dua rangkap tanda kurung kotak, seperti: listOfLists[1][2] yang akan terevaluasi menjadi 'berbelanja'.
-Nilai itu dihasilkan karena listOfLists[1] terevaluasi menjadi ['bersih-bersih', 'potong rumput', 'berbelanja'] dan ['bersih-bersih', 'potong rumput', 'berbelanja'][2] yang lalu terevaluasi menjadi 'berbelanja':
+Nilai itu dihasilkan karena listOfLists[1][2] terevaluasi menjadi ['bersih-bersih', 'potong rumput', 'berbelanja'][2] dan ['bersih-bersih', 'potong rumput', 'berbelanja'][2] yang lalu terevaluasi menjadi 'berbelanja':
 
 listOfLists[1][2]
          ▼
@@ -423,11 +423,11 @@ Method yang akan sering digunakan pada list adalah append(). Method ini akan men
 >>> eggs
 ['beruang', 'dompet', 42]
 
-Sebagai catatan tipe data int dan float tidak punya method. 
+Sebagai catatan tipe data int dan float tidak punya method.
 
 Method list split()
 
-Di baris 59 tampak panjang. Sebenarnya baris ini hanya satu pernyataan pengisian. Pada baris ini juga terdapat penggunaan method split() yang merupakan method untuk string, seperti lower() dan upper(). 
+Di baris 59 tampak panjang. Sebenarnya baris ini hanya satu pernyataan pengisian. Pada baris ini juga terdapat penggunaan method split() yang merupakan method untuk string, seperti lower() dan upper().
 
  59. words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra semut babon musang kelelawar beruang unta kucing kerang kobra gagak anjing rusa bebek keledai elang musang rubah katak kambing angsa elang singa kadal monyet keledai tikus hiu kadal panda beo merpati piton kelinci tikus gagak badak salmon domba sigung kukang ular bangau angsa harimau kodok kalkun penyu musang paus serigala zebra'.split()
 Pernyataan pengisian itu berisi satu string yang panjang berisi kata-kata yang dipisahkan spasi. Pada bagian akhir dipanggil method split(). Method split() akan mengembalikan satu list berisi setiap kata dalam string sebagai item-item list. "Pemisahan" dilakukan setiap kali satu spasi muncul.
@@ -459,7 +459,7 @@ Jadi masukan getRandomWord() adalah suatu list string-string dan keluarannya ada
 
 Menampilkan Papan Game untuk Pemain
 
-Berikutnya, kamu perlu satu fungsi untuk mencetak papan Hangman pada layar. Fungsi ini juga akan menampilkan berapa banyak huruf yang sudah ditebak dengan tepat (atau tidak). 
+Berikutnya, kamu perlu satu fungsi untuk mencetak papan Hangman pada layar. Fungsi ini juga akan menampilkan berapa banyak huruf yang sudah ditebak dengan tepat (atau tidak).
 
  66. def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
  67.     print(HANGMANPICS[len(missedLetters)])

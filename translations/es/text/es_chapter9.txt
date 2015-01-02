@@ -338,7 +338,7 @@ Lists are a data type that can contain other values. But lists can also be the i
 [['eggs', 'milk', 'soup', 'apples', 'bread'], ['clean', 'mow the lawn', 'go grocery shopping'], ['apple', 'frumbleberry']]
 
 To get an item inside the list of lists, you would use two sets of square brackets like this: listOfLists[1][2] which would evaluate to the string 'go grocery shopping'.
-This is because listOfLists[1] evaluates to ['clean', 'mow the lawn', 'go grocery shopping'][2]. That finally evaluates to 'go grocery shopping':
+This is because listOfLists[1][2] evaluates to ['clean', 'mow the lawn', 'go grocery shopping'][2]. That finally evaluates to 'go grocery shopping':
 
 listOfLists[1][2]
          ▼
