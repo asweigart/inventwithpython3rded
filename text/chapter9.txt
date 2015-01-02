@@ -380,41 +380,41 @@ Try entering 'Hello world!'.lower() into the interactive shell to see an example
 >>> 'Hello world!'.lower()
 'hello world!'
 
-There is also an upper() method for strings, which returns a string with all the characters in uppercase. Try entering 'Hello world'.upper() into the interactive shell:
+There is also an upper() method for strings, which returns a string with all the characters in uppercase. Try entering 'Hello world!'.upper() into the interactive shell:
 
->>> 'Hello world'.upper()
+>>> 'Hello world!'.upper()
 'HELLO WORLD! '
 
 Because the upper() method returns a string, you can call a method on that string also. Try entering 'Hello world!'.upper().lower() into the interactive shell:
 
->>> 'Hello world'.upper().lower()
+>>> 'Hello world!'.upper().lower()
 'hello world!'
 'Hello world!'.upper() evaluates to the string 'HELLO WORLD!', and then string's lower() method is called. This returns the string 'hello world!', which is the final value in the evaluation.
 
-'Hello world'.upper().lower()
+'Hello world!'.upper().lower()
                     ▼
        'HELLO WORLD!'.lower()
                     ▼
-                'hello world'
+                'hello world!'
 
 The order is important. 'Hello world!'.lower().upper() isn’t the same as 'Hello world!'.upper().lower():
 
->>> 'Hello world'.lower().upper()
+>>> 'Hello world!'.lower().upper()
 'HELLO WORLD!'
 
 That evaluation looks like this:
 
-'Hello world'.lower().upper()
+'Hello world!'.lower().upper()
                     ▼
-        'hello world'.upper()
+        'hello world!'.upper()
                     ▼
                'HELLO WORLD!'
 
 If a string is stored in a variable, you can call a string method on that variable. Look at this example:
 
->>> spam = 'Hello world'
+>>> spam = 'Hello world!'
 >>> spam.upper()
-'HELLO WORLD'
+'HELLO WORLD!'
 
 This does not change the value in spam. The spam variable will still contain 'Hello world!'.
 
