@@ -16,13 +16,21 @@ Das Programm in diesem Kapitel erzählt dem Benutzer Witze und demonstriert fort
 Probelauf von Witze
 
 Warum sind Geisterfahrer die freundlichsten Menschen?
+
 Weil sie so entgegenkommend sind!
+
 Was ist der Unterschied zwischen einem Bäcker und einem Teppich?
+
 Der Bäcker muss morgens um 4 aufstehen. Der Teppich kann liegen bleiben.
+
 Klopf, klopf.
+
 Wer ist da?
+
 Anna!
+
 Anna wer?
+
 An'na Tür hat wer geklingelt-HAHA!
 
 Der Quellcode zu Witze

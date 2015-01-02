@@ -167,5 +167,11 @@ class TestPrograms(unittest.TestCase):
         self._check('fr', 'hello', 'bonjour')
 
 
+    def test_de_programs(self):
+        self._check('de', 'guess', 'zahlenRaten')
+        self._check('de', 'jokes', 'witze')
+        self._check('de', 'dragon', 'drachen') 
+
+
 if __name__ == '__main__':
     unittest.main()

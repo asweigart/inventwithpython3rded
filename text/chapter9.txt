@@ -261,6 +261,7 @@ animals[0] + animals[2]
 'aardvark' + 'antelope'
            ▼
   'aardvarkantelope'
+
 IndexError
 
 If you try accessing an index that is too large, you’ll get an IndexError that will crash your program. Try entering the following into the interactive shell:
@@ -269,7 +270,7 @@ If you try accessing an index that is too large, you’ll get an IndexError that
 >>> animals[9999]
 Traceback (most recent call last):
 File "", line 1, in
-animals[99]
+animals[9999]
 IndexError: list index out of range
 
 Changing the Values of List Items with Index Assignment
@@ -289,6 +290,7 @@ You can join lists into one list with the + operator, just like you can join str
 
 >>> [1, 2, 3, 4] + ['apples', 'oranges'] + ['Alice', 'Bob']
 [1, 2, 3, 4, 'apples', 'oranges', 'Alice', 'Bob']
+
 ['apples'] + ['oranges'] will evaluate to ['apples', 'oranges']. But ['apples'] + 'oranges' will result in an error. You cannot add a list value and string value instead of two list values. If you want to add non-list values to a list, use the append() method (described later).
 
 The in Operator

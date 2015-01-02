@@ -16,12 +16,19 @@ This chapter’s program tells a few different jokes to the user, and demonstrat
 Sample Run of Jokes
 
 What do you get when you cross a snowman with a vampire?
+
 Frostbite!
+
 What do dentists call an astronaut's cavity?
+
 A black hole!
+
 Knock knock.
+
 Who's there?
+
 Interrupting cow.
+
 Interrupting cow wh-MOO!
 
 Source Code of Jokes

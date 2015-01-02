@@ -6,7 +6,7 @@ Rzeczy omówione w tym rozdziale:
 •   Pobranie i instalacja interpertera Pythona
 •   Interaktyna konsola IDLE
 •   Jak używać tej książki?
-•   Strona WWW: http://inventwithpython.com
+•   Strona WWW: http://inventwithpython.com/pl
 
 Cześć! Ta książka nauczy Cię jak programować przez tworzenie gier komputerowych. Ja nauczysz się jak działają gry z tej książki, to będziesz mógł tworzyć własne gry. Wszystko czego potrzebujesz to komputer, oprogramowanie nazywane interpreterem Pythona i ta książka. Interpreter Pythona jest darmowy i można go pobrać z internetu.
 
@@ -84,7 +84,7 @@ Pierwsza linia została zawinięta i wygląda jakby kod miał trzy linie. Dzieje
 
 Pomoc Online
 
-Strona WWW tej książki: http://inventwithpython.com. Możesz tu znaleźć kilka zasobów związanych z książką. Kilka linków w tej książce używa domeny invpy.co, by adresy był krótszy.
+Strona WWW tej książki: http://inventwithpython.com/pl. Możesz tu znaleźć kilka zasobów związanych z książką. Kilka linków w tej książce używa domeny invpy.co, by adresy był krótszy.
 
 Strona WWW subreddit: http://reddit.com/r/inventwithpython jest dobrym miejscem by zadawać pytania programistyczne związane z książką. Pytania dotyczące ogólnie Pythona można zadawać na subreditach LearnProgramming i LearnPython pod adresami: http://reddit.com/r/learnprogramming i http://reddit.com/r/learnpython.
 
@@ -92,7 +92,7 @@ Można także napisać do mnie na adres: al@inventwithpython.com.
 
 Pamiętaj, że są sprytne sposoby by zapytać innych w sposób taki, że pomaga się innym dać odpowiedź. Upewnij się, że przeczytałeś sekcję Często Zadawane Pytania FAQ - Frequently Asked Questions) na temat prawidłowego sposobu zadawania pytań na powyższych stronach. Kiedy zadajesz pytanie programistyczne zrób co następuje:
 
-•   Jeśli przy wpisywaniu programów z tej książki dostajesz błedy, to najpierw sprawdź, czy nie są to literówki używając  porównywania z: http://invpy.com/diff. Skopiuj i wklej swój kod do tego narządzia by zobaczyć wszelkie różnice między nim, a kodem z książki.
+•   Jeśli przy wpisywaniu programów z tej książki dostajesz błedy, to najpierw sprawdź, czy nie są to literówki używając  porównywania z: http://invpy.com/pl/diff. Skopiuj i wklej swój kod do tego narządzia by zobaczyć wszelkie różnice między nim, a kodem z książki.
 •   Wytłumacz co próbujesz zrobić gdy tłumaczysz błąd. Osobie chcącej pomóc pozwoli to ocenić, czy całkowicie się nie pomyliłeś.
 •   Skopiuj i wklej cały kod i cały komunikat o błędzie.
 •   Poszukaj w internecie czy ktoś już nie zapytał (i odpowiedział) na takie pytanie.
@@ -101,11 +101,11 @@ Pamiętaj, że są sprytne sposoby by zapytać innych w sposób taki, że pomaga
 
 Śledzenie programów Online
 
-Śledzenie programu oznacza krokowe przejście przez kod, linia po linii, w ten sposób, jak robi to komputer. Odwiedź http://invpy.com/traces by zobaczyć ślad każdego z programów z tej książki. Ta strona ma notes i pomocne uwagi do każdego kroku w zapisanym śladzie by wytłumaczyć co robi program. Dzięki temu lepiej zrozumiesz dlaczego te programy działają tak, jak działają.
+Śledzenie programu oznacza krokowe przejście przez kod, linia po linii, w ten sposób, jak robi to komputer. Odwiedź http://invpy.com/pl/traces by zobaczyć ślad każdego z programów z tej książki. Ta strona ma notes i pomocne uwagi do każdego kroku w zapisanym śladzie by wytłumaczyć co robi program. Dzięki temu lepiej zrozumiesz dlaczego te programy działają tak, jak działają.
 
 Podsumowanie
 
 Ten rozdział pomógł rozpocząć pracę z oprogramowaniem Pythona przez pokazanie, że http://python.org website jest miejscem skąd można ściągnąć go za darmo. Po instalacji i uruchomieniu Pythonowego środowiska IDLE będziesz gotowy na naukę programowania w następnym rozdziale.
 
-Strona WWW tej książki: http://inventwithpython.com ma więcej informacji o każdym z rozdziałów, włączając w to śledzenie programów i narzędzie wyszukiwania różnic tak, by pomóc w zrozumieniu programów z tej książki.
+Strona WWW tej książki: http://inventwithpython.com/pl ma więcej informacji o każdym z rozdziałów, włączając w to śledzenie programów i narzędzie wyszukiwania różnic tak, by pomóc w zrozumieniu programów z tej książki.
 

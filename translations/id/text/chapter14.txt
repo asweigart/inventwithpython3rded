@@ -124,13 +124,13 @@ Atzaq sksgngso gvg oza xkqaxyol, qgsa ngxay sktmkxzo qutykv xkqaxyol.
 
 Sumber Kode Sandi Caesar
 
-Berikut adalah sumber kode program Sandi Caesar. Setelah kamu mengetikkan kode ini, simpan sebagai sandi.py. Jjika kamu mendapatkan error setelah mengetikkannya, coba bandingkan dengan kode dari buku ini dengan perangkat online di http://invpy.com/diff/sandi.
+Berikut adalah sumber kode program Sandi Caesar. Setelah kamu mengetikkan kode ini, simpan sebagai sandi.py. Jjika kamu mendapatkan error setelah mengetikkannya, coba bandingkan dengan kode dari buku ini dengan perangkat online di http://invpy.com/id/diff/sandi.
 
 sandi.py
  1. # Sandi Caesar
- 2. 
+ 2.
  3. MAX_KEY_SIZE = 26
- 4. 
+ 4.
  5. def getMode():
  6.     while True:
  7.         print('Apa kamu ingin mengenkripsi atau mendekripsi suatu pesan?')
@@ -139,11 +139,11 @@ sandi.py
 10.             return mode
 11.         else:
 12.             print('Masukkan "enkripsi" atau "e" atau "dekripsi" atau "d".')
-13. 
+13.
 14. def getMessage():
 15.     print('Masukkan pesanmu:')
 16.     return input()
-17. 
+17.
 18. def getKey():
 19.     key = 0
 20.     while True:
@@ -151,17 +151,17 @@ sandi.py
 22.         key = int(input())
 23.         if (key >= 1 and key <= MAX_KEY_SIZE):
 24.             return key
-25. 
+25.
 26. def getTranslatedMessage(mode, message, key):
 27.     if mode[0] == 'd':
 28.         key = -key
 29.     translated = ''
-30. 
+30.
 31.     for symbol in message:
 32.         if symbol.isalpha():
 33.             num = ord(symbol)
 34.             num += key
-35. 
+35.
 36.             if symbol.isupper():
 37.                 if num > ord('Z'):
 38.                     num -= 26
@@ -172,16 +172,16 @@ sandi.py
 43.                     num -= 26
 44.                 elif num < ord('a'):
 45.                     num += 26
-46. 
+46.
 47.             translated += chr(num)
 48.         else:
 49.             translated += symbol
 50.     return translated
-51. 
+51.
 52. mode = getMode()
 53. message = getMessage()
 54. key = getKey()
-55. 
+55.
 56. print('Pesan hasil pergeserannya adalah:')
 57. print(getTranslatedMessage(mode, message, key))
 
@@ -190,7 +190,7 @@ Bagaimana Kode Bekerja
 Proses enkripsi dan dekripsi saling berkebalikan dan banyak menggunakan kode yang sama. Mari lihat bagaimana tiap baris bekerja.
 
  1. # Sandi Caesar
- 2. 
+ 2.
  3. MAX_KEY_SIZE = 26
 
 Baris pertama adalah komentar. MAX_KEY_SIZE adalah variabel yang menyimpan bilangan bulat 26. Variabel ini akan mengingatkanmu bahwa kunci yang digunakan sandi harus antara 1 dan 26.
@@ -208,7 +208,7 @@ Memilih antara Enkripsi atau Dekripsi
 
 fungsi getMode() akan membiarkan pengguna mengetikkan mode enkripsi atau dekripsi untuk program. Nilai yang dikembalikan input() dan lower() disimpan dalam variabel mode. Kondisi pernyataan if mengecek apakah string yang disimpan dalam mode ada dalam list yang dikembalikan 'enkripsi e dekripsi d'.split().
 list itu adalah ['enkripsi', 'e', 'dekripsi', 'd'], tetapi lebih mudah bagi programmer untuk menulis 'enkripsi e dekripsi d'.split() karena tidak harus menulis semua tanda kutip dan koma. Gunakanlah cara yang termudah untukmu; keduanya menghasilkan nilai list yang sama.
-Fungsi ini akan mengembalikan nilai mode jika mode sama dengan 'enkripsi', 'e', 'dekripsi', atau 'd'.  
+Fungsi ini akan mengembalikan nilai mode jika mode sama dengan 'enkripsi', 'e', 'dekripsi', atau 'd'.
 
 Mengambil Pesan dari Pemain
 
@@ -245,7 +245,7 @@ getTranslatedMessage() melakukan enkripsi atau dekripsi. Fungsi ini punya tiga p
 •   key, yaitu kunci yang digunakan sandi.
 
 Baris 27 mengecek apakah huruf pertama dalam variabel mode sama dengan string 'd'. Jika ya, maka program akan dalam mode dekripsi. Satu perbedaan antara mode enkripsi dan dekripsi adalah bahwa dalam mode dekripsi kunci sama dengan nilai negatifnya. Jika kunci sama dengan 22, maka mode dekripsi mengeset kunci sama dengan -22. Alasannya akan dijelaskan kemudian.
-Variabel translated adalah string yang menyimpan hasilnya, yaitu tekssandi (mode enkripsi) atau teksdasar (mode dekripsi). Awalnya akan berisi string kosong dan selama proses penyandian karakter-karakter akan diserangkaikan padanya. 
+Variabel translated adalah string yang menyimpan hasilnya, yaitu tekssandi (mode enkripsi) atau teksdasar (mode dekripsi). Awalnya akan berisi string kosong dan selama proses penyandian karakter-karakter akan diserangkaikan padanya.
 
 Method string isalpha()
 
@@ -335,7 +335,7 @@ Awal Program
 52. mode = getMode()
 53. message = getMessage()
 54. key = getKey()
-55. 
+55.
 56. print('Pesan hasil pergeserannya adalah:')
 
 Program dimulai dengan memanggil ketiga fungsi yang didefinisikan sebelumnya untuk mendapatkan mode, message, dan key dari pengguna. Ketika variabel ini dilemparkan ke fungsi getTranslatedMessage() yang kembaliannya (string translated) akan dicetak pada layar.
@@ -345,7 +345,7 @@ Brute Force
 Itulah keseluruhan Sandi Caesar. Mungkin, sandi ini akan tidak dimengerti oleh orang yang tidak tahu kriptografi, tetapi sandi ini tidak akan tetap rahasia di tangan seseorang yang tahu kritanalisi. Sementara kriptografi adalah ilum untuk membuat kode rahasia, kritanalisi adalah ilmu untuk memecahkan kode rahasia.
 
 Apa kamu ingin mengenkripsi atau mendekripsi suatu pesan?
-e 
+e
 Masukkan pesanmu:
 Ada 10 tipe orang di bumi. Mereka yang tahu biner dan yang tidak.
 Masukkan bilangan kunci (1-26)

@@ -1,1 +1,148 @@
-[[JUST A PLACEHOLDER, WORK IN PROGRESS]]
+	Kapitel 7
+	DEN DEBUGGER BENUTZEN
+
+In diesem Kapitel behandelte Themen:
+
+•   3 unterschiedliche Fehlertypen
+•   Der IDLE-Debugger
+•   [Stepping: Into, Over und Out]
+•   Go und Quit
+•   Breakpoints
+
+Bugs!
+
+"Zu zwei Gelegenheiten wurde ich gefragt: 'Sagen Sie, Mr. Babbage, wenn Sie der Maschine die falschen Zahlen füttern, spuckt sie dann die richtige Antwort aus?' Ich bin nicht in der Lage, die Verwirrung zu begreifen, die so eine Frage verursacht."
+-Charles Babbage, Begründer des Konzepts des programmierbaren Computers im 19. Jahrhundert
+
+Wenn du einen falschen Befehl eingibst, gibt dir der Computer nicht das richtige Programm aus. Ein Computerprogramm tut immer, was du ihm befiehlst, aber was das Programm tut ist nicht unbedingt was du wolltest. Computerprogramme können Fehler haben. Bugs treten dann auf, wenn der Programmierer nicht vorsichtig darüber nachgedacht hat, was das Programm genau macht. Es gibt drei Fehlertypen, die in deinem Programm auftreten können:
+
+•   Syntaxfehler sind ein Fehlertyp, der durch Rechtschreibfehler entsteht. Wenn der [Python-Interpreter] einen Syntaxfehler sieht, liegt es daran, dass dein Code nicht in der korrekten Python-Sprache geschrieben ist. Ein einziger Syntaxfehler genügt, um zu verhindern, dass ein Python-Programm ausgeführt wird.
+•   [Laufzeitfehler] sind Bugs die auftreten, während das Programm läuft. Das Programm läuft bis zu der Zeile im Code, die den Fehler enthält, und beendet sich dann mit einer Fehlermeldung (das nennt man einen Absturz). Der Python-Interpreter zeigt eine Ablaufmeldung mit der Zeile an, in der das Problem auftritt.
+•   Semantische Fehler sind am schwierigsten zu beheben. Diese Bugs lassen ein Programm nicht abstürzen, aber es tut trotzdem nicht, was der Programmierer will. Wenn ein Programmierer zum Beispiel will, dass die Variable total die Summe der Werte der Variablen a, b und c enthält, aber in den code total = a * b * c schreibt, ist der Wert in total falsch. Das könnte später das Programm zum Absturz bringen, aber es ist nicht sofort offensichtlich, wo der semantische But auftritt.
+
+Bugs in einem Programm zu finden kann schwierig sein, wenn man sie überhaupt bemerkt! Wenn du dein Programm laufen lässt, fällt dir vielleicht auf, dass Funktionen nicht aufgerufen werden, wenn sie sollten, oder vielleicht werden sie zu oft aufgerufen. Du könntest die Bedingung eines while-Loops falsch schreiben, so dass der Loop die falsche Anzahl von Durchläufen macht. (Ein Loop in einem Programm, der nie zu Ende geht, wird auch "infinite loop" oder unendlicher Loop genannt. Um so ein Programm zu beenden, kannst du in der interaktiven Shell Strg+C drücken.) Das sind alles Fehler, die in deinem Code auftreten können, wenn du nicht aufpasst.
+
+Geh einfach mal in die interaktive Shell und programmiere einen undendlichen Loop, indem du diesen Code eingibst (du musst zweimal EINGABE drücken, damit die Shell weiß, dass du mit der Eingabe im while-Block fertig bist):
+
+>>> while True:
+...		print('Drücke Strg-C, um diesen unendlichen Loop abzubrechen!!!')
+...
+
+Halte jetzt die Strg-Taste gedrückt und drücke C, um das Programm anzuhalten. Die interaktive Shell wird jetzt so aussehen:
+
+Drücke Strg-C, um diesen unendlichen Loop abzubrechen!!!
+Drücke Strg-C, um diesen unendlichen Loop abzubrechen!!!
+Drücke Strg-C, um diesen unendlichen Loop abzubrechen!!!
+Drücke Strg-C, um diesen unendlichen Loop abzubrechen!!!
+Drücke Strg-C, um diesen unendlichen Loop abzubrechen!!!
+Traceback (most recent call last):
+	File "<pyshell#1>", line 1, in <module>
+		while True: print('Drücke Strg-C, um diesen unendlichen Loop abzubrechen!!!')
+KeyboardInterrupt
+
+Der Debugger
+
+Es kann schwierig sein, herauszufinden, wie dein Code einen Bug verursachen könnte. Die Programmzeilen werden sehr schnell abgearbeitet und die Werte in den Variablen verändern sich oft. Ein Debugger ist ein Programm, der dir hilft, deinen Code Zeile für Zeile in der gleichen Reihenfolge durchzugehen (auch Stepping genannt), in der Python sie ausführt. Der Debugger zeigt dir auch, welche Werte bei welchem Schritt in welchen Variablen gespeichert sind.
+
+Den Debugger starten
+
+Öffne das [Dragon Realm]-Spiel, das du im letzten Kapitel geschrieben hast, in IDLE. Nachdem du die [dragon.py]-Datei geöffnet hast, klicke im Debug-Menü auf Debugger, um das Debug-Kontrollfenster aufzurufen (Abbildung 7-1).
+
+Abbildung 7-1: Das Debug-Kontrollfenster.
+
+Abbildung 7-2: Das [Dragon Realm]-Spiel im Debugger laufen lassen.
+
+Wenn du das [Dragon Realm]-Spiel jetzt mit F5 startest, aktiviert sich der IDLE-Debugger. Das nennt man ein Programm "im Debugger" laufen lassen. Klicke die [Source-] und [Globals-]-Kontrollkästchen im Debug-Kontrollfenster an.
+
+Wenn du Python-Programme im Debugger laufen lässt, stoppt das Programm, bevor es die erste Anweisung ausführt. Wenn du auf die Fensterleiste des [Dateieditors]klickst (und im Debug-Kontrollfenster die [Source-] und [Globals-]-Kontrollkästchen aktiviert hast), ist die erste Anweisung grau hinterlegt. Das Debug-Kontrollfenster zeigt, dass die Ausführung auf Zeile 1 steht, die in diesem Fall random importiert.
+
+Stepping
+
+Der Debugger erlaubt es dir, eine Anweisung nach der anderen auszuführen. Das wird Stepping genannt. Klicke auf den [Step]-Button, um eine einzelne Anweisung auszuführen. Python führt jetzt die Anweisung aus, random zu importieren, und hält dann wieder an, bevor die nächste Anweisung ausgeführt wird. Das Debug-Kontrollfenster zeigt jetzt, dass die Ausführung auf Zeile 2 steht, in der time importiert wird. Klicke auf den [Quit]-Button, um das Programm für den Augenblick zu beenden.
+
+Hier ist eine Zusammenfassung dessen, was passiert, wenn du auf den [Step]-Button klickst, während das [Dragon Realm]-Spiel im Debugger läuft. Drücke F5, um [Dragon Realm] neu zu starten und befolge diese Anweisungen:
+
+1.	Klicke den [Step]-Button zweimal, um die beiden import-Zeilen auszuführen.
+2.	Klicke den [Step]-Button dreimal, um die drei def-Statements auszuführen.
+3. 	Klicke den [Step]-Button nochmal, um die playAgain-Variable zu definieren.
+4.	Klicke [Go], um den Rest des Programms auszuführen, oder klicke [Quit], um das Programm zu beenden.
+
+Das Debug-Kontrollfenster zeigt dir, welche Zeile gleich ausgeführt wird, wenn du den [Step]-Button im Debug-Kontrollfenster klickst. Der Debugger hat Zeile 3 übersprungen, weil sie leer ist. Beachte, dass du im Debugger nur vorwärts gehen kannst, du kannst nicht zurück gehen.
+
+Globals-Bereich
+
+Der Globals-Bereich im Debug-Kontrollfenster zeigt alle globalen Variablen an. Wie du dich bestimmt erinnerst, sind globale Variablen jene Variablen, die außerhalb von Funktionen definiert werden (also im globalen Geltungsbereich[Scope]).
+
+Wenn die drei def-Statements ausgeführt werden, tauchen sie im Globals-Bereich des Debug-Kontrollfenster auf.
+
+Der Text neben den Funktionsnamen im Globals-Bereich wird etwa so aussehen: "<function checkCave at 0x012859B0>". Neben den Modulnamen steht ebenfalls verwirrend aussehender Text wie "<module 'random' from 'C:\\Python31\\lib\\random.pyc'>". Du musst nicht wissen, was das heißt, um deine Programme zu debuggen. Aber zu sehen, dass die Funktionen und Module dort im Globals-Bereich aufgeführt werden, sagt dir, ob die Funktion definiert oder das Modul importiert wurde.
+
+Die Zeilen mit __builtins__, __doc__ und __name__ im Globals-Bereich kannst du ebenfalls ignorieren. (Das sind Variablen, die in jedem Python-Programm enthalten sind.)
+
+Wenn die [playAgain]-Variable definiert wird, erscheint sie im Globals-Bereich. Neben dem Variablennamen steht dann der [String] 'yes'. Der Debugger zeigt dir die Werte aller Variablen im Programm, während es läuft. Das ist nützlich, um Bugs zu beheben.
+
+Locals-Bereich
+
+Über dem Globals-Bereich gibt es auch den Locals-Bereich, der dir die Variablen im lokalen Geltungsbereich sowie ihre Werte anzeigt. Der Locals-Bereich enthält nur dann Variablen, wenn das Programm sie in einer Funktion ausführt. Wenn die Ausführung im globalen Geltungsbereich läuft, ist dieser Bereich leer.
+
+Die [Go]- und [Quit]-Buttons
+
+Wenn du es satt hast, immer wieder den [Step]-Button zu klicken und einfach willst, dass das Programm normal ausgeführt wird, kannst du den [Go]-Button oben im Debug-Fenster klicken. Das sagt dem Programm, dass es normal und nicht im [Stepping]-Modus laufen soll.
+
+Um das Programm ganz zu beenden, kannst du einfach den [Quit]-Button oben im Debug-Fenster klicken. Das beendet das Programm sofort. Das kann hilfreich sein, wenn du das Programm wieder von Beginn an debuggen musst.
+
+[Stepping Into, Over und Out] [Hineinschalten, Hinüberschalten und Herausschalten?]
+
+Starte das [Dragon-Realm]-Spiel im Debugger. Klicke dich mit dem [Step]-Button durch das Programm, bis du Zeile 38 erreichst. Wie du in Abbildung 7-3 siehst, ist das die Zeile mit displayIntro(). Wenn du wieder auf [Step] klickst, springt der Debugger in diesen Funktionsaufruf und erscheint auf Zeile 5, der ersten Zeile der displayIntro()-Funktion. Die Art von Stepping, die du gemacht hast, nennt sich "Stepping into". Das ist nicht das gleiche wie "Stepping over", das unten erklärt wird.
+
+Abbildung 7-3: "Steppe" weiter, bis du Zeile 38 erreichst.
+
+Wenn der Debugger auf Zeile 5 steht und du noch einmal auf den [Step]-Button klickst, [stept]/[schaltest] du in die print()-Funktion hinein. Die print()-Funktion ist eine in Python enthaltene Funktion, es ist also nicht sinnvoll, mit dem Debugger [darüberzuschalten]. In Python enthaltene Funktionen wie print(), input(), str() oder random.randint() wurden bereits sorgfältig auf Fehler überprüft. Du kannst davon ausgehen, dass sie in deinem Programm keine Fehler verursachen.
+
+Du solltest also keine Zeit darauf verwenden, die interne Logik der print()-Funktion durchzuschalten. Anstatt auf [Step] zu klicken und dich durch den Code der print()-Funktion zu schalten, kannst du in diesem Fall auf [Over] klicken. Das schaltet über den Code der print()-Funktion hinaus. Der Code in der print()-Funktion wird mit normaler Geschwindigkeit ausgeführt, und der Debugger pausiert wieder, wenn die Ausführung von print() abgeschlossen ist.
+
+[Hinüberschalten] ist eine praktische Art, das Durchschalten von Code in einer Funktion zu umgehen. Der Debugger pausiert jetzt auf Zeile 40, caveNumber = chooseCave().
+
+Klicke nochmal auf [Step], um in die chooseCave()-Funktion [hineinzuschalten]. [Schalte weiter] durch den Code, bis du Zeile 15 erreicht hast: Den input()-Aufruf. Das Programm wartet jetzt auf eine Eingabe in der interaktiven [Konsole], genau so, als ob du das Programm normal ausführen würdest. Wenn du jetzt auf den [Step]-Button klickst, passiert nichts, weil das Programm auf eine Tastatureingabe wartet. 
+
+Wechsle ins Fenster mit der interaktiven Konsole und gib ein, welche Höhle du betreten willst. Der blinkende Cursor muss auf der untersten Zeile sein, bevor du eine Eingabe machen kannst. Sonst erscheint deine Eingabe nicht.
+
+Wenn du EINGABE drückst, fährt der Debugger mit dem Durchschalten durch die Codezeilen fort. Klicke den [Out]-Button im Kontrollfenster des Debuggers. Das nennt man [Herausschalten], weil es dem Debugger sagt, er soll so viele Zeilen wie nötig überspringen, bis die Ausführung der Funktion, in der er sich befindet, beendet ist. Ist das geschehen, fährt die Ausführung auf der Zeile nach dem Aufruf der Funktion fort.
+
+Wenn du zum Beispiel innerhalb der displayIntro()-Funktion in Zeile 6 [Out] klickst, schaltet der Debugger durch die Funktion, bis die Ausführung zur die Zeile nach dem Aufruf von displayIntro() zurückkehrt. Das [Herausschalten] kann es dir ersparen, wiederholt [Step] zu klicken, um aus einer Funktion herauszuspringen. 
+
+Wenn du dich nicht in einer Funktion befindest, führt ein Klick auf [Out] dazu, dass der Debugger die restlichen Zeilen des Programmcodes ausführt. Das ist das gleiche Verhalten wie bei einem Klick auf den [Go]-Button.
+
+Hier eine kurze Zusammenfassung dessen, was jeder dieser Buttons tut:
+
+•   [Go] - Führt den Rest des Codes normal aus, entweder bis zum Ende des Programms oder bis ein [Anhaltepunkt] erreicht wird. ([Anhaltepunkte] werden später besprochen.)
+•   [Step] - Schaltet eine Anweisung weiter. Wenn die Zeile einen Funktionsaufruf enthält, schaltet der Debugger in die Funktion hinein.
+•   [Over] - Schaltet eine Anweisung weiter. Wenn die Zeile einen Funktionsaufruf enthält, schaltet der Debugger nicht in die Funktion hinein, sondern überspringt ihn.
+•   [Out] - Schaltet durch Codezeilen, bis der Debugger die Funktion verlassen hat, in der [Out] geklickt wurde. Schaltet aus der Funktion heraus.
+•   [Quit] - Beendet das Programm sofort.
+
+Finde den Bug
+
+Der Debugger kann dir dabei helfen, die Ursache von Bugs in deinen Programmen zu ermitteln. Sehen wir uns als Beispiel ein kleines Programm mit einem Bug an. Das Programm generiert zufällig eine mathematische Addition, die der Nutzer lösen muss. Wechsle in das Fenster der interaktiven Konsole, klicke auf Datei, dann Neue Datei, um ein neues Dateieditorfenster zu öffnen. Tippe das unten aufgeführte Programm in diesem Fenster ab und speichere das Programm als buggy.py.
+
+buggy.py
+
+1. import random
+2. number1 = random.randint(1, 10)
+3. number2 = random.randint(1, 10)
+4. print('Wieviel ist ' + str(number1) + ' + ' + str(number2) + '?')
+5. answer = input()
+6. if answer == number1 + number2:
+7.     print('Richtig!')
+8. else:
+9.     print('Nein! Die Antwort ist ' + str(number1 + number2))
+
+Tippe das Programm so ab wie oben, auch wenn du bereits weißt, wo der Fehler liegt. Versuche dann, das Programm mit F5 auszufühen. Es ist eine simple arithmetische Frage, die zwei Zufallszahlen generiert, die du addieren musst. So könnte es aussehen, wenn du das Programm ausführst:
+
+Wieviel ist 5 + 1?
+6
+Nein! Die Antwort ist 6
+
+Das ist ein Bug! Das Programm stürzt zwar nicht ab, arbeitet aber auch nicht richtig. Das Programm sagt, die Antwort sei falsch, auch wenn du die richtige Zahl eingibst.
+
+Das Programm im Debugger auszuführen, hilft dir dabei, die Ursache des Bugs zu finden. 

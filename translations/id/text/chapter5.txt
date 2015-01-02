@@ -5,7 +5,7 @@ Cakupan topik dalam bab ini:
 
 •   Menggunakan argumen keyword end pada fungsi print()’s untuk melewati newline
 •   Karakter-karakter escape
-•   Penggunaan tanda kutip dan tanda kutip ganda pada string 
+•   Penggunaan tanda kutip dan tanda kutip ganda pada string
 
 Memanfaatkan print()
 
@@ -30,7 +30,7 @@ Ketikkan kode sumber berikut menggunakan file editor dan simpan sebagai file jok
 
 PERLU DIPERHATIKAN! Program-program dalam buku ini hanya dapat dijalankan di Python 3. Kamu dapat melihat versi Python yang kamu gunakan dengan melihat angka versi pada jendela IDLE. Jika kamu telah memiliki instalasi Python 2, kamu dapat memiliki instalasi Python 3 dalam satu komputer secara bersamaan. Silakan buka https://python.org/download untuk mengunduh Python 3.
 
-Jika kamu mendapatkan error setelah mengetikkan kode dalam kode sumber berikut, coba bandingkan dengan kode sumber pada buku melalui perangkat diff online di http://invpy.com/diff/jokes
+Jika kamu mendapatkan error setelah mengetikkan kode dalam kode sumber berikut, coba bandingkan dengan kode sumber pada buku melalui perangkat diff online di http://invpy.com/id/diff/jokes
 
 jokes.py
 
@@ -51,7 +51,7 @@ jokes.py
 15. print('Interrupting cow wh', end='')
 16. print('-MOO!')
 
-Jangan khawatir jika kamu tidak mengerti seluruh kode di atas. Simpan dan jalankan program. Ingat, jika program kamu memiliki bug, kamu dapat menggunakan perangkat diff online di http://invpy.com/diff/jokes
+Jangan khawatir jika kamu tidak mengerti seluruh kode di atas. Simpan dan jalankan program. Ingat, jika program kamu memiliki bug, kamu dapat menggunakan perangkat diff online di http://invpy.com/id/diff/jokes
 
 Alur Kerja Kode
 
@@ -147,7 +147,7 @@ Argumen Keyword end
 
 Apakah kamu memperhatikan parameter kedua pada pemanggilan fungsi print() di baris 15? Biasanya, print() menambahkan karakter newline di akhir string yang dicetak. Inilah penyebab pemanggilan print() kosong akan mencetak sebuah newline. Namun fungsi print() bisa diberikan parameter kedua, yaitu "end".
 
-String kosong yang dimasukkan disebut sebagai argumen keyword. Parameter end memiliki nama parameter. Untuk memasukkan sebuah argumen kepada suatu parameter, kita butuh menggunakan sintaks end=. 
+String kosong yang dimasukkan disebut sebagai argumen keyword. Parameter end memiliki nama parameter. Untuk memasukkan sebuah argumen kepada suatu parameter, kita butuh menggunakan sintaks end=.
 
 Dengan memasukkan string kosong sebagai nilai argumen end, fungsi print() tidak akan menambahkan karakter newline di akhir string. Inilah penyebab string '-MOO!' muncul di sebelah baris keluaran string sebelumnya. Ketika mencetak 'Interrupting cow wh', di akhir string tidak ada karakter newline.
 

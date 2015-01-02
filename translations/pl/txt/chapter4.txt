@@ -51,41 +51,41 @@ Oto kod źródłowy gry “Zgadnij liczbę”. Podczas wpisywanie tego kody w ed
 
 WAŻNA UWAGA! Programy z tej książki da sie uruchomić tylko w Pythonie 3, a nie w Pythonie 2. Gdy pojawi sie okno IDLE, to na górze pojawi sie tekst “Python 3.4.0”, lub podobnie. Jeśli masz zainstalowanego Pythona 2, to możesz jednocześnie mieć Pythona 3. Aby pobrać Pythona 3, odwiedź https://python.org/download/.
 
-Poniższy kod możesz pobrać z http://invpy.com/guess.py. Jeśli uzyskasz jakiekolwiek błedy po wpisaniu kego kodu porównaj go z kodem z książki za pomocą narzędzia jakie znajdziesz na http://invpy.com/diff/guess.
+Poniższy kod możesz pobrać z http://invpy.com/pl/guess.py. Jeśli uzyskasz jakiekolwiek błedy po wpisaniu kego kodu porównaj go z kodem z książki za pomocą narzędzia jakie znajdziesz na http://invpy.com/pl/diff/guess.
 
 guess.py
 
  1. # To jest gra w zgadywanie liczby
  2. import random
- 3. 
+ 3.
  4. probyZgadniecia = 0
- 5. 
+ 5.
  6. print('Cześć! Jak masz na imię?')
  7. mojeImie = input()
- 8. 
+ 8.
  9. tajemnaLiczba = random.randint(1, 20)
 10. print('Dobrze ' + mojeImie + ', myślę sobie o liczbie między 1 i 20.')
-11. 
+11.
 12. while probyZgadniecia < 6:
 13.     print('Spróbuj ją zgadnąć.') # Na początku linii są cztery spacje.
 14.     podanaLiczba = input()
 15.     podanaLiczba = int(podanaLiczba)
-16. 
+16.
 17.     probyZgadniecia = probyZgadniecia + 1
-18. 
+18.
 19.     if podanaLiczba < tajemnaLiczba:
 20.         print('Podałeś za małą liczbę.') # Na początku linii jest osiem spacji.
-21. 
+21.
 22.     if podanaLiczba > tajemnaLiczba:
 23.         print('Podałeś zbyt dużą liczbę.')
-24. 
+24.
 25.     if podanaLiczba == tajemnaLiczba:
 26.         break
-27. 
+27.
 28. if podanaLiczba == tajemnaLiczba:
 29.     probyZgadniecia = str(probyZgadniecia)
 30.     print('Gratuluję ' + mojeImie + '! Zgadłeś moją liczbę w ' + probyZgadniecia + ' próbach!')
-31. 
+31.
 32. if podanaLiczba != tajemnaLiczba:
 33.     tajemnaLiczba = str(tajemnaLiczba)
 34.     print('Niestety. Numer o jakim myślałem to ' + tajemnaLiczba)
@@ -96,7 +96,7 @@ Dyrektywa import
 
 1. # To jest gra w zgadywanie liczby
 2. import random
- 
+
 Pierwsza linia to komentarz. Pamiętaj, że Python zignoruje wszystko po znaku #. Ten jest po to, by przypomnieć nam co robi program.
 
 Druga linia to dyrektywa import. Pamiętaj, że dyrektywy są instrukcjami które wykonują jakąś czynność, ale w odróżnieniu od wyrażeń nie są wyliczne do jakiejś wartości. Już widziałeś dyrektywy: dyrektywa podstawienia zachowuje wartość w zmiennej (ale dyrektywa sama w sobie nie jest wyliczana do żadnej wartości).
@@ -327,7 +327,7 @@ W liniach od 13 do 17 program prosi o odgadnięcie tajemniczej liczby i pozwala 
 13.    print('Spróbuj ją zgadnąć.') # Na początku linii są cztery spacje.
 14.    podanaLiczba = input()
 
-Zamiana napisów na liczby całkowte za pomocą funkcji int() 
+Zamiana napisów na liczby całkowte za pomocą funkcji int()
 
 15.     podanaLiczba = int(podanaLiczba)
 

@@ -38,66 +38,66 @@ Program Pygame juga tidak menggunakan fungsi input(). Tidak ada masukan dan kelu
 
 Kode Halo Dunia
 
-Ketikkan kode berikut dalam file editor, lalu simpan sebagai pygameHaloDunia.py. Jika kamu mendapat error setelah mengetikkan kode ini, bandingkan dengan kode dalam buku dengan menggunakan perangkat pembeda di http://invpy.com/diff/pygameHaloDunia.
+Ketikkan kode berikut dalam file editor, lalu simpan sebagai pygameHaloDunia.py. Jika kamu mendapat error setelah mengetikkan kode ini, bandingkan dengan kode dalam buku dengan menggunakan perangkat pembeda di http://invpy.com/id/diff/pygameHaloDunia.
 
 pygameHaloDunia.py
  1. import pygame, sys
  2. from pygame.locals import *
- 3. 
+ 3.
  4. # menyiapkan pygame
  5. pygame.init()
- 6. 
+ 6.
  7. # menyiapkan jendela keluaran
  8. windowSurface = pygame.display.set_mode((500, 400), 0, 32)
  9. pygame.display.set_caption('Halo Dunia!')
-10. 
+10.
 11. # menyiapkan warna yang dipakai
 12. BLACK = (0, 0, 0)
 13. WHITE = (255, 255, 255)
 14. RED = (255, 0, 0)
 15. GREEN = (0, 255, 0)
 16. BLUE = (0, 0, 255)
-17. 
+17.
 18. # menyiapkan font yang dipakai
 19. basicFont = pygame.font.SysFont(None, 48)
-20. 
+20.
 21. # menyiapkan teks
 22. text = basicFont.render('Halo Dunia!', True, WHITE, BLUE)
 23. textRect = text.get_rect()
 24. textRect.centerx = windowSurface.get_rect().centerx
 25. textRect.centery = windowSurface.get_rect().centery
-26. 
+26.
 27. # menggambar latar belakang putih pada surface
 28. windowSurface.fill(WHITE)
-29. 
+29.
 30. # menggambar segibanyak hijau pada surface
 31. pygame.draw.polygon(windowSurface, GREEN, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
-32. 
+32.
 33. # menggambar beberapa garis biru pada surface
 34. pygame.draw.line(windowSurface, BLUE, (60, 60), (120, 60), 4)
 35. pygame.draw.line(windowSurface, BLUE, (120, 60), (60, 120))
 36. pygame.draw.line(windowSurface, BLUE, (60, 120), (120, 120), 4)
-37. 
+37.
 38. # menggambar lingkaran biru pada surface
 39. pygame.draw.circle(windowSurface, BLUE, (300, 50), 20, 0)
-40. 
+40.
 41. # menggambar elips merah pada surface
 42. pygame.draw.ellipse(windowSurface, RED, (300, 250, 40, 80), 1)
-43. 
+43.
 44. # menggambar kotak latar belakang untuk teks pada surface
 45. pygame.draw.rect(windowSurface, RED, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
-46. 
+46.
 47. # ambil array pixel dari surface
 48. pixArray = pygame.PixelArray(windowSurface)
 49. pixArray[480][380] = BLACK
 50. del pixArray
-51. 
+51.
 52. # menggambar teks pada surface
 53. windowSurface.blit(text, textRect)
-54. 
+54.
 55. # menggambar jendela pada layar
 56. pygame.display.update()
-57. 
+57.
 58. # jalankan putaran game
 59. while True:
 60.     for event in pygame.event.get():
@@ -391,41 +391,41 @@ Animasi
 
 Dalam program ini kamu akan membuat beberapa blok yang mental ketika menyentuh sisi jendela. Blok-blok ini berukuran dan berwarna berbeda, serta hanya maju dalam arah diagonal. Untuk menganimasi blok (yaitu, membuatnya tampak sedang bergerak) kamu akan memindahkan blok beberapa pixel pada tiap iterasi dalam putaran game. Dengan menggambar blok baru yang berlokasi sedikit berbeda dari posisi sebelumnya, kamu akan melihat bahwa blok-blok itu maju dalam layar.
 Program Animasi
-Ketikkan program berikut dalam file editor dan simpan sebagai animasi.py. Jika kamu mendapatkan error setelah mengetikkannya, coba bandingkan dengan kode dari buku ini dengan perangkat pembeda online di http://invpy.com/diff/animasi.
+Ketikkan program berikut dalam file editor dan simpan sebagai animasi.py. Jika kamu mendapatkan error setelah mengetikkannya, coba bandingkan dengan kode dari buku ini dengan perangkat pembeda online di http://invpy.com/id/diff/animasi.
 
 animasi.py
  1. import pygame, sys, time
  2. from pygame.locals import *
- 3. 
+ 3.
  4. # menyiapkan pygame
  5. pygame.init()
- 6. 
+ 6.
  7. # menyiapkan jendela
  8. WINDOWWIDTH = 400
  9. WINDOWHEIGHT = 400
 10. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
 11. pygame.display.set_caption('Animasi')
-12. 
+12.
 13. # menyiapakan variabel arah
 14. DOWNLEFT = 1
 15. DOWNRIGHT = 3
 16. UPLEFT = 7
 17. UPRIGHT = 9
-18. 
+18.
 19. MOVESPEED = 4
-20. 
+20.
 21. # menyiapkan warna
 22. BLACK = (0, 0, 0)
 23. RED = (255, 0, 0)
 24. GREEN = (0, 255, 0)
 25. BLUE = (0, 0, 255)
-26. 
+26.
 27. # menyiapkan struktur data blok
 28. b1 = {'rect':pygame.Rect(300, 80, 50, 100), 'color':RED, 'dir':UPRIGHT}
 29. b2 = {'rect':pygame.Rect(200, 200, 20, 20), 'color':GREEN, 'dir':UPLEFT}
 30. b3 = {'rect':pygame.Rect(100, 150, 60, 60), 'color':BLUE, 'dir':DOWNLEFT}
 31. blocks = [b1, b2, b3]
-32. 
+32.
 33. # mulai putaran game
 34. while True:
 35.     # cek peristiwa QUIT
@@ -433,10 +433,10 @@ animasi.py
 37.         if event.type == QUIT:
 38.             pygame.quit()
 39.             sys.exit()
-40. 
+40.
 41.     # gambar latar belakang hitam pada surface
 42.     windowSurface.fill(BLACK)
-43. 
+43.
 44.     for b in blocks:
 45.         # pindahkan struktur data blok
 46.         if b['dir'] == DOWNLEFT:
@@ -451,7 +451,7 @@ animasi.py
 55.         if b['dir'] == UPRIGHT:
 56.             b['rect'].left += MOVESPEED
 57.             b['rect'].top -= MOVESPEED
-58. 
+58.
 59.         # cek apakah blok sudah pindah keluar jendela
 60.         if b['rect'].top < 0:
 61.             # blok sudah pindah melewati bagian atas
@@ -477,10 +477,10 @@ animasi.py
 81.                 b['dir'] = DOWNLEFT
 82.             if b['dir'] == UPRIGHT:
 83.                 b['dir'] = UPLEFT
-84. 
+84.
 85.         # gambar blok ke dalam surface
 86.         pygame.draw.rect(windowSurface, b['color'], b['rect'])
-87. 
+87.
 88.     # gambar jendela ke layar
 89.     pygame.display.update()
 90.     time.sleep(0.02)
@@ -505,10 +505,10 @@ Membuat dan Menyiapakan Pygame
 
  1. import pygame, sys, time
  2. from pygame.locals import *
- 3. 
+ 3.
  4. # menyiapkan pygame
  5. pygame.init()
- 6. 
+ 6.
  7. # menyiapkan jendela
  8. WINDOWWIDTH = 400
  9. WINDOWHEIGHT = 400

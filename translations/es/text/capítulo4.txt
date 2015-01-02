@@ -1,12 +1,10 @@
     Capítulo 4
-
     ADIVINA EL NÚMERO
 
 Temas Tratados En Este Capítulo:
 
 •   Sentencias import
 •   Módulos
-•   Argumentos
 •   Sentencias while
 •   Condiciones
 •   Bloques
@@ -15,14 +13,12 @@ Temas Tratados En Este Capítulo:
 •   La diferencia entre = y ==
 •   Sentencias if
 •   La palabra reservada break
-•   Las funciones int() y str()
+•   Las funciones str(), int() y float()
 •   La función random.randint()
 
-El Juego “Adivina el Número”
+En este capítulo crearás el juego “Adivina el Número”. La computadora pensará un número aleatorio entre 1 y 20, y te pedirá que intentes adivinarlo. La computadora te dirá si cada intento es muy alto o muy bajo. Tú ganas si adivinas el número en seis intentos o menos.
 
-En este capítulo crearás el juego de  “Adivina el Número”. La computadora pensará un número aleatorio entre 1 y 20, y te pedirá que intentes adivinarlo. La computadora te dirá si cada intento es muy alto o muy bajo. Tú ganas si adivinas el número en seis intentos o menos.
-
-Este es un buen juego para codificar ya que usa números aleatorios y bucles, y recibe entradas del usuario en un programa relativamente corto. Aprenderás cómo convertir valores a diferentes tipos de datos (y por qué esto es necesario). Dado que este programa es un juego, nos referiremos al usuario como el jugador, pero “usuario” también sería correcto.
+Este es un buen juego para codificar ya que usa números aleatorios y bucles, y recibe entradas del usuario en un programa corto. Aprenderás cómo convertir valores a diferentes tipos de datos, y por qué es necesario hacer esto. Dado que este programa es un juego, nos referiremos al usuario como el jugador. Pero llamarlo “usuario” también sería correcto.
 
 Muestra de ejecución de “Adivina el Número”
 
@@ -41,15 +37,13 @@ Intenta adivinar.
 4
 ¡Buen trabajo, Albert! ¡Has adivinado mi número en 3 intentos!
 
-Escribe este código exactamente como aparece aquí, y guárdalo haciendo clic en Archivo ► Guardar Como. Usa como nombre de archivo adivinaElNúmero.py. Luego pulsa F5 para ejecutar el programa. No te preocupes si no entiendes el código todavía, lo explicaré paso a paso.
-
 Código Fuente de Adivina el Número
 
-Este es el código fuente del juego “Adivina el Número”. Cuando escribas este código en el editor de archivos, asegúrate de prestar atención a los espacios delante de algunas líneas. Algunas líneas tienen cuatro u ocho espacios de indentación.
+Abre una nueva ventana del editor de archivos haciendo clic en Archivo ► Nueva ventana. En la ventana vacía que aparece, escribe el código fuente y guárdalo como adivinaElNúmero.py. Luego ejecuta el programa pulsando F5. Cuando escribas este código en el editor de archivos, asegúrate de prestar atención a la cantidad de espacios delante de algunas de las líneas. Algunas líneas están indentadas por cuatro u ocho espacios.
 
-¡NOTA IMPORTANTE! Los programas de este libro sólo podrán ejecutarse sobre Python 3, no Python 2. Al iniciar la ventana IDLE, dirá algo como “Python 3.4.0” en la parte superior. Si tienes Python 2 instalado, es posible instalar también Python 3 a la vez. Para descargar Python 3, dirígete a https://python.org/download/.
+¡NOTA IMPORTANTE! Los programas de este libro sólo podrán ejecutarse sobre Python 3, no Python 2. Al iniciar la ventana IDLE, dirá algo como “Python 3.4.2” en la parte superior. Si tienes Python 2 instalado, es posible instalar también Python 3 a la vez. Para descargar Python 3, dirígete a https://python.org/download/.
 
-Puedes descargar este código de http://invpy.com/es/adivinaElNúmero.py. Si obtienes errores luego de copiar este código, compáralo con el código del libro usando la herramienta diff online en http://invpy.com/diff/guess.
+Si obtienes errores luego de copiar este código, compáralo con el código del libro usando la herramienta diff online en http://invpy.com/diff/adivinaElNúmero.
 
 adivinaElNúmero.py
 
@@ -88,24 +82,22 @@ adivinaElNúmero.py
 33.     número = str(número)
 34.     print('Pues no. El número que estaba pensando era ' + número)
 
-Echa un vistazo a cada línea de código para entender cómo funciona el programa.
-
-La sentencia import
+Sentencias import
 
 1. # Este es el juego de adivinar el número.
 2. import random
 
 La primera línea es un comentario. Recuerda que Python ignorará todo lo que esté precedido por el signo #. Esto sólo nos indica qué es lo que hace el programa.
 
-La segunda línea es una sentencia import. Recuerda, las sentencias son instrucciones que realizan alguna acción, pero no son evaluadas a un valor como las expresiones. Ya has visto sentencias antes: las sentencias de asignación almacenan un valor dentro de una variable (pero la sentencia en sí misma no es evaluada a un valor).
+La segunda línea es una sentencia import. Recuerda, las sentencias son instrucciones que realizan alguna acción, pero no son evaluadas a un valor como las expresiones. Ya has visto sentencias antes: las sentencias de asignación almacenan un valor en una variable.
 
-Aunque Python incluye muchas funciones integradas, algunas funciones existen en programas separados llamados módulos. Los módulos son programas de Python que contienen funciones adicionales. Puedes usar esas funciones importando sus módulos en tu programa con una sentencia import.
+Aunque Python incluye muchas funciones integradas, algunas funciones existen en programas separados llamados módulos. Puedes usar estas funciones importando sus módulos en tu programa con una sentencia import.
 
-La sentencia import consiste en la palabra reservada import seguida por el nombre del módulo. La línea 2 importa el módulo llamado random. El módulo random contiene varias funciones relacionadas con números aleatorios. Una de esas funciones generará el número aleatorio para que el usuario adivine.
+La línea 2 importa el módulo llamado random de modo que el programa pueda llamar a random.randint(). Esta función generará un número aleatorio para que el usuario adivine.
 
 4. intentosRealizados = 0
 
-Esta línea crea una nueva variable llamada intentosRealizados. Guardaremos en esta variable el número de veces que el jugador ha intentado adivinar el número. Ya que el jugador aún no ha realizado ningún intento, guardaremos aquí el entero 0.
+La línea 4 crea una nueva variable llamada intentosRealizados. Guardaremos en esta variable el número de veces que el jugador ha intentado adivinar el número. Ya que el jugador no ha realizado ningún intento a esta altura del programa, guardaremos aquí el entero 0.
 
 6. print('¡Hola! ¿Cómo te llamas?')
 7. miNombre = input()
@@ -114,9 +106,9 @@ Las líneas 6 y 7 son iguales a las líneas en el programa Hola Mundo que viste 
 
 La línea 6 es una llamada a la función print(). Recuerda que una función es como un mini-programa dentro de tu programa. Cuando tu programa llama a una función, ejecuta este mini-programa. El código dentro de la función print() muestra en la pantalla la cadena que ha recibido como argumento.
 
-La línea 7 permite al usuario escribir su nombre y lo almacena en la variable miNombre. (Recuerda, la cadena podría no ser realmente el nombre del jugador. Es simplemente cualquier cadena que el jugador haya introducido. Las computadoras son tontas, y sólo siguen sus programas sin importarles nada más.)
+La línea 7 permite al usuario escribir su nombre y lo almacena en la variable miNombre. (Recuerda, la cadena podría no ser realmente el nombre del jugador. Es simplemente cualquier cadena que el jugador haya introducido. Las computadoras son tontas, y sólo siguen sus instrucciones sin importarles nada más.)
 
-La función random.randint()
+La Función random.randint()
 
 9. número = random.randint(1, 20)
 
@@ -124,9 +116,9 @@ La línea 9 llama a una nueva función denominada randint() y guarda el valor qu
 
 La función randint() es parte del módulo random, por lo que debes colocar random. delante de ella (¡no olvides colocar el punto!) para decirle a Python que la función randint() está en el módulo random.
 
-La función randint() devolverá un entero aleatorio en el intervalo comprendido (incluidos los bordes) entre los dos argumentos enteros que le pases. La línea 9 pasa 1 y 20 entre los paréntesis que siguen al nombre de la función (separados por una coma). El entero aleatorio devuelto por randint() es almacenado en una variable llamada número; este es el número secreto que el jugador intentará adivinar.
+La función randint() devolverá un entero aleatorio en el intervalo comprendido (incluidos los bordes) entre los dos argumentos enteros que le pases. La línea 9 pasa 1 y 20 separados por una coma y entre los paréntesis que siguen al nombre de la función. El entero aleatorio devuelto por randint() es almacenado en una variable llamada número; este es el número secreto que el jugador intentará adivinar.
 
-Sólo por un momento, vuelve a la consola interactiva y escribe import random para importar el módulo aleatorio. Luego escribe random.randint(1, 20) para ver a qué se evalúa la llamada a la función. Devolverá un entero entre 1 y 20. Repite el código nuevamente y la llamada a la función probablemente devolverá un entero diferente. La función randint() devuelve un entero aleatorio cada vez, de la misma forma en que tirando un dado obtendrías un número aleatorio cada vez.
+Sólo por un momento, vuelve a la consola interactiva y escribe import random para importar el módulo aleatorio. Luego escribe random.randint(1, 20) para ver a qué se evalúa la llamada a la función. Devolverá un entero entre 1 y 20. Repite el código nuevamente y la llamada a la función probablemente devolverá un entero diferente. La función randint() devuelve un entero aleatorio cada vez, de la misma forma en que tirando un dado obtendrías un número aleatorio cada vez:
 
 >>> import random
 >>> random.randint(1, 20)
@@ -140,9 +132,11 @@ Sólo por un momento, vuelve a la consola interactiva y escribe import random pa
 >>> random.randint(1, 20)
 7
 
-Usa la función randint() cuando quieras agregar aleatoriedad a tus juegos. Y vas a usar aleatoriedad en la mayoría de los juegos. Piensa que muchos juegos de mesa utilizan dados.
+Usa la función randint() cuando quieras agregar aleatoriedad a tus juegos. Y vas a usar aleatoriedad en muchos juegos. (Piensa en la cantidad de juegos de mesa que utilizan dados.)
 
-También puedes probar diferentes intervalos de números cambiando los argumentos. Por ejemplo, escribe random.randint(1, 4) para obtener sólo enteros entre 1 y 4 (incluyendo 1 y 4). O prueba random.randint(1000, 2000) para obtener enteros entre 1000 y 2000. Por ejemplo, escribe lo siguiente en la consola interactiva. Los resultados que obtienes cuando llamas a la función random.randint() serán seguramente diferentes (después de todo es aleatorio).
+También puedes probar diferentes intervalos de números cambiando los argumentos. Por ejemplo, escribe random.randint(1, 4) para obtener sólo enteros entre 1 y 4 (incluyendo 1 y 4). O prueba random.randint(1000, 2000) para obtener enteros entre 1000 y 2000. 
+
+Por ejemplo, escribe lo siguiente en la consola interactiva. Los resultados que obtienes cuando llamas a la función random.randint() serán seguramente diferentes (después de todo es aleatorio).
 
 >>> random.randint(1, 4)
 3
@@ -167,7 +161,7 @@ Recibiendo al Jugador
 
 En la línea 10 la función print() recibe al jugador llamándolo por su nombre, y le dice que la computadora está pensando un número aleatorio.
 
-Puede parecer que hay más de un argumento cadena en la línea 10, pero observa la línea con cuidado. El signo suma concatena las tres cadenas de modo que son evaluadas a una única cadena. Y esa única cadena es la que se pasa a la función print(). Si miras detenidamente, verás que las comas están dentro de las comillas, por lo que son parte de las cadenas y no un separador.
+Puede parecer que hay más de un argumento cadena en la línea 10, pero observa la línea con cuidado. El signo suma concatena las tres cadenas de modo que son evaluadas a una única cadena. Y esa única cadena es el argumento que se pasa a la función print(). Si miras detenidamente, verás que las comas están dentro de las comillas, por lo que son parte de las cadenas y no un separador.
 
 Bucles
 
@@ -179,27 +173,23 @@ Bloques
 
 Varias líneas de código pueden ser agrupadas en un bloque. Un bloque consiste en líneas de código que comparten mínima indentación posible. Puedes ver dónde comienza y termina un bloque de código mirando el número de espacios antes de las líneas. Esto se llama la indentación de la línea.
 
-Un bloque comienza cuando la indentación de una línea se incrementa (usualmente en cuatro espacios). Cualquier línea subsiguiente que también esté indentada por cuatro espacios es parte del bloque. El bloque termina cuando hay una línea de código con la misma indentación que antes de empezar el bloque. Esto significa que pueden existir bloques dentro de otros bloques.
-
-La Figura 4-1 es un diagrama de código con los bloques delineados y numerados. Los espacios son cuadrados negros para que sean más fáciles de contar.
-
-
-
-Figura 4-1: Bloques y su indentación. Los puntos negros representan espacios.
+Un bloque comienza cuando la indentación de una línea se incrementa (usualmente en cuatro espacios). Cualquier línea subsiguiente que también esté indentada por cuatro espacios es parte del bloque. El bloque termina cuando hay una línea de código con la misma indentación que antes de empezar el bloque. Esto significa que pueden existir bloques dentro de otros bloques. La Figura 4-1 es un diagrama de código con los bloques delineados y numerados. Los espacios son cuadrados negros para que sean más fáciles de contar.
 
 En la Figura 4-1, la línea 12 no tiene indentación y no se encuentra dentro de ningún bloque. La línea 13 tiene una indentación de cuatro espacios. Como esta indentación es mayor que la indentación de la línea anterior, ha comenzado un nuevo bloque. Este bloque tiene la etiqueta (1) en la Figura 4-1. Este bloque continuará hasta una línea sin espacios (la indentación original antes de que comenzara el bloque). Las líneas vacías son ignoradas.
 
-Line 20 has an indentation of eight spaces. Eight spaces is more than four spaces, which starts a new block. This block is labeled (2) in Figure 4-1. This block is inside of another block.
+La línea 20 tiene una indentación de ocho espacios. Ocho espacios es más que cuatro espacios, lo que comienza un nuevo bloque. Este bloque se señala con (2) en la Figura 4-1. Este bloque se encuentra dentro de otro bloque.
+
+Figura 4-1: Bloques y su indentación. Los puntos negros representan espacios.
 
 La línea 22 sólo tiene cuatro espacios. Al ver que la indentación se ha reducido, sabes que el bloque ha terminado. La línea 20 es la única línea del bloque. La línea 22 está en el mismo bloque que las otras líneas con cuatro espacios.
 
 La línea 23 incrementa la indentación a ocho espacios, de modo que otra vez comienza un nuevo bloque. Es el que tiene la etiqueta (3) en la Figura 4-1.
 
-Para recapitular, la línea 12 no están en ningún bloque. Las líneas 13 a 23 pertenecen al mismo bloque (marcado como bloque 1). La línea 20 está en un bloque dentro de un bloque (marcado como bloque 2). Y la línea 23 es la única línea en otro bloque dentro de un bloque (marcado como bloque 3).
+Para recapitular, la línea 12 no están en ningún bloque. Las líneas 13 a 23 pertenecen al mismo bloque (marcado como bloque 1). La línea 20 está en un bloque dentro de un bloque marcado con (2). Y la línea 23 es la única línea en otro bloque dentro de un bloque marcado con (3).
 
 El Tipo de Datos Booleano
 
-El tipo de datos Booleano tiene sólo dos valores: True o False. Estos valores deben escribirse con “T” y “F” mayúsculas. El resto del nombre del valor debe estar en minúscula. Usarás valores Booleanos (tambien llamados bools) con operadores de comparación para formar condiciones. (Las condiciones serán explicadas más adelante.)
+El tipo de datos Booleano tiene sólo dos valores: True o False. Estos valores deben escribirse con “T” y “F” mayúsculas. El resto del nombre del valor debe estar en minúscula. Usarás valores Booleanos (llamados bools por brevedad) con operadores de comparación para formar condiciones. (Las condiciones serán explicadas más adelante.)
 
 Los tipos de datos que han sido introducidos hasta ahora son enteros, floats, cadenas, y ahora bools.
 
