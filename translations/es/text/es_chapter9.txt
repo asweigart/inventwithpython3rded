@@ -360,7 +360,7 @@ The lower() and upper() String Methods
 
 Try entering 'Hello world!'.lower() into the interactive shell to see an example of this method:
 
->>> 'Hello world'.lower()
+>>> 'Hello world!'.lower()
 'hello world!'
 
 There is also an upper() method for strings, which returns a string with all the characters in uppercase. Try entering 'Hello world'.upper() into the interactive shell:
