@@ -1,5 +1,6 @@
 Python, odmieniamy: Pythona, Pythonem, Pythonie itd
 
+backslash, odwrócony ukośnik
 click, kliknij
 download, pobranie
 Evaluation, Obliczanie, wyliczanie
@@ -8,5 +9,6 @@ Figure, Rysunek
 file, plik
 run, uruchom
 shell, powłoka
+slash, ukośnik
 statement, dyrektywa
 string, napis
