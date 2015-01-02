@@ -95,76 +95,77 @@ dragon.py
 
 Jak ten kod działa
 
-Let’s look at the source code in more detail.
+Zerknijmy do kodu źródłowego po więcej szczegółów.
 
  1. import random
  2. import time
 
-This program imports two modules. The random module will provide the random.randint() function like it did in the “Guess the Number” game. You will also want time-related functions that the time module includes, so import that too.
+Ten program importuje dwa moduły. Moduł random dostarcza funkcję random.randint() tak jak robił to w grze “Zgadnij liczbę”. Będziesz także potrzebował funkcji związanych z czasem które są w module time, więc go także zaimportujemy.
 
-def Statements
+Dyrektywa def
 
  4. def displayIntro():
- 5.     print('You are in a land full of dragons. In front of you,')
- 6.     print('you see two caves. In one cave, the dragon is friendly')
- 7.     print('and will share his treasure with you. The other dragon')
- 8.     print('is greedy and hungry, and will eat you on sight.')
+ 5.     print('Jesteś w krainie pełnej smoków. Przed sobą widzisz')
+ 6.     print('dwie jasinie. W jednej mieszka przyjacielski smok,')
+ 7.     print('który podzieli sie z tobą skarbem. Drugi smok jest')
+ 8.     print('chciwy i głodny, i zje cię na miejscu.')
  9.     print()
 
-Line 4 is a def statement. The def statement creates, that is, defines, a new function that you can call later in the program. After you define this function, you can call it the same way you call other functions. When you call this function, the code inside the def-block executes.
-Rysunek 6-1 shows the parts of a def statement. It has the def keyword followed by a function name with parentheses and then a colon (the : sign). The block after the def statement is called the def-block.
+Linia 4 to dyrektywa def. Dyrektywa def tworzy, to znaczy definiuje nową funkcję którą będzie można wywołać później w programie. Gdy już zdefiniujesz funkcję, to możesz ją wywołać w taki sam sposób jak wywołujesz inne funkcje. Kiedy wywołujesz funkcję wykona się kod wewnątrz bloku def.
+Rysunek 6-1 pokazuje części dyrektywy def. Tworzy ją słowo kluczowe def, nastmępująca po nim nazwa funkcji, nawiasy i na końcu dwukropek (znak : ). Blok po dyrektywie def nazywamy blokiem def.
 
-Rysunek 6-1: Parts of a def statement.
+Rysunek 6-1: Części dyrektywy def.
 
-Remember, the def statement doesn’t execute the code. It only defines what code to execute when you call the function. When the execution reaches a def statement it skips down to the first line after the def-block.
-But when the displayIntro() function is called (such as on line 38), the execution moves inside of the displayIntro() function to the first line of the def-block.
+Pamiętaj że dyrektywa def nie wykonuje kodu. Ona tylko definiuje jaki kod wykonać jiedy wywołasz funkcję. Kiedy wykonanie dojdzie do dyrektywy def to omija to do pierwszej linii po bloku def.
+Ale kiedy funkcja displayIntro() zostanie wywołana (tak, jak w linii 38), wykonanie przenosi się do wnętrza funkcji displayIntro() function do pierwsze linii bloku def.
 
 38.     displayIntro()
 
-All of the print() calls are run and the “You are in a land full of dragons...” introduction is displayed.
+Wszystkie wywołanie print() są wykonywane i wyświetlany jest wstęp Jesteś w krainie pełnej smoków...”.
 
-Where to Put Function Definitions
+Gdzie wstawić definicję funkcji
 
-A function's def statement and the def-block must come before you call the function. This is like how you must assign a value to a variable before you use the variable. If you put the function call before the function definition, you’ll get an error. Look at this code:
+Dyrektywa def i blok def musi być wstawiony przed wywołaniem funkcji. To podobnie jak wymóg podstawienia wartości do zmiennej przed jej użyciem. Jeśli wstawisz wywołanie funkcji przed jej definicją, to otrzymasz błąd. Spójrz na ten kod:
 
 sayGoodbye()
 
 def sayGoodbye():
-    print('Goodbye!')
+    print('Żegnam!')
 
-If you try to run it, Python will give you an error message that looks like this:
+Jeśli spróbujesz go uruchomić to Python da komunikat o błędze, który będzie wyglądał jak tu:
 
 Traceback (most recent call last):
   File "C:\Python34\spam.py", line 1, in <module>
 sayGoodbye()
 NameError: name 'sayGoodbye' is not defined
+(BłądNazwy: nazwa 'sayGoodbye' nie jest zdefiniowana)
 
-To fix this, put the function definition before the function call:
+Aby to naprawic wstaw definicję funkcji przed jej wywołanie:
 
 def sayGoodbye():
-    print('Goodbye!')
+    print('Żegnam!')
 
 sayGoodbye()
 
-Defining the chooseCave() Function
+Definowanie funkcji chooseCave()
 
 11. def chooseCave():
 
-Here you are defining another function called chooseCave(). This function’s code asks the player which cave they want to go in, either 1 or 2.
+W tym miejscy definiujesz inna funkcję o nazwie chooseCave(). Ta funkcja pyta gracza o numer jaskini di której chce wejść, a ten numer to 1, lub 2.
 
 12.     cave = ''
 13.     while cave != '1' and cave != '2':
 
-This code needs to make sure the player typed 1 or 2, and not something else. A loop here will keep asking the player until they enter one of these two valid responses.
-Line 12 creates a new variable called cave and stores a blank string in it. Then a while loop begins on line 13. The condition contains a new operator you haven't seen before called and. Just like the - or * are mathematical operators, and == or != are comparison operators, the and operator is a Boolean operator.
+Ten kod upewnia się, że gracz wpisał 1, lub 2, a nie coś innego. Pętla w tym miejscu zapewnia odpytywanie gracza aż podan on jedną z tych poprawnych odpowiedzi.
+W linii 12 tworzona jest nowa zmienna o nazwie cave, do której zapisywany jest pusty napis. W linii 13 zaczyna się pętla. Warunek w pętli zawiera nowy operator, którego jeszcze nie widziałeś: and. Tak jak -, lub * są operatorami matematycznymi, a ==, lub != są operatorami porównania, to opertator and jest operatorem logicznym (ang. Boolean).
 
-Boolean Operators
+Boolowskie operatory logiczne
 
-Boolean logic deals with things that are either True or False. Boolean operators compare two Boolean values and evaluate to a single Boolean value. The and Boolean operator combines two Boolean values to produce a new Boolean value.
-Think of the sentence, “Cats have whiskers and dogs have tails.” “Cats have whiskers” is true and “dogs have tails” is also true, so the entire sentence “Cats have whiskers and dogs have tails” is true.
-But the sentence, “Cats have whiskers and dogs have wings” would be false. Even though “cats have whiskers” is true, dogs do not have wings, so “dogs have wings” is false. In Boolean logic, things can only be entirely true or entirely false. Because of the word “and”, the entire sentence is only true if both parts are true. If one or both parts are false, then the entire sentence is false.
+Logika boolowska opiera się na rzeczach które mają wartość Prawda (ang. True), lub Fałsz (ang. False). Operatory boolowskie porównują dwie artości boolowskie i wyliczają pojedynczą wartość boolowską. Operator boolowski and łączy dwie wartości boolowskie i tworzy nawą wartość boolowską.
+Pomyśl o zdaniu “Koty mają wąsy i psy mają ogony.” “Koty mają wąsy” jest prawdziwe i “psy mają ogony” jest także prawdziwe, więc całe zdanie “Koty mają wąsy i psy mają ogony.” jest prawdziwe.
+Ale zdanie “Koty mają wąsy i psy mają skrzydła” jest fałszywe. To, że “koty mają wąsy” jest prawdą, psy nie mają skrzydeł, więc “psy mają skrzydła” jest fałszem. W logice boolowskiej rzeczy mogą być tylko całkowicie prawdziwe, lub całkowicie fałszywe. Z powodu słowa “and” (polski łącznik "i"), całe zdanie jest prawdziwe tylko wtedy, gy obie części zdania są prawdziwe. Jesli choć jedna część jest fałszywa, to całe zdanie jest fałszywe.
 
-The and and or Operators
+Operatory and i or
 
 The and operator in Python is the same. If the Boolean values on both sides of the and keyword are True, then the expression with the and operator evaluates to True. If either of the Boolean values are False, or both of the Boolean values are False, then the expression evaluates to False.
 Try entering the following expressions with the and operator into the interactive shell:
