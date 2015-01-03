@@ -520,7 +520,9 @@ When called with one argument, range() will return a range object of integers fr
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 >>> list('Hello')
 ['H', 'e', 'l', 'l', 'o']
-The list() function is similar to the str() or int() functions. It just converts the object it is passed into a list. It’s easy to generate huge lists with the range() function. Try entering in list(range(10000)) into the interactive shell:
+
+The list() function is similar to the str() or int() functions. It takes the value it is passed and returns a list. It’s easy to generate huge lists with the range() function. Try entering in list(range(10000)) into the interactive shell:
+
 >>> list(range(10000))
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
       ...skipped for brevity...
@@ -535,7 +537,7 @@ If you pass two integer arguments to range(), the range object it returns is fro
 >>> list(range(10, 20))
 [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
-The range() is often used in for loops, which are much like the while loops you’ve already seen.
+The range() function is often used in for loops, which are much like the while loops you’ve already seen.
 
 for Loops
 
@@ -554,7 +556,7 @@ i is set to 2
 i is set to 3
 i is set to 4
 
-The range object returned by range(5) is equivalent to the list [0, 1, 2, 3, 4] in a for statement. The first time the execution goes through the code in for-block, the variable i will be set to 0. On the next iteration, i will be set to 1, and so on.
+The range object returned by range(5) is equivalent to the list [0, 1, 2, 3, 4] in a for statement. The first time the execution goes through the code in the for-block, the variable i will be set to 0. On the next iteration, i will be set to 1, and so on.
 
 The for statement automatically converts the range object returned by range() into a list, so there’s no need for list(range(5)) in the for statement. Just use range(5).
 
