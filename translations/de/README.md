@@ -33,4 +33,10 @@ Kapitel 1
 Kapitel 6
 ---------
 
-- 'spam' wurde nicht übersetzt. Meinung?
+- "spam" wurde nicht übersetzt. Meinung?
+
+Kapitel 9
+---------
+
+- ("spam" wurde nicht übersetzt.)
+- "range" (Kontext: range()) wurde nach "Wertebereich" übersetzt. Meinung?

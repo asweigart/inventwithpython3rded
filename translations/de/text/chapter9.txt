@@ -666,174 +666,276 @@ So the input to getRandomWord() is a list of strings, and the return value outpu
 zufallsWort() akzeptiert also eine Liste von Zeichenketten und gibt eine zufällig ausgewählte Zeichenkette aus dieser Liste zurück. Dies ist nützlich, um im Spiel Galgenmann ein geheimes, zu erratendes Wort für den Spieler auszuwählen.
 
 Displaying the Board to the Player
+Das Spielbrett anzeigen
 
 Next, you need a function to print the hangman board on the screen. It will also display how many letters the player has correctly (and incorrectly) guessed.
+Als Nächstes benötigen wir eine Funktion, um das Galgenmann-Spielbrett auf dem Bildschirm darzustellen. Es wird auch anzeigen, wieviele Buchstaben der Spieler richtig (bzw. falsch) geraten hat.
 
- 66. def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
- 67.     print(HANGMANPICS[len(missedLetters)])
+ 66. def zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort):
+ 67.     print(GALGENMANNBILDER[len(falscheBuchstaben)])
  68.     print()
 
 This code defines a new function named displayBoard(). This function has four parameters:
+Dieser Code definiert eine neue Funktion namens zeigeSpielbrettAn(). Diese Funktion erwartet vier Parameter:
 
 • HANGMANPICS - A list of multi-line strings that will display the board as ASCII art. (The global HANGMANPICS variable will be passed for this parameter.)
+• GALGENMANNBILDER - Eine Liste von mehrzeiligen Zeichenketten, die das Spielbrett als ASCII-Kunst enthalten. (Die globale Variable GALGENMANNBILDER wird als Argument an diesen Parameter übergeben werden.) 
 • missedLetters - A string of the letters the player has guessed that are not in the secret word.
+• falscheBuchstaben - Eine Zeichenkette bestehend aus vom Spieler geratenen Buchstaben, die nicht Teil des Geheimwortes sind.
 • correctLetters - A string of the letters the player has guessed that are in the secret word.
+• richtigeBuchstaben - Eine Zeichenkette bestehend aus vom Spieler geratenen Buchstaben, die Teil des Geheimwortes sind.
 • secretWord – A string of the secret word that the player is trying to guess.
+• geheimWort – Eine Zeichenkette, die das geheime Wort representiert, das der Spieler zu erraten versucht.
 
 The first print() function call will display the board. HANGMANPICS will be a list of strings for each possible board. HANGMANPICS[0] shows an empty gallows, HANGMANPICS[1] shows the head (when the player misses one letter), HANGMANPICS[2] shows a head and body (when the player misses two letters), and so on until HANGMANPICS[6] which shows the full hangman.
+Der erste print()-Aufruf zeigt das Spielbrett an. GALGENMANNBILDER ist eine Liste mit Zeichenketten für jedes mögliche Spielbrett. GALGENMANNBILDER[0] zeigt einen leeren Galgen, GALGENMANNBILDER[1] zeigt den Kopf (wenn der Spieler einen Buchstaben falsch rät), GALGENMANNBILDER[2] zeigt den Kopf und Körper (wenn der Spieler zwei Buchstaben falsch rät), und so weiter bis GALGENMANNBILDER[6] schließlich den kompletten Henker zeigt.
 
 The number of letters in missedLetters will reflect how many incorrect guesses the player has made. Call len(missedLetters) to find out this number. So, if missedLetters is 'aetr' then len('aetr') will return 4. Printing HANGMANPICS[4] will display the appropriate hangman board for 4 misses. This is what HANGMANPICS[len(missedLetters)] on line 67 evaluates to.
+Die Anzahl der Buchstaben in falscheBuchstaben ist gleich der Anzahl der falschen Rateversuche des Spielers. Ein Aufruf von len(falscheBuchstaben) verrät uns diese Zahl. D.h., falls falscheBuchstaben den Wert 'aetr' enthält, gibt len('aetr') 4 zurück. GALGENMANNBILDER[4] auf dem Bildschirm auszugeben, zeigt das Spielbrett für vier falsche Rateversuche an. Dies ist genau das, was GALGENMANNBILDER[len(falscheBuchstaben)] in Zeile 67 tut.
 
- 70.     print('Missed letters:', end=' ')
- 71.     for letter in missedLetters:
- 72.         print(letter, end=' ')
+ 70.     print('Falsche Buchstaben:', end=' ')
+ 71.     for buchstabe in falscheBuchstaben:
+ 72.         print(buchstabe, end=' ')
  73.     print()
 
 Line 70 prints the string 'Missed letters:' with a space character at the end instead of a newline. Remember that the keyword argument end=' ' uses only one = sign (like =), not two (like ==).
+Zeile 70 gibt die Zeichenkette 'Falsche Buchhstaben:' auf dem Bildschirm aus, mit einem Leerzeichen am Ende, anstatt einer neuen Zeile. Wir erinnern uns, dass das Schlüsselwort-Argument end=' ' nur ein Gleichheitszeichen (=) verwendet, nicht zwei (==).
 
 Line 71 is a new type of loop, called a for loop. A for loop often uses the range() function. Both are explained in the next two sections.
+Zeile 71 führt eine neue Art von Schleife ein, genannt for-Schleife. Eine for-Schleife benutzt die range()-Funktion. Beide Konstrukte werden in den nächsten zwei Abschnitten erklärt.
 
 The range() and list() Functions
+Die Funktionen range() und list()
 
 When called with one argument, range() will return a range object of integers from 0 up to (but not including) the argument. This range object can be converted to the more familiar list data type with the list() function. Try entering list(range(10)) into the interactive shell:
+Wird range() mit einem Argument aufgerufen, so gibt die Funktion ein Wertebereich-Objekt bestehend aus Ganzzahlen von 0 bis (ausschließlich) zum Argument. Dieses Wertebereich-Objekt kann mit Hilfe der list()-Funktion in den uns vertrauten Listen-Typen konvertiert werden. Probiere list(range(10)) in den interaktiven Kommandozeileninterpreter einzugeben:
 
 >>> list(range(10))
+>>> list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 >>> list('Hello')
+>>> list('Hallo')
 ['H', 'e', 'l', 'l', 'o']
+['H', 'a', 'l', 'l', 'o']
 The list() function is similar to the str() or int() functions. It just converts the object it is passed into a list. It’s easy to generate huge lists with the range() function. Try entering in list(range(10000)) into the interactive shell:
+Die list()-Funktion ähnelt den Funktionen str() und int(), insofern als sie das ihr übergebene Objekt in eine Liste konvertiert. Es ist einfach riesige Listen mit der range()-Funktion zu generieren. Probiere list(range(10000)) in den interaktiven Kommandozeileninterpreter einzugeben:
+>>> list(range(10000))
 >>> list(range(10000))
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
       ...skipped for brevity...
+      ...der Kürze halber ausgelassen...
+...9989, 9990, 9991, 9992, 9993, 9994, 9995, 9996, 9997, 9998, 9999]
 ...9989, 9990, 9991, 9992, 9993, 9994, 9995, 9996, 9997, 9998, 9999]
 
 The list is so huge, that it won’t even all fit onto the screen. But you can store the list into a variable:
+Diese Liste ist so groß, dass sie nicht einmal auf den Bildschirm passt. Aber man kann sie in einer Variablen speichern:
 
+>>> spam = list(range(10000))
 >>> spam = list(range(10000))
 
 If you pass two integer arguments to range(), the range object it returns is from the first integer argument up to (but not including) the second integer argument. Try entering list(range(10, 20)) into the interactive shell:
+Übergibt man zwei Ganzzahlen an range(), gibt die Funktion ein Wertebereich-Objekt zurück, das von der ersten Ganzzahl (einschließlich) bis zu der zweiten Ganzzahl (ausschließlich) reicht. Probiere list(range(10, 20)) in den interaktiven Kommandozeileninterpreter einzugeben:
 
 >>> list(range(10, 20))
+>>> list(range(10, 20))
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
-The range() is often used in for loops, which are much like the while loops you’ve already seen.
+The range() function is often used in for loops, which are much like the while loops you’ve already seen.
+range() wird häufig in for-Schleifen benutzt, die den uns bereits bekannten while-Schleifen sehr ähneln.
 
 for Loops
+for-Schleifen
 
 The for loop is useful for looping over a list of values. This is different from the while loop, which loops as long as a certain condition is True. A for statement begins with the for keyword, followed by a new variable name, followed by the in keyword, followed by an iterable value, and ending with a colon.
+Die for-Schleife ist nützlich, um über eine Liste von Werten zu iterieren. Dies unterscheidet sich von while-Schleifen, die iterieren solange eine Bedingung erfüllt ist. Ein for-Ausdruck beginnt mit dem Schlüsselwort for, gefolgt von einem neuen Variablen-Namen, gefolgt vom Schlüsselwort in, gefolgt von einem iterierbaren Wert, und endet schließlich mit einem Doppelpunkt.
 
 An iterable is a value of the list, range, or string data types. There are also other data types that are considered iterables which will be introduced later.
+Ein iterierbarer Wert ist ein Wert des Typs Liste (list), Wertebereich (range) oder Zeichenkette (string). Es gibt einige weitere iterierbare Datentypen, auf die wir später eingehen.
 
 Each time the program execution iterates through the loop the new variable in the for statement is assigned the value of the next item in the list.
+Bei jeder Schleifen-Iteration wird der neuen Variable im for-Ausdruck ein weiteres Element aus der Liste zugewiesen.
 
 >>> for i in range(5):
+>>> for i in range(5):
 ...     print('i is set to ' + str(i))
+...     print('i ist gleich ' + str(i))
+...
 ...
 i is set to 0
+i ist gleich 0
 i is set to 1
+i ist gleich 1
 i is set to 2
+i ist gleich 2
 i is set to 3
+i ist gleich 3
 i is set to 4
+i ist gleich 4
 
 The range object returned by range(5) is equivalent to the list [0, 1, 2, 3, 4] in a for statement. The first time the execution goes through the code in for-block, the variable i will be set to 0. On the next iteration, i will be set to 1, and so on.
+Das von range(5) zurückgegebene Wertebereich-Objekt ist equivalent zu der Liste [0, 1, 2, 3, 4] in einem for-Ausdruck. Wenn sich die Programmausführung das erste Mal im for-Block befindet, hat i den Wert 0. Bei der nächsten Iteration, hat i den Wert 1, und so weiter.
 
 The for statement automatically converts the range object returned by range() into a list, so there’s no need for list(range(5)) in the for statement. Just use range(5).
+Der for-Ausdruck konvertiert das von range() zurückgegebene Wertebereich-Objekt automatisch in eine Liste, so dass man nicht extra list(range(5)) aufrufen braucht. range(5) genügt.
 
 Lists and strings are also iterable data types. You can use them in for statements. Try entering the following into the interactive shell:
+Listen und Zeichenketten können ebenfalls iteriert werden. Man kann sie in for-Ausdrücken verwenden. Probiere Folgendes in den interaktiven Kommandozeileninterpreter einzugeben:
 
 >>> for thing in ['cats', 'pasta', 'programming', 'spam']:
+>>> for ding in ['Katzen', 'Pasta', 'Programmierung', 'spam']:
 ...     print('I really like ' + thing)
+...     print('Ich mag ' + ding + ' sehr')
+...
 ...
 I really like cats
+Ich mag Katzen sehr
 I really like pasta
+Ich mag Pasta sehr
 I really like programming
+Ich mag Programmierung sehr
 I really like spam
+Ich mag spam sehr
 
 >>> for i in 'Hello':
+>>> for i in 'Hallo':
+...     print(i)
 ...     print(i)
 ...
+...
+H
 H
 e
+a
+l
+l
 l
 l
 o
+o
 
 A while Loop Equivalent of a for Loop
+Eine zur for-Schleife equivalente while-Schleife
 
 The for loop is similar to the while loop, but when you only need to iterate over items in a list, using a for loop is much less code to type. This is a while loop that acts the same as the previous for loop by adding extra code:
+Die for-Schleife ähnelt der while-Schleife sehr, aber wenn man nur über Element einer Liste iterieren braucht, bedeutet die for-Schleife viel weniger Tipparbeit. So würde das vorherige Codebeispiel realisiert mit einer while-Schleife aussehen:
 
 >>> iterableVal = ['cats', 'pasta', 'programming', 'spam']
+>>> iterierbarerWert = ['Katzen', 'Pasta', 'Programmierung', 'spam']
+>>> index = 0
 >>> index = 0
 >>> while (index < len(iterableVal)):
+>>> while (index < len(iterierbarerWert)):
 ...     thing = iterableVal[index]
+...     ding = iterierbarerWert[index]
 ...     print('I really like ' + thing)
+...     print('Ich mag ' + ding ' sehr')
+...     index = index + 1
 ...     index = index + 1
 ...
+...
 I really like cats
+Ich mag Katzen sehr
 I really like pasta
+Ich mag Pasta sehr
 I really like programming
+Ich mag Programmierung sehr
 I really like spam
+Ich mag spam sehr
 
 But using the for statement automatically does this extra code and makes programming easier since you have less to type.
+Die Verwendung des for-Ausdrucks erübrigt die Einführung des Extra-Codes und erspaart uns Tipparbeit.
 
 The rest of the displayBoard() function displays the missed letters and creates the string of the secret word with all the not yet guessed letters as blanks.
+Der Rest der zeigeSpielbrettAn()-Funktion zeigt die falschen Buchhstaben an und erstellt eine Zeichenkette, in der die noch nicht erratenen Buchstaben im Geheimwort durch Unterstriche ersetzt sind.
 
- 70.     print('Missed letters:', end=' ')
- 71.     for letter in missedLetters:
- 72.         print(letter, end=' ')
+ 70.     print('Falsche Buchstaben:', end=' ')
+ 71.     for buchstabe in falscheBuchstaben:
+ 72.         print(buchstabe, end=' ')
  73.     print()
 
 The for loop on line 71 will iterate over each character in the missedLetters string and print them on the screen. Remember that the end=' ' will replace the newline character that is printed after the string with a single space character.
+Die for-Schleife in Zeile 71 iteriert über jedes Zeichen in falscheBuchstaben und gibt es auf dem Bildschirm aus. Vergiss nicht, dass end=' ' die neue Zeile, die normalerweise nach einer Zeichenkette ausgegeben wird, durch ein Leerzeichen ersetzt.
 
 For example, if missedLetters was 'ajtw' this for loop would display a j t w.
+Falls zum Beispiel falscheBuchstaben den Wert 'ajtw' hätte, würde die for-Schleife a j t w ausgeben.
 
+Slicing
 Slicing
 
 List slicing creates a new list value with a subset of another list’s items. In code, specify two indexes (the beginning and end) with a colon in the square brackets after a list. For example, try entering the following into the interactive shell:
+Das englische Verb “to slice” bedeutet in Deutsch “schneiden” oder auch “in Scheiben schneiden”. Letztere Bedeutung entspricht dem Slicing in Python. Dieses erlaubt es, neue Listen aus Teilmengen anderer Listen zu erstellen. Im Code spezifiziert man zwei durch einen Doppelpunkt getrennte Indizes (Anfang und Ende) in den eckigen Klammern hinter einer Liste. Probiere Folgendes in den interaktiven Kommandozeileninterpreter einzugeben:
 
 >>> spam = ['apples', 'bananas', 'carrots', 'dates']
+>>> spam = ['Äpfel', 'Bananen', 'Karotten', 'Daten']
+>>> spam[1:3]
 >>> spam[1:3]
 ['bananas', 'carrots']
+['Bananen', 'Karotten']
 
 The expression spam[1:3] evaluates to a list with items from index 1 up to (but not including) index 3 in spam.
+Der Ausdruck spam[1:3] evaluiert zu einer Liste mit den Elmenten von Index 1 (einschließlich) bis 3 (ausschließlich) aus spam.
 
 If you leave out the first index, Python will automatically think you want index 0 for the first index:
+Lässt man den ersten Index aus, nimmt Python automatisch 0 an:
 
 >>> spam = ['apples', 'bananas', 'carrots', 'dates']
+>>> spam = ['Äpfel', 'Bananen', 'Karotten', 'Daten']
+>>> spam[:2]
 >>> spam[:2]
 ['apples', 'bananas']
+['Äpfel', 'Banenen']
 
 If you leave out the second index, Python will automatically think you want the rest of the list:
+Lässt man den zweiten Index aus, nimmt Python automatisch die Länge der Liste an:
 
 >>> spam = ['apples', 'bananas', 'carrots', 'dates']
+>>> spam = ['Äpfel', 'Bananen', 'Karotten', 'Daten']
+>>> spam[2:]
 >>> spam[2:]
 ['carrots', 'dates']
+['Karotten', 'Daten']
 
 Slicing is a simple way to get a subset of the items in a list. You use slices with strings in the same way you use them with lists. Each character in the string is like an item in the list. Try entering the following into the interactive shell:
+Schneiden erlaubt es uns auf einfache Weise, Teilmengen aus Listen zu extrahieren. Schnitte funktionieren mit Zeichenketten genauso wie mit Listen. Jedes Zeichen in der Zeichenkette wird wie ein Element einer Liste behandelt. Probiere Folgendes in den interaktiven Kommandozeileninterpreter einzugeben:
 
 >>> myName = 'Zophie the Fat Cat'
+>>> meinName = 'Sofie die dicke Katze'
 >>> myName[4:12]
+>>> meinName[4:12]
 'ie the F'
+'e die di'
 >>> myName[:10]
+>>> meinName[:10]
 'Zophie the'
+'Sofie die '
 >>> myName[7:]
+>>> meinName[7:]
 'the Fat Cat'
+'ie dicke Katze'
 
 The next part of the code in Hangman uses slicing.
+Der nächste Teil des Codes in Galgenmann verwendet slicing.
 
 Displaying the Secret Word with Blanks
+Das Geheimwort mit Unterstrichen darstellen
 
 Now you want code to print the secret word, but with blank lines for the letters that have not been guessed. You can use the _ character (called the underscore character) for this. First create a string with nothing but one underscore for each letter in the secret word. Then replace the blanks for each letter in correctLetters.
+Als Nächstes wollen wir das Geheimwort ausgeben, jedoch mit Unterstrichen (_) an Stelle der nicht erratenen Buchstaben. Zuerst erstellen wir eine Zeichenkette, die genauso lang ist wie das Geheimwort und nur aus Unterstrichen besteht. Danach ersetzen wir Unterstriche mit Buchstaben aus richtigeBuchstaben.
 
 So if the secret word was 'otter' then the blanked out string would be '_____' (five _ characters). If correctLetters was the string 'rt' you would change the string to '_tt_r'. Line 75 to 79 is the code that does that.
+Wäre das Geheimwort 'bieber', dann bestünde die redigierte Zeichenkette aus sechs Unterstrichen '______'. Beinhaltete richtigeBuchstaben nun die Zeichenkette 'be', so würde die redigierte Zeichenkette zu 'b_ebe_' geändert. Die Zeilen 75 bis 79 sind dafür verantwortlich.
 
- 75.     blanks = '_' * len(secretWord)
+ 75.     luecken = '_' * len(geheimWort)
 
 Line 75 creates the blanks variable full of _ underscores using string replication. Remember that the * operator can also be used on a string and an integer, so the expression '_' * 5 evaluates to '_____'. This will make sure that blanks has the same number of underscores as secretWord has letters.
+Zeile 75 erstellt die redigierte Variable mittels Zeichenketten-Replikation. Der Operator * kann auf eine Zeichenkette und eine Ganzzahl angewandt werden; der Ausdruck '_' * 6 evaluiert zu '______'. Dies stellt sicher, dass luecken genauso viele Unterstriche enthält, wie geheimWort Buchstaben.
 
- 77.     for i in range(len(secretWord)): # replace blanks with correctly guessed letters
- 78.         if secretWord[i] in correctLetters:
- 79.             blanks = blanks[:i] + secretWord[i] + blanks[i+1:]
+ 77.  for i in range(len(geheimWort)): # Ersetze Lücken mit korrekt geratenen Buchstaben
+ 78.         if geheimWort[i] in richtigeBuchstaben:
+ 79.             luecken = luecken[:i] + geheimWort[i] + luecken[i+1:]
 
 Line 77 has a for loop to go through each letter in secretWord and replace the underscore with the actual letter if it exists in correctLetters.
 
