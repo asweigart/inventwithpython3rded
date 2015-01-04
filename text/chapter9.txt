@@ -739,7 +739,7 @@ Take a look at the following code:
 
 if catName == 'Fuzzball':
     print('Your cat is fuzzy.')
-elif catName == 'Spots'
+elif catName == 'Spots':
         print('Your cat is spotted.')
 else:
     print('Your cat is not fuzzy or spotted.')
@@ -750,11 +750,11 @@ You can have as many elif statements as you want:
 
 if catName == 'Fuzzball':
     print('Your cat is fuzzy.')
-elif catName == 'Spots'
+elif catName == 'Spots':
     print('Your cat is spotted.')
-elif catName == 'Chubs'
+elif catName == 'Chubs':
     print('Your cat is chubby.')
-elif catName == 'Puff'
+elif catName == 'Puff':
     print('Your cat is puffy.')
 else:
     print('Your cat is neither fuzzy nor spotted nor chubby nor puffy.')
