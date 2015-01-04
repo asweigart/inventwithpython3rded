@@ -141,8 +141,111 @@ Tippe das Programm so ab wie oben, auch wenn du bereits weißt, wo der Fehler li
 
 Wieviel ist 5 + 1?
 6
-Nein! Die Antwort ist 6
+Falsch! Die Antwort ist 6
 
 Das ist ein Bug! Das Programm stürzt zwar nicht ab, arbeitet aber auch nicht richtig. Das Programm sagt, die Antwort sei falsch, auch wenn du die richtige Zahl eingibst.
 
-Das Programm im Debugger auszuführen, hilft dir dabei, die Ursache des Bugs zu finden. 
+Das Programm im Debugger auszuführen, hilft dir dabei, die Ursache des Bugs zu finden. Klikce oben im Fenster der interaktiven [Shell] auf Debug ► Debugger, um das Debug-Kontrollfenster anzuzeigen. Im Debug-Kontrollfenster wählst du alle vier Checkboxen ([Stack], [Source], [Locals] und [Globals]) aus. Damit zeigt dir das Debug-Kontrollfenster die meisten Informationen an. Dann wechsle ins Dateieditor-Fenster und drücke F5, um das PRogramm auszuführen. Aber dieses Mal läuft es im Debugger.
+
+1. import random
+
+Der Debogger beginnt auf der Zeile mit import random. Hier passiert nichts besonderes, darum kannst du einfach [Step] klicken, um sie auszuführen. Danach siehst du, wie das random-Modul dem [Globals]-Bereich hinzugefügt wurde.
+
+2. number1 = random.randint(1,10)
+
+Klicke erneut auf [Step], um Zeile 2 auszuführen. Ein neues Dateieditorfenster mit der Datei random.py öffnet sich. Du hast in de randint()-Funktion im Random-Modul hineingeschaltet. Die in Python eingebauten Funktionen sind nicht die Quelle deiner Bugs, also klicke auf [Out], um aus der randint()-Funktion herauszuschalten und zu deinem Programm zurückzukehren und schliesse das Fenster mit der random.py-Datei.
+
+3. number = random.randint(1,10)
+
+Das nächste mal kannst du auf [Over] klicken, um über die randint()-Funktion hinwegzuschalten anstatt hinein. Zeile 3 ist auch ein Aufrauf der randint()-Funktion. Überspringe das Hineinschalten in deren Code, indem du auf [Over] klickst.
+
+4. print('Wieviel ist ' + str(number1) + ' + ' + str(number2) + '?')
+
+Zeile 4 ist ein Aufruf der print()-Funktion, um den Spieler die Zufalszahlen zu zeigen. Du siehst die Zahlen, die das Programm ausgeben wird, schon im Voraus! Wirf einfach einen Blick auf den [Globals]-Bereich im Debug-Kontrollfenster. Dort siehst du die Variablen [number1] und [number2] zusammen mit den Werten, die darin gespeichert werden. 
+
+In unserem Beispiel hat die Variable [number1] den Wert 4 und die Varialbe [number2] hat den Wert 8. Wenn du [Step] klickst, zeigt dir das Programm den String im print()-Aufruf einschließlich dieser Werte an. Die str()-Funktion wandelt die diese Ganzzahlwerte (Integer) in Strings um. Als ich den Debugger ausführte, sah es aus wie in Abbildung 7-4. Deine Zufallszahlen haben wahrscheinlich andere Werte. 
+
+Abbildung 7-4: number1 hat den Wert 4 und number2 hat den Wert 8.
+
+5. answer = input()
+
+Ein Klick auf [Step] auf Zeile 5 führt input() aus. Der Debugger wartet, bis der Spieler eine Antwort eingibt. Gib die richtige Antwort in der interaktiven Shell ein (in unserem Beispiel 12). Darauf fährt der Debugger mit Zeile 6 fort.
+
+6. if answer == number1 + number2:
+7.     print('Richtig!')
+
+Zeile 6 ist eine Wenn-Anweisung (if). Die Bedingung ist, dass der Wert der Antwort der Summe von number1 und number2 entsprechen muss. Wenn die Bedingung wahr (True) ist, fährt der Debugger auf Zeile 7 fort. Wenn die Bedingung falsch (False) ist, springt der Debugger zu Zeile 9. Klicke noch einmal auf [Step] um herauszufinden, wohin der Debugger springt.
+
+8. else:
+9.     print('Nein! Die Antwort ist ' + str(number1 + number2))
+
+Der Debugger springt zu Zeile 9! Was ist passiert? Die Bedingung in der Wenn-Anweisung muss falsch gewesen sein. Schau dir die Werte von number1, number2 und answer an. Wie du siehst, sind number1 und number2 Ganzzahlen (Integer), ihre Summe war also auch ein Integer. Aber answer ist ein String.
+
+Das heißt, dass answer == number1 + number2 wie folgt aufgelöst wurde: '12' == 12. Ein String-Wert und ein Ganzzahlwert sind nie gleich, darum wurde die Bedingung als falsch (False) ausgewertet.
+
+Das ist der Bug im Programm: Der Code enthält answer, sollte aber int(answer) enthalten. Ändere Zeile 6 in int(answer) == number1 + number2 und führe das Programm erneut aus.
+
+Wieviel ist 5 + 1?
+6
+Richtig!
+
+Dieses Mal hat das Programm richtig funktioniert. Führe es noch mal aus und gib absichtlich eine falsche Antwort ein. Das prüft das Programm komplett durch. Gratulation, du hast den Fehler in diesem Programm behoben! Denk daran, der Computer führt ein Programm exakt so aus, wie du es geschrieben hast, egal ob du es so geplant hast oder nicht.
+
+Unterbrechungspunkte (Breakpoint)
+
+Zeile für Zeile durch ein Programm zu schalten, kann immer noch zu lange dauern. Oft will man, dass ein Programm in normaler Geschwindigkeit ausgeführt wird, bis eine bestimmte Zeile erreicht wird. Ein Unterbrechungspunkt wird auf einer Zeile gesetzt, wenn man will, dass der Debugger die Kontrolle übernimmt, wenn diese Zeile ausgeführt wird. Wenn du also glaubst, dass in Zeile 17 deines Codes ein Problem besteht, kannst du einen Unterbrechungspunkt auf Zeile 17 (oder ein paar Zeilen davor) setzen.
+
+Wenn die Ausführung des Programms diese Zeile erreicht, übernimmt der Debugger und du kannst jede Zeile einzeln durchschalten, um zu sehen, was geschieht. Ein Klick auf [Go] führt das Programm wieder normal aus, bis ein weiterer Unterbrechungspunkt oder das Ende des Programms erreicht wird.
+
+Um einen Unterbrechungspunkt zu setzen, kannst du im Dateieditor rechtsklicken und "Set Breakpoint" aus dem Kontextmenü auswählen. Der Dateieditor hebt die ausgewählte Zeile gelb hervor. Du kannst so viele Unterbrechungspunkte setzen, wie du willst. Um einen Unterbrechungspunkt zu entfernen, kannst du in der entsprechenden Zeile (rechts)klicken und im Kontextmenü "Clear Breakpoint" auswählen.
+
+Abbildung 7-5: Der Dateieditor mit zwei gesetzten Unterbrechungspunkten.
+
+Ein Beispiel für die Nutzung von Unterbrechungspunkten
+
+Hier ist ein Programm, das einen Münzwurf simuliert, indem es random.randint(0,1) aufruft. Ein Ergebnis von 1 steht für "Kopf" und ein Ergebnis von 0 steht für "Zahl". Die Variable flips zählt, wie oft die Münze geworfen wurde, und die Variable heads zählt, wie oft das Ergebnis Kopf ist.
+
+Das Programm simuliert 1000 Münzenwürfe. Ein Mensch würde dafür über eine Stunde brauchen, aber der Computer schafft das ein einer Sekunde! Gib den folgenden Code in den Dateieditor ein und speichere die Datei als [coinFlips.py]. Wenn du nach der Eingabe eine Fehlermeldung erhältst, kannst du das online Diff-Werkzeug auf http://invpy.com/diff/coinflips benutzen, um deinen Code mit dem Code des Buches zu verlgeichen.
+
+coinFlips.py
+
+ 1. import random
+ 2. print('Ich simuliere 1000 Münzenwürfe. Rate, wie oft das Ergebnis Zahl ist. (Drücke Enter, um zu beginnen)')
+ 3. input()
+ 4. flips = 0
+ 5. heads = 0
+ 6. while flips < 1000:
+ 7.     if random.randint(0, 1) == 1:
+ 8.         heads = heads + 1
+ 9.     flips = flips + 1
+10.
+11.     if flips == 900:
+12.         print('900 Münzenwürfe, und Kopf kam ' + str(heads) + ' mal vor.')
+13.     if flips == 100:
+14.         print('100 Münzenwürfe, Kopf kam bisher ' + str(heads) + ' mal vor.')
+15.     if flips == 500:
+16.         print('Halbzeit, und Kopf kam ' + str(heads) + ' mal vor.')
+17.
+18. print()
+19. print('Von 1000 Münzwürfen hatten ' + str(heads) + ' das Ergebnis Kopf!')
+20. print('Warst du nahe dran?')
+
+Das Programm läuft ziemlich schnell. Es wartet länger darauf, dass der Spieler ENTER drückt, als es für die Münzwürfe braucht. Nehmen wir an, du willst die Münzwürfe einzeln durchgehen. Klicke im Fenster der interaktiven [Shell] auf Debug ► Debugger, um das Debug-Kontrollfenster aufzurufen. Dann drücke F5, um das Programm auszuführen.
+
+Der Debugger beginnt, das Programm auf Zeile 1 auszuführen. Klicke im Debug-Kontrollfenster drei mal auf [Step], um die ersten drei Zeilen auszuführen (Zeilen 1, 2 und 3). Wie du siehst, wurden die Buttons deaktiviert, weil input() aufgerufen wurde und das Fenster der interaktiven [Shell] darauf wartet, dass der Nutzer etwas eingibt. Klicke auf das Fenster der interaktiven Shell und drücke ENTER. (Stell sicher, dass du unter den Text im Fenster der interaktiven Shell klickst, sonst erkennt IDLE deine Eingabe möglicherweise nicht.)
+
+Du kannst ein paar Mal auf [Step] klicken, aber wie du schnell herausfinden wirst, würde es lange dauern, bis du dich durch das ganze Programm geklickt hast. Setze darum Unterbrechungspunkte in den Zeilen 12, 14 und 16. Der Dateieditor wird diese Zeilen wie in Abbildung 7-6 gezeigt hervorheben.
+
+Abbildung 7-6: Drei Unterbrechungspunkte wurden gesetzt.
+
+Nachdem du die Unterbrechungspunkte gesetzt hast, kannst du im Debug-Kontrollfenster auf [Go] klicken. Das Programm läuft jetzt mit normaler Geschwindigkeit, bis es den nächsten Unterbrechungspunkt erreicht. Wenn flip den Wert 100 hat, ist die Bedingung für die Wenn-Bedingung auf Zeile 13 wahr (True). Das führt dazu, dass Zeile 14 (auf der ein Unterbrechungspunkt gesetzt ist) ausgeführt wird, und der Debugger wird aufgefordert, das Programm zu unterbrechen und die Kontrolle zu übernehmen. Im Globals-Bereich des Debug-Kontrollfensters siehst du, welche Werte flips und heads haben.
+
+Wenn du erneut auf [Go] klickst, wird das Programm weiter ausgeführt, bis der nächste Unterbrechungspunkt auf Zeile 16 erreicht wird. Schau dir an, wie sich die Werte für flips und heads verändert haben.
+
+Wenn du wieder auf [Go] klickst, läuft das PRogramm weiter, bis der nächste Unterbrechungspunkt auf Zeile 12 erreicht wird.
+
+Zusammenfassung
+
+Ein Programm zu schreiben, ist nur ein Teil des Programmierens. Der nächste Teil ist es, sicherzustellen, dass dein Code tatsächlich funktioniert. Der Debugger lässt dich Zeile für Zeile durch den Code schalten. Du kannst dir genau anschauen, welche Zeilen in welcher Reihenfolge ausgeführt werden und welche Variablen welche Werte haben. Wenn das zu lange dauert, kannst du Unterbrechungspunkte setzen, um dem Debugger zu sagen, auf welchen Zeilen er anhalten soll.
+
+Mit dem Debugger fällt es leicht, zu verstehen, was ein Programm macht. Dieses Buch erklärt zwar den Code aller Spiele, aber der Debugger kann dir dabei helfen, selbständig mehr zu lernen.
