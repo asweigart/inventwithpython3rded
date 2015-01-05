@@ -167,8 +167,8 @@ Ale zdanie “Koty mają wąsy i psy mają skrzydła” jest fałszywe. To, że 
 
 Operatory and i or
 
-The and operator in Python is the same. If the Boolean values on both sides of the and keyword are True, then the expression with the and operator evaluates to True. If either of the Boolean values are False, or both of the Boolean values are False, then the expression evaluates to False.
-Try entering the following expressions with the and operator into the interactive shell:
+Operator and w Pythonie jest taki sam. Jesli wartości boolowskie po obu stronach słowa kluczowego and są True (prawda), to całe wyrażenie daje True. Jeśli którakolwiek z wartości jest False (fałsz), albo obie wartości są False, wtedy wyrażenie daje False.
+Wprowadź poniższe wyrażenia z opertorem and w powłoce intraktywnej:
 
 >>> True and True
 True
@@ -181,8 +181,8 @@ False
 >>> 10 < 20 and 'Hello' == 'Hello'
 True
 
-The or operator is similar to the and operator, except it will evaluate to True if either of the two Boolean values are True. The only time the or operator evaluates to False is if both of the Boolean values are False.
-Try entering the following into the interactive shell:
+Operator or operator jest podobny do operatora and, ale da True jeśli dowolna z dwy wartości boolowskich jest True. Jedynym wypadkiem gdy opertor or wyliczy się do False jest przypadek, że obie wartości boolowskie są False.
+Wprowadź poniższy kod w powłoce interaktywnej:
 
 >>> True or True
 True
@@ -195,10 +195,10 @@ False
 >>> 10 > 20 or 20 > 10
 True
 
-The not Operator
+Operator not
 
-The not operator only works on one value, instead of combining two values. The not operator evaluates to the opposite Boolean value. The expression not True will evaluate to False and not False will evaluate to True.
-Try entering the following into the interactive shell:
+Operator not działa tylko dla jednej wartości. Operator not wylicza przeciwieństwo wartości boolowskie. Wyrażenie not True zostanie wyliczone do False, a not False zostanie wyliczone do True.
+Wprowadź poniższy kod w powłoce interaktywnej:
 
 >>> not True
 False
@@ -207,39 +207,39 @@ True
 >>> not 'black' == 'white'
 True
 
-Truth Tables
+Tablice prawdy
 
-If you ever forget how the Boolean operators work, you can look at these charts, which are called truth tables:
+Jeśli zapomnisz jak działają operatory boolowskie możesz zerknąć na te zestawienia zwane także tablicami prawdy:
 
-Table 6-1: The and operator's truth table.
-A       and B       is  Entire statement
-True    and True    is  True
-True    and False   is  False
-False   and True    is  False
-False   and False   is  False
+Tabela 6-1: Tablica prawdy operatora and
+A       and B       jest  Całe wyrażenie
+True    and True    jest  True
+True    and False   jest  False
+False   and True    jest  False
+False   and False   jest  False
 
-Table 6-2: The or operator's truth table.
-A       and B       is  Entire statement
-True    and True    is  True
-True    and False   is  False
-False   and True    is  False
-False   and False   is  False
+Tablica 6-2: Tablica prawdy operatora or
+A       and B       jest  Całe wyrażenie
+True    and True    jest  True
+True    and False   jest  False
+False   and True    jest  False
+False   and False   jest  False
 
-Table 6-3: The not operator's truth table.
-not A       is  Entire statement
-not True    is  False
-not False   is  True
+Tablica 6-3: Tablica prawdy operatora not
+not A       jest  Całe wyrażenie
+not True    jest  False
+not False   jest  True
 
-Evaluating Boolean Operators
+Obliczanie wyrażeń z operatorami logicznymi
 
-Look at line 13 again:
+Ponownie spójrz na linię 13:
 
 13.     while cave != '1' and cave != '2':
 
-The condition has two parts connected by the and Boolean operator. The condition is True only if both parts are True.
-The first time the while statement’s condition is checked, cave is set to the blank string, ''. The blank string is not equal to the string '1', so the left side evaluates to True. The blank string is also not equal to the string '2', so the right side evaluates to True.
-So the condition then turns into True and True. Because both Boolean values are True, the condition finally evaluates to True. So the program execution enters the while-block.
-This is what the evaluation of the condition looks like (if the value of cave is the blank string):
+Warunek ma dwie części połączone logicznym operatorem and. Wyrażenie da True tylko wtedy, gdy obie części będą True.
+Za pierwszym razem gdy warunek while jest sprawdzany, cave ma wartość ustawioną na pusty napis ''. Pusty napis nie jest równy napisowi  '1', więc lewa część wylicza się do True. Pusty napis nie jest także równy z napisem '2', więc prawa strona wylicza się do True.
+Tak więc zostaje warunek True and True. Ponieważ obie wartości logiczne są True, końcowy wynik wyliczy sie do True i wykonanie programu wejdzie do bloku while.
+Oto jak wygląda wyliczanie warunku (dla cave z wartością pustego napisu):
 
 while cave != '1' and cave != '2':
                    ▼
@@ -253,14 +253,14 @@ while     True    and     True:
                    ▼
 while             True:
 
-Getting the Player’s Input
+Pobieranie danych od gracza
 
 13.     while cave != '1' and cave != '2':
-14.         print('Which cave will you go into? (1 or 2)')
+14.         print('Do której jaskini chcesz wejść? (1 lub 2)')
 15.         cave = input()
 
-Line 14 asks the player which cave they choose. Line 15 lets the player type the response and hit ENTER. This response is stored in cave. After this code is executed, the execution loops back to the top of the while statement and rechecks the condition.
-If the player typed in 1 or 2, then cave will either be '1' or '2'. This makes the condition False, and the program execution will continue past the while loop. For example, if the user entered '1' then the evaluation would look like this:
+Linia 14 pyta gracza o numer jaskini jaką wybiera. Linia 15 pozwala graczowi na wprowadzenie odpowiedzi i nacośnięcie klawisza ENTER. Odpowiedź jest zapisywane w zmiennej cave. Po wykonaniu tego kodu wykonanie wraca na górę pętli while i ponownie sprawdzany jest warunek.
+Jeśli gracz wpisał 1, lub 2, wtedy w zmiennej cave będzie '1', lub '2'. To sprawi, że warunek będzie False i wykonanie programu będzie kontunowane za pętlą while. Przykładowo jeśli użytkowni wprowadzi '1', to wyliczanie będzie wyglądało tak:
 
 while cave != '1' and cave != '2':
                    ▼
@@ -274,9 +274,9 @@ while     False   and     True:
                    ▼
 while            False:
 
-But if the player typed 3 or 4 or HELLO, that response would be invalid. The condition will still be True and enters the while-block to ask the player again. The program will keep asking until the player types 1 or 2. This will guarantee that once the execution moves on, the cave variable contains a valid response.
+Jeśli jednak gracz wproawdzi 3, 4 lub HALO, wtedy odpowiedź nie będzie prawidłowa. Warunek nadal bedzie True i program ponownie wejdzie do bloku while, by kolejny raz zapytać gracza. Program będzie kontunował pytanie gracza, aż ten wprowadzi 1, lub 2. Gwarantuje to, że wykonanie przejdzie dalej z prawidłową wartością odpowiedzi.
 
-Return Values
+Wartości zwracane
 
 17.     return cave
 
