@@ -355,7 +355,7 @@ Lists can contain other values, including other lists. Let’s say you have a li
 
 To get an item inside the list of lists, you would use two sets of square brackets like this: listOfLists[1][2] which would evaluate to the string 'go grocery shopping'.
 
-This is because listOfLists[1] evaluates to ['clean', 'mow the lawn', 'go grocery shopping'][2]. That finally evaluates to 'go grocery shopping':
+This is because listOfLists[1][2] evaluates to ['clean', 'mow the lawn', 'go grocery shopping'][2]. That finally evaluates to 'go grocery shopping':
 
 listOfLists[1][2]
          ▼
@@ -377,44 +377,44 @@ The lower() and upper() String Methods
 
 Try entering 'Hello world!'.lower() into the interactive shell to see an example of this method:
 
->>> 'Hello world'.lower()
+>>> 'Hello world!'.lower()
 'hello world!'
 
-There is also an upper() method for strings, which returns a string with all the characters in uppercase. Try entering 'Hello world'.upper() into the interactive shell:
+There is also an upper() method for strings, which returns a string with all the characters in uppercase. Try entering 'Hello world!'.upper() into the interactive shell:
 
->>> 'Hello world'.upper()
+>>> 'Hello world!'.upper()
 'HELLO WORLD! '
 
 Because the upper() method returns a string, you can call a method on that string also. Try entering 'Hello world!'.upper().lower() into the interactive shell:
 
->>> 'Hello world'.upper().lower()
+>>> 'Hello world!'.upper().lower()
 'hello world!'
 'Hello world!'.upper() evaluates to the string 'HELLO WORLD!', and then string's lower() method is called. This returns the string 'hello world!', which is the final value in the evaluation.
 
-'Hello world'.upper().lower()
+'Hello world!'.upper().lower()
                     ▼
        'HELLO WORLD!'.lower()
                     ▼
-                'hello world'
+                'hello world!'
 
 The order is important. 'Hello world!'.lower().upper() isn’t the same as 'Hello world!'.upper().lower():
 
->>> 'Hello world'.lower().upper()
+>>> 'Hello world!'.lower().upper()
 'HELLO WORLD!'
 
 That evaluation looks like this:
 
-'Hello world'.lower().upper()
+'Hello world!'.lower().upper()
                     ▼
-        'hello world'.upper()
+        'hello world!'.upper()
                     ▼
                'HELLO WORLD!'
 
 If a string is stored in a variable, you can call a string method on that variable. Look at this example:
 
->>> spam = 'Hello world'
+>>> spam = 'Hello world!'
 >>> spam.upper()
-'HELLO WORLD'
+'HELLO WORLD!'
 
 This does not change the value in spam. The spam variable will still contain 'Hello world!'.
 
@@ -520,7 +520,9 @@ When called with one argument, range() will return a range object of integers fr
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 >>> list('Hello')
 ['H', 'e', 'l', 'l', 'o']
-The list() function is similar to the str() or int() functions. It just converts the object it is passed into a list. It’s easy to generate huge lists with the range() function. Try entering in list(range(10000)) into the interactive shell:
+
+The list() function is similar to the str() or int() functions. It takes the value it is passed and returns a list. It’s easy to generate huge lists with the range() function. Try entering in list(range(10000)) into the interactive shell:
+
 >>> list(range(10000))
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
       ...skipped for brevity...
@@ -535,7 +537,7 @@ If you pass two integer arguments to range(), the range object it returns is fro
 >>> list(range(10, 20))
 [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
-The range() is often used in for loops, which are much like the while loops you’ve already seen.
+The range() function is often used in for loops, which are much like the while loops you’ve already seen.
 
 for Loops
 
@@ -554,7 +556,7 @@ i is set to 2
 i is set to 3
 i is set to 4
 
-The range object returned by range(5) is equivalent to the list [0, 1, 2, 3, 4] in a for statement. The first time the execution goes through the code in for-block, the variable i will be set to 0. On the next iteration, i will be set to 1, and so on.
+The range object returned by range(5) is equivalent to the list [0, 1, 2, 3, 4] in a for statement. The first time the execution goes through the code in the for-block, the variable i will be set to 0. On the next iteration, i will be set to 1, and so on.
 
 The for statement automatically converts the range object returned by range() into a list, so there’s no need for list(range(5)) in the for statement. Just use range(5).
 
@@ -737,7 +739,7 @@ Take a look at the following code:
 
 if catName == 'Fuzzball':
     print('Your cat is fuzzy.')
-elif catName == 'Spots'
+elif catName == 'Spots':
         print('Your cat is spotted.')
 else:
     print('Your cat is not fuzzy or spotted.')
@@ -748,11 +750,11 @@ You can have as many elif statements as you want:
 
 if catName == 'Fuzzball':
     print('Your cat is fuzzy.')
-elif catName == 'Spots'
+elif catName == 'Spots':
     print('Your cat is spotted.')
-elif catName == 'Chubs'
+elif catName == 'Chubs':
     print('Your cat is chubby.')
-elif catName == 'Puff'
+elif catName == 'Puff':
     print('Your cat is puffy.')
 else:
     print('Your cat is neither fuzzy nor spotted nor chubby nor puffy.')
@@ -824,7 +826,7 @@ Setting Up the Variables
 
 Line 106 is the first print() call that executes when the game is run. It displays the title of the game. Next is assigning blank strings for missedLetters and correctLetters since the player hasn’t guessed any missed or correct letters yet.
 
-The getRandomWord(words) call will evaluate to a randomly selects word from the words list.
+The getRandomWord(words) call will evaluate to a randomly selected word from the words list.
 
 Line 110 sets gameIsDone to False. The code will set gameIsDone to True when it wants to signal that the game is over and should ask the player if they want to play again.
 
