@@ -826,7 +826,7 @@ Setting Up the Variables
 
 Line 106 is the first print() call that executes when the game is run. It displays the title of the game. Next is assigning blank strings for missedLetters and correctLetters since the player hasn’t guessed any missed or correct letters yet.
 
-The getRandomWord(words) call will evaluate to a randomly selects word from the words list.
+The getRandomWord(words) call will evaluate to a randomly selected word from the words list.
 
 Line 110 sets gameIsDone to False. The code will set gameIsDone to True when it wants to signal that the game is over and should ask the player if they want to play again.
 
