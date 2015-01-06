@@ -938,229 +938,304 @@ Zeile 75 erstellt die redigierte Variable mittels Zeichenketten-Replikation. Der
  79.             luecken = luecken[:i] + geheimWort[i] + luecken[i+1:]
 
 Line 77 has a for loop to go through each letter in secretWord and replace the underscore with the actual letter if it exists in correctLetters.
+Zeile 77 definiert eine for-Schleife, die durch alle Buchstaben in geheimWort iteriert und Unterstriche durch die tatsächlichen Buchstaben ersetzt, falls sie in richtigeBuchstaben enthalten sind.
 
 For example, pretend the value of secretWord is 'otter' and the value in correctLetters is 'tr'. You would want the string '_tt_r' displayed to the player. Let’s figure out how to create this string.
+Nehmen wir an, geheimWort habe den Wert 'bieber' und richtigeBuchstaben habe den Wert 'be'. Dann sollte dem Spieler der Text 'b_ebe_' angezeigt werden. Finden wir heraus, wie man diese Zeichenkette erstellt.
 
 Line 77’s len(secretWord) call would return 5. The range(len(secretWord)) call becomes range(5), which makes the for loop iterate over 0, 1, 2, 3, and 4.
+Der Aufruf len(geheimWort) in Zeile 77 würde 6 zurückgeben. range(len(geheimWort)) wird zu range(6), sodass die for-Schleife über die Werte 0, 1, 2, 3, 4 und 5 iteriert.
 
 Because the value of i will take on each value in [0, 1, 2, 3, 4], the code in the for loop is the same as this:
+Da der i jeden der Werte in [0, 1, 2, 3, 4, 5] annehmen wird, ist die for-Schleife equivalent zu folgendem Code:
 
-if secretWord[0] in correctLetters:
-    blanks = blanks[:0] + secretWord[0] + blanks[1:]
+if geheimWort[0] in richtigeBuchstaben:
+    luecken = luecken[:0] + geheimWort[0] + luecken[1:]
 
-if secretWord[1] in correctLetters:
-    blanks = blanks[:1] + secretWord[1] + blanks[2:]
-
-if secretWord[2] in correctLetters:
-    blanks = blanks[:2] + secretWord[2] + blanks[3:]
-
-if secretWord[3] in correctLetters:
-    blanks = blanks[:3] + secretWord[3] + blanks[4:]
-
-if secretWord[4] in correctLetters:
-    blanks = blanks[:4] + secretWord[4] + blanks[5:]
+if geheimWort[1] in richtigeBuchstaben:
+    luecken = luecken[:1] + geheimWort[1] + luecken[2:]
+    
+if geheimWort[2] in richtigeBuchstaben:
+    luecken = luecken[:2] + geheimWort[2] + luecken[3:]
+    
+if geheimWort[3] in richtigeBuchstaben:
+    luecken = luecken[:3] + geheimWort[3] + luecken[4:]
+    
+if geheimWort[4] in richtigeBuchstaben:
+    luecken = luecken[:4] + geheimWort[4] + luecken[5:]
+    
+if geheimWort[5] in richtigeBuchstaben:
+    luecken = luecken[:5] + geheimWort[5] + luecken[6:]
 
 If you are confused as to what the value of something like secretWord[0] or blanks[3:] is, then look at Figure 9-2. It shows the value of the secretWord and blanks variables, and the index for each letter in the string.
+Falls Du nicht sicher bist, was Ausdrücke wie geheimWort[0] oder luecken[3:] representieren, dann schaue Dir Abbildung 9-2 an. Sie zeigt die Werte der Variablen geheimWort und luecken mit den dazugehörigen Indizes.
 
 Figure 9-2: The indexes of the blanks and secretWord strings.
+Abbildung 9-2: Die Indizes der Zeichenketten luecken und geheimWort.
 
 If you replace the list slices and the list indexes with the values that they represent, the loop code would be the same as this:
+Ersetzten wir die Listen-Schnitte- und Indizes mit den Werten, die sie representieren, dann würde die Schleife wie folgt aussehen:
 
-if 'o' in 'tr': # False
-    blanks = '' + 'o' + '____' # This line is skipped.
+if 'b' in 'be': # True
+    luecken = '' + 'b' + '_____' # Diese Zeile wird ausgeführt.
 
-if 't' in 'tr': # True
-    blanks = '_' + 't' + '___' # This line is executed.
+if 'i' in 'be': # False
+    blanks = 'b' + 'i' + '____' # Diese Zeile wird übersprungen.
 
-if 't' in 'tr': # True
-    blanks = '_t' + 't' + '__' # This line is executed.
+if 'e' in 'be': # True
+    luecken = 'b_' + 'e' + '___' # Diese Zeile wird ausgeführt.
 
-if 'e' in 'tr': # False
-    blanks = '_tt' + 'e' + '_' # This line is skipped.
+if 'b' in 'be': # True
+    luecken = 'b_e' + 'b' + '__' # Diese Zeile wird ausgeführt.
 
-if 'r' in 'tr': # True
-    blanks = '_tt_' + 'r' + '' # This line is executed.
+if 'e' in 'be': # True
+    luecken = 'b_eb' + 'e' + '_' # Diese Zeile wird ausgeführt.
+    
+if 'r' in 'be': # False
+    luecken = 'b_ebe' + 'r' + '' # Diese Zeile wird übersprungen.
 
-# blanks now has the value '_tt_r'
+# luecken hat jetzt den Wert 'b_ebe_'
 
 The above code examples all do the same thing when secretWord is 'otter' and correctLetters is 'tr'. The next few lines of code print the new value of blanks with spaces between each letter.
+Die obigen Code-Beispiele verhalten sich alle gleich, wenn geheimWort den Wert 'bieber' und richtigeBuchstaben den Wert 'be' haben. Die folgenden Zeilen geben den neuen Wert von luecken mit Leerzeichen zwischen jedem Buchstaben auf dem Bildschirm aus.
 
- 81.     for letter in blanks: # show the secret word with spaces in between each letter
- 82.         print(letter, end=' ')
+ 81.     for buchstabe in luecken: # Zeige das Geheimwort mit Leerzeichen zwischen den Buchstaben
+ 82.         print(buchstabe, end=' ')
  83.     print()
 
 Get the Player’s Guess
+Spielereingaben lesen
 
 The getGuess() function will be called so that the player can enter a letter to guess. The function returns the letter the player guessed as a string. Further, getGuess() will make sure that the player types a valid letter before returning from the function.
+Die rateBuchstabe()-Funktion wird aufgerufen, damit der Spieler einen Buchstaben eingeben kann. Die Funktion gibt die Eingabe des Spielers als Zeichenkette zurück. Darüber hinaus stellt sie sicher, dass der Spieler einen gültigen Buchstaben eingegeben hat, bevor sie zurückkehrt.
 
- 85. def getGuess(alreadyGuessed):
- 86.     # Returns the letter the player entered. This function makes sure the player entered a single letter, and not something else.
+ 85. def rateBuchstabe(bereitsGeraten):
+ 86.     # Stellt sicher, dass der Spieler nur einen einzelnen Buchstaben eintippt und gibt ihn zurück.
 
 A string of the letters the player has guessed is passed as the argument for the alreadyGuessed parameter. Then the getGuess() function asks the player to guess a single letter. This single letter will be getGuess()’s return value.
+Eine Zeichenkette mit den vom Spieler bereits geratenen Buchstaben wird als Argument an den Parameter bereitsGeraten übergeben. Danach bittet die rateBuchstabe()-Funktion den Spieler, einen einzelnen Buchstaben zu erraten. Dieser wird zum Rückgabewert von rateBuchstabe().
 
  87.     while True:
- 88.         print('Guess a letter.')
- 89.         guess = input()
- 90.         guess = guess.lower()
+ 88.         print('Rate einen Buchstaben.')
+ 89.         eingabe = input()
+ 90.         eingabe = eingabe.lower()
 
 Line 87’s while loop will keep asking the player for a letter until they enter text that is:
+Die while-Schleife in Zeile 87 fragt den Spieler solange nach seiner Eingabe, bis dieser einen Text eingibt, der folgenden Kriterien entspricht:
 
 1.  A single letter.
+1.  Es handelt sich um einen einzelnen Buchstaben.
 2.  A letter they have not guessed previously.
+2.  Der Spieler hat den Buchstaben noch nicht getippt.
 
 The condition for the while loop is simply the Boolean value True. That means the only way execution will ever leave this loop is by executing a break statement (which leaves the loop) or a return statement (which leaves not just the loop but the entire function).
+Als Abbruch-Bedingung an die while-Schleife wird der Wert True übergeben. Das bedeutet, dass die Programmausführung die Schleife nur dann verlassen wird, wenn sie auf eine break-Anweisung (, die die Schleife verlässt,) oder auf eine return-Anweisung (, die nicht nur die Schleife, sondern die gesamte Funktion verlässt,) trifft.
 
 The code inside the loop asks the player to enter a letter, which is stored in the variable guess. If the player entered a capitalized letter, it will be overwritten with a to lowercase letter on line 90.
+Der obige Code bittet den Spieler einen Buchstaben einzugeben, der in der Variablen eingabe gespeichert wird. Falls der Spieler einen Großbuchstaben eingibt, wird dieser vor dem Speichern in eingabe in einen Kleinbuchstaben umgewandelt.
 
 elif (“Else If”) Statements
+elif (“Else If”)-Ausdrücke
 
 The next part of the Hangman program uses elif statements. You can think of elif “else if” statements as saying “If this is true, do this. Or else if this next condition is true, do that. Or else if none of them are true, do this last thing.”
+Der nächste Abschnitt des Galgenmann-Programms benutzt elif-Ausdrücke. elif-Ausdrücke (kurz für “else if”, zu Deutsch “sonst, falls”) kann man sich wie die Formulierung “Falls dies wahr ist, tue dies. Sonst, falls die nächste Bedingung wahr ist, tue das” vorstellen.
 
 Take a look at the following code:
+Schauen wir uns folgenden Code an:
 
 if catName == 'Fuzzball':
+if katzenName == 'Struppi':
     print('Your cat is fuzzy.')
-elif catName == 'Spots'
+    print('Deine Katze ist struppig.')
+elif catName == 'Spots':
+elif katzenName == 'Flecki':
         print('Your cat is spotted.')
+        print('Deine Katze ist gefleckt.')
+else:
 else:
     print('Your cat is not fuzzy or spotted.')
+    print('Deine Katze ist weder struppig noch gefleckt.')
 
 If the catName variable is equal to the string 'Fuzzball', then the if statement’s condition is True and the if-block tells the user that their cat is fuzzy. However, if this condition is False, then Python tries the elif (“else if”) statement’s condition next. If catName is 'Spots', then the 'Your cat is spotted.' string is printed to the screen. If both are False, then the code tells the user their cat isn’t fuzzy or spotted.
+Falls die katzenName-Variable gleich der Zeichenkette 'Struppi' ist, dann ist die Bedingung der ersten if-Anweisung wahr und der if-Block sagt dem Benutzer, er habe eine struppige Katze. Falls (und nur falls(!)) jedoch die Bedingung falsch ist, testet Python die Bedingung der elif-Anweisung als Nächstes. Ist katzenName gleich 'Flecki', so wird 'Deine Katze ist gefleckt.' ausgegeben. Falls (und nur falls(!)) jedoch beide Bedingungen falsch sind, sagt der Code dem Benutzer, seine Katze sei weder struppig, noch gefleckt.
 
 You can have as many elif statements as you want:
+Es können beliebig viele elif-Anweisungen hintereinander stehen:
 
 if catName == 'Fuzzball':
+if katzenName == 'Struppi':
     print('Your cat is fuzzy.')
-elif catName == 'Spots'
+    print('Deine Katze ist struppig.')
+elif catName == 'Spots':
+elif katzenName == 'Flecki':
     print('Your cat is spotted.')
-elif catName == 'Chubs'
+    print('Deine Katze ist gefleckt.')
+elif catName == 'Chubs':
+elif katzenName == 'Smoky':
     print('Your cat is chubby.')
-elif catName == 'Puff'
-    print('Your cat is puffy.')
+    print('Deine Katze hat schwarze Augen.')
 else:
     print('Your cat is neither fuzzy nor spotted nor chubby nor puffy.')
+    print('Deine Katze ist weder struppig, noch gefleckt, noch hat sie schwarze Augen.')
 
 When one of the elif conditions is True, its code is executed and then execution jumps to the first line past the else-block. So one and only one of the blocks in the if-elif-else statements will be executed. You can also leave off the else-block if you don’t need one, and just have if-elif statements.
+Ist eine der elif-Bedingungen wahr, so wird ihr Code ausgeführt und die Programmausführung springt zur ersten Zeile nach dem else-Block. D.h. in einem if-elif-else-Ausdruck wird nur ein einziger Block ausgeführt. Der else-Block am Ende ist optional.
 
 Making Sure the Player Entered a Valid Guess
+Die Gültigkeit von Rateversuchen garantieren
 
- 91.         if len(guess) != 1:
- 92.             print('Please enter a single letter.')
- 93.         elif guess in alreadyGuessed:
- 94.             print('You have already guessed that letter. Choose again.')
- 95.         elif guess not in 'abcdefghijklmnopqrstuvwxyz':
- 96.             print('Please enter a LETTER.')
+ 91.         if len(eingabe) != 1:
+ 92.             print('Bitte gib einen einzelnen Buchstaben ein.')
+ 93.         elif eingabe in bereitsGeraten:
+ 94.             print('Du hast diesen Buchstaben bereits probiert. Rate noch einmal.')
+ 95.         elif eingabe not in 'abcdefghijklmnopqrstuvwxyz':
+ 96.             print('Bitte gib einen BUCHSTABEN ein.')
  97.         else:
- 98.             return guess
+ 98.             return eingabe
 
 The guess variable contains player’s letter guess. The program needs to make sure they typed in a valid guess: one and only one lowercase letter. If they didn't, the execution should loop back and ask them for a letter again.
+Die Variable eingabe beinhaltet den vom Spieler eingegebenen Text. Das Programm muss sicherstellen, dass dieser gültig ist: Er darf nur aus einem einzelnen Kleinbuchstaben bestehen. Hat der Spieler etwas anderes eingegeben, so sollte das Programm ihn erneut auffordern.
 
 Line 91’s condition checks if guess is not one character long. Line 93’s condition checks if guess already exists inside the alreadyGuessed variable. Line 95’s condition checks if guess is not a lowercase letter.
+Die Bedingung in Zeile 91 prüft, ob die Eingabe eine andere Länbge als eins hat. Zeile 93 überprüft, ob der Spieler den Buchstaben bereits probiert hat (ob dieser in der bereitsGeraten-Variablen enthalten ist). Zeile 95 prüft, ob es sich um ein ungültiges Zeichen (ein Zeichen, dass kein Kleinbuchstabe ist (z.B. Großbuchstaben oder andere Zeichen)) handelt.
 
 If all of these conditions are False, then the else statement’s block executes and getGuess() returns the value in guess on line 98.
+Sind alle Bedingungen falsch, wird der else-Block ausgeführt und rateBuchstabe() gibt den Wert von eingabe in Zeile 98 zurück.
 
 Remember, only one of the blocks in if-elif-else statements will be executed.
+Wir erinnern uns daran, dass nur einer der Blöcke in einem if-elif-else-Ausdruck ausgeführt wird.
 
 Asking the Player to Play Again
+Den Spieler um eine weitere Partie fragen
 
-100. def playAgain():
-101.     # This function returns True if the player wants to play again, otherwise it returns False.
-102.     print('Do you want to play again? (yes or no)')
-103.     return input().lower().startswith('y')
+100. def spieleNochEinmal():
+101.     # Diese Funktion True zurück, falls der Spieler noch einmal spielen möchte, False sonst.
+102.     print('Möchtest Du noch einmal spielen? (ja oder nein)')
+103.     return input().lower().startswith('j')
 
 The playAgain() function has just a print() function call and a return statement. The return statement has an expression that looks complicated, but you can break it down. Here’s a step by step look at how Python evaluates this expression if the user types in YES.
+Die Funktion spieleNochEinmal() besteht nur aus einem print()-Aufruf und einer return-Anweisung. Der Ausdruck in der return-Anweisung mag zunächst kompliziert erscheinen, aber man kann ihn leicht in seine Einzelteile zerlegen. Hier ist eine Schritt-für-Schritt-Veranschaulichung, wie Python den Ausdruck interpretiert (unter der Annahme, der Spieler hätte JA eingegeben):
 
-input().lower().startswith('y')
+input().lower().startswith('j')
             ▼
-  'YES'.lower().startswith('y')
+   'JA'.lower().startswith('j')
             ▼
-          'yes'.startswith('y')
+           'ja'.startswith('j')
             ▼
            True
 
 The point of the playAgain() function is to let the player type in yes or no to tell the program if they want to play another round of Hangman. The player should be able to type YES, yes, Y, or anything else that begins with a “Y” in order to mean “yes”. If the player types in YES, then the return value of input() is the string 'YES'. And 'YES'.lower() returns the lowercase version of the attached string. So the return value of 'YES'.lower() is 'yes'.
+Die spieleNochEinmal()-Funktion erlaubt dem Spieler ja oder nein einzugeben, je nachdem ob dieser weiterspielen möchte oder nicht. Dabei sollte es dem Spieler möglich sein, JA, ja, j oder irgendetwas anderes, das mit 'j' beginnt, einzugeben. Gibt der Spieler JA ein, so ist der Rückgabewert von input() 'JA'. 'JA'.lower() gibt 'ja' zurück.
 
 But there’s the second method call, startswith('y'). This function returns True if the associated string begins with the string parameter between the parentheses, and False if it doesn’t. The return value of 'yes'.startswith('y') is True.
+Schließlich folgt der Methoden-Aufruf startswith('j'). Diese Funktion gibt True zurück, falls die Zeichenkette, an der sie aufgerufen wird, mit dem als Argument übergebenen Präfix beginnt, False sonst. Der Rückgabewert von 'ja'.startswith('j') ist True.
 
 Now you have evaluated this expression! What it does is let the player type in a response, lowercases the response, checks if it begins with the letter 'y', then returns True if it does and False if it doesn’t.
+Damit ist die Analyse dieses Ausdrucks abgeschlossen. Er lässt den Spieler etwas eingeben, wandelt die Eingabe in Kleinbuchstaben um und testet, ob sie mit 'j' beginnt. Ist dies der Fall, so wird True zurückgegeben, False sonst.
 
 On a side note, there’s also an endswith(someString) string method that will return True if the string ends with the string in someString and False if it doesn’t. endswith() is sort of like the opposite of startswith().
+Der Vollständigkeit halber sei hier erwähnt, dass es auch eine endswith()-Methode gibt, die True zurückgibt, falls die Zeichenkette, an der sie aufgerufen wird, mit dem als Argument übergebenen Suffix endet.
 
 Review of the Hangman Functions
+Zusammenfassung der Funktionen in Galgenmann
 
 That’s all the functions we are creating for this game! Let’s review them:
+Dies waren alle Funktionen, die wir für dieses Spiel geschrieben haben. Hier die Zusammenfassung:
 
 • getRandomWord(wordList) will take a list of strings passed to it, and return one string from it. That is how a word is chosen for the player to guess.
+• geheimWort(wortListe) akzeptiert eine Liste von Zeichenketten und gibt eine (zufällig ausgewählte) davon zurück. Auf diese Weise wird das zu erratende Wort für den Spieler ausgesucht.
 • displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord) will show the current state of the board, including how much of the secret word the player has guessed so far and the wrong letters the player has guessed. This function needs four parameters passed to work correctly. HANGMANPICS is a list of strings that hold the ASCII art for each possible hangman board. correctLetters and missedLetters are strings made up of the letters that the player has guessed that are in and not in the secret word, respectively. And secretWord is the secret word the player is trying to guess. This function has no return value.
+• zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort) malt das Spielbrett inklusive des (teilweise erratenen) Geheim-Wortes und den falschen Rateversuchen auf den Bildschirm. Diese Funktion akzeptiert vier Parameter. GALGENMANNBILDER ist eine Liste von Zeichenketten, die das Spielbrett in verschiedenen Etappen als ASCII-Kunst representieren. richtigeBuchstaben und falscheBuchstaben sind Zeichenketten, die aus den richtigen und falschen Rateversuchen des Spielers bestehen. geheimWort ist das geheime Wort, das der Spieler erraten muss. Diese Funktion hat keinen Rückgabewert.
 • getGuess(alreadyGuessed) takes a string of letters the player has already guessed and will keep asking the player for a letter that isn’t in alreadyGuessed.) This function returns the string of the valid letter the player guessed.
+• rateBuchstabe(bereitsGeraten) akzeptiert eine Zeichenkette aus Buchstaben, die der Spieler bereits getippt hat. Die Funktion fragt den Spieler solange nach einer Eingabe, bis dieser einen einzelnen Kleinbuchstaben eingibt, der nicht bereits in bereitsGeraten enthalten ist. Die Eingabe des Spielers wird zurückgegeben.
 • playAgain() is a function that asks if the player wants to play another round of Hangman. This function returns True if the player does and False if the player doesn’t.
+• spieleNochEinmal() fragt den Spieler, ob er eine weitere Partie Galgenmann spielen möchte. Ist dies der Fall, so gibt die Funktion True zurück, False sonst.
 
 After the functions is the code for the main part of the program at line 106. Everything previous was just function definitions and a large assignment statement for HANGMANPICS.
+Nach den Funktionen folgt in Zeile 106 der Code für das Haupt-Programm. Alles zuvor waren nur Funktions-Definitionen und eine große Zuweisung an die Variable GALGENMANNBILDER.
 
 Setting Up the Variables
+Die Variablen initialisieren
 
-106. print('H A N G M A N')
-107. missedLetters = ''
-108. correctLetters = ''
-109. secretWord = getRandomWord(words)
-110. gameIsDone = False
+106. print('G A L G E N M A N N')
+107. falscheBuchstaben = ''
+108. richtigeBuchstaben = ''
+109. geheimWort = zufallsWort(worte)
+111. spielIstBeendet = False
 
 Line 106 is the first print() call that executes when the game is run. It displays the title of the game. Next is assigning blank strings for missedLetters and correctLetters since the player hasn’t guessed any missed or correct letters yet.
+Zeile 106 beinhaltet den ersten print()-Aufruf des gesamten Spiels. Dieser zeigt den Spieletitel an. Als Nächstes werden falscheBuchstaben und richtigeBuchstaben leere Zeichenketten zugewiesen (da der Spieler noch keine Rateversuche unternommen hat).
 
 The getRandomWord(words) call will evaluate to a randomly selects word from the words list.
+Der zufallsWort(worte)-Aufruf evaluiert zu einem zufällig ausgewählten wort aus der Liste worte.
 
 Line 110 sets gameIsDone to False. The code will set gameIsDone to True when it wants to signal that the game is over and should ask the player if they want to play again.
+Zeile 110 setzt spielIstBeendet auf False. Der Code wird diese Variable dann auf True setzen, wenn eine Runde von Galgenmann vorbei ist und der Spieler gefragt werden sollte, ob er noch eine spielen möchte.
 
 Displaying the Board to the Player
+Das Spielbrett anzeigen
 
 112. while True:
-113.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+113.     zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort)
 
 The while loop’s condition is always True, which means it will loop forever until a break statement is encountered. (This happens later on line 147.)
+Die Bedingung der while-Schleife ist immer True. D.h. sie wird solange iterieren, bis eine break-Anweisung ausgeführt wird. (Dies passiert später in Zeile 147.)
 
 Line 113 calls the displayBoard() function, passing it the list of hangman ASCII art pictures and the three variables set on lines 107, 108, and 109. Based on how many letters the player has correctly guessed and missed, this function displays the appropriate hangman board to the player.
+Zeile 113 ruft die zeigeSpielbrettAn()-Funktion auf und übergibt ihr eine Liste mit ASCII-Kunst-Galgenmann-Bildern, sowie den drei in den Zeilen 107, 108 und 109 initialisierten Variablen. Abhängig von den korrekten und falschen Rateversuchen des Spielers, zeigt diese Funktion das entsprechende Spielbrett an.
 
 Letting the Player Enter Their Guess
+Benutzereingabe abfragen
 
-115.     # Let the player type in a letter.
-116.     guess = getGuess(missedLetters + correctLetters)
+115.     # Lass den Spieler einen Buchhstaben eingeben.
+116.     buchstabe = rateBuchstabe(falscheBuchstaben + richtigeBuchstaben)
 
 The getGuess() function needs all the letters in missedLetters and correctLetters combined, so line 116 concatenates the strings in these variables and passes the result as the argument. This argument is needed by getGuess() because the function has to check if the player types in a letter that they have already guessed.
+Die rateBuchstabe()-Funktion benötigt die Buchstaben in falscheBuchstaben und richtigeBuchstaben, weshalb Zeile 116 beide Variablen konkateniert und das Ergebnis als Argument übergibt. Das Argument wird benötigt, weil rateBuchstabe() überprüfen muss, ob der Spieler einen Buchstaben bereits entweder erraten oder getippt hat.
 
 Checking if the Letter is in the Secret Word
+Überprüfen, ob der geratene Buchstabe im geheimen Wort enthalten ist
 
-118.     if guess in secretWord:
-119.         correctLetters = correctLetters + guess
+118.     if buchstabe in geheimWort:
+119.         richtigeBuchstaben = richtigeBuchstaben + buchstabe
 
 If the guess string exists in secretWord, then concatenate guess to the end of the correctLetters string. This string will be the new value of correctLetters.
+Falls das geheime Wort den geratenen Buchstaben enthält, so wird dieser an das Ende von richtigeBuchstaben angehängt.
 
 Checking if the Player has Won
+Überprüfen, ob der Spieler gewonnen hat
 
-121.         # Check if the player has won
-122.         foundAllLetters = True
-123.         for i in range(len(secretWord)):
-124.             if secretWord[i] not in correctLetters:
-125.                 foundAllLetters = False
+121.         # Überprüfe, ob der Spieler gewonnen hat
+122.         alleBuchstabenGeraten = True
+123.         for i in range(len(geheimWort)):
+124.             if geheimWort[i] not in richtigeBuchstaben:
+125.                 alleBuchstabenGeraten = False
 126.                 break
 
 How can the program know if the player has guessed every letter in the secret word? Well, correctLetters has each letter that the player correctly guessed and secretWord is the secret word itself. But you can’t just check if correctLetters == secretWord because consider this case: if secretWord was the string 'otter' and correctLetters was the string 'orte', then correctLetters == secretWord would be False even though the player has guessed each letter in the secret word.
+Wie kann das Programm wissen, dass der Spieler jeden Buchstaben des Geheimwortes richtig geraten hat? Da richtigeBuchstaben alle korrekten Rateversuche des Spielers enthält und geheimWort das geheime Wort selbst ist, liegt der Gedanke nahe, beide Variablen zu vergleichen: richtigeBuchstaben == geheimWort. Dies wäre jedoch falsch. Nehmen wir an, das geheime Wort sei 'bieber' und richtigeBuchstaben habe den Wert 'eibr'. In dem Fall würde geheimWort == richtigeBuchstaben zu False evaluieren, obwohl der Spieler jeden Buchstaben des Geheimwortes erraten hat.
 
 The only way you can be sure the player won is to iterate over each letter in secretWord and see if it exists in correctLetters. If, and only if, every letter in secretWord exists in correctLetters will the player have won.
+Die korrekte Lösung lautet, über jeden Buchstaben in geheimWort zu iterieren und zu testen, ob er in richtigeBuchstaben enthalten ist. Dann, und nur dann, hat der Spieler gewonnen.
 
 If you find a letter in secretWord that doesn’t exist in correctLetters, you know that the player has not guessed all the letters. The new variable foundAllLetters is set to True on line 122 before the loop begins. The loop starts out assuming that all the letters in the secret word have been found. But the loop’s code on line 125 will change foundAllLetters to False the first time it finds a letter in secretWord that isn’t in correctLetters.
+Stoßen wir auf einen Buchstaben in geheimWort, der nicht in richtigeBuchstaben enthalten ist, so wissen wir, dass der Spieler noch nicht alle Buchhstaben erraten hat. Die neue Variable alleBuchstabenGeraten wird in Zeile 122 auf True gesetzt. Die Schleife beginnt also mit der Annahme, dass der Spieler gewonnen habe. Stößt die Schleife jedoch auf einen  noch nicht erratenen Buchstaben, so setzt sie alleBuchstabenGeraten auf False.
 
-127.         if foundAllLetters:
-128.             print('Yes! The secret word is "' + secretWord + '"! You have won!')
-129.             gameIsDone = True
+127.         if alleBuchstabenGeraten:
+128.             print('Ja! Das geheime Wort ist "' + geheimWort + '"! Du hast gewonnen!')
+129.             spielIstBeendet = True
 
 If all letters in the secret word have been found, the player is told they have won and gameIsDone is set to True.
+Sind alle Buchstaben des Geheimwortes erraten, wird der Spieler über seinen Sieg benachrichtigt.
 
 When the Player Guesses Incorrectly
+Wenn der Spieler falsch tippt
 
 130.     else:
-131.         missedLetters = missedLetters + guess
+131.         falscheBuchstaben = falscheBuchstaben + buchstabe
 
 This is the start of the else-block. Remember, the code in this block will execute if the condition was False. But which condition? To find out, point your finger at the start of the else keyword and move it straight up like in Figure 9-3. You’ll see that the else keyword's indentation is the same as the if keyword's indentation on line 118.
+
 
 Figure 9-3: The else statement is matched with the if statement at the same indentation.
 
