@@ -1,0 +1,686 @@
+    Bab 17
+    GRAFIK DAN ANIMASI
+
+Cakupan Topik dalam Bab ini:
+•   Instalasi Pygame
+•   Warna dan Font dalam Pygame
+•   Grafik Alias dan Anti-Alias
+•   Atribut
+•   Tipe Data pygame.font.Font, pygame.Surface, pygame.Rect, dan pygame.PixelArray
+•   Fungsi Constructor
+•   Fungsi Menggambar dalam Pygame
+•   Method blit() untuk Objek Surface
+•   Event - Peristiwa yang Disediakan Pygame
+•   Animasi
+
+Sejauh ini, semua game yang sudah dibuat hanya menggunakan teks. Teks ini ditampilkan pada layar sebagai keluaran dan pemain dapat mengetikkan teks dari keyboard sebagai masukan. Dengan hanya menggunakan teks pemrograman lebih mudah dipelajari. Dalam bab ini, kamu akan membuat game yang lebih menarik dengan grafik dan suara dengan menggunakan module Pygame.
+Bab 17, 18, dan 19 mengajarimu bagaimana menggunakan Pygame untuk membuat game yang punya grafik, animasi, input dari mouse, dan suara. Dalam bab ini kamu akan menulis kode program sederhana yang bukan game yang mendemonstrasikan konsep Pygame. Game dalam Bab 20 akan menggunakan semua konsep yang telah dipelajari.
+
+Instalasi Pygame
+
+Pygame tidak tersedia dalam paket Python. Seperti Python, Pygame tersedia gratis. Coba masuk tautan http://invpy.org/downloadpygame, lalu unduh program instalasi Pygame untuk sistem operasi dan versi Python yang sesuai.
+Setelah mengunduh, buka program instalasi itu, lalu ikuti instruksi instalasi sampai Pygame berhasil terinstal. Untuk mengecek Pygame telah terinstal dengan benar, ketikkan kode berikut dalam shell interaktif:
+
+>>> import pygame
+
+Jika setelah menekan ENTER tidak ada keluar apapun, maka Pygame telah berhasil terinstal. Jika ada error ImportError: No module name pygame, coba lagi instal Pygame (dan pastikan kamu mengetik import pygame dengan benar).
+
+Gambar 17-1: Situs pygame.org
+
+Situs Pygame di http://pygame.org punya informasi tentang bagaimana menggunakan Pygame, beberapa program game lain yang dibuat dengan Pygame. Gambar 17-1 menunjukkan situs Pygame.
+Bab ini menyediakan program kecil yang mendemonstrasikan bagaimana menggunakan beberapa fitur yang disediakan Pygame. Di bab terakhir, kamu akan menggunakan fitur-fitur ini untuk membuat game dalam Python menggunakan Pygame.
+
+Halo Dunia dalam Pygame
+
+Program Pygame pertama adalah program "Halo Dunia!" seperti yang telah kamu buat pada bagian awal buku ini. Kali ini, kamu akan menggunakan Pygame untuk membuat "Halo Dunia!" ditampilkan dalam jendela bergrafik, bukan hanya teks.
+Pygame tidak bekerja dengan baik dalam shell interaktif karena tergantung pada putaran game (akan dijelaskan nanti). Oleh karena itu, kamu hanya bisa menulis program Pygame dan tidak bisa mengirim instruksi ke Pygame melalui shell interaktif.
+Program Pygame juga tidak menggunakan fungsi input(). Tidak ada masukan dan keluaran berupa teks. Program akan menampilkan keluaran dalam jendela dengan cara menggambar grafik dan teks pada jendela itu. Masukan  program Pygame datang dari keyboard dan mouse melalui suatu peristiwa-peristiwa yang disebut event. Event akan dijelaskan dalam bab berikutnya.
+
+Kode Halo Dunia
+
+Ketikkan kode berikut dalam file editor, lalu simpan sebagai pygameHaloDunia.py. Jika kamu mendapat error setelah mengetikkan kode ini, bandingkan dengan kode dalam buku dengan menggunakan perangkat pembeda di http://invpy.com/id/diff/pygameHaloDunia.
+
+pygameHaloDunia.py
+ 1. import pygame, sys
+ 2. from pygame.locals import *
+ 3.
+ 4. # menyiapkan pygame
+ 5. pygame.init()
+ 6.
+ 7. # menyiapkan jendela keluaran
+ 8. windowSurface = pygame.display.set_mode((500, 400), 0, 32)
+ 9. pygame.display.set_caption('Halo Dunia!')
+10.
+11. # menyiapkan warna yang dipakai
+12. BLACK = (0, 0, 0)
+13. WHITE = (255, 255, 255)
+14. RED = (255, 0, 0)
+15. GREEN = (0, 255, 0)
+16. BLUE = (0, 0, 255)
+17.
+18. # menyiapkan font yang dipakai
+19. basicFont = pygame.font.SysFont(None, 48)
+20.
+21. # menyiapkan teks
+22. text = basicFont.render('Halo Dunia!', True, WHITE, BLUE)
+23. textRect = text.get_rect()
+24. textRect.centerx = windowSurface.get_rect().centerx
+25. textRect.centery = windowSurface.get_rect().centery
+26.
+27. # menggambar latar belakang putih pada surface
+28. windowSurface.fill(WHITE)
+29.
+30. # menggambar segibanyak hijau pada surface
+31. pygame.draw.polygon(windowSurface, GREEN, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
+32.
+33. # menggambar beberapa garis biru pada surface
+34. pygame.draw.line(windowSurface, BLUE, (60, 60), (120, 60), 4)
+35. pygame.draw.line(windowSurface, BLUE, (120, 60), (60, 120))
+36. pygame.draw.line(windowSurface, BLUE, (60, 120), (120, 120), 4)
+37.
+38. # menggambar lingkaran biru pada surface
+39. pygame.draw.circle(windowSurface, BLUE, (300, 50), 20, 0)
+40.
+41. # menggambar elips merah pada surface
+42. pygame.draw.ellipse(windowSurface, RED, (300, 250, 40, 80), 1)
+43.
+44. # menggambar kotak latar belakang untuk teks pada surface
+45. pygame.draw.rect(windowSurface, RED, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
+46.
+47. # ambil array pixel dari surface
+48. pixArray = pygame.PixelArray(windowSurface)
+49. pixArray[480][380] = BLACK
+50. del pixArray
+51.
+52. # menggambar teks pada surface
+53. windowSurface.blit(text, textRect)
+54.
+55. # menggambar jendela pada layar
+56. pygame.display.update()
+57.
+58. # jalankan putaran game
+59. while True:
+60.     for event in pygame.event.get():
+61.         if event.type == QUIT:
+62.             pygame.quit()
+63.             sys.exit()
+
+Menjalankan Program Halo Dunia
+
+Ketika menjalankan program Halo Dunia, kamu harus melihat jendela baru yang tampak seperti Gambar 17-2.
+Hal yang membuat menggunakan jendela lebih baik daripada menggunakan konsol adalah bahwa teks dapat muncul dimanapun dalam jendela, bukan hanya muncul setelah teks terakhir ditampilkan. Teks dapat diwarnai atau dalam ukuran apapun. Jendela keluaran sama seperti kanvas kosong untuk menggambar dan kamu dapat menggambar apapun pada kanvas itu.
+
+Gambar 17-2 Program "Halo Dunia".
+
+Mengimpor Module Pygame
+
+Mari liat tiap baris kodenya untuk mengetahui apa yang dilakukannya.
+
+ 1. import pygame, sys
+ 2. from pygame.locals import *
+
+Pertama, kamu perlu mengimpor module pygame untuk dapat meggunakan fungsi-fungsi Pygame. Kamu dapat mengimpor beberapa module dalam satu baris yang sama dengan memisahkan nama module dengan tanda koma. Baris 1 mengimpor module pygame dan sys.
+Baris kedua mengimpor module pygame.locals. Module ini mengandung banyak variabel konstan yang akan digunakan, seperti QUIT dan K_ESCAPE (dijelaskan nanti). Dengan menggunakan kode berformat from namaModule import *, kamu dapat mengimpor module pygame.locals dan tidak perlu mengetikkan pygame.locals di awal fungsi dalam module yang diimpor.
+Jika kamu menulis from sys import *, bukan import sys, kamu dapat memanggil exit(), bukan sys.exit() dalam kodemu. Biasanya lebih baik menulis nama lengkap fungsi, sehinga kamu tahu dari module apa fungsi itu berasal.
+
+Fungsi pygame.init()
+
+ 4. # menyiapkan pygame
+ 5. pygame.init()
+
+Semua program Pygame harus dijalankan dengan memanggil pygame.init() tepat setelah mengimpor module pygame, sebelum memanggil fungsi Pygame lainnya.
+Fungsi pygame.display.set_mode() dan pygame.display.set_caption()
+
+ 7. # menyiapkan jendela keluaran
+ 8. windowSurface = pygame.display.set_mode((500, 400), 0, 32)
+ 9. pygame.display.set_caption('Halo Dunia!')
+
+Baris 8 membuat jendela GUI dengan memanggil method set_mode() dalam module pygame.display. (Module display ada dalam module pygame. Bahkan module pygame punya module-module lainnya!)
+Ada tiga parameter untuk method set_mode():
+
+•   Satu tuple dua bilangan bulat untuk lebar dan tinggi jendela dalam satuan pixel.
+•   Satu opsi untuk GUI yang lebih canggih. Kamu tidak memerlukannya sekarang, sehingga lempar saja nilai 0.
+•   Opsi yang lebih canggih lainnya yang disebut kedalaman warna. Lempar saja nilai 32.
+
+Pixel adalah titik terkecil dalam layar komputer. Satu pixel dalam layar dapat berwarna apapun. Semua pixel dalam layar bergabung untuk menampilkan gambar yang kamu lihat. Untuk membuat jendela berukuran lebar 500 pixel dan tinggi 400 pixel, gunakan tuple (500, 400) sebagai parameter pertama.
+Pemanggilan set_caption() mengembalikan objek pygame.surface (sebut saja surface untuk menyingkatnya). Objek adalah nilai-nilai suatu tipe data yang mempunyai method. Sebagai contoh, string adalah objek dalam Python karena punya data (string itu sendiri) dan method (seperti lower() dan split()). Objek surface menunjukkan sebuah jendela.
+Variabel akan menyimpan referensi ke objek, seperti ketika variabel menyimpan referensi untuk list dan dictionary. Bagian Referensi pada Bab 10 menjelaskan tentang referensi.
+
+Warna dalam Pygame
+
+11. # set up the colors
+12. BLACK = (0, 0, 0)
+13. WHITE = (255, 255, 255)
+14. RED = (255, 0, 0)
+15. GREEN = (0, 255, 0)
+16. BLUE = (0, 0, 255)
+
+Tabel 17-1: Warna dan Nilai RGB-nya.
+Warna   Nilai RGB
+Hitam   (  0,   0,   0)
+Biru    (  0,   0, 255)
+Abu-abu    (128, 128, 128)
+Hijau   (  0, 128,   0)
+Hijau terang    (  0, 255,   0)
+Ungu  (128,   0, 128)
+Merah (255,   0,   0)
+Teal    (  0, 128, 128)
+Putih   (255, 255, 255)
+Kuning  (255, 255,   0)
+
+Cahaya punya tiga warna utama: merah, hijau, dan biru. Dengan mengombinasikan jumlah yang berbeda dari ketiga warna utama, kamu akan memperoleh warna lainnya. Dalam Pygame warna direpresentasikan sebagai tipe data tuple tiga bilangan bulat.
+Nilai pertama tuple warna adalah seberapa banyak merah dalam warna. Nilai 0 berarti tidak ada merah dalam warna, sedangkan nilai 255 berarti warna mengandung sejumlah merah yang maksimum. Nilai kedua untuk hijau dan nilai ketiga untuk biru.
+Sebagai contoh, tuple (0, 0, 0) berarti tidak ada merah, hijau, atau biru. Hasilnya adalah representasi warna hitam. tuple (255, 255, 255) punya merah, hijau, dan biru sejumlah maksimum, dan menghasilkan warna putih.
+tuple (255, 0, 0) merepresentasikan jumlah maksimum merah, tapi tidak ada hijau dan biru, sehingga menjadi warna merah. Lebih lanjut (0, 255, 0) menunjukkan warna hijau dan (0, 0, 255) menunjukkan warna biru.
+Kamu dapat mencampur jumlah merah, hijau, dan biru untuk mendapatkan suatu warna. Tabel 17-1 menunjukkan beberapa warna yang sering dipakai beserta nilai RGB-nya. Halaman situs http://invpy.com/colors juga mendaftarkan beberapa nilai tuple untuk warna lainnya.
+
+Font dan Fungsi pygame.font.SysFont()
+
+8. # menyiapkan font yang dipakai
+19. basicFont = pygame.font.SysFont(None, 48)
+
+Gambar 17-3: Contoh Font.
+
+Font adalah suatu kumpulan huruf, angka, simbol, dan karakter komplit yang digambarkan dalam gaya tertentu. Gambar 17-3 menunjukkan satu kalimat dalam beberapa font yang berbeda.
+Pada game sebelumnya, kamu hanya meminta Python untuk mencetak teks. Warna, ukuran, dan font yang digunakan untuk menampilkan teks ini ditentukan oleh sistem operasimu. Program Python itu tidak dapat mengubah font. Pygame membolehkanmu menggambar teks dalam font apapun pada layarmu.
+Baris 19 membuat objek pygame.font.Font (sebutlah objek Font untuk menyingkatnya) dengan memanggil fungsi pygame.font.SysFont(). Parameter pertama adalah nama font. Pada contoh ini lemparkan nilai None untuk menggunakan font sistem. Parameter kedua adalah ukuran font (yang diukur dalam unit yang disebut point).
+
+Method render() untuk Objek Font
+
+# menyiapkan teks
+22. text = basicFont.render('Halo Dunia!', True, WHITE, BLUE)
+23. textRect = text.get_rect()
+
+Gambar 17-4: Tampilan yang diperbesar dari garis teraliasi dan garis anti-alias.
+
+Objek Font yang disimpan dalam variabel basicFont punya method bernama render(). Method ini akan membuat objek Surface sebagai kanvas untuk menggambar teks. Parameter pertama untuk render() adalah string teks yang akan digambar. Parameter kedua adalah Boolean yang menunjukkan pemakaian anti-alias atau tidak.
+Pada baris 22, lemparkan True untuk menggunakan anti-alias. Anti-alias akan mengaburkan teks agar lebih mulus. Gambar 17-4 menunjukkan garis (dengan pixel yang diperbesar) dengan dan tanpa anti-alias.
+
+Atribut
+
+24. textRect.centerx = windowSurface.get_rect().centerx
+25. textRect.centery = windowSurface.get_rect().centery
+
+Tipe data pygame.Rect (sebutlah Rect untuk menyingkatnya) membuat berkerja dengan hal tentang bentuk persegi panjang menjadi lebih mudah. Untuk membuat objek Rect baru panggil fungsi pygame.Rect(). Parameternya adalah bilangan bulat untuk koordinat XY di sudut kiri atas, serta lebar dan tinggi dalam satuan pixel.
+Format fungsi itu beserta parameternya tampak seperti: pygame.Rect(left, top, lebar, tinggi).
+Sama seperti method, yaitu fungsi yang berkaitan dengan sebuah objek, atribut adalah variabel yang berkaitan dengan sebuah objek. Tipe data Rect (tipe data semua objek Rect) punya banyak atribut yang mendeskripsikan persegi panjang yang direpresentasikannya. Berikut ini adalah daftar atribut objek Rect bernama myRect:
+
+Atribut pygame.Rect Deskripsi
+myRect.left Nilai bilangan bulat dari koordinat-X sisi kiri persegi panjang
+myRect.right    Nilai bilangan bulat dari koordinat-X sisi kanan persegi panjang
+myRect.top  Nilai bilangan bulat dari koordinat-Y sisi atas persegi panjang
+myRect.bottom   Nilai bilangan bulat dari koordinat-Y sisi bawah persegi panjang
+myRect.centerx  Nilai bilangan bulat dari koordinat-X pusat persegi panjang
+myRect.centery  Nilai bilangan bulat dari koordinat-Y pusat persegi panjang
+myRect.width    Nilai bilangan bulat dari lebar persegi panjang
+myRect.height   Nilai bilangan bulat dari tinggi persegi panjang
+myRect.size tuple dua bilangan bulat: (width, height)
+myRect.topleft  tuple dua bilangan bulat: (left, top)
+myRect.topright tuple dua bilangan bulat: (right, top)
+myRect.bottomleft   tuple dua bilangan bulat: (left, bottom)
+myRect.bottomright  tuple dua bilangan bulat: (right, bottom)
+myRect.midleft   tuple dua bilangan bulat: (left, centery)
+myRect.midright tuple dua bilangan bulat: (right, centery)
+myRect.midtop tuple dua bilangan bulat: (centerx, top)
+myRect.midbottom    tuple dua bilangan bulat: (centerx, bottom)
+
+Bagusnya objek Rect adalah bahwa jika kamu memodifikasi sembarang atributnya, maka semua atribut lainnya akan menyesuaikan secara otomatis. Sebagai contoh, misalnya kamu buat objek Rect dengan lebar 20 pixel dan tinggi 20 pixel, serta sudut kiri atas berkoordinat (30,40), maka koordinat-X sisi kanan adalah 50 (karena 20 + 30 = 50).
+Jika kamu mengubah atribut left dengan kode myRect.left = 100, maka Pygame akan secara otomatis mengubah atribut right menjadi 120 (karena 20 + 100 = 120). Semua atribut lainnya juga akan diperbarui.
+Method get_rect() untuk objek pygame.font.Font dan pygame.Surface
+Perhatikan bahwa kedua objek Font (disimpan dalam variabel text) dan Surface (disimpan dalam variabel windowSurface) memiliki method bernama get_rect(). Secara teknis, method ini berbeda. Programmer Pygame memberi nama yang sama karena keduanya melakukan hal yang sama dan mengembalikan objek Rect yang merepresentasikan ukuran dan posisi objek Font atau Surface.
+Module yang kamu impor adalah pygame dan didalamnya terdapat module font dan surface. Didalam module itu terdapat tipe data Font dan Surface. Programmer Pygame membuat nama module dimulai dengan huruf kecil dan tipe data dimulai dengan huruf kapital untuk mempermudah membedakan antara tipe data dan module.
+
+Fungsi constructor dan type()
+
+Kamu membuat objek pygame.Rect() dengan memanggil fungsi pygame.Rect(). Fungsi pygame.Rect() mempunyai nama yang sama dengan tipe data pygame.Rect. Fungsi yang mempunyai nama yang sama dengan nama tipe datanya dan membuat objek atau nilai dari tipe data itu disebut fungsi constructor.
+Kamu dapat mengetahui apa nama tipe data suatu nilai dengan menggunakan fungsi type(). Sebagai contoh, coba masukkan kode berikut dalam shell interaktif:
+
+>>> type('Ini adalah string')
+<type 'str'>
+>>> type(5)
+<type 'int'>
+>>> spam = 'String lainnya'
+>>> type(spam)
+<type 'str'>
+>>> import pygame
+>>> pygame.init()
+>>> myRect = pygame.Rect(10, 10, 40, 50)
+>>> type(myRect)
+<type 'pygame.Rect'>
+>>> pygame.quit()
+(Kamu harus memanggil fungsi pygame.quit() ketika sudah selesai mengetikkan fungsi Pygame dalam shell interaktif. Jika tidak kamu akan membuat Python crash.) Perhatikan bahwa nilai kembalian fungsi type() bukan sebuah seting, melainkan sebuah nilai suatu tipe data yang disebut "type"! Coba masukkan kode berikut dalam shell interaktif:
+>>> type(type('Ini adalah string'))
+<type 'type'>
+
+Biasanya, kamu tidak perlu tahu tipe data dan fungsi type() ketika membuat game. Namun, fungsi ini bisa sangat membantu jika kamu perlu tahu tipe data suatu nilai yang tersimpan dalam suatu variabel dalam programmu.
+
+Method fill() dan Objek Surface
+
+27. # menggambar latar belakang putih pada surface
+28. windowSurface.fill(WHITE)
+
+Kamu ingin mengisi seluruh permukaan yang tersimpan dalam windowSurface dengan warna putih. Fungsi fill() akan mengisi penuh seluru permukaan dengan warna yang dilemparkan sebagai parameter. (Dalam kasus ini, kamu melemparkan WHITE untuk membuat latar berwarna putih.)
+Hal penting yang perlu diketahui tentang Pygame adalah bahwa jendela dalam layar tidak akan berubah ketika memanggil method fill() atau fungsi menggambar lainnya. Hal ini akan merubah objek Surface, tapi objek itu tidak akan digambarkan pada layar sampai fungsi pygame.display.update() dipanggil.
+Dibuat demikian karena menggambar dalam objek Surface (yang disimpan dalam memori komputer) lebih cepat daripada menggambar ke layar. Akan lebih efisien jika objek digambarkan ke layar ketika semua fungsi menggambar pada objek Surface sudah dipanggil.
+
+Fungsi Menggambar Pygame
+
+Fungsi pygame.draw.polygon()
+
+30. # menggambar segibanyak hijau pada surface
+31. pygame.draw.polygon(windowSurface, GREEN, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
+
+Sebuah segibanyak adalah suatu bentuk dengan banyak sisi bergaris lurus. Lingkaran dan elips bukan segibanyak. Gambar 17-5 punya beberapa contoh segibanyak.
+
+Gambar 17-5: Contoh segibanyak.
+
+Fungsi pygame.draw.polygon() dapat menggambar bentuk apapun yang kamu berikan dan mengisi isi segibanyak yang dihasilkan. Parameter secara berurutan adalah:
+
+•   Objek Surface sebagai kanvas segibanyak.
+•   Warna segibanyak.
+•   Satu tuple yang merepresentasikan titik-titik koordinat XY untuk digambar secara berurutan. Tuple terakhir akan terhubung dengan tuple pertama untuk membuat bentuk yang lengkap.
+
+Fungsi pygame.draw.line()
+
+33. # menggambar beberapa garis biru pada surface
+34. pygame.draw.line(windowSurface, BLUE, (60, 60), (120, 60), 4)
+35. pygame.draw.line(windowSurface, BLUE, (120, 60), (60, 120))
+36. pygame.draw.line(windowSurface, BLUE, (60, 120), (120, 120), 4)
+
+Parameternya secara berurutan adalah:
+
+•   Objek Surface sebagai kanvas garis.
+•   Warna garis.
+•   Satu tuple dua bilangan bulat koordinat XY satu ujung garis.
+•   Satu tuple dua bilangan bulat koordinat XY satu ujung lainnya garis.
+•   Opsional, satu bilangan bulat untuk lebar garis.
+
+Jika kamu melemparkan 4 sebagai lebar, maka tebal garis akan empat pixel. Jika kamu tidak mengikutkan lebarnya, maka Pygame akan memasang lebar sama dengan 1 pixel.
+
+Fungsi pygame.draw.circle()
+
+38. # menggambar lingkaran biru pada surface
+39. pygame.draw.circle(windowSurface, BLUE, (300, 50), 20, 0)
+
+Parameternya secara berurutan adalah:
+
+•   Objek Surface sebagai kanvas.
+•   Warna lingkaran.
+•   Satu tuple bilangan bulat untuk koordinat XY pusat lingkaran.
+•   Satu bilangan bulat untuk jari-jari (ukurannya) lingkaran.
+•   Opsional, satu bilangan bulat untuk lebar lingkaran. Lebar 0 berarti lingkarannya akan diisi.
+
+Fungsi pygame.draw.ellipse()
+
+41. # menggambar elips merah pada surface
+42. pygame.draw.ellipse(windowSurface, RED, (300, 250, 40, 80), 1)
+
+Fungsi pygame.draw.ellipse() akan menggambar suatu elips. Fungsi ini mirip fungsi pygame.draw.circle(). Parameternya secara berurutan adalah:
+
+•   Objek Surface sebagai kanvas.
+•   Warna elips.
+•   Satu tuple empat bilangan bulat untuk atribut left, top, width, dan height elips.
+•   Opsional, satu bilangan bulat untuk lebar. Lebar 0 berarti elipsnya akan diisi.
+
+Fungsi pygame.draw.rect()
+
+44. # menggambar kotak latar belakang untuk teks pada surface
+45. pygame.draw.rect(windowSurface, RED, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
+
+Fungsi pygame.draw.rect() akan menggambar satu persegi panjang. Parameter ketiganya adalah satu tuple empat bilangan bulat untuk atribut left, top, width, dan height persegi panjang itu. Kamu juga bisa melemparkan objek Rect sebagai parameter ketiga.
+Pada baris 45, kamu akan menggambar persegi panjang dengan sejauh 20 pixel dari masing-masing sisi teks. Itulah mengapa atribut left dan top persegi panjang sama dengan atribut left dan top teks dikurangi 20. (Ingat, perlu dikurangi karena koordinat semakin kiri atau atas akan semakin kecil.) Sedangkan atribut width dan height sama dengan width dan height textRect ditampah 40 (karena atribut left dan top dipindahkan 20 pixel, sehingga kamu perlu menambah luasnya).
+
+Tipe Data pygame.PixelArray
+
+47. # ambil array pixel dari surface
+48. pixArray = pygame.PixelArray(windowSurface)
+49. pixArray[480][380] = BLACK
+
+Pada baris 48 kamu membuat satu objek pygame.PixelArray (sebutlah objek PixelArray untuk menyingkatnya). Objek ini adalah satu list dari list tuple warna yang merepresentasikan objek Surface yang dilemparkan.
+Bari 48 melemparkan windowSurface ke pemanggilan pygame.PixelArray(), sehingga mengisi BLACK ke pixArray[480][380] akan merubah pixel pada koordinat (480, 380) menjadi pixel hitam. Pygame akan secara otomatis merubah juga objek windowSurface.
+Indeks pertama dari objek PixelArray adalah koordinat-X. Indeks kedua adalah koordinat-Y. Objek PixelArray membuat perubahan satu pixel menjadi warna tertentu lebih mudah.
+
+50. del pixArray
+
+Membuat objek PixelArray dari objek Surface akan mengunci objek Surface itu. Terkunci berarti fungsi blit() (dijelaskan nanti) tidak bisa dipanggil untuk objek Surface itu. Untuk membuka kuncinya, kamu haru menghapus objek PixelArray dengan operator del. Jika kamu lupa menghapus objek PixelArray, kamu akan dapat error yang berkata pygame.error: Surface must not be locked during blit.
+
+Method blit() untuk Objek Surface
+
+52. # menggambar teks pada surface
+53. windowSurface.blit(text, textRect)
+
+Method blit() akan menggambar isi suatu objek Surface ke objek Surface lainnya. Baris 54 akan menggambar objek Surface "Halo Dunia!" ke objek Surface dalam variabel windowSurface.
+Parameter kedua blit() adalah untuk memberitahu dimana dalam windowSurface teks akan digambarkan. Lemparkan objek Rect dengan memanggil text.get_rect() (yang disimpan dalam textRect pada baris 23).
+
+Fungsi pygame.display.update()
+
+55. # menggambar jendela pada layar
+56. pygame.display.update()
+
+Dalam Pygame, tidak ada yang digambarkan pada layar sampai fungsi pygame.display.update() dipanggil. Ini karena menggambar pada layar lebih lambat dibandingkan dengan menggambar pada objek Surface yang disimpan dalam memori. Kamu tidak ingin memperbarui layar setiap kali fungsi menggambar dipanggil, tetapi hanyak perbarui layar ketika semua fungsi menggambar sudah dipanggil.
+Kamu perlu memanggil pygame.display.update() setiap kali kamu ingin memperbarui layar untuk menampilkan isi objek Surface yang dikembalikan pygame.display.set_mode(). (Dalam program ini, objek itu sudah disimpan dalam variabel windowSurface.) Hal ini akan lebih penting dalam program berikutnya yang membahas animasi.
+
+Peristiwa dan Putaran Game
+
+Dalam game sebelumnya, semua program mencetak semua secara langsung sampai pemanggilan fungsi input(). Pada titik itu, program akan berhenti dan menunggu pengguna mengetikkan sesuatu dan menekan ENTER. Dalam program Pygame, program berjalan terus dalam satu putaran disebut putaran game. Dalam program ini, semua baris kode dalam putaran game akan dieksekusi seratus kali tiap detik.
+Putaran game adalah suatu putaran yang secara periodik mengecek suatu peristiwa (event) baru, mengperbarui status jendela, dan menggambar jendela pada layar. Event adalah objek tipe data pygame.event.Event yang dibuat Pygame setiap kali pengguna menekan satu kunci, mengeklik atau memindahkan mouse, atau membuat event lainnya muncul.
+
+58. # jalankan putaran game
+59. while True:
+
+Baris 59 adalah awal putaran game. Kondisi pernyataan while-nya diisi True, sehingga akan berputar selamanya. Untuk keluar dari putaran itu harus ada event yang ditangkap untuk membuat program mati.
+
+Fungsi pygame.event.get()
+
+60.     for event in pygame.event.get():
+61.         if event.type == QUIT:
+
+Pemanggilan pygame.event.get() akan mendapatkan objek pygame.event.Event baru (sebutlah objek Event untuk menyingkatnya) yang sudah dibangkitkan setelah pemanggilan terakhir fungsi pygame.event.get(). Peristiwa-peristiwa itu dikembalikan sebagai satu daftar dari objek Event. Semua objek Event punya atribut bernama type yang memberitahu tipe apakah peristiwa itu. (Pada bab ini kamu hanya akan berurusan dengan peristiwa bertipe QUIT. Tipe peristiwa lainnya kan dibahas pada bab selanjutnya.)
+Pygame akan membangitkan peristiwa QUIT (yang sudah diimpor dari module pygame.locals) ketika pengguna mengeklik tombol X pada suduh kanan atas jendela program. Peristiwa ini juga dibangkitkan ketika komputer sedang dimatikan dan mencoba untuk mematikan semua program yang masih aktif. Untuk alasan apapun mengapa peristiwa QUIT dibangkitkan kamu harus membuat kode yang mematikan program.
+Baris 60 punya putaran for yang mengiterasi setiap objek Event dalam list yang dikembalikan pygame.event.get(). Jika atribut type dari objek Event sama dengan variabel konstan QUIT, maka kamu tahu pengguna sudah menutup jendela dan kamu harus mematikan program.
+
+Fungsi pygame.quit()
+
+62.             pygame.quit()
+63.             sys.exit()
+
+Jika peristiwa QUIT sudah dibangkitkan, panggil kedua fungsi pygame.quit() dan sys.exit().
+Program di atas adalah program "Halo Dunia!" sederhana menggunakan Pygame. Kamu telah mempelajari banyak topik baru yang tidak dibahas pada game sebelumnya. Meski kodenya tampak lebih rumit, program Pygame dapat lebih menyenangkan daripada program berupa teks saja. Selanjutnya kamu akan membuat game dengan animasi grafik bergerak.
+
+Animasi
+
+Dalam program ini kamu akan membuat beberapa blok yang mental ketika menyentuh sisi jendela. Blok-blok ini berukuran dan berwarna berbeda, serta hanya maju dalam arah diagonal. Untuk menganimasi blok (yaitu, membuatnya tampak sedang bergerak) kamu akan memindahkan blok beberapa pixel pada tiap iterasi dalam putaran game. Dengan menggambar blok baru yang berlokasi sedikit berbeda dari posisi sebelumnya, kamu akan melihat bahwa blok-blok itu maju dalam layar.
+Program Animasi
+Ketikkan program berikut dalam file editor dan simpan sebagai animasi.py. Jika kamu mendapatkan error setelah mengetikkannya, coba bandingkan dengan kode dari buku ini dengan perangkat pembeda online di http://invpy.com/id/diff/animasi.
+
+animasi.py
+ 1. import pygame, sys, time
+ 2. from pygame.locals import *
+ 3.
+ 4. # menyiapkan pygame
+ 5. pygame.init()
+ 6.
+ 7. # menyiapkan jendela
+ 8. WINDOWWIDTH = 400
+ 9. WINDOWHEIGHT = 400
+10. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
+11. pygame.display.set_caption('Animasi')
+12.
+13. # menyiapakan variabel arah
+14. DOWNLEFT = 1
+15. DOWNRIGHT = 3
+16. UPLEFT = 7
+17. UPRIGHT = 9
+18.
+19. MOVESPEED = 4
+20.
+21. # menyiapkan warna
+22. BLACK = (0, 0, 0)
+23. RED = (255, 0, 0)
+24. GREEN = (0, 255, 0)
+25. BLUE = (0, 0, 255)
+26.
+27. # menyiapkan struktur data blok
+28. b1 = {'rect':pygame.Rect(300, 80, 50, 100), 'color':RED, 'dir':UPRIGHT}
+29. b2 = {'rect':pygame.Rect(200, 200, 20, 20), 'color':GREEN, 'dir':UPLEFT}
+30. b3 = {'rect':pygame.Rect(100, 150, 60, 60), 'color':BLUE, 'dir':DOWNLEFT}
+31. blocks = [b1, b2, b3]
+32.
+33. # mulai putaran game
+34. while True:
+35.     # cek peristiwa QUIT
+36.     for event in pygame.event.get():
+37.         if event.type == QUIT:
+38.             pygame.quit()
+39.             sys.exit()
+40.
+41.     # gambar latar belakang hitam pada surface
+42.     windowSurface.fill(BLACK)
+43.
+44.     for b in blocks:
+45.         # pindahkan struktur data blok
+46.         if b['dir'] == DOWNLEFT:
+47.             b['rect'].left -= MOVESPEED
+48.             b['rect'].top += MOVESPEED
+49.         if b['dir'] == DOWNRIGHT:
+50.             b['rect'].left += MOVESPEED
+51.             b['rect'].top += MOVESPEED
+52.         if b['dir'] == UPLEFT:
+53.             b['rect'].left -= MOVESPEED
+54.             b['rect'].top -= MOVESPEED
+55.         if b['dir'] == UPRIGHT:
+56.             b['rect'].left += MOVESPEED
+57.             b['rect'].top -= MOVESPEED
+58.
+59.         # cek apakah blok sudah pindah keluar jendela
+60.         if b['rect'].top < 0:
+61.             # blok sudah pindah melewati bagian atas
+62.             if b['dir'] == UPLEFT:
+63.                 b['dir'] = DOWNLEFT
+64.             if b['dir'] == UPRIGHT:
+65.                 b['dir'] = DOWNRIGHT
+66.         if b['rect'].bottom > WINDOWHEIGHT:
+67.             # blok sudah pindah melewati bagian bawah
+68.             if b['dir'] == DOWNLEFT:
+69.                 b['dir'] = UPLEFT
+70.             if b['dir'] == DOWNRIGHT:
+71.                 b['dir'] = UPRIGHT
+72.         if b['rect'].left < 0:
+73.             # blok sudah pindah melewati sisi kiri
+74.             if b['dir'] == DOWNLEFT:
+75.                 b['dir'] = DOWNRIGHT
+76.             if b['dir'] == UPLEFT:
+77.                 b['dir'] = UPRIGHT
+78.         if b['rect'].right > WINDOWWIDTH:
+79.             # blok sudah pindah melewati sisi kanan
+80.             if b['dir'] == DOWNRIGHT:
+81.                 b['dir'] = DOWNLEFT
+82.             if b['dir'] == UPRIGHT:
+83.                 b['dir'] = UPLEFT
+84.
+85.         # gambar blok ke dalam surface
+86.         pygame.draw.rect(windowSurface, b['color'], b['rect'])
+87.
+88.     # gambar jendela ke layar
+89.     pygame.display.update()
+90.     time.sleep(0.02)
+
+Gambar 17-6: Program Animasi.
+
+Bagaimana Kerja Program Animasi
+
+Dalam program ini, kamu akan membuat tiga blok berwarna berbeda yang bergerak dan mental dari dinding jendela. Untuk melakukannya, kamu perlu mempertimbangkan bagaimana blok bergerak.
+
+Membuat Blok Bergerak dan Memantul
+
+Setiap blok akan bergerak ke satu atau empat arah diagonal. Ketika blok menyentuh sisi jendela, blok akan memental dari sisi itu ke arah diagonal baru. Blok akan memental seperti Gambar 17-7.
+Arah baru ketika blok memental tergantung pada dua hal: arah sebelum memental dan dinding mana yang disentuhnya. Semuanya ada delapan kemungkinan cara satu blok memental: dua cara untuk tiap dinding.
+Sebagai contoh, jika blom bergerak kekanan bawah dan memental karena sisi bawah jendela, maka arah baru blok adalah kanan atas.
+Blok direpresentasikan dengan objek Rect, yaitu posisi dan ukuran masing-masing, satu tuple tiga bilangan bulat untuk merepresentasikan warna blok itu, dan satu bilangan bulat yang merepresentasikan arah diangonal mana yang sedang dilakukan.
+Pada tiap iterasi putaran game, isi posisi X dan Y blok dalam objek Rect. Pada tiap iterasi juga, semua blok akan digambar pada layar di posisi sekarang masing-masing. Selama program mengeksekusi kode dalam putaran game, blok akan bergerak secara bertahap, sehingga blok-blok itu akan terlihat bergerak secara halus dan mental-mental sendiri.
+
+Gambar 17-7: Diagram yang menunjukkan bagaimana blok akan memental.
+
+Membuat dan Menyiapakan Pygame
+
+ 1. import pygame, sys, time
+ 2. from pygame.locals import *
+ 3.
+ 4. # menyiapkan pygame
+ 5. pygame.init()
+ 6.
+ 7. # menyiapkan jendela
+ 8. WINDOWWIDTH = 400
+ 9. WINDOWHEIGHT = 400
+10. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
+
+Dalam program ini ukuran lebar dan tinggi jendela yang digunakan ditentukan oleh pemanggilan set_mode(). Variabel konstan digunakan, sehingga jika kamu ingin merubah ukuran jendela, kamu hanya perlu merubah baris 8 dan 9. Karena ukuran jendela tidak akan berubah selama program dijalankan, maka variabel konstan adalah ide bagus.
+
+11. pygame.display.set_caption('Animasi')
+
+Baris 100 mengeset judul jendela dengan 'Animasi' dengan memanggil pygame.display.set_caption().
+
+Menyiapkan Variabel Konstan untuk Arah
+
+13. # menyiapakan variabel arah
+14. DOWNLEFT = 1
+15. DOWNRIGHT = 3
+16. UPLEFT = 7
+17. UPRIGHT = 9
+
+Tombol dalam pad angka di keyboard akan digunakan sebagai pengingat arah. Cara ini seperti yang digunakan game Tic Tac Toe. 1 untuk kiri bawah, 3 untuk kanan bawah, 7 untuk kiri atas, dan 9 untuk kanan atas. Mungkin akan susah untuk mengingat bilangan ini, sehingga bilangan-bilangan ini akan disimpan dalam variabel konstan.
+Kamu bisa saja membuat kunci atau nilai lain untuk arah ini. Misalnya gunakan string 'downleft' untuk merepresentasikan arah diagonal kiri bawah. Namun, kalau kamu salah ketik string 'downleft' (misalnya, malah 'fownleft'), Python akan tidak mengenalnya. Bug seperti ini akan membuat program berlaku aneh, tapi tidak akan crash.
+Dengan menggunakan variabel konstan, salah ketik nama variabel, seperti FOWNLEFT padahal DOWNLEFT, akan dipertahikan oleh Python dan segera membuat crash program dengan memberi error. Ini tetap merupakan bug, tetapi lebih kamu dapat lebih cepat mengetahuinya dan segera diperbaiki.
+
+19. MOVESPEED = 4
+
+Variabel konstan juga akan digunakan untuk mendefinisikan seberapa cepat blok bergerak. Nilai 4 berarti blok akan bergerak 4 pixel pada tiap iterasi putaran game.
+
+Menyiapkan Variabel Konstan untuk Warna
+
+21. # menyiapkan warna
+22. BLACK = (0, 0, 0)
+23. RED = (255, 0, 0)
+24. GREEN = (0, 255, 0)
+25. BLUE = (0, 0, 255)
+
+Representasi warna juga menggunakan variabel konstan. Ingat, Pygame menggunakan satu tuple tiga bilangan bulat untuk sejumlah merah, hijau, dan biru yang disebut nilai RGB. Nilai bilangan bulat ini ada dalam rentang 0 sampai 255.
+Sekali lagi, penggunaan variabel konstan adalah untuk kemudahan dibaca. Komputer tidak peduli kalau kamu memakai variabel bernama HIJAU untuk warna hijau. Namun, dalam program ini, lebih mudah mengartikan GREEN untuk warna hijau daripada tuple (0, 255, 0).
+
+Menyiapakan Struktur Data Blok
+
+27. # menyiapkan struktur data blok
+28. b1 = {'rect':pygame.Rect(300, 80, 50, 100), 'color':RED, 'dir':UPRIGHT}
+
+Kamu akan mendefinisikan blok sebagai struktur data menggunakan dictionary. (Bab 9½ mengenalkan dictionary.) Di dalamnya terdapat kunci 'rect' (berisi objek Rect), 'color' (berisi tuple tiga bilangan bulat), dan 'dir' (berisi nilai dari variabel konstan untuk arah).
+Variabel b1 akan menyimpan satu struktur data blok. Lokasi sudut kiri atas blok ini ada di koordinat-X 200 dan koordinat-Y 80. Lebarnya 50 pixel dan tingginya 100 pixel. Warnanya merah dan arahnya diisi UPRIGHT.
+
+29. b2 = {'rect':pygame.Rect(200, 200, 20, 20), 'color':GREEN, 'dir':UPLEFT}
+30. b3 = {'rect':pygame.Rect(100, 150, 60, 60), 'color':BLUE, 'dir':DOWNLEFT}
+
+Baris 29 dan 30 mendefinisikan dua struktur data blok lainnya dengan ukuran, posisi, warna, dan arah berbeda.
+
+31. blocks = [b1, b2, b3]
+
+Pada baris 31 ketiga struktur data blok disimpan dalam satu list bernama blocks.
+Variabel bloks menyimpan list. blocks[0] berisi struktur data dictionary blok b1. blocks[0]['color'] berisi nilai dengan kunci 'color' untuk b1, yaitu (255, 0 , 0). Dengan cara ini kamu dapat mengambil nilai apapun dari struktur data blok.
+
+Menjalankan Putaran Game
+
+33. # mulai putaran game
+34. while True:
+35.     # cek peristiwa QUIT
+36.     for event in pygame.event.get():
+37.         if event.type == QUIT:
+38.             pygame.quit()
+39.             sys.exit()
+
+Dalam putaran game, blok akan bergerak dalam layar dalam arah yang sudah terdefinisi pada masing-masing blok dan mental ketika menyentuk sisi jendela. Dalam putaran ini juga terdapat kode untuk menggambar semua blok ke dalam objek Surface windowSurface, serta pemanggilan pygame.event.update(). Fungsi pygame.event.get() juga dipanggil untuk mengecek apakah peristiwa QUIT dibuat.
+Putaran for untuk mengecek event QUIT sama seperti yang dilakukan program "Halo Dunia!", jadi penjelasannya dilewati dan langsung ke baris 41.
+
+41.     # gambar latar belakang hitam pada surface
+42.     windowSurface.fill(BLACK)
+
+Pertama, isi seluruh permukaan dengan warna hitam, sehingga seluruh objek yang digambar sebelumnya akan dihapus.
+
+Menggerakkan Setiap Blok
+
+44.     for b in blocks:
+
+Berikutnya, kode harus memperbarui posisi tiap blok, sehingga perlu mengiterasi isi variabel blocks. Dalam putaran ini, tiap blok akan bernama b untuk mempermudah pengetikkan.
+
+45.         # pindahkan struktur data blok
+46.         if b['dir'] == DOWNLEFT:
+47.             b['rect'].left -= MOVESPEED
+48.             b['rect'].top += MOVESPEED
+49.         if b['dir'] == DOWNRIGHT:
+50.             b['rect'].left += MOVESPEED
+51.             b['rect'].top += MOVESPEED
+52.         if b['dir'] == UPLEFT:
+53.             b['rect'].left -= MOVESPEED
+54.             b['rect'].top -= MOVESPEED
+55.         if b['dir'] == UPRIGHT:
+56.             b['rect'].left += MOVESPEED
+57.             b['rect'].top -= MOVESPEED
+
+Kode ini akan mengeset nilai baru untuk atribut left dan top yang tergantung arah awal pergerakan blok. Jika arah blok (yang disimpan dalam kunci 'dir') adalah DOWNLEFT atau DOWNRIGHT, kamu perlu meningkatkan nilai atribut top. Jika arahnya UPLEFT atau UPRIGHT, kamu perlu mengurangi atribut top.
+Jika arah blok DOWNRIGHT atau UPRIGHT, kamu harus meningkatkan nilai atribut left. Jika arahnya DOWNLEFT atau UPLEFT, kamu harus mengurangi nilai atribut left.
+Ubah nilai atribut-atribut ini dengan nilai dalam MOVESPEED. Variabel MOVESPEED menyipan berapa pixel blok bergerak pada tiap iterasi dalam putaran game.
+
+Mengecek Apakah Blok sudah Mental
+
+59.         # cek apakah blok sudah pindah keluar jendela
+60.         if b['rect'].top < 0:
+61.             # blok sudah pindah melewati bagian atas
+62.             if b['dir'] == UPLEFT:
+63.                 b['dir'] = DOWNLEFT
+64.             if b['dir'] == UPRIGHT:
+65.                 b['dir'] = DOWNRIGHT
+
+Setelah baris 44 sampai 57 memindahkan blok, cek apakah blok itu sudah melewati sisi jendela. Jika sudah, kamu haru "mementalkan" blok itu. Dalam kode ini berarti pengisian nilai baru pada isi dalam kunci 'dir'. Blok akan bergerak ke arah baru pada iterasi berikutnya dalam putaran game. Kode ini akan membuat blok terlihat seperti mental dari sisi jendela.
+Dalam pernyataan di atas, blok telah maju melewati sisi jendela jika atribut top objek Rect blok itu kurang dari 0. Dalam kasus ini, ubah arahnya berdasarkan arah sebelumnya (bisa UPLEFT atau UPRIGHT).
+
+Mengubah Arah Blok yang Mental
+
+Lihat kembali diagram arah mental blok dalam bab ini. Untuk bergerak melewati sisi atas jendela, blok harus sedang bergerak pada arah UPLEFT atau UPRIGHT. Jika blok sedang bergerak ke arah UPLEFT, arah barunya (berdasarkan diagram arah mental blok) adalah DOWNLEFT. Jika blok sedang bergerak pada arah UPRIGHT, maka arah barunya adalah DOWNRIGHT.
+
+66.         if b['rect'].bottom > WINDOWHEIGHT:
+67.             # blok sudah pindah melewati bagian bawah
+68.             if b['dir'] == DOWNLEFT:
+69.                 b['dir'] = UPLEFT
+70.             if b['dir'] == DOWNRIGHT:
+71.                 b['dir'] = UPRIGHT
+
+Baris 66 sampai 71 mengurus kasus ketika blok sudah bergerak melewati sisi bawah jendela. Baris itu mengecek apakah atribut bottom (bukan atribut top) lebih besar dari nilai variabel WINDOWHEIGHT. Ingat koordinat-Y dimulai dengan 0 di atas jendela dan meninggi sampai WINDOWHEIGHT karena variabel WINDOWHEIGHT dilemparakan sebagai parameter tinggi pada pemanggilan pygame.display.set_mode().
+Sisa kode akan mengubah arah berdasarkan diagram arah mental blok.
+
+72.         if b['rect'].left < 0:
+73.             # blok sudah pindah melewati sisi kiri
+74.             if b['dir'] == DOWNLEFT:
+75.                 b['dir'] = DOWNRIGHT
+76.             if b['dir'] == UPLEFT:
+77.                 b['dir'] = UPRIGHT
+
+Kode ini mirip dengan kode di atasnya, tetapi yang dicek adalah apakah atribut left blok sudah melewati sisi kiri jendela. Ingat, koordinat-X dimulai dari 0 di kiri jendela dan meninggi samapai WINDOWWIDTH di sisi kanan jendela.
+
+78.         if b['rect'].right > WINDOWWIDTH:
+79.             # blok sudah pindah melewati sisi kanan
+80.             if b['dir'] == DOWNRIGHT:
+81.                 b['dir'] = DOWNLEFT
+82.             if b['dir'] == UPRIGHT:
+83.                 b['dir'] = UPLEFT
+
+Kode ini mirip dengan bagian kode sebelumnya, tetapi yang dicek adalah apakah blok sudah bergerakak melewati sisik terkanan jendela.
+
+Menggambar Blok-Blok pada Jendela dalam Posisi Barunya
+
+85.         # gambar blok ke dalam surface
+86.         pygame.draw.rect(windowSurface, b['color'], b['rect'])
+
+Sekarang blok sudah bergerak, blok-blok itu harus digambarkan pada objek Surface windowSurface dengan memanggil fungsi pygame.draw.rect(). Kamu perlu melemparkan windowSurface karena objek Surface itulah dimana persegi panjang digambarkan. Lemparkan b['color'] karena nilainya adalah warna persegi panjang blok yang bersangkutan. Dan lemparkan b['rect'] karena inilah objek Rect dengan posisi dan ukuran dari persegi panjang yang akan digambar.
+Baris 86 adalah baris terakhir putaran for. Jika kamu ingin menambahkan blok baru, kamu hanya perlu memodifikasi variabel bloks pada baris 31 dan sisa kode akan tetap berjalan baik.
+
+Menggambar Jendela pada Layar
+
+88.     # gambar jendela ke layar
+89.     pygame.display.update()
+90.     time.sleep(0.02)
+
+Setelah setiap blok dalam list blocks telah bergerak dan memental, panggil pygame.display.update(), sehingga objek surface windowSurface akan digambarkan pada layar.
+Setelah baris ini, eksekusi akan berputar balik ke awal putaran game dan memulai proses yang sama lagi. Dengan cara ini blok akan terus bergerak sedikit, memental dari dinding, dan digambarkan pada layar pada posisi barunya.
+Pemanggilan fungsi time.sleep() diperlukan karena komputer dapat menggerakkan, mementalkan, dan menggambarkan blok-blok itu dengan sangat cepat pada kecepatan normal, sehingga blok-blok akan terlihat kabur. (Coba ubah jadi komentar baris 90 dan jalankan program untuk melihat hasilnya.)
+Pemanggilan fungsi time.sleep() akan mengentikan eksekusi program selama 20 milidetik atau 0,02 detik.
+
+Sedikit Modifikasi Program
+
+Menggambar Jejak-Jejak Blok
+
+Pertama buang tanda # ada awal baris 90 untuk membuatnya menjadi kode aktif lagi. Kali ini, komentari baris 42 (baris windowSurface.fill(BLACK)) dengan menambahkan tanda # pada awal baris. Lalu jalankan program.
+Tanpa pemanggilan windowSurface.fill(BLACK), program tidak akan menghitamkan seluruh jendela sebelum menggambar persegi panjang dengan posisi baru. Jejak-jejak persegi panjang masih terlihat karena persegi panjang sebelumnya tidak dihitamkan.
+Ingat bahwa blok-blok itu sebenarnya tidak maju. Pada setiap iterasi dalam putaran game, program menggambar ulang seluruh jendela dengan blok-blok baru pada lokasi baru yang berbeda beberapa pixel dari sebelumnya.
+
+Ringkasan
+
+Bab ini telah menunjukkan cara baru untuk membuat game komputer. Program pada bab sebelumnya akan menghentikan dan menunggu pemain untuk memasukkan teks. Pada program animasi, struktur data suatu objek diperbarui secara periodik tanpa menunggu masukan dari pemain.
+Ingat pada game Hangman dan Tic Tac Toe kamu punya struktur data yang merepresentasikan status papan game dan struktur data ini dilemparakan pada fungsi drawBoard() untuk ditampilkan pada layar. Cara kerja program animasi mirip seperti itu. Variabel blokcs menyimpan satu daftar struktur data yang merepresentasikan objek yang akan digambar pada layar, lalu objek-objek itu digambar pada layar dalam putaran game.
+Tanpa pemanggilan fungsi input(), bagaimana kita mendapatkan masukan dari pemain? Dalam bab berikutnya, kamu akan mempelajari bagaimana program tahu kapan pemain menekan suatu tombol dalam keyboard. Kamu juga akan mempelajari konsep baru yang disebut deteksi tumbukan.

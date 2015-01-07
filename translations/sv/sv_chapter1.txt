@@ -1,0 +1,113 @@
+    Kapitel 1
+    INSTALLERA PYTHON
+
+Ämnen som behandlas i detta kapitel:
+
+•   Hur man laddar ner och installerar Python-tolken
+•   IDLE:s interaktiva fönster
+•   Hur denna bok ska användas
+•   Bokens webbplats http://inventwithpython.com/sv
+
+Hej! Den här boken lär dig att programmera genom att skapa dataspel. När du väl har lärt dig hur spelen i boken fungerar så kommer du att kunna skapa dina egna spel. Allt du behöver är en dator, ett program som kallas för Python-tolken och den här boken. Python-tolken kan laddas ner gratis från internet.
+
+När jag var barn så var det en bok som denna som lärde mig att skriva mina första program och spel. Det var roligt och lätt. Nu, som vuxen, har jag fortfarande kul när jag programmerar och får dessutom betalt för det. Men även om du inte blir datorprogrammerare som vuxen så kan du ha nytta av, och roligt med, dina programmeringskunskaper.
+
+Datorer är fantastiska apparater och det är lätt att lära sig programmera dem. Om du kan läsa den här boken så kan du programmera en dator. Ett datorprogram är ett gäng instruktioner som datorn förstår, precis som en vanlig bok består av ett gäng meningar som läsaren kan förstå. Dataspel är inget annat än program, så de består också av instruktioner.
+
+För att instruera en dator så skriver du ett program i ett språk som datorn förstår. Den här boken lär ut ett programmeringsspråk som heter Python. Det finns många olika programmeringsspråk, som till exempel BASIC, Java, JavaScript, PHP, och C++.
+
+När jag var barn var det vanligt att BASIC var det första programmeringsspråk man lärde sig. Sedan dess har dock många nya språk, som exempelvis Python, uppfunnits. Python är faktiskt ännu lättare att lära sig än BASIC! Men det är fortfarande ett riktigt programspråk som används av professionella programmerare. Många vuxna använder sig av Python både i jobbet och när de programmerar för skojs skull.
+
+Spelen du kommer att skapa i den här boken verkar enkla jämfört med spel för Xbox-, Playstation-, och Wii-konsoler. De har ingen häftig grafik, för poängen med dem är att lära ut programmeringens grunder. De har avsiktligt gjorts enkla så att du ska kunna fokusera på att lära dig programmera. Och spel behöver inte vara komplicerade för att vara roliga.
+
+Ladda ner och installera Python
+
+Du behöver installera en mjukvara som kallas för Python-tolken. Tolk-programmet förstår de instruktioner du skriver i Python-språket. Hädanefter kommer jag bara att kalla “mjukvaran Python-tolken“ för “Python“.
+
+Ladda ner Python 3.4 eller en senare version från Pythons officiella webbplats, http://www.python.org. Ladda ner 32-bitarsversionen av Python för ditt operativsystem, även om du har en 64-bitarsdator. Pygame-modulen som används senare i den här boken fungerar för närvarande bara med 32-bitarsversionen av Python.
+
+Obs, viktigt! Se till att du installerar Python 3 och inte Python 2. Programmen i de här boken använder Python 3 och du kommer att få felmeddelanden om du försöker att köra dem med Python 2. Det här är så viktigt att jag har lagt till en serie-pingvin i Figur 1-1 som säger åt dig att installera Python 3, så att du inte ska missa informationen.
+
+
+
+Figur 1-1: En //incongruous - hur översätta detta?// pingvin som säger åt dig att installera Python 3.
+
+Starta IDLE
+
+IDLE står för Interactive DeveLopment Environment, interaktiv utvecklingsmiljö. Utvecklingsmiljön är som ett ordbehandlingsprogram som används för att skriva Python-program. Hur du startar IDLE beror på vilket operativsystem du har.
+
+På Windows, klicka på Start-knappen i nedre vänstra hörnet, skriv “IDLE” och välj IDLE (Python GUI).
+
+På Mac OS X, öppna Finder-fönstret och klicka på Program. Välj Python 3.4. Klicka därefter på IDLE-ikonen.
+
+På Ubuntu och andra Linuxsystem, öppna ett terminalfönster och skriv “idle3”. På vissa system kan du även klicka på //Applications - vad heter det i svenska system?// i överkanten av skärmen. Välj sedan //Programming// och IDLE 3.
+
+
+
+Figur 1-2: IDLE:s interaktiva fönster i Windows, OS X, och Ubuntu.
+
+Fönstret som öppnas när du kör IDLE är det interaktiva kommandofönstret. Om du skriver Python-instruktioner i det interaktiva fönstret så utförs de av Python. Python kommer också att visa resultatet av instruktionerna i det interaktiva fönstret.
+
+Hur denna bok ska användas
+
+De flesta av kapitlen i den här boken börjar med en provkörning av exempelprogrammet. Den här provkörningen visar hur det ser ut när programmet körs. Det som användaren skriver in visas med fet skrift.
+
+Skriv in programkoden i IDLE-editorn själv i stället för att ladda ner den. Det här med programmering fastnar bättre i minnet om du skriver in koden själv.
+
+Radnummer och mellanslag
+
+När du skriver källkoden, ta inte med radnumret som står i början av varje rad. Här är ett exempel:
+
+9. tal = random.randint(1, 20)
+
+I detta fall ska du inte skriva “9.” på vänstersidan. Du ska inte heller ta med mellanslaget som följer efter radnumret. Skriv bara så här:
+
+tal = random.randint(1, 20)
+
+Radnumren är bara med för att boken ska kunna hänvisa till specifika rader i programmen. De ingår egentligen inte i själva programmen.
+
+Frånsett radnumren så ska din egen kod se ut precis som i boken. Notera att en del kodrader är indragna med fyra eller åtta mellanslag. Varje tecken i IDLE har samma bredd. Du kan räkna ut antalet mellanslag genom att räkna tecknen på raden ovanför eller nedanför.
+
+Här är ett exempel där varje mellanslag är markerat med en ▪ svart ruta:
+
+while gissningar < 10:
+▪▪▪▪if tal == 42:
+▪▪▪▪▪▪▪▪print('Hejsan')
+
+Textbrytning i den här boken
+
+En del kodrader är för långa för att få plats på en sida i boken och fortsätter därför på nästa rad. Skriv in sådan kod på en enda rad utan att trycka Enter. Du kan se var en ny rad börjar genom att titta på radnumren till vänster om koden. Till exempel så består koden nedan bara två kodrader:
+
+1. print('Det här är första kodraden! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+xxxxxxxxxxxx')
+2. print('Det här är andra kodraden, inte den tredje.')
+
+Den första raden bryts vilket gör att det ser ut som att det är totalt tre rader. Det är bara för att bokens sidor inte är breda nog för att första kodraden ska få plats på en rad.
+
+Få hjälp på nätet
+
+Den här bokens webbplats finns på http://inventwithpython.com/sv. Där hittar du flera olika resurser relaterade till boken. Flera länkar i den här boken använder domänen invpy.com/sv för att adresserna ska bli kortare.
+
+Reddit-forumet på http://reddit.com/r/inventwithpython är ett bra stället att ställa programmeringsfrågor relaterade till boken. Skicka allmänna Python-frågor till underforumen LearnProgramming och LearnPython på adresserna http://reddit.com/r/learnprogramming respektive http://reddit.com/r/learnpython.
+
+Du kan även mejla programmeringsfrågor till mig. Adressen är al@inventwithpython.com.
+
+När du vill ha svar på en programmeringsfråga så finns det smarta sätt som hjälper andra att hjälpa dig. Se till att läsa avsnitten Frequently Asked Questions på de här webbplatserna, där det står hur man skickar in en fråga på ett korrekt sätt. När du ska ställa en programmeringsfråga, gör följande:
+
+•   Om du skriver in programmen i den här boken och får felmeddelanden, kontrollera först om du har skrivit fel med hälp av verktyget på http://invpy.com/sv/diff. Kopiera och klistra in din kod i verktyget för att upptäcka skillnader jämfört med bokens kod.
+•   Förklara vad det är du försöker göra när du beskriver felet. På så vis kan den som hjälper dig se om du är helt fel ute.
+•   Kopiera och klistra in hela felmeddelandet samt din kod.
+•   Sök på nätet för att se om någon annan redan har ställt (och fått svar på) din fråga.
+•   Beskriv vad du redan har gjort för att lösa problemet. På så vis kan folk se att du redan har ansträngt dig för att ta reda på saker på egen hand.
+•   Var artig. Kräv inte hjälp och pressa inte dina hjälpare att svara snabbt.
+
+//Tracing the Programs Online - Stega igenom, spåra exekveringen, avlusa...?//
+
+//Tracing a program// innebär att stega igenom koden en rad i taget, på samma sätt som den skulle exekveras av en dator. Besök http://invpy.com/sv/traces //to see a trace through of each program// i den här boken. //The web page has notes and helpful reminders at each step of the trace to explain what the program is doing, so it can help you better understand why these programs work the way they do - Svårt att översätta detta pga att sajten i fråga ännu inte finns...//.
+
+Summering
+
+Det här kapitlet har hjälpt dig att komma igång med Python-mjukvaran genom att visa dig webbplatsen http://python.org där du kan ladda ner den gratis. Efter att ha installerat och startat Pythons IDLE-program så är du redo att lära dig programmera med början i nästa kapitel.
+
+På bokens webbplats http://inventwithpython.com/sv finns mer information om varje kapitel, inklusive //an online tracing website and diff tool// som kan hjälpa dig att förstå programmen i boken.
+

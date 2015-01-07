@@ -1,0 +1,476 @@
+    Chapitre 4
+
+    DEVINER LE NOMBRE
+
+Les Sujets Traités dans ce Chapitre :
+
+•   L'instruction import
+•   Les Modules
+•   Les Arguments
+•   L'instruction while
+•   Les conditions
+•   Les blocs
+•   Les booléens
+•   Les opérateurs de comparaison
+•   La différence entre = et ==
+•   L'instruction if
+•   Le mot clef break
+•   Les fonction str() et int()
+•   La fonction random.randint()
+
+Le Jeu «Deviner le Nombre»
+
+Dans ce chapitre, vous allez faire un jeu «Deviner le Nombre». L'ordinateur choisira un nombre au hasard compris entre 1 et 20, et vous demandera de la deviner. L'ordinateur vous dira à chaque tentative si vous êtes au-dessus ou en dessous. Vous gagnez si vous trouvez le nombre en 6 tentatives ou moins.
+
+C'est un bon jeu à programmer parce qu'il utilise des nombres aléatoires, des boucles, et une entrée venant de l'utilisateur dans un relativement court programme. Vous allez apprendre comment convertir des valeurs de différent type (et pourquoi vous avez besoin de le faire). Comme ce programme est un jeu, appelons l'utilisateur le joueur, mais «utilisateur» serait correct aussi.
+
+Exemple d'Exécution de «Deviner le Nombre»
+
+Voici à quoi ressemble le programme quand le joueur l'exécute. Le texte que le joueur entre est en gras.
+
+Bonjour ! Quel est votre nom ?
+Albert
+Bien, Albert, Je choisis un nombre entre 1 et 20.
+Faites votre choix.
+10
+Votre choix est trop haut.
+Faites votre choix.
+2
+Votre choix est trop bas.
+Faites votre choix.
+4
+Bien joué, Albert! Vous avez deviné mon nombre en 3 tentatives !
+
+
+Entrez le code exactement comme il apparaît ci-dessous, et sauvez le en cliquant sur File ► Save As. Donnez lui le nom de devine.py. Ensuite appuyez sur F5 pour lancez le programme. Ne vous inquiétez pas si vous ne comprenez pas tout le code maintenant, Je vais l'expliquer étape par étape.
+
+Source de Deviner le Nombre
+
+Voici le code source du jeu «Deviner le nombre». Quand vous entrerez ce code dans l'éditeur de fichier, soyez sûr de faire attention aux espaces en début de ligne. Certaines lignes ont une indentation de 4 ou 8 espaces.
+
+NOTE IMPORTANT ! Les programmes de ce livre ne fonctionne qu'avec Python 3, et pas Python 2. Quand la fenêtre d'IDLE s'ouvre, elle affiche quelque chose comme “Python 3.4.0” en haut. Si vous avez Python 2 d'installé, vous pouvez aussi installer Python 3 en même temps. Pour télécharger Python 3, aller à l'adresse https://python.org/download/.
+
+Vous pouvez télécharger ce code depuis http://invpy.com/devine.py. Si vous obtenez des erreurs après avoir saisi le code, comparez le au code du livre avec l'outil diff en ligne à l'adresse http://invpy.com/diff/guess.
+
+devine.py
+
+  1. # Ceci est le jeu deviner un nombre
+ 2. import random
+ 3. 
+ 4. tentative = 0
+ 5. 
+ 6. print('Bonjour ! Quel est votre nom ?')
+ 7. monNom = input()
+ 8. 
+ 9. nombre = random.randint(1, 20)
+10. print('Bien, ' + monNom + ', Je choisis un nombre entre 1 et 20.')
+11. 
+12. while tentative < 6:
+13.     print('Faites votre choix.') # Il y a 4 espaces avant le print.
+14.     choix = input()
+15.     choix = int(choix)
+16. 
+17.     tentative = tentative + 1
+18. 
+19.     if choix < nombre:
+20.         print('Votre choix est trop bas.') # Il y a 8 espaces devant le print.
+21. 
+22.     if choix > nombre:
+23.         print('Votre choix est trop haut.')
+24. 
+25.     if choix == nombre:
+26.         break
+27. 
+28. if choix == nombre:
+29.     tentative = str(tentative)
+30.     print('Bien joué, ' + monNom + '! Vous avez devinez mon nombre en ' + tentative + ' tentatives !')
+31. 
+32. if choix != nombre:
+33.     nombre = str(nombre)
+34.     print('Raté. Le nombre que j''avais choisi était ' + nombre)
+
+
+Regardez chacune des lignes du programme pour comprendre comment il fonctionne.
+
+L'instruction import
+
+ 1. # Ceci est le jeu deviner un nombre
+ 2. import random
+
+
+La première ligne est un commentaire. Rappelez vous que Python ignorera tout ce qui suit le signe #. Il nous indique ce que fait le programme.
+
+La seconde ligne est une instruction d'import. Cette instruction effectue une action mais ne s'évalue pas en une valeur comme les expressions le font. Vous avez déjà vu des instructions : l'affectation stocke une valeur dans une variable (mais cette instruction ne s'évalue elle-même en une valeur).
+
+Bien que Python contienne de nombreuses fonction prédéfinies, quelques fonctions existent dans des programmes séparés appelés modules. Modules sont des programmes Python qui contiennent des fonctions supplémentaires. Vous avez accès ç ces fonctions en important leur modules dans votre programme grâce à l'instruction import.
+
+L'instruction import est composée du mot clef import suivi du nom du module. La ligne 2 importe le module appelé random. Le module random contient quelques fonctions permettant de générer des nombres aléatoires. Une de ces fonctions sera utilisée pour générer le nombre à deviner par le joueur.
+
+ 4. tentative = 0
+
+Cette ligne crée une nouvelle variable appelée tentative. Vous allez stocker le nombre de tentatives du joueur dans cette variable. Comme le joueur n'a pas encore commencer de joueur, le nombre stocké est 0 ici.
+
+ 6. print('Bonjour ! Quel est votre nom ?')
+ 7. monNom = input()
+
+
+Les lignes 6 et 7 sont les mêmes lignes que le programme Bonjour le Monde du Chapitre 3. Les programmes réutilise,t souvent du code d'autres programmes afin de limiter le travail à effectuer.
+
+La ligne 6 est un appel à la fonction print(). Rappelez-vous qu'une fonction est comme un mini-programme à l'intérieur de votre programme. Quand votre programme appelle une fonction, il lance ce mini-programme. Le code à l'intérieur de la fonction print() affiche à l'écran la chaîne que vous lui avez passé en argument.
+
+La ligne 7 permet au joueur de saisir son nom et le stocke dans une variable appelée monNom. (Rappelez-vous que la chaîne n'est pas forcément le nom du joueur. C'est juste la chaîne saisi par le joueur quelle qu'elle soit. Les ordinateur sont stupides et exécutent leur programme indépendamment des circonstances).
+
+La fonction random.randint()
+
+9. nombre = random.randint(1, 20)
+
+La ligne 9 appelle une fonction nommée randint() et stocke la valeur de retour dans nombre. Rappelez-vous, les appels de fonctions peuvent faire partie d'une expression parce qu'ils s'évaluent par une valeur.
+
+Parce que la fonction randint() est fournie par le module random, l'appel est précédé par random. (n'oubliez pas le point) pour dire à Python que la fonction randint() fait partie du module random.
+
+La fonction randint() retournera un nombre entier compris entre les deux nombres passés en argument (inclut). La ligne 9 passe 1 et 20 entre les parenthèses qui suivent le nom de la fonction (séparés par une virgule). L'entier aléatoire que randint() renvoie est stocké dans une variable appelée nombre; c'est le nombre secret que le joueur essaye de deviner.
+
+Retournez, juste pour un instant, dans la console, et tapez import random pour importer le module random. Alors saisissez random.randint(1, 20) pour voir en quoi l'appel à la fonction est évalué. Cela retourne un entier compris entre 1 et 20. Répétez le code de nouveau et l'appel de la fonction retournera probablement un autre nombre. La fonction randint() retourne un entier au hasard à chaque appel, comme si vous lancez un dé pour obtenir un nombre au hasard à chaque fois.
+
+>>> import random 
+>>> random.randint(1, 20)
+12
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+3
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+7
+
+Utilisez la fonction randint() quand vous voulez ajoutez du hasard de vos jeux. Vous allez utiliser du hasard dans la plupart des jeux. Pensez au nombre de jeux qui utilisent des dés.
+
+Vous pouvez aussi essayez différents intervalles en changeant les arguments. Par exemple, entrez random.randint(1, 4) pour obtenir uniquement des nombres compris entre 1 et 4 inclus. Ou essayez random.randint(1000, 2000) pour avoir des entiers entre 1000 et 2000. Par exemple, entrez ce qui suit dans la console. Les résultats qui vous obtiendrez quand vous appelez la fonction random.randint() seront probablement différent (c'est du hasard après tout).
+
+>>> random.randint(1, 4)
+3
+>>> random.randint(1000, 2000)
+1294 
+
+Vous pouvez changer le code du jeu légèrement pour qu'il se comporte différemment. Essayez de changer la ligne 9 et 10 par :
+
+  9. nombre = random.randint(1, 20)
+10. print('Bien, ' + monNom + ', Je choisis un nombre entre 1 et 20.')
+
+…par ces lignes :
+
+  9. nombre = random.randint(1, 100)
+10. print('Bien, ' + monNom + ', Je choisis un nombre entre 1 et 100.')
+
+Maintenant l'ordinateur choisira un nombre compris entre 1 et 100 au lieu de 1 et 20. Changer la ligne 9, changera l'intervalle des nombres aléatoires, mais rappelez-vous de changez la ligne 10 afin que le jeu prévienne le joueur des nouvelles valeurs possibles au lieu des anciennes.
+
+Accueillir le Joueur
+
+10. print('Bien, ' + monNom + ', Je choisis un nombre entre 1 et 20.')
+
+Ligne 10 la fonction print() accueille le joueur par son nom, et lui indique que l'ordinateur choisi un nombre au hasard.
+
+Il peut sembler y avoir plus d'une chaîne en argument à la ligne 10, mais regardez la ligne attentivement. Le signe plus concatène les trois chaînes pour être évaluer  en une seule. Et cette ligne est passée en argument à la fonction print(). En regardant attentivement, vous verrez que les virgules sont à l'intérieur des quotes, et font parties des chaînes.
+
+Les Boucles
+
+12. while tentative < 6:
+
+La ligne 12 est une instruction while, qui indique le début d'une boucle "tant que". Les boucles vous permettent d'exécuter du code à répétition. Cependant, vous avez besoin de connaître d'abord quelques autres concepts avant d'apprendre les boucles. Ces concepts sont les blocs, les booléens, les opérateurs de comparaison, les conditions, et l'instruction while.
+
+Les Blocs
+
+Plusieurs lignes de code peuvent être regroupées ensemble dans un bloc. Un bloc de code a le même niveau d'indentation. Vous pouvez connaître le début et la fin d'un bloc en regardant le nombre d'espaces au début de chaque ligne. C'est l'indentation de la ligne.
+
+Un bloc commence quand le niveau d'indentation augmente (habituellement 4 espaces). Toutes les lignes suivantes indentées par 4 espaces feront parties du même bloc. Le bloc se termine quand une ligne avec le même niveau d'indentation avant le début du bloc arrive. Cela signifie aussi qu'un bloc peut exister au sein d'autres blocs.
+
+La Figure 4-1 est un diagramme de code avec des blocs surlignés et numérotés. Les espaces sont des carrés noirs pour les rendre plus facile à compter.
+
+
+
+Figure 4-1: Des blocs et leur indentation. Les points noirs représentent des espaces.
+
+Dans la figure 4-1, la ligne 12 n'a pas d'indentation et n'est à l'intérieur d'aucun bloc. La ligne 13 a une indentation de quatre espaces. Comme cette indentation est plus grande que la ligne précédente, un nouveau bloc commence. Ce bloc est numéroté (1) dans la Figure 4-1. Ce bloc va continuer jusqu'à une ligne ayant une indentation de zéro espaces (l'indentation originale avant que le bloc ne commence). Les lignes vides sont ignorées.
+
+La lignes 20 a une indentation de huit espaces . 8 espaces est supérieur que 4 espaces, ce qui commence un nouveau bloc. Ce bloc est numéroté (2) dans la Figure 4-1. Ce bloc est à l'intérieur d'un autre bloc.
+
+La ligne 22 a seulement quatre espaces. Parce que l'indentation a diminuée, vous savez que le bloc est terminé. La ligne 20 est la seule ligne de ce bloc. La ligne 22 est le même bloc que les autres lignes à quatre espaces.
+
+La ligne 23 augmente d'indentation à huit espaces, ainsi un autre bloc vient de commencer. Il est numéroté (3) dans la Figure 4-1.
+
+Pour récapituler, la ligne 12 n'est dans aucun bloc. Les lignes 13 à 23 sont toutes dans le même bloc (numéroté bloc 1). La ligne 20 est dans un bloc à l'intérieur d'un bloc (numéroté bloc 2). Et la ligne 23 est l'unique ligne d'un autre bloc dans un bloc (numéroté 3).
+
+Le Type de Donnée Booléen
+
+Le type de donnée booléen a seulement deux valeurs : Vrai ou Faux. Ces valeurs doivent être tapées exactement : True, False. Vous utiliserez les valeurs booléennes (aussi appelées bool) avec les opérateurs de comparaison pour former des conditions (Les conditions sont expliquées plus tard).
+
+Les types de données qui ont été introduit jusqu'à maintenant sont les entiers, les flottans (ou réels), les chaînes et maintenant les booléens.
+
+Les Opérateurs de Comparaison
+
+La ligne 12 contient une instruction while :
+
+12. while tentative < 6:
+
+L'expression qui suit le mot clef while (la partie tentative < 6) contient deux valeurs (la valeur stockée dans la variable tentative, et l'entier 6) connectées par un opérateur (le signe < signifie strictement inférieur). Le signe < est appelé opérateur de comparaison.
+
+Les opérateurs de comparaison comparent deux valeurs et s'évalue par la valeur True ou False. La table 4.1 contient une liste de tous les opérateurs de comparaison.
+
+Table 4-1: Les opérateurs de comparaison.
+Signe               Nom
+<                   Strictement inférieur à
+>                   Strictement supérieur à
+<=                  Inférieur ou égal à
+>=                  Supérieur ou égal à
+==                  Égal à
+!=                  Différent de
+
+Vous avez déjà vu les opérateurs mathématiques +, -, *, et /. Comme tous les opérateurs, les opérateurs de comparaison se combine à des valeurs pour former une expression comme par exemple tentative < 6.
+
+Les Conditions
+
+Une condition est une expression qui combine deux valeurs avec un opérateur de comparaison (comme < ou >) et s'évalue en une valeur booléenne. Une condition est juste un autre nom pour une expression qui s'évalue à True ou False. Les conditions sont utilisées dans les instructions while (et à quelques autres endroits, expliquées plus tard).
+
+Par exemple, la condition tentative < 6 demande, «est-ce que la valeur stockée dans tentative est inférieur strictement au nombre 6 ?» Si c'est le cas, alors la condition vaut True. Sinon, la condition vaut False.
+
+Dans le cas du programme «Devinez le nombre», à la ligne 4 vous stockez la valeur 0 dans tentative. Parce que 0 est inférieur à 6, la condition s'évalues par le booléen True. L'évaluation ressemble à ceci :
+
+tentative < 6
+             ▼
+           0 < 6
+             ▼
+            True
+
+Expérimentez les Booléens, les Opérateurs de Comparaison, et les Conditions
+
+Entrez les expressions suivantes dans la console interactive pour voir qu'elle est leur résultat :
+
+>>> 0 < 6
+True
+>>> 6 < 0
+False
+>>> 50 < 10
+False
+>>> 10 < 11
+True
+>>> 10 < 10
+False 
+
+La condition 0 < 6 retourne la valeur booléenne True parce que le nombre 0 est inférieur à 6. Mais parce que 6 n'est pas inférieur à 0, la condition 6 < 0 est évaluée à False. 50 n'est pas inférieur à 10, ainsi 50 < 10 est False. 10 est inférieur à 11, ainsi 10 < 11 est True.
+
+Notez que 10 < 10 est évaluée à False parce que le nombre 10 n'est pas strictement inférieur à 10. Ils sont égaux. Si Alice est de la même taille que Bob, vous ne diriez pas qu'Alice est plus grande que Bob Bob ou qu'Alice est plus petite que Bob. Chacune de ces affirmations seraient fausses.
+
+Maintenant essayer d'entrer ces expression dans la console interactive :
+
+>>> 10 == 10
+True
+>>> 10 == 11
+False
+>>> 11 == 10
+False
+>>> 10 != 10
+False
+>>> 10 != 11
+True
+>>> 'Hello' == 'Hello'
+True
+>>> 'Hello' == 'Goodbye'
+False
+>>> 'Hello' == 'HELLO'
+False
+>>> 'Goodbye' != 'Hello'
+True 
+
+Essayez de ne pas confondre l'opérateur d'affectation (=) et l'opérateur d'égalité (==). Le signe (=) est utilisé dans une instruction d'affectation pour stocker une valeur dans une variable, tandis que le signe égal-égal (==) est utilisé dans une expression pour savoir si deux valeurs sont égales. il est aisée d'utiliser l'une pour l'autre accidentellement.
+
+Rappelez-vous juste que l'opérateur de comparaison «égal à» (==) est formé de deux caractères, comme l'opérateur «est différent de» (!=) est formé deux caractères.
+
+Les chaînes et les entiers ne sont pas égals. Par exemple, essayez d'entre les conditions suivantes dans la console interactive :
+
+>>> 42 == 'Bonjour'
+False
+>>> 42 != '42'
+True
+
+Boucler avec les instructions while
+
+L'instruction while marque le début d'une boucle. Les boucles peuvent exécuter le même code plusieurs fois. Quand l'exécution atteint une instruction while, il évalue la condition à côté du mot-clef while. Si la condition est évaluée à True, l'exécution se déplace à) l'intérieur du bloc while (Dans votre programme, le bloc while commence à la ligne 13). Si la condition est évaluée à False, l'exécution se déplace à la fin du bloc while (dans «Devinez le nombre», la première ligne après le bloc while à la ligne 28).
+
+Une instruction while contient toujours le signe deux points (:) après la condition.
+
+12. while tentative < 6:
+
+
+
+Figure 4-2: La condition de la boucle while.
+
+La Figure 4-2 montre comment la chemin d'exécution en fonction de la condition. Si la condition est évaluée à True (ce qui est le cas la première fois, parce que la valeur de tentative est 0), l'exécution entrera dans le bloc while à la ligne 13 et continuera vers le bas. Une fois que le programme atteint la fin du bloc while, au lieu de continuer vers le bas, l'exécution revient à la ligne de l'instruction while (ligne 12) et ré-évalue la condition. Comme précédemment, si la condition est True l'exécution entre de nouveau dans le bloc while. A chaque fois que l'exécution passe par le bloc while, on appelle cela une itération.
+
+Ceci explique comment fonctionne une boucle. Tant que la condition est vraie, le programme continue d'exécuter le code à l'intérieur du bloc while jusqu'à ce que la condition devienne fausse. Pensez à une instruction while comme dire, «tant que la condition est vraie, continue d'exécuter le code de ce bloc».
+
+Le code à l'intérieur de bloc while gère l'entrée d'une tentative du joueur et vérifie et elle est inférieure, supérieure et égales au nombre secret. Vous pouvez changer la difficulté du jeu en changeant le nombre de tentative autorisée par le joueur. Pour donner au joueur uniquement quatre tentatives, changez cette ligne :
+
+12. while tentative < 6:
+
+par cette ligne :
+
+12. while tentative < 4:
+
+Le c qui suit dans le bloc while augmente la valeur de la variable tentative par 1 à chaque itération. En changeant la condition par tentative < 4, vous garantissez que le code à l'intérieur de la boucle ne sera exécuté que quatre fois au lieu de six. Cela rend le jeu plus difficile. Pour rendre le jeu plus facile, changez la condition par tentative < 8 ou tentative < 10. Cela fera s'exécuter quelques fois de plus la boucle et acceptera plus de tentative du joueur.
+
+Bien évidemment, si vous supprimez la ligne 17 (tentative = tentative + 1) alors tentative ne sera jamais augmentée. La condition du while sera toujours vraie ! Ce qui donnera un nombre illimité de tentatives au joueur. Le joueur pourrait aimer ça, mais le développeur pourrait considérer ça comme un bug.
+
+Les Tentatives du Joueur
+
+Les lignes 13 à 17 demande au joueur de deviner le nombre secret et lui permet de saisir son choix. Ce nombre est stocké dans la variable nommée choix.
+
+13.     print('Faites votre choix.') # Il y a 4 espaces avant le print.
+14.     choix = input()
+
+
+Convertir les Chaînes en Entiers avec la Fonction int()
+
+15.     choix = int(choix)
+
+
+A la ligne 15, vous appelez une nouvelle fonction appelée int(). La fonction int() prend un argument et retourne un entier formé par cet argument. Essayez d'entrer les lignes suivantes dans la console interactive :
+
+>>> int('42')
+42
+>>> int(42)
+42
+>>> int('quarante-deux')
+Traceback (most recent call last):
+  File "<pyshell#5>", line 1, in <module>
+int('quarante-deux')
+ValueError: invalid literal for int() with base 10: 'quarante-deux'
+>>> 3 + int('2')
+5
+
+L'appel int('42') retournera la valeur entière 42. L'appel int(42) fera la même chose (bien que c'est plutôt inutile de récupérer la forme entière d'un entier). Cependant, bien que vous pouvez passer une chaîne à la fonction int(), vous ne pouvez pas passez n'importe quelle chaîne. Passer 'quarante-deux' à int() retournera une erreur. La chaîne que vous passez à la fonction int() doit être constituée de chiffres.
+
+La ligne 3 + int('2') montre une expression qui utilise le retour de l'appel à int() comme partie d'une expressions. Elle est évaluée par le nombre entier 5 :
+
+3 + int('2')
+  ▼
+3 + 2
+  ▼
+  5 
+
+Rappelez-vous, la fonction input() retourne la chaîne que le joueur à saisie. Si le joueur saisie 5, la fonction input() retournera la chaîne '5', et non pas la valeur 5. Python ne peut pas utiliser les opérateurs de comparaison < et > pour comparer une chaîne et un entier :
+
+>>> 4 < '5'
+Traceback (most recent call last):
+  File "<pyshell#0>", line 1, in <module>
+    4 < '5'
+TypeError: unorderable types: int() < str() 
+
+À la ligne 14 la variable choix contient la chaîne que le joueur à saisie. La ligne 15 écrase la chaîne dans choix avec le retour de int(). Cela permet ensuite au programme de comparer si choix est supérieur, inférieur ou égal au nombre secret. Python ne peut pas comparer une chaîne avec un entier pour savoir si elle lui est inférieure, supérieure ou égale, même si la chaîne contient quelque chose comme '5'.
+
+Une dernière chose : Appelez int(choix) ne change pas la valeur de la variable choix. Le code int(choix) est une expression qui est évaluée par la forme entière d'une chaîne stockée dans la variable choix. Ce qui modifie la variable choix est son affectation : choix = int(choix)
+
+Incrémenter les Variables
+
+17.     tentative = tentative + 1
+
+Une fois que le joueur a fait un choix, le nombre de tentatives doit être augmenté de un.
+
+À la première itération de la boucle, tentative vaut 0. Python va prendre cette valeur et lui ajouter 1. 0 + 1 est évaluée à 1, qui est ensuite stockée comme la nouvelle valeur de tentative. Pensez à la ligne 17 qui voudrait, «la variable tentative doit valoir un de plus que ce qu'elle ne vaut déjà».
+
+Ajouter un 0 une variable entière ou flottante équivaut à l'incrémenter. Soustraire un à une variable entière ou flottante équivaut à la décrémenter.
+
+L'instruction if
+
+Est-ce que le Joueur est en-dessous ?
+
+19.     if choix < nombre:
+20.         print('Votre choix est trop bas.') # Il y a 8 espaces devant le print.
+
+
+La ligne 19 vérifie sir le choix du joueur est inférieur à nombre secret de l'ordinateur. Si oui, alors le programme se déplace à la ligne 20 et affiche un message le lui indiquant. La ligne 19 est une instruction if. Le chemin d'exécution passera dans le bloc suivant si l'expression dans le if est évaluée comme vraie. Si la condition est fausse, alors le bloc du if est passée. L'utilisation des instruction if, vous permet d'exécuter des parties de codes uniquement si vous le souhaitez.
+
+L'instruction if fonctionne pratiquement comme l'instruction while. Mais, contrairement au bloc while, la fin d'exécution du bloc if ne fait pas retourner à l'instruction if de ce bloc. Cela continue juste vers le bas à la ligne suivante. En d'autres termes, l'instruction if ne fait pas une boucle. Voyez la Figure 4-3 pour une comparaison entre les deux instructions.
+
+
+
+Figure 4-3: Les instruction if et while.
+
+Est-ce que le Joueur est au-dessus ?
+
+22.     if choix > nombre:
+23.         print('Votre choix est trop haut.')
+
+La ligne 22 vérifie si le choix du joueur est plus grand que le nombre aléatoire. Si la condition est vraie, alors la fonction print() dit au joueur que son choix est trop grand.
+
+Quitter une boucle plus tôt avec l'instruction break
+
+25.     if choix == nombre:
+26.         break
+
+L'instruction if à la ligne 25 vérifie si le choix est égal au nombre aléatoire. Si c'est le cas, le programme exécute l'instruction break à la ligne 26.
+
+Une instruction break dit au programme de sortir immédiatement du bloc while, et d'aller à la première ligne qui le suit (l'instruction break ne vérifie pas la condition de sortie du while, elle se contente de sortir de la boucle immédiatement).
+
+L'instruction break est juste un mot-clef, sans condition ni point.
+
+Si le choix du joueur n'est pas égal au nombre aléatoire, le programme atteint la fin du bloc while. Cela signifie que le programme va retourner au début et vérifier la condition à la ligne 12 (tentative < 6). Rappelez-vous qu'après la ligne tentative = tentative + 1 ait été exécutée, la nouvelle valeur de tentative est 1. Parce que 1 < 6 est vraie, le programme va retourner dans la boucle.
+
+Si le joueur continue de choisir trop grand ou trop petit, la valeur de tentative va changer à 2, puis 3, puis 4, puis 5, puis 6. Quand tentative vaudra 6, la condition de l'instruction while sera fausse, parce que 6 n'est pas inférieur strictement à 6. Comme la condition est fausse, le programme saute à la première ligne qui suit le bloc while.
+
+Si le joueur devine le nombre correctement, l'instruction break va déplacer faire déplacer l'exécution à la première ligne qui suit le bloc while.
+
+Le reste des lignes de code s'exécute quand le joueur aura fini de choisir, soit parce qu'il a trouvé le bon nombre, soit parce qu'il a fait trop de tentative.
+
+Vérifier si le Joueur a Gagné
+
+28. if choix == nombre:
+
+La ligne 28 n'a pas d'indentation, ce qui signifie que le bloc while est terminé et que c'est la première ligne après le bloc while. Le programme laisse le bloc while soit parce que la condition de l'instruction while est fausse (quand le joueur n'a plus de tentative disponible) ou si l'instruction break a été exécutée (quand le joueur a trouvé le nombre). La ligne 28 vérifie si le joueur a deviné correctement. Si oui, le programme rentre dans le bloc if à la ligne 29.
+
+29.     tentative = str(tentative)
+30.     print('Bien joué, ' + monNom + '! Vous avez devinez mon nombre en ' + tentative + ' tentatives !')
+
+Les lignes 29 et 30 s'exécute uniquement si la condition de la ligne 28 est vraie (soit, si le joueur a deviné le nombre de l'ordinateur).
+
+La ligne 29 appelle la fonction str(), qui retourne l'argument passé sous forme de chaîne. Ce code prend chaîne représentant l'entier tentative car seule les chaînes peuvent être concaténées entre elles.
+
+La ligne 30 concatène les chaînes ensemble pour dire au joueur qu'il a gagné et en combien de tentatives. Seules les valeurs de type chaîne peuvent être concaténées entre elles. C'est pourquoi la ligne 29 doit changer le type de tentative vers une chaîne. Autrement, essayer de concaténer une chaîne avec un entier fera émettre à Python un message d'erreur.
+
+Vérifier si le Joueur a Perdu
+
+32. if choix != nombre:
+
+La ligne 32 utilise l'opérateur de comparaison != pour vérifier si la dernière tentative du joueur est égale au nombre secret. Si cette condition est vraie, le programme continue dans le bloc if à la ligne 33.
+
+Les lignes 33 et 34 sont dans le bloc if, et s'exécute seulement si la condition de la ligne 32 est vraie.
+
+33.     nombre = str(nombre)
+34.     print('Raté. Le nombre que j''avais choisi était ' + nombre)
+
+
+Dans ce bloc, le programme dit au joueur quel était le nombre secret qui n' pas été trouvé. Cela nécessite de concaténer des chaînes, mais nombre est de type entier. La ligne 33 va remplacer nombre par sa représentation en chaîne afin de pouvoir être concaténée avec la chaîne 'Raté. Le nombre que j'avais choisi était ' à la ligne 34.
+
+À ce stade, le programme a atteint la fin du code source, et le programme se termine. Félicitations ! Vous venez de finir votre premier vrai jeu !
+
+Contrôle du Chemin d'Exécution
+
+Dans les chapitres précédents, le programme commençait à la première instruction et allait directement vers le bas, exécutant chacune des instructions dans l'ordre. Mais avec les instructions while, if, else, et break, vous pouvez changer le chemin d'exécution pour faire des boucles et passer des instructions en fonction de conditions. Le nom de ces sortes d'instruction est instruction de contrôle d'exécution, car elles changent le «chemin» des instructions exécutées par le programme.
+
+Résumé
+
+Si quelqu'un vous demande, «Qu'est ce que programmer exactement ?» Que pourriez-vous leurs dire? Programmer est juste le fait d'écrire du code pour des programmes, créant des programmes pouvant être exécutés par un ordinateur.
+
+«Mais qu'est ce qu'un programme exactement ?» Quand vous voyez quelqu'un utiliser un logiciel (par exemple, jouant à votre jeu «Devinez le Nombre»), tout ce que vous voyez est du texte apparaissant à l'écran. Le programme décide quel texte affiché à l'écran (la sortie du programme), basé sur ses instructions et sur le texte que le joueur a tapé sur le clavier (l'entrée du programme). Un programme est juste une suite d'instruction qui réagisse en fonction des saisies de l'utilisateur.
+
+«Quelles sortes d'instructions ?» Il y a peu de sortes d'instructions différentes réellement.
+
+1.  Expressions. Les expressions sont des valeurs qui sont connectées par des opérateurs. Les expressions sont évaluées en une valeur unique, ainsi 2 + 2 est évaluée à 4 ou 'Bonjour' + ' le ' + 'Monde' est évaluée en 'Bonjour le Monde'. Quand les expressions sont à côté d'une instruction if ou while, vous pouvez aussi les appelées conditions.
+2.  Les opérations d'affectation. Les opérations d'affectation stocke des valeurs dans des variables afin que vous puissiez les réutiliser plus tard dans votre programme.
+3.  Les instructions de contrôle d'exécution if, while, et break. Ces instructions de contrôle permettent de modifier le chemin d'exécution en passant des instructions, boucler sur des instructions, ou sortir des boucles. Les appels de fonction modifient aussi le chemin d'exécution en allant au début de la fonction.
+4.  Les fonctions print() et input(). Ces fonctions affichent du texte à l'écran et récupèrent du texte saisi sur le clavier. Cela s'appelle I/O (se prononce «aïe-oh» pour Input/Output ou Entrée/Sortie), parce qu'elles permette de gérer les entrées/sorties d'un programme.
+
+Et c'est tout, juste ces quatre choses. Bien sûr, il y a de nombreux détails concernant ces quatre types d'instructions. Dans ce livre, vous apprendrez de nouveaux types de données et d'opérateurs, de nouvelles instructions de contrôle d'exécution, et bien d'autres fonctions présentent dans Python. Il existe différentes fonctions d'entrée/sortie comme la gestion de la souris, ou l'affichage graphique au lieu de texte.
+
+Pour la personne qui utilise vos programmes, ils ont besoin uniquement de la dernière saisie. L'utilisateur tape sur le clavier et voit alors des choses sur l'écran ou entend des sons des haut-parleurs. Mais pour que l'ordinateur sache quoi afficher ou jouer comme son, il a besoin d'un programme, et un programme n'est qu'une suite d'instruction que vous, le développeur, avez écrite.
+
