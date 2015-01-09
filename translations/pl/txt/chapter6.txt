@@ -31,7 +31,6 @@ Jesteś w krainie pełnej smoków. Przed sobą widzisz
 dwie jasinie. W jednej mieszka przyjacielski smok,
 który podzieli sie z tobą skarbem. Drugi smok jest
 chciwy i głodny, i zje cię na miejscu.
-
 Do której jaskini chcesz wejść? (1 lub 2)
 2
 Zbliżasz się do jaskini...
@@ -347,38 +346,38 @@ Moment utworzenia zmiennej określa w jakiej będzie przestrzeni. Kiedy program 
 
 ...zmienna cave jest tworzona wewnątrz funkcji chooseCave(). To oznacza, że jest tworzona w lokalnej przestrzeni funkcji chooseCave(). Zostanie zapomniana gdy chooseCave() zwróci wartość i będzie ponownie stworzona, gdy chooseCave() zostanie wywołana po raz drugi. Wartość zmiennej lokalnej nie jest pamiętana pomiędzy wywołaniami funkcji.
 
-Parameters
+Parametry
 
 19. def checkCave(chosenCave):
 
-The next function the program defines is named checkCave(). Notice the text chosenCave between the parentheses. This is a parameter: a local variable that is assigned the argument passed when this function is called.
+Kolejna funkcja jaką znajdujemy w programie nazywa się checkCave(). Zwróć uwagę na napis chosenCave w nawiasach. To jest parametr funkcji: zmienna lokalna do której jest podstawiany argument przekazywany podczas wywołania funkcji.
 
-Remember how for some function calls like str() or randint(), you would pass one or more arguments between the parentheses:
+Przypomnij sobie że do niekótórych wywołań funkcji jak str(), lub randint(), przekazywałeś argument lub argumenty wpisane między nawiasami:
 
 >>> str(5)
 '5'
 >>> random.randint(1, 20)
 14
 
-You will also pass an argument when you call checkCave(). This argument is stored in a new variable named chosenCave. These variables are also called parameters.
+Wywołując checkCave() także przekazujesz argument. Ten argument jest zapisany w nowej zmiennej o nazwie chosenCave. Te smienne są także nazywane parametrami.
 
-For example, here is a short program that demonstrates defining a function with a parameter:
+Oto krótki program demonstujący definiowanie funkcji z parametrem:
 
 def sayHello(name):
-    print('Hello, ' + name + '. Your name has ' + str(len(name)) + ' letters.')
+    print('Hej, ' + name + '. Twoje imię ma ' + str(len(name)) + ' znaków.')
 
-sayHello('Alice')
-sayHello('Bob')
-spam = 'Carol'
+sayHello('Alicja')
+sayHello('Bogumił')
+spam = 'Karolina'
 sayHello(spam)
 
-If you run this program, it would look like this:
+Jak uruchomisz ten program, to dostaniesz taki wynik:
 
-Hello, Alice. Your name has 5 letters.
-Hello, Bob. Your name has 3 letters.
-Hello, Carol. Your name has 5 letters.
+Hej, Alicja. Twoje imię ma 6 znaków.
+Hej, Bogumił. Twoje imię ma 7 znaków.
+Hej, Karolina. Twoje imię ma 8 znaków.
 
-When you call sayHello(), the argument is assigned to the name parameter. Parameters are just ordinary local variables. Like all local variables, the values in parameters will be forgotten when the function call returns.
+Kiedy wywołujesz sayHello(), argument jest podstawiany do parametru name. Parametery są jak zwykłe zmienne lokalne. Podobnie jak wszystkie zmienne lokalne, parametry zostaną zapomniane, gdy wywołanie funkcji powróci.
 
 Displaying the Game Results
 
