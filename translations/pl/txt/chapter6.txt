@@ -379,52 +379,52 @@ Hej, Karolina. Twoje imię ma 8 znaków.
 
 Kiedy wywołujesz sayHello(), argument jest podstawiany do parametru name. Parametery są jak zwykłe zmienne lokalne. Podobnie jak wszystkie zmienne lokalne, parametry zostaną zapomniane, gdy wywołanie funkcji powróci.
 
-Displaying the Game Results
+Wyświetlanie wyników gry
 
-Back to the game’s source code:
+Wracając do kodu źródłowego gry:
 
 20.     print('Zbliżasz się do jaskini...')
 21.     time.sleep(2)
 
-The time module has a function called sleep() that pauses the program. Line 21 passes the integer value 2 so that time.sleep() will pause the program for 2 seconds.
+Moduł time ma funkcje o nazwie sleep(), która wstrzymuje program. W linii 21 przekazana jest wartość całkowita 2 więc time.sleep() wstrzyma program na 2 sekundy.
 
 22.     print('Jest ciemna i straszna...')
 23.     time.sleep(2)
 
-Here the code prints some more text and waits for another 2 seconds. These short pauses add suspense to the game, instead of displaying the text all at once. In the previous chapter’s Jokes program, you called the input() function to pause until the player pressed the ENTER key. Here, the player doesn’t have to do anything except wait a couple seconds.
+W tym kodzie wypisyway jest kolejny napis i znów wykonanie jest zatrzymywane na 2 sekundy. Te krótkie pauzy budują napięcie w grze, co nie jest możliwe przy wypisaniu całego tekstu za jednym zamachem. W programie z poprzedniego rozdziału wywoływałeś funkcję input() by wstrzymać program do momemntu, aż gracz wciśnie ENTER. Tu, poza odczekaniem kilku sekund, gracz nie musi nic robić.
 24.     print('Wielki smok wyskakuje prosto na ciebie! Otwiera swą paszczę i ...')
 25.     print()
 26.     time.sleep(2)
 
-What happens next? And how does the program decide? This is explained in the next section.
+Co dzieje się dalej?
 
-Deciding Which Cave has the Friendly Dragon
+Decyzja w której jaskini jest przyjazny smok
 
 28.     friendlyCave = random.randint(1, 2)
 
-Line 28 calls the random.randint() function which will return either 1 or 2. This integer value is stored in friendlyCave and is the cave with the friendly dragon.
+Linia 28 zawiera wywołanie funkcji random.randint() która zwróci albo 1, albo 2. Ta liczba całkowita jest zapisywana w zmiennej friendlyCave i jest jaskinią z przyjaznym smokiem.
 
 30.     if chosenCave == str(friendlyCave):
 31.          print('Daje ci swój skarb!')
 
-Line 30 checks if the player’s chosen cave in the chosenCave variable ('1' or '2') is equal to the friendly dragon cave.
+W linii 30 następuje sprawdzenie, czy jaskinia wybrane przez gracza zapisana w zmiennej chosenCave ('1', lub '2') jest równa jaskini z przyjaznym smokiem.
 
-But the value in friendlyCave is an integer because random.randint() returns integers. You can’t compare strings and integers with the == sign, because they will always be not equal to each other. '1' is not equal to 1 and '2' is not equal to 2.
+Jednak wartość w friendlyCave jest liczbą całkowitą, bo takie wartości zwraca random.randint(). Nie możesz porównywać napisów i liczb całkoitych za pomocą operatora ==, ponieważ one zawsze będą różne. '1' nie jest równa 1 i '2' nie jest równe 2.
 
-So friendlyCave is passed to str() function, which returns the string value of friendlyCave. This way the values will be the same data type and can be meaningfully compared to each other. This code could also have been used to convert chosenCave to an integer value:
+Tak więc friendlyCave przekazywane jest do funkcji str(), która zwraca napisową wartość friendlyCave. W ten sposób wartości będą tego samego typu  i będzie można je w sensowny sposób porównać. Można tu także użyć zamiany chosenCave na wartość całkowitą:
 
     if int(chosenCave) == friendlyCave:
 
-If the condition is True, line 31 tells the player they have won the treasure.
+Jeśli ten warunek zostanie spełniony (da True), linia 31 oznajmia graczowi, że wygrał skarb.
 
 32.     else:
 33.          print('Pożera cię jednym kłapnięciem paszczy!')
 
-Line 32 is an else statement. The else statement can only come after an if-block. The else-block executes if the if statement’s condition was False. Think of it as the program’s way of saying, “If this condition is true then execute the if-block or else execute the else-block.”
+Linia 32 zawiera dyrektywę else. Dyrektywa else może byc użyta tylko po bloku if. Blok else zostanie wykonany jeśli warunek w if nie zostanie spełniony (da False). Pomyśl o tym w ten sposób: “Jeśli (if) warunek jest spełniony, to wykonaj blok if, a jeśli nie (else), to wykonaj blok else”.
 
-Remember to put the colon (the : sign) after the else keyword.
+Pamiętaj o wstawieniu dwokropka (znaku :) po słowie kluczowym else.
 
-Where the Main Part Begins
+Gdzie zaczyna się główna część
 
 35. playAgain = 'tak'
 36. while playAgain == 'tak' or playAgain == 't':
