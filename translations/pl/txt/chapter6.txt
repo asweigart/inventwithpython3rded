@@ -81,7 +81,7 @@ dragon.py
 30.     if chosenCave == str(friendlyCave):
 31.          print('Daje ci swój skarb!')
 32.     else:
-33.          print('Pożera cie jednym kłapnięciem paszczy!')
+33.          print('Pożera cię jednym kłapnięciem paszczy!')
 34. 
 35. playAgain = 'tak'
 36. while playAgain == 'tak' or playAgain == 't':
@@ -383,16 +383,16 @@ Displaying the Game Results
 
 Back to the game’s source code:
 
-20.     print('You approach the cave...')
+20.     print('Zbliżasz się do jaskini...')
 21.     time.sleep(2)
 
 The time module has a function called sleep() that pauses the program. Line 21 passes the integer value 2 so that time.sleep() will pause the program for 2 seconds.
 
-22.     print('It is dark and spooky...')
+22.     print('Jest ciemna i straszna...')
 23.     time.sleep(2)
 
 Here the code prints some more text and waits for another 2 seconds. These short pauses add suspense to the game, instead of displaying the text all at once. In the previous chapter’s Jokes program, you called the input() function to pause until the player pressed the ENTER key. Here, the player doesn’t have to do anything except wait a couple seconds.
-24.     print('A large dragon jumps out in front of you! He opens his jaws and...')
+24.     print('Wielki smok wyskakuje prosto na ciebie! Otwiera swą paszczę i ...')
 25.     print()
 26.     time.sleep(2)
 
@@ -405,7 +405,7 @@ Deciding Which Cave has the Friendly Dragon
 Line 28 calls the random.randint() function which will return either 1 or 2. This integer value is stored in friendlyCave and is the cave with the friendly dragon.
 
 30.     if chosenCave == str(friendlyCave):
-31.          print('Gives you his treasure!')
+31.          print('Daje ci swój skarb!')
 
 Line 30 checks if the player’s chosen cave in the chosenCave variable ('1' or '2') is equal to the friendly dragon cave.
 
@@ -418,7 +418,7 @@ So friendlyCave is passed to str() function, which returns the string value of f
 If the condition is True, line 31 tells the player they have won the treasure.
 
 32.     else:
-33.          print('Gobbles you down in one bite!')
+33.          print('Pożera cię jednym kłapnięciem paszczy!')
 
 Line 32 is an else statement. The else statement can only come after an if-block. The else-block executes if the if statement’s condition was False. Think of it as the program’s way of saying, “If this condition is true then execute the if-block or else execute the else-block.”
 
@@ -426,8 +426,8 @@ Remember to put the colon (the : sign) after the else keyword.
 
 Where the Main Part Begins
 
-35. playAgain = 'yes'
-36. while playAgain == 'yes' or playAgain == 'y':
+35. playAgain = 'tak'
+36. while playAgain == 'tak' or playAgain == 't':
 
 Line 35 is the first line that isn’t a def statement or inside a def-block. This line is where the main part of the program begins. The previous def statements merely defined the functions. They didn’t run the code inside of the functions.
 
@@ -451,7 +451,7 @@ Line 42 calls your checkCave() function, passing the value in caveNumber as an a
 
 Asking the Player to Play Again
 
-44.     print('Do you want to play again? (yes or no)')
+44.     print('Chcesz zagrać ponownie? (tak lub nie)')
 45.     playAgain = input()
 
 Whether the player won or lost, they are asked if they want to play again. The variable playAgain stores what the player typed. Line 45 is the last line of the while-block, so the program jumps back to line 36 to check the while loop’s condition: playAgain == 'yes' or playAgain == 'y'

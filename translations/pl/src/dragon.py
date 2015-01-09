@@ -30,7 +30,7 @@ def checkCave(chosenCave):
     if chosenCave == str(friendlyCave):
          print('Daje ci swój skarb!')
     else:
-         print('Pożera cie jednym kłapnięciem paszczy!')
+         print('Pożera cię jednym kłapnięciem paszczy!')
 
 playAgain = 'tak'
 while playAgain == 'tak' or playAgain == 't':
