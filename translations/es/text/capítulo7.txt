@@ -32,7 +32,7 @@ Ahora presione y mantenga la tecla Ctrl y presiona la tecla C para parar el prog
 ¡¡¡Presiona Ctrl-C para parar este ciclo infinito!!
 Traceback (most recent call last):
   File "<pyshell#1>", line 1, in <module>
-    while True: print('Press Ctrl-C to stop this infinite loop!!!')
+    while True: print('¡¡¡Presiona Ctrl-C para parar este ciclo infinito!!!')
 KeyboardInterrupt
 
 El Depurador
