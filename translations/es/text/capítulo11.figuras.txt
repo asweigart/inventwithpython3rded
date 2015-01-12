@@ -1,0 +1,12 @@
+Fig 11-1:
+Inicio
+Generar número secreto.
+Ver si el jugador se ha quedado sin intentos.
+Obtener conjetura del jugador.
+Dar pistas al jugador.
+Incrementar el número de intentos.
+Preguntar al jugador si desea volver a jugar.
+El jugador ha perdido.
+El jugador ha ganado.
+Fin
+
