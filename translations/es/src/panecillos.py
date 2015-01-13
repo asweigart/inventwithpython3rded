@@ -11,7 +11,7 @@ def obtenerNumSecreto(digitosNum):
 def obtenerPistas(conjetura, numSecreto):
     # Devuelve una palabra con las pistas Panecillos Pico y Fermi en ella.
     if conjetura == numSecreto:
-        return 'You got it!'
+        return '¡Lo has adivinado!'
 
     pista = []
 
@@ -37,9 +37,9 @@ def esSoloDigitos(num):
 
     return True
 
-def playAgain():
+def jugarDeNuevo():
     # Esta funcion devuelve True si el jugador desea vovler a jugar, de lo contrario Falso.
-    print('¿Deseas volver a jugar? (si o no)')
+    print('¿Deseas volver a jugar? (sí o no)')
     return input().lower().startswith('s')
 
 digitosNum = 3
@@ -48,29 +48,29 @@ MAXADIVINANZAS = 10
 print('Estoy pensando en un número de %s dígitos. Intenta adivinar cuál es.' % (digitosNum))
 print('Aquí hay algunas pistas:')
 print('Cuando digo:    Eso significa:')
-print('  Pico         Un dígito es correcto pero en la posición incorrecta.')
-print('  Fermi        Un dígito es correcto y en la posición correcta.')
-print('  Panecillos       Ningún dígito es correcto.')
+print('  Pico          Un dígito es correcto pero en la posición incorrecta.')
+print('  Fermi         Un dígito es correcto y en la posición correcta.')
+print('  Panecillos    Ningún dígito es correcto.')
 
 while True:
     numSecreto = obtenerNumSecreto(digitosNum)
     print('He pensado un número. Tienes %s intentos para adivinarlo.' % (MAXADIVINANZAS))
 
-    numGuesses = 1
-    while numGuesses <= MAXADIVINANZAS:
+    numIntentos = 1
+    while numIntentos <= MAXADIVINANZAS:
         conjetura = ''
         while len(conjetura) != digitosNum or not esSoloDigitos(conjetura):
-            print('conjetura #%s: ' % (numGuesses))
+            print('Conjetura #%s: ' % (numIntentos))
             conjetura = input()
 
         pista = obtenerPistas(conjetura, numSecreto)
         print(pista)
-        numGuesses += 1
+        numIntentos += 1
 
         if conjetura == numSecreto:
             break
-        if numGuesses > MAXADIVINANZAS:
+        if numIntentos > MAXADIVINANZAS:
             print('Te has quedado sin intentos. La respuesta era %s.' % (numSecreto))
 
-    if not playAgain():
+    if not jugarDeNuevo():
         break
