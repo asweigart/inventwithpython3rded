@@ -429,21 +429,21 @@ Gdzie zaczyna się główna część
 35. playAgain = 'tak'
 36. while playAgain == 'tak' or playAgain == 't':
 
-Line 35 is the first line that isn’t a def statement or inside a def-block. This line is where the main part of the program begins. The previous def statements merely defined the functions. They didn’t run the code inside of the functions.
+Linia 35 jest pierwszą linią która nie jest dyrektywą def, ani nie jest we wnętrzu bloku def. Ta linia jest miejscem, gdzie zaczyna się główna część programu. Wcześniejsze dyrektywy def jedynie definiowały funkcje. Nie był wykonywany żaden kod z wnętrza tych funkcji.
 
-Line 35 and 36 are setting up a loop that the rest of the game code is in. At the end of the game, the player can enter if they want to play again. If they do, the execution enters the while loop to run the entire game all over again. If they don’t, the while statement’s condition will be False and the execution will move on to the end of the program and terminate.
+Linie 35 i 36 ustawiają pętlę w której jest reszta kodu gry. Na końcu gry gracz może wpisać, czy chce zagrać ponownie. Jeśli chce, wykonanie wchodzi do pętli while, by ponownie uruchomić całą grę. Jeśli nie chce, dyrektywa while da False i wykonanie zostanie przeniesiona na koniec programu i zakończone.
 
-The first time the execution comes to this while statement, line 35 will have just assigned 'yes' to the playAgain variable. That means the condition will be True. This guarantees that the execution enters the loop at least once.
+Gdy wykonanie po raz pierwszy dochodzi do dyrektywy while, w linii 35 właśnie podstawiliśmy 'tak' do zmiennej playAgain. To oznacza, że warunek będzie spełniony (True). W ten sposób zapewniamy, że wykonanie choć raz wejdzie do pętli.
 
-Calling the Functions in the Program
+Wywoływanie funkcji w programie
 
 38.     displayIntro()
 
-Line 38 calls the displayIntro() function. This isn’t a Python function, it is your function that you defined earlier on line 4. When this function is called, the program execution jumps to the first line in the displayIntro() function on line 5. When all the lines in the function are done, the execution jumps back to line 38 and continues moving down.
+Linia 38 wywołuje funkcję displayIntro(). Nie jest to funkcja Pythona, to twoja funkcja którą zdefiniowałeś wcześniej w linii 4. Kiedy ta funkcja jest wywoływana, wykonanie programu przeskakuje do pierwszej linii w funkcji displayIntro(), do linii 5. Kiedy wszystkie linie w funkcji zostaną zakończone, wykonanie przeskoczy z powrotem do linii 38 i wykonanie będzie kontynuowane.
 
 40.     caveNumber = chooseCave()
 
-Line 40 also calls a function that you defined. Remember that the chooseCave() function lets the player type in the cave they want to go into. When the line 17’s return cave executes, the program execution jumps back to line 40, and the chooseCave() call evaluates to the return value. This return value is stored in a new variable named caveNumber. Then the program execution moves on to line 42.
+Linia 40 także wywołuje funkcję którą zdefiniowałeś. Funkcja chooseCave() pozwalała graczowi wpisać do jakiej chce wejść jaskini. Kiedy wykona sie linia 17 return cave, wykonanie programu przeskoczy do linii 40, a wywołanie chooseCave() wyliczy się do wartości zwrotnej. Ta wartość zwrotna zostanie zapisana w nowej zmiennej o nazwie caveNumber. Po tym wykonanie programu przejdzie do linii 42.
 
 42.     checkCave(caveNumber)
 
