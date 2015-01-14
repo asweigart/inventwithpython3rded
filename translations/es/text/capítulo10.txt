@@ -2,17 +2,19 @@
   TA TE TI
 
 Temas Tratados En Este Capítulo:
+
 • Inteligencia Artificial
 • Referencias en Listas
 • Evaluación en Cortocircuito
 • El Valor None
 
 Este capítulo presenta un juego de Ta Te Ti contra una inteligencia artificial simple. Una inteligencia artificial (IA) es un programa de computadora que puede responder inteligentemente a los movimientos del jugador. Este juego no introduce ningún nuevo concepto que sea complicado. La inteligencia artificial del juego de Ta Te Ti consiste en sólo unas pocas líneas de código.
+
 Dos personas pueden jugar Ta Te Ti con lápiz y papel. Un jugador es X y el otro es O. En un tablero consistente en nueve cuadrados, los jugadores toman turnos para colocar sus X u O. Si un jugador consigue ubicar tres de sus marcas en el tablero sobre la misma línea, columna o alguna de las dos diagonales, gana. Cuando el tablero se llena y ningún jugador ha ganado, el juego termina en empate.
-Aunque este capítulo no introduce nuevos conceptos de programación, hace uso de nuestro conocimiento adquirido hasta ahora para crear un jugador inteligente de Ta Te Ti. Empecemos mirando una prueba de ejecución del programa. El jugador hace su movimiento escribiendo el número del espacio en el que quiere jugar. Estos números están dispuestos de igual forma que las teclas numéricas en tu teclado (ver Figura 10-2).
+
+Este capítulo no introduce muchos nuevos conceptos de programación. Hace uso de nuestro conocimiento adquirido hasta ahora para crear un jugador inteligente de Ta Te Ti. Empecemos mirando una prueba de ejecución del programa. El jugador hace su movimiento escribiendo el número del espacio en el que quiere jugar. Estos números están dispuestos de igual forma que las teclas numéricas en tu teclado (ver Figura 10-2).
 
 Prueba de Ejecución de Ta Te Ti
-
 ¡Bienvenido al Ta Te Ti!
 ¿Deseas ser X o O?
 X
@@ -76,6 +78,7 @@ Código Fuente del Ta Te Ti
 En una nueva ventana del editor de archivos, escribe el siguiente código y guárdalo como tateti.py. Luego ejecuta el juego pulsando F5.
 
 tateti.py
+
   1. # Ta Te Ti
   2. 
   3. import random
@@ -266,20 +269,23 @@ tateti.py
 
 Diseñando el Programa
 
+La Figura 10-1 muestra cómo se vería un diagrama de flujo del Ta Te Ti. En nuestro programa del Ta Te Ti el jugador elige si quiere ser X u O. Quién toma el primer turno se elige al azar. Luego el jugador y la computadora toman turnos para jugar.
+
+Los recuadros a la izquierda del diagrama de flujo son lo que ocurre durante el turno del jugador. El lado derecho muestra lo que ocurre durante el turno de la computadora. El jugador tiene un recuadro extra para dibujar el tablero ya que la computadora no precisa ver el tablero impreso en la pantalla. Luego de que el jugador o la computadora hacen su movimiento, revisamos si han ganado u ocasionado un empate, y entonces cambia el turno del juego. Después de que termina el juego, le preguntamos al jugador si desea jugar otra vez.
+
 Figura 10-1: Diagrama de flujo para el Ta Te Ti
 
-En el programa de computadora Ta Te Ti, el jugador elige si quiere ser X o O, se elige aleatoriamente quién comienza, y entonces el jugador y la computadora toman turnos para jugar. La Figura 10-1 muestra cómo se vería un diagrama de flujo de Ta Te Ti.
-Los recuadros a la izquierda del diagrama de flujo son lo que ocurre durante el turno del jugador. El lado derecho muestra lo que ocurre durante el turno de la computadora. El jugador tiene un recuadro extra para dibujar el tablero ya que la computadora no precisa ver el tablero impreso en la pantalla. Luego de que el jugador o la computadora hacen su movimiento, revisamos si han ganado u ocasionado un empate, y entonces cambia el turno del juego. Después de que termina el juego, le preguntamos al jugador si desea jugar otra vez.
+Figura 10-2: El tablero está ordenado igual que el teclado numérico de la computadora.
 
 Representando el Tablero como Datos
 
 Primero, necesitamos entender cómo vamos a representar el tablero como una variable. Sobre papel, el tablero de Ta Te Ti se dibuja como un par de líneas horizontales y un par de líneas verticales, con una X, una O o un espacio vacío en cada una de las nueve regiones formadas.
-En el programa, el tablero de Ta Te Ti se representa como una lista de cadenas. Cada cadena representa uno de los nueve espacios en el tablero. Para que sea más fácil recordar qué índice de la lista corresponde a cada espacio, los ordenaremos igual que en el teclado numérico, como se muestra en la Figura 10-2.
 
-Figura 10-2: El tablero está ordenado igual que el teclado numérico de la computadora.
+En el programa, el tablero de Ta Te Ti se representa como una lista de cadenas. Cada cadena representa uno de los nueve espacios en el tablero. Para que sea más fácil recordar qué índice de la lista corresponde a cada espacio, los ordenaremos igual que en el tablero numérico del teclado, como se muestra en la Figura 10-2.
 
 Las cadenas serán 'X' para el jugador X, 'O' para el jugador O, o un espacio simple ' ' para un espacio vacío.
-Entonces si una lista de diez cadenas se guardase en una variable llamada tablero, tablero[7] sería el espacio superior izquierdo en el tablero. De la misma forma tablero[5] sería el centro, tablero[4] sería el costado izquierdo, etcétera. Como no hay 0 en el teclado numérico, el programa ignorará la cadena en el índice 0 de nuestra lista. El jugador entrará un número de 1 a 9 para decirle al juego sobre qué espacio quiere jugar.
+
+Entonces si una lista de diez cadenas se guardase en una variable llamada tablero, tablero[7] sería el espacio superior izquierdo en el tablero. De la misma forma tablero[5] sería el centro, tablero[4] sería el costado izquierdo, etcétera. El programa ignorará la cadena en el índice 0 de la lista. El jugador entrará un número de 1 a 9 para decirle al juego sobre qué espacio quiere jugar.
 
 IA del Juego
 
@@ -288,23 +294,20 @@ La IA necesitará poder ver el tablero y decidir sobre qué tipo de espacios mov
 Figura 10-3: Ubicación de los lados, esquinas y centro en el tablero.
 
 La astucia de la IA para jugar al Ta Te Ti seguirá un algoritmo simple. Un algoritmo es una serie finita de instrucciones para computar un resultado. Un único programa puede hacer uso de varios algoritmos diferentes. Un algoritmo puede representarse con un diagrama de flujo. El algoritmo de la IA del Ta Te Ti computa la mejor movida disponible, como se muestra en la Figura 10-4.
+
 El algoritmo de la IA consiste en los siguientes pasos:
 
 1.  Primero, ver si hay un movimiento con el que la computadora pueda ganar el juego. Si lo hay, hacer ese movimiento. En caso contrario, ir al paso 2.
-2.  Ver si existe un movimiento disponible para el jugador que pueda causar que la computadora pierda el juego. Si existe, la computadora debería jugar en ese lugar para bloquear la jugada ganadora. En caso contrario, ir al paso 3.
-3.  Comprobar si alguna de las esquinas (espacios 1, 3, 7, ó 9) está disponible. (Siempre preferimos tomar una esquina antes que el centro o un lado.) Si no hay ninguna esquina disponible, ir al paso 4.
+2.  Ver si existe un movimiento disponible para el jugador que pueda hacer que la computadora pierda el juego. Si existe, la computadora debería jugar en ese lugar para bloquear la jugada ganadora. En caso contrario, ir al paso 3.
+3.  Comprobar si alguna de las esquinas (espacios 1, 3, 7, ó 9) está disponible. Si lo está, mover allí. Si no hay ninguna esquina disponible, ir al paso 4.
 4.  Comprobar si el centro está libre. Si lo está, jugar en el centro. Si no lo está, ir al paso 5.
 5.  Jugar en cualquiera de los lados (espacios 2, 4, 6, u 8). No hay más pasos, ya que si hemos llegado al paso 5 los únicos espacios restantes son los lados.
 
-Todo esto ocurre dentro del casillero “Obtener movimiento de la computadora.” en nuestro diagrama de flujo. Podríamos añadir esta información a nuestro diagrama de flujo de esta forma:
+Todo esto ocurre dentro del casillero “Obtener movimiento de la computadora.” en nuestro diagrama de flujo de la Figura 10-1. Podrías añadir esta información al diagrama de flujo con los recuadros de la Figura 10-4.
 
 Figura 10-4: Los cinco pasos del algoritmo “Obtener movimiento de la computadora”. Las flechas salientes van al recuadro “Comprobar si la computadora ha ganado”.
 
 Este algoritmo es implementado en la función obtenerJugadaComputadora() y las otras funciones llamadas por obtenerJugadaComputadora().
-
-Cómo Funciona el Código: Líneas 1 a 81
-
-Ahora que hemos delineado cómo debería funcionar el programa, echemos un vistazo a lo que hace cada línea.
 
 El Inicio del Programa
 
@@ -312,7 +315,7 @@ El Inicio del Programa
   2. 
   3. import random
 
-El primer par de líneas son un comentario y la importación del módulo random para poder usar la función randint() en nuestro juego.
+El primer par de líneas son un comentario y la importación del módulo random para poder llamar a la función randint().
 
 Dibujando el Tablero en la Pantalla
 
@@ -332,7 +335,8 @@ Dibujando el Tablero en la Pantalla
  18.     print(' ' + tablero[1] + ' | ' + tablero[2] + ' | ' + tablero[3])
  19.     print('   |   |')
 
-Esta función imprimirá el tablero de juego representado por el parámetro tablero. Recuerda que nuestro tablero se representa como una lista de diez cadenas, donde la cadena correspondiente al índice 1 es la marca en el espacio 1 sobre el tablero del Ta Te Ti. La cadena en el índice 0 es ignorada. Muchas de nuestras funciones operarán pasando el tablero como una lista de diez cadenas a nuestras funciones.
+La función dibujarTablero() imprimirá el tablero de juego representado por el parámetro tablero. Recuerda que nuestro tablero se representa como una lista de diez cadenas, donde la cadena correspondiente al índice 1 es la marca en el espacio 1 sobre el tablero del Ta Te Ti. La cadena en el índice 0 es ignorada. Muchas de nuestras funciones operarán pasando una lista de diez cadenas a modo de tablero.
+
 Asegúrate de escribir correctamente los espacios en las cadenas, ya que de otra forma el tablero se verá raro al imprimirse en pantalla. Aquí hay algunas llamadas de ejemplo (con un argumento como tablero) a dibujarTablero() junto con las correspondientes salidas de la función:
 
 >>> dibujarTablero([' ', ' ', ' ', ' ', 'X', 'O', ' ', 'X', ' ', 'O']
@@ -383,6 +387,7 @@ Dejando al Jugador elegir X u O
  27.         letra = input().upper()
 
 La función ingresaLetraJugador() pregunta al jugador si desea ser X u O. Continuará preguntando al jugador hasta que este escriba X u O. La línea 27 cambia automáticamente la cadena devuelta por la llamada a input() a letras mayúsculas con el método de cadena upper().
+
 La condición del bucle while contiene paréntesis, lo que significa que la expresión dentro del paréntesis es evaluada primero. Si se asignara 'X' a la variable letra, la expresión se evaluaría de esta forma:
 
 not (letra == 'X' or letra == 'O')
@@ -405,7 +410,7 @@ Si letra tiene valor 'X' u 'O', entonces la condición del bucle es False y perm
  32.     else:
  33.         return ['O', 'X']
 
-Esta función devuelve una lista con dos elementos. El primer elemento (la cadena del índice 0) será la letra del jugador, y el segundo elemento (la cadena del índice 1) será la letra de la computadora. Esta sentencia if-else elige la lista adecuada a devolver.
+Esta función devuelve una lista con dos elementos. El primer elemento (la cadena del índice 0) será la letra del jugador, y el segundo elemento (la cadena del índice 1) será la letra de la computadora. Estas sentencias if-else elige la lista adecuada a devolver.
 
 Decidiendo Quién Comienza
 
@@ -425,8 +430,7 @@ Preguntando al Jugador si desea Jugar de Nuevo
  44.     print('¿Deseas volver a jugar? (si/no)?')
  45.     return input().lower().startswith('s')
 
-La función jugarDeNuevo() pregunta al jugador si desea jugar de nuevo. Esta función devuelve True si el jugador escribe 'sí' or 'SÍ' or 's' o cualquier cosa que comience con la letra S. Con cualquier otra respuesta, la función devuelve False. El orden de las llamadas a los métodos en la línea 45 es importante. El valor de retorno de la llamada a la función input() es una cadena sobre la que se llama al método lower(). El método lower() devuelve otra cadena (la cadena en minúsculas) y sobre esa cadena se llama al método startswith(), pasando como argumento 's'.
-No hay bucle, porque el programa asume que si el jugador escribe cualquier cadena que no empiece con 's' es porque no quiere volver a jugar.
+La función jugarDeNuevo() pregunta al jugador si desea jugar de nuevo. Esta función devuelve True si el jugador escribe 'sí' or 'SÍ' or 's' o cualquier cosa que comience con la letra S. Con cualquier otra respuesta, la función devuelve False. Esta función es igual a la utilizada en el juego del Ahorcado.
 
 Colocando una Marca en el Tablero
 
@@ -434,7 +438,9 @@ Colocando una Marca en el Tablero
  48.     tablero[jugada] = letra
 
 La función hacerJugada() es simple y consiste en sólo una línea. Los parámetros son una lista con diez cadenas llamada tablero, la letra de uno de los jugadores ('X' u 'O') llamada letra, y un espacio en el tablero donde ese jugador quiere jugar (el cual es un entero de 1 a 9) llamado jugada.
+
 Pero espera un segundo. Este código parece cambiar uno de los elementos de la lista tablero por el valor en letra. Pero como este código pertenece a una función, el parámetro tablero será olvidado al salir de esta función y abandonar el entorno de la función. El cambio a tablero también será olvidado.
+
 En realidad, esto no es lo que ocurre. Esto se debe a que las listas se comportan en forma especial cuando las pasas como argumentos a funciones. En realidad estás pasando una referencia a la lista y no la propia lista. Vamos a aprender ahora sobre la diferencia entre las listas y las referencias a listas.
 
 Referencias
@@ -450,6 +456,7 @@ Prueba ingresar lo siguiente en la consola interactiva:
 42
 
 Esto tiene sentido a partir de lo que sabes hasta ahora. Asignas 42 a la variable spam, y luego copias el valor en spam y lo asignas a la variable cheese. Cuando luego cambias spam a 100, esto no afecta al valor en cheese. Esto es porque spam y cheese son variables diferentes que almacenan valores diferentes.
+
 Pero las listas no funcionan así. Cuando asignas una lista a una variable usando el signo =, en realidad asignas a la variable una referencia a esa lista. Una referencia es un valor que apunta a un dato. Aquí hay un ejemplo de código que hará que esto sea más fácil de entender. Escribe esto en la consola interactiva:
 
 >>> spam = [0, 1, 2, 3, 4, 5]
@@ -460,12 +467,11 @@ Pero las listas no funcionan así. Cuando asignas una lista a una variable usand
 >>> cheese
 [0, '¡Hola!', 2, 3, 4, 5]
 
-Esto se ve raro. El código sólo modificó la lista cheese, pero parece que tanto la lista cheese como la lista spam han cambiado.
-La variable spam no contiene a la propia lista sino una referencia a la misma, como se muestra en la Figura 10-5.
+Esto se ve raro. El código sólo modificó la lista cheese, pero parece que tanto la lista cheese como la lista spam han cambiado. Esto se debe a que la variable spam no contiene a la propia lista sino una referencia a la misma, como se muestra en la Figura 10-5. La lista en sí misma no está contenida en ninguna variable, sino que existe por fuera de ellas.
 
 Figura 10-5: Las variables no guardan listas, sino referencias a listas.
 
-Observa que cheese = spam copia la referencia a lista en spam a cheese, en lugar de copiar el propio valor de lista. Tanto spam como cheese guardan una referencia que apunta al mismo valor de lista. Hay sólo una lista porque no se ha copiado la lista, sino una referencia a la misma. Esto se muestra en la Figura 10-6.
+Observa que cheese = spam copia la referencia a lista en spam a cheese, en lugar de copiar el propio valor de lista. Tanto spam como cheese guardan una referencia que apunta al mismo valor de lista. Pero sólo hay una lista. No se ha copiado la lista, sino una referencia a la misma. La Figura 10-6 ilustra esta copia.
 
 Figura 10-6: Dos variables guardan dos referencias a la misma lista.
 
@@ -501,8 +507,9 @@ Volvamos a la función hacerJugada():
  47. def hacerJugada(tablero, letra, jugada):
  48.     tablero[jugada] = letra
 
-Cuando un valor de lista se pasa por el parámetro tablero, la variable local de la función es en realidad una copia de la referencia a la lista, no una copia de la lista. Los parámetros letra y jugada son copias de los valores cadena y entero que pasamos a la función. Como son copias, si modificamos letra o jugada en esta función, las variables originales que usamos al llamar a hacerJugada() no registrarán cambios. Sólo las copias serán modificadas.
-Pero una copia de la referencia sigue apuntando a la misma lista a la que apunta la referencia original. Entonces cualquier cambio a tablero en esta función ocurrirá también en la lista original. Así es cómo la función hacerJugada() modifica la lista a la cual apunta la referencia pasada.
+Cuando un valor de lista se pasa por el parámetro tablero, la variable local de la función es en realidad una copia de la referencia a la lista, no una copia de la lista. Pero una copia de la referencia sigue apuntando a la misma lista a la que apunta la referencia original. Entonces cualquier cambio a tablero en esta función ocurrirá también en la lista original. Así es cómo la función hacerJugada() modifica la lista original.
+
+Los parámetros letra y jugada son copias de los valores cadena y entero que pasamos. Como son copias de valores, si modificamos letra o jugada en esta función, las variables originales que usamos al llamar a hacerJugada() no registrarán cambios.
 
 Comprobando si el Jugador Ha Ganado
 
@@ -519,8 +526,11 @@ Comprobando si el Jugador Ha Ganado
  60.     (ta[9] == le and ta[5] == le and ta[1] == le)) # diagonal
 
 Las líneas 53 a 60 en la función esGanador() son el realidad una larga sentencia if. Los nombres ta y le son abreviaturas de los parámetros tablero y letra para no tener que escribir tanto en esta función. Recuerda, a Python no le importa qué nombres uses para tus variables.
+
 Hay ocho posibles formas de ganar al Ta Te Ti. Puedes formar una línea horizontal arriba, al medio o abajo. O puedes formar una línea vertical a la izquierda, al medio o a la derecha. O puedes formar cualquiera de las dos diagonales.
+
 Fíjate que cada línea de la condición comprueba si los tres espacios son iguales a la letra pasada (combinados con el operador and) y usamos el operador or para combinar las ocho diferentes formas de ganar. Esto significa que sólo una de las ocho formas necesita ser verdadera para que podamos afirmar que el jugador a quien pertenece la letra en le es el ganador.
+
 Supongamos que le es 'O', y el tablero se ve así:
 
    |   |
@@ -535,9 +545,7 @@ Supongamos que le es 'O', y el tablero se ve así:
  O | O | O
    |   |
 
-Si el tablero se ve así, entonces ta debe ser igual a [' ', 'O', 'O', 'O', ' ', 'X', ' ', 'X', ' ', ' ']. Así es como se evaluaría la expresión luego de la palabra reservada return en la línea 53:
-
-Aquí está la expresión tal como se ve en el código:
+Así es como se evaluaría la expresión luego de la palabra reservada return en la línea 53:
 
  53.     return ((ta[7] == le and ta[8] == le and ta[9] == le) or # horizontal superior
  54.     (ta[4] == le and ta[5] == le and ta[6] == le) or # horizontal medio
@@ -548,7 +556,7 @@ Aquí está la expresión tal como se ve en el código:
  59.     (ta[7] == le and ta[5] == le and ta[3] == le) or # diagonal
  60.     (ta[9] == le and ta[5] == le and ta[1] == le)) # diagonal
 
-Primero Python reemplazará la variable ta por el valor que esta almacena:
+Primero Python reemplazará las variables ta y le por los valores que contienen:
 
  53.     return (('X' == 'O' and ' ' == 'O' and ' ' == 'O') or
  54.     (' ' == 'O' and 'X' == 'O' and ' ' == 'O') or
@@ -600,7 +608,7 @@ Una vez más, eliminamos los paréntesis y nos quedamos con un solo valor:
 
  53.     return True
 
-Entonces dados estos valores para ta y le, la expresión se evaluaría a True. Así es cómo el programa puede decir si uno de los jugadores ha ganado el juego o no. El valor de le es importante. Si le es 'O' y X ha ganado el juego, la función esGanador() devuelve False.
+Entonces dados estos valores para ta y le, la expresión se evaluaría a True. Así es cómo el programa puede decir si uno de los jugadores ha ganado el juego.
 
 Duplicando los Datos del Tablero
 
@@ -614,6 +622,7 @@ Duplicando los Datos del Tablero
  69.     return dupTablero
 
 La función obtenerDuplicadoTablero() está aquí para que podamos fácilmente hacer una copia de una dada lista de 10 cadenas que representa un tablero de Ta Te Ti en nuestro juego. Algunas veces querremos que nuestro algoritmo IA haga modificaciones temporarias a una copia provisoria del tablero sin cambiar el tablero original. En ese caso, llamaremos a esta función para hacer una copia de la lista del tablero. La nueva lista se crea en la línea 64, con los corchetes [] de lista vacía.
+
 Pero la lista almacenada en dupTablero en la línea 64 es sólo una lista vacía. El bucle for recorre el parámetro tablero, agregando una copia de los valores de cadena en el tablero original al tablero duplicado. Finalmente, después del bucle, se devuelve dupTablero. La función obtenerDuplicadoTablero() construye una copia del tablero original y devuelve una referencia a este nuevo tablero, y no al original.
 
 Comprobando si un Espacio en el Tablero está Libre
@@ -622,7 +631,7 @@ Comprobando si un Espacio en el Tablero está Libre
  72.     # Devuelte true si hay espacio para efectuar la jugada en el tablero.
  73.     return tablero[jugada] == ' '
 
-Esta es una simple función que, dado un tablero de Ta Te Ti y una posible jugada, confirmará si esa jugada está disponible o no. Recuerda que los espacios libres en nuestras listas tablero se indican como una cadena con un espacio simple. Si el elemento en el índice del espacio indicado no es igual a una cadena con un espacio simple, el espacio está ocupado y no es una jugada válida.
+Esta es una función simple que, dado un tablero de Ta Te Ti y una posible jugada, confirmará si esa jugada está disponible o no. Recuerda que los espacios libres en la lista tablero se indican como una cadena con un espacio simple. Si el elemento en el índice del espacio indicado no es igual a una cadena con un espacio simple, el espacio está ocupado y no es una jugada válida.
 
 Permitiendo al Jugador Ingresar Su Jugada
 
@@ -635,31 +644,47 @@ Permitiendo al Jugador Ingresar Su Jugada
  81.     return int(jugada)
 
 La función obtenerJugadaJugador() pide al jugador que ingrese el número del espacio en el que desea jugar. El bucle se asegura de que la ejecución no prosiga hasta que el jugador haya ingresado un entero de 1 a 9. También comprueba que el espacio no esté ocupado, dado el tablero de Ta Te Ti pasado a la función en el parámetro tablero.
-Las dos líneas de código dentro del bucle while simplemente piden al jugador que ingrese un número de 1 a 9. La condición de la línea 78 es True si cualquiera de las expresiones a la izquierda o a la derecha de la palabra reservada or es True.
+
+Las dos líneas de código dentro del bucle while simplemente piden al jugador que ingrese un número de 1 a 9. La condición de la línea 78 es True si cualquiera de las expresiones a la izquierda o a la derecha del operador or es True.
+
 La expresión en el lado izquierdo comprueba si la jugada ingresada por el jugador es igual a '1', '2', '3', y así hasta '9' mediante la creación de una lista con estas cadenas (usando el método split split() ) y comprobando si la jugada está en esta lista.
-'1 2 3 4 5 6 7 8 9'.split() se evalúa a la lista ['1', '2', '3', '4', '5', '6', '7', '8', '9'], pero es más fácil de escribir. Ambas opciones son equivalentes.
+
+'1 2 3 4 5 6 7 8 9'.split() se evalúa a la lista ['1', '2', '3', '4', '5', '6', '7', '8', '9'], pero es más fácil de escribir.
+
 La expresión sobre el lado derecho comprueba si la jugada que el jugador ingresó es un espacio libre en el tablero. Lo comprueba llamando a la función hayEspacioLibre(). Recuerda que hayEspacioLibre() devolverá True si la jugada que le hemos pasado está disponible en el tablero. Nota que hayEspacioLibre() espera un entero en el parámetro jugada, así que empleamos la función int() para evaluar la forma entera de jugada.
+
 Los operadores not se agregan a ambos lados de modo que la condición será True cuando cualquiera de estos requerimientos deje de cumplirse. Esto hará que el bucle pida al jugador una nueva jugada una y otra vez hasta que la jugada ingresada sea válida.
-Finalmente, en la línea 81, se devuelve la forma entera de la jugada ingresada por el jugador. Recuerda que input() devuelve una cadena, así que la función int() es necesaria para convertir la cadena en un valor entero.
+
+Finalmente, en la línea 81, se devuelve la forma entera de la jugada ingresada por el jugador. Recuerda que input() devuelve una cadena, así que la función int() es llamada para devolver la forma entera de la cadena.
 
 Evaluación en Cortocircuito
 
-Puede ser que hayas notado un posible problema problema en nuestra función obtenerJugadaJugador(). ¿Qué pasaría si el jugador ingresara 'X' o alguna otra cadena no entera? La expresión jugada not in '1 2 3 4 5 6 7 8 9'.split() sobre el lado izquierdo devolvería False de acuerdo con lo esperado, y entonces evaluaríamos la expresión sobre el lado derecho del operador.
-Pero llamar a int('X') ocasionaría un error. Python muestra este error porque la función int() sólo puede tomar cadenas o caracteres numéricos, tales como '9' o '0', no cadenas como 'X'.
+Puede ser que hayas notado un posible problema problema en nuestra función obtenerJugadaJugador(). ¿Qué pasaría si el jugador ingresara 'Z' o alguna otra cadena no entera? La expresión jugada not in '1 2 3 4 5 6 7 8 9'.split() sobre el lado izquierdo devolvería False de acuerdo con lo esperado, y entonces evaluaríamos la expresión sobre el lado derecho del operador.
+
+Pero llamar a int('Z') ocasionaría un error. Python muestra este error porque la función int() sólo puede tomar cadenas o caracteres numéricos, tales como '9' o '0', no cadenas como 'Z'.
+
 Como un ejemplo de este tipo de error, prueba ingresar esto en la consola interactiva:
 
 >>> int('42')
 42
->>> int('X')
+>>> int('Z')
 Traceback (most recent call last):
   File "<pyshell#3>", line 1, in <module>
-    int('X')
-ValueError: invalid literal for int() with base 10: 'X'
+    int('Z')
+ValueError: invalid literal for int() with base 10: 'Z'
 
-Pero cuando juegas al Ta Te Ti e intentas ingresar 'X' en tu jugada, este error no ocurre. La razón de esto es que la condición del bucle while está siendo cortocircuitada.
+Pero cuando juegas al Ta Te Ti e intentas ingresar 'Z' en tu jugada, este error no ocurre. La razón de esto es que la condición del bucle while está siendo cortocircuitada.
+
 Evaluar en cortocircuito quiere decur que como el lado izquierdo de la palabra reservada or (move not in '1 2 3 4 5 6 7 8 9'.split()) se evalúa a True, el intérprete Python saba que la expresión completa será evaluada a True. No importa si la expresión sobre el lado derecho de la palabra reservada or se evalúa a True o False, porque sólo uno de los valores junto al operador or precisa ser True.
+
 Piensa en esto: La expresión True or False se evalúa a True y la expresión True or True también se evalúa a True. Si el valor sobre el lado izquierdo es True, no importa qué valor esté sobre el lado derecho. 
+
+False and <<<cualquierCosa>>> siempre se evalúa a False
+
+True or <<<cualquierCosa>>> siempre se evalúa a True
+
 Entonces Python no comprueba el resto de la expresión y ni siquiera se molesta en evaluar la parte not hayEspacioLibre(tablero, int(jugada)). Esto significa las funciones int() y hayEspacioLibre() nunca son llamadas mientras jugada not in '1 2 3 4 5 6 7 8 9'.split() sea True.
+
 Esto funciona bien para el programa, pues si la expresión del lado derecho es True entonces jugada no es una cadena en forma de número. Esto hace que int() devuelva un error. Las únicas veces que jugada not in '1 2 3 4 5 6 7 8 9'.split() se evalúa a False son cuando jugada no es una cadena compuesta por un único dígito. En ese caso, la llamada a int() no nos daría un error.
 
 Un Ejemplo de Evaluación en Cortocircuito
@@ -669,11 +694,9 @@ Aquí hay un pequeño programa que sirve como un buen ejemplo de evaluación en 
 >>> def DevuelveTrue():
   print('DevuelveTrue() ha sido llamada.')
   return True
-
 >>> def DevuelveFalse():
   print('DevuelveFalse() ha sido llamada.')
   return False
-
 >>> DevuelveTrue()
 DevuelveTrue() ha sido llamada.
 True
@@ -681,7 +704,8 @@ True
 DevuelveFalse() ha sido llamada.
 False
 
-Estas dos funciones imprimen en pantalla que han sido llamadas y devuelven un valor Booleano. La llamada a print() en la función te permite saber si Python llama o no a la función. Cuando DevuelveTrue() es llamada, IDLE imprime 'DevuelveTrue() ha sido llamada.' y también muestra el valor retornado por DevuelveTrue(). Lo mismo ocurre con DevuelveFalse().
+Cuando DevuelveTrue() es llamada, IDLE imprime 'DevuelveTrue() ha sido llamada.' y también muestra el valor retornado por DevuelveTrue(). Lo mismo ocurre con DevuelveFalse().
+
 Ahora prueba escribir lo siguiente en la consola interactiva.
 
 >>> DevuelveFalse() or DevuelveTrue()
@@ -693,7 +717,9 @@ DevuelveTrue() ha sido llamada.
 True
 
 La primera parte parece razonable: La expresión DevuelveFalse() or DevuelveTrue() llama a ambas funciones, por lo que puedes ver ambos mensajes impresos.
-Pero la segunda expresión sólo muestra 'DevuelveTrue() ha sido llamada.' y no 'DevuelveFalse() ha sido llamada.'. Esto se debe a que Python no ha llamado a DevuelveFalse(). Como el lado izquierdo del operador es True, el resultado de DevuelveFalse() es irrelevante por lo que Python no se molesta en llamarla.
+
+Pero la segunda expresión sólo muestra 'DevuelveTrue() ha sido llamada.' y no 'DevuelveFalse() ha sido llamada.'. Esto se debe a que Python no ha llamado a DevuelveFalse(). Como el lado izquierdo del operador es True, el resultado de DevuelveFalse() es irrelevante por lo que Python no se molesta en llamarla. La evaluación ha sido cortocircuitada.
+
 Lo mismo ocurre con el operador and. Prueba escribir lo siguiente en la consola interactiva:
 
 >>> DevuelveTrue() and DevuelveTrue()
@@ -716,8 +742,9 @@ Eligiendo una Jugada de una Lista de Jugadas
  88.         if hayEspacioLibre(tablero, i):
  89.             jugadasPosibles.append(i)
 
-La función elegirAzarDeLista() es útil para el código IA. El parámetro tablero es una lista de cadenas que representa un tablero de Ta Te Ti. El segundo parámetro listaJugada es una lista de enteros con posibles espacios entre los cuales se puede elegir. Por ejemplo, si listaJugada is [1, 3, 7, 9], eso significa que elegirAzarDeLista() debería devolver el entero correspondiente a una de las esquinas.
-Sin embargo, elegirAzarDeLista() comprobará primero que es válido realizar una jugada en ese espacio. La lista jugadasPosibles comienza siendo una lista vacía. El bucle for itera sobre la lista de jugadas en listaJugada. Las jugadas para las cuales hayEspacioLibre() devuelve True se agregan a jugadasPosibles usando el método append().
+La función elegirAzarDeLista() es útil para el código IA más adelante en el programa. El parámetro tablero es una lista de cadenas que representa un tablero de Ta Te Ti. El segundo parámetro listaJugada es una lista de enteros con posibles espacios entre los cuales se puede elegir. Por ejemplo, si listaJugada is [1, 3, 7, 9], eso significa que elegirAzarDeLista() debería devolver el entero correspondiente a una de las esquinas.
+
+Sin embargo, elegirAzarDeLista() comprobará primero que es válido realizar una jugada en ese espacio. La lista jugadasPosibles comienza siendo una lista vacía. El bucle for itera sobre listaJugada. Las jugadas para las cuales hayEspacioLibre() devuelve True se agregan a jugadasPosibles usando el método append().
 
  91.     if len(jugadasPosibles) != 0:
  92.         return random.choice(jugadasPosibles)
@@ -725,13 +752,17 @@ Sin embargo, elegirAzarDeLista() comprobará primero que es válido realizar una
  94.         return None
 
 En este punto, la lista jugadasPosibles contiene todas las jugadas que estaban en listaJugada y también son espacios libres en la lista tablero. Si la lista no está vacía, hay al menos una jugada posible.
-La lista podría estar vacía. Por ejemplo, si listaJugada fuera [1, 3, 7, 9] pero todas las esquinas del tablero estuviesen tomadas, la lista jugadasPosibles estaría vacía. En ese caso, len(jugadasPosibles) se evaluaría a 0 y la función devolvería el valor None. La próxima sección explica el valor None.
+
+La lista podría estar vacía. Por ejemplo, si listaJugada fuera [1, 3, 7, 9] pero todas las esquinas del tablero estuviesen tomadas, la lista jugadasPosibles sería []. En ese caso, len(jugadasPosibles) se evaluaría a 0 y la función devolvería el valor None. La próxima sección explica el valor None.
 
 El Valor None
 
-El valor None representa la ausencia de un valor. None es el único valor del tipo de datos NoneType. Igual que el tipo de datos Booleano tiene sólo dos valores, el tipo de datos NoneType tiene sólo un valor, None. Puede ser útil emplear el valor None cuando necesites un valor que exprese “no existe” o “ninguno de los anteriores”.
-Pongamos por caso que tienes una variable llamada respuestaExámen para guardar la respuesta a una pregunta de selección múltiple. Podrías asignar None a respuestaExámen si el usuario saltease la pregunta sin responderla. Usar None es una forma clara de indicar que el usuario no ha respondido la pregunta.
+El valor None representa la ausencia de un valor. None es el único valor del tipo de datos NoneType. Puede ser útil emplear el valor None cuando necesites un valor que exprese “no existe” o “ninguno de los anteriores”.
+
+Pongamos por caso que tienes una variable llamada respuestaExámen para guardar la respuesta a una pregunta de selección múltiple. La variable podría contener True o False para indicar la respuesta del usuario. Podrías asignar None a respuestaExámen si el usuario saltease la pregunta sin responderla. Usar None es una forma clara de indicar que el usuario no ha respondido la pregunta.
+
 Las funciones que retornan llegando al final de la función (es decir, sin alcanzar una sentencia return) devolverán None. El valor None se escribe sin comillas, con una “N” mayúscula y las letras “one” en minúsculas.
+
 Como una nota al margen, None no se muestra en la consola interactiva como ocurriría con otros valores:
 
 >>> 2 + 2
@@ -741,14 +772,12 @@ Como una nota al margen, None no se muestra en la consola interactiva como ocurr
 >>> None
 >>>
 
-Las funciones que “no devuelven nada” en realidad devuelven el valor None. Por ejemplo, print() devuelve None:
+Las funciones que aparentan no devolver nada en realidad devuelven el valor None. Por ejemplo, print() devuelve None:
 
 >>> spam = print('¡Hola mundo!')
 ¡Hola mundo!
 >>> spam == None
 True
-
-Cómo Funciona el Código: Líneas 96 a 187
 
 Creando la Inteligencia Artificial de la Computadora
 
@@ -759,10 +788,11 @@ Creando la Inteligencia Artificial de la Computadora
 100.     else:
 101.         letraJugador = 'X'
 
-El código de la IA está en la función obtenerJugadaComputadora(). Los argumentos son un tablero de Ta Te Ti (en el parámetro tablero) y la letra correspondiente a la computadora (sea 'X' u 'O' en el parámetro letraComputadora). Las primeras líneas simplemente asignan la otra letra a una variable llamada letraJugador. De esta forma el mismo código puede usarse independientemente de si la computadora es X u O.
+La función obtenerJugadaComputadora() contiene al código de la IA. El primer argumento es un tablero de Ta Te Ti en el parámetro tablero. El segundo es la letra correspondiente a la computadora, sea 'X' u 'O' en el parámetro letraComputadora. Las primeras líneas simplemente asignan la otra letra a una variable llamada letraJugador. De esta forma el mismo código puede usarse independientemente de si la computadora es X u O.
+
 La función devuelve un entero de 1 a 9 que representa el espacio en el que la computadora hará su jugada.
 
-Recordando cómo funciona el algoritmo del Ta Te Ti:
+Recuerda cómo funciona el algoritmo del Ta Te Ti:
 
 • Primero, ver si hay una jugada con que la computadora pueda ganar el juego. Si la hay, hacer esa jugada. En caso contrario, continuar al segundo paso.
 • Segundo, ver si hay una jugada con la que el jugador pueda vencer a la computadora. Si la hay, la computadora debería jugar en ese lugar para bloquear al jugador. En caso contrario, continuar al tercer paso.
@@ -782,9 +812,12 @@ La Computadora Comprueba si puede Ganar en Una Jugada
 110.                 return i
 
 Antes que nada, si la computadora puede ganar en la siguiente jugada, debería hacer la jugada ganadora inmediatamente. El bucle for que empieza en la línea 105 itera sobre cada posible jugada de 1 a 9. El código dentro del bucle simula lo que ocurriría si la computadora hiciera esa jugada.
-La primera línea en el bucle (línea 106) crea una copia de la lista tablero. Esto es para que la jugada simulada dentro del bucle no modifique el tablero real de Ta Te Ti guardado en la variable tablero. La función obtenerDuplicadoTablero() devuelve una copia idéntica del tablero.
-La línea 107 comprueba si el espacio está libre y, si es así, simula hacer la jugada en la copia del tablero (no sobre el tablero original). Si esta jugada resulta en una victoria para la computadora, la la función devuelve el entero correspondiente a esa jugada.
-Si ninguna de las jugadas posibles resulta en una victoria, el bucle concluye y la ejecución del programa continúa en la línea 112.
+
+La primera línea en el bucle (línea 106) crea una copia de la lista tablero. Esto es para que la jugada simulada dentro del bucle no modifique el tablero real de Ta Te Ti guardado en la variable tablero. La función obtenerDuplicadoTablero() devuelve una copia idéntica pero independiente del tablero.
+
+La línea 107 comprueba si el espacio está libre y, si es así, simula hacer la jugada en la copia del tablero. Si esta jugada resulta en una victoria para la computadora, la la función devuelve el entero correspondiente a esa jugada.
+
+Si ninguna de las jugadas posibles resulta en una victoria, el bucle concluye y la ejecución del programa continúa en la línea 113.
 
 La Computadora Comprueba si el Jugador puede Ganar en Una Jugada
 
@@ -797,7 +830,8 @@ La Computadora Comprueba si el Jugador puede Ganar en Una Jugada
 118.                 return i
 
 A continuación, el código simula un movimiento del jugador en cada uno de los espacios. Este código es similar al bucle anterior, excepto que es la letra del jugador que se coloca sobre la copia del tablero. Si la función esGanador() muestra que el jugador ganaría con este movimiento, la computadora devuelve esta jugada para bloquear la victoria del jugador.
-Si el jugador humano no puede ganar en la siguiente movida, el bucle for eventualmente concluye y la ejecución del programa continúa en la línea 120.
+
+Si el jugador humano no puede ganar en la siguiente movida, el bucle for eventualmente concluye y la ejecución del programa continúa en la línea 121.
 
 Comprobando las Esquinas, Centro y Espacios sobre los Lados (en ese Orden)
 
@@ -806,13 +840,13 @@ Comprobando las Esquinas, Centro y Espacios sobre los Lados (en ese Orden)
 122.     if jugada != None:
 123.         return jugada
 
-Nuestra llamada a elegirAzarDeLista() con la lista [1, 3, 7, 9] asegura que la función devuelva el entero de una de de las esquinas: 1, 3, 7, ó 9. Si todas las esquinas están tomadas, la función elegirAzarDeLista() devuelve None y la ejecución continúa en la línea 125.
+La llamada a elegirAzarDeLista() con la lista [1, 3, 7, 9] asegura que la función devuelva el entero de una de de las esquinas: 1, 3, 7, ó 9. Si todas las esquinas están tomadas, la función elegirAzarDeLista() devuelve None y la ejecución continúa en la línea 126.
 
 125.     # De estar libre, intenta ocupar el centro.
 126.     if hayEspacioLibre(tablero, 5):
 127.         return 5
 
-Si ninguna de las esquinas está disponible, intentaremos jugar en el centro si está disponible. Si el centro no está libre, la ejecución continúa sobre la línea 129.
+Si ninguna de las esquinas está disponible, la línea 127 intentará jugar en el centro. Si el centro no está libre, la ejecución continúa sobre la línea 130.
 
 129.     # Ocupa alguno de los lados.
 130.     return elegirAzarDeLista(tablero, [2, 4, 6, 8])
@@ -829,21 +863,24 @@ Comprobando si el Tablero está Lleno
 137.     return True
 
 La última función es tableroCompleto(). Esta función devuelve True si la lista tablero pasada como argumento tiene una 'X' o una 'O' en cada índice (excepto por el índice 0, que es ignorado por el código). Si hay al menos un casillero en el tablero con espacio simple ' ' asignado, esta función devolverá False.
+
 El bucle for nos permite comprobar los espacios 1 a 9 en el tablero de Ta Te Ti. Apenas encuentra un espacio libre en el tablero (es decir, cuando hayEspacioLibre(tablero, i) devuelve True) la función tableroCompleto() devuelve False.
+
 Si la ejecución concluye todas las operaciones del bucle, significa que ninguno de los espacios está libre. Entonces se ejecutará la línea 137 y devolverá True.
 
 El Inicio del Juego
 
 140. print('¡Bienvenido al Ta Te Ti!')
 
-La línea 140 es la primera línea que no está dentro de una función, de modo que es la primera línea de código que se ejecuta al entrar a este programa.
+La línea 140 es la primera línea que no está dentro de una función, de modo que es la primera línea de código que se ejecuta al entrar a este programa. Consiste en el saludo al jugador.
 
 142. while True:
 143.     # Resetea el tablero
 144.     elTablero = [' '] * 10
 
 Este bucle while tiene al valor True por condición, y continuará iterando hasta que la ejecución llegue a una sentencia break. La línea 144 configura el tablero principal de Ta Te Ti que usaremos, al cual llamaremos elTablero. Es una lista de 10 cadenas, donde cada una de ellas es un espacio simple ' '.
-En lugar de escribir esta lista completa, puedes usar aquí una multiplicación. Es más corto y claro escribir [' '] * 10 que escribir [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '].
+
+En lugar de escribir esta lista completa, la línea 44 usa replicación de listas. Es más corto y claro escribir [' '] * 10 que escribir [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '].
 
 Decidiendo la Letra del Jugador y Quién Comienza
 
@@ -856,13 +893,12 @@ La función ingresaLetraJugador() permite al jugador elegir si quiere ser X u O.
 148.     juegoEnCurso = True
 
 La función quienComienza() decide aleatoriamente quién comienza, y devuelve la cadena 'El jugador' o bien 'La computadora' y la línea 147 comunica al jugador quién comenzará.
-La función juegoEnCurso registra si el juego aún continúa o si alguno de los jugadores ha ganado o ha habido un empate.
 
 Ejecutando el Turno del Jugador
 
 150.     while juegoEnCurso:
 
-Este bucle continuará alternando entre el código del turno del jugador y el del turno de la computadora, mientras la juegoEnCurso tenga asignado el valor True.
+El bucle de la línea 150 continuará alternando entre el código del turno del jugador y el del turno de la computadora, mientras la juegoEnCurso tenga asignado el valor True.
 
 151.         if turno == 'jugador':
 152.             # Turno del jugador
@@ -870,8 +906,9 @@ Este bucle continuará alternando entre el código del turno del jugador y el de
 154.             jugada = obtenerJugadaJugador(elTablero)
 155.             hacerJugada(elTablero, letraJugador, jugada)
 
-El valor en la variable turno es originalmente asignado por llamada a la función quienComienza() en la línea 146. Su valor original es 'El jugador' o 'La computadora'. Si turno contiene la cadena 'La computadora', la condición es False y la ejecución salta a la línea 169.
-Lo primero que se hace es llamar a la función dibujarTablero() pasándole la variable elTablero para dibujar el tablero en la pantalla. Entonces la función obtenerJugadaJugador() permite al jugador ingresar su jugada (y también comprueba que sea una movida válida). La función hacerJugada() actualiza elTablero para reflejar esta jugada.
+El valor en la variable turno es originalmente asignado por llamada a la función quienComienza() en la línea 146. Su valor original es 'El jugador' o 'La computadora'. Si turno es igual a 'La computadora', la condición es False y la ejecución salta a la línea 169.
+
+Primero, la línea 153 llama a la función dibujarTablero() pasándole la variable elTablero para dibujar el tablero en la pantalla. Entonces la función obtenerJugadaJugador() permite al jugador ingresar su jugada (y también comprueba que sea una movida válida). La función hacerJugada() actualiza elTablero para reflejar esta jugada.
 
 157.             if esGanador(elTablero, letraJugador):
 158.                 dibujarTablero(elTablero)
@@ -879,6 +916,7 @@ Lo primero que se hace es llamar a la función dibujarTablero() pasándole la va
 160.                 juegoEnCurso = False
 
 Luego de que el jugador ha jugado, la computadora debería comprobar si ha ganado el juego. Si la función esGanador() devuelve True, el código del bloque if muestra el tablero ganador e imprime un mensaje comunicando al jugador que ha ganado.
+
 Se asigna el valor False a la variable juegoEnCurso de modo que la ejecución no continúe con el turno de la computadora.
 
 161.             else:
@@ -887,12 +925,12 @@ Se asigna el valor False a la variable juegoEnCurso de modo que la ejecución no
 164.                     print('¡Es un empate!')
 165.                     break
 
-Si el jugador no ganó con esta última jugada, tal vez esta movida ha llenado el tablero y ocasionado un empate. En este bloque else, la función tableroCompleto() devuelve True si no hay más movimientos disponibles. En ese caso, el bloque if que comienza en la línea 163 muestra el tablero empatado y comunica al jugador que ha habido un empate. La ejecución sale entonces del bucle while y salta a la línea 186.
+Si el jugador no ganó con esta última jugada, tal vez esta movida ha llenado el tablero y ocasionado un empate. En este bloque else, la función tableroCompleto() devuelve True si no hay más movimientos disponibles. En ese caso, el bloque if que comienza en la línea 162 muestra el tablero empatado y comunica al jugador que ha habido un empate. La ejecución sale entonces del bucle while y salta a la línea 186.
 
 166.                 else:
 167.                     turno = 'La computadora'
 
-Si el jugador no ha ganado u ocasionado un empate, deberíamos asignar 'La computadora' a la variable turno, de modo que cuando este bucle se reinicie ejecute el código para el turno de la computadora.
+Si el jugador no ha ganado u ocasionado un empate, la línea 167 asigna 'La computadora' a la variable turno, de modo que ejecute el código para el turno de la computadora en la siguiente iteración.
 
 Ejecutando el Turno de la Computadora
 
@@ -916,16 +954,20 @@ Si la variable turno no es 'El Jugador' para la condición en la línea 151, ent
 184.                     turno = 'El jugador'
 
 Las líneas 170 a 184 son casi idénticas al código del turno del jugador en las líneas 152 a 167. La única diferencia es que se comprueba si ha habido un empate luego del turno de la computadora en lugar de hacerlo luego del turno del jugador.
-Si no existe un ganador y no es un empate, pasa a ser el turno del jugador. No hay más líneas de código dentro del bucle while, de modo que la ejecución vuelve a la sentencia while en la línea 150.
+
+Si no existe un ganador y no es un empate, la línea 184 cambia el turno al jugador. No hay más líneas de código dentro del bucle while, de modo que la ejecución vuelve a la sentencia while en la línea 150.
 
 186.     if not jugarDeNuevo():
 187.         break
 
-Estas líneas de código se encuentran inmediatamente a continuación del bloque while que comienza con la sentencia while en la línea 150. Recuerda, sólo saldremos del bucle si su condición (la variable juegoEnCurso) es False. Se asigna False a juegoEnCurso cuando el juego ha terminado, por lo que en este punto se pregunta al jugador si desea jugar de nuevo.
+Las líneas 186 y 187 se encuentran inmediatamente a continuación del bloque while que comienza con la sentencia while en la línea 150. Se asigna False a juegoEnCurso cuando el juego ha terminado, por lo que en este punto se pregunta al jugador si desea jugar de nuevo.
+
 Si jugarDeNuevo() devuelve False, la condición de la sentencia if es True (porque el operador not invierte el valor Booleano) y se ejecuta la sentencia break. Esto interrumpe la ejecución del bucle while que había comenzado en la línea 142. Como no hay más líneas de código a continuación de ese bloque while, el programa termina.
 
 Summary
 
 Crear un programa que pueda jugar un juego se reduce a considerar cuidadosamente todas las situaciones posibles en las que la IA pueda encontrarse y cómo responder en cada una de esas situaciones. La IA del Ta Te Ti es simple porque no hay muchos movimientos posibles en Ta Te Ti comparado con un juego como el ajedrez o las damas.
+
 Nuestra IA simplemente comprueba si puede ganar en la próxima jugada. Si no es posible, bloquea la movida del jugador cuando está a punto de ganar. En cualquier otro caso la IA simplemente intenta jugar en cualquier esquina disponible, luego el centro y por último los lados. Este es un algoritmo simple y fácil de seguir.
+
 La clave para implementar nuestro algoritmo IA es hacer una copia de los datos del tablero y simular jugadas sobre la copia. De este modo, el código de IA puede hacer esa jugada en el tablero real. Este tipo de simulación es efectivo a la hora de predecir si una jugada es buena o no.
