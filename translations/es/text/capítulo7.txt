@@ -190,7 +190,7 @@ Luego de establecer los puntos quiebre, presiona Go en la ventana de control. El
 Presiona nuevamente Go y el programa continuará hasta el siguiente punto quiebre en la línea 16. Otra vez, mira cómo los valores en lanzamientos y caras han cambiado.
 Si presionas Go otra vez, la ejecución continuará hasta el último punto quiebre en la línea 12.
 
-Sumario
+Resumen
 
 Escribir un programa es sólo la primer parte de programar. La siguiente parte es cerciorarse que lo escrito realmente funciona. Los depuradores te permiten atravesar el código una línea a la vez. Puedes examinar qué lineas se ejecutan en qué orden, y qué valores contienen las variables. Cuando esto es demasiado lento, puedes establecer puntos quiebres para frenar el depurador sólo en las línas que deseas.
 Utilizar el depurador es una gran forma de entender exactamente lo que el programa está haciendo. Mientras que este libro explica todo el código dentro del mismo, el depurador puede ayudarte a encontrar más por tu cuenta.
