@@ -82,7 +82,7 @@ Para terminar el programa completamente, sólo presiona el botón Quit en la par
 
 Entrar en, por encima, y salir
 
-Ejecuta el programa Reino de Dragones con el depurador. Ejecuta el programa paso a paso hasta que el depurador se encuentre en la línea 38. Como se muestra en la figura 7-3, esta es la línea de la función mostrarIntroduccion(). El modo de paso a paso que has estado realizando se llama Entrar En (Stepping Into en ingles), porque el depurador entrará en la función cuando la misma es llamada. Esto es diferente a "Por Encima" (step over), que se explicará luego.
+Ejecuta el programa Reino de Dragones con el depurador. Ejecuta el programa paso a paso hasta que el depurador se encuentre en la línea 38. Como se muestra en la Figura 7-3, esta es la línea de la función mostrarIntroduccion(). El modo de paso a paso que has estado realizando se llama Entrar En (Stepping Into en ingles), porque el depurador entrará en la función cuando la misma es llamada. Esto es diferente a "Por Encima" (step over), que se explicará luego.
 
 Figura 7-3: Continua el paso a paso hasta la línea 38.
 
@@ -180,9 +180,9 @@ lanzarMoneda.py
 19. print('De 1000 lanzamientos, al final cara salió ' + str(caras) + ' veces!')
 20. print('¿Estuviste cerca?')
 
-El programa corre bastante rápido. Toma más tiempo esperar a que el usuario presione ENTER que realizar los lanzamientos. Digamos que deseamos ver los lanzamientos de moneda uno a uno. En la consola interactiva, presiona Debug ► Debugger para abrir la ventana de control del depurador. Luego presiona F5 para correr el programa.
-El programa comienza dentro del depurador en la línea 1. Presiona Step tres veces en la ventana de control para ejecutar las primeras tres líneas (estas son, líneas 1, 2 y 3). Notaras que los botones se deshabilitaran porque la función input() fue llamada y la consola interactiva está esperando al usuario. Clickea en la ventana de la consola y presiona ENTER. (Estate seguro de presionar debajo del texto en la consola interactiva, de lo contrario puede que IDLE no reciba tu tecla.)
-Puedes presionar Step un par de veces mas, pero te encontarás que tardará un tiempo atravesar todo el programa. En vez, establece un punto de quiebre en las líneas 12, 14 y 16. El editor reseltará estas tres líneas como se muestra en la figura 7-6.
+El programa corre bastante rápido. Toma más tiempo esperar a que el usuario presione INTRO que realizar los lanzamientos. Digamos que deseamos ver los lanzamientos de moneda uno a uno. En la consola interactiva, presiona Debug ► Debugger para abrir la ventana de control del depurador. Luego presiona F5 para correr el programa.
+El programa comienza dentro del depurador en la línea 1. Presiona Step tres veces en la ventana de control para ejecutar las primeras tres líneas (estas son, líneas 1, 2 y 3). Notaras que los botones se deshabilitaran porque la función input() fue llamada y la consola interactiva está esperando al usuario. Clickea en la ventana de la consola y presiona INTRO. (Estate seguro de presionar debajo del texto en la consola interactiva, de lo contrario puede que IDLE no reciba tu tecla.)
+Puedes presionar Step un par de veces mas, pero te encontarás que tardará un tiempo atravesar todo el programa. En vez, establece un punto de quiebre en las líneas 12, 14 y 16. El editor reseltará estas tres líneas como se muestra en la Figura 7-6.
 
 Figura 7-6: Tres puntos quiebre establecidos.
 
