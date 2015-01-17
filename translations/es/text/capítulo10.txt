@@ -70,7 +70,7 @@ La computadora irá primero.
  O |   | X
    |   |
 ¡La computadora te ha vencido! Has perdido.
-¿Deseas volver a jugar? (si/no)?
+¿Deseas volver a jugar? (sí/no)?
 no
 
 Código Fuente del Ta Te Ti
@@ -80,12 +80,12 @@ En una nueva ventana del editor de archivos, escribe el siguiente código y guá
 tateti.py
 
   1. # Ta Te Ti
-  2. 
+  2.
   3. import random
-  4. 
+  4.
   5. def dibujarTablero(tablero):
   6.     # Esta función dibuja el tablero recibido como argumento.
-  7. 
+  7.
   8.     # "tablero" es una lista de 10 strings representando la pizarra (ignora índice 0)
   9.     print('   |   |')
  10.     print(' ' + tablero[7] + ' | ' + tablero[8] + ' | ' + tablero[9])
@@ -98,7 +98,7 @@ tateti.py
  17.     print('   |   |')
  18.     print(' ' + tablero[1] + ' | ' + tablero[2] + ' | ' + tablero[3])
  19.     print('   |   |')
- 20. 
+ 20.
  21. def ingresaLetraJugador():
  22.     # Permite al jugador typear que letra desea ser.
  23.     # Devuelve una lista con las letras de los jugadores como primer item, y la de la computadora como segundo.
@@ -106,28 +106,28 @@ tateti.py
  25.     while not (letra == 'X' or letra == 'O'):
  26.         print('¿Deseas ser X o O?')
  27.         letra = input().upper()
- 28. 
+ 28.
  29.     # el primer elemento de la lista es la letra del jugador, el segundo es la letra de la computadora.
  30.     if letra == 'X':
  31.         return ['X', 'O']
  32.     else:
  33.         return ['O', 'X']
- 34. 
+ 34.
  35. def quienComienza():
  36.     # Elije al azar que jugador comienza.
  37.     if random.randint(0, 1) == 0:
  38.         return 'La computadora'
  39.     else:
  40.         return 'El jugador'
- 41. 
+ 41.
  42. def jugarDeNuevo():
  43.     # Esta funcion devuelve True (Verdadero) si el jugador desea volver a jugar, de lo contrario devuelve False (Falso).
- 44.     print('¿Deseas volver a jugar? (si/no)?')
+ 44.     print('¿Deseas volver a jugar? (sí/no)?')
  45.     return input().lower().startswith('s')
- 46. 
+ 46.
  47. def hacerJugada(tablero, letra, jugada):
  48.     tablero[jugada] = letra
- 49. 
+ 49.
  50. def esGanador(ta, le):
  51.     # Dado un tablero y la letra de un jugador, devuelve True (verdadero) si el mismo ha ganado.
  52.     # Utilizamos reemplazamos tablero por ta y letra por le para no escribir tanto.
@@ -139,20 +139,20 @@ tateti.py
  58.     (ta[9] == le and ta[6] == le and ta[3] == le) or # vertical derecha
  59.     (ta[7] == le and ta[5] == le and ta[3] == le) or # diagonal
  60.     (ta[9] == le and ta[5] == le and ta[1] == le)) # diagonal
- 61. 
+ 61.
  62. def obtenerDuplicadoTablero(tablero):
  63.     # Duplica la lista del tablero y devuelve el duplicado.
  64.     dupTablero = []
- 65. 
+ 65.
  66.     for i in tablero:
  67.         dupTablero.append(i)
- 68. 
+ 68.
  69.     return dupTablero
- 70. 
+ 70.
  71. def hayEspacioLibre(tablero, jugada):
  72.     # Devuelte true si hay espacio para efectuar la jugada en el tablero.
  73.     return tablero[jugada] == ' '
- 74. 
+ 74.
  75. def obtenerJugadaJugador(tablero):
  76.     # Permite al jugador escribir su jugada.
  77.     jugada = ' '
@@ -160,7 +160,7 @@ tateti.py
  79.         print('¿Cuál es tu próxima jugada? (1-9)')
  80.         jugada = input()
  81.     return int(jugada)
- 82. 
+ 82.
  83. def elegirAzarDeLista(tablero, listaJugada):
  84.     # Devuelve una jugada válida en el tablero de la lista recibida.
  85.     # Devuelve None si no hay ninguna jugada válida.
@@ -168,19 +168,19 @@ tateti.py
  87.     for i in listaJugada:
  88.         if hayEspacioLibre(tablero, i):
  89.             jugadasPosibles.append(i)
- 90. 
+ 90.
  91.     if len(jugadasPosibles) != 0:
  92.         return random.choice(jugadasPosibles)
  93.     else:
  94.         return None
- 95. 
+ 95.
  96. def obtenerJugadaComputadora(tablero, letraComputadora):
  97.     # Dado un tablero y la letra de la computadora, determina que jugada efectuar.
  98.     if letraComputadora == 'X':
  99.         letraJugador = 'O'
 100.     else:
 101.         letraJugador = 'X'
-102. 
+102.
 103.     # Aquí está nuestro algoritmo para nuestra IA (Inteligencia Artifical) del Ta Te Ti.
 104.     # Primero, verifica si podemos ganar en la próxima jugada
 105.     for i in range(1, 10):
@@ -189,7 +189,7 @@ tateti.py
 108.             hacerJugada(copia, letraComputadora, i)
 109.             if esGanador(copia, letraComputadora):
 110.                 return i
-111. 
+111.
 112.     # Verifica si el jugador podría ganar en su próxima jugada, y lo bloquea.
 113.     for i in range(1, 10):
 114.         copia = obtenerDuplicadoTablero(tablero)
@@ -197,29 +197,29 @@ tateti.py
 116.             hacerJugada(copia, letraJugador, i)
 117.             if esGanador(copia, letraJugador):
 118.                 return i
-119. 
+119.
 120.     # Intenta ocupar una de las esquinas de estar libre.
 121.     jugada = elegirAzarDeLista(tablero, [1, 3, 7, 9])
 122.     if jugada != None:
 123.         return jugada
-124. 
+124.
 125.     # De estar libre, intenta ocupar el centro.
 126.     if hayEspacioLibre(tablero, 5):
 127.         return 5
-128. 
+128.
 129.     # Ocupa alguno de los lados.
 130.     return elegirAzarDeLista(tablero, [2, 4, 6, 8])
-131. 
+131.
 132. def tableroCompleto(tablero):
 133.     # Devuelve True si cada espacio del tablero fue ocupado, caso contrario devuele False.
 134.     for i in range(1, 10):
 135.         if hayEspacioLibre(tablero, i):
 136.             return False
 137.     return True
-138. 
-139. 
+138.
+139.
 140. print('¡Bienvenido al Ta Te Ti!')
-141. 
+141.
 142. while True:
 143.     # Resetea el tablero
 144.     elTablero = [' '] * 10
@@ -227,14 +227,14 @@ tateti.py
 146.     turno = quienComienza()
 147.     print(turno + ' irá primero.')
 148.     juegoEnCurso = True
-149. 
+149.
 150.     while juegoEnCurso:
-151.         if turno == 'jugador':
+151.         if turno == 'El jugador':
 152.             # Turno del jugador
 153.             dibujarTablero(elTablero)
 154.             jugada = obtenerJugadaJugador(elTablero)
 155.             hacerJugada(elTablero, letraJugador, jugada)
-156. 
+156.
 157.             if esGanador(elTablero, letraJugador):
 158.                 dibujarTablero(elTablero)
 159.                 print('¡Felicidades, has ganado!')
@@ -246,12 +246,12 @@ tateti.py
 165.                     break
 166.                 else:
 167.                     turno = 'La computadora'
-168. 
+168.
 169.         else:
 170.             # Turno de la computadora
 171.             jugada = obtenerJugadaComputadora(elTablero, letraComputadora)
 172.             hacerJugada(elTablero, letraComputadora, jugada)
-173. 
+173.
 174.             if esGanador(elTablero, letraComputadora):
 175.                 dibujarTablero(elTablero)
 176.                 print('¡La computadora te ha vencido! Has perdido.')
@@ -263,7 +263,7 @@ tateti.py
 182.                     break
 183.                 else:
 184.                     turno = 'El jugador'
-185. 
+185.
 186.     if not jugarDeNuevo():
 187.         break
 
@@ -312,7 +312,7 @@ Este algoritmo es implementado en la función obtenerJugadaComputadora() y las o
 El Inicio del Programa
 
   1. # Ta Te Ti
-  2. 
+  2.
   3. import random
 
 El primer par de líneas son un comentario y la importación del módulo random para poder llamar a la función randint().
@@ -321,7 +321,7 @@ Dibujando el Tablero en la Pantalla
 
   5. def dibujarTablero(tablero):
   6.     # Esta función dibuja el tablero recibido como argumento.
-  7. 
+  7.
   8.     # "tablero" es una lista de 10 strings representando la pizarra (ignora índice 0)
   9.     print('   |   |')
  10.     print(' ' + tablero[7] + ' | ' + tablero[8] + ' | ' + tablero[9])
@@ -427,7 +427,7 @@ Preguntando al Jugador si desea Jugar de Nuevo
 
  42. def jugarDeNuevo():
  43.     # Esta funcion devuelve True (Verdadero) si el jugador desea volver a jugar, de lo contrario devuelve False (Falso).
- 44.     print('¿Deseas volver a jugar? (si/no)?')
+ 44.     print('¿Deseas volver a jugar? (sí/no)?')
  45.     return input().lower().startswith('s')
 
 La función jugarDeNuevo() pregunta al jugador si desea jugar de nuevo. Esta función devuelve True si el jugador escribe 'sí' or 'SÍ' or 's' o cualquier cosa que comience con la letra S. Con cualquier otra respuesta, la función devuelve False. Esta función es igual a la utilizada en el juego del Ahorcado.
@@ -615,10 +615,10 @@ Duplicando los Datos del Tablero
  62. def obtenerDuplicadoTablero(tablero):
  63.     # Duplica la lista del tablero y devuelve el duplicado.
  64.     dupTablero = []
- 65. 
+ 65.
  66.     for i in tablero:
  67.         dupTablero.append(i)
- 68. 
+ 68.
  69.     return dupTablero
 
 La función obtenerDuplicadoTablero() está aquí para que podamos fácilmente hacer una copia de una dada lista de 10 cadenas que representa un tablero de Ta Te Ti en nuestro juego. Algunas veces querremos que nuestro algoritmo IA haga modificaciones temporarias a una copia provisoria del tablero sin cambiar el tablero original. En ese caso, llamaremos a esta función para hacer una copia de la lista del tablero. La nueva lista se crea en la línea 64, con los corchetes [] de lista vacía.
@@ -677,7 +677,7 @@ Pero cuando juegas al Ta Te Ti e intentas ingresar 'Z' en tu jugada, este error 
 
 Evaluar en cortocircuito quiere decur que como el lado izquierdo de la palabra reservada or (move not in '1 2 3 4 5 6 7 8 9'.split()) se evalúa a True, el intérprete Python saba que la expresión completa será evaluada a True. No importa si la expresión sobre el lado derecho de la palabra reservada or se evalúa a True o False, porque sólo uno de los valores junto al operador or precisa ser True.
 
-Piensa en esto: La expresión True or False se evalúa a True y la expresión True or True también se evalúa a True. Si el valor sobre el lado izquierdo es True, no importa qué valor esté sobre el lado derecho. 
+Piensa en esto: La expresión True or False se evalúa a True y la expresión True or True también se evalúa a True. Si el valor sobre el lado izquierdo es True, no importa qué valor esté sobre el lado derecho.
 
 False and <<<cualquierCosa>>> siempre se evalúa a False
 
@@ -900,7 +900,7 @@ Ejecutando el Turno del Jugador
 
 El bucle de la línea 150 continuará alternando entre el código del turno del jugador y el del turno de la computadora, mientras la juegoEnCurso tenga asignado el valor True.
 
-151.         if turno == 'jugador':
+151.         if turno == 'El jugador':
 152.             # Turno del jugador
 153.             dibujarTablero(elTablero)
 154.             jugada = obtenerJugadaJugador(elTablero)
@@ -940,7 +940,7 @@ Si la variable turno no es 'El Jugador' para la condición en la línea 151, ent
 170.             # Turno de la computadora
 171.             jugada = obtenerJugadaComputadora(elTablero, letraComputadora)
 172.             hacerJugada(elTablero, letraComputadora, jugada)
-173. 
+173.
 174.             if esGanador(elTablero, letraComputadora):
 175.                 dibujarTablero(elTablero)
 176.                 print('¡La computadora te ha vencido! Has perdido.')

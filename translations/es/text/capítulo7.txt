@@ -134,7 +134,7 @@ Figura 7-4: numero1 establecido en 4 y numero2 en 8.
 
 Presionando Step desde la línea 5 ejecutará input(). El depurador esperará hasta que el jugador ingrese una respuesta al programa. Ingresa la respuesta correcta (en mi caso, 19) en la consola interactiva. El depurador continuará y se moverá a la línea 6.
 La línea 6 es un condicional if. La condición es que el valor en la respuesta debe coincidir con la suma de numero1 y numero2. Si la condicion es True, el depurador se moverá a la línea 7. Si es False, el depurador se moverá a la línea 9. Presiona Step una vez mas para descubrir adonde se moverá.
-¡El depurador ahora se encuentra en la línea 9! ¿Que sucedió? La condición en el if debe haber sido False. Mira los valores en numero1, numero2, y respuesta. Nota que numero1 y numero 2 son enteros, así que su suma también debe ser un entero. Pero respuesta es una cadena.
+¡El depurador ahora se encuentra en la línea 9! ¿Que sucedió? La condición en el if debe haber sido False. Mira los valores en numero1, numero2, y respuesta. Nota que numero1 y numero2 son enteros, así que su suma también debe ser un entero. Pero respuesta es una cadena.
 Esto significa que respuesta == numero1 + numero2 debio ser evaluado como '12' == 12. Una valor cadena y un valor entero siempre serán no iguales, así que la condición se evalua como False.
 Este es el bug en el programa. El bug está en que usamos una respuesta cuando debimos usar int(respuesta). Cambia la línea 6 para usar int(respuesta) == numero1 + numero2 en vez de respuesta == numero1 + numero2, y corre el programa.
 
