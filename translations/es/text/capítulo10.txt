@@ -477,7 +477,7 @@ Figura 10-6: Dos variables guardan dos referencias a la misma lista.
 
 Entonces la línea cheese[1] = '¡Hola!' cambia la misma lista a la que se refiere spam. Es por esto que spam parece tener el mismo valor de lista que cheese. Ambas tienen referencias que apuntan a la misma lista, como se ve en la Figura 10-7.
 
-Figura 10-7: Changing the list changes all variables with references to that list.
+Figura 10-7: Cambio de la lista cambia todas las variables con referencias a la lista.
 
 Si quieres que spam y cheese guarden dos listas diferentes, tienes que crear dos listas diferentes en lugar de copiar una referencia:
 
@@ -525,7 +525,7 @@ Comprobando si el Jugador Ha Ganado
  59.     (ta[7] == le and ta[5] == le and ta[3] == le) or # diagonal
  60.     (ta[9] == le and ta[5] == le and ta[1] == le)) # diagonal
 
-Las líneas 53 a 60 en la función esGanador() son el realidad una larga sentencia if. Los nombres ta y le son abreviaturas de los parámetros tablero y letra para no tener que escribir tanto en esta función. Recuerda, a Python no le importa qué nombres uses para tus variables.
+Las líneas 53 a 60 en la función esGanador() son el realidad una larga sentencia return. Los nombres ta y le son abreviaturas de los parámetros tablero y letra para no tener que escribir tanto en esta función. Recuerda, a Python no le importa qué nombres uses para tus variables.
 
 Hay ocho posibles formas de ganar al Ta Te Ti. Puedes formar una línea horizontal arriba, al medio o abajo. O puedes formar una línea vertical a la izquierda, al medio o a la derecha. O puedes formar cualquiera de las dos diagonales.
 
@@ -647,7 +647,7 @@ La función obtenerJugadaJugador() pide al jugador que ingrese el número del es
 
 Las dos líneas de código dentro del bucle while simplemente piden al jugador que ingrese un número de 1 a 9. La condición de la línea 78 es True si cualquiera de las expresiones a la izquierda o a la derecha del operador or es True.
 
-La expresión en el lado izquierdo comprueba si la jugada ingresada por el jugador es igual a '1', '2', '3', y así hasta '9' mediante la creación de una lista con estas cadenas (usando el método split split() ) y comprobando si la jugada está en esta lista.
+La expresión en el lado izquierdo comprueba si la jugada ingresada por el jugador es igual a '1', '2', '3', y así hasta '9' mediante la creación de una lista con estas cadenas (usando el método split()) y comprobando si la jugada está en esta lista.
 
 '1 2 3 4 5 6 7 8 9'.split() se evalúa a la lista ['1', '2', '3', '4', '5', '6', '7', '8', '9'], pero es más fácil de escribir.
 
@@ -659,7 +659,7 @@ Finalmente, en la línea 81, se devuelve la forma entera de la jugada ingresada 
 
 Evaluación en Cortocircuito
 
-Puede ser que hayas notado un posible problema problema en nuestra función obtenerJugadaJugador(). ¿Qué pasaría si el jugador ingresara 'Z' o alguna otra cadena no entera? La expresión jugada not in '1 2 3 4 5 6 7 8 9'.split() sobre el lado izquierdo devolvería False de acuerdo con lo esperado, y entonces evaluaríamos la expresión sobre el lado derecho del operador.
+Puede ser que hayas notado un posible problema problema en nuestra función obtenerJugadaJugador(). ¿Qué pasaría si el jugador ingresara 'Z' o alguna otra cadena no entera? La expresión jugada not in '1 2 3 4 5 6 7 8 9'.split() sobre el lado izquierdo devolvería False de acuerdo con lo esperado, y entonces evaluaríamos la expresión sobre el lado derecho del operador or.
 
 Pero llamar a int('Z') ocasionaría un error. Python muestra este error porque la función int() sólo puede tomar cadenas o caracteres numéricos, tales como '9' o '0', no cadenas como 'Z'.
 
@@ -675,9 +675,9 @@ ValueError: invalid literal for int() with base 10: 'Z'
 
 Pero cuando juegas al Ta Te Ti e intentas ingresar 'Z' en tu jugada, este error no ocurre. La razón de esto es que la condición del bucle while está siendo cortocircuitada.
 
-Evaluar en cortocircuito quiere decur que como el lado izquierdo de la palabra reservada or (move not in '1 2 3 4 5 6 7 8 9'.split()) se evalúa a True, el intérprete Python saba que la expresión completa será evaluada a True. No importa si la expresión sobre el lado derecho de la palabra reservada or se evalúa a True o False, porque sólo uno de los valores junto al operador or precisa ser True.
+Evaluar en cortocircuito quiere decur que como el lado izquierdo de la palabra reservada or (jugada not in '1 2 3 4 5 6 7 8 9'.split()) se evalúa a True, el intérprete Python saba que la expresión completa será evaluada a True. No importa si la expresión sobre el lado derecho de la palabra reservada or se evalúa a True o False, porque sólo uno de los valores junto al operador or precisa ser True.
 
-Piensa en esto: La expresión True or False se evalúa a True y la expresión True or True también se evalúa a True. Si el valor sobre el lado izquierdo es True, no importa qué valor esté sobre el lado derecho.
+Piensa en esto: La expresión True or False se evalúa a True y la expresión True or True también se evalúa a True. Si el valor sobre el lado izquierdo es True, no importa qué valor esté sobre el lado derecho:
 
 False and <<<cualquierCosa>>> siempre se evalúa a False
 
@@ -718,7 +718,7 @@ True
 
 La primera parte parece razonable: La expresión DevuelveFalse() or DevuelveTrue() llama a ambas funciones, por lo que puedes ver ambos mensajes impresos.
 
-Pero la segunda expresión sólo muestra 'DevuelveTrue() ha sido llamada.' y no 'DevuelveFalse() ha sido llamada.'. Esto se debe a que Python no ha llamado a DevuelveFalse(). Como el lado izquierdo del operador es True, el resultado de DevuelveFalse() es irrelevante por lo que Python no se molesta en llamarla. La evaluación ha sido cortocircuitada.
+Pero la segunda expresión sólo muestra 'DevuelveTrue() ha sido llamada.' y no 'DevuelveFalse() ha sido llamada.'. Esto se debe a que Python no ha llamado a DevuelveFalse(). Como el lado izquierdo del operador or es True, el resultado de DevuelveFalse() es irrelevante por lo que Python no se molesta en llamarla. La evaluación ha sido cortocircuitada.
 
 Lo mismo ocurre con el operador and. Prueba escribir lo siguiente en la consola interactiva:
 
@@ -964,7 +964,7 @@ Las líneas 186 y 187 se encuentran inmediatamente a continuación del bloque wh
 
 Si jugarDeNuevo() devuelve False, la condición de la sentencia if es True (porque el operador not invierte el valor Booleano) y se ejecuta la sentencia break. Esto interrumpe la ejecución del bucle while que había comenzado en la línea 142. Como no hay más líneas de código a continuación de ese bloque while, el programa termina.
 
-Summary
+Resumen
 
 Crear un programa que pueda jugar un juego se reduce a considerar cuidadosamente todas las situaciones posibles en las que la IA pueda encontrarse y cómo responder en cada una de esas situaciones. La IA del Ta Te Ti es simple porque no hay muchos movimientos posibles en Ta Te Ti comparado con un juego como el ajedrez o las damas.
 
