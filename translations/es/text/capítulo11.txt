@@ -1,0 +1,444 @@
+    Capítulo 11
+    PANECILLOS
+
+Temas Tratados En Este Capítulo:
+
+•   Operadores de Asignación Aumentada, +=, -=, *=, /=
+•   La Función random.shuffle()
+•   Los Métodos de Lista sort() y join()
+•   Interpolación de Cadenas (también llamado Formateo de Cadenas)
+•   Indicador de Conversión %s
+•   Bucles Anidados
+
+En este capítulo aprenderás algunos nuevos métodos y funciones que vienen con Python. También aprenderás acerca de operadores de asignación aumentada e interpolación de cadenas. Estos conecptos no te permitirán hacer nada que no pudieras hacer antes, pero son buenos atajos que hacen más fácil escribir tu código.
+
+Panecillos es un juego simple que puedes jugar con un amigo. Tu amigo piensa un número aleatorio de 3 cifras diferentes, y tú intentas adivinar qué número es. Luego de cada intento, tu amigo te dará tres tipos de pistas:
+
+•   Panecillos – Ninguna de las tres cifras del número que has conjeturado está en el número secreto.
+•   Pico – Una de las cifras está en el número secreto, pero no en el lugar correcto.
+•   Fermi – Tu intento tiene una cifra correcta en el lugar correcto.
+
+Puedes recibir más de una pista luego de un intento. Si el número secreto es 456 y tú conjeturas 546, la pista sería "fermi pico pico". El número 6 da "Fermi" y el 5 y 4 dan "pico pico".
+
+Prueba de Ejecución
+Estoy pensando en un número de 3 dígitos. Intenta adivinar cuál es.
+Aquí hay algunas pistas:
+Cuando digo:    Eso significa:
+  Pico         Un dígito es correcto pero en la posición incorrecta.
+  Fermi        Un dígito es correcto y en la posición correcta.
+  Panecillos       Ningún dígito es correcto.
+He pensado un número. Tienes 10 intentos para adivinarlo.
+Conjetura #1:
+123
+Fermi
+Conjetura #2:
+453
+Pico
+Conjetura #3:
+425
+Fermi
+Conjetura #4:
+326
+Panecillos
+Conjetura #5:
+489
+Panecillos
+Conjetura #6:
+075
+Fermi Fermi
+Conjetura #7:
+015
+Fermi Pico
+Conjetura #8:
+175
+¡Lo has adivinado!
+¿Deseas volver a jugar? (sí o no)
+no
+
+Código Fuente de Panecillos
+
+Si obtienes errores luego de escribir este código, compara el código que has escrito con el código del libto usando la herramienta diff online en http://invpy.com/es/diff/bagels.
+
+panecillos.py
+
+ 1. import random
+ 2. def obtenerNumSecreto(digitosNum):
+ 3.     # Devuelve un numero de largo digotosNUm, compuesto de dígitos únicos al azar.
+ 4.     numeros = list(range(10))
+ 5.     random.shuffle(numeros)
+ 6.     numSecreto = ''
+ 7.     for i in range(digitosNum):
+ 8.         numSecreto += str(numeros[i])
+ 9.     return numSecreto
+10.
+11. def obtenerPistas(conjetura, numSecreto):
+12.     # Devuelve una palabra con las pistas Panecillos Pico y Fermi en ella.
+13.     if conjetura == numSecreto:
+14.         return '¡Lo has adivinado!'
+15.
+16.     pista = []
+17.
+18.     for i in range(len(conjetura)):
+19.         if conjetura[i] == numSecreto[i]:
+20.             pista.append('Fermi')
+21.         elif conjetura[i] in numSecreto:
+22.             pista.append('Pico')
+23.     if len(pista) == 0:
+24.         return 'Panecillos'
+25.
+26.     pista.sort()
+27.     return ' '.join(pista)
+28.
+29. def esSoloDigitos(num):
+30.     # Devuelve True si el número se compone sólo de dígitos. De lo contrario False.
+31.     if num == '':
+32.         return False
+33.
+34.     for i in num:
+35.         if i not in '0 1 2 3 4 5 6 7 8 9'.split():
+36.             return False
+37.
+38.     return True
+39.
+40. def jugarDeNuevo():
+41.     # Esta funcion devuelve True si el jugador desea vovler a jugar, de lo contrario False.
+42.     print('¿Deseas volver a jugar? (sí o no)')
+43.     return input().lower().startswith('s')
+44.
+45. digitosNum = 3
+46. MAXADIVINANZAS = 10
+47.
+48. print('Estoy pensando en un número de %s dígitos. Intenta adivinar cuál es.' % (digitosNum))
+49. print('Aquí hay algunas pistas:')
+50. print('Cuando digo:    Eso significa:')
+51. print('  Pico          Un dígito es correcto pero en la posición incorrecta.')
+52. print('  Fermi         Un dígito es correcto y en la posición correcta.')
+53. print('  Panecillos    Ningún dígito es correcto.')
+54.
+55. while True:
+56.     numSecreto = obtenerNumSecreto(digitosNum)
+57.     print('He pensado un número. Tienes %s intentos para adivinarlo.' % (MAXADIVINANZAS))
+58.
+59.     numIntentos = 1
+60.     while numIntentos <= MAXADIVINANZAS:
+61.         conjetura = ''
+62.         while len(conjetura) != digitosNum or not esSoloDigitos(conjetura):
+63.             print('Conjetura #%s: ' % (numIntentos))
+64.             conjetura = input()
+65.
+66.         pista = obtenerPistas(conjetura, numSecreto)
+67.         print(pista)
+68.         numIntentos += 1
+69.
+70.         if conjetura == numSecreto:
+71.             break
+72.         if numIntentos > MAXADIVINANZAS:
+73.             print('Te has quedado sin intentos. La respuesta era %s.' % (numSecreto))
+74.
+75.     if not jugarDeNuevo():
+76.         break
+
+Diseñando el Programa
+
+El diagrama de flujo en la Figura 11-1 describe qué ocurre en este juego, y en qué orden.
+
+Cómo Funciona el Código
+
+ 1. import random
+ 2. def obtenerNumSecreto(digitosNum):
+ 3.     # Devuelve un numero de largo digotosNUm, compuesto de dígitos únicos al azar.
+
+Al comienzo del programa, importamos el módulo random. Luego definimos una función llamada obtenerNumSecreto(). La función crea un número secreto sin cifras repetidas. En lugar de números secretos de sólo 3 cifras, el parámetro digitosNum permite a la función crear un número secreto con cualquier cantidad de cifras. Por ejemplo, puedes crear un número secreto de cuatro o seis cifras pasando 4 ó 6 en digitosNum.
+
+Figura 11-1: Diagrama de flujo para el juego Panecillos.
+
+Mezclando un Conjunto de Cifras Únicas
+
+ 4.     numeros = list(range(10))
+ 5.     random.shuffle(numeros)
+
+La lista de la línea 4 (range(10)) siempre se evalúa a [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. Simplemente es más fácil escribir list(range(10)). La variable numeros contiene una lista de las diez posibles cifras.
+
+La función random.shuffle()
+
+La función random.shuffle() cambia aleatoriamente el orden de los elementos de una lista. Esta función no devuelve un valor, sino que modifica la lista que se le pasa "in situ". Esto es similar al modo en que la función hacerJugada() en el capítulo Ta Te Ti modifica la lista que se le pasa, en lugar de devolver una nueva lista con el cambio. Por eso no necesitamos escribir numeros = random.shuffle(numeros).
+
+Experimenta con la función random.shuffle() ingresando el siguiente código en la consola interactiva:
+
+>>> import random
+>>> spam = list(range(10))
+>>> print(spam)
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+>>> random.shuffle(spam)
+>>> print(spam)
+[3, 0, 5, 9, 6, 8, 2, 4, 1, 7]
+
+>>> random.shuffle(spam)
+>>> print(spam)
+[1, 2, 5, 9, 4, 7, 0, 3, 6, 8]
+
+>>> random.shuffle(spam)
+>>> print(spam)
+[9, 8, 3, 5, 4, 7, 1, 2, 0, 6]
+
+La idea es que el número secreto en Panecillos tenga cifras únicas. El juego Panecillos es mucho más divertido si no tienes cifras duplicadas en el número secreto, como en '244' o '333'. La función shuffle() te ayudará a lograr esto.
+
+Obteniendo el Número Secreto a partir de las Cifras Mezcladas
+
+ 6.     numSecreto = ''
+ 7.     for i in range(digitosNum):
+ 8.         numSecreto += str(numeros[i])
+ 9.     return numSecreto
+
+El número secreto será una cadena de las primeras digitosNum cifras de la lista mezclada de enteros. Por ejemplo, si la lista mezclada en numeros fuese [9, 8, 3, 5, 4, 7, 1, 2, 0, 6] y digitosNum fuese 3, entonces la cadena devuelta por obtenerNumSecreto() será '983'.
+
+Para hacer esto, la variable numSecreto comienza siendo una cadena vacía. El bucle for en la línea 7 itera digitosNum veces. En cada iteración del bucle, el entero en el índice i es copiado de la lista mezclada, convertido a cadena, y concatenado al final de numSecreto.
+
+Por ejemplo, si numeros se refiere a la lista [9, 8, 3, 5, 4, 7, 1, 2, 0, 6], entonces en la primera iteración, numeros[0] (es decir, 9) será pasado a str(), que a su vez devolverá '9' el cual es concatenado al final de numSecreto. En la segunda iteración, lo mismo ocurre con numeros[1] (es decir, 8) y en la tercera iteración lo mismo ocurre con numeros[2] (es decir, 3). El valor final de numSecreto que se devuelve es '983'.
+
+Observa que numSecreto en esta función contiene una cadena, no un entero. Esto puede parecer raro, pero recuerda que no puedes concatenar enteros. La expresión 9 + 8 + 3 se evalúa a 20, pero lo que tú quieres ahora es '9' + '8' + '3', que se evalúa a '983'.
+
+Operadores de Asignación Aumentada
+
+El operador += en la línea 8 es uno de los operadores de asignación aumentada. Normalmente, si quisieras sumar o concatenar un valor a una variable, usarías un código como el siguiente:
+
+spam = 42
+spam = spam + 10
+
+eggs = 'Hello '
+eggs = eggs + 'world!'
+
+Los operadores de asignación aumentada son un atajo que te libera de volver a escribir el nombre de la variable. El siguiente código hace lo mismo que el código de más arriba:
+spam = 42
+spam += 10       # Como spam = spam + 10
+
+eggs = 'Hello '
+eggs += 'world!' # Como eggs = eggs + 'world!'
+
+Existen otros operadores de asignación aumentada. Prueba ingresar lo siguiente en la consola interactiva:
+
+>>> spam = 42
+>>> spam -= 2
+>>> spam
+40
+>>> spam *= 3
+>>> spam
+120
+>>> spam /= 10
+>>> spam
+12.0
+
+Calculando las Pistas a Dar
+
+11. def obtenerPistas(conjetura, numSecreto):
+12.     # Devuelve una palabra con las pistas Panecillos Pico y Fermi en ella.
+13.     if conjetura == numSecreto:
+14.         return '¡Lo has adivinado!'
+
+La función obtenerPistas() devolverá una sola cadena con las pistas fermi, pico, y panecillos dependiendo de los parámetros conjetura y numSecreto. El paso más obvio y sencillo es comprobar si la conjetura coincide con el número secreto. En ese caso, la línea 14 devuelve '¡Lo has adivinado!'.
+
+16.     pista = []
+17.
+18.     for i in range(len(conjetura)):
+19.         if conjetura[i] == numSecreto[i]:
+20.             pista.append('Fermi')
+21.         elif conjetura[i] in numSecreto:
+22.             pista.append('Pico')
+
+Si la conjetura no coincide con el número secreto, el código debe determinar qué pistas dar al jugador. La lista en pista comenzará vacía y se le añadirán cadenas 'Fermi' y 'Pico' a medida que se necesite.
+
+Hacemos esto recorriendo cada posible índice en conjetura y numSecreto. las cadenas en ambas variables serán de la misma longitud, de modo que la línea 18 podría usar tanto len(conjetura) como len(numSecreto) y funcionar igual. Como el valor de i cambia de 0 a 1 a 2, y así sucesivamente, la línea 19 comprueba si la primera, segunda, tercera, etc. letra de conjetura es la misma que el número correspondiente al mismo índice en de numSecreto. Si es así, la línea 20 agregará una cadena 'Fermi' a pista.
+
+De lo contrario, la línea 21 comprobará si la cifra en la posición i-ésima de conjetura existe en algún lugar de numSecreto. Si es así, ya sabes que la cifra está en algún lugar del número secreto pero no en la misma posición. Entonces la línea 22 añadirá 'Pico' a pista.
+
+23.     if len(pista) == 0:
+24.         return 'Panecillos'
+
+Si la pista está vacía luego del bucle, significa que no hay ninguna cifra correcta en la conjetura. En ese caso, la línea 24 devuelve la cadena 'Panecillos' como única pista.
+
+El Método de Lista sort()
+
+26.     pista.sort()
+
+Las listas tienen un método llamado sort() que reordena los elementos de la lista para dejarlos en orden alfabético o numérico. Prueba escribir lo siguiente en la consola interactiva:
+
+>>> spam = ['gato', 'perro', 'murciélago', 'oso hormiguero']
+>>> spam.sort()
+>>> spam
+['gato', 'murciélago', 'oso hormiguero', 'perro']
+
+>>> spam = [9, 8, 3, 5, 4, 7, 1, 2, 0, 6]
+>>> spam.sort()
+>>> spam
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+El método sort() no devuelve una lista ordenada, sino que reordena la lista sobre la cual es llamado “in situ”. De esta forma funciona también el método reverse().
+
+Nunca querrás usar esta línea de código: return spam.sort() porque esto devolvería el valor None (que es lo que devuelve sort()). En lugar de esto probablemente quieras una línea separada spam.sort() y luego la línea return spam.
+
+La razón por la cual quieres ordenar la lista pista es para eliminar la información extra basada en el orden de las pistas. Si pista fuese ['Pico', 'Fermi', 'Pico'], eso permitiría al jugador saber que la cifra central de la conjetura está en la posición correcta. Como las otras dos pistas son Pico, el jugador sabría que todo lo que tiene que hacer es intercambiar la primera cifra con la tercera para obtener el número secreto.
+
+Si las pistas están siempre en orden alfabético, el jugador no puede saber a cuál de los números se refiere la pista Fermi. Así queremos que sea el juego.
+
+El Método de Cadena join()
+
+27.     return ' '.join(pista)
+
+El método de cadena join() devuelve una lista de cadenas agrupada en una única cadena. La cadena sobre la cual se llama a este método (en la línea 27 es un espacio simple, ' ') aparece entre las cadenas de la lista. Por ejemplo, escribe lo siguiente en la consola interactiva:
+
+>>> ' '.join(['Mi', 'nombre', 'es', 'Zophie'])
+'Mi nombre es Zophie'
+>>> ', '.join(['Vida', 'el Universo', 'y Todo'])
+'Vida, el Universo, y Todo'
+
+Entonces la cadena que se devuelve en la línea 27 corresponde a todas las cadenas en pista agrupadas con un espacio simple entre cada una. El método de cadena join() es algo así como el opuesto al método de cadena split(). Mientras que split() devuelve una lista a través de fragmentar una cadena, join() devuelve una cadena a través de agrupar una lista.
+
+Comprobando si una Cadena Tiene Sólo Números
+
+29. def esSoloDigitos(num):
+30.     # Devuelve True si el número se compone sólo de dígitos. De lo contrario False.
+31.     if num == '':
+32.         return False
+
+La función esSoloDigitos() ayuda a determinar si el jugador ha ingresado una conjetura válida. La línea 31 comprueba si num es una cadena vacía, en cuyo caso devuelve False.
+
+34.     for i in num:
+35.         if i not in '0 1 2 3 4 5 6 7 8 9'.split():
+36.             return False
+37.
+38.     return True
+
+El bucle for itera sobre cada caracter en la cadena num. El valor de i tendrá sólo un caracter en cada iteración. Dentro del bloque for, el código comprueba si i no existe en la lista devuelta por '0 1 2 3 4 5 6 7 8 9'.split(). (El valor devuelto por split() es equivalente a ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] pero es más fácil de escribir.) Si no lo es, sabemos que uno de los caracteres de num no es un dígito. En ese caso, la línea 36 devuelve False.
+
+Si la ejecución continúa luego del bucle for, sabemos que cada caracter en num es una cifra. En ese caso, a línea 38 devuelve True.
+
+Preguntando si el Jugador Quiere Volver a Jugar
+
+40. def jugarDeNuevo():
+41.     # Esta funcion devuelve True si el jugador desea vovler a jugar, de lo contrario False.
+42.     print('¿Deseas volver a jugar? (sí o no)')
+43.     return input().lower().startswith('s')
+
+La función jugarDeNuevo() es la misma que has usado en el Ahorcado y el Ta Te Ti. La expresión larga en la línea 43 se evalúa a True o False basándose en la respuesta dada por el jugador.
+
+El Comienzo del Juego
+
+45. digitosNum = 3
+46. MAXADIVINANZAS = 10
+47.
+48. print('Estoy pensando en un número de %s dígitos. Intenta adivinar cuál es.' % (digitosNum))
+49. print('Aquí hay algunas pistas:')
+50. print('Cuando digo:    Eso significa:')
+51. print('  Pico          Un dígito es correcto pero en la posición incorrecta.')
+52. print('  Fermi         Un dígito es correcto y en la posición correcta.')
+53. print('  Panecillos    Ningún dígito es correcto.')
+
+Después de haber definido todas las funciones, aquí comienza el programa. En lugar de usar el entero 3 para la cantidad de cifras en el número secreto, usamos la variable constante digitosNum. Lo mismo corre para el uso de MAXADIVINANZAS en lugar del entero 10 para la cantidad de conjeturas que se permite al jugador. Ahora será fácil cambiar el número de conjeturas o cifras del número secreto. Sólo precisamos cambiar la línea 45 ó 46 y el resto del programa funcionará sin más cambios.
+
+Las llamadas a la función print() explicarán al jugador las reglas de juego y lo que significan las pistas Pico, Fermi, y Panecillos. La llamada a print() de la línea 48 tiene % (digitosNum) agregado al final y %s dentro de la cadena. Esto es una técnica conocida como interpolación de cadenas.
+
+Interpolación de Cadenas
+
+Interpolación de cadenas es una abreviatura del código. Normalmente, si quieres usar los valores de cadena dentro de variables en otra cadena, tienes que usar el operador concatenación + :
+
+>>> nombre = 'Alice'
+>>> evento = 'fiesta'
+>>> dónde = 'la piscina'
+>>> día = 'sábado'
+>>> hora = '6:00pm'
+
+>>> print('Hola, ' + nombre + '. ¿Vendrás a la ' + evento + ' en ' + dónde + ' este ' + día + ' a las ' + hora + '?')
+Hola, Alice. ¿Vendrás a la fiesta en la piscina este sábado a las 6:00pm?
+
+Como puedes ver, puede ser difícil escribir una línea que concatena varias cadenas. En lugar de esto, puedes usar interpolación de cadenas, lo cual te permite utilizar comodines como %s. Estos comodines se llaman especificadores de conversión. Luego colocas todos los nombres de variables al final. Cada %s es reemplazado por una variable al final de la línea. Por ejemplo, el siguiente código hace lo mismo que el anterior:
+
+>>> nombre = 'Alice'
+>>> evento = 'fiesta'
+>>> dónde = 'la piscina'
+>>> día = 'sábado'
+>>> hora = '6:00pm'
+
+>>> print('Hola, %s. ¿Vendrás a la %s en %s este %s a las %s?' % (nombre, evento, dónde, día, hora))
+Hola, Alice. ¿Vendrás a la fiesta en la piscina este sábado a las 6:00pm?
+
+La interpolación de cadenas puede hacer tu código mucho más fácil de escribir. El primer nombre de variable corresponde al primer %s, la segunda variable va con el segundo %s y así sucesivamente. debes tener tantos especificadores de conversión %s como variables.
+
+Otro beneficio de usar interpolación de cadenas en lugar de concatenación es que la interpolación funciona con cualquier tipo de datos, no sólo cadenas. Todos los valores se convierten automáticamente al tipo de datos cadena. Si concatenases un entero a una cadena, obtendrías este error:
+
+>>> spam = 42
+>>> print('Spam == ' + spam)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: Can't convert 'int' object to str implicitly
+
+La concatenación de cadenas sólo funciona para dos o más cadenas, pero spam es un entero. Tendrías que recordar escribir str(spam) en lugar de spam. Pero con interpolación de cadenas, esta conversión a cadenas se realiza automáticamente. Prueba escribir lo siguiente en la consola interactiva:
+
+>>> spam = 42
+>>> print('Spam es %s' % (spam))
+Spam es 42
+
+La interpolación de cadenas también se conoce como formateo de cadenas.
+
+Creando el Número Secreto
+
+55. while True:
+56.     numSecreto = obtenerNumSecreto(digitosNum)
+57.     print('He pensado un número. Tienes %s intentos para adivinarlo.' % (MAXADIVINANZAS))
+58.
+59.     numIntentos = 1
+60.     while numIntentos <= MAXADIVINANZAS:
+
+La línea 55 es un bucle while infinito que tiene una condición True, por lo que seguirá repitiéndose eternamente hasta que se ejecute una sentencia break. Dentro de este bucle infinito, se obtiene un número secreto de la función obtenerNumSecreto(), pasándole a la misma digitosNum para indicar cuántas cifras debe tener el número. Este número secreto es asignado a numSecreto. Recuerda, el valor en numSecreto es una cadena, no un entero.
+
+La línea 57 indica al jugador cuántas cifras hay en el número secreto usando interpolación de cadena en lugar de concatenación. La línea 59 asigna 1 a la variable numIntentos para indicar que este es el primer intento. Entonces la línea 60 tiene un nuevo bucle while que se ejecuta mientras numIntentos sea menor o igual que MAXADIVINANZAS.
+
+Obteniendo la Conjetura del Jugador
+
+61.         conjetura = ''
+62.         while len(conjetura) != digitosNum or not esSoloDigitos(conjetura):
+63.             print('Conjetura #%s: ' % (numIntentos))
+64.             conjetura = input()
+
+La variable conjetura almacenará la conjetura del jugador devuelta por input(). El código continúa iterando y pidiendo al jugador una nueva conjetura hasta que el jugador ingrese una conjetura válida. Una conjetura válida está compuesta únicamente por cifras y la misma cantidad de cifras que el número secreto. Esta es la función que cumple el bucle while que comienza en la línea 62.
+
+Se asigna una cadena vacía a la variable conjetura en la línea 61, de modo que la condición del bucle while sea False en la primera comprobación, asegurando que la ejecución entre al bucle.
+
+Obteniendo las Pistas para la Conjetura del Jugador
+
+66.         pista = obtenerPistas(conjetura, numSecreto)
+67.         print(pista)
+68.         numIntentos += 1
+
+Una vez que la ejecución pasa el bucle while que comienza la línea 62, la variable conjetura contiene un número válido. El mismo se pasa junto con numSecreto a la función obtenerPistas(). Esta función devuelve una cadena de pistas, las cuales se muestran al jugador en la línea 67. La línea 68 incrementa numIntentos usando el operador de asignación aumentada para la suma.
+
+Comprobando si el Jugador ha Ganado o Perdido
+
+Observa que este segundo bucle while sobre la línea 60 se encuentra dentro de otro bucle while que comienza más arriba en la línea 55. Estos bucles dentro de bucles se llaman bucles anidados. Cualquier sentencia break o continue sólo tendrá efecto sobre el bucle interno, y no afectará a ninguno de los bucles externos.
+
+70.         if conjetura == numSecreto:
+71.             break
+72.         if numIntentos > MAXADIVINANZAS:
+73.             print('Te has quedado sin intentos. La respuesta era %s.' % (numSecreto))
+
+Si conjetura es igual a numSecreto, el jugador ha adivinado correctamente el número secreto y la línea 71 sale del bucle while que había comenzado en la línea 60.
+
+Si no lo es, la ejecución continúa a la línea 72, donde comprueba si al jugador se le han acabado los intentos. Si es así, el programa avisa al jugador que ha perdido.
+
+En este punto, la ejecución retorna al bucle while en la línea 60 donde permite al jugador tomar otro intento. Si el jugador se queda sin intentos (o si ha salido del bucle con la sentencia break de la línea 71), la ejecución continuará más allá del bucle y hasta la línea 75.
+
+Preguntando al Jugador si desea Volver a Jugar
+
+75.     if not jugarDeNuevo():
+76.         break
+
+La línea 75 pregunta al jugador si desea jugar otra vez llamando a la función jugarDeNuevo(). Si jugarDeNuevo() devuelve False, se sale del bucle while comenzado en la línea 55. Como no hay más código luego de este bucle, el programa termina.
+Si jugarDeNuevo() devolviese True, la ejecución no pasaría por la sentencia break y regresaría a la línea 55. El programa generaría entonces un nuevo número secreto para que el jugador pudiese jugar otra vez.
+
+Resumen
+
+Panecillos es un juego simple de programar pero puede ser difícil de vencer. Pero si continúas jugando, descubrirás eventualmente mejores formas de conjeturar y usar las pistas que el juego te da. De la misma forma, te convertirás en un mejor programador si continúas practicando.
+
+Este capítulo ha introducido algunas nuevas funciones y métodos (random.shuffle(), sort() y join()), junto con un par de atajos. Los operadores de asignación aumentada requieren escribir menos cuando quieres cambiar el valor relativo de una variable, tal como en spam = spam + 1, que puede abreviarse como spam += 1. La interpolación de cadenas puede hacer que tu código sea mucho más legible colocando %s (llamado especificador de conversión) dentro de la cadena en lugar de usar muchas operaciones de concatenación de cadenas.
+
+El siguiente capítulo no se enfoca directamente en programación, pero será necesario para los juegos que crearemos en los últimos capítulos de este libro. Aprenderemos los conceptos matemáticos de coordenadas cartesianas y números negativos. Nosotros sólo los usaremos en los juegos Sonar, Reversi y Evasor, pero estos conceptos se usan en muchos juegos. Si ya conoces estos conceptos, igual puedes hojear el siguiente capítulo para refrescarlos.

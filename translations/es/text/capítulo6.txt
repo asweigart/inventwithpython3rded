@@ -138,7 +138,7 @@ def decirAdios():
 Si tratas de ejecutarlo, Python te dará un mensaje de error como este:
 Traceback (most recent call last):
   File "C:\Python34\spam.py", line 1, in <module>
-sayGoodbye()
+decirAdios()
 NameError: name 'decirAdios' is not defined
 
 Para arreglar esto, coloca la definición de la función antes de llamar a la función:
@@ -169,7 +169,7 @@ Piensa en este enunciado, “Los gatos tienen bigotes y los perros tienen colas.
 
 Pero el enunciado “Los gatos tienen bigotes y los perros tienen alas” sería falso. Incluso si “los gatos tienen bigotes” es verdadero, los perros no tienen alas, luego “los perros tienen alas” es falso. En lógica Booleana, los enunciados sólo pueden ser completamente verdaderos o completamente falsos. Debido a la conjunción “y”, el enunciado completo es verdadero sólo si ambas partes son verdaderas. Si una o ambas partes son falsas, entonces el enunciado completo es falso.
 
-The and and or Operators
+Los operadores and y or
 
 El operador and en Python es igual que la conjunción "y". Si los valores Booleanos a ambos lados de la palabra reservada and son True, entonces la expresión se evalúa a True. Si alguno o ambos valores Booleanos es False, la expresión se evalúa a False.
 

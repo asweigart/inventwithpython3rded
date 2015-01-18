@@ -342,7 +342,7 @@ Traceback (most recent call last):
     4 < '5'
 TypeError: unorderable types: int() < str()
 
-On line 15 the guess variable originally held the string value of what the player typed. Line 16 overwrites the string value in guess with the integer value returned by int(). This lets the code later in the program compare if guess is greater than, less than, or equal to the secret number in the number variable.
+On line 14 the guess variable originally held the string value of what the player typed. Line 15 overwrites the string value in guess with the integer value returned by int(). This lets the code later in the program compare if guess is greater than, less than, or equal to the secret number in the number variable.
 
 One last thing: Calling int(guess) doesn’t change the value in the guess variable. The code int(guess) is an expression that evaluates to the integer value form of the string stored in the guess variable. What changes guess is the assignment statement: guess = int(guess)
 
