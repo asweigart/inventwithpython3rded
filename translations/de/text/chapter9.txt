@@ -1235,47 +1235,59 @@ Wenn der Spieler falsch tippt
 131.         falscheBuchstaben = falscheBuchstaben + buchstabe
 
 This is the start of the else-block. Remember, the code in this block will execute if the condition was False. But which condition? To find out, point your finger at the start of the else keyword and move it straight up like in Figure 9-3. You’ll see that the else keyword's indentation is the same as the if keyword's indentation on line 118.
-
+Hier beginnt der else-Block. Der Code in diesem Block wird dann ausgeführt, wenn die Bedingung in Zeile 118 falsch war.
 
 Figure 9-3: The else statement is matched with the if statement at the same indentation.
+Abbildung 9-3: Der else-Ausdruck gehört zum if-Ausdruck mit derselben Einrückung.
 
 So if the condition on line 118 (guess in secretWord) was False, then the execution moves into this else-block.
 
 Wrongly guessed letters are concatenated to the missedLetters string on line 131. This is like what line 119 did for letters the player guessed correctly.
+Falsch geratene Buchstaben werden in Zeile 131 an falscheBuchstaben angehängt, genauso wie dies in Zeile 119 für die richtig geratenen Buchstaben passiert.
 
-133.         # Check if player has guessed too many times and lost
-134.         if len(missedLetters) == len(HANGMANPICS) - 1:
-135.             displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
-136.             print('You have run out of guesses!\nAfter ' + str(len(missedLetters)) + ' missed guesses and ' + str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
-137.             gameIsDone = True
+133.         # Überprüfe, ob der Spieler zu viele Rateversuche verbraucht und damit verloren hat
+134.         if len(falscheBuchstaben) == len(GALGENMANNBILDER) - 1:
+135.             zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort)
+136.             print('Du hast zu viele Versuche gebraucht!\nNach ' + str(len(falscheBuchstaben)) + ' falsch und ' + str(len(richtigeBuchstaben)) + ' richtig geratenen Buchstaben lautet das Wort "' + geheimWort + '"')
+137.             spielIstBeendet = True
 
 Each time the player guesses wrong, the code concatenates the wrong letter to the string in missedLetters. So the length of missedLetters (or, in code, len(missedLetters)) is also the number of wrong guesses.
+Jedes Mal, wenn der Spieler einen Buchstaben falsch rät, wird dieser an die Zeichenkette falscheBuchstaben angehängt. D.h. die Länge von falscheBuchstaben (in Python len(falscheBuchstaben)) ist gleich der Anzahl der falschen Rateversuche.
 
 The HANGMANPICS list has 7 ASCII art strings. So when len(missedLetters) equals 6, you know the player has lost because the hangman picture will be finished. Remember, HANGMANPICS[0] is the first item in the list, and HANGMANPICS[6] is the last one.
+Die GALGENMANNBILDER-Liste beinhaltet 7 ASCII-Kunst-Zeichenketten. Ist also len(falscheBuchstaben) gleich 6, dann hat der Spieler verloren, denn das Galgenmann-Bild ist fertig. GALGENMANNBILDER[0] bezieht sich auf das erste Element, GALGENMANNBILDER[6] auf das Letzte.
 
 So, when the length of the missedLetters string is equal to len(HANGMANPICS) - 1 (that is, 6), the player has run out of guesses. Line 136 prints the secret word and line 137 sets the gameIsDone variable is set to True.
+Ist also len(falscheBuchstaben) gleich len(GALGENMANNBILDER) - 1 (was 6 entspricht), sind dem Spieler die Rateversuche ausgegangen. Zeile 136 gibt das Geheimwort aus und Zeile 137 setzt die spielIstBeendet-Variable auf True.
 
-139.     # Ask the player if they want to play again (but only if the game is done).
-140.     if gameIsDone:
-141.         if playAgain():
-142.             missedLetters = ''
-143.             correctLetters = ''
-144.             gameIsDone = False
-145.             secretWord = getRandomWord(words)
+139.     # Frage den Spieler, ob er noch einmal spielen möchte (aber nur, wenn das Spiel zu Ende ist).
+140.     if spielIstBeendet:
+141.         if spieleNochEinmal():
+142.             falscheBuchstaben = ''
+143.             richtigeBuchstaben = ''
+144.             spielIstBeendet = False
+145.             geheimWort = zufallsWort(worte)
 
 If the player won or lost after guessing their letter, the game should ask the player if they want to play again. The playAgain() function handles getting a yes or no from the player, so it is called on line 141.
+Hat der Spieler entweder gewonnen oder verloren, so sollte das Spiel ihn fragen, ob dieser noch einmal spielen möchte. Danach erkundigt sich die spieleNochEinmal()-Funktion, weshalb sie in Zeile 141 aufgerufen wird.
 
 If the player does want to play again, the values in missedLetters and correctLetters must be reset to blank strings, gameIsDone to False, and a new secret word stored in secretWord. This way when the execution loops back to the beginning of the while loop on line 112, the board will be back to a fresh game.
+Möchte der Spieler noch einmal spielen, müssen die Variablen falscheBuchstaben, richtigeBuchstaben und spielIstBeendet auf ihre Ausgangswerte zurückgesetzt und ein neues Geheimwort ausgewählt werden. Anschließend springt die Programmausführung zurück zum Anfang der while-Schleife in Zeile 112.
 
 146.         else:
 147.             break
 
 If the player did not type in something that began with “y” when asked if they wanted to play again, then line 141’s condition would be False and the else-block executes. The break statement causes the execution to jump to the first instruction after the loop. But because there are no more instructions after the loop, the program terminates.
+Entscheided sich der Spieler gegen eine neue Partie, so ist die Bedingung in Zeile 141 falsch und der else-Block wird ausgeführt. Die break-Anweisung führt zum Sprung in die erste Zeile außerhalb der Schleife. Da jedoch nach der Schleife keine Anweisungen folgen, terminiert das Programm.
 
 Summary
+Zusammenfassung
 
 This has been a long chapter, and you’ve been introduced to several new concepts. But Hangman has been our most advanced game yet. As your games get more and more complex, it’ll be a good idea to sketch out a flow chart on paper of what happens in your program.
+In diesem langen Kapitel wurden zahlreiche neue Konzepte eingeführt. Galgenmann ist unser bisher ambitioniertestes Spiel. Mit der Zeit werden Deine Programme immer komplexer. Da macht es Sinn, die Programmabläufe mit Hilfe eines Flussdiagramms zu skizieren, bevor Du Dich an die eigentliche Programmierung machst.
 
 Lists are values that can contain other values. Methods are functions specific to a data type. Lists have append() and reverse() methods. Strings have lower(), upper(), split(), startswith(), and endswith() methods. You’ll learn about many more data types and methods in the rest of this book.
+Listen sind Werte, die andere Werte enthalten können. Methoden sind an Typen gebundene Funktionen. Listen verfügen über die Methoden append() und reverse(). Zeichenketten über lower(), upper(), split(), startswith() und endswith(). Du wirst viele weitere Methoden im Rest dieses Buches kennenlernen.
 
 The for loop is a loop that iterates over the items in a list, unlike a while loop which iterates as long as a condition is True. The elif statement lets you add an “or else if” clause to the middle of your if-else statements. The del statement can delete variables or items inside lists.
+Die for-Schleife wird dazu verwendet, über die Werte in einer Liste zu iterieren, wohingegen die while-Schleife iteriert solange eine Bedingung erfüllt ist. Die del-Anweisung kann Elemente aus Listen löschen.
