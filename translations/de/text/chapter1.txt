@@ -85,7 +85,7 @@ while rateVersuche < 10:
 ▪▪▪▪if zahl == 42:
 ▪▪▪▪▪▪▪▪print('Hallo')
 
-Zeilenumbruch in diesem Buch
+Zeilenumbrüche in diesem Buch
 
 Einige Anweisungen sind zu lang, um sie im Buch in einer Zeile unterzubringen. Gib diesen Code in IDLE ohne Zeilenumbrüche (ohne die Enter-Taste zu betätigen) ein. Die Zeilennummern verraten Dir, ob eine neue Anweisung beginnt, oder ob es sich um die Fortsetzung der Anweisung in der Zeile darüber handelt. Das folgende Code-Beispiel besteht aus nur zwei Anweisungen:
 
