@@ -157,7 +157,7 @@ Mezclando un Conjunto de Cifras Únicas
  4.     numeros = list(range(10))
  5.     random.shuffle(numeros)
 
-La lista de la línea 4 (range(10)) siempre se evalúa a [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. Simplemente es más fácil escribir list(range(10)). La variable numeros contiene una lista de las diez posibles cifras.
+La expresión de la línea 4 list(range(10)) siempre se evalúa a [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. Simplemente es más fácil escribir list(range(10)). La variable numeros contiene una lista de las diez posibles cifras.
 
 La función random.shuffle()
 
