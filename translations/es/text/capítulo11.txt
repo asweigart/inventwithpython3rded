@@ -70,14 +70,14 @@ panecillos.py
  7.     for i in range(digitosNum):
  8.         numSecreto += str(numeros[i])
  9.     return numSecreto
-10. 
+10.
 11. def obtenerPistas(conjetura, numSecreto):
 12.     # Devuelve una palabra con las pistas Panecillos Pico y Fermi en ella.
 13.     if conjetura == numSecreto:
 14.         return '¡Lo has adivinado!'
-15. 
+15.
 16.     pista = []
-17. 
+17.
 18.     for i in range(len(conjetura)):
 19.         if conjetura[i] == numSecreto[i]:
 20.             pista.append('Fermi')
@@ -85,56 +85,56 @@ panecillos.py
 22.             pista.append('Pico')
 23.     if len(pista) == 0:
 24.         return 'Panecillos'
-25. 
+25.
 26.     pista.sort()
 27.     return ' '.join(pista)
-28. 
+28.
 29. def esSoloDigitos(num):
-30.     # Devuelve True si el número se compone sólo de dígitos. De lo contrario Falso.
+30.     # Devuelve True si el número se compone sólo de dígitos. De lo contrario False.
 31.     if num == '':
 32.         return False
-33. 
+33.
 34.     for i in num:
 35.         if i not in '0 1 2 3 4 5 6 7 8 9'.split():
 36.             return False
-37. 
+37.
 38.     return True
-39. 
+39.
 40. def jugarDeNuevo():
-41.     # Esta funcion devuelve True si el jugador desea vovler a jugar, de lo contrario Falso.
+41.     # Esta funcion devuelve True si el jugador desea vovler a jugar, de lo contrario False.
 42.     print('¿Deseas volver a jugar? (sí o no)')
 43.     return input().lower().startswith('s')
-44. 
+44.
 45. digitosNum = 3
 46. MAXADIVINANZAS = 10
-47. 
+47.
 48. print('Estoy pensando en un número de %s dígitos. Intenta adivinar cuál es.' % (digitosNum))
 49. print('Aquí hay algunas pistas:')
 50. print('Cuando digo:    Eso significa:')
 51. print('  Pico          Un dígito es correcto pero en la posición incorrecta.')
 52. print('  Fermi         Un dígito es correcto y en la posición correcta.')
 53. print('  Panecillos    Ningún dígito es correcto.')
-54. 
+54.
 55. while True:
 56.     numSecreto = obtenerNumSecreto(digitosNum)
 57.     print('He pensado un número. Tienes %s intentos para adivinarlo.' % (MAXADIVINANZAS))
-58. 
+58.
 59.     numIntentos = 1
 60.     while numIntentos <= MAXADIVINANZAS:
 61.         conjetura = ''
 62.         while len(conjetura) != digitosNum or not esSoloDigitos(conjetura):
 63.             print('Conjetura #%s: ' % (numIntentos))
 64.             conjetura = input()
-65. 
+65.
 66.         pista = obtenerPistas(conjetura, numSecreto)
 67.         print(pista)
 68.         numIntentos += 1
-69. 
+69.
 70.         if conjetura == numSecreto:
 71.             break
 72.         if numIntentos > MAXADIVINANZAS:
 73.             print('Te has quedado sin intentos. La respuesta era %s.' % (numSecreto))
-74. 
+74.
 75.     if not jugarDeNuevo():
 76.         break
 
@@ -157,7 +157,7 @@ Mezclando un Conjunto de Cifras Únicas
  4.     numeros = list(range(10))
  5.     random.shuffle(numeros)
 
-La lista de la línea 4 (range(10)) siempre se evalúa a [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. Simplemente es más fácil escribir list(range(10)). La variable numeros contiene una lista de las diez posibles cifras.
+La expresión de la línea 4 list(range(10)) siempre se evalúa a [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. Simplemente es más fácil escribir list(range(10)). La variable numeros contiene una lista de las diez posibles cifras.
 
 La función random.shuffle()
 
@@ -239,7 +239,7 @@ Calculando las Pistas a Dar
 La función obtenerPistas() devolverá una sola cadena con las pistas fermi, pico, y panecillos dependiendo de los parámetros conjetura y numSecreto. El paso más obvio y sencillo es comprobar si la conjetura coincide con el número secreto. En ese caso, la línea 14 devuelve '¡Lo has adivinado!'.
 
 16.     pista = []
-17. 
+17.
 18.     for i in range(len(conjetura)):
 19.         if conjetura[i] == numSecreto[i]:
 20.             pista.append('Fermi')
@@ -297,7 +297,7 @@ Entonces la cadena que se devuelve en la línea 27 corresponde a todas las caden
 Comprobando si una Cadena Tiene Sólo Números
 
 29. def esSoloDigitos(num):
-30.     # Devuelve True si el número se compone sólo de dígitos. De lo contrario Falso.
+30.     # Devuelve True si el número se compone sólo de dígitos. De lo contrario False.
 31.     if num == '':
 32.         return False
 
@@ -306,7 +306,7 @@ La función esSoloDigitos() ayuda a determinar si el jugador ha ingresado una co
 34.     for i in num:
 35.         if i not in '0 1 2 3 4 5 6 7 8 9'.split():
 36.             return False
-37. 
+37.
 38.     return True
 
 El bucle for itera sobre cada caracter en la cadena num. El valor de i tendrá sólo un caracter en cada iteración. Dentro del bloque for, el código comprueba si i no existe en la lista devuelta por '0 1 2 3 4 5 6 7 8 9'.split(). (El valor devuelto por split() es equivalente a ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] pero es más fácil de escribir.) Si no lo es, sabemos que uno de los caracteres de num no es un dígito. En ese caso, la línea 36 devuelve False.
@@ -316,7 +316,7 @@ Si la ejecución continúa luego del bucle for, sabemos que cada caracter en num
 Preguntando si el Jugador Quiere Volver a Jugar
 
 40. def jugarDeNuevo():
-41.     # Esta funcion devuelve True si el jugador desea vovler a jugar, de lo contrario Falso.
+41.     # Esta funcion devuelve True si el jugador desea vovler a jugar, de lo contrario False.
 42.     print('¿Deseas volver a jugar? (sí o no)')
 43.     return input().lower().startswith('s')
 
@@ -326,7 +326,7 @@ El Comienzo del Juego
 
 45. digitosNum = 3
 46. MAXADIVINANZAS = 10
-47. 
+47.
 48. print('Estoy pensando en un número de %s dígitos. Intenta adivinar cuál es.' % (digitosNum))
 49. print('Aquí hay algunas pistas:')
 50. print('Cuando digo:    Eso significa:')
@@ -385,7 +385,7 @@ Creando el Número Secreto
 55. while True:
 56.     numSecreto = obtenerNumSecreto(digitosNum)
 57.     print('He pensado un número. Tienes %s intentos para adivinarlo.' % (MAXADIVINANZAS))
-58. 
+58.
 59.     numIntentos = 1
 60.     while numIntentos <= MAXADIVINANZAS:
 

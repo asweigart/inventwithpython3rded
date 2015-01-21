@@ -3,8 +3,8 @@ import time
 
 def mostrarIntroducción():
     print('Estás en una tierra llena de dragones. Frente a tí')
-    print('hay dos cuevas. En una de ellas, el dragón es generoso y amigable')
-    print('y compartirá su tesoro contigo. El otro dragón')
+    print('hay dos cuevas. En una de ellas, el dragón es generoso y')
+    print('amigable y compartirá su tesoro contigo. El otro dragón')
     print('es codicioso y está hambriento, y te devorará inmediatamente.')
     print()
 

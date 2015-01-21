@@ -29,3 +29,14 @@ Kapitel 1
 - Zeile 58: "shell" wurde nach "Kommandozeileninterpreter" übersetzt. Eindeutschen ja/nein?
 
 - Zeile 108: Wie sollte "diff" (Kontext: "diff tool") übersetzt werden? (Wurde vorläufig mit "Diff-Werkzeug" übersetzt.)
+
+Kapitel 6
+---------
+
+- "spam" wurde nicht übersetzt. Meinung?
+
+Kapitel 9
+---------
+
+- ("spam" wurde nicht übersetzt.)
+- "range" (Kontext: range()) wurde nach "Wertebereich" übersetzt. Meinung?
