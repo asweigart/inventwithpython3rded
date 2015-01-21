@@ -476,7 +476,7 @@ Aby sprawdzić, co dzieje się w grze ustaw palec na polu “Start”. Następni
 
 Kiedy trafisz na “Sprawdzenie, czy smok jest przyjacielski, czy głodny”, możesz przejść albo na pole “Gracz wygrywa”, albo na pole “Gracz przegrywa”. Ten punkt rozgałęzienia pokazuje jak program może robić różne rzeczy. Którąkolwiek drogę wybierzesz, doprowadzi cię ona do pola “Zapytanie, czy gracz chce zagrać ponownie”.
 
-Podumowanie
+Podsumowanie
 
 W grze Królestwo smoka tworzyłeś swoje własne funkcje. Funkcje są mini-programami w twoim programie. Kod ze środka funkcji wykonuje się, gdy funkcja zostanie wywołana. Przez rozdzielenie kodu na funkcje może organizować kod by był w mniejszych, łatwiejszych do zrozumienia fragmentach.
 
