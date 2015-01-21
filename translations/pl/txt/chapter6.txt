@@ -447,45 +447,45 @@ Linia 40 także wywołuje funkcję którą zdefiniowałeś. Funkcja chooseCave()
 
 42.     checkCave(caveNumber)
 
-Line 42 calls your checkCave() function, passing the value in caveNumber as an argument. Not only does execution jump to line 20, but the value in caveNumber is copied to the parameter chosenCave inside the checkCave() function. This is the function that will display either 'Gives you his treasure!' or 'Gobbles you down in one bite!' depending on the cave the player chose to go into.
+Linia 42 wywołuje funkcję checkCave() przekazując wartość caveNumber jako argument. Wykonanie przeskoczy do linii 20, a wartość zapisana w caveNumber zostanie skopiowana do parametru chosenCave we wnętrzu funkcji checkCave(). To jest funkcja która wyświetli albo 'Daje ci swój skarb!', albo 'Pożera cię jednym kłapnięciem paszczy!' w zależności od jaskini jaką wybrał gracz.
 
-Asking the Player to Play Again
+Pytanie gracza o ponowną rozgrywkę
 
 44.     print('Chcesz zagrać ponownie? (tak lub nie)')
 45.     playAgain = input()
 
-Whether the player won or lost, they are asked if they want to play again. The variable playAgain stores what the player typed. Line 45 is the last line of the while-block, so the program jumps back to line 36 to check the while loop’s condition: playAgain == 'yes' or playAgain == 'y'
+Niezależnie od tego, czy gracz wygrał, czy przegrał, zostanie on zapytany, czy chce zagrać ponownie. Zmienna playAgain przetrzymuje odpowiedź gracza. Linia 45 jest ostatnią linią bloku while, więc program wykona skok powrotny do linii 36 by sprawdzić warunek pętli while: playAgain == 'tak' or playAgain == 't'
 
-If the player typed in the string 'yes' or 'y', then the execution would enter the loop again at line 38.
+Jeśli gracz wpisze 'tak', lub 't', to wykonanie ponownie przejdzie do pętli w linii 38.
 
-If the player typed in 'no' or 'n' or something silly like 'Abraham Lincoln', then the condition would be False. The program execution would continue on to the line after the while-block. But since there are no more lines after the while-block, the program terminates.
+Jeśli gracz wpisze 'nie', 'n', lub jakieś głupstwa typu 'Abraham Lincoln', to warunek nie będzie spełniony (da False). Wykonanie programu będzie kontynuowane od linii za blokiem while. Jednak ponieważ nie ma więcej linii za blokiem while, to program się zakończy.
 
-One thing to note: the string 'YES' is not equal to the string 'yes'. If the player typed in the string 'YES', then the while statement’s condition would evaluate to False and the program would still terminate. Later programs in this book will show you how to avoid this problem.
+Uwaga: napis 'TAK' nie jest równy napisowi 'tak'. Jeśli gracz wpisze 'TAK', to warunek while nie zostanie spełniony i program się zakończy. Kolejne programy z tej książki pokażą, jak ominąć ten problem.
 
-You've just completed your second game! In Dragon Realm, you used a lot of what you learned in the Guess the Number game and picked up a few new tricks. If you didn't understand some of the concepts in this program, then go over each line of the source code again, and try changing the source code and see how the program changes.
+Właśnie skończyłeś swoją drugą grę! W Królestwie smoków używałeś tego, czego już sie nauczyłeś w Zgadnij liczbę, a także poznałeś kolka nowych sztuczek. Jeśli nie zrozumiałeś niektórych rzeczy w tym programie, to spróbuj przeanalizować ponownie każdą linię kodu i spróbuj je nieco zmieniać obserwując jak zmieni się wykonanie programu.
 
-In the next chapter you won’t create a game, but instead learn how to use a feature of IDLE called the debugger.
+W następnym rozdziale nie stworzysz gry, ale nauczysz się jak używać narzędzia wbudowanego w IDLE o nazwie debugger (odpluskwiacz).
 
-Designing the Program
+Projektowanie programu
 
-Dragon Realm is a simple game. The other games in this book will be a bit more complicated. It sometimes helps to write down everything you want your game or program to do before you start writing code. This is called “designing the program.”
+Królestwo smoków to prosta gra. Inne gry w tej książe będą bardziej skomplikowane. Czasami pomaga zapisanie wszystkiego, co chcesz by robił program, nim rozpoczniesz pisanie kodu. Nazywamy to “projektowaniem programu”.
 
-For example, it may help to draw a flow chart. A flow chart is a picture that shows every possible action that can happen in the game, and which actions lead to which other actions. Figure 6-2 is a flow chart for Dragon Realm.
+Przykładowo, pomocny może być schemat przepływu. Taki schemat obrazuje każde możliwe zachoanie jako może zdarzyć się w grze i które prowadzi do innych zachowań. Rysunek 6-2 jest schamtem przepływu dla Królestwa smoków.
 
-To see what happens in the game, put your finger on the “Start” box. Then follow one arrow from the box to another box. Your finger is like the program execution. The program terminates when your finger lands on the “End” box.
+Aby sprawdzić, co dzieje się w grze ustaw palec na polu “Start”. Następnie przecho za pomocą strzałek na kolejne pola. Twój palec obrazuje wykonanie programu. Zakończenie programu nastąpi, gdy twój palec trafi na pole “Koniec”.
 
-When you get to the “Check for friendly or hungry dragon” box, you can go to the “Player wins” box or the “Player loses” box. This branching point shows how the program can do different things. Either way, both paths will end up at the “Ask to play again” box.
+Kiedy trafisz na “Sprawdzenie, czy smok jest przyjacielski, czy głodny”, możesz przejść albo na pole “Gracz wygrywa”, albo na pole “Gracz przegrywa”. Ten punkt rozgałęzienia pokazuje jak program może robić różne rzeczy. Którąkolwiek drogę wybierzesz, doprowadzi cię ona do pola “Zapytanie, czy gracz chce zagrać ponownie”.
 
-Summary
+Podumowanie
 
-In the Dragon Realm game, you created your own functions. Functions are a mini-program within your program. The code inside the function runs when the function is called. By breaking up your code into functions, you can organize your code into smaller and easier to understand sections.
+W grze Królestwo smoka tworzyłeś swoje własne funkcje. Funkcje są mini-programami w twoim programie. Kod ze środka funkcji wykonuje się, gdy funkcja zostanie wywołana. Przez rozdzielenie kodu na funkcje może organizować kod by był w mniejszych, łatwiejszych do zrozumienia fragmentach.
 
-Arguments are values copied to the function’s parameters when the function is called. The function call itself evaluates to the return value.
+Argumenty są wartościami kopiowanymi do argumentów funkcji gdy funkcja jest wywoływana. Wywołanie funkcji samo wylicza się do wartości zwracanej przez funkcję.
 
-Figure 6-2: Flow chart for the Dragon Realm game.
+Rysunek 6-2: Schemat przepływu dla gry Królestwo smoków.
 
-You also learned about variable scopes. Variables created inside of a function exist in the local scope, and variables created outside of all functions exist in the global scope. Code in the global scope cannot make use of local variables. If a local variable has the same name as a variable in the global scope, Python considers it a separate variable and assigning new values to the local variable won’t change the value in the global variable.
+Nauczyłeś sie także o zasięgu zmiennych. Zmienne tworzone wewnątrz funkcji istnieją w zasięgu lokalnym, a zmienne tworzone poaz funkcjami w zasięgu globalnym. Kod w zasięgu globalnym nie może użyć zmiennych lokalnych. Jeśli zmienna lokalna ma taką zamą nazwę jak zmienna globalna, to Python uważa ją za niezależną zmienną i podstawienie nowej wartości do zmiennej lokanej nie zmieni wartości w zmiennej globalnej.
 
-Variable scopes might seem complicated, but they are useful for organizing functions as separate pieces of code from the rest of the program. Because each function has its own local scope, you can be sure that the code in one function won’t cause bugs in other functions.
+Zasięg zmiennych może wyglądać nieco skomplikowanie, ale jest przydatny przy tworzeniu funikcji jako oddzielnych kawałków kodu . Ponieważ każda funkcja ma swą własną przestrzeń zmiennych lokalnych, możesz być pewny że kod w jednej funkcji nie spowoduje błedów w innej funkcji.
 
-Almost every program uses functions because they are so useful. By understanding how functions work, you can save yourself a lot of typing and make bugs easier to fix.
+Prawie każdy program używa funkcji ponieważ są one bardzo użyteczne. Dzięki zrozumieniu jak działają funkcje możesz zaoszczędzić sporo wpisywania kodu jednocześnie sprawiając, że naprawa błędów będzie łatwiejsza.
