@@ -472,7 +472,7 @@ Królestwo smoków to prosta gra. Inne gry w tej książe będą bardziej skompl
 
 Przykładowo, pomocny może być schemat przepływu. Taki schemat obrazuje każde możliwe zachoanie jako może zdarzyć się w grze i które prowadzi do innych zachowań. Rysunek 6-2 jest schamtem przepływu dla Królestwa smoków.
 
-Aby sprawdzić, co dzieje się w grze ustaw palec na polu “Start”. Następnie przecho za pomocą strzałek na kolejne pola. Twój palec obrazuje wykonanie programu. Zakończenie programu nastąpi, gdy twój palec trafi na pole “Koniec”.
+Aby sprawdzić, co dzieje się w grze ustaw palec na polu “Start”. Następnie za pomocą strzałek możesz przechodzić na kolejne pola. Twój palec obrazuje wykonanie programu. Zakończenie programu nastąpi, gdy twój palec trafi na pole “Koniec”.
 
 Kiedy trafisz na “Sprawdzenie, czy smok jest przyjacielski, czy głodny”, możesz przejść albo na pole “Gracz wygrywa”, albo na pole “Gracz przegrywa”. Ten punkt rozgałęzienia pokazuje jak program może robić różne rzeczy. Którąkolwiek drogę wybierzesz, doprowadzi cię ona do pola “Zapytanie, czy gracz chce zagrać ponownie”.
 
