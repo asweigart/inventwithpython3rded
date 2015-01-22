@@ -28,135 +28,135 @@ Abre el archivo de instalación luego de descargarlo, y sigue las instrucciones 
 
 Si no aparece nada luego de haber pulsado la tecla INTRO, significa que Pygame se ha instalado correctamente. Si aparece el error ImportError: No module named pygame, intenta volver a instalar Pygame (y asegúrate de haber escrito import pygame correctamente).
 
-Figure 17-1: The pygame.org website.
+Figura 17-1: El sitio web pygame.org.
 
-The Pygame website at http://pygame.org has information on how to use Pygame, as well as several other game programs made with Pygame. Figure 17-1 shows the Pygame website.
+El sitio web Pygame en http://pygame.org contiene información acerca de cómo usar Pygame, así como también otros juegos hechos con Pygame. La Figura 17-1 muestra el sitio Pygame.
 
-Hello World in Pygame
+Hola Mundo en Pygame
 
-The first Pygame program is a new “Hello World!” program like you created at the beginning of the book. This time, you’ll use Pygame to make “Hello world!” appear in a graphical window instead of as text.
+El primer programa Pygame es un nuevo programa “¡Hola Mundo!” como el que has creado al principio de este libro. Esta vez, usarás Pygame para hacer que aparezca “¡Hola mundo!” en una ventana gráfica en lugar de ser sólo texto.
 
-Pygame doesn’t work well with the interactive shell. Because of this, you can only write Pygame programs and cannot send instructions to Pygame one at a time through the interactive shell.
+Pygame no funciona bien con la consola interactiva. Por esta razón, es posible escribir programas Pygame pero no se puede enviar instrucciones una a la vez a Pygame a través de la consola interativa.
 
-Pygame programs also do not use the input() function. There is no text input and output. Instead, the program displays output in a window by drawing graphics and text to the window. Pygame program’s input comes from the keyboard and the mouse through things called events. Events are explained in the next chapter.
+Los programas de Pygame tampoco utilizan la función input(). No hay entrada y salida de texto. En su lugar, el programa muestra su salida en una ventana dibujando gráficos y texto en la ventana. La entrada de un programa de Pygame proviene del teclado y el ratón a través de cosas llamadas eventos. Los eventos se explican en el próximo capítulo.
 
-Source Code of Hello World
+Código Fuente de Hola Mundo
 
-Type in the following code into the file editor, and save it as pygameHelloWorld.py. If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/pygameHelloWorld.
+Escribe el siguiente código en el editor de archivos, y guárdalo como pygameHolaMundo.py. Si obtienes errores luego de escribir el código, compara lo que has escrito con el código del libro usando la herramienta diff online en http://invpy.com/diff/pygameHolaMundo.
 
-pygameHelloWorld.py
+pygameHolaMundo.py
 
  1. import pygame, sys
  2. from pygame.locals import *
- 3.
- 4. # set up pygame
+ 3. 
+ 4. # configurar pygame
  5. pygame.init()
- 6.
- 7. # set up the window
- 8. windowSurface = pygame.display.set_mode((500, 400), 0, 32)
- 9. pygame.display.set_caption('Hello world!')
-10.
-11. # set up the colors
-12. BLACK = (0, 0, 0)
-13. WHITE = (255, 255, 255)
-14. RED = (255, 0, 0)
-15. GREEN = (0, 255, 0)
-16. BLUE = (0, 0, 255)
-17.
-18. # set up fonts
-19. basicFont = pygame.font.SysFont(None, 48)
-20.
-21. # set up the text
-22. text = basicFont.render('Hello world!', True, WHITE, BLUE)
-23. textRect = text.get_rect()
-24. textRect.centerx = windowSurface.get_rect().centerx
-25. textRect.centery = windowSurface.get_rect().centery
-26.
-27. # draw the white background onto the surface
-28. windowSurface.fill(WHITE)
-29.
-30. # draw a green polygon onto the surface
-31. pygame.draw.polygon(windowSurface, GREEN, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
-32.
-33. # draw some blue lines onto the surface
-34. pygame.draw.line(windowSurface, BLUE, (60, 60), (120, 60), 4)
-35. pygame.draw.line(windowSurface, BLUE, (120, 60), (60, 120))
-36. pygame.draw.line(windowSurface, BLUE, (60, 120), (120, 120), 4)
-37.
-38. # draw a blue circle onto the surface
-39. pygame.draw.circle(windowSurface, BLUE, (300, 50), 20, 0)
-40.
-41. # draw a red ellipse onto the surface
-42. pygame.draw.ellipse(windowSurface, RED, (300, 250, 40, 80), 1)
-43.
-44. # draw the text's background rectangle onto the surface
-45. pygame.draw.rect(windowSurface, RED, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
-46.
-47. # get a pixel array of the surface
-48. pixArray = pygame.PixelArray(windowSurface)
-49. pixArray[480][380] = BLACK
-50. del pixArray
-51.
-52. # draw the text onto the surface
-53. windowSurface.blit(text, textRect)
-54.
-55. # draw the window onto the screen
+ 6. 
+ 7. # configurar la ventana
+ 8. superficieVentana = pygame.display.set_mode((500, 400), 0, 32)
+ 9. pygame.display.set_caption('¡Hola mundo!')
+10. 
+11. # configurar los colores
+12. NEGRO = (0, 0, 0)
+13. BLANCO = (255, 255, 255)
+14. ROJO = (255, 0, 0)
+15. VERDE = (0, 255, 0)
+16. AZUL = (0, 0, 255)
+17. 
+18. # configurar fuentes
+19. fuenteBásica = pygame.font.SysFont(None, 48)
+20. 
+21. # configurar el texto
+22. texto = fuenteBásica.render('¡Hola mundo!', True, BLANCO, AZUL)
+23. textRect = texto.get_rect()
+24. textRect.centerx = superficieVentana.get_rect().centerx
+25. textRect.centery = superficieVentana.get_rect().centery
+26. 
+27. # pintar un fondo blanco sobre la ventana
+28. superficieVentana.fill(BLANCO)
+29. 
+30. # dibujar un polígono verde sobre la superficie
+31. pygame.draw.polygon(superficieVentana, VERDE, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
+32. 
+33. # dibujar algunas líneas azules sobre la superficie
+34. pygame.draw.line(superficieVentana, AZUL, (60, 60), (120, 60), 4)
+35. pygame.draw.line(superficieVentana, AZUL, (120, 60), (60, 120))
+36. pygame.draw.line(superficieVentana, AZUL, (60, 120), (120, 120), 4)
+37. 
+38. # dibujar un círculo azul sobre la superficie
+39. pygame.draw.circle(superficieVentana, AZUL, (300, 50), 20, 0)
+40. 
+41. # dibujar una elipse roja sobre la superficie
+42. pygame.draw.ellipse(superficieVentana, ROJO, (300, 250, 40, 80), 1)
+43. 
+44. # dibujar el rectángulo de fondo para el texto sobre la superficie
+45. pygame.draw.rect(superficieVentana, ROJO, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
+46. 
+47. # obtener un arreglo de píxeles de la superficie
+48. arregloDePíxeles = pygame.PixelArray(superficieVentana)
+49. arregloDePíxeles[480][380] = NEGRO
+50. del arregloDePíxeles
+51. 
+52. # dibujar el texto sobre la superficie
+53. superficieVentana.blit(texto, textRect)
+54. 
+55. # dibujar la ventana sobre la pantalla
 56. pygame.display.update()
-57.
-58. # run the game loop
+57. 
+58. # ejecutar el bucle del juego
 59. while True:
 60.     for event in pygame.event.get():
 61.         if event.type == QUIT:
 62.             pygame.quit()
 63.             sys.exit()
 
-Running the Hello World Program
+Ejecutando el Programa Hola Mundo
 
-When you run this program, you should see a new window appear which looks like Figure 17-2.
+Al ejecutar este programa, deberías ver aparecer una nueva ventana como la de la Figura 17-2.
 
-What is nice about using a window instead of a console is that the text can appear anywhere in the window, not just after the previous text you have printed. The text can be any color and size. The window is like a blank painting canvas, and you can draw whatever you like on it.
+Lo bueno de usar una ventana en lugar de una consola es que el texto puede aparecer en cualquier lugar de la ventana, no sólo a continuación del último texto que se ha mostrado. El texto puede ser de cualquier tamaño y color. La ventana es como un lienzo de pintura en blanco, y puedes dibujarle encima lo que quieras.
 
-Importing the Pygame Module
+Importando el Módulo Pygame
 
-Let’s go over each of these lines of code and find out what they do.
+Recorramos estas líneas de código y veamos lo que hacen.
 
  1. import pygame, sys
  2. from pygame.locals import *
 
-Figure 17-2: The “Hello World” program.
+Figura 17-2: El programa “Hola Mundo”.
 
-First you need to import the pygame module so you can call Pygame’s functions. You can import several modules on the same line by delimiting the module names with commas. Line 1 imports both the pygame and sys modules.
+Primero necesitas importar el módulo pygame para poder llamar a las funciones de Pygame. Puedes importar varios módulos en la misma línea separando los nombres de los mismos con comas. La línea 1 importa los módulos pygame y sys.
 
-The second line imports the pygame.locals module. This module contains many constant variables that you’ll use with Pygame such as QUIT or K_ESCAPE (explained later). However, using the form from moduleName import * you can import the pygame.locals module but not have to type pygame.locals in front of the module’s constants.
+La segunda línea importa el módulo pygame.locals. Este módulo contiene muchas variables constantes que usarás con Pygame, tales como QUIT or K_ESCAPE (explicadas más adelante). Sin embargo, usando la fórmula from moduleName import * puedes importar el módulo pygame.locals de forma que no sea necesario escribir pygame.locals delante de cada una de las constantes del módulo.
 
-If you have from sys import * instead of import sys in your program, you could call exit() instead of sys.exit() in your code. But most of the time it is better to use the full function name so you know which module the function is in.
+Si usaras from sys import * en lugar de import sys en tu programa, tendrías que llamar a exit() en lugar de sys.exit() en tu código. Pero la mayoría de las veces es mejor usar el nombre completo de la función para tener claro en qué módulo se encuentra la función.
 
-The pygame.init() Function
+La Función pygame.init()
 
- 4. # set up pygame
+ 4. # configurar pygame
  5. pygame.init()
 
-All Pygame programs must call the pygame.init() after importing the pygame module but before calling any other Pygame functions. This perform’s Pygame’s necessary initialization steps.
+Todos los programas de Pygame deben llamar a la función pygame.init() luego de haber importado el módulo pygame, pero antes de llamar a cualquier otra función de Pygame. Esto realiza los pasos necesarios para la inicialización de Pygame.
 
-Tuples
+Tuplas
 
-Tuple values are similar to lists, except they use parentheses instead of square brackets. Also, like strings, tuples cannot be modified. For example, try entering the following into the interactive shell:
+Los valores de tuplas son similares a las listas, excepto que utilizan paréntesis en lugar de corchetes. Además, como las cadenas, las tuplas no pueden ser modificadas. Por ejemplo, prueba escribir lo siguiente en la consola interactiva:
 
->>> spam = ('Life', 'Universe', 'Everything', 42)
+>>> spam = ('Vida', 'Universo', 'Todo', 42)
 >>> spam[0]
-'Life'
+'Vida'
 >>> spam[3]
 42
 >>> spam[1:3]
-('Universe', 'Everything')
+('Universo', 'Todo')
 
-The pygame.display.set_mode() and pygame.display.set_caption() Functions
+Las Funciones pygame.display.set_mode() y pygame.display.set_caption()
 
- 7. # set up the window
- 8. windowSurface = pygame.display.set_mode((500, 400), 0, 32)
- 9. pygame.display.set_caption('Hello world!')
+ 7. # configurar la ventana
+ 8. superficieVentana = pygame.display.set_mode((500, 400), 0, 32)
+ 9. pygame.display.set_caption('¡Hola mundo!')
 
-Line 8 creates a GUI window by calling the set_mode() method in the pygame.display module. (The display module is a module inside the pygame module. Even the pygame module has its own modules!)
+La línea 8 crea una ventana GUI al llamar al método set_mode() en el módulo pygame.display. (El módulo display es un módulo contenido dentro del módulo pygame. ¡El módulo pygame tiene hasta sus propios módulos!)
 
 A pixel is the tiniest dot on your computer screen. A single pixel on your screen can light up into any color. All the pixels on your screen work together to display all the pictures you see. To create a window 500 pixels wide and 400 pixels high, use the tuple (500, 400) for the first parameter to pygame.display.set_mode().
 
