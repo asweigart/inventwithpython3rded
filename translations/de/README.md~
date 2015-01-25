@@ -2,7 +2,6 @@ Translators
 ===========
 
 - Christian Schilter (schmittens)
-- Christian Von Aster
 - Dennis Bautembach (denniskb)
 - Frank Lehmann
 - Georg Ramer (GeorgRamer)
@@ -34,6 +33,38 @@ Kapitel 6
 ---------
 
 - "spam" wurde nicht übersetzt. Meinung?
+
+
+Kapitel 7
+---------
+
+Vorbemerkung: Ich habe nur eine englische Installation und habe nicht rausgekriegt, wo ich eine deutsche Version von IDLE herbekomme. Gibt es die überhaupt? Entsprechend war ich mir bei einigen Menüeinträgen nicht sicher. Diese Begriffe sind im Dokument mit [...] vermerkt.
+
+- Zeile 8: "Stepping: Into, Over and Out". Das sollte eigentlich den Buttons in der deutschen IDLE-Version entsprechen, die ich nicht habe. Kann das jemand verifizieren? Übersetzungsvorschlag von mir: Hineinschalten, Hinüberschalten und Herausschalten.
+
+- Zeile 17: "Bugs" als "Bugs" belassen
+
+- Zeile 20: "Runtime Error" wurde in "Laufzeitfehler" übersetzt. Meinungen?
+
+- Zeile 43: Habe "Debugger" 1:1 ins Deutsche übernommen, da ich keine sinnvolle Übersetzung gefunden habe. Ideen?
+
+- Zeile 49: Habe "Drachen-Reich" aus Kapitel 5 übernommen. Wie handhabt ihr die Namen und Datainamen der Beispielprogramme? Ich habe sie ins Deutsche übersetzt und innerhalb des Codes Text und Variablenamen übersetzt.
+
+- Zeile 55: "Source and Globals checkboxes" wurden vorerst in "Source- und Globals-Kontrollkästchen" übersetzt. Sie Vorbemerkung.
+
+- Zeile 74: "Scope" wurde in "Geltungsbereich" übersetzt.
+
+- Zeile 82: "String" wurde als "String" belassen.
+
+- Zeile 106: Vorschlag für "shell": "Konsole"
+
+- Zeile 118: "Break points" wurde in "Unterbrechungspunkte" übersetzt. Evtl. Haltepunkte?
+
+
+
+
+
+
 
 Kapitel 9
 ---------
