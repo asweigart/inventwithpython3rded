@@ -2,7 +2,6 @@ Translators
 ===========
 
 - Christian Schilter (schmittens)
-- Christian Von Aster
 - Dennis Bautembach (denniskb)
 - Frank Lehmann
 - Georg Ramer (GeorgRamer)
