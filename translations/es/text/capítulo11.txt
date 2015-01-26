@@ -157,7 +157,7 @@ Mezclando un Conjunto de Cifras Únicas
  4.     numeros = list(range(10))
  5.     random.shuffle(numeros)
 
-La lista de la línea 4 (range(10)) siempre se evalúa a [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. Simplemente es más fácil escribir list(range(10)). La variable numeros contiene una lista de las diez posibles cifras.
+La expresión de la línea 4 list(range(10)) siempre se evalúa a [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]. Simplemente es más fácil escribir list(range(10)). La variable numeros contiene una lista de las diez posibles cifras.
 
 La función random.shuffle()
 
@@ -248,7 +248,7 @@ La función obtenerPistas() devolverá una sola cadena con las pistas fermi, pic
 
 Si la conjetura no coincide con el número secreto, el código debe determinar qué pistas dar al jugador. La lista en pista comenzará vacía y se le añadirán cadenas 'Fermi' y 'Pico' a medida que se necesite.
 
-Hacemos esto recorriendo cada posible índice en conjetura y numSecreto. las cadenas en ambas variables serán de la misma longitud, de modo que la línea 18 podría usar tanto len(conjetura) como len(numSecreto) y funcionar igual. Como el valor de i cambia de 0 a 1 a 2, y así sucesivamente, la línea 19 comprueba si la primera, segunda, tercera, etc. letra de conjetura es la misma que el número correspondiente al mismo índice en de numSecreto. Si es así, la línea 20 agregará una cadena 'Fermi' a pista.
+Hacemos esto recorriendo cada posible índice en conjetura y numSecreto. Las cadenas en ambas variables serán de la misma longitud, de modo que la línea 18 podría usar tanto len(conjetura) como len(numSecreto) y funcionar igual. Como el valor de i cambia de 0 a 1 a 2, y así sucesivamente, la línea 19 comprueba si la primera, segunda, tercera, etc. letra de conjetura es la misma que el número correspondiente al mismo índice en de numSecreto. Si es así, la línea 20 agregará una cadena 'Fermi' a pista.
 
 De lo contrario, la línea 21 comprobará si la cifra en la posición i-ésima de conjetura existe en algún lugar de numSecreto. Si es así, ya sabes que la cifra está en algún lugar del número secreto pero no en la misma posición. Entonces la línea 22 añadirá 'Pico' a pista.
 
