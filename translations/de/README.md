@@ -7,6 +7,7 @@ Translators
 - Georg Ramer (GeorgRamer)
 - Horst Jens (horstjens)
 - Thomas Klemmer
+- Karoline Busse (kikidergecko)
 
 (You can always check the commit history of the files in this folder to find other translators, if this README is not up to date.)
 
@@ -32,7 +33,7 @@ Kapitel 1
 Kapitel 6
 ---------
 
-- "spam" wurde nicht übersetzt. Meinung?
+- "spam" wurde nicht übersetzt. Meinung? Kiki sagt: Nicht übersetzen.
 
 
 Kapitel 7
@@ -44,9 +45,9 @@ Vorbemerkung: Ich habe nur eine englische Installation und habe nicht rausgekrie
 
 - Zeile 17: "Bugs" als "Bugs" belassen
 
-- Zeile 20: "Runtime Error" wurde in "Laufzeitfehler" übersetzt. Meinungen?
+- Zeile 20: "Runtime Error" wurde in "Laufzeitfehler" übersetzt. Meinungen? Gut so, sagt kiki.
 
-- Zeile 43: Habe "Debugger" 1:1 ins Deutsche übernommen, da ich keine sinnvolle Übersetzung gefunden habe. Ideen?
+- Zeile 43: Habe "Debugger" 1:1 ins Deutsche übernommen, da ich keine sinnvolle Übersetzung gefunden habe. Ideen? Gut so, sagt Kiki.
 
 - Zeile 49: Habe "Drachen-Reich" aus Kapitel 5 übernommen. Wie handhabt ihr die Namen und Datainamen der Beispielprogramme? Ich habe sie ins Deutsche übersetzt und innerhalb des Codes Text und Variablenamen übersetzt.
 
@@ -58,7 +59,7 @@ Vorbemerkung: Ich habe nur eine englische Installation und habe nicht rausgekrie
 
 - Zeile 106: Vorschlag für "shell": "Konsole"
 
-- Zeile 118: "Break points" wurde in "Unterbrechungspunkte" übersetzt. Evtl. Haltepunkte?
+- Zeile 118: "Break points" wurde in "Unterbrechungspunkte" übersetzt. Evtl. Haltepunkte? Kiki sagt, "Haltepunkte" hört sich besser an.
 
 
 
@@ -71,3 +72,11 @@ Kapitel 9
 
 - ("spam" wurde nicht übersetzt.)
 - "range" (Kontext: range()) wurde nach "Wertebereich" übersetzt. Meinung?
+
+
+
+
+Kapitel 10
+---------
+
+- "numpad" wird zu "Ziffernblock".
