@@ -80,3 +80,4 @@ Kapitel 10
 ---------
 
 - "numpad" wird zu "Ziffernblock".
+- "source code" zu "Programmcode" ("Quellcode" halte ich für zu hochgestochen).
