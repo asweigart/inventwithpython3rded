@@ -1,0 +1,216 @@
+Chapitre 7 - Utiliser le Débogueur
+
+Les Sujets Traités dans ce Chapitre :
+
+3 Différents Types d'Erreurs
+Le Débogueur d'IDLE
+Entrer Dans, Sauter, et Sortir
+Aller À et Quitter
+Les Points d'Arrêts
+Les Bogues !
+
+«À deux reprises on m'a demandé, 'Priez, M. Babbage, si vous entrez les mauvaises chiffres dans votre machine, est-ce que les bonnes réponses en sortiront ?' Je suis incapable d'exprimer correctement la confusion qui a résulté d'une telle question.»
+
+-Charles Babbage, mathématicien, philosophe, inventeur et ingénieur anglais du XIXième siècle qui est à l'origine du concept d'ordinateur programmable.
+http://fr.wikipedia.org/wiki/Charles_Babbage
+Si vous entrez de mauvaises instructions, l'ordinateur ne vous donnera pas la réponse attendue. Un programme d'ordinateur fera toujours exactement ce que vous lui avez demandé de faire, mais ce que vous lui avez demandé n'est pas forcément ce que vous vouliez que le programme fasse. Un bogue veut dire une erreur ou un problème dans un programme. Les bogues arrivent quand le développeur n'a pas été réfléchi à ce qu'allait faire le programme. Il y a trois types de bogues qui peuvent apparaître dans votre programme :
+
+Les erreurs de syntaxes proviennent de fautes de saisie dans votre programme. Quand l'interpréteur Python voit une erreur de syntaxe, c'est parce que votre code n'est pas écrit correctement en Python. Un programme Python avec une seule erreur de syntaxe ne s'exécutera pas.
+Les erreurs d'exécution sont les erreurs qui arrivent quand le programme est en cours d'exécution. Le programme fonctionnera jusqu'à ce qu'il arrive sur la ligne de code contenant l'erreur, et alors le programme s'arrête avec un message d'erreur (ça s'appelle planté). L'interpréteur Python affichera quelque chose appelé «traceback» et donne la ligne à laquelle le problème est apparut.
+Les erreurs sémantiques sont les erreurs les plus délicates à corriger. Ce bogue ne fait pas planté le programme, et le programme peut sembler fonctionner correctement. Cependant, il ne fait pas ce à quoi s'attendait le développeur. Par exemple, si le développeur veut que la variable total soit la somme des variables a, b et c mais écrit total = a + b * c, alors la valeur de total sera fausse. Cela ne causera pas un plantage du programme immédiatement, mais pourrait ou non faire planter une autre partie du programme à cause d'une valeur inattendue dans la variable total.
+Trouver les bogues dans un programme peut être dur, si même vous arrivez à juste les voir ! Quand vous lancer votre programme, vous pourriez découvrir que parfois des fonctions ne sont pas appelées alors qu'elles devraient l'être, ou peut-être qu'elles sont appelées trop souvent. Vous pouvez avoir mal codé une condition pour une boucle while, qui fait qu'une boucle n'est pas appelé le bon nombre de fois (une boucle dans votre programme qui ne sort jamais est un bogue appelé boucle infinie. Pour arrêter ce programme, vous pouvez appuyer sur Ctrl+C dans la console). Tous ces bogues peuvent apparaître dans vos programmes si vous n'êtes pas attentifs.
+
+Il peut être dur de voir comment faire reproduire un bogue à votre programme parce que toutes les lignes de code sont exécutées trop rapidement et les valeurs des variables changent trop souvent. Un débogueur est un programme qui vous permet d'exécuter votre programme ligne par ligne (dans le même ordre que Python les exécute), et montre quelles valeurs sont stockées dans toutes les variables. Un débogueur vous permet de savoir ce que fait exactement chacune des lignes de votre programme. Cela peut être très utile pour savoir exactement ce que fait votre programme.
+
+Un tutoriel vidéo sur comment utiliser le débogueur fournit avec IDLE peut être trouver sur le site du livre  l'adresse : http://inventwithpython.com/videos/
+
+Démarrer le Débogueur
+
+Dans IDLE, ouvrez le jeu Le Royaume du Dragon que vous avez fait au chapitre précédent. Dans la console interactive, cliquez sur File puis Open, et sélectionnez dragon.py (ou quelque soit le nom que vous avez donné au fichier quand vous l'avez sauvegardé).
+
+Après l'ouverture du fichier dragon.py, cliquez sur l'entrée de menu Debug en haut de la console, puis cliquez sur Debugger pour faire apparaître la fenêtre Debug Control (Figure 7-1).
+
+
+Figure 7-1: La fenêtre Debug Control.
+
+Maintenant quand vous lancer le jeu le Royaume du Dragon (en appuyant sur F5 ou en cliquant sur Run dans le menu en haut de la fenêtre d'édition du fichier), le débogueur sera activé. Cela s'appelle exécuter un programme «attaché à un débogueur». Dans la fenêtre Debug Control, vérifiez les cases à cocher Source et Globals. Puis exécutez le programme en appuyant sur F5 dans la fenêtre d'édition (Figure 7-2).
+
+
+Figure 7-2: Exécution du jeu Le Royaume du Dragon avec le débogueur.
+
+Quand vous lancez des programmes avec le débogueur activé, le programme s'arrêtera avant d'exécuter la première ligne de code. Si vous cliquez sur la barre de titre de la fenêtre d'édition de fichier (et vous avez activé la case à cocher Source dans la fenêtre Debug Control), la première ligne du code est surlignée en gris. De même, la fenêtre Debug Control montre que vous êtes sur la ligne 1, qui est la ligne import random.
+
+Le débogueur vous permet d'exécuter le code ligne par ligne (appelé «pas à pas» ou «step»). Pour exécuter une seule instruction, cliquez sur le bouton Step dans la fenêtre Debug Control. Allez-y et cliquez une fois sur le bouton Step. Cela fera exécuter l'instruction import random par l'interpréteur Python, puis il s'arrêtera avant d'exécuter la ligne suivante. La fenêtre Debug Control window changera pour indiquer que vous êtes maintenant à la ligne 2, la ligne import time.
+
+Pas à Pas
+
+Voici un résumé de ce qui arrive quand vous cliquez sur le bouton Step en lançant le jeu Le Royaume du Dragon avec le débogueur. Une description détaillée suit.
+
+Cliquez sur le bouton Step deux fois pour exécuter les deux lignes d'import.
+Cliquez sur le bouton Step trois fois de plus pour exécuter les trois instructions def.
+Cliquez sur le bouton Step encore pur définir la variable playAgain.
+Cliquez sur Go pour exécuter le reste du programme, ou cliquez sur Quit pour terminer le programme.
+L'exécution pas à pas est le fait d'exécuter le programme les instruction une part une. En faisant ainsi, cela vous permet de voir ce qui se passe quand une seule la ligne de code est exécutée, ce qui peut vous aidez à comprendre quand arrive un bogue pour la première fois dans vos programmes.
+
+La fenêtre Debug Control vous montrera la ligne qui sera exécutée quand vous cliquerez sur le bouton Step dans la fenêtre Debug Control. Cette fenêtre vous montre aussi le numéro de ligne courante et vous en affiche le code.
+
+Cliquez sur le bouton Step deux fois pour exécuter les deux lignes d'import.
+
+Cliquez sur le bouton Step encore pour exécuter la ligne d'instruction import time. Le débogueur exécutera cet import et ira à la ligne 4. Le débogueur sautera la ligne 3 parce que c'est une ligne vide. Notez que vous pouvez aller uniquement vers l'avant avec le débogueur, vous ne pouvez pas aller en arrière.
+
+Cliquez sur le bouton Step trois fois de plus pour exécuter les trois instructions def.
+
+Cliquez sur le bouton Step trois fois de plus. Cela exécutera les trois instructions def qui définissent ces fonctions. Quand vous définissez ces fonctions, elles apparaissent dans la zone Globals de la fenêtre Debug Control.
+
+Le texte à côté du nom de la fonction dans la zone nommée "Globals" ressemblera à quelque chose comme "<function checkCave at 0x012859B0>". Les noms de module ont aussi un texte perturbant à côté d'eux, comme "<module 'random' from 'C:\\Python31\\lib\\random.pyc'>". Ces informations détaillées sont utiles pour les développeurs Python avancés, mais vous n'avez pas besoin de savoir à quoi elles correspondent pour déboguer vos programmes. Le fait de voir les fonctions et les modules dans la zone "Globals", vous permet de savoir que les fonctions ont été définies et les modules importés. Vous pouvez aussi ignorer les lignes __builtins__, __doc__, et __name__ de la zone "Globals" (Ce sont des variables qui apparaissent dans tous les programmes Python).
+
+Cliquez sur le bouton Step encore pur définir la variable playAgain.
+
+Le débogueur sera maintenant (après avoir cliqué quatre fois) à la ligne 35, la ligne playAgain = 'yes'. Quand vous cliquez sur Step pour exécuter cette ligne, la variable playAgain sera créée et apparaîtra dans la zone "Globals". À côté d'elle, il y aura la valeur stockée dans cette variable, qui est la chaîne 'yes'. Le débogueur vous permet de voir les valeurs de toutes les variables dans un programme en cours d'exécution. Cela peut être très utile si vous avez besoin de corriger votre programme.
+
+La zone "Globals" dans la fenêtre "Debug Control" est l'endroit où toutes les variables globales sont affichées. Rappelez-vous, les variables globales sont les variables qui sont créées en dehors de toute fonction (donc, ayant une portée globale). Il y a aussi une zone "Locals", qui vous montre les variables ayant une portée locale, et leur valeur. La zone "Locals" affichera des variables uniquement quand le programme en train d'exécuter une fonction. Comme nous sommes encore dans la portée globale, cette zone est vide.
+
+Le débogueur Python (et à peu près tous les débogueurs) vous permettent seulement d'avancer dans vos programme. Une fois que vous avez exécuté une instruction, vous ne pouvez pas revenir en arrière et annuler l'instruction.
+
+Les Boutons "Go" et "Quit"
+
+Si vous êtes fatigués de cliquer sur le bouton "Step" encore et encore, et voulez juste que le programme s'exécute normalement, cliquez sur le bouton "Go" en haut de la fenêtre "Debug Control". Cela dira au programme de s'exécuter comme si le débogueur n'était pas activé.
+
+Si vous voulez arrêter le programme alors qu'il est en court d'exécution, cliquez juste sur le bouton "Quit" en haut de la fenêtre "Debug Control". Le programme s'arrêtera immédiatement. Cela peut être pratique si vous voulez relancer le programme à partir du début.
+
+Entrer Dans, Sauter et Sortir
+
+Lancez le programme "Le Royaume du Dragon" avec le débogueur, et continuez l'exécution pas à pas jusqu'à la ligne 38 (en cliquant dans la fenêtre "Debug Control") (la ligne d'appel à la fonction displayIntro()). Quand vous cliquez de nouveau sur "Step", le débogueur va aller dans cette fonction et se placera à la ligne 5 (la première ligne du bloc de définition de la fonction displayIntro()). Ce type d'exécution est appelé exécution entrante, parce que cela exécute un pas dans les appels de fonction.
+
+
+Figure 7-3: Continuez à exécuter pas à pas jusqu'à la ligne 38.
+
+Si vous cliquez sur "Step" quelques fois de plus, vous verrez la sortie de la fonction print() apparaître dans la fenêtre de la console interactive ligne à ligne. Quand vous exécutez le dernier appel à la fonction print() dans la fonction displayIntro(), le débogueur retournera à la première ligne (ligne 40) après l'appel à la fonction.
+
+Cliquez une fois de plus pour rentrer dans la fonction chooseCave(). Continuez à exécuter le code pas à pas jusqu'à ce que vous exécutiez l'appel à la fonction input(). Le programme attendra jusqu'à ce que vous saisissiez une réponse dans la console, comme si vous exécutiez le programme normalement. Si vous essayez de cliquer sur le bouton "Step" maintenant, rien ne se passera parce que le programme attend une réponse provenant du clavier.
+
+Entrez une réponse en cliquant dans la console interactive et saisissez dans quelle cave vous voulez entrer. Vous devez cliquer dans la ligne en bas de la fenêtre avant de taper. Si vous tapez mais que rien n'apparait sur l'écran (et le curseur clignotant n'est pas en dessous de la question "Dans quelle cave allez vous rentrer (1 ou 2) ?), alors vous n'avez pas cliqué dans la dernière ligne de la console.
+
+Une fois que vous avez validé votre réponse par "Entrée", le débogueur continuera à exécuter les code pas à pas. Au lieu de cliquer sur "Step", essayez de cliquer sur le bouton "Out" de la fenêtre "Debug Control". Cela s'appelle sortir, parce que cela force le débogueur à exécuter pas à pas le programme jusqu'à ce qu'il sorte de la fonction dans laquelle il est. Après être sorti, le programme se placera à la ligne après la ligne ayant effectuée l'appel à la fonction. Par exemple, si vous étiez à l'intérieur de la fonction displayIntro() à la ligne 6, sortir positionnera le débogueur après la ligne ayant effectuée l'appel à la fonction diplayIntro(). "Out" vous permet d'éviter d'avoir à cliquer sur "Step" jusqu'à la dernière instruction de la fonction.
+
+Si vous n'êtes pas à l'intérieur d'une fonction (donc, vous êtes dans la portée globale) et vous cliquez sur "Out", le débogueur exécutera toutes les lignes restantes du programme (exactement comme si vous aviez cliquez sur le bouton "Go").
+
+La dernière sorte de mode d'exécution est effectué par le bouton "Over" dans la fenêtre "Debug Control", et sert à passer par dessus les appels de fonctions. Cela signifie que le débogueur ne rentrera pas dans les appels de fonction. À la place, le débogueur exécutera toutes les lignes à l'intérieur de la fonction d'un coup, et s'arrêtera à la ligne suivant l'appel de la fonction. C'est utile si vous ne voulez pas exécuter toutes les lignes de la fonction (vous pouvez voir "Over" comme un "Step" entrant dans la fonction puis un "Out" qui exécute toutes les lignes et ressort de la fonction).
+
+Maintenant, vous savez ce que fait les cinq boutons en haut de la fenêtre "Debug Control". Voici une petite récapitulation de ce que fait chacun des boutons :
+
+Go - Exécute le code normalement, ou jusqu'à ce qu'il tombe sur un point d'arrêt (Les points d'arrêts sont décrit plus tard).
+Step - Exécute une ligne de code. Si la ligne est un appel de fonction, le débogueur entrera dans le corps de la fonction.
+Over - Exécute une ligne de code. Si la ligne est un appel de fonction, le débogueur ne rentrera pas dans la fonction, mais passera à la ligne suivant l'appel.
+Out - Exécute pas à pas les instructions jusqu'à ce que le débogueur quitte la fonction dans laquelle il était lors du clic que le bouton "Out". Cela fait sortir de la fonction.
+Quit - Termine immédiatement le programme.
+
+Trouver le Bogue
+
+Utiliser le débogueur est une bonne manière de voir ce qui cause un bogue dans votre programme. Par exemple, voici un simple programme qui contient un bogue. Le programme propose une addition à deux nombres à résoudre par l'utilisateur. Dans la console interactive, cliquez sur File, puis New Window pour ouvrir une nouvelle fenêtre d'édition. Tapez le programme dans cette fenêtre, et sauvez le programme sous le nom bogue.py.
+
+bogue.py
+import random
+nombre1 = random.randint(1, 10)
+nombre2 = random.randint(1, 10)
+print('Combien fait ' + str(nombre1) + ' + ' + str(nombre2) + ' ?')
+reponse = input()
+if reponse == nombre1 + nombre2:
+    print('Correct!')
+else:
+    print('Raté ! La réponse est ' + str(nombre1 + nombre2))
+Tapez le programme exactement comme ci-dessus, même si vous pouvez déjà dire d'où vient le bogue. Puis essayez d'exécuter le programme en appuyant sur F5. C'est un jeu simple d'arithmétique qui demande la résultat d'une addition à deux nombres. Voic ce qui devrait apparaitre quand vous lancez le programme :
+
+Combien fait 7 + 4 ?
+11
+Raté ! La réponse est 11
+Ce qui est faux ! Le programme contient à bogue sémantique. Même si l'utilisateur entre la bonne réponse, le programme dit que quelle est fausse.
+
+Vous pouvez regarder le code et finir par trouver difficilement ce qui ne va pas. Cela fonctionne parfois. Mais vous pouvez trouver la raison du bogue plus rapidement si vous utilisez le débogueur. En haut de la fenêtre de la console interactive, cliquez sur Debug, puis Debugger (s'il n'y a pas déjà une coche devant l'entrée de menu Debugger) pour afficher la fenêtre Debug Control. Dans la fenêtre Debug Control, soyez sûr que les quatre cases à cocher le sont(Stack, Source, Locals, et Globals). Cela permet d'avoir un maximum d'information . Puis appuyez sur F5 dans la fenêtre d'édition pour exécuter le programme avec le débogueur.
+
+Le débogueur démarre à la ligne d'import du module random. Rien de spécial de ne passe ici, donc appuyez juste sur "Step" pour l'exécuter. Vous devriez voir que le module random a été ajouté en base de la zone "Globals" dans la fenêtre "Debug Control".
+
+Cliquez de nouveau sur "Step" pour exécuter la ligne 2. Une nouvelle fenêtre d'édition va s'ouvrir montrant le fichier random.py. Rappelez-vous que la fonction randint() est à l'intérieur du module random. Quand vous exécuter pas à pas dans une fonction, vous allez dans le module random parce que c'est là où se trouve la fonction randint. Les fonctions qui sont fournies dans les modules Python ne contiennent pratiquement jamais de bogues, donc vous pouvez juste cliquer sur "Out" pour sortir de la fonction randint() et retourner dans votre programme. Ensuite, vous pouvez fermer la fenêtre du module random.
+
+La ligne 3 est aussi un appel à la fonction randint(). Nous n'avons pas besoin d'aller à l'intérieur de ce code, ainsi cliquez sur "Over" pour passer cette fonction. Le code de la fonction randint() est quand même exécuté, il l'est seulement fait en une seule fois sans qu'on est besoin d'exécuter toutes ses lignes.
+
+La ligne 4 est un appel à print() pour montrer au joueur les nombres aléatoires. Mais comme nous travaillons avec le débogueur, nous savons déjà les nombres qui sont utilisés avant que le programme ne les affichent ! Il suffit de regarder dans la zone "Globals" de la fenêtre "Debug Control". Vous pouvez voir les variables nombre1 et nombre2, et juste à côté la valeur stockée dans ces variables. Quand je lance le débogueur, cela ressemble à la Figure 7-4.
+
+
+Figure 7-4: nombre1 vaut 9 et nombre2 vaut 10.
+
+La variable nombre1 vaut 9 et la variable nombre2 vaut 10. Quand vous cliquerez sur "Step", le programme affichera la chaîne lors de l'appel à print() avec ces deux valeurs (évidemment, nous utilisons la fonction str() pour concaténer la représentation textuelle de ces entiers).
+
+Cliquez sur "Step" à la ligne 5 fera attendre le débogueur une réponse du joueur. Allez-y et entrez la bonne réponse (dans mon cas, 19) dans la console interactive. Le débogueur continuera ensuite à la ligne 6.
+
+La ligne 6 est une instruction if. La condition est que la valeur dans reponse doit valoir la somme de nombre1 et nombre2. Si la condition est vraie, alors le débogueur ira à la ligne 7. Si la condition est fausse, il ira à la ligne 9. Cliquez sur "Step" une fois de plus pour voir où il va.
+
+Le débogueur est maintenant à la ligne 9 ! Que s'est-il passé ? La condition de l'instruction if a du être être fausse. Jetez un œil aux valeurs de nombre1, nombre2, et reponse. Notez que nombre1 et nombre2 sont des entiers, ainsi leur somme est aussi un entier. En revanche, reponse est une chaîne. Cela signifie que la condition reponse == nombre1 + nombre2 a du être évalué à '19' == 19. Une valuer chaîne et un entier sont toujours différents l'un de l'autre, donc la condition est fausse.
+
+C'est le bogue dans le programme. Le bogue est que nous utilisons reponse au lieu d'utiliser int(reponse). Allez-y et modifiez la ligne 6 par int(reponse) == nombre1 + nombre2 au lieu de reponse == nombre1 + nombre2, et lancez de nouveau le programme.
+
+Combien fait 2 + 3 ?
+5
+Correct !
+Cette fois, le programme fonctionne correctement. Lancez le uns fois de plus et entrez une mauvaise valeur pour être sûr que le programme n'indique pas toujours une bonne réponse. Nous avons maintenant débogué ce programme. Rappelez-vous qu'un ordinateur exécutera exactement le programme comme vous l'avez saisi, même si ce que vous avez saisi n'est pas ce que vous vouliez.
+
+Les Points d'Arrêts
+
+Exécuter le code pas à pas peut être trop lent. Souvent, vous voulez que le programme s'exécute à la vitesse normal jusqu'à ce qu'il atteigne une certaine ligne. Vous pouvez faire cela avec des points d'arrêts. Un point d'arrêt est placé sur une ligne quand vous voulez que le débogueur s'arrête quand il atteint cette ligne. Ainsi, si vous pensez qu'il y a un problème dans votre code, disons, à la ligne 17, placez juste un point d'arrêt à la ligne 17 (ou un peut être un peu avant cette ligne) et quand le programme atteindra cette ligne, le débogueur arrêtera l'exécution du programme. Alors vous pourrez le code ligne à ligne pour voir ce qui se passe. Ensuite, vous pouvez cliquer sur "Go" pour laisser le programme s'exécuter normalement jusqu'à la fin (ou un autre point d'arrêt).
+
+Pour placer un point d'arrêt, faites un clic-droit sur la ligne souhaitée et sélectionnez "Set Breakpoint" dans le menu contextuel. La ligne sera surlignée en jaune pour indiquer qu'un point d'arrêt est placé sur cette ligne. Vous pouvez placer des points d'arrêt sur autant de ligne que vous le souhaitez. Pour supprimer un point d'arrêt, faites un clic-droit sur la ligne et sélectionnez "Clear Breakpoint" dans la menu contextuel.
+
+
+Figure 7-5: L'éditeur de fichier avec deux points d'arrêt placés.
+
+Exemple d'Utilisation de Points d'Arrêt
+
+Essayons de déboguer un programme avec de points d'arrêt. Voici un programme qui simule un jeu de pile ou face en appelant la fonction random.randint(0, 1). A chaque fois que la fonction renvoie 1, on considère que c'est pile, et on incrément la variable "piles". Nous incrémentons aussi une variable appelée lances pour savoir combien de fois nous avons lancés la pièce.
+
+Le programme va jouer à "pile ou face" mille fois. Cela prendrait environ une heure à une personne pour le faire, mais l'ordinateur peut le faire en moins d'une seconde ! Saisissez le programme qui suit dans l'éditeur de fichier et sauvez le sous le nom PileFace.py. Vous pouvez aussi télécharger le code  l'adresse http://inventwithpython.com/coinFlips.py
+
+PileFace.py
+Ce code peut être téléchargé à l'adresse http://inventwithpython.com/coinFlips.py
+Si vous avez des erreurs en entrant ce code, comparez le avec celui-ci avec l'outil de diff à l'adresse http://inventwithpython.com/diff ou envoyez un couriel à l'auteur al@inventwithpython.com
+import random
+print('Je vais jouer à Pile ou Face, 1000 fois. Devinez combien de pile vont sortir (Appuyez sur Entrée pour commencer)')
+input()
+lances = 0
+piles = 0
+while lances < 1000:
+    if random.randint(0, 1) == 1:
+        piles = piles + 1
+    lances = lances + 1
+
+    if lances == 900:
+        print('900 lancés et il y a eu ' + str(piles) + ' pile.')
+    if lances == 100:
+        print('A 100 lancés, pile est sorti ' + str(piles) + ' fois jusque là.')
+    if lances == 500:
+        print('Mi-parcours, et pile est sorti ' + str(piles) + ' fois.')
+
+print()
+print('Après 1000 lancés de pièces, pile est sorti ' + str(piles) + '  fois !')
+print('Etiez-vous proche ?')
+
+Le programme s'exécute plutôt rapidement. Il attend probablement plus de temps que l'utilisateur appuie sur Entrée que de lancer les pièces. Imaginons que nous voulons voir les lancés un par un. Dans la fenêtre de la console interactive, cliquez sur Debug puis Debugger  en haut du menu pour faire apparaître la fenêtre Debug Control. Puis appuyez sur F5 pour lancer le programme.
+
+Le programme commence avec le débogueur à la ligne 1. Appuyez sur Step trois fois dans la fenêtre Debug Control pour exécuter les trois premières lignes (les lignes 1, 2, et 3). Vous noterez que le bouton devient grisé à cause de la fonction input() appelée et la console interactive attend une saisie du joueur. Cliquez sur la console interactive et appuyez sur Entrée (Soyez sûr de cliquer en-dessous du texte de la fenêtre interactive, autrement IDLE pourrait ne pas recevoir l'appuie des touches). Après avoir entré le texte pour la fonction input(), le bouton Step redevient actif.
+
+Vous pouvez cliquer sur Step encore quelques fois, mais vous découvrirez vite qu'il va prendre un certain temps pour faire tout le programme. Au lieu de ça, placez des points d'arrêts aux ligne 12, 14 et 16 (Figure 7-6).
+
+
+Figure 7-6: Trois points d'arrêts choisis.
+
+Après la mise en place des points d'arrêt, cliquez sur Go dans la fenêtre Debug Control. Le programme s'exécutera à vitesse normale jusqu'à ce qu'il lance 100 pièces. Sur ce lancé, la condition pour l'instruction if à la ligne 13 sera vraie. Cela fera s'exécuter la ligne 14 (où un point d'arrêt est placé), le débogueur arrêtera donc le programme. Regardez la fenêtre Debug Control dans la section Globals pour voir quelles sont les valeurs de piles et lances.
+
+Cliquez de nouveau sur Go et le programme continuera jusqu'au prochain point d'arrêt à la ligne 16. Encore, regardez comment les valeurs de lances et piles ont changés. Vous pouvez cliquer une fois de plus sur Go pour continuer l'exécution du programme jusqu'au prochain point d'arrêt.
+
+Et si vous cliquez encore sur Go, le programme continuera jusqu'au prochain point d'arrêt, à la ligne 12. Vous avez probablement noté que les fonctions print() aux lignes 12, 14 et 16 sont appelées dans un ordre différent que celui dans lequel elles apparaissent dans le source. C'est ainsi parce qu'elles sont appelées dans l'ordre dans lequel leur condition est vraie. Utiliser un débogueur peut aider à rendre limpide ce pourquoi.
+
+Résumé
+
+Écrire des programmes est seulement une petite partie du travail quand on écrit des jeux. La suite est d'être sûr que le code écrit fonctionne réellement. Les débogueurs nous permet d'exécuter pas à pas chaque ligne du code, tout en voyant les lignes exécutées (et dans quel ordre) et les valeurs stockées dans les variables. Quand c'est trop lent, on peut mettre des points d'arrêts et cliquer sur Go pour que notre programme s'exécute normalement jusqu'à ce qu'il arrive sur un point d'arrêt.
+
+Utiliser le débogueur est une excellent moyen de comprendre exactement ce que fait un programme. Tandis que ce livre vous fournit des explications pour tous les jeux qu'il contient, le débogueur peut vous aider à aller plus loin par vous mêmes.
+
