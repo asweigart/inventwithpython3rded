@@ -158,113 +158,113 @@ Las Funciones pygame.display.set_mode() y pygame.display.set_caption()
 
 La línea 8 crea una ventana GUI al llamar al método set_mode() en el módulo pygame.display. (El módulo display es un módulo contenido dentro del módulo pygame. ¡El módulo pygame tiene hasta sus propios módulos!)
 
-A pixel is the tiniest dot on your computer screen. A single pixel on your screen can light up into any color. All the pixels on your screen work together to display all the pictures you see. To create a window 500 pixels wide and 400 pixels high, use the tuple (500, 400) for the first parameter to pygame.display.set_mode().
+Un píxel es el punto más pequeño en la pantalla de tu computadora. Cada píxel puede iluminarse con cualquier color. Todos los píxeles de tu pantalla trabajan juntos para mostrar todas las imágenes que ves. Para crear una ventana de 500 píxeles de ancho por 400 píxeles de alto, se usa la tupla (500, 400) como el primer parámetro de pygame.display.set_mode().
 
-There are three parameters to the set_mode() method. The first is a tuple of two integers for the width and height of the window, in pixels. The second and third options are advanced options that are beyond the scope of this book. Just pass 0 and 32 for them, respectively.
+Se usan tres parámetros para el método set_mode(). El primero es una tupla de dos enteros para el ancho y alto de la ventana, en píxeles. El segundo y tercer parámetro son opciones avanzadas que no trataremos en este libro. Sólo pasa 0 y 32 respectivamente.
 
-The set_mode() function returns a pygame.Surface object (which we will call Surface objects for short). Objects is just another name for a value of a data type that has methods. For example, strings are objects in Python because they have data (the string itself) and methods (such as lower() and split()). The Surface object represents the window.
+La función set_mode() devuelve un objeto pygame.Surface (al cual aquí llamaremos objeto Surface por brevedad). Objeto es sólo otro nombre para un valor de un tipo de datos que tiene métodos asociados. Por ejemplo, las cadenas son objetos en Python porque tienen datos (la cadena en sí misma) y métodos (tales como lower() y split()). El objeto Surface representa la ventana.
 
-Variables store references to objects just like they store reference for lists and dictionaries. The References section in Chapter 10 explains references.
+Las variables guardan referencias a objetos igual que podrían guardar referencias a listas y diccionarios. La sección Referencias en el capítulo 10 explica lo que son las referencias.
 
-RGB Colors
+Colores RGB
 
-11. # set up the colors
-12. BLACK = (0, 0, 0)
-13. WHITE = (255, 255, 255)
-14. RED = (255, 0, 0)
-15. GREEN = (0, 255, 0)
-16. BLUE = (0, 0, 255)
+11. # configurar los colores
+12. NEGRO = (0, 0, 0)
+13. BLANCO = (255, 255, 255)
+14. ROJO = (255, 0, 0)
+15. VERDE = (0, 255, 0)
+16. AZUL = (0, 0, 255)
 
-Table 17-1: Colors and their RGB values.
-Color   RGB Values
-Black   (  0,   0,   0)
-Blue    (  0,   0, 255)
-Gray    (128, 128, 128)
-Green   (  0, 128,   0)
-Lime    (  0, 255,   0)
-Purple  (128,   0, 128)
-Red (255,   0,   0)
-Teal    (  0, 128, 128)
-White   (255, 255, 255)
-Yellow  (255, 255,   0)
+Tabla 17-1: Colores y sus valores RGB.
+Color    Valores RGB
+Negro    (  0,   0,   0)
+Azul     (  0,   0, 255)
+Gris     (128, 128, 128)
+Verde    (  0, 128,   0)
+Lima     (  0, 255,   0)
+Púrpura  (128,   0, 128)
+Rojo     (255,   0,   0)
+Turquesa (  0, 128, 128)
+Blanco   (255, 255, 255)
+Amarillo (255, 255,   0)
 
-There are three primary colors of light: red, green and blue. By combining different amounts of these three colors (which is what your computer screen does), you can form any other color. In Pygame, tuples of three integers are the data structures that represent a color. These are called RGB Color values.
+Hay tres colores primarios de luz: rojo, verde y azul. Combinando diferentes cantidades de estos tres colores (que es lo que hace tu pantalla hace) puedes formar cualquier otro color. En Pygame, las estructuras de datos que representan un color son tuplas de tres enteros. Se las llama valores de Color RGB.
 
-The first value in the tuple is how much red is in the color. A value of 0 means there’s no red in this color, and a value of 255 means there’s a maximum amount of red in the color. The second value is for green and the third value is for blue. These three integers form an RGB tuple.
+El primer valor en la tupla es la cantidad de rojo en el color. Un valor de 0 significa que no hay rojo en este color, y un valor de 255 significa que está presente la máxima cantidad de rojo en el color. Los valores segundo y tercero corresponden a la cantidad de verde y azul respectivamente. Estos enteros forman una tupla RGB.
 
-For example, the tuple (0, 0, 0) has no amount of red, green, or blue. The resulting color is completely black. The tuple (255, 255, 255) has a maximum amount of red, green, and blue, resulting in white.
+Por ejemplo, la tupla (0, 0, 0) no tiene nada de rojo, verde o azul. El color resultante es negro puro. La tupla (255, 255, 255) tiene el máximo de rojo, verde y azul, resultando en blanco.
 
-The tuple (255, 0, 0) represents the maximum amount of red but no amount of green and blue, so the resulting color is red. Similarly, (0, 255, 0) is green and (0, 0, 255) is blue.
+La tupla (255, 0, 0) representa el máximo de rojo pero nada de verde o azul, luego el color resultante es rojo. Similarmente, (0, 255, 0) es verde y (0, 0, 255) es azul.
 
-You can mix the amount of red, green, and blue to get any shade of any color. Table 17-1 has some common colors and their RGB values. The web page http://invpy.com/colors also lists several more tuple values for different colors.
+Puedes mezclar la cantidad de rojo, verde y azul para obtener cualquier matiz de cualquier color. La Tabla 17-1 tiene algunos colores comunes y sus valores RGB. La página web http://invpy.com/colors muestra otros valores de tuplas para diferentes colores.
 
-Fonts, and the pygame.font.SysFont() Function
+Fuentes, y la Función pygame.font.SysFont()
 
-18. # set up fonts
-19. basicFont = pygame.font.SysFont(None, 48)
+18. # configurar fuentes
+19. fuenteBásica = pygame.font.SysFont(None, 48)
 
-Figure 17-3: Examples of different fonts.
+Figura 17-3: Ejemplos de diferentes fuentes.
 
-A font is a complete set of letters, numbers, symbols, and characters drawn in a single style. Figure 17-3 shows the same sentence printed in different fonts.
+Una fuente es un conjunto completo de letras, números, símbolos y caracteres dibujados en el mismo estilo. La Figura 17-3 muestra la misma oración escrita en diferentes fuentes.
 
-In our earlier games, we only told Python to print text. The color, size, and font that was used to display this text was completely determined by your operating system. The Python program couldn’t change the font. However, Pygame can draw text in any font on your computer.
+En nuestros juegos anteriores, sólo hicimos que Python imprimiera texto. El color, tamaño y fuente que se usaba para mostrar este texto estaba completamente determinado por tu sistema operativo. El programa Python no podía cambiar la fuente. Sin embargo, Pygame puede dibujar texto en cualquier fuente de tu computadora.
 
-Line 19 creates a pygame.font.Font object (called Font objects for short) by calling the pygame.font.SysFont() function. The first parameter is the name of the font, but we will pass the None value to use the default system font. The second parameter is the size of the font (which is measured in units called points).
+La línea 19 crea un objeto pygame.font.Font (llamado objeto Font para abreviar) llamando a la función pygame.font.SysFont(). El primer parámetro es el nombre de la fuente, pero le pasaremos el valor None para usar la fuente del sistema por defecto. El segundo parámetro es el tamaño de la fuente (que se mide en unidades llamadas puntos).
 
-The render() Method for Font Objects
+El Método render() para Objetos Font
 
-21. # set up the text
-22. text = basicFont.render('Hello world!', True, WHITE, BLUE)
-23. textRect = text.get_rect()
+21. # configurar el texto
+22. texto = fuenteBásica.render('¡Hola mundo!', True, BLANCO, AZUL)
+23. textRect = texto.get_rect()
 
-Figure 17-4: An enlarged view of an aliased line and an anti-aliased line.
+Figura 17-4: Una vista aumentada de una línea sin antialiasing y otra con antialiasing.
 
-The Font object that you’ve stored in the basicFont variable has a method called render(). This method will return a Surface object with the text drawn on it. The first parameter to render() is the string of the text to draw. The second parameter is a Boolean for whether or not you want anti-aliasing.
+El objeto Font que has guardado en la variable fuenteBásica tiene un método llamado render(). Este método devolverá un objeto Surface con el texto dibujado sobre él. El primer parámetro de render() es la cadena de texto a dibujar. El segundo parámetro es un Booleano para indicar si quieres utilizar antialiasing.
 
-On line 22, pass True to use anti-aliasing. Anti-aliasing blurs your text slightly to make it look smoother. Figure 17-4 shows what a line (with enlarged pixels) looks like with and without anti-aliasing.
+En la línea 22, pasa True para usar antialiasing. El antialiasing difumina ligeramente tu texto para que se vea más suave. La Figura 17-4 muestra (con píxeles agrandados) cómo se ve una línea con y sin antialiasing.
 
-Attributes
+Atributos
 
-24. textRect.centerx = windowSurface.get_rect().centerx
-25. textRect.centery = windowSurface.get_rect().centery
+24. textRect.centerx = superficieVentana.get_rect().centerx
+25. textRect.centery = superficieVentana.get_rect().centery
 
-The pygame.Rect data type (called Rect for short) represent rectangular areas of a certain size and location. To create a new Rect object call the function pygame.Rect(). The parameters are integers for the XY coordinates of the top left corner, followed by the width and height, all in pixels.
+El tipo de datos pygame.Rect (llamado Rect para abreviar) representa áreas rectangulares con un cierto tamaño y posición asociados. Para crear un nuevo objeto llama a la función pygame.Rect(). Los parámetros son enteros para las coordenadas XY de la esquina superior izquierda, seguidos por el ancho y el alto, todos en píxeles.
 
-The function name with the parameters looks like this: pygame.Rect(left, top, width, height)
+El nombre de la función con los parámetros se ve así: pygame.Rect(izquierda, arriba, ancho, alto)
 
-Just like methods are functions that are associated with an object, attributes are variables that are associated with an object. The Rect data type has many attributes that describe the rectangle they represent. Table 17-2 is a list of attributes of a Rect object named myRect.
+De la misma forma que los métodos son funciones asociadas con un objeto, los atributos son variables asociadas con un objeto. El tipo de datos Rect tiene muchos atributos que describen el rectángulo que representa. La Tabla 17-2 es una lista de atributos de un objeto Rect llamado myRect.
 
-The great thing about Rect objects is that if you modify any of these attributes, all the other attributes will automatically modify themselves also. For example, if you create a Rect object that is 20 pixels wide and 20 pixels high, and has the top left corner at the coordinates (30, 40), then the X-coordinate of the right side will automatically be set to 50 (because 20 + 30 = 50).
+Lo genial de los objetos Rect es que si modificas alguno de estos atributos, el resto de ellos se modificará automáticamente. Por ejemplo, si creas un objeto Rect que tiene 20 píxeles de ancho y 20 de alto, cuya esquina superior izquierda está en las coordenadas (30, 40), entonces la coordenada X del lado derecho si fijará automáticamente en 50 (porque 20 + 30 = 50).
 
-However, if you change the left attribute with the line myRect.left = 100, then Pygame will automatically change the right attribute to 120 (because 20 + 100 = 120). Every other attribute for that Rect object is also updated.
+Sin embargo, si cambias el atributo left con la línea myRect.left = 100, entonces Pygame cambiará automáticamente el atributo right a 120 (porque 20 + 100 = 120). Todos los otros atributos para este objeto Rect también se actualizan.
 
-The get_rect() Methods for pygame.font.Font and pygame.Surface Objects
+Los Métodos get_rect() para Objetos pygame.font.Font y pygame.Surface
 
-Notice that both the Font object (stored in the text variable on line 23) and the Surface object (stored in windowSurface variable on line 24) both have a method called get_rect(). Technically, these are two different methods. But the programmers of Pygame gave them the same name because they both do the same thing and return Rect objects that represent the size and position of the Font or Surface object.
+Nota que tanto el objeto Font (guardado en la variable texto en la línea 23) como el objeto Surface (guardado en la variable superficieVentana en la línea 24) tienen un método llamado get_rect(). Técnicamente, estos son dos métodos diferentes. Pero los programadores de Pygame les han dado el mismo nombre porque ambos hacen lo mismo y devuelven objetos Rect que representan el tamaño y posición del objeto Font o Surface en cuestión.
 
-The module you import is pygame, and inside the pygame module are the font and surface modules. Inside those modules are the Font and Surface data types. The Pygame programmers made the modules begin with a lowercase letter, and the data types begin with an uppercase letter. This makes it easier to distinguish the data types and the modules.
+El módulo que importas es pygame, y dentro del módulo pygame están los módulos font y surface. Dentro de estos módulos están los tipos de datos Font y Surface. Los programadores de Pygame han decidido que los módulos empezaran con minúscula y los tipos de datos con mayúscula. Esto hace más fácil distinguir los tipos de datos de los módulos.
 
-Constructor Functions
+Funciones Constructor
 
-Create a pygame.Rect object by calling a function named pygame.Rect(). The pygame.Rect() function has the same name as the pygame.Rect data type. Functions that have the same name as their data type and create objects or values of this data type are called constructor functions.
+Crea un objeto pygame.Rect llamando a la función pygame.Rect(). La función pygame.Rect() tiene el mismo nombre que el tipo de datos pygame.Rect. Las funciones que tienen el mismo nombre que su tipo de datos y crean objetos o valores de este tipo de datos se denominan funciones constructor.
 
-The fill() Method for Surface Objects
+El Método fill() para Objetos Surface
 
-27. # draw the white background onto the surface
-28. windowSurface.fill(WHITE)
+27. # pintar un fondo blanco sobre la ventana
+28. superficieVentana.fill(BLANCO)
 
-You want to fill the entire surface stored in windowSurface with the color white. The fill() function will completely cover the entire surface with the color you pass as the parameter. (In this case, the WHITE variable is set to the value (255, 255, 255).
+Queremos llenar toda la superficie almacenada en superficieVentana con el color blanco. La función fill() cubrirá completamente la superficie con el color que le pases como parámetro. (En este caso, la variable BLANCO corresponde al valor (255, 255, 255).
 
-An important thing to know about Pygame is that the window on the screen won’t change when you call the fill() method or any of the other drawing functions. These will change the Surface object, but the Surface object won’t be drawn on the screen until the pygame.display.update() function is called.
+Algo importante a saber acerca de Pygame es que la ventana en la pantalla no cambiará cuando llames al método o a cualquiera de las otras funciones de dibujo. Éstas cambiarán al objeto Surface, pero el objeto Surface no será dibujado en la pantalla hasta que se llame a la función pygame.display.update().
 
-This is because modifying the Surface object in the computer’s memory is much faster than modifying the image on the screen. It is much more efficient to draw onto the screen once after all of the drawing functions have drawn to the surface.
+Esto es porque modificar el objeto Surface en la memoria de la computadora es mucho más rápido que modificar la imagen en la pantalla. Es mucho más eficiente dibujar sobre la pantalla una vez luego de que todas las funciones hayan dibujado sobre el objeto Surface.
 
 Pygame’s Drawing Functions
 
 The pygame.draw.polygon() Function
 
-30. # draw a green polygon onto the surface
-31. pygame.draw.polygon(windowSurface, GREEN, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
+30. # dibujar un polígono verde sobre la superficie
+31. pygame.draw.polygon(superficieVentana, VERDE, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
 
 A polygon is multisided shape with straight line sides. Circles and ellipses are not polygons. Figure 17-5 has some examples of polygons.
 
@@ -301,10 +301,10 @@ Line 31 draws a green pentagon on the Surface object.
 
 The pygame.draw.line() Function
 
-33. # draw some blue lines onto the surface
-34. pygame.draw.line(windowSurface, BLUE, (60, 60), (120, 60), 4)
-35. pygame.draw.line(windowSurface, BLUE, (120, 60), (60, 120))
-36. pygame.draw.line(windowSurface, BLUE, (60, 120), (120, 120), 4)
+33. # dibujar algunas líneas azules sobre la superficie
+34. pygame.draw.line(superficieVentana, AZUL, (60, 60), (120, 60), 4)
+35. pygame.draw.line(superficieVentana, AZUL, (120, 60), (60, 120))
+36. pygame.draw.line(superficieVentana, AZUL, (60, 120), (120, 120), 4)
 
 The parameters, in order, are:
 
@@ -318,8 +318,8 @@ If you pass 4 for the width, the line will be four pixels thick. If you do not s
 
 The pygame.draw.circle() Function
 
-38. # draw a blue circle onto the surface
-39. pygame.draw.circle(windowSurface, BLUE, (300, 50), 20, 0)
+38. # dibujar un círculo azul sobre la superficie
+39. pygame.draw.circle(superficieVentana, AZUL, (300, 50), 20, 0)
 
 The parameters, in order, are:
 
@@ -333,8 +333,8 @@ Line 39 draws a blue circle on the Surface object.
 
 The pygame.draw.ellipse() Function
 
-41. # draw a red ellipse onto the surface
-42. pygame.draw.ellipse(windowSurface, RED, (300, 250, 40, 80), 1)
+41. # dibujar una elipse roja sobre la superficie
+42. pygame.draw.ellipse(superficieVentana, ROJO, (300, 250, 40, 80), 1)
 
 The pygame.draw.ellipse() function is similar to the pygame.draw.circle() function. The parameters, in order, are:
 
@@ -347,8 +347,8 @@ Line 42 draws a red ellipse on the Surface object.
 
 The pygame.draw.rect() Function
 
-44. # draw the text's background rectangle onto the surface
-45. pygame.draw.rect(windowSurface, RED, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
+44. # dibujar el rectángulo de fondo para el texto sobre la superficie
+45. pygame.draw.rect(superficieVentana, ROJO, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
 
 The pygame.draw.rect() function will draw a rectangle. The third parameter is a tuple of four integers for the left, top, width, and height of the rectangle. Instead of a tuple of four integers for the third parameter, you can also pass a Rect object.
 
@@ -356,32 +356,32 @@ On line 45, you want the rectangle you draw to be 20 pixels around all the sides
 
 The pygame.PixelArray Data Type
 
-47. # get a pixel array of the surface
-48. pixArray = pygame.PixelArray(windowSurface)
-49. pixArray[480][380] = BLACK
+47. # obtener un arreglo de píxeles de la superficie
+48. arregloDePíxeles = pygame.PixelArray(superficieVentana)
+49. arregloDePíxeles[480][380] = NEGRO
 
 Line 48 creates a pygame.PixelArray object (called a PixelArray object for short). The PixelArray object is a list of lists of color tuples that represents the Surface object you passed it.
 
-Line 48 passes windowSurface to the pygame.PixelArray() call, so assigning BLACK to pixArray[480][380] on line 49 will change the pixel at the coordinates (480, 380) to be a black pixel. Pygame will automatically modify the windowSurface object with this change.
+Line 48 passes superficieVentana to the pygame.PixelArray() call, so assigning BLACK to pixArray[480][380] on line 49 will change the pixel at the coordinates (480, 380) to be a black pixel. Pygame will automatically modify the superficieVentana object with this change.
 
 The first index in the PixelArray object is for the X-coordinate. The second index is for the Y-coordinate. PixelArray objects make it easy to set individual pixels on a PixelArray object to a specific color.
 
-50. del pixArray
+50. del arregloDePíxeles
 
 Creating a PixelArray object from a Surface object will lock that Surface object. Locked means that no blit() function calls (described next) can be made on that Surface object. To unlock the Surface object, you must delete the PixelArray object with the del operator. If you forget to delete the PixelArray object, you’ll get an error message that says pygame.error: Surfaces must not be locked during blit.
 
 The blit() Method for Surface Objects
 
-52. # draw the text onto the surface
-53. windowSurface.blit(text, textRect)
+52. # dibujar el texto sobre la superficie
+53. superficieVentana.blit(texto, textRect)
 
-The blit() method will draw the contents of one Surface object onto another Surface object. Line 54 will draw the “Hello world!” Surface object in text and draws it to the Surface object stored in the windowSurface variable.
+The blit() method will draw the contents of one Surface object onto another Surface object. Line 54 will draw the “Hello world!” Surface object in text and draws it to the Surface object stored in the superficieVentana variable.
 
-The second parameter to blit() specifies where on the windowSurface surface the text surface should be drawn. Pass the Rect object you got from calling text.get_rect() on line 23.
+The second parameter to blit() specifies where on the superficieVentana surface the text surface should be drawn. Pass the Rect object you got from calling text.get_rect() on line 23.
 
 The pygame.display.update() Function
 
-55. # draw the window onto the screen
+55. # dibujar la ventana sobre la pantalla
 56. pygame.display.update()
 
 In Pygame, nothing is actually drawn to the screen until the pygame.display.update() function is called. This is because drawing to the screen is slow compared to drawing on the Surface objects in the computer’s memory. You do not want to update to the screen after each drawing function is called, but only update the screen once after all the drawing functions have been called.
@@ -392,7 +392,7 @@ In previous games, all of the programs print everything immediately until they r
 
 The game loop is a loop that constantly checks for new events, updates the state of the window, and draws the window on the screen. Events are objects of the pygame.event.Event data type that are generated by Pygame whenever the user presses a key, clicks or moves the mouse, or makes some other event occur. (These events are listed on Table 18-1.)
 
-58. # run the game loop
+58. # ejecutar el bucle del juego
 59. while True:
 
 Line 59 is the start of the game loop. The condition for the while statement is set to True so that it loops forever. The only time the loop exits is if an event causes the program to terminate.
@@ -436,7 +436,7 @@ animation.py
  7. # set up the window
  8. WINDOWWIDTH = 400
  9. WINDOWHEIGHT = 400
-10. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
+10. superficieVentana = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
 11. pygame.display.set_caption('Animation')
 12.
 13. # set up direction variables
@@ -468,7 +468,7 @@ animation.py
 39.             sys.exit()
 40.
 41.     # draw the black background onto the surface
-42.     windowSurface.fill(BLACK)
+42.     superficieVentana.fill(BLACK)
 43.
 44.     for b in blocks:
 45.         # move the block data structure
@@ -512,7 +512,7 @@ animation.py
 83.                 b['dir'] = UPLEFT
 84.
 85.         # draw the block onto the surface
-86.         pygame.draw.rect(windowSurface, b['color'], b['rect'])
+86.         pygame.draw.rect(superficieVentana, b['color'], b['rect'])
 87.
 88.     # draw the window onto the screen
 89.     pygame.display.update()
@@ -549,7 +549,7 @@ Creating and Setting Up Pygame and the Main Window
  7. # set up the window
  8. WINDOWWIDTH = 400
  9. WINDOWHEIGHT = 400
-10. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
+10. superficieVentana = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
 
 In this program, you’ll see that the size of the window’s width and height is used for more than just the call to set_mode(). Use constant variables so that if you ever want to change the size of the window, you only have to change lines 8 and 9. Since the window width and height never change during the program’s execution, a constant variable is a good idea.
 
@@ -617,12 +617,12 @@ Running the Game Loop
 38.             pygame.quit()
 39.             sys.exit()
 
-Inside the game loop, the blocks will move around the screen in the direction that they are going and bounce if they have hit a side. There is also code to draw all of the blocks to the windowSurface surface and call pygame.display.update().
+Inside the game loop, the blocks will move around the screen in the direction that they are going and bounce if they have hit a side. There is also code to draw all of the blocks to the superficieVentana surface and call pygame.display.update().
 
 The for loop to check all of the events in the list returned by pygame.event.get() is the same as in our “Hello World!” program.
 
 41.     # draw the black background onto the surface
-42.     windowSurface.fill(BLACK)
+42.     superficieVentana.fill(BLACK)
 
 First, line 42 fills the entire surface with black so that anything previously drawn on the surface is erased.
 
@@ -699,9 +699,9 @@ Lines 78 to 83 are similar to lines 72 to 77, but checks if the left side of the
 Drawing the Blocks on the Window in Their New Positions
 
 85.         # draw the block onto the surface
-86.         pygame.draw.rect(windowSurface, b['color'], b['rect'])
+86.         pygame.draw.rect(superficieVentana, b['color'], b['rect'])
 
-Now that the blocks have moved, they should be drawn in their new positions on the windowSurface surface by calling the pygame.draw.rect() function. Pass windowSurface because it is the Surface object to draw the rectangle on. Pass the b['color'] because it is the color of the rectangle. Pass b['rect'] because it is the Rect object with the position and size of the rectangle to draw.
+Now that the blocks have moved, they should be drawn in their new positions on the superficieVentana surface by calling the pygame.draw.rect() function. Pass superficieVentana because it is the Surface object to draw the rectangle on. Pass the b['color'] because it is the color of the rectangle. Pass b['rect'] because it is the Rect object with the position and size of the rectangle to draw.
 
 Line 86 is the last line of the for loop. If you wanted to add new blocks, you only have to modify the blocks list on line 31 and the rest of the code still works.
 
@@ -711,7 +711,7 @@ Drawing the Window on the Screen
 89.     pygame.display.update()
 90.     time.sleep(0.02)
 
-After each of the blocks in the blocks list has been drawn, call pygame.display.update() so that the windowSurface surface is draw on the screen.
+After each of the blocks in the blocks list has been drawn, call pygame.display.update() so that the superficieVentana surface is draw on the screen.
 
 After this line, the execution loops back to the start of the game loop and begin the process all over again. This way, the blocks are constantly moving a little, bouncing off the walls, and being drawn on the screen in their new positions.
 
@@ -721,9 +721,9 @@ This call to time.sleep() will stop the program for 0.02 seconds, or 20 millisec
 
 Drawing Trails of Blocks
 
-Comment out line 42 (the windowSurface.fill(BLACK) line) by adding a # to the front of the line. Now run the program.
+Comment out line 42 (the superficieVentana.fill(BLACK) line) by adding a # to the front of the line. Now run the program.
 
-Without the call to windowSurface.fill(BLACK), you don’t black out the entire window before drawing the rectangles in their new position. The trails of rectangles appear because the old rectangles drawn in previous iterations through the game loop aren’t blacked out anymore.
+Without the call to superficieVentana.fill(BLACK), you don’t black out the entire window before drawing the rectangles in their new position. The trails of rectangles appear because the old rectangles drawn in previous iterations through the game loop aren’t blacked out anymore.
 
 Remember that the blocks are not really moving. On each iteration through the game loop, the code redraws the entire window with new blocks that are located a few pixels over each time.
 
