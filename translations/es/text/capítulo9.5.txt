@@ -1,0 +1,240 @@
+  Capítulo 9 ½
+  EXTENDIENDO AHORCADO
+
+Temas Tratados En Este Capítulo:
+• Diccionario de datos
+• Duplas llave-valor (key-value)
+• Los métodos keys() y values() del diccionario
+• Asignaciones de variable múltiple
+
+Realizando Nuevos Cambios al Programa Ahorcado
+
+Este programa fue mucho mayor al programa Reino de Dragones, pero este programa es también más sofisticado. Realizar un diagrama de flujo o un pequeño esquema realmente ayuda a recordar como quieres que todo funcione.
+Ahora que has creado un simple juego de Ahorcado, veamos unas modos de que puedas extenderlo con nuevas funcionalidades..
+Luego de que has jugado al Ahorcado unas veces, puedes pensar que seis intentos de adivinar no es suficiente para la mayoria de las palabras. Podemos sencillamente darle al jugador mas oportunidades agregando strings multi-linea a la lista IMAGENES_AHORCADO. 
+Guarda tu ahorcado.py como ahorcado2.py y luego agrega lo siguiente:
+
+ 58. ==========''', '''
+ 59.   +----+
+ 60.   |    |
+ 61.  [O    |
+ 62.  /|\   |
+ 63.  / \   |
+ 64.        |
+ 65. ==========''', '''
+ 66.   +----+
+ 67.   |    |
+ 68.  [O]   |
+ 69.  /|\   |
+ 70.  / \   |
+ 71.        |
+ 72. ==========''']
+
+Ahora hay dos nuevos strigs multi-línea en la lista, uno con sólo la oreja izquierda dibujada, y la otra con ambas dibujadas. Debido a que el programa dirá que el jugador perdió cuando el número de intentos es igual al número de strings en IMÁGENES_AHORCADO (menos uno), este es el unico cambio que debes hacer.
+
+Cambia la lista de palabras cambiando las palabras en la línea 59. En vez de animales, podemos tener colores:
+
+59. palabras = 'rojo naranja amarillo verde azul añil violeta blanco negro marron'.split()
+
+O formas:
+
+59. palabras = 'cuadrado triangulo rectangulo circulo elipse rombo trapezoide chevron pentagono hexagono heptagono octogono'.split()
+
+O frutas:
+
+59. palabras = 'manzana naranja limon lima pera sandia uva pomelo cereza banana melon mango fresa tomate'.split()
+
+Con algunas modificaciones, podemos cambiar nuestro código para que nuestro juego de Ahorcado pueda utilizar todas estas palabras como conjuntos diferentes.
+
+Diccionarios
+
+Para realizar este cambio, necesitaras una nueva estructura de datos llamada diccionario. Un diccionario puede almacenar múltiples valores tal como una lista lo hace. Pero en vez de acceder a los elementos con un índice entero, puedes acceder a ellos con un índice de cualquier tipo. Para los diccionarios, estos índices son llamados llaves (keys en inglés).
+Los diccionarios usan { y } llaves en vez de [ y ] corchetes. Prueba ingresando lo siguiente en la consola interactiva:
+
+>> cosas = {'hola':'Hola ¿como estas?',4:'panceta','spam':9999}
+
+Los valores entre las llaves separadas por comas son los pares llave-valor. Las llaves se encuentran a la izquierda de los dos puntos y los valores a la derecha. Puedes acceder a los valores como elementos en una lista utilizando la llave. Prueba ingresando en la consola interactiva cosas['hola'], cosas[4] y cosas['spam']:
+
+>>> cosas = {'hola':'Hola ¿como estas?',4:'panceta','spam':9999}
+>>> cosas['hola']
+'Hola ¿como estas?'
+>>> stuff[4]
+'panceta'
+>>> cosas['spam']
+9999
+
+En vez de utilizar un entero entre los corchetes, utilizas un valor string. Esto evaluará el valor para dicha clave.
+
+Obteniendo el Tamaño de Diccionarios con len()
+
+Puedes obtener la cantidad de pares llave-valor en el diccionario mediante la función len(). Prueba ingresando lo siguiente en la consola interactiva:
+
+>>> cosas = {'hola':'Hola ¿como estas?',4:'panceta','spam':9999}
+>>> len(cosas)
+3
+
+La Diferencia entre Diccionario y Lista
+
+Los diccionarios pueden tener llaves de cualquier estructura de datos, no solo strings. Pero recuerda, como 0 y '0' son valores diferentes, serán llaves diferentes. Prueba ingresando lo siguiente en la consola interactiva:
+
+>>> spam = {'0':'un string', 0:'un entero'}
+>>> spam[0]
+'un entero'
+>>> spam['0']
+'un string'
+
+Las llaves en los diccionarios también pueden iterarse utilizando un ciclo for. Prueba ingresando lo siguiente en la consola interactiva:
+
+>>> favoritos = {'fruta':'manzanas', 'animal':'gatos', 'número':42}
+>>> for i in favoritos:
+...     print(i)
+fruta
+animal
+número
+>>> for i in favoritos:
+...     print(favoritos[i])
+manzanas
+gatos
+42
+
+Dictionaries are different from lists because the values inside them are unordered. The first item in a list named listStuff would be listStuff[0]. But there is no “first” item in a dictionary, because dictionaries do not have any sort of order. Try entering the following into the interactive shell:
+
+>>> favorites1 = {'fruit':'apples', 'number':42, 'animal':'cats'}
+>>> favorites2 = {'animal':'cats', 'number':42, 'fruit':'apples'}
+>>> favorites1 == favorites2
+True
+
+The expression favorites1 == favorites2 evaluates to True because dictionaries are unordered. Two dictionaries are considered the same if they have the same key-value pairs in them, typed in any order. Meanwhile, lists are ordered, so two lists with the same values in a different order are not the same. Try entering this into the interactive shell:
+
+>>> listFavs1 = ['apples', 'cats', 42]
+>>> listFavs2 = ['cats', 42, 'apples']
+>>> listFavs1 == listFavs2
+False
+
+Dictionaries have two useful methods, keys() and values(). These will return values of a type called dict_keys and dict_values, respectively. Much like range objects, values of those data types can easily convert to lists with the list() function. Try entering the following into the interactive shell:
+
+>>> favorites = {'fruit':'apples', 'animal':'cats', 'number':42}
+>>> list(favorites.keys())
+['fruit', 'number', 'animal']
+>>> list(favorites.values())
+['apples', 42, 'cats']
+
+Sets of Words for Hangman
+
+Let’s change the code in the Hangman game to support different sets of secret words. First, change the value in words into a dictionary whose keys are strings and values are lists of strings. The string method split() method will turn the string into a list of strings with one word each.
+
+ 59. words = {'Colors':'red orange yellow green blue indigo violet white black brown'.split(),
+ 60. 'Shapes':'square triangle rectangle circle ellipse rhombus trapazoid chevron pentagon hexagon septagon octogon'.split(),
+ 61. 'Fruits':'apple orange lemon lime pear watermelon grape grapefruit cherry banana cantalope mango strawberry tomato'.split(),
+ 62. 'Animals':'bat bear beaver cat cougar crab deer dog donkey duck eagle fish frog goat leech lion lizard monkey moose mouse otter owl panda python rabbit rat shark sheep skunk squid tiger turkey turtle weasel whale wolf wombat zebra'.split()}
+
+This code is put across multiple lines in the file, even though the Python interpreter thinks of it as just one “line of code.” (The line of code doesn’t end until the final } curly brace.)
+
+The random.choice() Function
+
+The choice() function in the random module takes a list argument and returns a random value from it, just like your getRandomWord() function did. You’ll use random.choice() in the new version of the getRandomWord() function.
+To see how the random.choice() function works, try entering the following into the interactive shell:
+
+>>> import random
+>>> random.choice(['cat', 'dog', 'mouse'])
+'mouse'
+>>> random.choice(['cat', 'dog', 'mouse'])
+'cat'
+>>> random.choice([2, 22, 222, 223])
+2
+>>> random.choice([2, 22, 222, 223])
+222
+
+Change the getRandomWord() function so that its parameter will be a dictionary of lists of strings, instead of just a list of strings. Here is what the function originally looked like:
+
+def getRandomWord(wordList):
+    # This function returns a random string from the passed list of strings.
+    wordIndex = random.randint(0, len(wordList) - 1)
+    return wordList[wordIndex]
+
+Change the code in this function so that it looks like this:
+
+def getRandomWord(wordDict):
+    # This function returns a random string from the passed dictionary of lists of strings, and the key also.
+    # First, randomly select a key from the dictionary:
+    wordKey = random.choice(list(wordDict.keys()))
+    # Second, randomly select a word from the key's list in the dictionary:
+    wordIndex = random.randint(0, len(wordDict[wordKey]) - 1)
+    return [wordDict[wordKey][wordIndex], wordKey]
+
+The name of the wordList parameter is changed to wordDict to be more descriptive. Now instead of choosing a random word from a list of strings, first the function chooses a random key in the wordDict dictionary by calling random.choice().
+Instead of return wordList[wordIndex], the function returns a list with two items. The first item is wordDict[wordKey][wordIndex]. The second item is wordKey.
+
+Evaluating a Dictionary of Lists
+
+The wordDict[wordKey][wordIndex] expression may look complicated, but it is just an expression you can evaluate one step at a time like anything else. First, imagine that wordKey had the value 'Fruits' (which was chosen on line 65) and wordIndex has the value 5 (chosen on line 68). Here is how wordDict[wordKey][wordIndex] would evaluate:
+
+wordDict[wordKey][wordIndex]
+           ▼
+wordDict['Fruits'][wordIndex]
+           ▼
+['apple', 'orange', 'lemon', 'lime', 'pear', 'watermelon', 'grape', 'grapefruit', 'cherry', 'banana', 'cantalope', 'mango', 'strawberry', 'tomato'][wordIndex]
+           ▼
+['apple', 'orange', 'lemon', 'lime', 'pear', 'watermelon', 'grape', 'grapefruit', 'cherry', 'banana', 'cantalope', 'mango', 'strawberry', 'tomato'][5]
+           ▼
+      'watermelon'
+
+In the above case, the item in the list this function returns would be the string 'watermelon'. (Remember that indexes start at 0, so [5] refers to the 6th item in the list.)
+Because the getRandomWord() function now returns a list of two items instead of a string, secretWord will be assigned a list, not a string. You can assign these two items into two separate variables using the multiple assignment trick.
+
+Multiple Assignment
+
+You can specify multiple variables, separated by commas, on the left side of an assignment statement. Try entering the following into the interactive shell:
+
+>>> a, b, c = ['apples', 'cats', 42]
+>>> a
+'apples'
+>>> b
+'cats'
+>>> c
+42
+
+The trick is to put the same number of variables as there are in the list on the right side of the = sign. Python will automatically assign the first item's value in the list to the first variable, the second item's value to the second variable, and so on. But if you do not have the same number of variables and items, the Python interpreter will give you an error.
+
+>>> a, b, c, d = ['apples', 'cats', 42, 10, 'hello']
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    a, b, c, d = ['apples', 'cats', 42, 10, 'hello']
+ValueError: too many values to unpack
+
+>>> a, b, c, d = ['apples', 'cats']
+Traceback (most recent call last):
+  File "<pyshell#9>", line 1, in <module>
+    a, b, c = ['apples', 'cats']
+ValueError: need more than 2 values to unpack
+
+Change your code in Hangman to use this trick with the return value of getRandomWord():
+
+108. correctLetters = ''
+109. secretWord, secretKey = getRandomWord(words)
+110. gameIsDone = False
+...
+144. gameIsDone = False
+145. secretWord, secretKey = getRandomWord(words)
+146. else:
+
+Printing the Word Category for the Player
+
+The last change you’ll make is to tell the player which set of words they are trying to guess. This way, when the player plays the game they will know if the secret word is an animal, color, shape, or fruit. Add this line of code after line 112. Here is the original code:
+
+112. while True:
+113.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+
+Add the line so your program looks like this:
+
+112. while True:
+113.     print('The secret word is in the set: ' + secretKey)
+114.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+
+Now you’re done with our changes to the Hangman program. Instead of just a single list of strings, the secret word is chosen from many different lists of strings. The program also tells the player which set of words the secret word is from.
+Try playing this new version. You can later change the words dictionary on line 59 to include more sets of words. Now your Hangman program can be easily be extended with new words!
+
+Summary
+
+We're done with Hangman. Even after you’ve finished writing a game, you can always add more features after you learn more programming.
+Hangman is fairly advanced compared to all of the previous games in this book. But at this point, you know much of the basic concepts in writing programs: variables, loops, functions, and Python’s data types such as lists and dictionaries. The later programs in this book will still be a challenge to master, but you’ve just finished the steepest part of the climb.
