@@ -341,7 +341,7 @@ The pygame.draw.ellipse() function is similar to the pygame.draw.circle() functi
 •   The Surface object to draw the ellipse on.
 •   The color of the ellipse.
 •   A tuple of four integers is passed for the left, top, width, and height of the ellipse.
-•   Optionally, an integer for the width. A width of 0 means that the circle will be filled in.
+•   Optionally, an integer for the width. A width of 0 means that the ellipse will be filled in.
 
 Line 42 draws a red ellipse on the Surface object.
 
