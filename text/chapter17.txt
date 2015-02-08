@@ -375,7 +375,7 @@ The blit() Method for Surface Objects
 52. # draw the text onto the surface
 53. windowSurface.blit(text, textRect)
 
-The blit() method will draw the contents of one Surface object onto another Surface object. Line 54 will draw the “Hello world!” Surface object in text and draws it to the Surface object stored in the windowSurface variable.
+The blit() method will draw the contents of one Surface object onto another Surface object. Line 53 will draw the “Hello world!” Surface object in text and draws it to the Surface object stored in the windowSurface variable.
 
 The second parameter to blit() specifies where on the windowSurface surface the text surface should be drawn. Pass the Rect object you got from calling text.get_rect() on line 23.
 
