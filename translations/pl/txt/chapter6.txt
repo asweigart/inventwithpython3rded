@@ -1,0 +1,491 @@
+    Rozdział 6
+    KRÓLESTWO SMOKÓW
+
+Tematy omówione w tym rozdziale:
+•   Moduł time
+•   Funkcja time.sleep()
+•   Słowo kluczowe return
+•   Tworzenie swoich własnych funkcji za pomocą słowa kluczowego def
+•   Operatory logiczne and, or i not
+•   Tablice prawdy
+•   Zasięg zmiennych (globalny i lokalny)
+•   Parametry i argumenty
+•   Schematy przepływu
+
+Wprowadzenie do funkcji
+
+Już uzywałeś kilku funncji: print(), input(), random.randint(), str() i int(). Wywoływałeś te funkcje by wykonać kod z ich wnętrza. W tym rozdziale napiszesz swoje własne funkcje które zostaną wywołane przez twój program. Funkcja jest jak mini-program wewnątrz programu.
+
+Funkcje umożliwiają wywoływanie tego samego kodu wiele razy bez kopiowania i wstawiania kodu źródłowego. Zamiast kopiowania możesz wstawić kod do wnętrza funkcji i wywołać ją kilka razy. Dodatkową zaletą jest to, że jeśli w funkcji jest pomyłka, to masz tylko jedno miejsce w programie do poprawienia.
+
+Gra jaką stworzysz w tym rozdziale nazywa się “Królestwo smoków”. Gracz decyduje pomiędzy dwoma jasiniami, z których jedna zawiera skarb, a druga prowadzi do zguby.
+
+Jak grać w “Królestwo smoków”
+
+W tej grze gracz trafia do krainy pełnej smoków. Wszystkie smoki żyją w jaskiniach i mają wielkie stosy skarbów. Niektóre smoki są przyjazne i podzielą się z tobą swoim skarbem. Inne smoki są głodne i zjedzą każdego, kto wejdzie do ich jaskini. Gracz stoi u wejścia do dwóch jaskiń, jednej z przyjacielskim smokiem i drugiej z głodnym. Gracz musi wybrać pomiędzy nimi.
+Otówrz okno edytora plików klikając w File ► New Window (Plik ► Nowe okno). W pustym oknie jakie się pojawi wpisz kod źródłowy i zapisz go jako dragon.py. Potem uruchom program wciskając F5.
+
+Przykładowa rozgrywka "Królestwa smoków"
+
+Jesteś w krainie pełnej smoków. Przed sobą widzisz
+dwie jasinie. W jednej mieszka przyjacielski smok,
+który podzieli sie z tobą skarbem. Drugi smok jest
+chciwy i głodny, i zje cię na miejscu.
+Do której jaskini chcesz wejść? (1 lub 2)
+2
+Zbliżasz się do jaskini...
+Jest ciemna i straszna...
+Wielki smok wyskakuje prosto na ciebie! Otwiera swą paszczę i ...
+
+Pożera cie jednym kłapnięciem paszczy!
+Chcesz zagrać ponownie? (tak lub nie)
+nie
+
+Kod źródłowy "Królestwa smoków"
+
+WAŻNA UWAGA! Programy z tej książki uruchomią się tylko z Pythonem 3, a nie z Pythonem 2. Kiedy pojawi się okno IDLE, to na jego górze pojawi się coś jak “Python 3.4.0”. Jeśli masz zainstalowanego Pythona 2, to możesz także zainstalować Pythona 3. Aby pobrać Pythona 3 odwiedź https://python.org/download/.
+
+Jeśli po wpisaniu tego kodu dostaniesz zgłoszenia o błędach, porównaj go z kodem z książki za pomocą sieciowego narzędzia porównującego z http://invpy.com/diff/dragon.
+
+dragon.py
+
+ 1. import random
+ 2. import time
+ 3. 
+ 4. def displayIntro():
+ 5.     print('Jesteś w krainie pełnej smoków. Przed sobą widzisz')
+ 6.     print('dwie jasinie. W jednej mieszka przyjacielski smok,')
+ 7.     print('który podzieli sie z tobą skarbem. Drugi smok jest')
+ 8.     print('chciwy i głodny, i zje cię na miejscu.')
+ 9.     print()
+10. 
+11. def chooseCave():
+12.     cave = ''
+13.     while cave != '1' and cave != '2':
+14.         print('Do której jaskini chcesz wejść? (1 lub 2)')
+15.         cave = input()
+16. 
+17.     return cave
+18. 
+19. def checkCave(chosenCave):
+20.     print('Zbliżasz się do jaskini...')
+21.     time.sleep(2)
+22.     print('Jest ciemna i straszna...')
+23.     time.sleep(2)
+24.     print('Wielki smok wyskakuje prosto na ciebie! Otwiera swą paszczę i ...')
+25.     print()
+26.     time.sleep(2)
+27. 
+28.     friendlyCave = random.randint(1, 2)
+29. 
+30.     if chosenCave == str(friendlyCave):
+31.          print('Daje ci swój skarb!')
+32.     else:
+33.          print('Pożera cię jednym kłapnięciem paszczy!')
+34. 
+35. playAgain = 'tak'
+36. while playAgain == 'tak' or playAgain == 't':
+37. 
+38.     displayIntro()
+39. 
+40.     caveNumber = chooseCave()
+41. 
+42.     checkCave(caveNumber)
+43. 
+44.     print('Chcesz zagrać ponownie? (tak lub nie)')
+45.     playAgain = input()
+
+Jak ten kod działa
+
+Zerknijmy do kodu źródłowego po więcej szczegółów.
+
+ 1. import random
+ 2. import time
+
+Ten program importuje dwa moduły. Moduł random dostarcza funkcję random.randint() tak jak robił to w grze “Zgadnij liczbę”. Będziesz także potrzebował funkcji związanych z czasem które są w module time, więc go także zaimportujemy.
+
+Dyrektywa def
+
+ 4. def displayIntro():
+ 5.     print('Jesteś w krainie pełnej smoków. Przed sobą widzisz')
+ 6.     print('dwie jasinie. W jednej mieszka przyjacielski smok,')
+ 7.     print('który podzieli sie z tobą skarbem. Drugi smok jest')
+ 8.     print('chciwy i głodny, i zje cię na miejscu.')
+ 9.     print()
+
+Linia 4 to dyrektywa def. Dyrektywa def tworzy, to znaczy definiuje nową funkcję którą będzie można wywołać później w programie. Gdy już zdefiniujesz funkcję, to możesz ją wywołać w taki sam sposób jak wywołujesz inne funkcje. Kiedy wywołujesz funkcję wykona się kod wewnątrz bloku def.
+
+Rysunek 6-1 pokazuje części dyrektywy def. Tworzy ją słowo kluczowe def, nastmępująca po nim nazwa funkcji, nawiasy i na końcu dwukropek (znak : ). Blok po dyrektywie def nazywamy blokiem def.
+
+Rysunek 6-1: Części dyrektywy def.
+
+Pamiętaj że dyrektywa def nie wykonuje kodu. Ona tylko definiuje jaki kod wykonać jiedy wywołasz funkcję. Kiedy wykonanie dojdzie do dyrektywy def to omija to do pierwszej linii po bloku def.
+
+Ale kiedy funkcja displayIntro() zostanie wywołana (tak, jak w linii 38), wykonanie przenosi się do wnętrza funkcji displayIntro() function do pierwsze linii bloku def.
+
+38.     displayIntro()
+
+Wszystkie wywołanie print() są wykonywane i wyświetlany jest wstęp Jesteś w krainie pełnej smoków...”.
+
+Gdzie wstawić definicję funkcji
+
+Dyrektywa def i blok def musi być wstawiony przed wywołaniem funkcji. To podobnie jak wymóg podstawienia wartości do zmiennej przed jej użyciem. Jeśli wstawisz wywołanie funkcji przed jej definicją, to otrzymasz błąd. Spójrz na ten kod:
+
+sayGoodbye()
+
+def sayGoodbye():
+    print('Żegnam!')
+Jeśli spróbujesz go uruchomić to Python da komunikat o błędze, który będzie wyglądał jak tu:
+Traceback (most recent call last):
+  File "C:\Python34\spam.py", line 1, in <module>
+sayGoodbye()
+NameError: name 'sayGoodbye' is not defined (BłądNazwy: nazwa 'sayGoodbye' nie jest zdefiniowana)
+
+Aby to naprawic wstaw definicję funkcji przed jej wywołanie:
+
+def sayGoodbye():
+    print('Żegnam!')
+
+sayGoodbye()
+
+Definowanie funkcji chooseCave()
+
+11. def chooseCave():
+
+W tym miejscy definiujesz inna funkcję o nazwie chooseCave(). Ta funkcja pyta gracza o numer jaskini di której chce wejść, a ten numer to 1, lub 2.
+
+12.     cave = ''
+13.     while cave != '1' and cave != '2':
+
+Ten kod upewnia się, że gracz wpisał 1, lub 2, a nie coś innego. Pętla w tym miejscu zapewnia odpytywanie gracza aż podan on jedną z tych poprawnych odpowiedzi.
+
+W linii 12 tworzona jest nowa zmienna o nazwie cave, do której zapisywany jest pusty napis. W linii 13 zaczyna się pętla. Warunek w pętli zawiera nowy operator, którego jeszcze nie widziałeś: and. Tak jak -, lub * są operatorami matematycznymi, a ==, lub != są operatorami porównania, to opertator and jest operatorem logicznym (ang. Boolean).
+
+Boolowskie operatory logiczne
+
+Logika boolowska opiera się na rzeczach które mają wartość Prawda (ang. True), lub Fałsz (ang. False). Operatory boolowskie porównują dwie artości boolowskie i wyliczają pojedynczą wartość boolowską. Operator boolowski and łączy dwie wartości boolowskie i tworzy nawą wartość boolowską.
+
+Pomyśl o zdaniu “Koty mają wąsy i psy mają ogony.” “Koty mają wąsy” jest prawdziwe i “psy mają ogony” jest także prawdziwe, więc całe zdanie “Koty mają wąsy i psy mają ogony.” jest prawdziwe.
+
+Ale zdanie “Koty mają wąsy i psy mają skrzydła” jest fałszywe. To, że “koty mają wąsy” jest prawdą, psy nie mają skrzydeł, więc “psy mają skrzydła” jest fałszem. W logice boolowskiej rzeczy mogą być tylko całkowicie prawdziwe, lub całkowicie fałszywe. Z powodu słowa “and” (polski łącznik "i"), całe zdanie jest prawdziwe tylko wtedy, gy obie części zdania są prawdziwe. Jesli choć jedna część jest fałszywa, to całe zdanie jest fałszywe.
+
+Operatory and i or
+
+Operator and w Pythonie jest taki sam. Jesli wartości boolowskie po obu stronach słowa kluczowego and są True (prawda), to całe wyrażenie daje True. Jeśli którakolwiek z wartości jest False (fałsz), albo obie wartości są False, wtedy wyrażenie daje False.
+
+Wprowadź poniższe wyrażenia z opertorem and w powłoce intraktywnej:
+
+>>> True and True
+True
+>>> True and False
+False
+>>> False and True
+False
+>>> False and False
+False
+>>> spam = 'Hello'
+>>> 10 < 20 and spam == 'Hello'
+True
+
+Operator or operator jest podobny do operatora and, ale da True jeśli dowolna z dwy wartości boolowskich jest True. Jedynym wypadkiem gdy opertor or wyliczy się do False jest przypadek, że obie wartości boolowskie są False.
+
+Wprowadź poniższy kod w powłoce interaktywnej:
+
+>>> True or True
+True
+>>> True or False
+True
+>>> False or True
+True
+>>> False or False
+False
+>>> 10 > 20 or 20 > 10
+True
+
+Operator not
+
+Operator not działa tylko dla jednej wartości. Operator not wylicza przeciwieństwo wartości boolowskie. Wyrażenie not True zostanie wyliczone do False, a not False zostanie wyliczone do True.
+
+Wprowadź poniższy kod w powłoce interaktywnej:
+
+>>> not True
+False
+>>> not False
+True
+>>> not 'black' == 'white'
+True
+
+Tablice prawdy
+
+Jeśli zapomnisz jak działają operatory boolowskie możesz zerknąć na te zestawienia zwane także tablicami prawdy:
+
+Tabela 6-1: Tablica prawdy operatora and
+A       and B       jest  Całe wyrażenie
+True    and True    jest  True
+True    and False   jest  False
+False   and True    jest  False
+False   and False   jest  False
+
+Tablica 6-2: Tablica prawdy operatora or
+A       and B       jest  Całe wyrażenie
+True    and True    jest  True
+True    and False   jest  False
+False   and True    jest  False
+False   and False   jest  False
+
+Tablica 6-3: Tablica prawdy operatora not
+not A       jest  Całe wyrażenie
+not True    jest  False
+not False   jest  True
+
+Obliczanie wyrażeń z operatorami logicznymi
+
+Ponownie spójrz na linię 13:
+
+13.     while cave != '1' and cave != '2':
+
+Warunek ma dwie części połączone logicznym operatorem and. Wyrażenie da True tylko wtedy, gdy obie części będą True.
+
+Za pierwszym razem gdy warunek while jest sprawdzany, cave ma wartość ustawioną na pusty napis ''. Pusty napis nie jest równy napisowi  '1', więc lewa część wylicza się do True. Pusty napis nie jest także równy z napisem '2', więc prawa strona wylicza się do True.
+
+Tak więc zostaje warunek True and True. Ponieważ obie wartości logiczne są True, końcowy wynik wyliczy sie do True i wykonanie programu wejdzie do bloku while.
+
+Oto jak wygląda wyliczanie warunku (dla cave z wartością pustego napisu):
+
+while cave != '1' and cave != '2':
+                   ▼
+while  ''  != '1' and cave != '2':
+                   ▼
+while     True    and cave != '2':
+                   ▼
+while     True    and  ''  != '2':
+                   ▼
+while     True    and     True:
+                   ▼
+while             True:
+
+Pobieranie danych od gracza
+
+13.     while cave != '1' and cave != '2':
+14.         print('Do której jaskini chcesz wejść? (1 lub 2)')
+15.         cave = input()
+
+Linia 14 pyta gracza o numer jaskini jaką wybiera. Linia 15 pozwala graczowi na wprowadzenie odpowiedzi i nacośnięcie klawisza ENTER. Odpowiedź jest zapisywane w zmiennej cave. Po wykonaniu tego kodu wykonanie wraca na górę pętli while i ponownie sprawdzany jest warunek.
+
+Jeśli gracz wpisał 1, lub 2, wtedy w zmiennej cave będzie '1', lub '2'. To sprawi, że warunek będzie False i wykonanie programu będzie kontunowane za pętlą while. Przykładowo jeśli użytkowni wprowadzi '1', to wyliczanie będzie wyglądało tak:
+
+while cave != '1' and cave != '2':
+                   ▼
+while  '1' != '1' and cave != '2':
+                   ▼
+while     False   and cave != '2':
+                   ▼
+while     False   and  '1' != '2':
+                   ▼
+while     False   and     True:
+                   ▼
+while            False:
+
+Jeśli jednak gracz wproawdzi 3, 4 lub HALO, wtedy odpowiedź nie będzie prawidłowa. Warunek nadal bedzie True i program ponownie wejdzie do bloku while, by kolejny raz zapytać gracza. Program będzie kontunował pytanie gracza, aż ten wprowadzi 1, lub 2. Gwarantuje to, że wykonanie przejdzie dalej z prawidłową wartością odpowiedzi.
+
+Wartości zwracane
+
+17.     return cave
+
+Jest to dyrektywa return, która może pojawić się jedynie wewnątrz bloku def. Pamiętasz jak funkcja input() zwracała napis jaki wprowadził gracz? Funkcja chooseCave() także zwróci wartość. Linia 17 zwróci napis jaki jest zapamiętany w zmiennej cave i będzie to albo '1', albo '2'.
+
+Jak tylko wykona sie dyrektywa return, program natychmiast wyskoczy z bloku def. (To podobnie jak dyrektywa break, która wychodzi z bloku while.) Wykonanie programy powraca do linii z wywołaniem funkcji. Samo wywołanie funkcji wyliczy się do zwracanej wartości.
+
+Przejdźmy trochę dalej i zerknijmy na chwilę do linii 40:
+
+40.     caveNumber = chooseCave()
+
+Kiedy funkcja chooseCave() jest wywoływana przez program w linii 40, zwracana wartość jest zapisywana w zmiennej caveNumber. Pętla while zapewnia, że chooseCave() zwróci albo '1', albo '2'.
+
+Tak więc kiedy linia 17 zwraca napis, wywołanie funkcji w linii 40 wyliczy się do tego napisu, który nastepnie zostanie zapisany w zmiennej caveNumber.
+
+Przestrzeń globalna i przestrzeń lokalna
+
+Zmienne użyte w programie są zapominane gdy program się kończy. Zmienne tworzone podczas wykonywania kodu we wnętrzu funkcji również są zapominane po wyjściu z funkcji. Pamiętaj, że funkcje są rodzajem mini-programów w twoim programie.
+
+Kiedy wykonanie jest wewnątrz funkcji, to nie możesz zmieniać zmiennych zspoza tej funkcji włączając w to zmienne wewnątrz innych funkcji. Dzieje się tak ponieważ zmienne istnieją w różnych “przestrzeniach”. Wszystkie zmienne istnieją albo w przestrzeni globalnej, albo w lokalnej przestrzeni wywołania funkcji.
+
+Przestrzeń poza wszystkimi funkcjami jest nazywana przestrzenią globalną. Przestrzeń wewnątrz funkcji (na czas wykonania określonego wywołania funkcji) jest nazwyana przestrzenią lokalną.
+
+Cały program ma tylko jedną przestrzeń globalną. Zmienne zdefioniowane w przestrzeni globalnej mogą być odczytywane i wewnątrz, i na zewnątrz funkcji, ale ich modyfikacja jest możliwa tylko na zewnątrz wszystkich funkcji. Zmienne stworzone w czasie wowołania funkcji mogą być czytane, lub zmieniane tylko w czasie tego wywołania funkcji.
+
+W lokalnej przestrzeni możesz odczytać wartość zmiennej globalnej, ale próba zmiany zmiennej globalnej z przestrzeni lokalnej nie będzie działała. Python w takim wypadku stworzy zmienną lokalną o takiej samej nazwie jak zmienna globalna. Przykładowo możesz mieć zmienną o nazwie spam i w tym samym czasie mieć zmienną globalną o nazwie spam. Python uważa je za dwie, całkiem różne zmienne.
+
+Popatrzmy na ten przykład, by zobaczyć co zdarzy się przy próbie zmiany zmiennej globalnej z przestrzeni lokalnej. Komentarze wytłumaczą co się dzieje:
+
+def bacon():
+    # Tworzymy zmienną lokalną o nazwie "spam"
+    # zamiast zmieniania wartości globalnej
+    # zmiennej "spam":
+    spam = 99
+    # Nazwa "spam" odnosi się obecnie do zmiennej
+    # lokalnej aż do końca
+    # tej funkcji:
+    print(spam)    # 99
+
+spam = 42 # Zmienne globalna o nazwie "spam":
+print(spam) # 42
+bacon() # Wywołanie funkcji bacon():
+# Zmienna globalna nie została zmieniona w bacon():
+print(spam)    # 42
+
+Po uruchomieniu dostaniemy taki wynik:
+
+42
+99
+42
+
+Moment utworzenia zmiennej określa w jakiej będzie przestrzeni. Kiedy program Królestwo smoków po raz pierwszy wykonuje linię:
+
+12.     cave = ''
+
+...zmienna cave jest tworzona wewnątrz funkcji chooseCave(). To oznacza, że jest tworzona w lokalnej przestrzeni funkcji chooseCave(). Zostanie zapomniana gdy chooseCave() zwróci wartość i będzie ponownie stworzona, gdy chooseCave() zostanie wywołana po raz drugi. Wartość zmiennej lokalnej nie jest pamiętana pomiędzy wywołaniami funkcji.
+
+Parametry
+
+19. def checkCave(chosenCave):
+
+Kolejna funkcja jaką znajdujemy w programie nazywa się checkCave(). Zwróć uwagę na napis chosenCave w nawiasach. To jest parametr funkcji: zmienna lokalna do której jest podstawiany argument przekazywany podczas wywołania funkcji.
+
+Przypomnij sobie że do niekótórych wywołań funkcji jak str(), lub randint(), przekazywałeś argument lub argumenty wpisane między nawiasami:
+
+>>> str(5)
+'5'
+>>> random.randint(1, 20)
+14
+
+Wywołując checkCave() także przekazujesz argument. Ten argument jest zapisany w nowej zmiennej o nazwie chosenCave. Te smienne są także nazywane parametrami.
+
+Oto krótki program demonstujący definiowanie funkcji z parametrem:
+
+def sayHello(name):
+    print('Hej, ' + name + '. Twoje imię ma ' + str(len(name)) + ' znaków.')
+
+sayHello('Alicja')
+sayHello('Bogumił')
+spam = 'Karolina'
+sayHello(spam)
+
+Jak uruchomisz ten program, to dostaniesz taki wynik:
+
+Hej, Alicja. Twoje imię ma 6 znaków.
+Hej, Bogumił. Twoje imię ma 7 znaków.
+Hej, Karolina. Twoje imię ma 8 znaków.
+
+Kiedy wywołujesz sayHello(), argument jest podstawiany do parametru name. Parametery są jak zwykłe zmienne lokalne. Podobnie jak wszystkie zmienne lokalne, parametry zostaną zapomniane, gdy wywołanie funkcji powróci.
+
+Wyświetlanie wyników gry
+
+Wracając do kodu źródłowego gry:
+
+20.     print('Zbliżasz się do jaskini...')
+21.     time.sleep(2)
+
+Moduł time ma funkcje o nazwie sleep(), która wstrzymuje program. W linii 21 przekazana jest wartość całkowita 2 więc time.sleep() wstrzyma program na 2 sekundy.
+
+22.     print('Jest ciemna i straszna...')
+23.     time.sleep(2)
+
+W tym kodzie wypisyway jest kolejny napis i znów wykonanie jest zatrzymywane na 2 sekundy. Te krótkie pauzy budują napięcie w grze, co nie jest możliwe przy wypisaniu całego tekstu za jednym zamachem. W programie z poprzedniego rozdziału wywoływałeś funkcję input() by wstrzymać program do momemntu, aż gracz wciśnie ENTER. Tu, poza odczekaniem kilku sekund, gracz nie musi nic robić.
+24.     print('Wielki smok wyskakuje prosto na ciebie! Otwiera swą paszczę i ...')
+25.     print()
+26.     time.sleep(2)
+
+Co dzieje się dalej?
+
+Decyzja w której jaskini jest przyjazny smok
+
+28.     friendlyCave = random.randint(1, 2)
+
+Linia 28 zawiera wywołanie funkcji random.randint() która zwróci albo 1, albo 2. Ta liczba całkowita jest zapisywana w zmiennej friendlyCave i jest jaskinią z przyjaznym smokiem.
+
+30.     if chosenCave == str(friendlyCave):
+31.          print('Daje ci swój skarb!')
+
+W linii 30 następuje sprawdzenie, czy jaskinia wybrane przez gracza zapisana w zmiennej chosenCave ('1', lub '2') jest równa jaskini z przyjaznym smokiem.
+
+Jednak wartość w friendlyCave jest liczbą całkowitą, bo takie wartości zwraca random.randint(). Nie możesz porównywać napisów i liczb całkoitych za pomocą operatora ==, ponieważ one zawsze będą różne. '1' nie jest równa 1 i '2' nie jest równe 2.
+
+Tak więc friendlyCave przekazywane jest do funkcji str(), która zwraca napisową wartość friendlyCave. W ten sposób wartości będą tego samego typu  i będzie można je w sensowny sposób porównać. Można tu także użyć zamiany chosenCave na wartość całkowitą:
+
+    if int(chosenCave) == friendlyCave:
+
+Jeśli ten warunek zostanie spełniony (da True), linia 31 oznajmia graczowi, że wygrał skarb.
+
+32.     else:
+33.          print('Pożera cię jednym kłapnięciem paszczy!')
+
+Linia 32 zawiera dyrektywę else. Dyrektywa else może byc użyta tylko po bloku if. Blok else zostanie wykonany jeśli warunek w if nie zostanie spełniony (da False). Pomyśl o tym w ten sposób: “Jeśli (if) warunek jest spełniony, to wykonaj blok if, a jeśli nie (else), to wykonaj blok else”.
+
+Pamiętaj o wstawieniu dwokropka (znaku :) po słowie kluczowym else.
+
+Gdzie zaczyna się główna część
+
+35. playAgain = 'tak'
+36. while playAgain == 'tak' or playAgain == 't':
+
+Linia 35 jest pierwszą linią która nie jest dyrektywą def, ani nie jest we wnętrzu bloku def. Ta linia jest miejscem, gdzie zaczyna się główna część programu. Wcześniejsze dyrektywy def jedynie definiowały funkcje. Nie był wykonywany żaden kod z wnętrza tych funkcji.
+
+Linie 35 i 36 ustawiają pętlę w której jest reszta kodu gry. Na końcu gry gracz może wpisać, czy chce zagrać ponownie. Jeśli chce, wykonanie wchodzi do pętli while, by ponownie uruchomić całą grę. Jeśli nie chce, dyrektywa while da False i wykonanie zostanie przeniesiona na koniec programu i zakończone.
+
+Gdy wykonanie po raz pierwszy dochodzi do dyrektywy while, w linii 35 właśnie podstawiliśmy 'tak' do zmiennej playAgain. To oznacza, że warunek będzie spełniony (True). W ten sposób zapewniamy, że wykonanie choć raz wejdzie do pętli.
+
+Wywoływanie funkcji w programie
+
+38.     displayIntro()
+
+Linia 38 wywołuje funkcję displayIntro(). Nie jest to funkcja Pythona, to twoja funkcja którą zdefiniowałeś wcześniej w linii 4. Kiedy ta funkcja jest wywoływana, wykonanie programu przeskakuje do pierwszej linii w funkcji displayIntro(), do linii 5. Kiedy wszystkie linie w funkcji zostaną zakończone, wykonanie przeskoczy z powrotem do linii 38 i wykonanie będzie kontynuowane.
+
+40.     caveNumber = chooseCave()
+
+Linia 40 także wywołuje funkcję którą zdefiniowałeś. Funkcja chooseCave() pozwalała graczowi wpisać do jakiej chce wejść jaskini. Kiedy wykona sie linia 17 return cave, wykonanie programu przeskoczy do linii 40, a wywołanie chooseCave() wyliczy się do wartości zwrotnej. Ta wartość zwrotna zostanie zapisana w nowej zmiennej o nazwie caveNumber. Po tym wykonanie programu przejdzie do linii 42.
+
+42.     checkCave(caveNumber)
+
+Linia 42 wywołuje funkcję checkCave() przekazując wartość caveNumber jako argument. Wykonanie przeskoczy do linii 20, a wartość zapisana w caveNumber zostanie skopiowana do parametru chosenCave we wnętrzu funkcji checkCave(). To jest funkcja która wyświetli albo 'Daje ci swój skarb!', albo 'Pożera cię jednym kłapnięciem paszczy!' w zależności od jaskini jaką wybrał gracz.
+
+Pytanie gracza o ponowną rozgrywkę
+
+44.     print('Chcesz zagrać ponownie? (tak lub nie)')
+45.     playAgain = input()
+
+Niezależnie od tego, czy gracz wygrał, czy przegrał, zostanie on zapytany, czy chce zagrać ponownie. Zmienna playAgain przetrzymuje odpowiedź gracza. Linia 45 jest ostatnią linią bloku while, więc program wykona skok powrotny do linii 36 by sprawdzić warunek pętli while: playAgain == 'tak' or playAgain == 't'
+
+Jeśli gracz wpisze 'tak', lub 't', to wykonanie ponownie przejdzie do pętli w linii 38.
+
+Jeśli gracz wpisze 'nie', 'n', lub jakieś głupstwa typu 'Abraham Lincoln', to warunek nie będzie spełniony (da False). Wykonanie programu będzie kontynuowane od linii za blokiem while. Jednak ponieważ nie ma więcej linii za blokiem while, to program się zakończy.
+
+Uwaga: napis 'TAK' nie jest równy napisowi 'tak'. Jeśli gracz wpisze 'TAK', to warunek while nie zostanie spełniony i program się zakończy. Kolejne programy z tej książki pokażą, jak ominąć ten problem.
+
+Właśnie skończyłeś swoją drugą grę! W Królestwie smoków używałeś tego, czego już sie nauczyłeś w Zgadnij liczbę, a także poznałeś kolka nowych sztuczek. Jeśli nie zrozumiałeś niektórych rzeczy w tym programie, to spróbuj przeanalizować ponownie każdą linię kodu i spróbuj je nieco zmieniać obserwując jak zmieni się wykonanie programu.
+
+W następnym rozdziale nie stworzysz gry, ale nauczysz się jak używać narzędzia wbudowanego w IDLE o nazwie debugger (odpluskwiacz).
+
+Projektowanie programu
+
+Królestwo smoków to prosta gra. Inne gry w tej książe będą bardziej skomplikowane. Czasami pomaga zapisanie wszystkiego, co chcesz by robił program, nim rozpoczniesz pisanie kodu. Nazywamy to “projektowaniem programu”.
+
+Przykładowo, pomocny może być schemat przepływu. Taki schemat obrazuje każde możliwe zachoanie jako może zdarzyć się w grze i które prowadzi do innych zachowań. Rysunek 6-2 jest schamtem przepływu dla Królestwa smoków.
+
+Aby sprawdzić, co dzieje się w grze ustaw palec na polu “Start”. Następnie za pomocą strzałek możesz przechodzić na kolejne pola. Twój palec obrazuje wykonanie programu. Zakończenie programu nastąpi, gdy twój palec trafi na pole “Koniec”.
+
+Kiedy trafisz na “Sprawdzenie, czy smok jest przyjacielski, czy głodny”, możesz przejść albo na pole “Gracz wygrywa”, albo na pole “Gracz przegrywa”. Ten punkt rozgałęzienia pokazuje jak program może robić różne rzeczy. Którąkolwiek drogę wybierzesz, doprowadzi cię ona do pola “Zapytanie, czy gracz chce zagrać ponownie”.
+
+Podsumowanie
+
+W grze Królestwo smoka tworzyłeś swoje własne funkcje. Funkcje są mini-programami w twoim programie. Kod ze środka funkcji wykonuje się, gdy funkcja zostanie wywołana. Przez rozdzielenie kodu na funkcje może organizować kod by był w mniejszych, łatwiejszych do zrozumienia fragmentach.
+
+Argumenty są wartościami kopiowanymi do argumentów funkcji gdy funkcja jest wywoływana. Wywołanie funkcji samo wylicza się do wartości zwracanej przez funkcję.
+
+Rysunek 6-2: Schemat przepływu dla gry Królestwo smoków.
+
+Nauczyłeś sie także o zasięgu zmiennych. Zmienne tworzone wewnątrz funkcji istnieją w zasięgu lokalnym, a zmienne tworzone poaz funkcjami w zasięgu globalnym. Kod w zasięgu globalnym nie może użyć zmiennych lokalnych. Jeśli zmienna lokalna ma taką zamą nazwę jak zmienna globalna, to Python uważa ją za niezależną zmienną i podstawienie nowej wartości do zmiennej lokanej nie zmieni wartości w zmiennej globalnej.
+
+Zasięg zmiennych może wyglądać nieco skomplikowanie, ale jest przydatny przy tworzeniu funikcji jako oddzielnych kawałków kodu . Ponieważ każda funkcja ma swą własną przestrzeń zmiennych lokalnych, możesz być pewny że kod w jednej funkcji nie spowoduje błedów w innej funkcji.
+
+Prawie każdy program używa funkcji ponieważ są one bardzo użyteczne. Dzięki zrozumieniu jak działają funkcje możesz zaoszczędzić sporo wpisywania kodu jednocześnie sprawiając, że naprawa błędów będzie łatwiejsza.

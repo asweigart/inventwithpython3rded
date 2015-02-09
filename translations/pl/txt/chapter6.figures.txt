@@ -1,0 +1,16 @@
+Rys. 6-1:
+Słowo kluczowe def
+nawiasy
+nazwa funkcji
+dwukropek
+
+Rys. 6-2:
+Start
+Pokazanie wstępu
+Gracz wybiera jaskinię
+Sprawdzenie, czy smok jest przyjacielski, czy głodny
+Gracz wygrywa
+Gracz przegrywa
+Zapytanie, czy gracz chce zagrać ponownie
+Koniec
+

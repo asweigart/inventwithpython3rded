@@ -6,7 +6,6 @@ In diesem Kapitel lernst du:
 
 •   import Kommandos
 •   Module
-•   Argumente
 •   while Kommandos
 •   Bedingungen
 •   Blöcke
@@ -15,16 +14,16 @@ In diesem Kapitel lernst du:
 •   Den Unterschied zwischen = und ==
 •   if Kommandos
 •   Das break Kommando
-•   Die str() und int() Funktionen
+•   Die str(), int() und float() Funktionen
 •   Die random.randint() Funktion
 
 Das "Rate die Zahl" Spiel
 
-In diesem Kapitel wirst du ein "Rate die Zahl" Spiel schreiben. Der Computer wird an eine Zufallzahl zwischen 1 und 20 denken und dich bitten, sie zu erraten. Der Computer wird dir bei jedem Tipp, den du abgibst, sagen ob er zu hoch oder zu niedrig war. Du gewinnst wenn du die Zahl innerhalb von sechs Versuchen errätst.
+In diesem Kapitel wirst du ein "Rate die Zahl" Spiel schreiben. Der Computer wird an eine Zufallzahl zwischen 1 und 20 denken und dich bitten, sie zu erraten. Der Computer wird dir bei jedem Tipp, den du abgibst, sagen ob er zu hoch oder zu niedrig war. Du gewinnst wenn du die Zahl innerhalb von sechs Versuchen erraten kannst.
 
 "Rate die Zahl" ist interessant zu programmieren weil es Zufallszahlen, Schleifen und Benutzereingaben in einem ziemlich kurzen Programm verwendet. Du wirst lernen, wie man Werte in unterschiedliche Datentypen umwandelt (und warum das notwendig ist). Weil unser Programm ein Spiel ist, nennen wir den Benutzer Spieler, aber "Benutzer" wäre auch ok.
 
-Beispiel Lauf zu "Rate die Zahl"
+Beispiel Lauf zu Rate die Zahl
 
 So sieht das Programm für den Spieler aus, wenn es ausgeführt wird. Der Text den der Spieler eintippt ist fett geschrieben.
 
@@ -42,15 +41,19 @@ Los, rate.
 4
 Gut gemacht, Albert! Du hast meine Zahl in 3 Zügen erraten.
 
-Gib diesen Programmcode genau so wie er hier steht ein und klick dann auf Datei►Speichern unter. Verwende zahlenRaten.py als Dateinamen. Dann drück F5 um das Programm auszuführen. Keine Sorge wenn du den Code jetzt noch nicht verstehst, ich werde ihn dir Schritt für Schritt erklären.
+
+
+
 
 Der Quellcode von "Rate die Zahl"
 
-Hier ist der Quellcode von "Rate dir Zahl". Gib auf die Leerzeichen vor manchen der Zeilen acht, wenn du den Quellcode in den Dateieditor eingibst. Manche der Zeilen haben vier, manche haben acht Leerzeichen.
+Öffne ein neues Dateieditorfenster indem auf Datei►Neues Fenster klickst. Tippe in dem neu erschienen leeren Fenster  den Quellcode ein und speichere die Datei dann unter zahlenRaten.py ab. Drücke F5 um das Programm auszuführen. Wenn du den Programmcode eintippst muss du besonders auf die Leerzeichen am Beginn der Zeilen achten. Manche Zeilen haben vier und einige sogar acht Leerzeichen am Zeilenanfang.
 
-WICHTIGER HINWEIS! Die Programme in diesem Buch können nur in Python 3 ausgeführt werden, nicht in Python 2. Wenn IDLE startet sollte es so etwas wie "Python 3.4.0" oben anzeigen. Du kannst Python 2 und Python 3 zur selben Zeit auf deinem Computer installiert haben. Um Python 3 herunter zu laden geh zu http://python.org/download/.
+Hier ist der Quellcode von "Rate die Zahl". Gib auf die Leerzeichen vor manchen der Zeilen acht, wenn du den Quellcode in den Dateieditor eingibst. Manche der Zeilen haben vier, manche haben acht Leerzeichen.
 
-Du kannst diesen Code von http://invpy.com/de/zahlenRaten.py herunterladen. Wenn du nach dem Eintippen des Codes Fehlermeldungen bekommst, verwende das Online diff Werkzeug unter http://invpy.com/de/diff/zahlenRaten um deinen Code mit dem Code aus dem Buch zu vergleichen.
+WICHTIGER HINWEIS! Die Programme in diesem Buch können nur in Python 3 ausgeführt werden, nicht in Python 2. Wenn IDLE startet sollte es so etwas wie "Python 3.4.2" oben anzeigen. Du kannst Python 2 und Python 3 zur selben Zeit auf deinem Computer installiert haben. Um Python 3 herunter zu laden geh zu http://python.org/download/.
+
+Wenn du nach dem Eintippen des Codes Fehlermeldungen bekommst, verwende das Online diff Werkzeug unter http://invpy.com/de/diff/zahlenRaten um deinen Code mit dem Code aus dem Buch zu vergleichen.
 
 zahlenRaten.py
 
@@ -89,9 +92,9 @@ zahlenRaten.py
 33.      zahl = str(zahl)
 34.      print('Nene. Die Nummer an die ich gedacht habe war ' + zahl)
 
-Jetzt schauen wir uns den Code Zeile für Zeile an um zu verstehen wie das Programm funktioniert.
+Schauen wir uns den Code Zeile für Zeile an um zu verstehen wie das Programm funktioniert.
 
-Der import Befehl.
+import Befehle
 
  1.  # Das ist ein Zahlenratespiel.
  2.  import random
@@ -99,11 +102,11 @@ Der import Befehl.
 Die erste Zeile ist ein Kommentar. Python ignoriert alles nach dem # Zeichen. Diese Zeile dient nur dazu, uns daran zu erinnern was das Programm macht.
 
 #TODO: Check that we really already know that.
-Zeile Zwei ist ein import Befehl. Befehle sind Instruktionen die eine Handlung durchführen aber nicht wie Ausdrücke ausgewertete werden können. Wir haben bereits Befehle kennengelernt: Zuweisungsbefehle speichern einen Wert in einer Variable (aber der Befehl selbst kann nicht ausgwertet werden).
+Zeile Zwei ist ein import Befehl. Befehle sind Instruktionen die eine Handlung durchführen aber nicht wie Ausdrücke ausgewertete werden können. Wir haben bereits Befehle kennengelernt: Zuweisungsbefehle speichern einen Wert in einer Variable.
 
-Python bringt viele Funktionen mit, ein großer Teil davon befindet sich aber in getrennten Programmen die Module genannt werden. Module sind Python Programme die zusätzliche Funktionen beinhalten. Um diese Funktionen zu verwenden musst du die zugerhörigen Module mit einem import Befehl in dein Programm importieren.
+Python bringt viele Funktionen mit, ein großer Teil davon befindet sich aber in getrennten Programmen die Module genannt werden. Um diese Funktionen zu verwenden musst du die zugerhörigen Module mit einem import Befehl in dein Programm importieren.
 
-Der import Befehl besteht aus dem import Schlüsselwort gefolgt vom Modulnamen. Zeile 2 importiert das modul mit dem Namen random (engl. zufällig). Das random module enthält einige Funktionen die mit Zufallszahlen zu tun haben. Eine dieser Funktionen liefert die Zufallszahlen die der Benutzer erraten muss.
+Zeile 2 importiert das modul mit dem Namen random (engl. zufällig) damit das Programm random.randint() aufrufen kann.Diese Funktion liefert die Zufallszahlen die der Benutzer erraten muss.
 
 4. abgegebeneTipps = 0
 
@@ -116,7 +119,7 @@ Zeilen 6 und 7 sind wie im Hallo Welt Programm aus Kapitel 3. Programmierer verw
 
 Zeile 6 ist ein Funktionsaufruf, hier wird die print() Funktion aufgerufen. Erinner dich, dass ein Funktionsaufruf wie ein Miniprogramm in deinem Programm ist. Wenn dein Programm eine Funktion aufruft, dann führt es dieses Miniprogramm aus. Der Programmcode in der print() Funktion zeigt den Text, der im String Argument übergeben wird, auf dem Bildschirm an.
 
-Zeile 7 lässt den Benutzer seinen Name eingeben und speichert die Eingabe in der Variable meinName. (Der String muss nicht wirklich der Name des Spieler sein sondern ist einfach genau der String, den der Spieler eintippt. Computer sind dumm und folgen einfach stur ihrem Programm.)
+Zeile 7 lässt den Benutzer seinen Name eingeben und speichert die Eingabe in der Variable meinName. (Der String muss nicht wirklich der Name des Spieler sein sondern ist einfach genau der String, den der Spieler eintippt. Computer sind dumm und folgen einfach stur deinen Befehlen.)
 
 Die random.randint() Funktion
 
@@ -124,9 +127,9 @@ Die random.randint() Funktion
 
 Zeile 9 ruft eine  neue Funktion mit dem Namen randint() auf und speichert den Rückgabewert in zahl ab. Funktionsaufrufe können Teil eines Ausdrucks sein, weil sie zu einem Wert ausgewerteten haben.
 
-Weil die randint() Funktion von vom random Modul präsentiert wird muss ihm random vorangestellt werden (Vergiss nicht auf den Punkt!) um Python mitzuteilen, dass die Funktion randint() im Modul random zu finden ist.
+Die randint() Funktion wird vom random Modul zur Verfügung gestellt wird muss ihm random vorangestellt werden (Vergiss nicht auf den Punkt!) um Python mitzuteilen, dass die Funktion randint() im Modul random zu finden ist.
 
-Die randint() Funktion wird eine Zufallszahl zwischen (und inklusive) den beiden übergebenen Integerargumenten zurückgeben. Zeile 9 übergibt 1 und 20 zwischen den Klammern die dem Funktionsnamen folgen (unterteilt durch ein Komma). Die Zufallszahl die von randint() zurück gibt wird einer Variable namens zahl gespeichert; das ist die geheime Zahl die der Spieler erraten muss.
+Die randint() Funktion wird eine Zufallszahl zwischen (und inklusive) den beiden übergebenen Integerargumenten zurückgeben. Zeile 9 übergibt 1 und 20 zwischen den Klammern die dem Funktionsnamen folgen, unterteilt durch ein Komma. Die Zufallszahl die von randint() zurück gibt wird einer Variable namens zahl gespeichert; das ist die geheime Zahl die der Spieler erraten muss.
 
 Wechsle für einen Moment in die interaktive Shell und gib import random ein, um das random modul zu importieren. Dann tippe random.randint(1,20) und drücke die Eingabetaste um zu sehen zu was der Funktionsaufruf ausgewertet wird. Wenn du die Eingabe wiederholst wird der Funktionsaufruf wahrscheinlich zu einer anderen Zahl ausgewertet. Die randint() Funktion gibt jedesmal irgendeine Zufallszahl zurück, genau so wie Würfel bei jedem Wurf eine Zufallszahl zurück geben.
 
@@ -142,9 +145,11 @@ Wechsle für einen Moment in die interaktive Shell und gib import random ein, um
 >>> random.randint(1, 20)
 7
 
-Verwende die randint() Funktion wenn du einen Teil deines Spiels zufällig statt vorhersagbar zu machen. Die meisten Spiele brauchen Zufälligkeit - wie zum Beispiel in Brettspiele, in denen aus diesem Grund oft Würfel verwendet werden.
+Verwende die randint() Funktion wenn du einen Teil deines Spiels zufällig statt vorhersagbar zu machen. Viele Spiele brauchen Zufälligkeit - wie zum Beispiel in Brettspiele, in denen aus diesem Grund oft Würfel verwendet werden.
 
-Mit den Argumenten der randint Funktion kannst du den Bereich aus dem die Zufallszahlen Gewählt werden einstellen. Gib - zum Beispiel - random.randint(1,4) ein um nur ganze Zahlen von 1 bis 4 zurück zu bekommen. Oder versuche random.randint(1000,2000) um ganze Zahlen zwischen 1000 und 2000 zu erhalten. Probier die Beispiele in der Eingabezeile ein. Natürlich wirst du andere Ergebnisse erhalten, wenn du random.randint() ausführst (es sind ja Zufallszahlen).
+Mit den Argumenten der randint Funktion kannst du den Bereich aus dem die Zufallszahlen Gewählt werden einstellen. Gib - zum Beispiel - random.randint(1,4) ein um nur ganze Zahlen von 1 bis 4 zurück zu bekommen. Oder versuche random.randint(1000,2000) um ganze Zahlen zwischen 1000 und 2000 zu erhalten.
+
+Probier die Beispiele in der Eingabezeile ein. Natürlich wirst du andere Ergebnisse erhalten, wenn du random.randint() ausführst (es sind ja Zufallszahlen).
 
 >>> random.randint(1, 4)
 3
@@ -177,19 +182,20 @@ Schleifen
 
 Zeile 12 ist ein while Befehl, das den Beginn einer while Schleife anzeigt. Schleifen lassen dich einen immer wieder ausführen. Wir müssen jedoch ein paar andere Konzepte durchgehen, bevor wir uns Schleifen genauer ansehen. Diese Konzepte sind Blocks, Booleans, Vergleichsoperatoren, Bedingungen und das while Statement.
 
-Blocks
+Blöcke
 
-Einige Zeilen Programmcode können in einem Block gruppiert werden. Ein Block von Code hat die selbe minimale Einrückung. An der Anzahl an Leerzeichen am Anfang der Zeile siehst du wo ein Block beginnt. Das ist die Einrückung (engl: indentation) der Zeile.
+Mehrere Zeilen Programmcode können in einem Block gruppiert werden. Jede Zeile in einem Block hat die selbe minimale Einrückung. An der Anzahl an Leerzeichen am Anfang der Zeile siehst du wo ein Block beginnt. Das ist die Einrückung (engl: indentation) der Zeile.
 
-Ein Block beginnt wenn die Einrückung der Zeile sich erhöht (normalerweise um vier Leerzeichen). Alle folgenden Zeilen, die auch gleich weit Eingerückt sind, sind auch Teil des Blocks. Der Block endet, sobald eine der Zeilen, die eine geringere Einrückung - so wie der darüber liegende Block hat, beginnt. Das heißt, dass ein Block innerhalb eines anderen Blocks liegt.
 
-Abbildung 4-1 ist ein Diagramm des Codes, in dem die Blocks angezeichnet und durchnummeriert sind. Die Leerzeichen sind als schwarze Quadrate eingezeichnet um sie besser zählbar zu machen.
+Ein Block beginnt wenn die Einrückung der Zeile sich erhöht (normalerweise um vier Leerzeichen). Alle folgenden Zeilen, die auch gleich weit Eingerückt sind, sind auch Teil des Blocks. Der Block endet, sobald eine der Zeilen, die eine geringere Einrückung - so wie der darüber liegende Block hat, beginnt. Das heißt, dass ein Block innerhalb eines anderen Blocks liegt. Abbildung 4-1 ist ein Diagramm des Codes, in dem die Blocks angezeichnet und durchnummeriert sind. Die Leerzeichen sind als schwarze Quadrate eingezeichnet um sie besser zählbar zu machen.
 
-Abbildung 4-1: Blöcke und ihre Einrückung. Die schwarzen Quadrate zeigen Leerzeichen an.
 
 In Abbildung 4-1, in Zeile 12 gibt es keine Einrückung daher ist diese Zeile nicht in einem Block. Zeile 13 hat einem Einrückung von vier Leerzeichen. Da diese Einrückung eine größer ist als die der vorigen beginnt die hier ein neuer Block. Der Block ist in Abbildung 4-1 mit (1) bezeichnet. Dieser Block geht wird weiter gehen, bis eine Zeile ohne Einrückung (so wie bevor der Block gebonnen hat). Leere Zeilen werden ignoriert.
 
 Zeile 20 hat eine Einrückung von acht Leerzeichen. Acht Leerzeichen sind mehr als vier Leerzeichen, was wiederum einen neuen Block beginnt. Dieser Block ist in Abbildung 4-1 mit (2) gekennzeichnet. Dieser Block ist in einem anderen Block.
+
+
+Abbildung 4-1: Blöcke und ihre Einrückung. Die schwarzen Quadrate zeigen Leerzeichen an.
 
 Zeile 22 hat nur vier Einrückungen. Die Einrückung ist also weniger geworden, du daher ist der Block beendet. Zeile 20 ist die einzige Zeile in diesem Block. Zeile 22 ist im selben Block wie die anderen Zeilen mit vier Leerzeichen.
 
@@ -201,11 +207,18 @@ Der Boolean Datentyp
 
 Der Boolean Datentyp kann nur zwei Werte haben: True (engl. für wahr) oder False (engl. für falsch). Diese Werte müssen mit einem Großem "T" oder "F" geschrieben werden. Der Rest der Namen der Werte muss klein geschrieben sein. Du wirst Boolean Werte (auch bools genannt) mit Vergleichsoperatoren verwenden um Bedingungen zu bilden. (Bedingungen werden später erklärt.)
 
-Die Datentypen die bis jetzt vorgestellt wurden sind integer, strings und jetzt bools.
+Du kannst bools natürlich auch in Variablen speichern:
+
+>>> Speck = True
+>>> Eier = False
+
+
+
+Die Datentypen die bis jetzt vorgestellt wurden sind integer, strings und jetzt bools. Jeder Wert in Python gehört zu einem Datentyp.
 
 Vergleichsoperatoren
 
-Zeile 12 hat ein while statement:
+Zeile 12 enthält ein while statement:
 
 12. while abgegebenTipps < 6:
 
@@ -214,18 +227,262 @@ Der Ausdruck der dem while Schlüsselwort folgt ( der abgegebenTipps < 6 Teil) e
 Vergleichsoperatoren vergleichen zwei Werte und werden entweder zu True oder False Boolean Werte ausgewertet. Eine Liste von allen Vergleichoperatoren findest du in Tabelle 4-1.
 
 Tabelle 4-1: Vergleichsoperatoren
-Operator Zeichen	Operato Name
-<			Kleiner als
->			Größer als
-<=			Kleiner als oder gleich
->=			Mehr als oder gleich
-==			Gleich
-!=			Ungleich
+Operator Zeichen Operator Name
+<	Kleiner als
+>	Größer als
+<=	Kleiner als oder gleich
+>=	Mehr als oder gleich
+==	Gleich
+!=	Ungleich
 
 Du kennst jetzt also schon die mathematischen Operatoren +, -, * und /. Wie alle Operatoren werden die Vergleichsoperatoren mit Werten verknüpft um Ausdrücke wie abgegebenTipps < 6 zu bilden.
 
 Bedingungen
 
-Eine Bedingung ist ein Ausdruck der zwei Werte mit einem Vergleichsoperator verbindet (so wie < oder >) und zu einem Boolean Wert auswertet. Bedingung ist nur ein anderer Name für Ausdruck der zu True oder False ausgwertet wird. Bedingungen werden in while Statements verwendet (und an ein paar anderen Orten, wie später erklärt wird.)
+Eine Bedingung ist ein Ausdruck der zwei Werte mit einem Vergleichsoperator verbindet (so wie < oder >) und zu einem Boolean Wert auswertet. Bedingung ist nur ein anderer Name für Ausdruck der zu True oder False ausgwertet wird. Bedingungen werden in while Statements verwendet (und an ein paar anderen Befehlen, wie später erklärt wird.)
 
-Die Bedingung abgegebeneTipps < 6 fragt, zum Beispiel,
+Die Bedingung abgegebeneTipps < 6 fragt, zum Beispiel, "Ist der Wert der in abgegebeneTipps gespeichert ist kleiner als die Zahl 6?" Wenn ja, dann wir die Bedingung zu True ausgewertet, wenn nein, dann wir sie zu False ausgewertet.
+
+In unserem "Rate die Zahl" Programm wird in Zeile 4 der Wert 0 in abgegebeneTipps gespeichert. Weill 0 weniger als 6 ist, wird diese Bedingung zu True ausgewertet. Die Ausertung würde in etwa so aussehen:
+
+abgegebeneTipps < 6
+             ▼
+           0 < 6
+             ▼
+            True
+Experimente mit Booleans, Vergleichsoperatoren, und Bedingungen
+
+Gib den folgenden Ausdruck in der Eingabezeile ein und sieh dir an, zu welchen Booleans sie ausgewertet werden:
+
+>>> 0 < 6
+True
+>>> 6 < 0 
+False
+>>> 50 < 10 
+False
+>>> 10 < 11
+True
+>>> 10 < 10
+False
+
+Die Bedingung 0 < 6 wird zu True ausgewertet weil die Zahl 0 kleiner als die Zahl 6 ist. Umgekehrt ist natürlich 6 nicht kleiner als 0 also ergibt 6 < 0 False. 50 ist nicht weniger als 10 also ist 50 < 10 False. 10 ist weniger als 11 also ist 10 < 11 True.
+
+10 < 10 wird zu False ausgewertet weil 10 nicht kleiner als 10 ist sonder gleich groß. Wenn Alice und Bertl gleich groß sind, dann würdest du auch nicht sagne, dass Alice größer als Bertl ist oder dass Bertl kleiner als Alice ist. Beide Aussagen wären falsch.
+
+Probier jetzt aus, wie die folgenden Ausdrücke in der Eingezeile ausgewertet werden:
+
+>>> 10 == 10
+True
+>>> 10 == 11
+False
+>>> 11 == 10
+False
+>>> 10 != 10
+False
+>>> 10 != 11
+True
+>>> 'Hallo' == 'Hallo'
+True
+>>> 'Hallo' == 'Tschüss'
+False
+>>> 'Hallo' == 'HALLO'
+False
+>>> 'Tschüss' != 'Hallo'
+True
+
+Der Unterschied zwischen = und ==
+
+Der Zuweisungsoperator (=) und der "ist gleich" Vergleichsoperator (==) sind leicht zu verwechseln. Das einfache Gleichzeichen (=) wird in Zuweisungsausdrücken verwendet um einen Wert in einer Variable zu speichern, das Doppelte Gleichzeichen (==) wird verwendet um zu testen ob zwei Werte gleich sind. Die beiden Operatoren können leicht vertauscht werden. 
+
+Es gibt eine Eselsbrücke um die beiden Operatoren auseinander zu halten:  Der "ist gleich" Verfleichsoperator (==) hat wie der "nicht gleich" Operator (!=) zwei Zeichen hat.
+
+String und integer Werte können niemals gleich zueinander sein. Hier sind ein zwei Beispiele dazu, die du in der Eingabezeile versuchen kannst:
+
+>>> 42 == 'Hallo'
+False
+>>> 42 != '42'
+True
+
+Schleifen mit while Befehlen
+
+Der while (engl. während) Befehl zeigt den Beginn einer Schleife an. Schleifen führen den selben Code wiederholt aus. Wenn die Ausführung den while Befehl erreicht, dann wird die Bedingungen neben dem while Befehl ausgewertet. Wenn die Bedingung True ist, dann wird der Block unter der while Bedingung ausgeführt. Dieser Block heisst while Block. (In diesem Program beginnt der while Block in Zeile 13.) Wenn die Bedingung zu False ausgewertet wird, dann wird der while Block übersprungen und die Ausführung in der ersten Zeile nach dem while Block fortgesetzt.  In Rate die Zahl ist Zeile 28 die erste Zahl nach dem while Block.
+
+Ein while Befehl hat immer einen Doppelpunkt : nach der Bedingung. Befehle die mit einem Doppelpunkt enden erwarten, dass in der nächsten Zeile ein neuer Block beginnt.
+
+12. while abgegebenTipps < 6:
+
+Abbildung 4-2: Die Bedingung der while Schleife
+
+Abbildung 4-2 zeigt wie den Verlauf der Ausführung je nach dem Wert der Bedingung. Wenn die Bedingung zu True ausgewertet wird (wie sie es beim ersten Durchlaufen des Programms der Falls ist, weil der Wert von abgegebeneTipps 0 ist), dann wird nach dem while Befehl der while Block beginnend mit Zeile 13 ausgeführt. Wenn das Programm das Ende des while Blocks erreicht, dann wird es nicht zur Zeile darunter weiter gehen sondern wieer zurück zum while Statement (Zeile 12) springen und diese auswerten. Wie beim ersten Mal wird die Bedingung ausgewertet, wenn sie zu True evaluiert wird, dann wird anschließend wieder der while Block ausgeführt. Jedes durchlaufen der Schleife wird Iteration genannt.
+
+Die while Schleife funktionier folgendermaßen: So lange die Bedingung True ist, wird das Programm weiter immer wieder den while Block ausführen bis Bedingung zum ersten Mal False ist. Den while Befehl könnten man in Worten auch so ausdrücken: "während (while) diese Bedingung wahr (True) ist, führe den Code im folgenden Block aus".
+
+Der Spieler rät
+
+13.    print('Los, rate.') # Vor print sind vier Leerzeichen.
+14.    tipp = input()
+
+Zeilen 13 bis 17 fordern den Spieler auf eine Zahl zu raten und diese einzugeben. Diese Zahl wird in der Variable tipp gespeichert. 
+
+Zahlen mit den Funktionen int(), float() und str() umwandeln
+
+15.    tipp = int(tipp)
+
+Zeile 15 ruft eine neue Funktion mit dem Namen int() auf. Die int() Funktion nimmt ein Argument und gibt den Integerwert zu diesem Argument zurück. Versuche es mit dem folgenden Befehlen in der Eingabgezeile:
+
+>>> int('42')
+42
+>>> 3 + int('2')
+5
+
+Der Funktionsaufruf int('42') gibt den integer Wert 42 zurück. int() kann allerdings nicht beliebige strings in integer umwandeln. Wenn 'zweiundvierzig' oder 'forty-two' übergeben wird, dann ist das Ergebnis ein Fehler. Der string der an int() übergeben wird muss aus Zahlen bestehen:
+
+>>> int('forty-two')
+Traceback (most recent call last):
+  File "<pyshell#5>", line 1, in <module>
+int('forty-two')
+ValueError: invalid literal for int() with base 10: 'forty-two'
+
+In der Zeile 3 + int('2') wir der Rückgabewert von int() als Teil eines Ausdrucks verwendet. Der Ausdruck wird zu integer 5 ausgewertet:
+
+3 + int('2')
+  ▼
+3 + 2
+  ▼
+  5
+
+Erinner dich, die input() Funktion gibt die Eingabe des Spielers als Text, also als string zurück. Wenn der Spieler 5 eintippt, dann gibt die input() Funktion den string Wert '5' zurück, nicht denn integer Wert 5. Python kann die Vergleichsoperatoren < und > nicht verwenden um einen string und einen integer wert zu vergleichen:
+
+>>> 4 < '5'
+Traceback (most recent call last):
+  File "<pyshell#0>", line 1, in <module>
+    4 < '5'
+TypeError: unorderable types: int() < str()
+
+In Zeile 15 enthält die Variable tipp zuerst den string Wert der Eingabe des Spielers. In Zeile 16 wird der string Wert mit einem integer Wert, der von int() zurück gegeben wird, überschrieben. Das erlaubt dem Code später im Programm zu testen ob der Tipp größer, kleiner oder gleich der Geheimzahl die in der Variable zahl gespeichert ist.
+
+Eine letzte Sachen noch:  Wenn int(tipp) aufgerufen wird ändert sich der Wert in tipp nicht. Der Code int(tipp) ist ein Ausdruck der zu einem integer ausgewertet wird. tipp wird erst durch den Zuweisungsoperator geändert: tipp = int(tipp)
+
+Die float(), str() und bool() Funktionen geben ähnlich wie int() float, string und Boolean Versionen der Argumente zurück. Versuche die folgenden Befehle in der Eingabezeile:
+
+>>> float('42')
+42.0
+>>> float(42)
+42.0
+>>> str(42)
+'42'
+>>> str(42.0)
+'42.0'
+>>> str(False)
+'False'
+>>> bool('')
+False
+>>> bool('any nonempty string')
+True
+ 
+Den int(), float(), str() und bool() Funktionen kannst du Werte eines Datentyps übergeben und ihn als Wert eines anderen Datentyps erhalten.
+
+Variablen inkrementieren
+
+17.    abgegebenTipps = abgegebenTipps + 1
+
+Wenn der Spieler einen Tipp abgegeben hat muss die Anzahl an agegebenen Tipps um eins erhöht werden.
+
+Bei der ersten Iteration der Schleife hat abgegebeneTipps den Wert 0. Python nimmt diesen Wert und addiert 1 dazu. 0 + 1 wird zu 1 ausgwertet. Dieser Wert wird dann als neuer Wert von abgegebeneTipps gespeichert. Du kannst dir vorstellen, dass Zeile 17 sagt: "abgegebeneTipps soll eins mehr sein soll als es gerade ist."
+
+Eins zum integer oder float Wert einer Variable zu addieren nennt man auch inkrementieren. Wenn man eins vom Wert einer Variable abzieht dann heißt das dekrementieren.
+
+if Befehl
+
+19.    if tipp < zahl:
+20.        print('Dein Tipp ist zu niedrig.') # Hier sind acht Leerzeichen vor print.
+
+Zeile 19 ist ein if Befehl. Die Ausführung wird den Programmcode im folgenden Block ausführen wenn die Bedingung im if Befehl als wahr ausgewertet wird. Wenn die Bedingung falsch ist dann wird der Programmcode im if-Block übersprungen. Durch if-Befehle kannst du dafür sorgen, dass Teile deines Programms nur dann ausgeführt werden, wenn du es willst.
+
+Zeile 19 überprüft ob der Tipp des Spielers weniger als die Geheimzahl des Computers ist. Ist das der Fall, dann wird die Ausführung auf Zeile 20 innerhalb des if-Blocks fortgesetzt, in dem der Computer dem Spieler mitteilt: "Dein Tipp ist zu niedrig."
+
+Der if Befehl funktioniert fast wie ein while-Befehl. Im Unterschied zum while-Block sprint die Ausführung am Ende des if-Blocks zurück zum if Befehl. Es setzt die Ausführung einfach in der nächsten Zeile fort. In anderen Worten, if statements werden nicht in Schleifen ausgeführt. In Abbildung 4-3 siehst du einen Vergleich der zwei Befehle.
+
+Abbildung 4-3: if und while Befehl
+
+22.    if tipp > zahl:
+23.        print('Dein Tipp ist zu hoch.')
+
+Zeile 22 überprüft ob der Tipp des Spielers größer als die Geheimzahl ist. Wenn die Bedingung True ist, dann teilt der Aufruf der print() Funktion dem Spieler mit, dass sein Tipp zu hoch ist.
+
+Schleifen vorzeitig mit dem break Befehl verlassen
+
+25.    if tipp == zahl:
+26.        break
+
+Der if-Befehl auf Zeile 25 überprüft ob der Tipp gleich der Geheimzahl ist. Ist das der Fall, dann wird auf Zeile 26 der break Befehl ausgeführt. 
+
+Ein break Befehl führt dazu, dass die Ausführung gleich nach dem while-Block fortgesetzt wird. Die Bedingung der while-Schleife wird nicht erneut überprüft.
+
+Das break-Statement findet sich nur in Schleifen, wie zum Beispiel in einem while-Block.
+
+Wenn der Tipp des Spielers nicht gleich der Geheimzahl ist, dann erreicht die Ausführung das Ende des while-Blocks. Das heißt, dass die Ausführung wieder zum Beginn zurück springt und dort die Bedingung in Zeile 12 überprüft (abgegebeneTipps < 6). Erinner dich daran, dass nach dem Ausführen von  abgegebeneTipps = abgegebeneTipps + 1, der neue Wert von abgegebeneTipps 1 ist. Weil 1 < 6 wahr ist, wird die Ausfürhung wieder in der Schleife fortgesetzt.
+
+Wenn der Spieler weiter zu hoch oder zu tief rät, dann wird abgegebeneTipps zuerst 2, dann drei, dann 4, dann 5, dann 6. Wenn in abgegebeneTipps die Zahl 6 gespeichert ist, dann wird die Bedingung (abgegebeneTipps < 6) falsch (False), weil 6 nicht weniger als 6 ist. Da die Bedingung des while-Befehls False ist, wir die Ausführung in der ersten Zeile nach dem while-Block fortgesetzt, Zeile 28.
+
+Überprüfen, ob der Spieler gewonnen hat
+
+28. if tipp == zahl:
+
+Zeile 28 hat keine Einrückung, das heißt, dass der while-Block beendet ist und dass diese Zeile, die erste nach dem while-Block ist. Die Ausführung hat den while-Block entweder verlassen, weil die Bedingung des while-Blocks False war (weil der Spieler keine Tipps mehr übrig hat) oder, weil das break-Statement in Zeile 26 ausgeführt wurde (wenn der Spieler richtig geraten hat).
+
+Zeile 28 überprüft, ob der Spieler richtig geraten hat. Ist das der Fall, dann wird die Ausführung im if-Block fortgesetzt.
+
+29.    abgegebenTipps = str(abgegebenTipps)
+30.    print('Gut gemacht, ' + meinName + '! Du hast meine Zahl in ' + abgegebenTipps + ' Zügen erraten!')
+
+Die Zeilen 29 und 30 werden nur ausgeführt, wenn die Bedingung im if-Befehl auf Zeile 28 True ist(d.h. wenn der Spieler die Zahl des Computers richtig geraten hat).
+
+Zeile 29 ruft die str() Funktion auf, die die string Form von abgegebeneTipps zurück gibt. Zeile 30 verkettet die strings um dem Spieler mitzuteilen, dass er gewonnen hat und wieviele Tipps er dazu benötigt hat. Nur string Werte können mit anderen strings verkettet werden. Aus diesem Grunde musste in Zeile 29 angegebeneTipps in einen string umgewandelt werden. Wenn man versucht, einen string mit einem integer zu verketten dann gibt Python einen Fehler aus.
+
+Überprüfen, ob der Spieler verloren hat
+
+32. if tipp != zahl:
+
+Zeile 32 verwendet den "ungleich" Vergleichsoperator != um zu überprüfen, ob der letzte Tipp des Spielers nicht gleich der Geheimzahl war. Wenn diese Bedingung True ist, dann wird die Ausführung im if-Block auf Zeile 33 fortgeführt.
+
+Zeile 33 und 34 sind im if-Block und werden nur ausgeführt, wenn die Bedingung auf Zeile 32 True wahr.
+
+33.    zahl = str(zahl)
+34.    print('Nene. Die Nummer an die ich gedacht habe war ' + zahl)
+
+In diesem Block teilt das Programm dem Spieler mit, was die Geheimzahl war, die er nicht erraten hat. Dazu müssen wieder strings verkettet werden, aber zahl enthält wieder einen integer. Zeile 33 überschreit diese Zahl mit dem entsprechende string um die Verkettung mit dem string 'Nene. Die Nummer an die ich gedacht habe war ' in Zeile 34 zu ermöglichen.
+
+An diesem Punkt hat die Ausführung das Ende des Programmcodes erreicht und das Programm ist beendet. Gratuliere! Du hast gerade dein erstes richtiges Spiel geschrieben!
+
+Du kannst den Schwierigkeitsgrad des Spiels ändern, indem du die Anzahl an Tipps, die der Spieler bekommt, änderst. Um dem Spieler nur 4 Tipps zu geben, ändere Zeile 12 von
+
+12. while abgegebenTipps < 6:
+
+zu 
+
+12. while abgegebenTipps < 4:
+
+Der Code weiter unten im while-Block erhöht, die abgegebeneTipps Variable in jeder Iteration um 1. Indem die Bedingung zu abgegebeneTipps < 4 geändert wird, ist sichergestellt, dass der Code in der Schleife nur vier mal ausgeführt wird statt sechs mal. Das macht das Spiel viel schwieriger. Wenn du das Spiel einfacher machen willst, dann kannst du die Bedingung auf abgegebeneTipp < 8 oder abgegebenTipps < 10 ändern. So wird die Schleife noch einige Male öfter ausgeführt und der Spieler kann mehr Tipps abgegeben.
+
+Flusskontroll Statements
+#TODO: Better translation for Flow Control
+
+In den vorigen Kapiteln hat die Ausführung des Programms oben begonnen und ist dann stur nach unten forgesetzt worden, wobei jede Instruktion in der Reihenfolge ausgeführt wurde. Mit while, if, else und break Befehlen kannst du die Ausführung dazu bringen, Instruktionen wiederholt auszuführen oder sie zu überspringen, je nachdem ob eine Bedigung erfüllt ist oder nicht. Solche Befehle heißen Flusskontrolle, da sie den Fluss des Programms ändern können.
+
+Zusammenfassung
+
+Wenn jemand dich fragt, "Was ist denn nun Programmieren?" was könntest du dann antworten? Programmieren ist nur das Schreiben von Programmcode, d.h. ein Programm zu kreieren, dass von einem Computer ausgeführt werden kann.
+
+"Aber was genau ist denn ein Programm?" Wenn du jemanden ein Computerprogramm benutzen  (zum Beispiel, dein Rate die Zahl spielen) siehst, dann siehst du nur Text, der auf dem Bildschirm erscheint. Das Programm entscheidet was der genaue Text (die Ausgabe des Programms) ist, basierend auf seinem Programmcode und dem Text, den der Spieler eintippt (der Eingabe des Benutzers). Ein Programm is also nur eine Sammlung von Befehlen, die auf die Eingaben des Benutzers reagieren.
+
+"Welche Art von Befehlen?" Es gibt in WIrklichkeit nur wenige verschiedene Arten von Befehlen.
+
+1. Ausdrücke sind Werte, die durch Operatoren verbunden werden. Asudrücke werden immer bis zu einem einzelnen Wert hin ausgewertet, so wie 2 + 2 zu 4, oder 'Hello' + ' ' + 'World' zu 'Hello World' ausgewertet wird. Wenn ein Ausdruck neben einem if oder while steht, dann kannst du sie auch Bedingungen nennen.
+2. Zuweisungen speichern Werte in Variablen damit du später im Programm wieder auf diese Werte zugreifen kannst.
+3. if-, while- und break-Befehl dienen der Flusskontrolle. Sie können die die Ausführung dazu veranlassen Befehle zu überspringen, Befehle zu wiederholen, oder aus Schleifen auszubrechen. Funktionsaufrufe können den Fluss der Ausführung auch ändern, indem sie zu den Instruktionen in einer Funktion springen.
+4. Die print() und input() Funktionen. Diese Funktionen zeigen Text auf dem Bildschirm an und holen Text von der Tastatur. Diese Funktionen werden I/O (sprich Ei-Oh) genannt weil man über sie Daten eingeben oder ausgeben kann (engl. input/output Eingabe/Ausgabe).
+
+So, und das sind schon alle vier  Arten von Befehlen. Natürlich gibt es zahlreiche Details zu diesen vier Arten. In diesem Burch lernst du neue Datentype und Operatoren, neue Flusskontrollstatements und zahlreiche Funktionen die Python mitbringt. Es gibt auch verschiedene Arten von I/O, so wie die Eingabe durch die Maus oder Ausgabe von Ton oder Graphiken anstatt nur Text.
+
+Die Personen, die deine Programme benutzen interessieren sich nur für I/O. Der Benutzer tippt auf der Tastatur und sieht dann Sachen auf dem Bildschirm und hört Dinge aus dem Lautsprecher. Der Computer benötigt ein Programm um zu wissen, was er anzeigen soll oder welche Töne er abspielen soll, und dieses Programm ist nur eine Folge von Befehlen die du, der Programmierer, geschrieben hast. 

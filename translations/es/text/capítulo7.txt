@@ -3,8 +3,8 @@
 
 Los tópicos cubiertos en este capítulo:
 •   3 Tipos Diferentes de Errores
-•   Depurador IDLE
-•   Entrar En, Sobre, Salir. #Stepping Into, Over, and Out
+•   Depurador de IDLE
+•   Entrar En, Sobre, Salir
 •   Ir y Salir
 •   Puntos de Quiebre #Break Points
 
@@ -71,29 +71,29 @@ El área de Globales en la ventana de control del depurador es donde se guardan 
 Debido a que las tres sentencias def ejecutan y definen funciones, apareceran en el area de globales.
 Eĺ texto junto a los nombres de las funciones se verá como "<function checkCave at 0x012859B0>". Los nombres de módulos también tienen texto de aspecto confuso junto a ellos, tales como “<module 'random' from 'C:\\Python31\\lib\\random.pyc'>“. Esta información detallada es útil para los programadores avanzados, pero no necesitas saber que significa para depurar tus programas. Tan sólo con ver que las funciones y los módulos se encuentran en el área de globales te dirá que la función fue definida o el módulo importado.
 También puedes ingorar las líneas __builtins__, __doc__, and __name__. (Son variables que aparecen en todo programa en Python.)
-Cuando la variable jugarDeNuevo es creada, aparecerá en la sección Global. A su lado aparecerá el valor alojado en ella, el string 'si'. El depurador te permite ver los valores de todas las variables en el programa mientras el mismo corre. Esto es útil para solucionar bugs en tu programa.
+Cuando la variable jugarDeNuevo es creada, aparecerá en la sección Global. A su lado aparecerá el valor alojado en ella, la cadena 'si'. El depurador te permite ver los valores de todas las variables en el programa mientras el mismo corre. Esto es útil para solucionar bugs en tu programa.
 
-Área Locales.
+Área Locales
 
 Existe también un área Local, la cuál muestra el ámbito local de las variables y sus valores. El área local sólo tendrá variables cuando la ejecución del programa se encuentre dentro de una función. Cuando la ejecución se encuentre en el ámbito global, esta área estará en blanco.
 Los botones Ir y Quitar (Go y Quit)
 Si te cansas de presionar el botón Step repetitivamente y solo quieres correr el programa normalmente, presiona el botón Go en la parte superior de la ventana de Control del Depurador. Esto le dirá al programa que corra normalmente en vez de paso a paso.
 Para terminar el programa completamente, sólo presiona el botón Quit en la parte superior de la ventana de control. El programa terminará inmediatamente. Esto es útil si necesitas empezar a depurar de nuevo desde el comienzo del programa.
 
-Entrar en, por encima, y salir.
+Entrar en, por encima, y salir
 
-Ejecuta el programa Reino de Dragones con el depurador. Ejecuta el programa paso a paso hasta que el depurador se encuentre en la línea 38. Como se muestra en la figura 7-3, esta es la línea de la función mostrarIntroduccion(). El modo de paso a paso que has estado realizando se llama Entrar En (Stepping Into en ingles), porque el depurador entrará en la función cuando la misma es llamada. Esto es diferente a "Por Encima" (step over), que se explicará luego.
+Ejecuta el programa Reino de Dragones con el depurador. Ejecuta el programa paso a paso hasta que el depurador se encuentre en la línea 38. Como se muestra en la Figura 7-3, esta es la línea de la función mostrarIntroduccion(). El modo de paso a paso que has estado realizando se llama Entrar En (Stepping Into en ingles), porque el depurador entrará en la función cuando la misma es llamada. Esto es diferente a "Por Encima" (step over), que se explicará luego.
 
 Figura 7-3: Continua el paso a paso hasta la línea 38.
 
 Cuando la ejecución se pause en la línea 5, presionando Step una vez más se ingresará en la función print(). La función print() es una de las funciones incorporadas de Python, así que no es muy útil ingresar en ella con el depurador. Las funciones propias de Python como print(), input(), str(), o random.randint() ya fueron revisadas por errores. Puedes asumir que no son las partes causantes de bugs en tu programa.
 Así que no quieres perder tiempo ingresando en el interior de la función print(). Entonces en vez de presionar step para ingresar en el código de la función print(), presiona Over. Esto pasará por encima el código dentro de la función print(). El código dentro de print() será ejecutado a velocidad normal, y luego el depurador se pausará una vez que la ejecución vuelva de print().
-Pasar por encima es una manera conveniente de evitar pasar por código dentro de una función. EL depurador ahora estará pausado en la línea 40, la línea con númeroDeCueva = elegirCueva().
+Pasar por encima es una manera conveniente de evitar pasar por código dentro de una función. El depurador ahora estará pausado en la línea 40, la línea con númeroDeCueva = elegirCueva().
 Presiona Step una vez mas para ingresar en la función elegurCueva(). Continua el paso a paso hasta la línea 15, la llamada a input(). El programa esperará hasta que ingreses una respuesta en la shell interactiva, tal como lo haría corriendo el programa normalmente. Si intentas presionando Step, nada pasará porque el programa esperará una respuesta del teclado.
 Vé a la consola interactiva y tipea cuál cueva deseas ingresar. El cursor parpadeante debe estar en la línea inferior en la consola interactva antes de que puedas tipear. Caso contrario el texto que ingreses no aparecerá.
-Una vez que presiones ENTER, el depurador continuará el paso sobre las líneas. Presiona el botón Out en la ventana de control. A esto se le llama Salir (Step Out) porque hará que el depurador corra cuantas líneas sean necesarias hata salir de la función en la que se ecuentra. Luego de que sale, la ejecución debe estar en la línea siguiente a la línea que llamó la función.
-Por ejemplo, al presionar Salir dentro de la función mostrarIntroducción() en la línea 6, se correrá hasta que la función retorne a la línea posterior a la llamada a mostrarIntroducción().
-Si no te encuentras dentro de una función, presionar Salir hará que el depurador ejecute todas las líneas restantes del programa. Este es el mismo comportamiento a presionar el botón Go.
+Una vez que presiones INTRO, el depurador continuará el paso sobre las líneas. Presiona el botón Out en la ventana de control. A esto se le llama Salir (Step Out) porque hará que el depurador corra cuantas líneas sean necesarias hata salir de la función en la que se ecuentra. Luego de que sale, la ejecución debe estar en la línea siguiente a la línea que llamó la función.
+Por ejemplo, al presionar Out dentro de la función mostrarIntroducción() en la línea 6, se correrá hasta que la función retorne a la línea posterior a la llamada a mostrarIntroducción().
+Si no te encuentras dentro de una función, presionar Out hará que el depurador ejecute todas las líneas restantes del programa. Este es el mismo comportamiento a presionar el botón Go.
 Aquí un resumen de lo que cada botón hace:
 
 •   Go - Ejecuta el resto del código normalmente, o hasta que alcanza un punto de quiebre (break, que será descripto luego).
@@ -108,7 +108,7 @@ El depurador puede ayudarte a encontrar la causa de bugs en tu programa. Por eje
 
 1. import random
 2. numero1 = random.randint(1, 10)
-3. numerp = random.randint(1, 10)
+3. numero2 = random.randint(1, 10)
 4. print('¿Cuánto es ' + str(numero1) + ' + ' + str(numero2) + '?')
 5. respuesta = input()
 6. if respuesta == numero1 + numero2:
@@ -116,7 +116,7 @@ El depurador puede ayudarte a encontrar la causa de bugs en tu programa. Por eje
 8. else:
 9.     print('¡Nops! La respuesta es ' + str(numero1 + numero2))
 
-Tipea el programa exáctamente como se muestra, incluso si ya sabes cuál es el bug. Luego intenta corer el programa presionando F5. Este es una simple pregunta aritmetica que te pide sumer dos números aleatorios. Aquí es lo que es posible que veas al correr el programaÑ
+Tipea el programa exáctamente como se muestra, incluso si ya sabes cuál es el bug. Luego intenta corer el programa presionando F5. Este es una simple pregunta aritmetica que te pide sumer dos números aleatorios. Aquí es lo que es posible que veas al correr el programa:
 
 ¿Cuanto es 5 + 1?
 6
@@ -128,14 +128,14 @@ El depurador comenzará en la línea import random. Nada especial sucede aquí, 
 Presiona Step otra vez para ejecutar la línea 2. Una nueva ventana de edición aparecera con el archivo random.py . Has ingresado dentro de la función randint() dentro del módulo random. Las funciones incorporadas en Python no serán fuente de tus errores, así que puedes presionar Out para salir de la función randint() y volver a tu programa. Luego cierra la ventana de random.py.
 La próxima vez, puedes presionar Over para saltar la función randint() en vez de ingresar en ella. La línea 3 también es una llamada a randint(). Evita ingresar en su código presionando Over.
 La línea 4 es una llamada a print() para mostrarle al jugador los números aleatorios. ¡Tu sabes que números el programa mostrará incluso antes de que los imprima! Tan sólo mira el área de globales en la ventana de contro. Puedes ver las variables numero1 y numero2, y a su lado los valores enteros guardados en ellas.
-La variable numero1 posee el valor 4 y la variable numero2 el valor 8. Cuando presiones Step, el programa mostrará el string en la llamada print() con estosvalores. La función str() concatenará las versiones string de estos enteros. Cuando corrí el depurador, se vió como la Figura 7-4. (Tus valores aleatorios probablemente sean diferentes.)
+La variable numero1 posee el valor 4 y la variable numero2 el valor 8. Cuando presiones Step, el programa mostrará la cadena en la llamada print() con estosvalores. La función str() concatenará las versiones cadena de estos enteros. Cuando corrí el depurador, se vió como la Figura 7-4. (Tus valores aleatorios probablemente sean diferentes.)
 
 Figura 7-4: numero1 establecido en 4 y numero2 en 8.
 
 Presionando Step desde la línea 5 ejecutará input(). El depurador esperará hasta que el jugador ingrese una respuesta al programa. Ingresa la respuesta correcta (en mi caso, 19) en la consola interactiva. El depurador continuará y se moverá a la línea 6.
-La línea 6 es un condicional if. La condición es que el valor en la respuesta debe coincidir con la suma de numero1 y numero2. Si la condicion es Verdadera, el depurador se moverá a la línea 7. Si es falsa, el depurador se moverá a la línea 9. Presiona Step una vez mas para descubrir adonde se moverá.
-¡El depurador ahora se encuentra en la línea 9! ¿Que sucedió? La condición en el if debe haber sido Falso. Mira los valores en numero1, numero2, y respuesta. Nota que numero1 y numero 2 son enteros, así que su suma también debe ser un entero. Pero respuesta es un string. 
-Esto significa que respuesta == numero1 + numero2 debio ser evaluado como '12' == 12. Un valor string y un valor entero siempre serán no iguales, así que la condición se evalua como Falsa.
+La línea 6 es un condicional if. La condición es que el valor en la respuesta debe coincidir con la suma de numero1 y numero2. Si la condicion es True, el depurador se moverá a la línea 7. Si es False, el depurador se moverá a la línea 9. Presiona Step una vez mas para descubrir adonde se moverá.
+¡El depurador ahora se encuentra en la línea 9! ¿Que sucedió? La condición en el if debe haber sido False. Mira los valores en numero1, numero2, y respuesta. Nota que numero1 y numero2 son enteros, así que su suma también debe ser un entero. Pero respuesta es una cadena.
+Esto significa que respuesta == numero1 + numero2 debio ser evaluado como '12' == 12. Una valor cadena y un valor entero siempre serán no iguales, así que la condición se evalua como False.
 Este es el bug en el programa. El bug está en que usamos una respuesta cuando debimos usar int(respuesta). Cambia la línea 6 para usar int(respuesta) == numero1 + numero2 en vez de respuesta == numero1 + numero2, y corre el programa.
 
 ¿Cuanto es 2 + 3?
@@ -154,7 +154,7 @@ Figura 7-5: El editor con dos puntos quiebre establecidos.
 
 Ejemplos de Puntos Quiebre
 
-Aquí una programa que simula lanzamientos de moneda llamando un random.randint(0,1). La función al retornar 1 será "cara" y 0 será "cruz". La variable lanzamientos registará cuantos lanzamientos se efectuaron. La variable cara registará cuantos han salido cara. 
+Aquí una programa que simula lanzamientos de moneda llamando un random.randint(0,1). La función al retornar 1 será "cara" y 0 será "cruz". La variable lanzamientos registará cuantos lanzamientos se efectuaron. La variable cara registará cuantos han salido cara.
 El programa hará "lanzamientos de moneda" mil veces. Esto le tomaría a una persona más de una hora,¡pero la computadora puede hacerlo en un segundo! Escribe el siguiente código en el editor y guardalo como lanzarMoneda.py. También puedes descargar este código desde http://invpy.com/lanzarMoneda.py.
 Si obtienes errores luego de escribir este código, compáralo con el código del libro con la herramienta online diff en http://invpy.com/diff/lanzarMoneda.
 
@@ -168,29 +168,29 @@ lanzarMoneda.py
 7.      if random.randint(0, 1) == 1:
 8.          caras = caras + 1
 9.      lanzamientos = lanzamientos + 1
-10.  
+10.
 11.     if lanzamientos == 900:
 12.         print('900 lanzamientos y hubo ' + str(caras) + ' caras.')
 13.     if lanzamientos == 100:
 14.         print('En 100 lanzamientos, cara salió ' + str(caras) + ' veces.')
 15.     if lanzamientos == 500:
 16.         print('La mitad de los lanzamientos y cara salió ' + str(caras) + ' veces.')
-17.  
+17.
 18. print()
 19. print('De 1000 lanzamientos, al final cara salió ' + str(caras) + ' veces!')
 20. print('¿Estuviste cerca?')
 
-El programa corre bastante rápido. Toma más tiempo esperar a que el usuario presione ENTER que realizar los lanzamientos. Digamos que deseamos ver los lanzamientos de moneda uno a uno. En la consola interactiva, presiona Debug ► Debugger para abrir la ventana de control del depurador. Luego presiona F5 para correr el programa.
-El programa comienza dentro del depurador en la línea 1. Presiona Step tres veces en la ventana de control para ejecutar las primeras tres líneas (estas son, líneas 1, 2 y 3). Notaras que los botones se deshabilitaran porque la función input() fue llamada y la consola interactiva está esperando al usuario. Clickea en la ventana de la consola y presiona ENTER. (Estate seguro de presionar debajo del texto en la consola interactiva, de lo contrario puede que IDLE no reciba tu tecla.)
-Puedes presionar Step un par de veces mas, pero te encontarás que tardará un tiempo atravesar todo el programa. En vez, establece un punto de quiebre en las líneas 12, 14 y 16. El editor reseltará estas tres líneas como se muestra en la figura 7-6.
+El programa corre bastante rápido. Toma más tiempo esperar a que el usuario presione INTRO que realizar los lanzamientos. Digamos que deseamos ver los lanzamientos de moneda uno a uno. En la consola interactiva, presiona Debug ► Debugger para abrir la ventana de control del depurador. Luego presiona F5 para correr el programa.
+El programa comienza dentro del depurador en la línea 1. Presiona Step tres veces en la ventana de control para ejecutar las primeras tres líneas (estas son, líneas 1, 2 y 3). Notaras que los botones se deshabilitaran porque la función input() fue llamada y la consola interactiva está esperando al usuario. Clickea en la ventana de la consola y presiona INTRO. (Estate seguro de presionar debajo del texto en la consola interactiva, de lo contrario puede que IDLE no reciba tu tecla.)
+Puedes presionar Step un par de veces mas, pero te encontarás que tardará un tiempo atravesar todo el programa. En vez, establece un punto de quiebre en las líneas 12, 14 y 16. El editor reseltará estas tres líneas como se muestra en la Figura 7-6.
 
 Figura 7-6: Tres puntos quiebre establecidos.
 
-Luego de establecer los puntos quiebre, presiona Go en la ventana de control. El programa correrá a velocidad normal hasta toparse con el siguiente punto quiebre. Cuando lanzamientos se encuentra en 100, el condicional del if en la línea 13 es Verdadero. Esto causa que la línea 14 (donde tenemos un break point) se ejecute, lo que le dice al depurador que frene el programa y tome el control. Mira la ventana de control del depurador en la sección de Globales para ver cuál es el valor de lanzamientos y caras.
+Luego de establecer los puntos quiebre, presiona Go en la ventana de control. El programa correrá a velocidad normal hasta toparse con el siguiente punto quiebre. Cuando lanzamientos se encuentra en 100, el condicional del if en la línea 13 es True. Esto causa que la línea 14 (donde tenemos un break point) se ejecute, lo que le dice al depurador que frene el programa y tome el control. Mira la ventana de control del depurador en la sección de Globales para ver cuál es el valor de lanzamientos y caras.
 Presiona nuevamente Go y el programa continuará hasta el siguiente punto quiebre en la línea 16. Otra vez, mira cómo los valores en lanzamientos y caras han cambiado.
 Si presionas Go otra vez, la ejecución continuará hasta el último punto quiebre en la línea 12.
 
-Sumario
+Resumen
 
 Escribir un programa es sólo la primer parte de programar. La siguiente parte es cerciorarse que lo escrito realmente funciona. Los depuradores te permiten atravesar el código una línea a la vez. Puedes examinar qué lineas se ejecutan en qué orden, y qué valores contienen las variables. Cuando esto es demasiado lento, puedes establecer puntos quiebres para frenar el depurador sólo en las línas que deseas.
 Utilizar el depurador es una gran forma de entender exactamente lo que el programa está haciendo. Mientras que este libro explica todo el código dentro del mismo, el depurador puede ayudarte a encontrar más por tu cuenta.
