@@ -524,21 +524,21 @@ Cómo Funciona el Programa Animación
 
 En este programa veremos tres bloques de diferentes colores moviéndose y rebotando contra las paredes. Para hacer esto, primero necesitamos considerar cómo queremos que los bloques se muevan.
 
-Moving and Bouncing the Blocks
+Moviendo y Rebotando los Bloques
 
-Each block will move in one of four diagonal directions. When the block hits the side of the window, it should bounce off the side and move in a new diagonal direction. The blocks will bounce as shown Figure 17-7.
+Cada bloque se moverá en una de las cuatro direcciones diagonales. Cuando el bloque golpee contra el costado de la ventana, deberá rebotar y moverse en una nueva dirección diagonal. Los bloques rebotarán como se muestra en la Figura 17-7.
 
-The new direction that a block moves after it bounces depends on two things: which direction it was moving before the bounce and which wall it bounced off of. There are a total of eight possible ways a block can bounce: two different ways for each of the four walls.
+La nueva dirección en la que se mueve un bloque luego de rebotar depende de dos cosas: en qué dirección se estaba moviendo antes de rebotar y contra qué pared ha rebotado. Hay un toral de ocho posibles formas en las que un bloque puede rebotar: dos diferentes por cada una de las cuatro paredes.
 
-For example, if a block is moving down and right, and then bounces off of the bottom edge of the window, we want the block’s new direction to be up and right.
+Por ejemplo, si un bloque que está moviéndose hacia abajo y a la derecha rebota contra el borde inferior de la ventana, queremos que su nueva dirección sea hacia arriba y a la derecha.
 
-We can represent the blocks with a Rect object to represent the position and size of the block, a tuple of three integers to represent the color of the block, and an integer to represent which of the four diagonal directions the block is currently moving.
+Podemos usar objeto Rect para marcar la posición y el tamaño de cada bloque, una tupla de tres enteros para representar e color del bloque y un entero para representar en cuál de las cuatro direcciones diagonales el bloque está moviéndose.
 
-On each iteration in the game loop, adjust the X and Y position of the block in the Rect object. Also, in each iteration draw all the blocks on the screen at their current position. As the program execution iterates over the game loop, the blocks will gradually move across the screen so that it looks like they are smoothly moving and bouncing around on their own.
+En cada interacción en el bucle de juego, ajustaremos las coordenadas X e Y del bloque en el objeto Rect. Además, en cada interacción dibujaremos todos los bloques en la pantalla en su posición actual. A medida que la ejecución del programa itere sobre el bucle de juego, los bloques irán moviéndose gradualmente a lo largo de la pantalla y darán la impresión de estar suavemente deslizándose y rebotando.
 
-Figure 17-7: The diagram of how blocks will bounce.
+Figura 17-7: El diagrama de cómo rebotarán los bloques.
 
-Creating and Setting Up Pygame and the Main Window
+Creando y Configurando Pygame y la Ventana Principal
 
  1. import pygame, sys, time
  2. from pygame.locals import *
@@ -551,13 +551,13 @@ Creating and Setting Up Pygame and the Main Window
  9. ALTOVENTANA = 400
 10. windowSurface = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA), 0, 32)
 
-In this program, you’ll see that the size of the window’s width and height is used for more than just the call to set_mode(). Use constant variables so that if you ever want to change the size of the window, you only have to change lines 8 and 9. Since the window width and height never change during the program’s execution, a constant variable is a good idea.
+En este programa verás que el alto y el ancho de la ventana son usados para más que sólo la llamada a set_mode(). Usaremos variables constantes de modo que si alguna vez quieres cambiar el tamaño de la ventana sólo tengas que cambiar las líneas 8 y 9. Dado que el ancho y la altura nunca cambian durante la ejecución del programa, una variable constante es una buena idea.
 
 11. pygame.display.set_caption('Animación')
 
-Line 11 sets the window’s caption to 'Animation' by calling pygame.display.set_caption().
+La línea 11 cambia el título de la ventana a 'Animación' llamando a pygame.display.set_caption().
 
-Setting Up Constant Variables for Direction
+Estableciendo Variables Constantes para las Direcciones
 
 13. # Establece las variables de dirección
 14. ABAJOIZQUIERDA = 1
@@ -565,17 +565,17 @@ Setting Up Constant Variables for Direction
 16. ARRIBAIZQUIERDA = 7
 17. ARRIBADERECHA = 9
 
-We will use the keys on the number pad of the keyboard to remind us which belongs to which direction. This is similar to the Tic Tac Toe game. 1 is down and left, 3 is down and right, 7 is up and left, and 9 is up and right. However, it may be hard to remember this, so instead use constant variables instead of these integer values.
+Usaremos las teclas en la almohadilla numérica del teclado para recordarnos qué número corresponde a cada dirección. Esto es similar a lo que hicimoe en el Ta Te Ti. 1 es hacia abajo y a la izquierda, 3 es abajo a la derecha, 7 es arriba a la izquierda y 9 es arriba a la derecha. Sin embargo, esto puede ser difícil de recordar, de modo que usaremos variables constantes en lugar de estos valores enteros.
 
-You could have used any value you wanted for these directions instead of using a constant variable. For example, you could use the string 'downleft' to represent the down and left diagonal direction. However, if you ever mistype the 'downleft' string (for example, as 'fownleft'), Python would not recognize that you meant to type 'downleft' instead of 'downleft'. This bug would cause your program to behave strangely, but the program would not crash.
+Podríamos haber usado cualquier valor para estas direcciones en lugar de usar una variable constante. Por ejemplo, podrías usar la cadena 'abajoizquierda' para representar la dirección diagonal hacia abajo y a la izquierda. Sin embargo, si alguna vez te equivocaras al escribir 'abajoizquierda' (y escribieras por ejemplo 'sbajoizquierda'), Python no reconocería que tu intención fue escribir 'abajoizquierda' en lugar de 'sbajoizquierda'. Esto haría que tu programa se comportase en forma extraña, pero no ocasionaría un fallo del programa.
 
-But if you use constant variables, and accidentally type the variable name FOWNLEFT instead of the name DOWNLEFT, Python would notice that there’s no such variable named FOWNLEFT and crash the program with an error. This would still be a pretty bad bug, but at least you would know about it immediately and could fix it.
+Pero si usas variables constantes y accidentalmente escribes el nombre SBAJOIZQUIERDA en lugar de ABAJOIZQUIERDA, Python se dará cuenta de que no existe una variable llamada SBAJOIZQUIERDA y este error causaría un fallo. Seguiría siendo un error bastante feo, pero al menos te darías cuenta inmediatamente y podrías arreglarlo.
 
 19. VELOCIDADMOVIMIENTO = 4
 
-Use a constant variable to determine how fast the blocks should move. A value of 4 here means that each block will move 4 pixels on each iteration through the game loop.
+Usamos una variable constante para determinar qué tan rápido se mueve el bloque. Un valor de 4 significa que el bloque se moverá 4 píxeles por cada iteración del bucle del juego.
 
-Setting Up Constant Variables for Color
+Estableciendo Variables Constantes para los Colores
 
 21. # Establece los colores
 22. NEGRO = (0, 0, 0)
@@ -583,31 +583,31 @@ Setting Up Constant Variables for Color
 24. VERDE = (0, 255, 0)
 25. AZUL = (0, 0, 255)
 
-Lines 22 to 25 set up constant variables for the colors. Remember, Pygame uses a tuple of three integer values for the amounts of red, green, and blue called an RGB value. The integers are from 0 to 255.
+Las líneas 22 a 25 establecen variables constantes para los colores. Recuerda que Python usa una tupla de tres valores enteros para las cantidades de rojo, verde y azul, a la cual llamamos valor RGB. Los enteros van desde 0 hasta 255.
 
-The use of constant variables is for readability. The computer doesn’t care if you use a variable named GREEN for the color green. It is easier to know that GREEN stands for the color green, rather than (0, 255, 0).
+Las variables constantes se usan por legibilidad. A la computadora no le preocupa si usas una variable llamada VERDE para el color verde. Simplemente es más fácil recordar que VERDE corresponde al color verde, en lugar de (0, 255, 0)
 
-Setting Up The Block Data Structures
+Estableciendo la Estructura de Datos del Bloque
 
 27. # Establece la estructura de datos de los bloques.
 28. b1 = {'rect':pygame.Rect(300, 80, 50, 100), 'color':ROJO, 'dir':ARRIBADERECHA}
 
-Set up a dictionary as a data structure that represents each block. (Chapter 9½ introduced dictionaries.) The dictionary will have the keys of 'rect' (with a Rect object for a value), 'color' (with a tuple of three integers for a value), and 'dir' (with one of the direction constant variables for a value).
+Establece un diccionario como la estructura de datos que representa cada bloque. (El Capítulo 9½ introdujo los diccionarios.) El diccionario tendrá las claves 'rect' (con un objeto Rect por valor), 'color' (con una tupla de tres enteros por valor) y 'dir' (con una de las variables constantes de dirección por valor).
 
-The variable b1 will store one of these block data structures. This block has its top left corner located at an X-coordinate of 300 and Y-coordinate of 80. It has a width of 50 pixels and a height of 100 pixels. Its color is red and its direction is set to UPRIGHT.
+La variable b1 guardará la estructura de datos de un bloque. La esquina superior izquierda de este bloque en la coordenada X 300 y en la coordenada Y 80. Tiene un ancho de 50 píxeles y una altura de 100 píxeles. Su color es rojo y su dirección es ARRIBADERECHA.
 
 29. b2 = {'rect':pygame.Rect(200, 200, 20, 20), 'color':VERDE, 'dir':ARRIBAIZQUIERDA}
 30. b3 = {'rect':pygame.Rect(100, 150, 60, 60), 'color':AZUL, 'dir':ABAJOIZQUIERDA}
 
-Line 29 and 30 creates two more similar data structures for blocks that are different sizes, positions, colors, and directions.
+Las líneas 29 y 30 crean dos estructuras de datos similares para bloques que tienen diferente tamaño, posición, color y dirección.
 
 31. bloques = [b1, b2, b3]
 
-Line 31 put all of these data structures in a list, and store the list in a variable named blocks.
+La línea 31 pone todas estas estructuras de datos en una lista, y guarda la lista en una variable llamada bloques.
 
-The blocks variable stores a list. blocks[0] would be the dictionary data structure in b1. blocks[0]['color'] would be the 'color' key in b1, so the expression blocks[0]['color'] would evaluate to (255, 0, 0). This way you can refer to any of the values in any of the block data structures by starting with blocks.
+La variable bloques guarda una lista. bloques[0] corresponde al diccionario guardado en b1. bloques[0]['color'] sería la clave 'color' en b1, de modo que la expresión bloques[0]['color'] se evaluaría a (255, 0, 0). De este modo puedes referirte a cualquiera de los valores de cualquiera de las estructuras de datos empezando con bloques.
 
-Running the Game Loop
+Ejecutando el Bucle del Juego
 
 33. # Corre el ciclo de juego
 34. while True:
@@ -617,20 +617,20 @@ Running the Game Loop
 38.             pygame.quit()
 39.             sys.exit()
 
-Inside the game loop, the blocks will move around the screen in the direction that they are going and bounce if they have hit a side. There is also code to draw all of the blocks to the superficieVentana surface and call pygame.display.update().
+Dentro del bucle del juego, los bloques se moverán alrededor de la pantalla en la dirección en la que traen y rebotarán cuando choquen contra alguno de los lados. También hay código para dibujar todos los bloques sobre la superficie superficieVentana y llamar a pygame.display.update().
 
-The for loop to check all of the events in the list returned by pygame.event.get() is the same as in our “Hello World!” program.
+El bucle for para comprobar todos los eventos en la lista devuelta por pygame.event.get() es el mismo que en nuestro programa “!Hola mundo!” program.
 
 41.     # Dibuja el fondo negro sobre la superficie
 42.     windowSurface.fill(NEGRO)
 
-First, line 42 fills the entire surface with black so that anything previously drawn on the surface is erased.
+Primero, la línea 42 rellena toda la superficie con negro de modo que todo lo que ha sido dibujado anteriormente sea borrado.
 
-Moving Each Block
+Moviendo Cada Bloque
 
 44.     for b in bloques:
 
-Next, the code must update the position of each block, so iterate over the blocks list. Inside the loop, you’ll refer to the current block as simply b so it will be easy to type.
+A continuación, el código debe actualizar la posición de cada bloque, así que itera sobre la lista de bloques. Dentro del bucle, nos referiremos al bloque actual simplemente como b, para que sea más fácil de escribir.
 
 45.         # mueve la estructura de datos de bloques
 46.         if b['dir'] == ABAJOIZQUIERDA:
@@ -646,13 +646,13 @@ Next, the code must update the position of each block, so iterate over the block
 56.             b['rect'].left += VELOCIDADMOVIMIENTO
 57.             b['rect'].top -= VELOCIDADMOVIMIENTO
 
-The new value to set the left and top attributes to depends on the block’s direction. If the direction of the block (which is stored in the 'dir' key) is either DOWNLEFT or DOWNRIGHT, you want to increase the top attribute. If the direction is UPLEFT or UPRIGHT, you want to decrease the top attribute.
+El nuevo valor que se asigna a los atributos top y left depende de la dirección del bloque. Si la dirección del bloque (que se guarda en la clave 'dir') es ABAJOIZQUIERDA o ABAJODERECHA, se aumentará el atributo top. Si la dirección es ARRIBAIZQUIERDA o ARRIBADERECHA, se reducirá el atributo top.
 
-If the direction of the block is DOWNRIGHT or UPRIGHT, you want to increase the left attribute. If the direction is DOWNLEFT or UPLEFT, you want to decrease the left attribute.
+Si la dirección del bloque es ABAJODERECHA o ARRIBADERECHA, se aumentará el atributo left. Si la dirección es ABAJOIZQUIERDA o ARRIBAIZQUIERDA, se reducirá el atributo left.
 
-Change the value of these attributes by the integer stored in MOVESPEED. MOVESPEED stores how many pixels over blocks move on each iteration of the game loop, and was set on line19.
+El valor en que cambian estor atributos es el entero guardado en VELOCIDADMOVIMIENTO. VELOCIDADMOVIMIENTO guarda cuántos píxeles se mueven los bloques en cada iteración del bucle del juego, y fue establecido en la línea 19.
 
-Checking if the Block has Bounced
+Comprobando si el Bloque ha Rebotado
 
 59.         # Verifica si el bloque se movió fuera de la ventana
 60.         if b['rect'].top < 0:
@@ -662,13 +662,13 @@ Checking if the Block has Bounced
 64.             if b['dir'] == ARRIBADERECHA:
 65.                 b['dir'] = ABAJODERECHA
 
-After lines 44 to 57 move the block, check if the block has gone past the edge of the window. If it has, you want to “bounce” the block. In the code this means set a new value for the block’s 'dir' key. The block will move in the new direction on the next iteration of the game loop. This makes it look like the block has bounced off the side of the window.
+Luego de que las líneas 44 a 57 muevan el bloque, se comprobará si el bloque ha cruzado el borde de la ventana. Si es así, queremos que el bloque "rebote". En el código esto significa asignar un nuevo valor a su clave 'dir'. El bloque se moverá en una nueva dirección en la siguiente iteración del bucle del juego. Esto se ve como si el bloque hubiese rebotado contra el lado de la ventana.
 
-On line 60’s if statement, the block has moved past the top edge of the window if the block’s Rect object’s top attribute is less than 0. In that case, change the direction based on what direction the block was moving (either UPLEFT or UPRIGHT).
+En la sentencia if de la línea 60, consideramos que el bloque se ha movido por encima del borde superior de la ventana si el atributo top del objeto Rect del bloque es menor que 0. En ese caso, se cambia la dirección dependiendo de la dirección en la cual el bloque se estaba moviendo (ARRIBAIZQUIERDA o ARRIBADERECHA).
 
-Changing the Direction of the Bouncing Block
+Cambiando la Dirección del Bloque que Rebota
 
-Look at the bouncing diagram earlier in this chapter. To move past the top edge of the window, the block had to either be moving in the UPLEFT or UPRIGHT directions. If the block was moving in the UPLEFT direction, the new direction (according to the bounce diagram) will be DOWNLEFT. If the block was moving in the UPRIGHT direction, the new direction will be DOWNRIGHT.
+Observa el diagrama de rebotes más atrás en este capítulo. Para llegar más allá del borde superior de la ventana, el bloque tiene que haber estado moviéndose en dirección ARRIBAIZQUIERDA o ARRIBADERECHA. Si el bloque estaba moviéndose en dirección ARRIBAIZQUIERDA, la nueva dirección (de acuerdo con el diagrama de rebotes) será ABAJOIZQUIERDA. Si el bloque venía moviéndose en la dirección ARRIBADERECHA, la nueva dirección será ABAJODERECHA.
 
 66.         if b['rect'].bottom > ALTOVENTANA:
 67.             # el bloque se movió por debajo de la ventana
@@ -677,9 +677,9 @@ Look at the bouncing diagram earlier in this chapter. To move past the top edge 
 70.             if b['dir'] == ABAJODERECHA:
 71.                 b['dir'] = ARRIBADERECHA
 
-Lines 66 to 71 handles if the block has moved past the bottom edge of the window. They check if the bottom attribute (not the top attribute) is greater than the value in WINDOWHEIGHT. Remember that the Y-coordinates start at 0 at the top of the window and increase to WINDOWHEIGHT at the bottom.
+Las líneas 66 a 71 actúan si el bloque ha cruzado el borde inferior de la ventana. Comprueban si el atributo bottom (no el atributo top) es mayor que el atributo en ALTOVENTANA. Recuerda que la coordenada Y comienza en 0 en el borde superior de la ventana y aumenta hasta llegar a ALTOVENTANA en el borde inferior.
 
-The rest of the code changes the direction based on what the bounce diagram in Figure 17-7 says.
+El resto del código cambia la dirección basándose en lo que dice el diagrama de rebotes de la Figura 17-7.
 
 72.         if b['rect'].left < 0:
 73.             # el bloque se movió por la izquierda de la ventana
@@ -694,43 +694,43 @@ The rest of the code changes the direction based on what the bounce diagram in F
 82.             if b['dir'] == ARRIBADERECHA:
 83.                 b['dir'] = ARRIBAIZQUIERDA
 
-Lines 78 to 83 are similar to lines 72 to 77, but checks if the left side of the block has moved to the left of the left edge of the window. Remember, the X-coordinates start at 0 on the left edge of the window and increase to WINDOWWIDTH on the right edge of the window.
+Las líneas 78 a 83 son similares a las líneas 72 a 77, pero comprueban si el lado izquierdo del bloque ha cruzado el borde izquierdo de la ventana. Recuerda, la coordenada X comienza en 0 en el borde izquierdo de la ventana y aumenta hasta ANCHOVENTANA en el borde izquierdo de la ventana.
 
-Drawing the Blocks on the Window in Their New Positions
+Dibujando los Bloques en la Ventana en Sus Nuevas Posiciones
 
 85.         # Dibuja el bloque en la superficie
 86.         pygame.draw.rect(windowSurface, b['color'], b['rect'])
 
-Now that the blocks have moved, they should be drawn in their new positions on the superficieVentana surface by calling the pygame.draw.rect() function. Pass superficieVentana because it is the Surface object to draw the rectangle on. Pass the b['color'] because it is the color of the rectangle. Pass b['rect'] because it is the Rect object with the position and size of the rectangle to draw.
+Ahora que los bloques se han movido, deberían ser dibujados en sus nuevas posiciones en la superficie superficieVentana llamando a la función pygame.draw.rect(). Pasamos superficieVentana porque es el objeto Surface sobre el cual dibujaremos el rectángulo. Pasamos b['color'] porque es el color del rectángulo. Pasamos b['rect'] porque es el objeto Rect que contiene la posición y el tamaño del rectángulo a dibujar.
 
-Line 86 is the last line of the for loop. If you wanted to add new blocks, you only have to modify the blocks list on line 31 and the rest of the code still works.
+La línea 86 es la última línea del bucle for. Si quieres agregar nuevos bloques, sólo tienes que modificar la lista de bloques en la línea 31 y el resto del código seguirá funcionando.
 
-Drawing the Window on the Screen
+Dibujando la Ventana en la Pantalla
 
 88.     # Dibuja la ventana en la pantalla
 89.     pygame.display.update()
 90.     time.sleep(0.02)
 
-After each of the blocks in the blocks list has been drawn, call pygame.display.update() so that the superficieVentana surface is draw on the screen.
+Luego de que cada bloque de la lista de bloques ha sido dibujado, se llama a pygame.display.update() para que la superficie superficieVentana se dibuje sobre la pantalla.
 
-After this line, the execution loops back to the start of the game loop and begin the process all over again. This way, the blocks are constantly moving a little, bouncing off the walls, and being drawn on the screen in their new positions.
+Luego de esta línea, la ejecución regresa al comienzo del bucle del juego y comienza el proceso otra vez. De esta forma, los bloques están constantemente moviéndose un poquito, rebotando contra las paredes y siendo dibujados sobre la pantalla en sus nuevas posiciones.
 
-The call to the time.sleep() function is there because the computer can move, bounce, and draw the blocks so fast that if the program ran at full speed, all the blocks would look like a blur. (Try commenting out the time.sleep(0.02) line and running the program to see this.)
+La llamada a la función time.sleep() está allí porque la computadora es capaz de mover, rebotar y dibujar los bloques tan rápido que si el programa corriera a toda velocidad los bloques no podrían verse. (Prueba ejecutar el programa comentando la línea time.sleep(0.02) para ver esto.)
 
-This call to time.sleep() will stop the program for 0.02 seconds, or 20 milliseconds.
+Esta llamada a time.sleep() detendrá el programa por 0.02 segundos, o 20 milisegundos.
 
-Drawing Trails of Blocks
+Dibujando Recorridos de Bloques
 
-Comment out line 42 (the superficieVentana.fill(BLACK) line) by adding a # to the front of the line. Now run the program.
+Comenta la línea 42 (la línea superficieVentana.fill(BLACK)) agregando # al comienzo de la línea. Ahora ejecuta el programa.
 
-Without the call to superficieVentana.fill(BLACK), you don’t black out the entire window before drawing the rectangles in their new position. The trails of rectangles appear because the old rectangles drawn in previous iterations through the game loop aren’t blacked out anymore.
+Sin la llamada a superficieVentana.fill(BLACK), no vuelves a pintar de negro la ventana completa antes de dibujar los rectángulos en su nueva posición. Los recorridos de los rectángulos aparecen porque los viejos rectángulos dibujados en iteraciones previas del bucle del juego ya no se borran.
 
-Remember that the blocks are not really moving. On each iteration through the game loop, the code redraws the entire window with new blocks that are located a few pixels over each time.
+Recuerda que los bloques no están realmente moviéndose. En cada iteración del bucle del juego, el código vuelve a dibujar la ventana completa con nuevos bloques desplazados unos pocos píxeles de la posición de los bloques anteriores.
 
-Summary
+Resumen
 
-This chapter has presented a whole new way of creating computer programs. The previous chapters’ programs would stop and wait for the player to enter text. However, in our animation program, the program is constantly updating the data structures of things without waiting for input from the player.
+Este capítulo ha presentado una forma completamente nueva de crear programas de computadora. Los programas de los capítulos anteriores simplemente se detenían y esperaban a que el jugador ingresara un texto. Sin embargo, en nuestro programa de animación, el programa está constantemente actualizando las estructuras de datos de las cosas sin esperar información del jugador.
 
-Remember in our Hangman and Tic Tac Toe games we had data structures that would represent the state of the board, and these data structures would be passed to a drawBoard() function to be displayed on the screen. Our animation program is similar. The blocks variable holds a list of data structures representing blocks to be drawn to the screen, and these are drawn to the screen inside the game loop.
+Recuerda cómo en nuestros juegos Ahorcado y Ta Te Ti teníamos estructuras de datos que representaban el estado del tablero, y estas estructuras de datos eran pasadas a una función dibujarTablero() para ser mostradas en la pantalla. Nuestro programa de animación es similar. La variable bloques contiene una lista de estructuras que representan bloques a dibujar en la pantalla, y estos son dibujados sobre la pantalla dentro del bucle del juego.
 
-But without calls to input(), how do we get input from the player? In our next chapter, we will cover how programs can know when the player presses keys on the keyboard. We will also learn of a concept called collision detection.
+Pero sin las llamadas a input(), ¿cómo obtendremos información del jugador? En nuestro próximo capítulo, cubriremos cómo los programas pueden saber cuándo el jugador pulsa teclas del teclado. También aprenderemos un concepto llamado detección de colisiones.
