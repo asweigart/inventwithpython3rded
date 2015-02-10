@@ -1,0 +1,244 @@
+  Capítulo 9 ½
+  EXTENDIENDO AHORCADO
+
+Temas Tratados En Este Capítulo:
+• Diccionario de datos
+• Duplas clave-valor (key-value)
+• Los métodos keys() y values() del diccionario
+• Asignaciones de variable múltiple
+
+Realizando Nuevos Cambios al Programa Ahorcado
+
+Este programa fue mucho mayor al programa Reino de Dragones, pero este programa es también más sofisticado. Realizar un diagrama de flujo o un pequeño esquema realmente ayuda a recordar como quieres que todo funcione.
+Ahora que has creado un simple juego de Ahorcado, veamos unas modos de que puedas extenderlo con nuevas funcionalidades..
+Luego de que has jugado al Ahorcado unas veces, puedes pensar que seis intentos de adivinar no es suficiente para la mayoria de las palabras. Podemos sencillamente darle al jugador mas oportunidades agregando cadenas multi-linea a la lista IMAGENES_AHORCADO. 
+Guarda tu ahorcado.py como ahorcado2.py y luego agrega lo siguiente:
+
+ 58. ==========''', '''
+ 59.   +----+
+ 60.   |    |
+ 61.  [O    |
+ 62.  /|\   |
+ 63.  / \   |
+ 64.        |
+ 65. ==========''', '''
+ 66.   +----+
+ 67.   |    |
+ 68.  [O]   |
+ 69.  /|\   |
+ 70.  / \   |
+ 71.        |
+ 72. ==========''']
+
+Ahora hay dos nuevos strigs multi-línea en la lista, uno con sólo la oreja izquierda dibujada, y la otra con ambas dibujadas. Debido a que el programa dirá que el jugador perdió cuando el número de intentos es igual al número de cadenas en IMÁGENES_AHORCADO (menos uno), este es el unico cambio que debes hacer.
+
+Cambia la lista de palabras cambiando las palabras en la línea 59. En vez de animales, podemos tener colores:
+
+59. palabras = 'rojo naranja amarillo verde azul añil violeta blanco negro marron'.split()
+
+O formas:
+
+59. palabras = 'cuadrado triangulo rectangulo circulo elipse rombo trapezoide chevron pentagono hexagono heptagono octogono'.split()
+
+O frutas:
+
+59. palabras = 'manzana naranja limon lima pera sandia uva pomelo cereza banana melon mango fresa tomate'.split()
+
+Con algunas modificaciones, podemos cambiar nuestro código para que nuestro juego de Ahorcado pueda utilizar todas estas palabras como conjuntos diferentes.
+
+Diccionarios
+
+Para realizar este cambio, necesitaras una nueva estructura de datos llamada diccionario. Un diccionario puede almacenar múltiples valores tal como una lista lo hace. Pero en vez de acceder a los elementos con un índice entero, puedes acceder a ellos con un índice de cualquier tipo. Para los diccionarios, estos índices son llamados claves (keys en inglés).
+Los diccionarios usan { y } llaves en vez de [ y ] corchetes. Prueba ingresando lo siguiente en la consola interactiva:
+
+>> cosas = {'hola':'Hola ¿como estas?',4:'panceta','spam':9999}
+
+Los valores entre las llaves separadas por comas son los pares clave-valor. Las claves se encuentran a la izquierda de los dos puntos y los valores a la derecha. Puedes acceder a los valores como elementos en una lista utilizando la clave. Prueba ingresando en la consola interactiva cosas['hola'], cosas[4] y cosas['spam']:
+
+>>> cosas = {'hola':'Hola ¿como estas?',4:'panceta','spam':9999}
+>>> cosas['hola']
+'Hola ¿como estas?'
+>>> stuff[4]
+'panceta'
+>>> cosas['spam']
+9999
+
+En vez de utilizar un entero entre los corchetes, utilizas un valor string. Esto evaluará el valor para dicha clave.
+
+Obteniendo el Tamaño de Diccionarios con len()
+
+Puedes obtener la cantidad de pares clave-valor en el diccionario mediante la función len(). Prueba ingresando lo siguiente en la consola interactiva:
+
+>>> cosas = {'hola':'Hola ¿como estas?',4:'panceta','spam':9999}
+>>> len(cosas)
+3
+
+La Diferencia entre Diccionario y Lista
+
+Los diccionarios pueden tener claves de cualquier estructura de datos, no solo cadenas. Pero recuerda, como 0 y '0' son valores diferentes, serán claves diferentes. Prueba ingresando lo siguiente en la consola interactiva:
+
+>>> spam = {'0':'un string', 0:'un entero'}
+>>> spam[0]
+'un entero'
+>>> spam['0']
+'un string'
+
+Las claves en los diccionarios también pueden iterarse utilizando un ciclo for. Prueba ingresando lo siguiente en la consola interactiva:
+
+>>> favoritos = {'fruta':'manzanas', 'animal':'gatos', 'número':42}
+>>> for i in favoritos:
+...     print(i)
+fruta
+animal
+número
+>>> for i in favoritos:
+...     print(favoritos[i])
+manzanas
+gatos
+42
+
+Los diccionarios se diferencian de las listas porque los valores dentro de ellos no son ordenados. El primer elemento en una lista llamada listaCosas sería listaCosas[0]. Pero no hay un "primer" elemento en un diccionario, porque los diccionarios no tienen ningún tipo de orden. Prueba ingresando lo siguiente en la consola interactiva:
+
+>>> favoritos1 = {'fruta':'manzana', 'número:42, 'animal':'gatos'}
+>>> favoritos2 = {'animal':'gatos', 'número:42, 'fruta':'manzana'}
+>>> favoritos1== favoritos2
+True
+
+La expresión favoritos1 == favoritos2 evalua a True porque los diccionarios son no-ordenados. Dos diccionarios se consideran iguales si tienen los mismos pares clave-valor, tipeados en cualquier orden. Mientras tanto, las listas son ordenadas, dos listas con los mismos valores en distinto orden se consideran diferentes. Prueba ingresando lo siguiente en la consola interactiva.
+
+>>> listaFavs1 = ['manzanas', 'gatos', 42]
+>>> listaFavs2 = ['gatos', 42, 'manzanas']
+>>> listaFavs1 == listFavs2
+False
+
+Los diccionarios poseen dos métodos útiles, keys() y values(). Estos devolverán valores de un tipo llamados dict_keys y dict_values respectivamente (claves y valores). Similar a los objetos de rango, los valores de estos tipo de datos pueden convertirse facilmente a listas con la función list(). Prueba ingresando lo siguiente en la consola interactiva. 
+
+>>> favoritos = {'fruta':'manzanas', 'animal':'gatos', 'número:42}
+>>> list(favoritos.keys())
+['fruta', 'número, 'animal']
+>>> list(favoritos.values())
+['manzanas', 42, 'gatos']
+
+Conjuntos de Palabras para el Ahorcado
+
+Cambiemos el código en el Ahorcado para soportar diferentes conjuntos de palabras secretas. Primero, cambia el valor en palabras a un diccionario cuyas claves sean cadenas y los valores sean listas de cadenas. El método de string split será empleado para convertir el string en una lista de cadenas con una palabra cada una.
+
+palabras = {'Colores':'rojo naranja amarillo verde azul añil violeta blanco negro marron'.split(),
+'Formas':'cuadrado triangulo rectangulo circulo elipse rombo trapezoide chevron pentagono hexagono heptagono octogono'.split(),
+'Frutas':'manzana naranja limon lima pera sandia uva pomelo cereza banana melon mango fresa tomate'.split(),
+'Animales':'murcielago oso castor gato pantera cangrejo ciervo perro burro pato aguila pez rana cabra sanguijuela leon lagarto mono alce raton nutria buho panda piton conejo rata tiburon oveja mofeta calamar tigre pavo tortuga comadreja ballena lobo wombat cebra'.split()}
+
+Este código dispuesto en múltiples líneas es interpretado como "una sola línea", ya que la línea no termina hasta la clave } final.
+
+La Función radom.choice()
+
+La función choice() del módulo random requiere una lista como argumento y devuelve un valor aleatorio de él, al igual que lo hacia tu función obtenerPalabraAlAzar(). Usarás random.choice() en la nueva versión de obtenerPalabraAlAzar().
+Para ver como la función random.choice() funciona, prueba ingresando lo siguiente en la consola interactiva:
+
+>>> import random
+>>> random.choice(['gato', 'perro', 'ratón'])
+'ratón'
+>>> random.choice(['gato', 'perro', 'ratón'])
+'gato'
+>>> random.choice([2, 22, 222, 223])
+2
+>>> random.choice([2, 22, 222, 223])
+222
+
+Cambia el obtenerPalabraAlAzar para que su parámetro sea un diccionario de listas de strigs, en vez de tan sólo una lista de strigs. Aquí es como la función se veía originalmente:
+
+def obtenerPalabraAlAzar(listaDePalabras):
+    # Esta función devuelve una cadena al azar de la lista de cadenas pasada como argumento.
+    índiceDePalabras = random.randint(0, len(listaDePalabras) - 1)
+    return listaDePalabras[índiceDePalabras]
+
+Cambia el código en esta función para que se vea así:
+
+def obtenerPalabraAlAzar(diccionarioDePalabras):
+    # Esta función devuelve una cadena al azar del diccionario de listas de cadenas pasado como argumento. También devuelve la clave.
+    # Primero, elige una clave al azar del diccionario:
+    claveDePalabras = random.choice(list(diccionarioDePalabras.keys()))
+
+    # Segundo, elige una palabra aleatoria de la lista correspondiente a la clave en el diccionario:
+    índiceDePalabra = random.randint(0, len(diccionarioDePalabras[claveDePalabras]) - 1)
+
+    return [diccionarioDePalabras[claveDePalabras][índiceDePalabra], claveDePalabras]
+
+El nombre del parámetro listaDePalabras se cambia a diccionarioDePalabras para ser más descriptivo. Ahora en vez de elegir una cadena al azar de una lista de cadenas, primero la función elige una clave aleatoriamente en el diccionario llamando a random.choice().
+En vez de devolver listaDePalabras[índiceDePalabras], la función devuelve una lista con dos elementos. El primero es diccionarioDePalabras[claveDePalabras][índiceDePalabra]. El segundo claveDePalabras.
+
+Evaluando un Diccionario de Listas
+
+La expresión diccionarioDePalabras[claveDePalabras][índiceDePalabra] puede lucir complicada, pero es tan sólo una expresión que puedes evaluar un paso a la vez. Primero, claveDePalabras posee el valor 'Frutas' (elegido en la línea 67) y ahora índiceDePalabra posee el valor 5 (elegido en la línea 70). Así es como se evalúa diccionarioDePalabras[claveDePalabras][índiceDePalabra] :
+
+diccionarioDePalabras[claveDePalabras][índiceDePalabra]
+           ▼
+diccionarioDePalabras['Frutas'][índiceDePalabra]
+           ▼
+['manzana', 'naranja', 'limon', 'lima', 'pera', 'sandia', 'uva', 'pomelo', 'cereza', 'banana', 'melon', 'mango', 'fresa', 'tomate'[índiceDePalabra]
+           ▼
+['manzana', 'naranja', 'limon', 'lima', 'pera', 'sandia', 'uva', 'pomelo', 'cereza', 'banana', 'melon', 'mango', 'fresa', 'tomate'[5]
+           ▼
+      'sandia'
+
+En este caso, el elemento de la lista que devuele la función será la cadena 'sandía'. (Recuerda que los índices comienzan en 0, así que [5] refiere al sexto elemento en la lista.)
+Dado que obtenerPalabraAlAzar() ahora devuelve una lista de dos elementos en vez de una cadena, a palabraSecreta se le asignará una lista y no una cadena. Puedes asignar ambos elementos a dos variables separadas utilizando un truco de asignación múltiple.
+
+Asignación Múltiple
+
+Puedes especificar múltiples variables, separadas por comas, al lado izquierdo de la declaración de asignación. Prueba ingresando lo siguiente en la consola interactiva:
+
+>>> a, b, c = ['manzanas', 'gatos', 42]
+>>> a
+'manzanas'
+>>> b
+'gatos'
+>>> c
+42
+
+El truco está en colocar la misma cantidad de variables como de elementos a la derecha del signo =. Python automáticamente asignará el valor del primer elemento a la primer variable, el valor del segundo elemento en la segunda variable y así continuamente. Pero si no posees la misma cnatidad de elemento, el interprete de Python dará un error.
+
+>>> a, b, c, d = ['manzanas', 'gatos', 42, 10, 'hola']
+Traceback (most recent call last):
+  File "<pyshell#8>", line 1, in <module>
+    a, b, c, d = ['manzanas', 'gatos', 42, 10, 'hola']
+ValueError: too many values to unpack
+
+>>> a, b, c, d = ['manzanas', 'gatos']
+Traceback (most recent call last):
+  File "<pyshell#9>", line 1, in <module>
+    a, b, c = ['manzanas', 'gatos']
+ValueError: need more than 2 values to unpack
+
+Cambia tu código en Ahorcado para utilizar este truco con la devolución de obtenerPalabraAlAzar()
+
+108. letrasCorrectas = ''
+109. palabraSecreta, claveSecreta = obtenerPalabraAlAzar(palabras)
+110. juegoTerminado = False
+...
+144. juegoTerminado = False
+145. palabraSecreta, claveSecreta = obtenerPalabraAlAzar(palabras)
+146. else:
+
+Imprimendo la Categoría para el Jugador
+
+El último cambio que realizarás es decirle al jugador que conjunto de palabras está intentando de adivinar. De esta manera, cuando el jugador juegue el juego podrá saber si la palabra secreta es un animal, color, forma o fruta. Agrega estas líneas de código luego de la línea 112.
+
+The last change you’ll make is to tell the player which set of words they are trying to guess. This way, when the player plays the game they will know if the secret word is an animal, color, shape, or fruit. Add this line of code after line 112. Here is the original code:
+
+112. while True:
+113. mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta)
+
+Agrega las líneas para que tu programa luzca así:
+
+112. while True:
+113. print('La palabra secreta pertenece al conjunto: ' + claveSecreta)
+114. mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta)
+
+Ahora has terminado con nuestros cambios al Ahorcado. En vez de sólo una lista de cadenas, la palabra secreta es elegida de diferentes listas de cadenas. El programa también dirá al jugador de qué conjunto de palabras es la palabra secreta.
+Prueba jugar esta nueva versión. Luego puedes cambiar el diccionario de palabras de la línea 59 para incluir mas conjuntos de palabras¡Ahora tu juego de Ahorcado puede ser extendido facilmente!
+
+Resumen
+
+Hemos terminado el Ahorcado. Incluso luego de haber terminado de escribir un juego, puedes facilmente agregar más características luego de haber aprendio más programación.
+El Ahorcado es ligeramente avanzado comparado con los juegos previos en este libro. Pero en este punto, sabes muchos de los conceptos básicos para escribir programas: variables, ciclos, funciones y los tipos de datos de Python como listas y diccionarios. Los siguientes programas en este libro segurán siendo un desafió a dominar, pero acabas de terminar el la parte más empinada de la escalada.
