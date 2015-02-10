@@ -3,7 +3,7 @@
 
 Temas Tratados En Este Capítulo:
 • Diccionario de datos
-• Duplas llave-valor (key-value)
+• Duplas clave-valor (key-value)
 • Los métodos keys() y values() del diccionario
 • Asignaciones de variable múltiple
 
@@ -11,7 +11,7 @@ Realizando Nuevos Cambios al Programa Ahorcado
 
 Este programa fue mucho mayor al programa Reino de Dragones, pero este programa es también más sofisticado. Realizar un diagrama de flujo o un pequeño esquema realmente ayuda a recordar como quieres que todo funcione.
 Ahora que has creado un simple juego de Ahorcado, veamos unas modos de que puedas extenderlo con nuevas funcionalidades..
-Luego de que has jugado al Ahorcado unas veces, puedes pensar que seis intentos de adivinar no es suficiente para la mayoria de las palabras. Podemos sencillamente darle al jugador mas oportunidades agregando strings multi-linea a la lista IMAGENES_AHORCADO. 
+Luego de que has jugado al Ahorcado unas veces, puedes pensar que seis intentos de adivinar no es suficiente para la mayoria de las palabras. Podemos sencillamente darle al jugador mas oportunidades agregando cadenas multi-linea a la lista IMAGENES_AHORCADO. 
 Guarda tu ahorcado.py como ahorcado2.py y luego agrega lo siguiente:
 
  58. ==========''', '''
@@ -30,7 +30,7 @@ Guarda tu ahorcado.py como ahorcado2.py y luego agrega lo siguiente:
  71.        |
  72. ==========''']
 
-Ahora hay dos nuevos strigs multi-línea en la lista, uno con sólo la oreja izquierda dibujada, y la otra con ambas dibujadas. Debido a que el programa dirá que el jugador perdió cuando el número de intentos es igual al número de strings en IMÁGENES_AHORCADO (menos uno), este es el unico cambio que debes hacer.
+Ahora hay dos nuevos strigs multi-línea en la lista, uno con sólo la oreja izquierda dibujada, y la otra con ambas dibujadas. Debido a que el programa dirá que el jugador perdió cuando el número de intentos es igual al número de cadenas en IMÁGENES_AHORCADO (menos uno), este es el unico cambio que debes hacer.
 
 Cambia la lista de palabras cambiando las palabras en la línea 59. En vez de animales, podemos tener colores:
 
@@ -48,12 +48,12 @@ Con algunas modificaciones, podemos cambiar nuestro código para que nuestro jue
 
 Diccionarios
 
-Para realizar este cambio, necesitaras una nueva estructura de datos llamada diccionario. Un diccionario puede almacenar múltiples valores tal como una lista lo hace. Pero en vez de acceder a los elementos con un índice entero, puedes acceder a ellos con un índice de cualquier tipo. Para los diccionarios, estos índices son llamados llaves (keys en inglés).
+Para realizar este cambio, necesitaras una nueva estructura de datos llamada diccionario. Un diccionario puede almacenar múltiples valores tal como una lista lo hace. Pero en vez de acceder a los elementos con un índice entero, puedes acceder a ellos con un índice de cualquier tipo. Para los diccionarios, estos índices son llamados claves (keys en inglés).
 Los diccionarios usan { y } llaves en vez de [ y ] corchetes. Prueba ingresando lo siguiente en la consola interactiva:
 
 >> cosas = {'hola':'Hola ¿como estas?',4:'panceta','spam':9999}
 
-Los valores entre las llaves separadas por comas son los pares llave-valor. Las llaves se encuentran a la izquierda de los dos puntos y los valores a la derecha. Puedes acceder a los valores como elementos en una lista utilizando la llave. Prueba ingresando en la consola interactiva cosas['hola'], cosas[4] y cosas['spam']:
+Los valores entre las llaves separadas por comas son los pares clave-valor. Las claves se encuentran a la izquierda de los dos puntos y los valores a la derecha. Puedes acceder a los valores como elementos en una lista utilizando la clave. Prueba ingresando en la consola interactiva cosas['hola'], cosas[4] y cosas['spam']:
 
 >>> cosas = {'hola':'Hola ¿como estas?',4:'panceta','spam':9999}
 >>> cosas['hola']
@@ -67,7 +67,7 @@ En vez de utilizar un entero entre los corchetes, utilizas un valor string. Esto
 
 Obteniendo el Tamaño de Diccionarios con len()
 
-Puedes obtener la cantidad de pares llave-valor en el diccionario mediante la función len(). Prueba ingresando lo siguiente en la consola interactiva:
+Puedes obtener la cantidad de pares clave-valor en el diccionario mediante la función len(). Prueba ingresando lo siguiente en la consola interactiva:
 
 >>> cosas = {'hola':'Hola ¿como estas?',4:'panceta','spam':9999}
 >>> len(cosas)
@@ -75,7 +75,7 @@ Puedes obtener la cantidad de pares llave-valor en el diccionario mediante la fu
 
 La Diferencia entre Diccionario y Lista
 
-Los diccionarios pueden tener llaves de cualquier estructura de datos, no solo strings. Pero recuerda, como 0 y '0' son valores diferentes, serán llaves diferentes. Prueba ingresando lo siguiente en la consola interactiva:
+Los diccionarios pueden tener claves de cualquier estructura de datos, no solo cadenas. Pero recuerda, como 0 y '0' son valores diferentes, serán claves diferentes. Prueba ingresando lo siguiente en la consola interactiva:
 
 >>> spam = {'0':'un string', 0:'un entero'}
 >>> spam[0]
@@ -83,7 +83,7 @@ Los diccionarios pueden tener llaves de cualquier estructura de datos, no solo s
 >>> spam['0']
 'un string'
 
-Las llaves en los diccionarios también pueden iterarse utilizando un ciclo for. Prueba ingresando lo siguiente en la consola interactiva:
+Las claves en los diccionarios también pueden iterarse utilizando un ciclo for. Prueba ingresando lo siguiente en la consola interactiva:
 
 >>> favoritos = {'fruta':'manzanas', 'animal':'gatos', 'número':42}
 >>> for i in favoritos:
@@ -104,14 +104,14 @@ Los diccionarios se diferencian de las listas porque los valores dentro de ellos
 >>> favoritos1== favoritos2
 True
 
-La expresión favoritos1 == favoritos2 evalua a True porque los diccionarios son no-ordenados. Dos diccionarios se consideran iguales si tienen los mismos pares llave-valor, tipeados en cualquier orden. Mientras tanto, las listas son ordenadas, dos listas con los mismos valores en distinto orden se consideran diferentes. Prueba ingresando lo siguiente en la consola interactiva.
+La expresión favoritos1 == favoritos2 evalua a True porque los diccionarios son no-ordenados. Dos diccionarios se consideran iguales si tienen los mismos pares clave-valor, tipeados en cualquier orden. Mientras tanto, las listas son ordenadas, dos listas con los mismos valores en distinto orden se consideran diferentes. Prueba ingresando lo siguiente en la consola interactiva.
 
 >>> listaFavs1 = ['manzanas', 'gatos', 42]
 >>> listaFavs2 = ['gatos', 42, 'manzanas']
 >>> listaFavs1 == listFavs2
 False
 
-Los diccionarios poseen dos métodos útiles, keys() y values(). Estos devolverán valores de un tipo llamados dict_keys y dict_values respectivamente (llaves y valores). Similar a los objetos de rango, los valores de estos tipo de datos pueden convertirse facilmente a listas con la función list(). Prueba ingresando lo siguiente en la consola interactiva. 
+Los diccionarios poseen dos métodos útiles, keys() y values(). Estos devolverán valores de un tipo llamados dict_keys y dict_values respectivamente (claves y valores). Similar a los objetos de rango, los valores de estos tipo de datos pueden convertirse facilmente a listas con la función list(). Prueba ingresando lo siguiente en la consola interactiva. 
 
 >>> favoritos = {'fruta':'manzanas', 'animal':'gatos', 'número:42}
 >>> list(favoritos.keys())
@@ -121,14 +121,14 @@ Los diccionarios poseen dos métodos útiles, keys() y values(). Estos devolver�
 
 Conjuntos de Palabras para el Ahorcado
 
-Cambiemos el código en el Ahorcado para soportar diferentes conjuntos de palabras secretas. Primero, cambia el valor en palabras a un diccionario cuyas claves sean strings y los valores sean listas de strings. El método de string split será empleado para convertir el string en una lista de strings con una palabra cada una.
+Cambiemos el código en el Ahorcado para soportar diferentes conjuntos de palabras secretas. Primero, cambia el valor en palabras a un diccionario cuyas claves sean cadenas y los valores sean listas de cadenas. El método de string split será empleado para convertir el string en una lista de cadenas con una palabra cada una.
 
 palabras = {'Colores':'rojo naranja amarillo verde azul añil violeta blanco negro marron'.split(),
 'Formas':'cuadrado triangulo rectangulo circulo elipse rombo trapezoide chevron pentagono hexagono heptagono octogono'.split(),
 'Frutas':'manzana naranja limon lima pera sandia uva pomelo cereza banana melon mango fresa tomate'.split(),
 'Animales':'murcielago oso castor gato pantera cangrejo ciervo perro burro pato aguila pez rana cabra sanguijuela leon lagarto mono alce raton nutria buho panda piton conejo rata tiburon oveja mofeta calamar tigre pavo tortuga comadreja ballena lobo wombat cebra'.split()}
 
-Este código dispuesto en múltiples líneas es interpretado como "una sola línea", ya que la línea no termina hasta la llave } final.
+Este código dispuesto en múltiples líneas es interpretado como "una sola línea", ya que la línea no termina hasta la clave } final.
 
 La Función radom.choice()
 
@@ -147,8 +147,6 @@ Para ver como la función random.choice() funciona, prueba ingresando lo siguien
 
 Cambia el obtenerPalabraAlAzar para que su parámetro sea un diccionario de listas de strigs, en vez de tan sólo una lista de strigs. Aquí es como la función se veía originalmente:
 
-Change the getRandomWord() function so that its parameter will be a dictionary of lists of strings, instead of just a list of strings. Here is what the function originally looked like:
-
 def obtenerPalabraAlAzar(listaDePalabras):
     # Esta función devuelve una cadena al azar de la lista de cadenas pasada como argumento.
     índiceDePalabras = random.randint(0, len(listaDePalabras) - 1)
@@ -166,7 +164,7 @@ def obtenerPalabraAlAzar(diccionarioDePalabras):
 
     return [diccionarioDePalabras[claveDePalabras][índiceDePalabra], claveDePalabras]
 
-El nombre del parámetro listaDePalabras se cambia a diccionarioDePalabras para ser más descriptivo. Ahora en vez de elegir una cadena al azar de una lista de strings, primero la función elige una clave aleatoriamente en el diccionario llamando a random.choice().
+El nombre del parámetro listaDePalabras se cambia a diccionarioDePalabras para ser más descriptivo. Ahora en vez de elegir una cadena al azar de una lista de cadenas, primero la función elige una clave aleatoriamente en el diccionario llamando a random.choice().
 En vez de devolver listaDePalabras[índiceDePalabras], la función devuelve una lista con dos elementos. El primero es diccionarioDePalabras[claveDePalabras][índiceDePalabra]. El segundo claveDePalabras.
 
 Evaluando un Diccionario de Listas
