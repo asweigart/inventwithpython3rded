@@ -97,144 +97,150 @@ manzanas
 gatos
 42
 
-Dictionaries are different from lists because the values inside them are unordered. The first item in a list named listStuff would be listStuff[0]. But there is no “first” item in a dictionary, because dictionaries do not have any sort of order. Try entering the following into the interactive shell:
+Los diccionarios se diferencian de las listas porque los valores dentro de ellos no son ordenados. El primer elemento en una lista llamada listaCosas sería listaCosas[0]. Pero no hay un "primer" elemento en un diccionario, porque los diccionarios no tienen ningún tipo de orden. Prueba ingresando lo siguiente en la consola interactiva:
 
->>> favorites1 = {'fruit':'apples', 'number':42, 'animal':'cats'}
->>> favorites2 = {'animal':'cats', 'number':42, 'fruit':'apples'}
->>> favorites1 == favorites2
+>>> favoritos1 = {'fruta':'manzana', 'número:42, 'animal':'gatos'}
+>>> favoritos2 = {'animal':'gatos', 'número:42, 'fruta':'manzana'}
+>>> favoritos1== favoritos2
 True
 
-The expression favorites1 == favorites2 evaluates to True because dictionaries are unordered. Two dictionaries are considered the same if they have the same key-value pairs in them, typed in any order. Meanwhile, lists are ordered, so two lists with the same values in a different order are not the same. Try entering this into the interactive shell:
+La expresión favoritos1 == favoritos2 evalua a True porque los diccionarios son no-ordenados. Dos diccionarios se consideran iguales si tienen los mismos pares llave-valor, tipeados en cualquier orden. Mientras tanto, las listas son ordenadas, dos listas con los mismos valores en distinto orden se consideran diferentes. Prueba ingresando lo siguiente en la consola interactiva.
 
->>> listFavs1 = ['apples', 'cats', 42]
->>> listFavs2 = ['cats', 42, 'apples']
->>> listFavs1 == listFavs2
+>>> listaFavs1 = ['manzanas', 'gatos', 42]
+>>> listaFavs2 = ['gatos', 42, 'manzanas']
+>>> listaFavs1 == listFavs2
 False
 
-Dictionaries have two useful methods, keys() and values(). These will return values of a type called dict_keys and dict_values, respectively. Much like range objects, values of those data types can easily convert to lists with the list() function. Try entering the following into the interactive shell:
+Los diccionarios poseen dos métodos útiles, keys() y values(). Estos devolverán valores de un tipo llamados dict_keys y dict_values respectivamente (llaves y valores). Similar a los objetos de rango, los valores de estos tipo de datos pueden convertirse facilmente a listas con la función list(). Prueba ingresando lo siguiente en la consola interactiva. 
 
->>> favorites = {'fruit':'apples', 'animal':'cats', 'number':42}
->>> list(favorites.keys())
-['fruit', 'number', 'animal']
->>> list(favorites.values())
-['apples', 42, 'cats']
+>>> favoritos = {'fruta':'manzanas', 'animal':'gatos', 'número:42}
+>>> list(favoritos.keys())
+['fruta', 'número, 'animal']
+>>> list(favoritos.values())
+['manzanas', 42, 'gatos']
 
-Sets of Words for Hangman
+Conjuntos de Palabras para el Ahorcado
 
-Let’s change the code in the Hangman game to support different sets of secret words. First, change the value in words into a dictionary whose keys are strings and values are lists of strings. The string method split() method will turn the string into a list of strings with one word each.
+Cambiemos el código en el Ahorcado para soportar diferentes conjuntos de palabras secretas. Primero, cambia el valor en palabras a un diccionario cuyas claves sean strings y los valores sean listas de strings. El método de string split será empleado para convertir el string en una lista de strings con una palabra cada una.
 
- 59. words = {'Colors':'red orange yellow green blue indigo violet white black brown'.split(),
- 60. 'Shapes':'square triangle rectangle circle ellipse rhombus trapazoid chevron pentagon hexagon septagon octogon'.split(),
- 61. 'Fruits':'apple orange lemon lime pear watermelon grape grapefruit cherry banana cantalope mango strawberry tomato'.split(),
- 62. 'Animals':'bat bear beaver cat cougar crab deer dog donkey duck eagle fish frog goat leech lion lizard monkey moose mouse otter owl panda python rabbit rat shark sheep skunk squid tiger turkey turtle weasel whale wolf wombat zebra'.split()}
+palabras = {'Colores':'rojo naranja amarillo verde azul añil violeta blanco negro marron'.split(),
+'Formas':'cuadrado triangulo rectangulo circulo elipse rombo trapezoide chevron pentagono hexagono heptagono octogono'.split(),
+'Frutas':'manzana naranja limon lima pera sandia uva pomelo cereza banana melon mango fresa tomate'.split(),
+'Animales':'murcielago oso castor gato pantera cangrejo ciervo perro burro pato aguila pez rana cabra sanguijuela leon lagarto mono alce raton nutria buho panda piton conejo rata tiburon oveja mofeta calamar tigre pavo tortuga comadreja ballena lobo wombat cebra'.split()}
 
-This code is put across multiple lines in the file, even though the Python interpreter thinks of it as just one “line of code.” (The line of code doesn’t end until the final } curly brace.)
+Este código dispuesto en múltiples líneas es interpretado como "una sola línea", ya que la línea no termina hasta la llave } final.
 
-The random.choice() Function
+La Función radom.choice()
 
-The choice() function in the random module takes a list argument and returns a random value from it, just like your getRandomWord() function did. You’ll use random.choice() in the new version of the getRandomWord() function.
-To see how the random.choice() function works, try entering the following into the interactive shell:
+La función choice() del módulo random requiere una lista como argumento y devuelve un valor aleatorio de él, al igual que lo hacia tu función obtenerPalabraAlAzar(). Usarás random.choice() en la nueva versión de obtenerPalabraAlAzar().
+Para ver como la función random.choice() funciona, prueba ingresando lo siguiente en la consola interactiva:
 
 >>> import random
->>> random.choice(['cat', 'dog', 'mouse'])
-'mouse'
->>> random.choice(['cat', 'dog', 'mouse'])
-'cat'
+>>> random.choice(['gato', 'perro', 'ratón'])
+'ratón'
+>>> random.choice(['gato', 'perro', 'ratón'])
+'gato'
 >>> random.choice([2, 22, 222, 223])
 2
 >>> random.choice([2, 22, 222, 223])
 222
 
+Cambia el obtenerPalabraAlAzar para que su parámetro sea un diccionario de listas de strigs, en vez de tan sólo una lista de strigs. Aquí es como la función se veía originalmente:
+
 Change the getRandomWord() function so that its parameter will be a dictionary of lists of strings, instead of just a list of strings. Here is what the function originally looked like:
 
-def getRandomWord(wordList):
-    # This function returns a random string from the passed list of strings.
-    wordIndex = random.randint(0, len(wordList) - 1)
-    return wordList[wordIndex]
+def obtenerPalabraAlAzar(listaDePalabras):
+    # Esta función devuelve una cadena al azar de la lista de cadenas pasada como argumento.
+    índiceDePalabras = random.randint(0, len(listaDePalabras) - 1)
+    return listaDePalabras[índiceDePalabras]
 
-Change the code in this function so that it looks like this:
+Cambia el código en esta función para que se vea así:
 
-def getRandomWord(wordDict):
-    # This function returns a random string from the passed dictionary of lists of strings, and the key also.
-    # First, randomly select a key from the dictionary:
-    wordKey = random.choice(list(wordDict.keys()))
-    # Second, randomly select a word from the key's list in the dictionary:
-    wordIndex = random.randint(0, len(wordDict[wordKey]) - 1)
-    return [wordDict[wordKey][wordIndex], wordKey]
+def obtenerPalabraAlAzar(diccionarioDePalabras):
+    # Esta función devuelve una cadena al azar del diccionario de listas de cadenas pasado como argumento. También devuelve la clave.
+    # Primero, elige una clave al azar del diccionario:
+    claveDePalabras = random.choice(list(diccionarioDePalabras.keys()))
 
-The name of the wordList parameter is changed to wordDict to be more descriptive. Now instead of choosing a random word from a list of strings, first the function chooses a random key in the wordDict dictionary by calling random.choice().
-Instead of return wordList[wordIndex], the function returns a list with two items. The first item is wordDict[wordKey][wordIndex]. The second item is wordKey.
+    # Segundo, elige una palabra aleatoria de la lista correspondiente a la clave en el diccionario:
+    índiceDePalabra = random.randint(0, len(diccionarioDePalabras[claveDePalabras]) - 1)
 
-Evaluating a Dictionary of Lists
+    return [diccionarioDePalabras[claveDePalabras][índiceDePalabra], claveDePalabras]
 
-The wordDict[wordKey][wordIndex] expression may look complicated, but it is just an expression you can evaluate one step at a time like anything else. First, imagine that wordKey had the value 'Fruits' (which was chosen on line 65) and wordIndex has the value 5 (chosen on line 68). Here is how wordDict[wordKey][wordIndex] would evaluate:
+El nombre del parámetro listaDePalabras se cambia a diccionarioDePalabras para ser más descriptivo. Ahora en vez de elegir una cadena al azar de una lista de strings, primero la función elige una clave aleatoriamente en el diccionario llamando a random.choice().
+En vez de devolver listaDePalabras[índiceDePalabras], la función devuelve una lista con dos elementos. El primero es diccionarioDePalabras[claveDePalabras][índiceDePalabra]. El segundo claveDePalabras.
 
-wordDict[wordKey][wordIndex]
+Evaluando un Diccionario de Listas
+
+La expresión diccionarioDePalabras[claveDePalabras][índiceDePalabra] puede lucir complicada, pero es tan sólo una expresión que puedes evaluar un paso a la vez. Primero, claveDePalabras posee el valor 'Frutas' (elegido en la línea 67) y ahora índiceDePalabra posee el valor 5 (elegido en la línea 70). Así es como se evalúa diccionarioDePalabras[claveDePalabras][índiceDePalabra] :
+
+diccionarioDePalabras[claveDePalabras][índiceDePalabra]
            ▼
-wordDict['Fruits'][wordIndex]
+diccionarioDePalabras['Frutas'][índiceDePalabra]
            ▼
-['apple', 'orange', 'lemon', 'lime', 'pear', 'watermelon', 'grape', 'grapefruit', 'cherry', 'banana', 'cantalope', 'mango', 'strawberry', 'tomato'][wordIndex]
+['manzana', 'naranja', 'limon', 'lima', 'pera', 'sandia', 'uva', 'pomelo', 'cereza', 'banana', 'melon', 'mango', 'fresa', 'tomate'[índiceDePalabra]
            ▼
-['apple', 'orange', 'lemon', 'lime', 'pear', 'watermelon', 'grape', 'grapefruit', 'cherry', 'banana', 'cantalope', 'mango', 'strawberry', 'tomato'][5]
+['manzana', 'naranja', 'limon', 'lima', 'pera', 'sandia', 'uva', 'pomelo', 'cereza', 'banana', 'melon', 'mango', 'fresa', 'tomate'[5]
            ▼
-      'watermelon'
+      'sandia'
 
-In the above case, the item in the list this function returns would be the string 'watermelon'. (Remember that indexes start at 0, so [5] refers to the 6th item in the list.)
-Because the getRandomWord() function now returns a list of two items instead of a string, secretWord will be assigned a list, not a string. You can assign these two items into two separate variables using the multiple assignment trick.
+En este caso, el elemento de la lista que devuele la función será la cadena 'sandía'. (Recuerda que los índices comienzan en 0, así que [5] refiere al sexto elemento en la lista.)
+Dado que obtenerPalabraAlAzar() ahora devuelve una lista de dos elementos en vez de una cadena, a palabraSecreta se le asignará una lista y no una cadena. Puedes asignar ambos elementos a dos variables separadas utilizando un truco de asignación múltiple.
 
-Multiple Assignment
+Asignación Múltiple
 
-You can specify multiple variables, separated by commas, on the left side of an assignment statement. Try entering the following into the interactive shell:
+Puedes especificar múltiples variables, separadas por comas, al lado izquierdo de la declaración de asignación. Prueba ingresando lo siguiente en la consola interactiva:
 
->>> a, b, c = ['apples', 'cats', 42]
+>>> a, b, c = ['manzanas', 'gatos', 42]
 >>> a
-'apples'
+'manzanas'
 >>> b
-'cats'
+'gatos'
 >>> c
 42
 
-The trick is to put the same number of variables as there are in the list on the right side of the = sign. Python will automatically assign the first item's value in the list to the first variable, the second item's value to the second variable, and so on. But if you do not have the same number of variables and items, the Python interpreter will give you an error.
+El truco está en colocar la misma cantidad de variables como de elementos a la derecha del signo =. Python automáticamente asignará el valor del primer elemento a la primer variable, el valor del segundo elemento en la segunda variable y así continuamente. Pero si no posees la misma cnatidad de elemento, el interprete de Python dará un error.
 
->>> a, b, c, d = ['apples', 'cats', 42, 10, 'hello']
+>>> a, b, c, d = ['manzanas', 'gatos', 42, 10, 'hola']
 Traceback (most recent call last):
   File "<pyshell#8>", line 1, in <module>
-    a, b, c, d = ['apples', 'cats', 42, 10, 'hello']
+    a, b, c, d = ['manzanas', 'gatos', 42, 10, 'hola']
 ValueError: too many values to unpack
 
->>> a, b, c, d = ['apples', 'cats']
+>>> a, b, c, d = ['manzanas', 'gatos']
 Traceback (most recent call last):
   File "<pyshell#9>", line 1, in <module>
-    a, b, c = ['apples', 'cats']
+    a, b, c = ['manzanas', 'gatos']
 ValueError: need more than 2 values to unpack
 
-Change your code in Hangman to use this trick with the return value of getRandomWord():
+Cambia tu código en Ahorcado para utilizar este truco con la devolución de obtenerPalabraAlAzar()
 
-108. correctLetters = ''
-109. secretWord, secretKey = getRandomWord(words)
-110. gameIsDone = False
+108. letrasCorrectas = ''
+109. palabraSecreta, claveSecreta = obtenerPalabraAlAzar(palabras)
+110. juegoTerminado = False
 ...
-144. gameIsDone = False
-145. secretWord, secretKey = getRandomWord(words)
+144. juegoTerminado = False
+145. palabraSecreta, claveSecreta = obtenerPalabraAlAzar(palabras)
 146. else:
 
-Printing the Word Category for the Player
+Imprimendo la Categoría para el Jugador
+
+El último cambio que realizarás es decirle al jugador que conjunto de palabras está intentando de adivinar. De esta manera, cuando el jugador juegue el juego podrá saber si la palabra secreta es un animal, color, forma o fruta. Agrega estas líneas de código luego de la línea 112.
 
 The last change you’ll make is to tell the player which set of words they are trying to guess. This way, when the player plays the game they will know if the secret word is an animal, color, shape, or fruit. Add this line of code after line 112. Here is the original code:
 
 112. while True:
-113.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+113. mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta)
 
-Add the line so your program looks like this:
+Agrega las líneas para que tu programa luzca así:
 
 112. while True:
-113.     print('The secret word is in the set: ' + secretKey)
-114.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+113. print('La palabra secreta pertenece al conjunto: ' + claveSecreta)
+114. mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta)
 
-Now you’re done with our changes to the Hangman program. Instead of just a single list of strings, the secret word is chosen from many different lists of strings. The program also tells the player which set of words the secret word is from.
-Try playing this new version. You can later change the words dictionary on line 59 to include more sets of words. Now your Hangman program can be easily be extended with new words!
+Ahora has terminado con nuestros cambios al Ahorcado. En vez de sólo una lista de cadenas, la palabra secreta es elegida de diferentes listas de cadenas. El programa también dirá al jugador de qué conjunto de palabras es la palabra secreta.
+Prueba jugar esta nueva versión. Luego puedes cambiar el diccionario de palabras de la línea 59 para incluir mas conjuntos de palabras¡Ahora tu juego de Ahorcado puede ser extendido facilmente!
 
-Summary
+Resumen
 
-We're done with Hangman. Even after you’ve finished writing a game, you can always add more features after you learn more programming.
-Hangman is fairly advanced compared to all of the previous games in this book. But at this point, you know much of the basic concepts in writing programs: variables, loops, functions, and Python’s data types such as lists and dictionaries. The later programs in this book will still be a challenge to master, but you’ve just finished the steepest part of the climb.
+Hemos terminado el Ahorcado. Incluso luego de haber terminado de escribir un juego, puedes facilmente agregar más características luego de haber aprendio más programación.
+El Ahorcado es ligeramente avanzado comparado con los juegos previos en este libro. Pero en este punto, sabes muchos de los conceptos básicos para escribir programas: variables, ciclos, funciones y los tipos de datos de Python como listas y diccionarios. Los siguientes programas en este libro segurán siendo un desafió a dominar, pero acabas de terminar el la parte más empinada de la escalada.
