@@ -341,7 +341,7 @@ The pygame.draw.ellipse() function is similar to the pygame.draw.circle() functi
 •   The Surface object to draw the ellipse on.
 •   The color of the ellipse.
 •   A tuple of four integers is passed for the left, top, width, and height of the ellipse.
-•   Optionally, an integer for the width. A width of 0 means that the circle will be filled in.
+•   Optionally, an integer for the width. A width of 0 means that the ellipse will be filled in.
 
 Line 42 draws a red ellipse on the Surface object.
 
@@ -375,7 +375,7 @@ The blit() Method for Surface Objects
 52. # draw the text onto the surface
 53. windowSurface.blit(text, textRect)
 
-The blit() method will draw the contents of one Surface object onto another Surface object. Line 54 will draw the “Hello world!” Surface object in text and draws it to the Surface object stored in the windowSurface variable.
+The blit() method will draw the contents of one Surface object onto another Surface object. Line 53 will draw the “Hello world!” Surface object in text and draws it to the Surface object stored in the windowSurface variable.
 
 The second parameter to blit() specifies where on the windowSurface surface the text surface should be drawn. Pass the Rect object you got from calling text.get_rect() on line 23.
 
@@ -567,7 +567,7 @@ Setting Up Constant Variables for Direction
 
 We will use the keys on the number pad of the keyboard to remind us which belongs to which direction. This is similar to the Tic Tac Toe game. 1 is down and left, 3 is down and right, 7 is up and left, and 9 is up and right. However, it may be hard to remember this, so instead use constant variables instead of these integer values.
 
-You could have used any value you wanted for these directions instead of using a constant variable. For example, you could use the string 'downleft' to represent the down and left diagonal direction. However, if you ever mistype the 'downleft' string (for example, as 'fownleft'), Python would not recognize that you meant to type 'downleft' instead of 'downleft'. This bug would cause your program to behave strangely, but the program would not crash.
+You could have used any value you wanted for these directions instead of using a constant variable. For example, you could use the string 'downleft' to represent the down and left diagonal direction. However, if you ever mistype the 'downleft' string (for example, as 'fownleft'), Python would not recognize that you meant to type 'downleft' instead of 'fownleft'. This bug would cause your program to behave strangely, but the program would not crash.
 
 But if you use constant variables, and accidentally type the variable name FOWNLEFT instead of the name DOWNLEFT, Python would notice that there’s no such variable named FOWNLEFT and crash the program with an error. This would still be a pretty bad bug, but at least you would know about it immediately and could fix it.
 
@@ -650,7 +650,7 @@ The new value to set the left and top attributes to depends on the block’s dir
 
 If the direction of the block is DOWNRIGHT or UPRIGHT, you want to increase the left attribute. If the direction is DOWNLEFT or UPLEFT, you want to decrease the left attribute.
 
-Change the value of these attributes by the integer stored in MOVESPEED. MOVESPEED stores how many pixels over blocks move on each iteration of the game loop, and was set on line19.
+Change the value of these attributes by the integer stored in MOVESPEED. MOVESPEED stores how many pixels over blocks move on each iteration of the game loop, and was set on line 19.
 
 Checking if the Block has Bounced
 
