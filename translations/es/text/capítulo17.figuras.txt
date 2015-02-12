@@ -1,0 +1,7 @@
+Fig 17-3:
+¡Programar es divertido!
+
+Fig 17-4:
+Sin antialiasing
+Con antialiasing
+

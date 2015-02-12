@@ -1,7 +1,7 @@
     Capítulo 7
     USANDO EL DEPURADOR
 
-Los tópicos cubiertos en este capítulo:
+Temas Tratados En Este Capítulo:
 •   3 Tipos Diferentes de Errores
 •   Depurador de IDLE
 •   Entrar En, Sobre, Salir

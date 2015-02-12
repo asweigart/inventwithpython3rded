@@ -56,27 +56,27 @@ while True:
             b['rect'].left += VELOCIDADMOVIMIENTO
             b['rect'].top -= VELOCIDADMOVIMIENTO
 
-        # Verifica si el bloque se movio fuera de la ventana
+        # Verifica si el bloque se movió fuera de la ventana
         if b['rect'].top < 0:
-            # el bloque se movio por arriba de la ventana
+            # el bloque se movió por arriba de la ventana
             if b['dir'] == ARRIBAIZQUIERDA:
                 b['dir'] = ABAJOIZQUIERDA
             if b['dir'] == ARRIBADERECHA:
                 b['dir'] = ABAJODERECHA
         if b['rect'].bottom > ALTOVENTANA:
-            # el bloque se movio por debajo de la ventana
+            # el bloque se movió por debajo de la ventana
             if b['dir'] == ABAJOIZQUIERDA:
                 b['dir'] = ARRIBAIZQUIERDA
             if b['dir'] == ABAJODERECHA:
                 b['dir'] = ARRIBADERECHA
         if b['rect'].left < 0:
-            # el bloque se movio por la izquierda de la ventana
+            # el bloque se movió por la izquierda de la ventana
             if b['dir'] == ABAJOIZQUIERDA:
                 b['dir'] = ABAJODERECHA
             if b['dir'] == ARRIBAIZQUIERDA:
                 b['dir'] = ARRIBADERECHA
         if b['rect'].right > ANCHOVENTANA:
-            # el bloque se movio por la derecha de la ventana
+            # el bloque se movió por la derecha de la ventana
             if b['dir'] == ABAJODERECHA:
                 b['dir'] = ABAJOIZQUIERDA
             if b['dir'] == ARRIBADERECHA:
