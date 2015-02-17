@@ -81,3 +81,6 @@ Kapitel 10
 
 - "numpad" wird zu "Ziffernblock".
 - "source code" zu "Programmcode" ("Quellcode" halte ich für zu hochgestochen).
+- "flow chart" mit "Ablaufdiagramm" übersetzt, das halte ich für selbsterklärender als "Flussdiagramm".
+- Zeile 306 mit den erwähnten Abbildungen in Einklang bringen.
+- "string" zu "Zeichenkette". Dies ist ein Konflikt mit Kapitel 7!

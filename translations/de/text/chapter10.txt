@@ -273,6 +273,38 @@ Abbildung 10-1 zeigt, wie ein Flussdiagramm zu Tic Tac Toe aussehen könnte. Im 
 
 Die Kästchen auf der linken Seite des Flussdiagramms beschreiben, was während des Zugs des Spielers passiert. Die rechte Seite zeigt, was während des Zugs des Computergegners passiert. Nachdem der Spieler oder der Comptuer gesetzt haben, prüft das Programm ob jemand gewonnen hat oder ein Unentschieden vorliegt, danach ist der jeweils andere an der Reihe. Nachdem das Spiel vorbei ist, fragt das Programm den Spieler, ob er nochmal spielen möchte.
 
-Abbildung 10-1: Flow chart for Tic Tac Toe
+Abbildung 10-1: Ablaufdiagramm für Tic Tac Toe
 
 Abbildung 10-2: Das Spielfeld ist durchnummeriert wie der Ziffernblock auf einer Tastatur.
+
+Das Spielfeld mit Daten abbilden
+
+Zunächst muss man herausfinden, wie man das Spielfeld durch Daten abbildet, die dann in eiener Variable gespeichert werden. Auf dem Papier wird das Spielfeld mit zwei horizontalen und zwei vertikalen Linien gezeichnet, in jedem der neun Felder befindet sich entweder ein X, ein O oder kein Symbol.
+
+Im Programm wird das Tic Tac Toe-Feld als eine Liste von Zeichenketten dargestellt. Jede Zeichenkette wird eines der neuen Felder des Spiels repräsentieren. Um die Zuordnung zwischen Indizes und Feldern zu erleichtern, sind sie wie auf dem Ziffernblock einer Tastatur angeordnet (siehe Abbildung 10-2).
+
+Die Zeichenketten enthalten entweder 'X' für den Spieler mit dem X, 'O' für den Spieler mit dem O, oder ein einzelnes Leerzeichen ' ' für ein freies Feld.
+
+Wenn nun eine Liste mit zehn Zeichenketten in einer Variable namens spielfeld gespeichert wird, dann steht spielfeld[7] für das Kästchen oben links auf dem Spielfeld. spielfeld[5] ist das mittlere Feld. spielfeld[4] repräsentiert das linke seitliche Feld und so weiter. Das Programm wird die Zeichenkette mit Index 0 in der Liste ignorieren. Der Spieler wird eine Zahl zwischen 1 und 9 eingeben, um dem Spiel zu sagen, wohin er setzen möchte.
+
+Die KI des Spiels
+
+Die KI muss in der Lage sein, einen Blick auf das Spielfeld zu werfen und dann zu entscheiden, wohin sie setzen möchte. Zu diesem Zweck teilen wir die Kästen auf dem Spielfeld in drei Typen ein: Eckfelder, Seitenfelder und die Mitte. Abbildung 10-3 zeigt, welcher Kategorie welches Kästchen zugeordnet ist.
+
+Abbildung 10-3: Lage der Seitenfelder, Eckfelder und der Mitte.
+
+Die Taktik der KI für Tic Tac Toe wird einem einfachen Algorithmus folgen. Ein Algorithmus ist eine endliche Menge von Anweisungen um ein bestimmtes Ergebnis zu berechnen. Ein einziges Programm kann viele verschiedene Algorithmen benutzen. Ein Algorithmus kann durch ein Ablaufdiagramm dargestellt werden. Der Algorithmus unserer Tic Tac Toe-KI wird den besten nächsten Zug berechnen, so wie in Abbildung 10-4 dargestellt.
+
+Der Algorithmus der KI wird aus den folgenden Schritten bestehen:
+
+1.  Zuerst wird geschaut, ob es einen Zug gibt, mit dem der Computer das Spiel gewinnen kann. Falls es so einen Zug gibt, wird dieser ausgeführt. Falls nicht, gehe zu Schritt 2.
+2.  Schaue ob es einen Zug gibt, den der Spieler machen kann, damit der Computer verliert. Falls es so einen Zug gibt, ziehe dorthin um den Spieler zu blockieren. Falls nicht, gehe zu Schritt 3.
+3.  Prüfe, ob eines der Eckfelder (Felder 1, 3, 7, oder 9) frei ist. Falls ja, setze dorthin. Falls kein Eckfeld frei ist, gehe zu Schritt 4.
+4.  Prüfe, ob die Mitte frei ist. Falls ja, setze dorthin. Falls nicht, gehe zu Schritt 5.
+5.  Setze auf eines der Seitenfelder /spaces 2, 4, 6, or 8). Es gibt keine weiteren Schritte, denn wenn die Ausführung des Algorithmus bei Schritt 5 angekommen ist, sind die Seitenfelder die einzigen freien Felder, die noch übrig sind.
+
+Dies alles findet statt während des "Mache den Computerzug"-Kastens im Ablaufdiagramm in Abbildung 10-1. Man kann diese Information dem Ablaufdiagramm mit den Kästchen in Abbildung 10-4 hinzufügen.
+
+Abbildung 10-4: Die fünf Schritte des "Mache den Computerzug"-Algorithmus. Der ausgehende Pfeil führt zum "Prüfe, ob der Computer gewonnen hat"-Kasten.
+
+Dieser Algorithmus ist in der Funktion macheComputerZug() sowie in den Funktionen die von macheComputerZug() aufgerufen werden implementiert.
