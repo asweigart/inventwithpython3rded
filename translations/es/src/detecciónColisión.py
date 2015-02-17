@@ -1,7 +1,7 @@
 import pygame, sys, random
 from pygame.locals import *
 
-def hacerSuperposiciónRects(rect1, rect2):
+def verifSuperposiciónRects(rect1, rect2):
     for a, b in [(rect1, rect2), (rect2, rect1)]:
         # Verifica si las esquinas de a se encuentran dentro de b
         if ((puntoDentroDeRect(a.left, a.top, b)) or
@@ -47,9 +47,9 @@ contadorComida = 0
 NUEVACOMIDA = 40
 TAMAÑOCOMIDA = 20
 rebotín = {'rect':pygame.Rect(300, 100, 50, 50), 'dir':ARRIBAIZQUIERDA}
-COMIDAS = []
+comidas = []
 for i in range(20):
-    COMIDAS.append(pygame.Rect(random.randint(0, ANCHOVENTANA - TAMAÑOCOMIDA), random.randint(0, ALTOVENTANA - TAMAÑOCOMIDA), TAMAÑOCOMIDA, TAMAÑOCOMIDA))
+    comidas.append(pygame.Rect(random.randint(0, ANCHOVENTANA - TAMAÑOCOMIDA), random.randint(0, ALTOVENTANA - TAMAÑOCOMIDA), TAMAÑOCOMIDA, TAMAÑOCOMIDA))
 
 # corre el bucle de juego
 while True:
@@ -63,7 +63,7 @@ while True:
     if contadorComida >= NUEVACOMIDA:
         # añade nueva comida
         contadorComida = 0
-        COMIDAS.append(pygame.Rect(random.randint(0, ANCHOVENTANA - TAMAÑOCOMIDA), random.randint(0, ALTOVENTANA - TAMAÑOCOMIDA), TAMAÑOCOMIDA, TAMAÑOCOMIDA))
+        comidas.append(pygame.Rect(random.randint(0, ANCHOVENTANA - TAMAÑOCOMIDA), random.randint(0, ALTOVENTANA - TAMAÑOCOMIDA), TAMAÑOCOMIDA, TAMAÑOCOMIDA))
 
     # Dibuja el fondo NEGRO sobre la superficie
     superficieVentana.fill(NEGRO)
@@ -112,13 +112,13 @@ while True:
     pygame.draw.rect(superficieVentana, BLANCO, rebotín['rect'])
 
     # Verifica si rebotín intersectó algun cuadrado de comida
-    for comida in COMIDAS[:]:
-        if hacerSuperposiciónRects(rebotín['rect'], comida):
-            COMIDAS.remove(comida)
+    for comida in comidas[:]:
+        if verifSuperposiciónRects(rebotín['rect'], comida):
+            comidas.remove(comida)
 
     # Dibuja la comida
-    for i in range(len(COMIDAS)):
-        pygame.draw.rect(superficieVentana, VERDE, COMIDAS[i])
+    for i in range(len(comidas)):
+        pygame.draw.rect(superficieVentana, VERDE, comidas[i])
 
     # Dibuja la ventana en la pantalla
     pygame.display.update()

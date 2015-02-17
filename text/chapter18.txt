@@ -154,7 +154,7 @@ collisionDetection.py
 124.     pygame.display.update()
 125.     mainClock.tick(40)
 
-The program will look like Figure 18-1. The the bouncer square will bounce around the window. When it collides with the green food squares they will disappear from the screen.
+The program will look like Figure 18-1. The bouncer square will bounce around the window. When it collides with the green food squares they will disappear from the screen.
 
 Figure 18-1: An altered screenshot of the Collision Detection program.
 
@@ -191,7 +191,7 @@ You don’t need to repeat the code that checks all four corners for both rect1 
 
 13.     return False
 
-Line 11 never returns True, then none of the eight corners checked are in the other rectangle. In that case, the rectangles didn’t collide and line 13 returns False.
+If line 11 never returns True, then none of the eight corners checked are in the other rectangle. In that case, the rectangles didn’t collide and line 13 returns False.
 
 Determining if a Point is Inside a Rectangle
 
@@ -227,7 +227,7 @@ However, line 24 is new:
 
  24. mainClock = pygame.time.Clock()
 
-In the previous Animation program, a call to time.sleep(0.02) would slow down the program so that the program doesn’t run too fast. The problem with time.sleep()is that might be too much of a pause on slow computers and not enough of a pause on fast computers.
+In the previous Animation program, a call to time.sleep(0.02) would slow down the program so that the program doesn’t run too fast. The problem with time.sleep() is that might be too much of a pause on slow computers and not enough of a pause on fast computers.
 
 A pygame.time.Clock object can pause an appropriate amount of time on any computer. Line 125 calls mainClock.tick(40) inside the game loop. This call to the Clock object’s tick() method waits enough time so that it runs at about 40 iterations a second, no matter what the computer’s speed is. This ensures that the game never runs faster than you expect. A call to tick() should only appear once in the game loop.
 
@@ -293,7 +293,7 @@ Removing the Food Squares
 116.         if doRectsOverlap(bouncer['rect'], food):
 117.             foods.remove(food)
 
-Line 116 is where doRectsOverlap() comes in handy. If the bouncer and the current food square two rectangles overlap, then doRectsOverlap() will return True and line 117 removes the overlapping food square from the foods list.
+Line 116 is where doRectsOverlap() comes in handy. If the bouncer and the current food square overlap, then doRectsOverlap() will return True and line 117 removes the overlapping food square from the foods list.
 
 Drawing the Food Squares on the Screen
 
