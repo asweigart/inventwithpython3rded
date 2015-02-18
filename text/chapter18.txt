@@ -442,7 +442,7 @@ Lines 34 to 43 are identical to code in the previous Pygame programs. These line
 
 Events and Handling the KEYDOWN Event
 
-The code to handle the key press and key release events start on line 44. At the start of the program, they are all set to False.
+The code to handle the key press and key release events starts on line 44. At the start of the program, they are all set to False.
 
  44.         if event.type == KEYDOWN:
 

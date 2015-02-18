@@ -301,150 +301,150 @@ Dibujando los Cuadrados de Comida en la Pantalla
 120.     for i in range(len(comidas)):
 121.         pygame.draw.rect(superficieVentana, VERDE, comidas[i])
 
-The code on lines 120 and 121 are similar to how we drew the BLANCO square for the player. Line 120 loops through each food square in the foods list. Line 121 draws the food square onto the superficieVentana surface. This program was similar to the bouncing program in the previous chapter, except now the bouncing square will “eat” other squares it passes over them.
+El código en las líneas 120 y 121 es similar a la forma en que dibujamos el cuadrado blanco para el jugador. La línea 120 pasa por cada cuadrado de comida sobre la superficie de superficieVentana. Este programa es similar al programa del rebotín en el capítulo anterior, sólo que ahora el cuadrado que rebota se "come" a los otros cuadrados si pasa por encima de ellos.
 
-These past few programs are interesting to watch, but the user doesn’t get to control anything. In the next program, we will learn how to get input from the keyboard.
+Estos últimos programas son interesantes para observar, pero el usuario no puede controlar nada. En el siguiente programa, aprenderemos a obtener entradas desde el teclado.
 
-Source Code of the Keyboard Input Program
+Código Fuente del Programa de Entradas de Teclado
 
-Start a new file and type in the following code, then save it as pygameInput.py. If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/pygameInput.
+Crea un archivo nuevo y escribe el siguiente código, luego guárdalo como pygameEntrada.py. Si obtienes errores luego de haber escrito el código, compara el código que has escrito con el del libro usando la herramienta digg online en http://invpy.com/diff/pygameEntrada. 
 
-pygameInput.py
+pygameEntrada.py
 
   1. import pygame, sys, random
   2. from pygame.locals import *
-  3.
-  4. # set up pygame
+  3. 
+  4. # configurar pygame
   5. pygame.init()
-  6. mainClock = pygame.time.Clock()
-  7.
-  8. # set up the window
-  9. WINDOWWIDTH = 400
- 10. WINDOWHEIGHT = 400
- 11. superficieVentana = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
- 12. pygame.display.set_caption('Input')
- 13.
- 14. # set up the colors
- 15. BLACK = (0, 0, 0)
- 16. GREEN = (0, 255, 0)
+  6. relojPrincipal = pygame.time.Clock()
+  7. 
+  8. # configurar la ventana
+  9. ANCHOVENTANA = 400
+ 10. ALTURAVENTANA = 400
+ 11. superficieVentana = pygame.display.set_mode((ANCHOVENTANA, ALTURAVENTANA), 0, 32)
+ 12. pygame.display.set_caption('Entrada')
+ 13. 
+ 14. # configurar los colores
+ 15. NEGRO = (0, 0, 0)
+ 16. VERDE = (0, 255, 0)
  17. BLANCO = (255, 255, 255)
- 18.
- 19. # set up the player and food data structure
- 20. contadorComida = 0
+ 18. 
+ 19. # configurar estructura de datos del jugador y la comida
+ 20. contadorDeComida = 0
  21. NUEVACOMIDA = 40
  22. TAMAÑOCOMIDA = 20
- 23. player = pygame.Rect(300, 100, 50, 50)
- 24. foods = []
+ 23. jugador = pygame.Rect(300, 100, 50, 50)
+ 24. comidas = []
  25. for i in range(20):
- 26.     foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - TAMAÑOCOMIDA), random.randint(0, WINDOWHEIGHT - TAMAÑOCOMIDA), TAMAÑOCOMIDA, TAMAÑOCOMIDA))
- 27.
- 28. # set up movement variables
- 29. moveLeft = False
- 30. moveRight = False
- 31. moveUp = False
- 32. moveDown = False
- 33.
+ 26.     comidas.append(pygame.Rect(random.randint(0, ANCHOVENTANA - TAMAÑOCOMIDA), random.randint(0, ALTURAVENTANA - TAMAÑOCOMIDA),  20. TAMAÑOCOMIDA, TAMAÑOCOMIDA))
+ 27. 
+ 28. # configurar variables de movimiento
+ 29. moverseIzquierda = False
+ 30. moverseDerecha = False
+ 31. moverseArriba = False
+ 32. moverseAbajo = False
+ 33. 
  34. MOVESPEED = 6
- 35.
- 36.
- 37. # run the game loop
+ 35. 
+ 36. 
+ 37. # ejecutar el bucle del juego
  38. while True:
- 39.     # check for events
- 40.     for event in pygame.event.get():
- 41.         if event.type == QUIT:
+ 39.     # comprobar eventos
+ 40.     for evento in pygame.event.get():
+ 41.         if evento.type == QUIT:
  42.             pygame.quit()
  43.             sys.exit()
- 44.         if event.type == KEYDOWN:
- 45.             # change the keyboard variables
- 46.             if event.key == K_LEFT or event.key == ord('a'):
- 47.                 moveRight = False
- 48.                 moveLeft = True
- 49.             if event.key == K_RIGHT or event.key == ord('d'):
- 50.                 moveLeft = False
- 51.                 moveRight = True
- 52.             if event.key == K_UP or event.key == ord('w'):
- 53.                 moveDown = False
- 54.                 moveUp = True
- 55.             if event.key == K_DOWN or event.key == ord('s'):
- 56.                 moveUp = False
- 57.                 moveDown = True
- 58.         if event.type == KEYUP:
- 59.             if event.key == K_ESCAPE:
+ 44.         if evento.type == KEYDOWN:
+ 45.             # cambiar las variables del teclado
+ 46.             if evento.key == K_LEFT or evento.key == ord('a'):
+ 47.                 moverseDerecha = False
+ 48.                 moverseIzquierda = True
+ 49.             if evento.key == K_RIGHT or evento.key == ord('d'):
+ 50.                 moverseIzquierda = False
+ 51.                 moverseDerecha = True
+ 52.             if evento.key == K_UP or evento.key == ord('w'):
+ 53.                 moverseAbajo = False
+ 54.                 moverseArriba = True
+ 55.             if evento.key == K_DOWN or evento.key == ord('s'):
+ 56.                 moverseArriba = False
+ 57.                 moverseAbajo = True
+ 58.         if evento.type == KEYUP:
+ 59.             if evento.key == K_ESCAPE:
  60.                 pygame.quit()
  61.                 sys.exit()
- 62.             if event.key == K_LEFT or event.key == ord('a'):
- 63.                 moveLeft = False
- 64.             if event.key == K_RIGHT or event.key == ord('d'):
- 65.                 moveRight = False
- 66.             if event.key == K_UP or event.key == ord('w'):
- 67.                 moveUp = False
- 68.             if event.key == K_DOWN or event.key == ord('s'):
- 69.                 moveDown = False
- 70.             if event.key == ord('x'):
- 71.                 player.top = random.randint(0, WINDOWHEIGHT - player.height)
- 72.                 player.left = random.randint(0, WINDOWWIDTH - player.width)
- 73.
- 74.         if event.type == MOUSEBUTTONUP:
- 75.             foods.append(pygame.Rect(event.pos[0], event.pos[1], TAMAÑOCOMIDA, TAMAÑOCOMIDA))
- 76.
- 77.     contadorComida += 1
- 78.     if contadorComida >= NUEVACOMIDA:
- 79.         # add new food
- 80.         contadorComida = 0
- 81.         foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - TAMAÑOCOMIDA), random.randint(0, WINDOWHEIGHT - TAMAÑOCOMIDA), TAMAÑOCOMIDA, TAMAÑOCOMIDA))
- 82.
- 83.     # draw the black background onto the surface
- 84.     superficieVentana.fill(BLACK)
- 85.
- 86.     # move the player
- 87.     if moveDown and player.bottom < WINDOWHEIGHT:
- 88.         player.top += MOVESPEED
- 89.     if moveUp and player.top > 0:
- 90.         player.top -= MOVESPEED
- 91.     if moveLeft and player.left > 0:
- 92.         player.left -= MOVESPEED
- 93.     if moveRight and player.right < WINDOWWIDTH:
- 94.         player.right += MOVESPEED
- 95.
- 96.     # draw the player onto the surface
- 97.     pygame.draw.rect(superficieVentana, BLANCO, player)
- 98.
- 99.     # check if the player has intersected with any food squares.
-100.     for food in foods[:]:
-101.         if player.colliderect(food):
-102.             foods.remove(food)
-103.
-104.     # draw the food
-105.     for i in range(len(foods)):
-106.         pygame.draw.rect(superficieVentana, GREEN, foods[i])
-107.
-108.     # draw the window onto the screen
+ 62.             if evento.key == K_LEFT or evento.key == ord('a'):
+ 63.                 moverseIzquierda = False
+ 64.             if evento.key == K_RIGHT or evento.key == ord('d'):
+ 65.                 moverseDerecha = False
+ 66.             if evento.key == K_UP or evento.key == ord('w'):
+ 67.                 moverseArriba = False
+ 68.             if evento.key == K_DOWN or evento.key == ord('s'):
+ 69.                 moverseAbajo = False
+ 70.             if evento.key == ord('x'):
+ 71.                 jugador.top = random.randint(0, ALTURAVENTANA - jugador.height)
+ 72.                 jugador.left = random.randint(0, ANCHOVENTANA - jugador.width)
+ 73. 
+ 74.         if evento.type == MOUSEBUTTONUP:
+ 75.             comidas.append(pygame.Rect(evento.pos[0], evento.pos[1], TAMAÑOCOMIDA, TAMAÑOCOMIDA))
+ 76. 
+ 77.     contadorDeComida += 1
+ 78.     if contadorDeComida >= NUEVACOMIDA:
+ 79.         # agregar nueva comida
+ 80.         contadorDeComida = 0
+ 81.         comidas.append(pygame.Rect(random.randint(0, ANCHOVENTANA - TAMAÑOCOMIDA), random.randint(0, ALTURAVENTANA - TAMAÑOCOMIDA), TAMAÑOCOMIDA, TAMAÑOCOMIDA))
+ 82. 
+ 83.     # dibujar el fondo negro sobre la superficie
+ 84.     superficieVentana.fill(NEGRO)
+ 85. 
+ 86.     # mover al jugador
+ 87.     if moverseAbajo and jugador.bottom < ALTURAVENTANA:
+ 88.         jugador.top += MOVESPEED
+ 89.     if moverseArriba and jugador.top > 0:
+ 90.         jugador.top -= MOVESPEED
+ 91.     if moverseIzquierda and jugador.left > 0:
+ 92.         jugador.left -= MOVESPEED
+ 93.     if moverseDerecha and jugador.right < ANCHOVENTANA:
+ 94.         jugador.right += MOVESPEED
+ 95. 
+ 96.     # dibujar al jugador sobre la superficie
+ 97.     pygame.draw.rect(superficieVentana, BLANCO, jugador)
+ 98. 
+ 99.     # comprobar si el jugador ha intersectado alguno de los cuadrados de comida
+100.     for food in comidas[:]:
+101.         if jugador.colliderect(food):
+102.             comidas.remove(food)
+103. 
+104.     # dibujar la comida
+105.     for i in range(len(comidas)):
+106.         pygame.draw.rect(superficieVentana, VERDE, comidas[i])
+107. 
+108.     # dibujar la ventana sobre la pantalla
 109.     pygame.display.update()
-110.     mainClock.tick(40)
+110.     relojPrincipal.tick(40)
 
-This program is almost identical to the collision detection program. But in this program, the bouncer only moves around when the user holds down the arrow keys on the keyboard.
+Este programa es idéntico al programa de detección de colisiones. Pero en este programa, el rebotín sólo se mueve mientras el jugador mantiene pulsadas las flechas del teclado.
 
-You can also click anywhere in the window and create new food objects. In addition, the ESC key will quit the program and the “X” key will teleport the player to a random place on the screen.
+También puedes hacer clic en cualquier lugar de la ventana y crear nuevos objetos comida. Además, la tecla ESC sale del programa y la "X" teletransporta al jugador a un lugar aleatorio en la pantalla.
 
-Setting Up the Window and Data Structures
+Configurando la Ventana y las Estructuras de Datos
 
-Starting at line 29, the code sets up some variables that track the movement of the bouncer.
+Comenzando en la línea 29, el código configura algunas variables que registran el movimiento del rebotín.
 
- 28. # set up movement variables
- 29. moveLeft = False
- 30. moveRight = False
- 31. moveUp = False
- 32. moveDown = False
+ 28. # configurar variables de movimiento
+ 29. moverseIzquierda = False
+ 30. moverseDerecha = False
+ 31. moverseArriba = False
+ 32. moverseAbajo = False
 
-The four variables have Boolean values to keep track of which of the arrow keys are being held down. For example, when the user pushes the left arrow key on their keyboard, moveLeft is set to True. When they let go of the key, moveLeft is set back to False.
+Las cuatro variables tiene valores Booleanos para registrar cuáles de las flechas del teclado están siendo pulsadas. Por ejemplo, cuando el usuario pulsa la flecha izquierda en su teclado, se asigna True a moverseIzquierda. Cuando el usuario suelta la tecla, moverseIzquierda vuelve a ser False.
 
-Lines 34 to 43 are identical to code in the previous Pygame programs. These lines handle the start of the game loop and what to do when the user quits the program. We’ll skip the explanation for this code here since we have already covered it in the last chapter.
+Las líneas 34 a 43 son idénticas al código en los programas Pygame anteriores. Estas líneas gestionan el comienzo del bucle de juego y qué hacer cuando el usuario sale del programa. Omitiremos la explicación de este código que ya ha sido cubierto en el capítulo anterior.
 
-Events and Handling the KEYDOWN Event
+Eventos y Manejo del Evento KEYDOWN
 
-The code to handle the key press and key release events start on line 44. At the start of the program, they are all set to False.
+El código para manejar los eventos de tecla pulsada y tecla liberada comienza en la línea 44. Al comienzo del programa, se asigna False a todos estos eventos.
 
- 44.         if event.type == KEYDOWN:
+ 44.         if evento.type == KEYDOWN:
 
 Pygame has an event type called KEYDOWN. This is one of the other events that Pygame can generate. A brief list of the events that could be returned by pygame.event.get() is in Table 18-1.
 
@@ -468,19 +468,19 @@ Value of button Mouse Button
 
 Setting the Four Keyboard Variables
 
- 45.             # change the keyboard variables
- 46.             if event.key == K_LEFT or event.key == ord('a'):
- 47.                 moveRight = False
- 48.                 moveLeft = True
- 49.             if event.key == K_RIGHT or event.key == ord('d'):
- 50.                 moveLeft = False
- 51.                 moveRight = True
- 52.             if event.key == K_UP or event.key == ord('w'):
- 53.                 moveDown = False
- 54.                 moveUp = True
- 55.             if event.key == K_DOWN or event.key == ord('s'):
- 56.                 moveUp = False
- 57.                 moveDown = True
+ 45.             # cambiar las variables del teclado
+ 46.             if evento.key == K_LEFT or evento.key == ord('a'):
+ 47.                 moverseDerecha = False
+ 48.                 moverseIzquierda = True
+ 49.             if evento.key == K_RIGHT or evento.key == ord('d'):
+ 50.                 moverseIzquierda = False
+ 51.                 moverseDerecha = True
+ 52.             if evento.key == K_UP or evento.key == ord('w'):
+ 53.                 moverseAbajo = False
+ 54.                 moverseArriba = True
+ 55.             if evento.key == K_DOWN or evento.key == ord('s'):
+ 56.                 moverseArriba = False
+ 57.                 moverseAbajo = True
 
 If the event type is KEYDOWN, then the event object will have a key attribute that tells which key was pressed down. Line 46 compares this attribute to K_LEFT, which is the pygame.locals constant that represents the left arrow key on the keyboard. Lines 46 to 57 do similar checks for each of the other arrow keys: K_LEFT, K_RIGHT, K_UP, K_DOWN.
 
@@ -496,11 +496,11 @@ Figure 18-5: The WASD keys can be programmed to do the same thing as the arrow k
 
 Handling the KEYUP Event
 
- 58.         if event.type == KEYUP:
+ 58.         if evento.type == KEYUP:
 
 When the user releases the key that they are holding down, a KEYUP event is generated.
 
- 59.             if event.key == K_ESCAPE:
+ 59.             if evento.key == K_ESCAPE:
  60.                 pygame.quit()
  61.                 sys.exit()
 
@@ -508,27 +508,27 @@ If the key that the user released was the ESC key, then terminate the program. R
 
 Lines 62 to 69 will set a movement variable to False if that direction’s key was let go.
 
- 62.             if event.key == K_LEFT or event.key == ord('a'):
- 63.                 moveLeft = False
- 64.             if event.key == K_RIGHT or event.key == ord('d'):
- 65.                 moveRight = False
- 66.             if event.key == K_UP or event.key == ord('w'):
- 67.                 moveUp = False
- 68.             if event.key == K_DOWN or event.key == ord('s'):
- 69.                 moveDown = False
+ 62.             if evento.key == K_LEFT or evento.key == ord('a'):
+ 63.                 moverseIzquierda = False
+ 64.             if evento.key == K_RIGHT or evento.key == ord('d'):
+ 65.                 moverseDerecha = False
+ 66.             if evento.key == K_UP or evento.key == ord('w'):
+ 67.                 moverseArriba = False
+ 68.             if evento.key == K_DOWN or evento.key == ord('s'):
+ 69.                 moverseAbajo = False
 
 Teleporting the Player
 
- 70.             if event.key == ord('x'):
- 71.                 player.top = random.randint(0, WINDOWHEIGHT - player.height)
- 72.                 player.left = random.randint(0, WINDOWWIDTH - player.width)
+ 70.             if evento.key == ord('x'):
+ 71.                 jugador.top = random.randint(0, ALTURAVENTANA - jugador.height)
+ 72.                 jugador.left = random.randint(0, ANCHOVENTANA - jugador.width)
 
 You can also add teleportation to the game. If the user presses the “X” key, then lines 71 and 72 will set the position of the user’s square to a random place on the window. This will give the user the ability to teleport around the window by pushing the “X” key. Although they can’t control where they will teleport; it’s completely random.
 
 Handling the MOUSEBUTTONUP Event
 
- 74.         if event.type == MOUSEBUTTONUP:
- 75.             foods.append(pygame.Rect(event.pos[0], event.pos[1], TAMAÑOCOMIDA, TAMAÑOCOMIDA))
+ 74.         if evento.type == MOUSEBUTTONUP:
+ 75.             comidas.append(pygame.Rect(evento.pos[0], evento.pos[1], TAMAÑOCOMIDA, TAMAÑOCOMIDA))
 
 Mouse input is handled by events just like keyboard input is. The MOUSEBUTTONUP event occurs when the user releases the mouse button after clicking it. The pos attribute in the Event object is set to a tuple of two integers for the XY coordinates for where the mouse cursor was at the time of the click.
 
@@ -536,15 +536,15 @@ On line 75, the X-coordinate is stored in event.pos[0] and the Y-coordinate is s
 
 Moving the Player Around the Screen
 
- 86.     # move the player
- 87.     if moveDown and player.bottom < WINDOWHEIGHT:
- 88.         player.top += MOVESPEED
- 89.     if moveUp and player.top > 0:
- 90.         player.top -= MOVESPEED
- 91.     if moveLeft and player.left > 0:
- 92.         player.left -= MOVESPEED
- 93.     if moveRight and player.right < WINDOWWIDTH:
- 94.         player.right += MOVESPEED
+ 86.     # mover al jugador
+ 87.     if moverseAbajo and jugador.bottom < ALTURAVENTANA:
+ 88.         jugador.top += MOVESPEED
+ 89.     if moverseArriba and jugador.top > 0:
+ 90.         jugador.top -= MOVESPEED
+ 91.     if moverseIzquierda and jugador.left > 0:
+ 92.         jugador.left -= MOVESPEED
+ 93.     if moverseDerecha and jugador.right < ANCHOVENTANA:
+ 94.         jugador.right += MOVESPEED
 
 You’ve set the movement variables (moveDown, moveUp, moveLeft, and moveRight) to True or False depending on what keys the user has pressed. Now move the player’s square (which is represented by the pygame.Rect object stored in player) by adjusting XY coordinates of player.
 
@@ -552,16 +552,16 @@ If moveDown is set to True (and the bottom of the player’s square isn’t belo
 
 The colliderect() Method
 
- 99.     # check if the player has intersected with any food squares.
-100.     for food in foods[:]:
-101.         if player.colliderect(food):
-102.             foods.remove(food)
+ 99.     # comprobar si el jugador ha intersectado alguno de los cuadrados de comida
+100.     for food in comidas[:]:
+101.         if jugador.colliderect(food):
+102.             comidas.remove(food)
 
 In the previous Collision Detection program, the verifSuperposiciónRects() function to check if one rectangle had collided with another. That function was included in this book so you could understand how the code behind collision detection works.
 
 In this program, you can use the collision detection function that comes with Pygame. The colliderect() method for pygame.Rect objects is passed another pygame.Rect object as an argument and returns True if the two rectangles collide and False if they do not.
 
-110.     mainClock.tick(40)
+110.     relojPrincipal.tick(40)
 
 The rest of the code is similar to the code in the Input and Collision Detection programs.
 
