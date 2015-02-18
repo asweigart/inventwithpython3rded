@@ -121,7 +121,7 @@ Figura 8-1: El diagrama de flujo completo del juego del Ahorcado.
 
 Por supuesto, no es estrictamente necesario que hagas un diagrama de flujo. Podrías simplemente comenzar escribiendo código. Pero a menudo una vez que comiences a programar pensarás en cosas que es necesario agregar o cambiar. Podrías terminar teniendo que borrar una gran parte de tu código, lo que sería un desperdicio de esfuerzo. Para evitar esto, siempre es mejor planear cómo el programa va a funcionar antes de comenzar a escribirlo.
 
-Creating the Flow Chart
+Crear el Diagrama de Flujo
 
 Tus diagramas de flujo no siempre tienen que verse exactamente como este. Siempre y cuando entiendas el diagrama de flujo que has hecho, será útil cuando comiences a escribir código. En la Figura 8-2 se muestra un diagrama de flujo que comienza con sólo un recuadro “Inicio” y un recuadro “Fin”:
 
