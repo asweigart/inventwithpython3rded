@@ -482,7 +482,7 @@ Setting the Four Keyboard Variables
  56.                 moveUp = False
  57.                 moveDown = True
 
-If the event type is KEYDOWN, then the event object will have a key attribute that tells which key was pressed down. Line 46 compares this attribute to K_LEFT, which is the pygame.locals constant that represents the left arrow key on the keyboard. Lines 46 to 57 do similar checks for each of the other arrow keys: K_LEFT, K_RIGHT, K_UP, K_DOWN.
+If the event type is KEYDOWN, then the event object will have a key attribute that tells which key was pressed down. Line 46 compares this attribute to K_LEFT, which is the pygame.locals constant that represents the left arrow key on the keyboard. Lines 49 to 57 do similar checks for each of the other arrow keys: K_RIGHT, K_UP, K_DOWN.
 
 When one of these keys is pressed down, set the corresponding movement variable to True. Also, set the movement variable of the opposite direction to False.
 

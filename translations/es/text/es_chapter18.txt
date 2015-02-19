@@ -446,27 +446,27 @@ El código para manejar los eventos de tecla pulsada y tecla liberada comienza e
 
  44.         if evento.type == KEYDOWN:
 
-Pygame has an event type called KEYDOWN. This is one of the other events that Pygame can generate. A brief list of the events that could be returned by pygame.event.get() is in Table 18-1.
+Pygame tiene un tipo de evento llamado KEYDOWN. Este es uno de los otros eventos que Pygame puede generar. La Tabla 18-1 muestra una breve lista de los eventons que pueden ser devueltos por pygame.event.get().
 
-Table 18-1: Events and when they are generated.
-Event Type  Description
-QUIT  Generated when the user closes the window.
-KEYDOWN Generated when the user presses down a key. Has a key attribute that tells which key was pressed. Also has a mod attribute that tells if the Shift, Ctrl, Alt, or other keys were held down when this key was pressed.
-KEYUP Generated when the user releases a key. Has a key and mod attribute that are similar to those for KEYDOWN.
-MOUSEMOTION Generated whenever the mouse moves over the window. Has a pos attribute that returns tuple (x, y) for the coordinates of where the mouse is in the window. The rel attribute also returns a (x, y) tuple, but it gives coordinates relative since the last MOUSEMOTION event. For example, if the mouse moves left by four pixels from (200, 200) to (196, 200), then rel will be the tuple value (-4, 0).
-The buttons attribute returns a tuple of three integers. The first integer in the tuple is for the left mouse button, the second integer for the middle mouse button (if there’s a middle mouse button), and the third integer is for the right mouse button. These integers will be 0 if they are not being pressed down when the mouse moved and 1 if they are pressed down.
-MOUSEBUTTONDOWN Generated when a mouse button is pressed down in the window. This event has a pos attribute which is an (x, y) tuple for the coordinates of where the mouse was when the button was pressed. There is also a button attribute which is an integer from 1 to 5 that tells which mouse button was pressed, explained in Table 18-2.
-MOUSEBUTTONUP Generated when the mouse button is released. This has the same attributes as MOUSEBUTTONDOWN.
+Tabla 18-1: Eventos y cuándo son generados.
+Tipo de Evento  Descripción
+QUIT  Se genera cuando el usuario cierra la ventana.
+KEYDOWN Se genera cuando el usuario pulsa una tecla. Tiene un atributo key que indica cuál fue la tecla pulsada. También tiene un atributo mod que indica si las teclas Shift, Ctrl, Alt u otras teclas estaban siendo pulsadas en el momento en que se generó el evento.
+KEYUP Se genera cuando el usuario suelta una tecla. Tiene atributos key y mod similares a los del evento KEYDOWN.
+MOUSEMOTION Se genera cada vez que el ratón se desplaza sobre la ventana. Tiene un atributo pos que devuelve la tupla (x, y) con las coordenadas del ratón sobre la ventana. El atributo rel también devuelve una tupla (x, y), pero da coordenadas relativas a las del último evento MOUSEMOTION. Por ejemplo, si el mouse se mueve cuatro píxeles hacia la izquierda desde (200, 200) hasta (196, 200), el atributo rel será el valor de tupla (-4, 0).
+El atributo buttons devuelve una tupla de tres enteros. El primer entero de la tupla corresponde al botón izquierdo del ratón, el segundo entero al botón central del ratón (en caso de que haya un botón central), y el tercero al botón derecho del ratón. Estos enteros serán 0 si los botones no están siendo pulsados y 1 en caso de que los botones estén siendo pulsados.
+MOUSEBUTTONDOWN Se genera cuando un botón del ratón es pulsado sobre la ventana. Este evento tiene un atributo pos que consiste en una tupla (x, y) con las coordenadas del lugar donde el botón del ratón fue pulsado. También hay un atributo button que es un entero comprendido entre 1 y 5 e indica qué botón del ratón fue pulsado, como se explica en la Tabla 18-2.
+MOUSEBUTTONUP Se genera al soltar el botón del ratón. Tiene los mismos atributos que el evento MOUSEBUTTONDOWN.
 
-Table 18-2: The button attribute values and mouse button.
-Value of button Mouse Button
-1 Left button
-2 Middle button
-3 Right button
-4 Scroll wheel moved up
-5 Scroll wheel moved down
+Tabla 18-2: Los valores del atributo button y su correspondiente botón del ratón.
+Valor de button Botón del ratón
+1 Botón izquierdo
+2 Botón central
+3 Botón derecho
+4 Rueda de desplazamiento movida hacia arriba
+5 Rueda de desplazamiento movida hacia abajo
 
-Setting the Four Keyboard Variables
+Asignando las Cuatro Variables del Teclado
 
  45.             # cambiar las variables del teclado
  46.             if evento.key == K_LEFT or evento.key == ord('a'):
@@ -482,19 +482,19 @@ Setting the Four Keyboard Variables
  56.                 moverseArriba = False
  57.                 moverseAbajo = True
 
-If the event type is KEYDOWN, then the event object will have a key attribute that tells which key was pressed down. Line 46 compares this attribute to K_LEFT, which is the pygame.locals constant that represents the left arrow key on the keyboard. Lines 46 to 57 do similar checks for each of the other arrow keys: K_LEFT, K_RIGHT, K_UP, K_DOWN.
+Si el tipo de evento es KEYDOWN, el objeto evento tendrá un atributo key que indica qué tecla ha sido pulsada. La línea 46 compara este atributo con K_LEFT, que es la constante de pygame.locals que representa la flecha izquierda del teclado. Las líneas 49 a 57 realizan comprobaciones similares para cada una de las otras flechas del teclado: K_RIGHT, K_UP, K_DOWN.
 
-When one of these keys is pressed down, set the corresponding movement variable to True. Also, set the movement variable of the opposite direction to False.
+Cuando una de estas teclas es pulsada, se asigna True a la variable de movimiento correspondiente. Además, se asigna False a la variable de movimiento en la dirección opuesta.
 
-For example, the program executes lines 47 and 48 when the left arrow key has been pressed. In this case, set moveLeft to True and moveRight to False (even though moveRight might already be False, set it to False just to be sure).
+Por ejemplo, el programa ejecuta las líneas 47 y 48 cuando se pulsa la flecha izquierda. En este caso, se asigna True a moverseIzquierda y False a moverseDerecha (es posible que moverseDerecha ya sea False desde antes, pero le asignamos False sólo para estar seguros).
 
-On line 46, in event.key can either be equal to K_LEFT or ord('a'). The value in event.key is set to the integer ordinal value of the key that was pressed on the keyboard. (There is no ordinal value for the arrow keys, which is why we use the constant variable K_LEFT.) You can use the ord() function to get the ordinal value of any single character to compare it with event.key.
+En la línea 46, evento.key puede ser igual a K_LEFT u ord('a'). El valor en evento.key corresponde al valor ordinal entero de la tecla que fue pulsada en el teclado. (No hay valores ordinales para las flechas del teclado, por eso es que usamos la variable constante K_LEFT.) Puedes usar la función ord() para obtener el valor ordinal de cualquier caracter y compararlo con evento.key.
 
-By executing the code on lines 47 and 48 if the keystroke was either K_LEFT or ord('a'), you make the left arrow key and the A key do the same thing. The W, A, S, and D keys are all used as alternates for changing the movement variables. The WASD (pronounced “wazz-dee”) keys let you use your left hand. The arrow keys can be pressed with your right hand.
+Al ejecutar el código en las líneas 47 y 48 en caso de que la tecla pulsada haya sido K_LEFT u ord('a'), estamos haciendo que la flecha izquierda y la tecla A hagan la misma cosa. El conjunto de teclas W, A, S y D es una alternativa a las flechas del teclado para jugadores que prefieren utilizar la mano izquierda para jugar.
 
-Figure 18-5: The WASD keys can be programmed to do the same thing as the arrow keys.
+Figura 18-5: Las teclas WASD pueden ser programadas para hacer lo mismo que las flechas del teclado.
 
-Handling the KEYUP Event
+Manipulando el Evento KEYUP
 
  58.         if evento.type == KEYUP:
 
