@@ -1,0 +1,12 @@
+Abbildungen 8-1 bis 8-9:
+Start
+Geheimes Wort ausdenken.
+Zeige dem Spieler den Galgenmann und die richtig-geratenen Buchstaben.
+Frage Spieler nach Buchstabe.
+Spieler hat diesen Buchstaben bereits geraten.
+Buchstabe ist in geheimem Wort enthalten.
+Buchstabe ist in geheimem Wort nicht enthalten.
+Spieler hat alle Buchstaben richtig geraten und gewinnt.
+Galgenmann komplett: Leider verloren.
+Frage Spieler, ob er nochmals spielen möchte.
+Ende
