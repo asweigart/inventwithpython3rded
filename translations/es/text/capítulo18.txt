@@ -169,7 +169,7 @@ El Algoritmo de Detección de Colisiones
 
   4. def verifSuperposiciónRects(rect1, rect2):
 
-Para detectar colisiones, necesitas una función que pueda determinar si dos rectángulos colisionan entre sí o no. La Figura 18-2 muestra ejemplos de rectángulos que colisionan y rectángulos que no colisionan.
+Para detectar colisiones, necesitas una función que pueda determinar si dos rectángulos se superponen o no. La Figura 18-2 muestra ejemplos de rectángulos superpuestos y no superpuestos.
 
 Figura 18-2: Ejemplos de rectángulos que colisionan (izquierda) y rectángulos que no colisionan (derecha).
 
@@ -344,7 +344,7 @@ pygameEntrada.py
  31. moverseArriba = False
  32. moverseAbajo = False
  33. 
- 34. MOVESPEED = 6
+ 34. VELOCIDADMOVIMIENTO = 6
  35. 
  36. 
  37. # ejecutar el bucle del juego
@@ -398,13 +398,13 @@ pygameEntrada.py
  85. 
  86.     # mover al jugador
  87.     if moverseAbajo and jugador.bottom < ALTURAVENTANA:
- 88.         jugador.top += MOVESPEED
+ 88.         jugador.top += VELOCIDADMOVIMIENTO
  89.     if moverseArriba and jugador.top > 0:
- 90.         jugador.top -= MOVESPEED
+ 90.         jugador.top -= VELOCIDADMOVIMIENTO
  91.     if moverseIzquierda and jugador.left > 0:
- 92.         jugador.left -= MOVESPEED
+ 92.         jugador.left -= VELOCIDADMOVIMIENTO
  93.     if moverseDerecha and jugador.right < ANCHOVENTANA:
- 94.         jugador.right += MOVESPEED
+ 94.         jugador.right += VELOCIDADMOVIMIENTO
  95. 
  96.     # dibujar al jugador sobre la superficie
  97.     pygame.draw.rect(superficieVentana, BLANCO, jugador)
@@ -498,15 +498,15 @@ Manipulando el Evento KEYUP
 
  58.         if evento.type == KEYUP:
 
-When the user releases the key that they are holding down, a KEYUP event is generated.
+Cuando el usuario libera la tecla que mantenía pulsada, se genera un evento KEYUP.
 
  59.             if evento.key == K_ESCAPE:
  60.                 pygame.quit()
  61.                 sys.exit()
 
-If the key that the user released was the ESC key, then terminate the program. Remember, in Pygame you must call the pygame.quit() function before calling the sys.exit() function.
+Si la tecla que el usuario liberó es la tecla ESC, se termina el programa. Recuerda, en Pygame debes llamar a la función pygame.quit() antes de llamar a la función sys.exit().
 
-Lines 62 to 69 will set a movement variable to False if that direction’s key was let go.
+Las líneas 62 a 69 asignan False a una variable de movimiento si la tecla correspondiente a esa dirección ha sido liberada.
 
  62.             if evento.key == K_LEFT or evento.key == ord('a'):
  63.                 moverseIzquierda = False
@@ -517,58 +517,58 @@ Lines 62 to 69 will set a movement variable to False if that direction’s key w
  68.             if evento.key == K_DOWN or evento.key == ord('s'):
  69.                 moverseAbajo = False
 
-Teleporting the Player
+Teletransportando al Jugador
 
  70.             if evento.key == ord('x'):
  71.                 jugador.top = random.randint(0, ALTURAVENTANA - jugador.height)
  72.                 jugador.left = random.randint(0, ANCHOVENTANA - jugador.width)
 
-You can also add teleportation to the game. If the user presses the “X” key, then lines 71 and 72 will set the position of the user’s square to a random place on the window. This will give the user the ability to teleport around the window by pushing the “X” key. Although they can’t control where they will teleport; it’s completely random.
+También podemos agregar teletransporte al juego. Si el usuario pulsa la tecla "X", las líneas 71 y 72 asignarán a la posición del cuadrado del jugador un lugar aleatorio de la ventana. Esto dará al jugador la habilidad de teletransportarse por la ventana pulsando la tecla "X". Si bien no puede controlar a dónde se teletransportará; es completamente aleatorio.
 
-Handling the MOUSEBUTTONUP Event
+Manipulando el evento MOUSEBUTTONUP
 
  74.         if evento.type == MOUSEBUTTONUP:
  75.             comidas.append(pygame.Rect(evento.pos[0], evento.pos[1], TAMAÑOCOMIDA, TAMAÑOCOMIDA))
 
-Mouse input is handled by events just like keyboard input is. The MOUSEBUTTONUP event occurs when the user releases the mouse button after clicking it. The pos attribute in the Event object is set to a tuple of two integers for the XY coordinates for where the mouse cursor was at the time of the click.
+Las entradas del ratón son manipuladas a través de eventos, igual que las entradas del teclado. El evento MOUSEBUTTONUP ocurre cuando el usuario suelta el botón del ratón luego de hacer clic. Se asigna al atributo pos del objeto Event una tupla de dos enteros correspondientes a las coordenadas XY de la posición del ratón en el momento del clic.
 
-On line 75, the X-coordinate is stored in event.pos[0] and the Y-coordinate is stored in event.pos[1]. Line 75 creates a new Rect object to represent a new food and place it where the MOUSEBUTTONUP event occurred. By adding a new Rect object to the foods list, the code will display a new food square is displayed on the screen.
+En la línea 75, la coordenada X se almacena en evento.pos[0] y la coordenada Y se almacena en evento.pos[1]. La línea 75 crea un nuevo objeto Rect que representa una nueva comida y la ubica donde ha ocurrido el evento MOUSEBUTTONUP. Al agregar un nuevo objeto Rect a la lista de comidas se muestra en la pantalla un nuevo cuadrado de comida.
 
-Moving the Player Around the Screen
+Desplazando al Jugador por la Pantalla
 
  86.     # mover al jugador
  87.     if moverseAbajo and jugador.bottom < ALTURAVENTANA:
- 88.         jugador.top += MOVESPEED
+ 88.         jugador.top += VELOCIDADMOVIMIENTO
  89.     if moverseArriba and jugador.top > 0:
- 90.         jugador.top -= MOVESPEED
+ 90.         jugador.top -= VELOCIDADMOVIMIENTO
  91.     if moverseIzquierda and jugador.left > 0:
- 92.         jugador.left -= MOVESPEED
+ 92.         jugador.left -= VELOCIDADMOVIMIENTO
  93.     if moverseDerecha and jugador.right < ANCHOVENTANA:
- 94.         jugador.right += MOVESPEED
+ 94.         jugador.right += VELOCIDADMOVIMIENTO
 
-You’ve set the movement variables (moveDown, moveUp, moveLeft, and moveRight) to True or False depending on what keys the user has pressed. Now move the player’s square (which is represented by the pygame.Rect object stored in player) by adjusting XY coordinates of player.
+Hemos asignado a las variables de movimiento (moverseAbajo, moverseArriba, moverseIzquierda y moverseDerecha) True o False dependiendo de qué teclas haya presionado el jugador. Ahora desplazaremos el cuadrado del jugador (representado por el objeto pygame.Rect almacenado en jugador) ajustando las coordenadas XY del jugador.
 
-If moveDown is set to True (and the bottom of the player’s square isn’t below the bottom edge of the window), then line 88 moves the player’s square down by adding MOVESPEED to the player’s current top attribute. Lines 89 to 94 do the same thing for the other three directions.
+Si se ha asignado True a moverseAbajo (y el borde inferior del cuadrado del jugador no está por debajo del borde inferior de la pantalla), la línea 88 moverá el cuadrado del jugador hacia abajo agregando VELOCIDADMOVIMIENTO al valor actual del atributo top del jugador. Las líneas 89 a 94 hacen lo mismo para las otras tres direcciones.
 
-The colliderect() Method
+El Método colliderect()
 
  99.     # comprobar si el jugador ha intersectado alguno de los cuadrados de comida
 100.     for food in comidas[:]:
 101.         if jugador.colliderect(food):
 102.             comidas.remove(food)
 
-In the previous Collision Detection program, the verifSuperposiciónRects() function to check if one rectangle had collided with another. That function was included in this book so you could understand how the code behind collision detection works.
+En el programa anterior Detección de Colisiones, la función verifSuperposiciónRects() comprobaba si un rectángulo había colisionado con otro. Esta función fue incluida en este libro para que entendieras cómo funciona el código detrás de la detección de colisiones.
 
-In this program, you can use the collision detection function that comes with Pygame. The colliderect() method for pygame.Rect objects is passed another pygame.Rect object as an argument and returns True if the two rectangles collide and False if they do not.
+En este programa, puedes usar la función de detección de colisiones que viene con Pygame. El método colliderect() de los objetos pygame.Rect recibe como argumento otro objeto pygame.Rect y devuelve True en caso de que los dos rectángulos colisionen y False si no colisionan.
 
 110.     relojPrincipal.tick(40)
 
-The rest of the code is similar to the code in the Input and Collision Detection programs.
+El resto del código es similar al de los programas de Entrada y Detección de Colisiones.
 
-Summary
+Resumen
 
-This chapter introduced the concept of collision detection, which is in many graphical games. Detecting collisions between two rectangles is easy: check if the four corners of either rectangle are within the other rectangle. This is such a common thing to check for that Pygame provides its own collision detection method named colliderect() for pygame.Rect objects.
+Este capítulo presentó el concepto de detección de colisiones, el cual se encuentra en muchos juegos gráficos. Detectar colisiones entre dos rectángulos es fácil: se comprueba si alguna de las esquinas de cada rectángulo está dentro del otro rectángulo. Esta comprobación es tan común que Pygame incluye su propio método de detección de colisiones para objetos pygame.Rect llamado colliderect().
 
-The first several games in this book were text-based. The program output was text printed to the screen and the input was text typed by the user on the keyboard. But graphical programs can accept keyboard and mouse inputs.
+Los primeros juegos de este libro utilizaban la consola de texto. La salida del programa se escribía en la pantalla y la entrada era texto que el jugador escribía con el teclado. Los programas gráficos, en cambio, pueden aceptar entradas del teclado y del ratón.
 
-Furthermore, these programs can respond to single keystrokes when the user pushes down or lets up a single key. The user doesn’t have to type in an entire response and press ENTER. This allows for immediate feedback and much more interactive games.
+Por otra parte, estos programas pueden responder a los eventos generados cuando el jugador pulsa o libera teclas individuales. El usuario no necesita escribir una respuesta completa y pulsar INTRO. Esto permite que el programa responda instantáneamente, lo que resulta en juegos mucho más interactivos.

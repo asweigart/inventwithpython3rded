@@ -1,4 +1,0 @@
-Fig 18-2:
-Intersecting Rectangles
-Not Intersecting Rectangles
-
