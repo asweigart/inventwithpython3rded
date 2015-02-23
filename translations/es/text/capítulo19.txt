@@ -23,155 +23,155 @@ Los sprites se dibujan sobre una imagen de fondo. Nota que puedes invertir el sp
 
 El siguiente programa demostrará cómo reproducir sonidos y dibujar sprites usando Pygame.
 
-Sound and Image Files
+Archivos de Sonido e Imagen
 
-Sprites are stored in image files on your computer. There are several different image formats that Pygame can use. You can tell what format an image file uses by looking at the end of the file name (after the last period). This is called the file extension. For example, the file player.png is in the PNG format. The image formats Pygame supports include BMP, PNG, JPG, and GIF.
+Los sprites son almacenados en archivos de imagen en tu computadora. Pygame puede usar varios formatos diferentes de imagen. Puedes darte cuenta cuál es el formato de un archivo mirando al final del nombre de archivo (después del último punto). Esto se denomina la extensión del archivo. Por ejemplo, el archivo jugador.png tiene formato PNG. Los formatos de imagen soportados por Pygame incluyen BMP, PNG, JPG, y GIF.
 
-You can download images from your web browser. On most web browsers, you have to right-click on the image in the web page and select Save from the menu that appears. Remember where on the hard drive you saved the image file. Copy this downloaded image file into the same folder as you Python program’s .py file. You can also create your own images with a drawing program like MS Paint or Tux Paint.
+Puedes descargar imágenes de tu navegador. En la mayoría de los navegadores, tienes que hacer clic con el botón derecho sobre una imagen en una página web y seleccionar Guardar del menú que aparece. Recuerda en qué lugar de tu disco guardas el archivo de imagen. Copia el archivo de la imagen descargada a la misma carpeta que el archivo .py de tu programa de Python. También puedes crear tus propias imágenes con un programa de dibujo como MS Paint o Tux Paint.
 
-The sound file formats that Pygame supports are MID, WAV, and MP3. You can download sound effects from the Internet just like image files. They must be in one of these three formats. If your computer has a microphone, you can also record sounds and make your own WAV files to use in your games.
+Los formatos de archivos de sonido que Pygame soporta son MID, WAV y MP3. Puedes descargar efectos de sonido de Internet igual que los archivos de imagen. Deben estar en uno de estos tres formatos. Si tu computadora tiene un micrófono, también puedes grabar sonidos y crear tus propios archivos WAV para usar en tus juegos.
 
-Sprites and Sounds Program
+Programa Sprites y Sonidos
 
-This program is the same as the Keyboard and Mouse Input program from the last chapter. However, in this program we will use sprites instead of plain looking squares. We will use a sprite of a little person instead of the white player square, and a sprite of cherries instead of the green food squares. We also play background music and a sound effect when the player sprite eats one of the cherry sprites.
+Este programa es igual que el programa de entradas del teclado y del ratón del capítulo anterior. Sin embargo, en este programa usaremos sprites en lugar de cuadrados sin dibujos. Usaremos un sprite de una personita en lugar del cuadrado blanco del jugador, y un sprite de cerezas reemplazando a los cuadrados verdes de comida. También reproduciremos música de fondo y un efecto de sonido cuando el sprite del jugador se coma una de las cerezas.
 
-Source Code of the Sprites and Sounds Program
+Código Fuente del Programa Sprites y Sonidos
 
-If you know how to use graphics software such as Photoshop or MS Paint, you can draw your own images. If you don’t know how to use these programs, you can download graphics from websites and use those image files instead. The same applies for music and sound files. You can also find images on websites or images from a digital camera. You can download the image and sound files from this book’s website at http://invpy.com/downloads.
+Si sabes cómo usar software de gráficos como Photoshop o MS Paint, puedes dibujar tus propias imágenes. Si no sabes usar estos programas, puedes descargar gráficos de sitios web y usar esos archivos de imagen. Lo mismo vale para archivos de música y sonido. También puedes usar imágenes de sitios web o de una cámara digital. Puedes descargar los archivos de imagen y sonido del sitio web de este libro en http://invpy.com/downloads.
 
-If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/spritesAndSounds.
+Si obtienes errores luego de escribir este código, compara lo que has escrito con el código del libro usando la herramienta diff online en http://invpy.com/diff/spritesAndSounds.
 
-spritesAndSounds.py
+spritesYsonidos.py
 
   1. import pygame, sys, time, random
   2. from pygame.locals import *
-  3.
-  4. # set up pygame
+  3. 
+  4. # configurar pygame
   5. pygame.init()
   6. mainClock = pygame.time.Clock()
-  7.
-  8. # set up the window
-  9. WINDOWWIDTH = 400
- 10. WINDOWHEIGHT = 400
- 11. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
- 12. pygame.display.set_caption('Sprites and Sound')
- 13.
- 14. # set up the colors
- 15. BLACK = (0, 0, 0)
- 16.
- 17. # set up the block data structure
- 18. player = pygame.Rect(300, 100, 40, 40)
- 19. playerImage = pygame.image.load('player.png')
- 20. playerStretchedImage = pygame.transform.scale(playerImage, (40, 40))
- 21. foodImage = pygame.image.load('cherry.png')
- 22. foods = []
+  7. 
+  8. # configurar la ventana
+  9. ANCHOVENTANA = 400
+ 10. ALTOVENTANA = 400
+ 11. superficieVentana = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA), 0, 32)
+ 12. pygame.display.set_caption('Sprites y Sonido')
+ 13. 
+ 14. # configurar los colores
+ 15. NEGRO = (0, 0, 0)
+ 16. 
+ 17. # configurar la estructura de bloque de datos
+ 18. jugador = pygame.Rect(300, 100, 40, 40)
+ 19. imagenJugador = pygame.image.load('jugador.png')
+ 20. imagenEstiradaJugador = pygame.transform.scale(imagenJugador, (40, 40))
+ 21. imagenComida = pygame.image.load('cereza.png')
+ 22. comidas = []
  23. for i in range(20):
- 24.     foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - 20), random.randint(0, WINDOWHEIGHT - 20), 20, 20))
- 25.
- 26. foodCounter = 0
- 27. NEWFOOD = 40
- 28.
- 29. # set up keyboard variables
- 30. moveLeft = False
- 31. moveRight = False
- 32. moveUp = False
- 33. moveDown = False
- 34.
- 35. MOVESPEED = 6
- 36.
- 37. # set up music
- 38. pickUpSound = pygame.mixer.Sound('pickup.wav')
- 39. pygame.mixer.music.load('background.mid')
+ 24.     comidas.append(pygame.Rect(random.randint(0, ANCHOVENTANA - 20), random.randint(0, ALTOVENTANA - 20), 20, 20))
+ 25. 
+ 26. contadorComida = 0
+ 27. NUEVACOMIDA = 40
+ 28. 
+ 29. # configurar variables del teclado
+ 30. moverseIzquierda = False
+ 31. moverseDerecha = False
+ 32. moverseArriba = False
+ 33. moverseAbajo = False
+ 34. 
+ 35. VELOCIDADMOVIMIENTO = 6
+ 36. 
+ 37. # configurar música
+ 38. sonidoRecolección = pygame.mixer.Sound('recolección.wav')
+ 39. pygame.mixer.music.load('músicaDeFondo.mid')
  40. pygame.mixer.music.play(-1, 0.0)
- 41. musicPlaying = True
- 42.
- 43. # run the game loop
+ 41. músicaSonando = True
+ 42. 
+ 43. # ejecutar el bucle del juego
  44. while True:
- 45.     # check for the QUIT event
- 46.     for event in pygame.event.get():
- 47.         if event.type == QUIT:
+ 45.     # comprobar si se ha disparado el evento QUIT (salir)
+ 46.     for evento in pygame.event.get():
+ 47.         if evento.type == QUIT:
  48.             pygame.quit()
  49.             sys.exit()
- 50.         if event.type == KEYDOWN:
- 51.             # change the keyboard variables
- 52.             if event.key == K_LEFT or event.key == ord('a'):
- 53.                 moveRight = False
- 54.                 moveLeft = True
- 55.             if event.key == K_RIGHT or event.key == ord('d'):
- 56.                 moveLeft = False
- 57.                 moveRight = True
- 58.             if event.key == K_UP or event.key == ord('w'):
- 59.                 moveDown = False
- 60.                 moveUp = True
- 61.             if event.key == K_DOWN or event.key == ord('s'):
- 62.                 moveUp = False
- 63.                 moveDown = True
- 64.         if event.type == KEYUP:
- 65.             if event.key == K_ESCAPE:
+ 50.         if evento.type == KEYDOWN:
+ 51.             # cambiar las variables del teclado
+ 52.             if evento.key == K_LEFT or evento.key == ord('a'):
+ 53.                 moverseDerecha = False
+ 54.                 moverseIzquierda = True
+ 55.             if evento.key == K_RIGHT or evento.key == ord('d'):
+ 56.                 moverseIzquierda = False
+ 57.                 moverseDerecha = True
+ 58.             if evento.key == K_UP or evento.key == ord('w'):
+ 59.                 moverseAbajo = False
+ 60.                 moverseArriba = True
+ 61.             if evento.key == K_DOWN or evento.key == ord('s'):
+ 62.                 moverseArriba = False
+ 63.                 moverseAbajo = True
+ 64.         if evento.type == KEYUP:
+ 65.             if evento.key == K_ESCAPE:
  66.                 pygame.quit()
  67.                 sys.exit()
- 68.             if event.key == K_LEFT or event.key == ord('a'):
- 69.                 moveLeft = False
- 70.             if event.key == K_RIGHT or event.key == ord('d'):
- 71.                 moveRight = False
- 72.             if event.key == K_UP or event.key == ord('w'):
- 73.                 moveUp = False
- 74.             if event.key == K_DOWN or event.key == ord('s'):
- 75.                 moveDown = False
- 76.             if event.key == ord('x'):
- 77.                 player.top = random.randint(0, WINDOWHEIGHT - player.height)
- 78.                 player.left = random.randint(0, WINDOWWIDTH - player.width)
- 79.             if event.key == ord('m'):
- 80.                 if musicPlaying:
+ 68.             if evento.key == K_LEFT or evento.key == ord('a'):
+ 69.                 moverseIzquierda = False
+ 70.             if evento.key == K_RIGHT or evento.key == ord('d'):
+ 71.                 moverseDerecha = False
+ 72.             if evento.key == K_UP or evento.key == ord('w'):
+ 73.                 moverseArriba = False
+ 74.             if evento.key == K_DOWN or evento.key == ord('s'):
+ 75.                 moverseAbajo = False
+ 76.             if evento.key == ord('x'):
+ 77.                 jugador.top = random.randint(0, ALTOVENTANA - jugador.height)
+ 78.                 jugador.left = random.randint(0, ANCHOVENTANA - jugador.width)
+ 79.             if evento.key == ord('m'):
+ 80.                 if músicaSonando:
  81.                     pygame.mixer.music.stop()
  82.                 else:
  83.                     pygame.mixer.music.play(-1, 0.0)
- 84.                 musicPlaying = not musicPlaying
- 85.
- 86.         if event.type == MOUSEBUTTONUP:
- 87.             foods.append(pygame.Rect(event.pos[0] - 10, event.pos[1] - 10, 20, 20))
- 88.
- 89.     foodCounter += 1
- 90.     if foodCounter >= NEWFOOD:
- 91.         # add new food
- 92.         foodCounter = 0
- 93.         foods.append(pygame.Rect(random.randint(0, WINDOWWIDTH - 20), random.randint(0, WINDOWHEIGHT - 20), 20, 20))
- 94.
- 95.     # draw the black background onto the surface
- 96.     windowSurface.fill(BLACK)
- 97.
- 98.     # move the player
- 99.     if moveDown and player.bottom < WINDOWHEIGHT:
-100.         player.top += MOVESPEED
-101.     if moveUp and player.top > 0:
-102.         player.top -= MOVESPEED
-103.     if moveLeft and player.left > 0:
-104.         player.left -= MOVESPEED
-105.     if moveRight and player.right < WINDOWWIDTH:
-106.         player.right += MOVESPEED
-107.
-108.
-109.     # draw the block onto the surface
-110.     windowSurface.blit(playerStretchedImage, player)
-111.
-112.     # check if the block has intersected with any food squares.
-113.     for food in foods[:]:
-114.         if player.colliderect(food):
-115.             foods.remove(food)
-116.             player = pygame.Rect(player.left, player.top, player.width + 2, player.height + 2)
-117.             playerStretchedImage = pygame.transform.scale(playerImage, (player.width, player.height))
-118.             if musicPlaying:
-119.                 pickUpSound.play()
-120.
-121.     # draw the food
-122.     for food in foods:
-123.         windowSurface.blit(foodImage, food)
-124.
-125.     # draw the window onto the screen
+ 84.                 músicaSonando = not músicaSonando
+ 85. 
+ 86.         if evento.type == MOUSEBUTTONUP:
+ 87.             comidas.append(pygame.Rect(evento.pos[0] - 10, evento.pos[1] - 10, 20, 20))
+ 88. 
+ 89.     contadorComida += 1
+ 90.     if contadorComida >= NUEVACOMIDA:
+ 91.         # agregar nueva comida
+ 92.         contadorComida = 0
+ 93.         comidas.append(pygame.Rect(random.randint(0, ANCHOVENTANA - 20), random.randint(0, ALTOVENTANA - 20), 20, 20))
+ 94. 
+ 95.     # pintar el fondo negro sobre la superficie
+ 96.     superficieVentana.fill(NEGRO)
+ 97. 
+ 98.     # mover el jugador
+ 99.     if moverseAbajo and jugador.bottom < ALTOVENTANA:
+100.         jugador.top += VELOCIDADMOVIMIENTO
+101.     if moverseArriba and jugador.top > 0:
+102.         jugador.top -= VELOCIDADMOVIMIENTO
+103.     if moverseIzquierda and jugador.left > 0:
+104.         jugador.left -= VELOCIDADMOVIMIENTO
+105.     if moverseDerecha and jugador.right < ANCHOVENTANA:
+106.         jugador.right += VELOCIDADMOVIMIENTO
+107. 
+108. 
+109.     # dibujar el bloque sobre la superficie
+110.     superficieVentana.blit(imagenEstiradaJugador, jugador)
+111. 
+112.     # comprobar si el jugador ha intersectado alguno de los cuadrados de comida
+113.     for comida in comidas[:]:
+114.         if jugador.colliderect(comida):
+115.             comidas.remove(comida)
+116.             jugador = pygame.Rect(jugador.left, jugador.top, jugador.width + 2, jugador.height + 2)
+117.             imagenEstiradaJugador = pygame.transform.scale(imagenJugador, (jugador.width, jugador.height))
+118.             if músicaSonando:
+119.                 sonidoRecolección.play()
+120. 
+121.     # dibujar la comida
+122.     for comida in comidas:
+123.         superficieVentana.blit(imagenComida, comida)
+124. 
+125.     # dibujar la ventana sobre la pantalla
 126.     pygame.display.update()
 127.     mainClock.tick(40)
 
-Figure 19-3: An altered screenshot of the Sprites and Sounds game.
+Figura 19-3: Una captura de pantalla modificada del juego Sprites y Sonidos.
 
 Setting Up the Window and the Data Structure
 
