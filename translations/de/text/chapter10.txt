@@ -308,3 +308,137 @@ Dies alles findet statt während des "Mache den Computerzug"-Kastens im Ablaufdi
 Abbildung 10-4: Die fünf Schritte des "Mache den Computerzug"-Algorithmus. Der ausgehende Pfeil führt zum "Prüfe, ob der Computer gewonnen hat"-Kasten.
 
 Dieser Algorithmus ist in der Funktion macheComputerZug() sowie in den Funktionen die von macheComputerZug() aufgerufen werden implementiert.
+
+Der Anfang des Programms
+
+  1. # Tic Tac Toe
+  2.
+  3. import random
+
+Die ersten Zeilen bestehen aus einem Kommentar und dem Import-Befehl für das random-Modul, so dass du die randint()-Funktion aufrufen kannst.
+
+Das Spielfeld auf dem Bildschirm zeichnen
+
+  5. def zeichneSpielfeld(spielfeld):
+  6.     # Diese Funktion zeichnet das Spielfeld, das ihr übergeben wurde.
+  7.
+  8.     # "spielfeld" ist eine Liste von 10 Zeichenketten, die das Spielfeld repräsentieren (Index 0 wird ignoriert)
+  9.     print('   |   |')
+ 10.     print(' ' + spielfeld[7] + ' | ' + spielfeld[8] + ' | ' + spielfeld[9])
+ 11.     print('   |   |')
+ 12.     print('-----------')
+ 13.     print('   |   |')
+ 14.     print(' ' + spielfeld[4] + ' | ' + spielfeld[5] + ' | ' + spielfeld[6])
+ 15.     print('   |   |')
+ 16.     print('-----------')
+ 17.     print('   |   |')
+ 18.     print(' ' + spielfeld[1] + ' | ' + spielfeld[2] + ' | ' + spielfeld[3])
+ 19.     print('   |   |')
+
+Die Funktion zeichneSpielfeld() gibt das durch den angegebenen Parameter repräsentierte Spielfeld aus. Erinnere dich, dass das Spielfeld durch eine Liste von Zeichenketten dargestellt wird, wobei die Zeichenkette an Index 1 das Symbol in Kästchen 1 des Tic Tac Toe-Feldes hat und so weiter. Die Zeichenkette an Stelle 0 wird ignoriert. Viele der Spielfunktionen arbeiten mit einer Liste von zehn Zeichenketten als Spielfeld.
+
+Pass gut auf, dass du die Leerzeichen in den Zeichenketten übernimmst, sonst wird das auf dem Bildschirm ausgegebene Spielfeld ziemlich merkwürdig aussehen. Hier sind ein paar beispielhafte Aufrufe der Funktion zeichneSpielfeld() und ihrer Ausgabe:
+
+>>> zeichneSpielfeld([' ', ' ', ' ', ' ', 'X', 'O', ' ', 'X', ' ', 'O'])
+   |   |
+ X |   | O
+   |   |
+-----------
+   |   |
+ X | O |
+   |   |
+-----------
+   |   |
+   |   |
+   |   |
+>>> zeichneSpielfeld([' ', 'O', 'O', ' ', ' ', 'X', ' ', ' ', ' ', ' '])
+   |   |
+   |   |
+   |   |
+-----------
+   |   |
+   | X |
+   |   |
+-----------
+   |   |
+ O | O |
+   |   |
+>>> zeichneSpielfeld([' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '])
+   |   |
+   |   |
+   |   |
+-----------
+   |   |
+   |   |
+   |   |
+-----------
+   |   |
+   |   |
+   |   |
+
+Den Spieler ein Symbol aussuchen lassen
+
+ 21. def gibSpielersymbolEin():
+ 22.     # Lässt den Spieler eingeben, ob er als X oder als O spielen will.
+ 23.     # Gibt eine Liste zurück, die als erstes Element das Spielersymbol enthält und als zweites Element das Symbol für den Computergegner.
+ 24.     buchstabe = ''
+ 25.     while not (buchstabe == 'X' or buchstabe == 'O'):
+ 26.         print('Möchtest du als X oder als O spielen?')
+ 27.         buchstabe = input().upper()
+
+Die Funktion gibSpielersymbolEin() fragt den Spieler, ob er als X oder als O setzen will. Sie wird nicht aufhören zu fragen bis der Spieler ein X oder ein O eingibt. In Zeile 27 wird die Zeichenkette, die mit Hilfe von input() eingegeben wurde, in Großbuchstaben umgewandelt. Dies passiert durch den Aufruf der Zeichenkettenfunktion upper().
+
+Die Bedingung der while-Schleife ist in Klammern gesetzt, das bedeutet, dass der Ausdruck innerhalb der Klammern zu erst ausgewertet wird. Enthält die Variable buchstabe ein 'X', wird der Ausdruck wie folgt ausgewertet:
+
+not (buchstabe == 'X' or buchstabe == 'O')
+      ▼
+not ('X' == 'X'    or 'X' == 'O')
+      ▼
+not (   True       or    False)
+      ▼
+not (True)
+      ▼
+not True
+      ▼
+    False
+
+Wenn buchstabe den Wert 'X' oder den Wert 'O' besitzt, wird die Schleifenbedingung zu False ausgewertet und das Programm geht nach dem while-Block weiter.
+
+ 29.     # Das erste Element in der Liste ist das Symbol des Spielers, das zweite ist das Symbol des Computergegners.
+ 30.     if buchstabe == 'X':
+ 31.         return ['X', 'O']
+ 32.     else:
+ 33.         return ['O', 'X']
+ 
+Diese Funktion gibt eine Liste mit zwei Elementen zurück. Das erste Element (die Zeichenkette an Stelle 0) ist das Symbol des Spielers, das zweite Element (die Zeichenkette an Stelle 1) ist das Symbol des Computergegners. Diese if-else-Anweisungen wählen die passende Liste aus.
+
+Entscheiden, wer anfängt
+
+ 35. def werFängtAn():
+ 36.     # Wähle zufällig den Startspieler aus.
+ 37.     if random.randint(0, 1) == 0:
+ 38.         return 'Computer'
+ 39.     else:
+ 40.         return 'Spieler'
+ 
+Die Funktion werFängtAn() wirft eine virtuelle Münze um zu bestimmen, ob der Computer oder der Spieler anfängt. Der Befehl für den Münzwurf lautet random.randint(0,1). Wenn diese Funktion eine 0 zurückgibt, gibt die werFängtAn()-Funktion die Zeichenkette 'Computer' zurück. Im anderen Fall wird die Zeichenkette 'Spieler' zurückgegeben. Der Programmcode, der diese Funktion aufruft wird den zurückgegebenen Text verwenden um zu bestimmen, wer den ersten Zug machen darf.
+
+Den Spieler nach einer neuen Runde fragen
+
+ 42. def nochmalSpielen():
+ 43.     # Diese Funktion gibt True zurück, wenn der Spieler nochmal spielen will. Wenn nicht, gibt sie False zurück.
+ 44.     print('Möchtest du nochmal spielen? (ja oder nein)')
+ 45.     return input().lower().startswith('j')
+
+Die Funktion nochmalSpielen() fragt den Spieler ob er eine weitere Runde Tic Tac Toe spielen möchte. Die Funktion gibt True zurück, falls der Spieler 'ja', 'JA', 'j' oder irgendetwas mit einem J am Anfang eingibt. Jede andere Antwort wird als False gewertet. Diese Funktion ist identisch mit der gleichnamigen Funktion im Galgenraten-Spiel.
+
+Ein Symbol auf das Spielfeld setzen
+
+ 47. def macheEinenZug(spielfeld, symbol, zug):
+ 48.     spielfeld[zug] = symbol
+
+Die Funktion macheEinenZug() ist einfach und besteht nur aus einer einzigen Zeile. Übergeben werden eine Liste mit zehn Zeichenketten namens spielfeld, das Symbol des Spielers (entweder 'X' oder 'O') als Variable symbol, und der Platz auf dem Spielfeld auf den der Spieler setzen möchte (eine Integer-Zahl zwischen 1 und 9), genannt zug.
+
+Moment mal. Dieser Code scheint eines der Elemente in der Spielfeld-Liste auf den Wert von symbol zu setzen. Da dies in einer Funktion aufgerufen wird, wird der spielfeld-Parameter aber wieder vergessen werden, wenn der Funktionsaufruf endet. Sollte dann die Änderung des Spielfelds nicht auch verloren sein?
+
+Tatsächlich ist dies hier nicht der Fall, und zwar weil Listen besonders behandelt werden, wenn sie einer Funktion übergeben werden. Genauer gesagt wird hier nur eine Referenz (ein Verweis) auf die Liste übergeben anstatt der Liste selbst. Lass uns mehr über den Unterschied zwischen Listen und Referenzen auf Listen lernen.

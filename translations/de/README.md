@@ -77,10 +77,12 @@ Kapitel 9
 
 
 Kapitel 10
----------
+----------
 
 - "numpad" wird zu "Ziffernblock".
 - "source code" zu "Programmcode" ("Quellcode" halte ich für zu hochgestochen).
 - "flow chart" mit "Ablaufdiagramm" übersetzt, das halte ich für selbsterklärender als "Flussdiagramm".
 - Zeile 306 mit den erwähnten Abbildungen in Einklang bringen.
 - "string" zu "Zeichenkette". Dies ist ein Konflikt mit Kapitel 7!
+- In dem Beispiel zu drawBoard() in Zeile 342ff. habe ich Klammern und Funktionsnamen ergänzt, damit alle Aufrufe syntaktisch korrekt sind.
+- TODO: prüfen, ob nochmalSpielen() identisch mit der Funktion im Galgenraten ist!
