@@ -173,69 +173,69 @@ spritesYsonidos.py
 
 Figura 19-3: Una captura de pantalla modificada del juego Sprites y Sonidos.
 
-Setting Up the Window and the Data Structure
+Configurando la Ventana y la Estructura de Datos
 
-Most of the code in this program is the same as the Collision Detection program in the previous chapter. We’ll focus only on the parts that add sprites and sound.
+La mayoría del código de este programa es igual al programa Detección de Colisiones del capítulo anterior. Nos enfocaremos sólo en las partes que agregan sprites y sonido.
 
- 12. pygame.display.set_caption('Sprites and Sound')
+ 12. pygame.display.set_caption('Sprites y Sonido')
 
-First, let’s set the caption of the title bar to a string that describes this program on line 12. Pass the string 'Sprites and Sound' to the pygame.display.set_caption() function.
+Primero, configuramos la leyenda de la barra de título a una cadena que describa este programa en la línea 12. Pasamos la cadena 'Sprites y Sonido' a la función pygame.display.set_caption().
 
- 17. # set up the block data structure
- 18. player = pygame.Rect(300, 100, 40, 40)
- 19. playerImage = pygame.image.load('player.png')
- 20. playerStretchedImage = pygame.transform.scale(playerImage, (40, 40))
- 21. foodImage = pygame.image.load('cherry.png')
+ 17. # configurar la estructura de bloque de datos
+ 18. jugador = pygame.Rect(300, 100, 40, 40)
+ 19. imagenJugador = pygame.image.load('jugador.png')
+ 20. imagenEstiradaJugador = pygame.transform.scale(imagenJugador, (40, 40))
+ 21. imagenComida = pygame.image.load('cereza.png')
 
-We are going to use three different variables to represent the player, unlike the previous programs that just used one.
+Vamos a usar tres variables diferentes para representar al jugador, a diferencia de los programas anteriores que sólo usaban una.
 
-The player variable on line 18 will store a Rect object that keeps track of where and how big the player is. The player variable doesn’t contain the player’s image, only the player’s size and location. At the beginning of the program, the top left corner of the player is located at (300, 100) and the player will have a height and width of 40 pixels to start.
+La variable jugador en la línea 18 almacenará un objeto rect que registra el tamaño y la posición del jugador. La variable no contiene la imagen del jugador, sólo su tamaño y posición. Al principio del programa, la esquina superior izquierda del jugador se ubica en (300, 100) y el jugador tiene una altura y un ancho de 40 píxeles para empezar.
 
-The second variable on line 19 that represents the player is playerImage. The pygame.image.load() function is passed a string of the filename of the image to load. The return value is a Surface object that has the graphics in the image file drawn on its surface. We store this Surface object inside of playerImage.
+La segunda variable de la línea 19 que representa al jugador es imagenJugador. la función pygame.image.load() recibe una cadena con el nombre de archivo de la imagen a cargar. El valor de retorno es un objeto Surface que tiene el gráfico del archivo dibujado sobre su superficie. Guardamos este objeto Surface dentro de imagenJugador.
 
-The third variable is explained in the next section.
+La tercera variable se explica en la próxima sección.
 
-The pygame.transform.scale() Function
+La Función pygame.transform.scale()
 
-On line 20, we will use a new function in the pygame.transform module. The pygame.transform.scale() function can shrink or enlarge a sprite. The first argument is a pygame.Surface object with the image drawn on it. The second argument is a tuple for the new width and height of the image in the first argument. The pygame.transform.scale() function returns a pygame.Surface object with the image drawn at a new size. We will store the original image in the playerImage variable but the stretched image in the playerStretchedImage variable.
+En la línea 20, utilizamos una nueva función en el módulo pygame.transform. La función pygame.transform.scale() puede reducir o agrandar un sprite. El primer argumento es un objeto pygame.Surface con la imaten dibujada sobre él. El segundo argumento es una tupla con los nuevos ancho y altura de la imagen en el primer argumento. La función The pygame.transform.scale() devuelve un objeto pygame.Surface con la imagen dibujada en un nuevo tamaño. Almacenaremos la imagen original en la variable imagenJugador, y la imagen estirada se guardará en la variable imagenEstiradaJugador.
 
-On line 21, we call pygame.image.load() again to create a Surface object with the cherry image drawn on it. Be sure you have the player.png and cherry.png files in the same directory as the spritesAndSounds.py file, otherwise Pygame won’t be able to find them and will give an error.
+En la línea 21, llamamos nuevamente a pygame.image.load() para crear un objeto Surface con la imagen de una cereza dibujada sobre él. Asegúrate de tener los archivos jugador.png y cherry.png en la misma carpeta que el archivo spritesYsonido.py, pues de otro modo Pygame no podrá encontrarlos y dará un error.
 
-Setting Up the Music and Sounds
+Configurando la Música y el Sonido
 
- 37. # set up music
- 38. pickUpSound = pygame.mixer.Sound('pickup.wav')
- 39. pygame.mixer.music.load('background.mid')
+ 37. # configurar música
+ 38. sonidoRecolección = pygame.mixer.Sound('recolección.wav')
+ 39. pygame.mixer.music.load('músicaDeFondo.mid')
  40. pygame.mixer.music.play(-1, 0.0)
- 41. musicPlaying = True
+ 41. músicaSonando = True
 
-Next you need to load the sound files. There are two modules for sound in Pygame. The pygame.mixer module can play short sound effects during the game. The pygame.mixer.music module can play background music.
+A continuación necesitas cargar los archivos de sonido. Hay dos módulos para sonido en Pygame. El módulo pygame.mixer puede reproducir efectos de sonido breves durante el juego. El módulo pygame.mixer.music puede reproducir música de fondo.
 
-Call the pygame.mixer.Sound() constructor function to create a pygame.mixer.Sound object (called a Sound object for short). This object has a play() method that when called will play the sound effect when called.
+Llamamos a la función constructor pygame.mixer.Sound() para crear un objeto pygame.mixer.Sound (llamado objeto Sound por brevedad). Este objeto tiene un método play() que reproducirá el efecto de sonido al ser llamado.
 
-Line 39 calls pygame.mixer.music.load() to load the background music. Line 40 calls pygame.mixer.music.play() to start playing the background music. The first parameter tells Pygame how many times to play the background music after the first time we play it. So passing 5 will cause Pygame to play the background music 6 times. -1 is a special value, and passing it for the first parameter makes the background music repeat forever.
+La línea 39 llama a pygame.mixer.music.load() para cargar la música de fondo. La línea 40 llama a pygame.mixer.music.play() para comenzar a reproducir la música de fondo. El primer parámetro indica a Pygame cuántas veces repetir la música de fondo luego de la primera vez que se reproduce. Es decir que pasar 5 como argumento hará que Pygame reproduzca la música de fondo 6 veces. -1 es un valor especial, y pasarlo como el primer parámetro hace que la música de fondo se repita siempre.
 
-The second parameter to pygame.mixer.music.play() is the point in the sound file to start playing. Passing 0.0 will play the background music starting from the beginning. Passing 2.5 for the second parameter will start the background music two and half seconds from the beginning.
+El segundo parámetro de pygame.mixer.music.play() es el punto en que el archivo de sonido comienza su reproducción. Pasar 0.0 hace que la música comience desde el principio. Pasar 2.5 como segundo parámetro hace que la música de fondo comience dos segundos y medio después del principio.
 
-Finally, the musicPlaying variable will have a Boolean value that tells the program if it should play the background music and sound effects or not. It’s nice to give the player the option to run the program without the sound playing.
+Finalmente, la variable musicPlaying tendrá un valor Booleano que indica al programa si debe reproducir la música de fondo y los efectos o no. Es bueno dar al jugador la opción de poder ejecutar el programa en modo silencioso.
 
-Toggling the Sound On and Off
+Activando y Desactivando el Sonido
 
- 79.             if event.key == ord('m'):
- 80.                 if musicPlaying:
+ 79.             if evento.key == ord('m'):
+ 80.                 if músicaSonando:
  81.                     pygame.mixer.music.stop()
  82.                 else:
  83.                     pygame.mixer.music.play(-1, 0.0)
- 84.                 musicPlaying = not musicPlaying
+ 84.                 músicaSonando = not músicaSonando
 
-The M key will turn the background music on or off. If musicPlaying is set to True, then the background music is currently playing and we should stop the music by calling pygame.mixer.music.stop(). If musicPlaying is set to False, then the background music isn’t currently playing and should be started by calling pygame.mixer.music.play().
+La tecla M activa y desactiva la música de fondo. Si músicaSonando tiene asignado el valor True, la música de fondo está reproduciéndose y debemos desactivar la música llamando a pygame.mixer.music.stop(). Si músicaSonando tiene asignado False, entonces la música de fondo no está sonando y debería activarse llamando a pygame.mixer.music.play().
 
-Finally, no matter what, we want to toggle the value in musicPlaying. Toggling a Boolean value means to set to the opposite of its current value. The line musicPlaying = not musicPlaying sets the variable to False if it is currently True or sets it to True if it is currently False. Think of toggling as what happens when you flip a light switch on or off: toggling the light switch sets it to the opposite setting.
+Finalmente, sin importar el estado actual, queremos conmutar el valor de músicaSonando. Conmutar un Booleano significa asignar el opuesto a su valor. La línea músicaSonando = not músicaSonando asigna False a la variable si tiene el valor True, o le asigna True si tiene el valor False. Piensa en esta conmutación como lo que ocurre cuando accionas un interruptor de luz: mover el interruptor cambia al estado opuesto.
 
-Drawing the Player on the Window
+Dibujando al Jugador sobre la Ventana
 
-109.     # draw the block onto the surface
-110.     windowSurface.blit(playerStretchedImage, player)
+109.     # dibujar el bloque sobre la superficie
+110.     superficieVentana.blit(imagenEstiradaJugador, jugador)
 
 Remember that the value stored in playerStretchedImage is a Surface object. Line 110 draws the sprite of the player onto the window’s Surface object (which is stored in windowSurface).
 
@@ -243,12 +243,12 @@ The second parameter to the blit() method is a Rect object that specifies where 
 
 Checking if the Player Has Collided with Cherries
 
-114.         if player.colliderect(food):
-115.             foods.remove(food)
-116.             player = pygame.Rect(player.left, player.top, player.width + 2, player.height + 2)
-117.             playerStretchedImage = pygame.transform.scale(playerImage, (player.width, player.height))
-118.             if musicPlaying:
-119.                 pickUpSound.play()
+114.         if jugador.colliderect(comida):
+115.             comidas.remove(comida)
+116.             jugador = pygame.Rect(jugador.left, jugador.top, jugador.width + 2, jugador.height + 2)
+117.             imagenEstiradaJugador = pygame.transform.scale(imagenJugador, (jugador.width, jugador.height))
+118.             if músicaSonando:
+119.                 sonidoRecolección.play()
 
 This code is similar to the code in the previous programs. But there are a couple of new lines. Call the play() method on the Sound object stored in the pickUpSound variable. But only do this if musicPlaying is set to True (which means that the sound is turned on).
 
@@ -260,9 +260,9 @@ Stretching an image often distorts it a little. If you keep restretching a stret
 
 Draw the Cherries on the Window
 
-121.     # draw the food
-122.     for food in foods:
-123.         windowSurface.blit(foodImage, food)
+121.     # dibujar la comida
+122.     for comida in comidas:
+123.         superficieVentana.blit(imagenComida, comida)
 
 In the previous programs, you called the pygame.draw.rect() function to draw a green square for each Rect object stored in the foods list. However, in this program you want to draw the cherry sprites instead. Call the blit() method and pass the Surface object stored in foodImage. (This is the Surface object with the image of cherries drawn on it.)
 

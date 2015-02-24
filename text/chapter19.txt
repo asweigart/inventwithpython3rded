@@ -211,7 +211,7 @@ Setting Up the Music and Sounds
 
 Next you need to load the sound files. There are two modules for sound in Pygame. The pygame.mixer module can play short sound effects during the game. The pygame.mixer.music module can play background music.
 
-Call the pygame.mixer.Sound() constructor function to create a pygame.mixer.Sound object (called a Sound object for short). This object has a play() method that when called will play the sound effect when called.
+Call the pygame.mixer.Sound() constructor function to create a pygame.mixer.Sound object (called a Sound object for short). This object has a play() method that will play the sound effect when called.
 
 Line 39 calls pygame.mixer.music.load() to load the background music. Line 40 calls pygame.mixer.music.play() to start playing the background music. The first parameter tells Pygame how many times to play the background music after the first time we play it. So passing 5 will cause Pygame to play the background music 6 times. -1 is a special value, and passing it for the first parameter makes the background music repeat forever.
 
