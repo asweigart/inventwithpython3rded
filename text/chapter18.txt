@@ -154,7 +154,7 @@ collisionDetection.py
 124.     pygame.display.update()
 125.     mainClock.tick(40)
 
-The program will look like Figure 18-1. The the bouncer square will bounce around the window. When it collides with the green food squares they will disappear from the screen.
+The program will look like Figure 18-1. The bouncer square will bounce around the window. When it collides with the green food squares they will disappear from the screen.
 
 Figure 18-1: An altered screenshot of the Collision Detection program.
 
@@ -191,7 +191,7 @@ You don’t need to repeat the code that checks all four corners for both rect1 
 
 13.     return False
 
-Line 11 never returns True, then none of the eight corners checked are in the other rectangle. In that case, the rectangles didn’t collide and line 13 returns False.
+If line 11 never returns True, then none of the eight corners checked are in the other rectangle. In that case, the rectangles didn’t collide and line 13 returns False.
 
 Determining if a Point is Inside a Rectangle
 
@@ -227,7 +227,7 @@ However, line 24 is new:
 
  24. mainClock = pygame.time.Clock()
 
-In the previous Animation program, a call to time.sleep(0.02) would slow down the program so that the program doesn’t run too fast. The problem with time.sleep()is that might be too much of a pause on slow computers and not enough of a pause on fast computers.
+In the previous Animation program, a call to time.sleep(0.02) would slow down the program so that the program doesn’t run too fast. The problem with time.sleep() is that might be too much of a pause on slow computers and not enough of a pause on fast computers.
 
 A pygame.time.Clock object can pause an appropriate amount of time on any computer. Line 125 calls mainClock.tick(40) inside the game loop. This call to the Clock object’s tick() method waits enough time so that it runs at about 40 iterations a second, no matter what the computer’s speed is. This ensures that the game never runs faster than you expect. A call to tick() should only appear once in the game loop.
 
@@ -293,7 +293,7 @@ Removing the Food Squares
 116.         if doRectsOverlap(bouncer['rect'], food):
 117.             foods.remove(food)
 
-Line 116 is where doRectsOverlap() comes in handy. If the bouncer and the current food square two rectangles overlap, then doRectsOverlap() will return True and line 117 removes the overlapping food square from the foods list.
+Line 116 is where doRectsOverlap() comes in handy. If the bouncer and the current food square overlap, then doRectsOverlap() will return True and line 117 removes the overlapping food square from the foods list.
 
 Drawing the Food Squares on the Screen
 
@@ -442,7 +442,7 @@ Lines 34 to 43 are identical to code in the previous Pygame programs. These line
 
 Events and Handling the KEYDOWN Event
 
-The code to handle the key press and key release events start on line 44. At the start of the program, they are all set to False.
+The code to handle the key press and key release events starts on line 44. At the start of the program, they are all set to False.
 
  44.         if event.type == KEYDOWN:
 
@@ -482,7 +482,7 @@ Setting the Four Keyboard Variables
  56.                 moveUp = False
  57.                 moveDown = True
 
-If the event type is KEYDOWN, then the event object will have a key attribute that tells which key was pressed down. Line 46 compares this attribute to K_LEFT, which is the pygame.locals constant that represents the left arrow key on the keyboard. Lines 46 to 57 do similar checks for each of the other arrow keys: K_LEFT, K_RIGHT, K_UP, K_DOWN.
+If the event type is KEYDOWN, then the event object will have a key attribute that tells which key was pressed down. Line 46 compares this attribute to K_LEFT, which is the pygame.locals constant that represents the left arrow key on the keyboard. Lines 49 to 57 do similar checks for each of the other arrow keys: K_RIGHT, K_UP, K_DOWN.
 
 When one of these keys is pressed down, set the corresponding movement variable to True. Also, set the movement variable of the opposite direction to False.
 
@@ -532,7 +532,7 @@ Handling the MOUSEBUTTONUP Event
 
 Mouse input is handled by events just like keyboard input is. The MOUSEBUTTONUP event occurs when the user releases the mouse button after clicking it. The pos attribute in the Event object is set to a tuple of two integers for the XY coordinates for where the mouse cursor was at the time of the click.
 
-On line 75, the X-coordinate is stored in event.pos[0] and the Y-coordinate is stored in event.pos[1]. Line 75 creates a new Rect object to represent a new food and place it where the MOUSEBUTTONUP event occurred. By adding a new Rect object to the foods list, the code will display a new food square is displayed on the screen.
+On line 75, the X-coordinate is stored in event.pos[0] and the Y-coordinate is stored in event.pos[1]. Line 75 creates a new Rect object to represent a new food and place it where the MOUSEBUTTONUP event occurred. By adding a new Rect object to the foods list, a new food square is displayed on the screen.
 
 Moving the Player Around the Screen
 
