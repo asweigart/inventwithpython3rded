@@ -237,11 +237,11 @@ Dibujando al Jugador sobre la Ventana
 109.     # dibujar el bloque sobre la superficie
 110.     superficieVentana.blit(imagenEstiradaJugador, jugador)
 
-Remember that the value stored in playerStretchedImage is a Surface object. Line 110 draws the sprite of the player onto the window’s Surface object (which is stored in windowSurface).
+Recuerda que el valor almacenado en imagenEstiradaJugador es un objeto Surface. La línea 110 dibuja el sprite del jugador sobre el objeto Surface de la ventana (el cual se almacena en superficieVentana).
 
-The second parameter to the blit() method is a Rect object that specifies where on the Surface object the sprite should be blitted. The Rect object stored in player is what keeps track of the position of the player in the window.
+El segundo parámetro del método blit() es un objeto Rect que especifica dónde en el objeto Surface se dibujará el sprite. El objeto Rect almacenado en jugador es el que registra la posición del jugador en la ventana.
 
-Checking if the Player Has Collided with Cherries
+Comprobando si el Jugador Ha Colisionado con Cerezas
 
 114.         if jugador.colliderect(comida):
 115.             comidas.remove(comida)
@@ -250,28 +250,28 @@ Checking if the Player Has Collided with Cherries
 118.             if músicaSonando:
 119.                 sonidoRecolección.play()
 
-This code is similar to the code in the previous programs. But there are a couple of new lines. Call the play() method on the Sound object stored in the pickUpSound variable. But only do this if musicPlaying is set to True (which means that the sound is turned on).
+Este código es similar al de programas anteriores, pero hay un par de líneas nuevas. Llamamos al método play() sobre el objeto Sonido almacenado en la variable sonidoRecolección. Pero sólo lo hacemos si el valor de músicaSonando es True (lo que significa que el sonido está activado).
 
-When the player eats one of the cherries, the size of the player increases by two pixels in height and width. On line 116, a new Rect object that is 2 pixels larger than the old Rect object will be the new value of player.
+Cuando el jugador se come una de las cerezas, su altura y ancho se incrementan en dos píxeles. En la línea 116 se asigna a jugador un nuevo objeto Rect que es 2 píxeles más grande que el viejo objeto Rect.
 
-While the Rect object represents the position and size of the player, the image of the player is stored in a playerStretchedImage as a Surface object. Create a new stretched image by calling pygame.transform.scale(). Be sure to pass the original Surface object in playerImage and not playerStretchedImage.
+Aunque el objeto Rect representa la posición y el tamaño del jugador, la imagen del jugador se almacena en imagenEstiradaJugador como un objeto Surface. Crearemos una nueva imagen estirada llamando a pygame.transform.scale(). Asegúrate de pasarle a esta función el objeto Surface original en imagenJugador y no imagenEstiradaJugador.
 
-Stretching an image often distorts it a little. If you keep restretching a stretched image over and over, the distortions add up quickly. But by stretching the original image to the new size, you only distort the image once. This is why you pass playerImage as the first argument for pygame.transform.scale().
+Estirar una imegen suele distorsionarla un poco. Si continuamos estirando la misma imagen una y otra vez, las distorsiones se acumulan rápidamente. Pero si estiramos la imagen original a un nuevo tamaño, distorsionamos la imagen una sola vez. Es por esto que usamos imagenJugador como primer argumento de pygame.transform.scale().
 
-Draw the Cherries on the Window
+Dibujando las Cerezas sobre la Ventana
 
 121.     # dibujar la comida
 122.     for comida in comidas:
 123.         superficieVentana.blit(imagenComida, comida)
 
-In the previous programs, you called the pygame.draw.rect() function to draw a green square for each Rect object stored in the foods list. However, in this program you want to draw the cherry sprites instead. Call the blit() method and pass the Surface object stored in foodImage. (This is the Surface object with the image of cherries drawn on it.)
+En los programas anteriores llamamos a la función pygame.draw.rect() para dibujar un cuadrado verde por cada objeto Rect guardado en la lista de comidas. En cambio, en este programa queremos dibujar el sprite cereza en su lugar. Llamamos al método blit() y le pasamos el objeto Surface almacenado en imagenComida. (Este es el objeto Surface con la imagen de las cerezas).
 
-The food variable (which contains each of the Rect objects in foods on each iteration through the for loop) tells the blit() method where to draw the foodImage.
+La variable comida (la cual contiene una vez a cada uno de los objetos Rect en la lista comidas por cada iteración del bucle) indica al método blit() dónde dibujar imagenComida.
 
-Summary
+Resumen
 
-This game has added images and sound to your games. The images (called sprites) look much better than the simple shape drawing used in the previous programs. The game presented in this chapter also has music playing in the background while also playing sound effects.
+Este capítulo ha agregado imágenes y sonido a tus juegos. Las imágenes (llamadas sprites) se ven mucho mejor que las siluetas de formas simples usadas en los programas anteriores. El juego presentado en este capítulo también reproduce música de fondo y efectos de sonido.
 
-Sprites can be scaled (that is, stretched) to a larger or smaller size. This way we can display sprites at any size we want. This will come in handy in the game presented in the next chapter.
+Los sprites pueden ser escalados (es decir, estirados) a tamaños mayores o menores. De este modo podemos mostrar sprites de cualquier tamaño que queramos. Esto será útil para el juego presentado en el próximo capítulo.
 
-Now that we know how to create a window, display sprites and drawing primitives, collect keyboard and mouse input, play sounds, and implement collision detection, we are now ready to create a graphical game in Pygame. The next chapter brings all of these elements together for our most advanced game yet.
+Ahora que sabemos cómo crear una ventana, mostrar sprites, dibujar primitivas, recibir entradas de teclado y ratón, reproducir sonidos e implementar detección de colisiones, estamos listos para crear un juego gráfico en Pygame. El próximo capítulo combinará todos estos elementos para crear el más avanzado de nuestros juegos hasta ahora.
