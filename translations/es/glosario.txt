@@ -19,6 +19,7 @@ return value, valor de retorno
 run, ejecutar
 sample run, muestra de ejecución
 slash, barra inclinada
+slicing, rebanado (ref: http://docs.python.org.ar/tutorial/3/introduction.html#listas)
 set, establecer
 set up, configurar
 shell, consola

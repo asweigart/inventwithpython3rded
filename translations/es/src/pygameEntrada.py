@@ -31,7 +31,7 @@ moverseDerecha = False
 moverseArriba = False
 moverseAbajo = False
 
-MOVESPEED = 6
+VELOCIDADMOVIMIENTO = 6
 
 
 # ejecutar el bucle del juego
@@ -85,13 +85,13 @@ while True:
 
     # mover al jugador
     if moverseAbajo and jugador.bottom < ALTURAVENTANA:
-        jugador.top += MOVESPEED
+        jugador.top += VELOCIDADMOVIMIENTO
     if moverseArriba and jugador.top > 0:
-        jugador.top -= MOVESPEED
+        jugador.top -= VELOCIDADMOVIMIENTO
     if moverseIzquierda and jugador.left > 0:
-        jugador.left -= MOVESPEED
+        jugador.left -= VELOCIDADMOVIMIENTO
     if moverseDerecha and jugador.right < ANCHOVENTANA:
-        jugador.right += MOVESPEED
+        jugador.right += VELOCIDADMOVIMIENTO
 
     # dibujar al jugador sobre la superficie
     pygame.draw.rect(superficieVentana, BLANCO, jugador)
