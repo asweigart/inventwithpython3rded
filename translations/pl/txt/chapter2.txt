@@ -10,7 +10,6 @@ Tematy omówione w tym rozdziale:
 • Operatory
 • Obliczanie wyrażeń
 • Zapisywanie wartości w zmiennych
-• Nadpisywanie zmiennych
 
 Nim zaczniesz tworzyć gry, musisz nauczyć się kilku podstawowych rzeczy w programowaniu. W tym rozdziale nie stworzymy gry, ale nauczenie się tych podstaw jest pierwszym krokiem do ich tworzenia. Rozpoczniemy od nauki używania interaktywnej powłoki Pythona.
 
@@ -37,7 +36,7 @@ Kiedy ich tak używamy +, -, * i / są nazywane operatorami. Operatory mówią P
 
 Liczby całkowite i zmiennoprzecinkowe
 
-W programowaniu liczby całkowite, to lczby takie jak 4, 99 i 0. Liczby zmiennoprzecinkowe mają część ułamkową jak 3.5, 42.1 i 5.0 (stosujemy tu zapis anglosaski, z kropką oddzielającą część dziesiętną, w Polsce przecinek jest znakiem oddzielającym część dziesiętną). W Pythonie liczba 5 jest liczbą całkowitą, ale 5.0 jest liczbą zmiennoprzecinkową.
+W programowaniu liczby całkowite, to liczby takie jak 4, 99 i 0. Liczby zmiennoprzecinkowe mają część ułamkową jak 3.5, 42.1 i 5.0 (stosujemy tu zapis anglosaski, z kropką oddzielającą część dziesiętną, w Polsce przecinek jest znakiem oddzielającym część dziesiętną). W Pythonie liczba 5 jest liczbą całkowitą, ale 5.0 jest liczbą zmiennoprzecinkową.
 
 Wyrażenia
 
@@ -64,7 +63,7 @@ W następnym rozdziale nauczysz się o napisach w wyrażeniach. Python nie jest 
 
 Obliczanie wyrażeń
 
-Kiedy komputer rozwiązuje wyrażenie 10 + 5 i otrzymuje wartość 15, to mówimy o obliczaniu wyrażeń. Obliczanie wyrażeń reduje je do pojedynczej wartości, tak jak rozwiązanie problemu matematycznego redukuje problem do jednej liczby: odpowiedzi.
+Kiedy komputer rozwiązuje wyrażenie 10 + 5 i otrzymuje wartość 15, to mówimy o obliczaniu wyrażeń. Obliczanie wyrażeń reduje je do pojedynczej wartości, tak jak rozwiązanie problemu matematycznego redukuje problem do jednej liczby: odpowiedzi. Wyrażenia 10 + 5 i 10 + 3 + 2, zarówno oceny do 15.
 
 Wyrażenia 10 + 5 i 10 + 3 + 2 mają taką samą wartość. Oba wyliczają się do 15.
 
@@ -82,7 +81,7 @@ Wyrażenia mogą być dowolnego rozmiaru, ale zawsze zostaną wyliczone do pojed
                   ▼
                  12.0
 
-Nie zobaczysz wszystkich tych kroków w  interaktywnej powłoce. Powłoka je wykona i pokaże wynik:
+Nie zobaczysz wszystkich tych kroków w interaktywnej powłoce. Powłoka je wykona i pokaże wynik:
 
 >>> 8 * 3 / 2 + 2 + 7 - 9
 12.0
@@ -111,13 +110,11 @@ Instrukcja przypisania zachowa wartość (lub wartość do jakiej zostanie wylic
 >>> spam = 15
 >>>
 
-
-
-Rysunek 2-4: Zmienne są jak pudełka które mogą przechowywać w sobie wartości.
-
 Zmienna o nazwie spam przechowuje wartość 15 jak pokazano to na rysunku 2-4. Nazwa “spam” jest etykietą na pudełku (po nich Python rozróżnia zmienne), a wartość jest zapisane w małej notatce w środku pudełka.
 
 Kiedy naciśniesz ENTER nie zobaczysz nic w odpowiedzi. W Pythonie przyjmuje się, że instrukcja się udała jeśli ie pojawił sie komunikat o błędzie. Pojawi się znak zachęty >>>, więc możesz wpisywac kolejne instrukcje.
+
+Rysunek 2-4: Zmienne są jak pudełka które mogą przechowywać w sobie wartości.
 
 Poza wyrażeniami są także dyrektywy, które są instrukcjami, które nie wyliczają się do żadnej wartości, w związku z czym nie ma co wyświetlić w nastepnej linii powłoki. Może to byc nieco mylące, ale wystarczy pamiętać, że wyrażenia wyliczają się do pojedynczej wartości. Inne rodzaje instrukcji są dyrektywami.
 
@@ -182,26 +179,26 @@ Dyrektywa podstawienia spam = spam + 5 jest jak powiedzenie: “Nowa wartość z
 
 Używanie większej liczby zmiennych
 
-Twórz tyle zmiennych, ile ich potrzebujesz w swoim programie. Dla przykłądu podstawimy kilka wartości do zmiennych o nazwach eggs i fizz:
+Twórz tyle zmiennych, ile ich potrzebujesz w swoim programie. Dla przykłądu podstawimy kilka wartości do zmiennych o nazwach eggs i bacon:
 
->>> fizz = 10
+>>> bacon = 10
 >>> eggs = 15
 
-Teraz zmienna fizz przechowuje 10, a eggs przechowuje 15.
+Teraz zmienna bacon przechowuje 10, a eggs przechowuje 15.
 
 
 
-Rysuneke 2-5: Zmienne “fizz” i “eggs” przechowują wartości.
+Rysuneke 2-5: Zmienne bacon i “eggs” przechowują wartości.
 
-Spróbuj wprowadzić spam = fizz + eggs w powłoce, a potem sprawdź nową wartość spam:
+Spróbuj wprowadzić spam = bacon + eggs w powłoce, a potem sprawdź nową wartość spam:
 
->>> fizz = 10
+>>> bacon = 10
 >>> eggs = 15
->>> spam = fizz + eggs
+>>> spam = bacon + eggs
 >>> spam
 25
 
-Wartość spam wynosi teraz 25. Kiedy dodałeś fizz i eggs dodałeś ich wartości, które wynoszą odpowiednio 10 i 15.
+Wartość spam wynosi teraz 25. Kiedy dodałeś bacon i eggs dodałeś ich wartości, które wynoszą odpowiednio 10 i 15.
 
 Podsumowanie
 

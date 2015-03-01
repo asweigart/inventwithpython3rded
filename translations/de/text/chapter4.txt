@@ -47,7 +47,7 @@ Gut gemacht, Albert! Du hast meine Zahl in 3 Zügen erraten.
 
 Der Quellcode von "Rate die Zahl"
 
-Öffne ein neues Dateieditorfenster indem auf Datei►Neues Fenster klickst. Tippe in dem neu erschienen leeren Fenster  den Quellcode ein und speichere die Datei dann unter zahlenRaten.py ab. Drücke F5 um das Programm auszuführen. Wenn du den Programmcode eintippst muss du besonders auf die Leerzeichen am Beginn der Zeilen achten. Manche Zeilen haben vier und einige sogar acht Leerzeichen am Zeilenanfang.
+Öffne ein neues Dateieditorfenster indem auf File ► New Window klickst. Tippe in dem neu erschienen leeren Fenster  den Quellcode ein und speichere die Datei dann unter zahlenRaten.py ab. Drücke F5 um das Programm auszuführen. Wenn du den Programmcode eintippst muss du besonders auf die Leerzeichen am Beginn der Zeilen achten. Manche Zeilen haben vier und einige sogar acht Leerzeichen am Zeilenanfang.
 
 Hier ist der Quellcode von "Rate die Zahl". Gib auf die Leerzeichen vor manchen der Zeilen acht, wenn du den Quellcode in den Dateieditor eingibst. Manche der Zeilen haben vier, manche haben acht Leerzeichen.
 
@@ -101,7 +101,6 @@ import Befehle
 
 Die erste Zeile ist ein Kommentar. Python ignoriert alles nach dem # Zeichen. Diese Zeile dient nur dazu, uns daran zu erinnern was das Programm macht.
 
-#TODO: Check that we really already know that.
 Zeile Zwei ist ein import Befehl. Befehle sind Instruktionen die eine Handlung durchführen aber nicht wie Ausdrücke ausgewertete werden können. Wir haben bereits Befehle kennengelernt: Zuweisungsbefehle speichern einen Wert in einer Variable.
 
 Python bringt viele Funktionen mit, ein großer Teil davon befindet sich aber in getrennten Programmen die Module genannt werden. Um diese Funktionen zu verwenden musst du die zugerhörigen Module mit einem import Befehl in dein Programm importieren.
@@ -256,9 +255,9 @@ Gib den folgenden Ausdruck in der Eingabezeile ein und sieh dir an, zu welchen B
 
 >>> 0 < 6
 True
->>> 6 < 0 
+>>> 6 < 0
 False
->>> 50 < 10 
+>>> 50 < 10
 False
 >>> 10 < 11
 True
@@ -292,7 +291,7 @@ True
 
 Der Unterschied zwischen = und ==
 
-Der Zuweisungsoperator (=) und der "ist gleich" Vergleichsoperator (==) sind leicht zu verwechseln. Das einfache Gleichzeichen (=) wird in Zuweisungsausdrücken verwendet um einen Wert in einer Variable zu speichern, das Doppelte Gleichzeichen (==) wird verwendet um zu testen ob zwei Werte gleich sind. Die beiden Operatoren können leicht vertauscht werden. 
+Der Zuweisungsoperator (=) und der "ist gleich" Vergleichsoperator (==) sind leicht zu verwechseln. Das einfache Gleichzeichen (=) wird in Zuweisungsausdrücken verwendet um einen Wert in einer Variable zu speichern, das Doppelte Gleichzeichen (==) wird verwendet um zu testen ob zwei Werte gleich sind. Die beiden Operatoren können leicht vertauscht werden.
 
 Es gibt eine Eselsbrücke um die beiden Operatoren auseinander zu halten:  Der "ist gleich" Verfleichsoperator (==) hat wie der "nicht gleich" Operator (!=) zwei Zeichen hat.
 
@@ -322,7 +321,7 @@ Der Spieler rät
 13.    print('Los, rate.') # Vor print sind vier Leerzeichen.
 14.    tipp = input()
 
-Zeilen 13 bis 17 fordern den Spieler auf eine Zahl zu raten und diese einzugeben. Diese Zahl wird in der Variable tipp gespeichert. 
+Zeilen 13 bis 17 fordern den Spieler auf eine Zahl zu raten und diese einzugeben. Diese Zahl wird in der Variable tipp gespeichert.
 
 Zahlen mit den Funktionen int(), float() und str() umwandeln
 
@@ -379,7 +378,7 @@ Die float(), str() und bool() Funktionen geben ähnlich wie int() float, string 
 False
 >>> bool('any nonempty string')
 True
- 
+
 Den int(), float(), str() und bool() Funktionen kannst du Werte eines Datentyps übergeben und ihn als Wert eines anderen Datentyps erhalten.
 
 Variablen inkrementieren
@@ -415,7 +414,7 @@ Schleifen vorzeitig mit dem break Befehl verlassen
 25.    if tipp == zahl:
 26.        break
 
-Der if-Befehl auf Zeile 25 überprüft ob der Tipp gleich der Geheimzahl ist. Ist das der Fall, dann wird auf Zeile 26 der break Befehl ausgeführt. 
+Der if-Befehl auf Zeile 25 überprüft ob der Tipp gleich der Geheimzahl ist. Ist das der Fall, dann wird auf Zeile 26 der break Befehl ausgeführt.
 
 Ein break Befehl führt dazu, dass die Ausführung gleich nach dem while-Block fortgesetzt wird. Die Bedingung der while-Schleife wird nicht erneut überprüft.
 
@@ -459,7 +458,7 @@ Du kannst den Schwierigkeitsgrad des Spiels ändern, indem du die Anzahl an Tipp
 
 12. while abgegebenTipps < 6:
 
-zu 
+zu
 
 12. while abgegebenTipps < 4:
 
@@ -485,4 +484,4 @@ Wenn jemand dich fragt, "Was ist denn nun Programmieren?" was könntest du dann 
 
 So, und das sind schon alle vier  Arten von Befehlen. Natürlich gibt es zahlreiche Details zu diesen vier Arten. In diesem Burch lernst du neue Datentype und Operatoren, neue Flusskontrollstatements und zahlreiche Funktionen die Python mitbringt. Es gibt auch verschiedene Arten von I/O, so wie die Eingabe durch die Maus oder Ausgabe von Ton oder Graphiken anstatt nur Text.
 
-Die Personen, die deine Programme benutzen interessieren sich nur für I/O. Der Benutzer tippt auf der Tastatur und sieht dann Sachen auf dem Bildschirm und hört Dinge aus dem Lautsprecher. Der Computer benötigt ein Programm um zu wissen, was er anzeigen soll oder welche Töne er abspielen soll, und dieses Programm ist nur eine Folge von Befehlen die du, der Programmierer, geschrieben hast. 
+Die Personen, die deine Programme benutzen interessieren sich nur für I/O. Der Benutzer tippt auf der Tastatur und sieht dann Sachen auf dem Bildschirm und hört Dinge aus dem Lautsprecher. Der Computer benötigt ein Programm um zu wissen, was er anzeigen soll oder welche Töne er abspielen soll, und dieses Programm ist nur eine Folge von Befehlen die du, der Programmierer, geschrieben hast.
