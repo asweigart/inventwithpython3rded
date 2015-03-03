@@ -22,7 +22,7 @@ Gry jakie stworzysz z tą książką wyglądają na proste w porównaniu do gier
 
 Pobieranie i instalacja Pythona
 
-Musisz pobrać oprogramowania zwane interpreterem Pythona. Ten interpreter rozumie instrukcje które napiszesz w języku Python. Od teraz "interpreter Pythona" będziemy nazywali "Pythonem".
+Musisz pobrać oprogramowania zwane interpreter Pythona. Ten interpreter rozumie instrukcje które napiszesz w języku Python. Od teraz "interpreter Pythona" będziemy nazywali "Pythonem".
 
 Pobierz Pythona 3.4 lub nowszą wersję z oficjalnej strony Pythona: http://www.python.org. Pobierz wersję 32 bitową dla swojego systemu operacyjnego nawet jeśli masz 64 bitowy komputer. Moduł Pygame użyty później w tej książce dziła jedynie z 32 bitowym Pythonem.
 
@@ -46,9 +46,9 @@ Rysunek 1-2: Interaktywna powłoka programu IDLE na Windows, OS X i Linux Ubuntu
 
 Okno jakie otwiera się gdy pierwszy raz uruchomisz IDLE to interaktywna powłoka (shell). Możesz w niej wpisywać instrukcje Pythona, a Python je wykona, a po ich wykonaniu wyświetli ich wyniki również w interaktywniej powłoce.
 
-Jak używać tej książki?
+Jak używać tej książki
 
-Większość rozdziałów tej książki rozpocznie się przykładowym uruchomioniem omawianego programu. Pokazuje to jak program wygląda, gdy go uruchomiesz. To, co wpisuje użytkownik jest pokazane pogrubionym tekstem.
+Większość rozdziałów tej książki rozpocznie się przykładowym uruchomieniem omawianego programu. Pokazuje to jak program wygląda, gdy go uruchomiesz. To, co wpisuje użytkownik jest pokazane pogrubionym tekstem.
 
 Lepiej wpisuj samodzielnie kody programów w edytorze IDLE, niż pobieraj je z internetu. Lepiej zapamiętasz programowanie, gdy samodzielnie wpiszesz kody.
 
@@ -56,25 +56,25 @@ Numery linii i spacje
 
 Nie wpisuj numerów linii które pojawiają się na początku każdej linii kodów źródłowych. Na przykład gdy zobaczysz:
 
-9. number = random.randint(1, 20)
+9. tajemnaLiczba = random.randint(1, 20)
 
 to nie wpisuj “9.” które jest po lewej stronie, ani pojedynczej spacji która jest obok. Wpisz to tak:
 
-number = random.randint(1, 20)
+tajemnaLiczba = random.randint(1, 20)
 
-Te numery linii są tylko po to, by omawiając progam móc odnieść się do wskazanej linii. Nie są one częścią programu.
+Te numery linii są tylko po to, by omawiając program móc odnieść się do wskazanej linii. Nie są one częścią programu.
 
-Poza tyni numerami wpisuj kod dokładnie tak, jak go widzisz. Zwróć uwagę na to, że niektóre linie są wcięte za pomocą czterech, lub ośmiu spacje. Każdy znak w IDLE jest tej samej szerokości. Policz ilość spacji licząc znaki w linii sąsiadującej z góry, lub z dołu.
+Poza tymi numerami wpisz kod dokładnie tak, jak go widzisz. Zwróć uwagę na to, że niektóre linie są wcięte za pomocą czterech, lub ośmiu spacje. Każdy znak w IDLE jest tej samej szerokości. Policz ilość spacji licząc znaki w linii sąsiadującej z góry, lub z dołu.
 
 Na przykład spacje tworzące wcięcia są tu oznaczone ▪, znakiem czarnego prostokątu:
 
-while guesses < 10:
-▪▪▪▪if number == 42:
+while probyZgadniecia < 10:
+▪▪▪▪if tajemnaLiczba == 42:
 ▪▪▪▪▪▪▪▪print('Hej')
 
 Zawijanie tekstu w tej książce
 
-Niektóre linie kodu są zbyt długie, by zmieścić się w jednej na stronie i będą zawijane do następnej linii. Wprowadź ten kod cały, w jednej linii bez naciskania Enter. Będziesz wiedział, czy nowa linia się zaczęła dzięki numerom linii jakie pojawiają się po lewej stronie kodu. Na przykład poniższy kod ma tylko dwie linie kodu:
+Niektóre linie kodu są zbyt długie, aby zmieścić się w jednej na stronie i będą zawijane do następnej linii. Wprowadź ten kod cały, w jednej linii bez naciskania Enter. Będziesz wiedział, czy nowa linia się zaczęła dzięki numerom linii jakie pojawiają się po lewej stronie kodu. Na przykład poniższy kod ma tylko dwie linie kodu:
 
 1. print('To jest pierwsza linia! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxx')

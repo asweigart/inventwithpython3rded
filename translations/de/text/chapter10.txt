@@ -1,0 +1,444 @@
+  Kapitel 10
+  TIC TAC TOE
+
+In diesem Kapitel behandelte Themen:
+
+• Künstliche Intelligenz
+• TODO
+• TODO
+• TODO
+
+Dieses Kapitel beinhaltet ein Tic Tac Toe-Spiel gegen eine einfache künstliche Intelligenz. Eine künstliche Intelligenz (oder KI) ist ein Computerprogramm, das auf intelligente Weise auf die Spielzüge des Benutzers reagieren kann. Dieses Spiel stellt keine komplizierten neuen Konzepte vor. Die künstliche Intelligenz für Tic Tac Toe besteht wirklich nur aus wenigen Zeilen Code.
+
+Zwei Menschen spielen Tic Tac Toe mit Papier und Stift. Ein Spieler setzt mit X und der andere mit O. Die Spieler setzen abwechslend ihr Symbol auf das Spielfeld. Wenn ein Spieler drei seiner Symbole in einer Zeile, Spalte oder in einer der zwei Diagonalen platzieren kann, gewinnt er oder sie. Wenn das Spielfeld gefüllt ist und keiner der Spieler gewonnen hat, endet das Spiel in einem Unentschieden.
+
+Dieses Kapitel enthält nur wenige neue Programmierkonzepte. Statt dessen macht es sich unser bereits vorhandenes Wissen zur Programmierung zu Nutze, um daraus einen intelligenten Gegner für Tic Tac Toe zu kreieren. Lass uns mit einem Blick auf einen exemplarischen Programmablauf beginnen: Der Spieler macht einen Zug, in dem er die Nummer des Feldes eingibt, auf das er setzen möchte. Diese Nummern sind genauso angeordnet wie die Nummern auf dem Ziffernblock auf deiner Tastatur (siehe Abbildung 10-2).
+
+Beispielhafter Ablauf von Tic Tac Toe
+Willkommen bei Tic Tac Toe!
+Möchtest du als X oder als O spielen?
+X
+Der Computer fängt an.
+   |   |
+ O |   |
+   |   |
+-----------
+   |   |
+   |   |
+   |   |
+-----------
+   |   |
+   |   |
+   |   |
+Wohin möchtest du setzen? (1-9)
+3
+   |   |
+ O |   |
+   |   |
+-----------
+   |   |
+   |   |
+   |   |
+-----------
+   |   |
+ O |   | X
+   |   |
+Wohin möchtest du setzen? (1-9)
+4
+   |   |
+ O |   | O
+   |   |
+-----------
+   |   |
+ X |   |
+   |   |
+-----------
+   |   |
+ O |   | X
+   |   |
+Wohin möchtest du setzen? (1-9)
+5
+   |   |
+ O | O | O
+   |   |
+-----------
+   |   |
+ X | X |
+   |   |
+-----------
+   |   |
+ O |   | X
+   |   |
+Der Computergegner hat dich besiegt! Du hast verloren.
+Möchtest du nochmal spielen? (ja oder nein)
+nein
+
+Der Programmcode von Tic Tac Toe
+
+Gib den folgenden Programmcode in ein neues Fenster des Editors ein und speichere ihn als tictactoe.py. Führe dann das Spiel aus, indem du F5 drückst.
+
+tictactoe.py
+
+  1. # Tic Tac Toe
+  2.
+  3. import random
+  4.
+  5. def zeichneSpielfeld(spielfeld):
+  6.     # Diese Funktion zeichnet das Spielfeld, das ihr übergeben wurde.
+  7.
+  8.     # "spielfeld" ist eine Liste von 10 Zeichenketten, die das Spielfeld repräsentieren (Index 0 wird ignoriert)
+  9.     print('   |   |')
+ 10.     print(' ' + spielfeld[7] + ' | ' + spielfeld[8] + ' | ' + spielfeld[9])
+ 11.     print('   |   |')
+ 12.     print('-----------')
+ 13.     print('   |   |')
+ 14.     print(' ' + spielfeld[4] + ' | ' + spielfeld[5] + ' | ' + spielfeld[6])
+ 15.     print('   |   |')
+ 16.     print('-----------')
+ 17.     print('   |   |')
+ 18.     print(' ' + spielfeld[1] + ' | ' + spielfeld[2] + ' | ' + spielfeld[3])
+ 19.     print('   |   |')
+ 20.
+ 21. def gibSpielersymbolEin():
+ 22.     # Lässt den Spieler eingeben, ob er als X oder als O spielen will.
+ 23.     # Gibt eine Liste zurück, die als erstes Element das Spielersymbol enthält und als zweites Element das Symbol für den Computergegner.
+ 24.     buchstabe = ''
+ 25.     while not (buchstabe == 'X' or buchstabe == 'O'):
+ 26.         print('Möchtest du als X oder als O spielen?')
+ 27.         buchstabe = input().upper()
+ 28.
+ 29.     # Das erste Element in der Liste ist das Symbol des Spielers, das zweite ist das Symbol des Computergegners.
+ 30.     if buchstabe == 'X':
+ 31.         return ['X', 'O']
+ 32.     else:
+ 33.         return ['O', 'X']
+ 34.
+ 35. def werFängtAn():
+ 36.     # Wähle zufällig den Startspieler aus.
+ 37.     if random.randint(0, 1) == 0:
+ 38.         return 'Computer'
+ 39.     else:
+ 40.         return 'Spieler'
+ 41.
+ 42. def nochmalSpielen():
+ 43.     # Diese Funktion gibt True zurück, wenn der Spieler nochmal spielen will. Wenn nicht, gibt sie False zurück.
+ 44.     print('Möchtest du nochmal spielen? (ja oder nein)')
+ 45.     return input().lower().startswith('j')
+ 46. 
+ 47. def macheEinenZug(spielfeld, symbol, zug):
+ 48.     spielfeld[zug] = symbol
+ 49.
+ 50. def hatGewonnen(feld, sym):
+ 51.     # Diese Funktion überprüft, ob der Spieler mit dem übergebenen Symbol auf dem übergebenen Spielfeld gewonnen hat und gibt True zurück, falls das der Fall ist.
+ 52.     # Wir benutzen feld statt spielfeld und sym statt symbol, damit wir nicht so viel tippen müssen.
+ 53.     return ((feld[7] == sym and feld[8] == sym and feld[9] == sym) or # obere Zeile
+ 54.     (feld[4] == sym and feld[5] == sym and feld[6] == sym) or # mittlere Zeile
+ 55.     (feld[1] == sym and feld[2] == sym and feld[3] == sym) or # untere Zeile
+ 56.     (feld[7] == sym and feld[4] == sym and feld[1] == sym) or # die linke Seite hinunter
+ 57.     (feld[8] == sym and feld[5] == sym and feld[2] == sym) or # die Mitte hinunter
+ 58.     (feld[9] == sym and feld[6] == sym and feld[3] == sym) or # die rechte Seite hinunter
+ 59.     (feld[7] == sym and feld[5] == sym and feld[3] == sym) or # diagonal
+ 60.     (feld[9] == sym and feld[5] == sym and feld[1] == sym)) # diagonal
+ 61. 
+ 62. def fertigeSpielfeldkopieAn(spielfeld):
+ 63.     # Fertige eine Kopie des Spielfeldes an und gebe diese Kopie zurück.
+ 64.     spielfeldKopie = []
+ 65. 
+ 66.     for i in spielfeld:
+ 67.         spielfeldKopie.append(i)
+ 68.
+ 69.     return spielfeldKopie
+ 70.
+ 71. def istKästchenFrei(spielfeld, kästchen):
+ 72.     # Gibt True zurück, wenn das angegebene Kästchen auf dem angegebenen Spielfeld noch frei ist.
+ 73.     return spielfeld[kästchen] == ' '
+ 74.
+ 75. def macheSpielerZug(spielfeld):
+ 76.     # Lass den Spieler seinen Spielzug eingeben.
+ 77.     zug = ' '
+ 78.     while zug not in '1 2 3 4 5 6 7 8 9'.split() or not istKästchenFrei(spielfeld, int(zug)):
+ 79.         print('Wohin möchtest du setzen? (1-9)')
+ 80.         zug = input()
+ 81.     return int(zug)
+ 82.
+ 83. def wähleZufälligenZugAusListe(spielfeld, zugListe):
+ 84.     # Wählt einen machbaren Zug für das mitgegebene Spielfeld aus der mitgegebenen Liste aus und gibt ihn zurück.
+ 85.     # Gibt nichts (None) zurück, wenn es kein Zug gemacht werden kann.
+ 86.     möglicheZüge = []
+ 87.     for i in zugListe:
+ 88.         if istKästchenFrei(spielfeld, i):
+ 89.             möglicheZüge.append(i)
+ 90.
+ 91.     if len(möglicheZüge) != 0:
+ 92.         return random.choice(möglicheZüge)
+ 93.     else:
+ 94.         return None
+ 95.
+ 96. def macheComputerZug(spielfeld, computerSymbol):
+ 97.     # Ermittle für das mitgegebene Spielfeld einen Zug für den Computergegner und gebe diesen zurück.
+ 98.     if computerSymbol == 'X':
+ 99.         spielerSymbol = 'O'
+100.     else:
+101.         spielerSymbol = 'X'
+102.
+103.     # Dies ist der Algorithmus für unsere Tic Tac Toe-KI:
+104.     # Prüfe zu erst, ob das Spiel mit dem nächsten Zug gewonnen werden kann
+105.     for i in range(1, 10):
+106.         kopie = fertigeSpielfeldkopieAn(spielfeld)
+107.         if istKästchenFrei(kopie, i):
+108.             macheEinenZug(kopie, computerSymbol, i)
+109.             if hatGewonnen(kopie, computerSymbol):
+110.                 return i
+111.
+112.     # Prüfe ob der menschliche Spieler im nächsten Zug gewinnen könnte und blocke ihn.
+113.     for i in range(1, 10):
+114.         kopie = fertigeSpielfeldkopieAn(spielfeld)
+115.         if istKästchenFrei(kopie, i):
+116.             macheEinenZug(kopie, spielerSymbol, i)
+117.             if hatGewonnen(kopie, spielerSymbol):
+118.                 return i
+119.
+120.     # Versuche eine der Ecken zu übernehmen, falls diese noch frei sind.
+121.     zug = wähleZufälligenZugAusListe(spielfeld, [1, 3, 7, 9])
+122.     if zug != None:
+123.         return zug
+124.
+125.     # Setze auf das mittlere Feld, falls es noch frei ist.
+126.     if istKästchenFrei(spielfeld, 5):
+127.         return 5
+128.
+129.     # Setze auf eines der Seitenfelder.
+130.     return wähleZufälligenZugAusListe(spielfeld, [2, 4, 6, 8])
+131.
+132. def istSpielfeldVoll(spielfeld):
+133.     # Gibt True zurück, wenn alle Felder auf dem Spielfeld gesetzt wurden. Gibt False zurück, wenn dies nicht der Fall ist.
+134.     for i in range(1, 10):
+135.         if istKästchenFrei(spielfeld, i):
+136.             return False
+137.     return True
+138.
+139.
+140. print('Willkommen bei Tic Tac Toe!')
+141.
+142. while True:
+143.     # Setze das Spielfeld zurück
+144.     dasSpielfeld = [' '] * 10
+145.     spielerSymbol, computerSymbol = gibSpielersymbolEin()
+146.     amZug = werFängtAn()
+147.     print('Der ' + amZug + ' fängt an.')
+148.     spielLäuft = True
+149.
+150.     while spielLäuft:
+151.         if amZug == 'Spieler':
+152.             # Der menschliche Spieler ist dran.
+153.             zeichneSpielfeld(dasSpielfeld)
+154.             zug = macheSpielerZug(dasSpielfeld)
+155.             macheEinenZug(dasSpielfeld, spielerSymbol, zug)
+156.
+157.             if hatGewonnen(dasSpielfeld, spielerSymbol):
+158.                 zeichneSpielfeld(dasSpielfeld)
+159.                 print('Hurra! Du hast das Spiel gewonnen!')
+160.                 spielLäuft = False
+161.             else:
+162.                 if istSpielfeldVoll(dasSpielfeld):
+163.                     zeichneSpielfeld(dasSpielfeld)
+164.                     print('Das Spiel endet mit einem Unentschieden!')
+165.                     break
+166.                 else:
+167.                     amZug = 'Computer'
+168.
+169.         else:
+170.             # Der Computergegner ist dran.
+171.             zug = macheComputerZug(dasSpielfeld, computerSymbol)
+172.             macheEinenZug(dasSpielfeld, computerSymbol, zug)
+173.
+174.             if hatGewonnen(dasSpielfeld, computerSymbol):
+175.                 zeichneSpielfeld(dasSpielfeld)
+176.                 print('Der Computergegner hat dich besiegt! Du hast verloren.')
+177.                 spielLäuft = False
+178.             else:
+179.                 if istSpielfeldVoll(dasSpielfeld):
+180.                     zeichneSpielfeld(dasSpielfeld)
+181.                     print('Das Spiel endet mit einem Unentschieden!')
+182.                     break
+183.                 else:
+184.                     amZug = 'Spieler'
+185.
+186.     if not nochmalSpielen():
+187.         break
+
+Das Programm entwerfen
+
+Abbildung 10-1 zeigt, wie ein Flussdiagramm zu Tic Tac Toe aussehen könnte. Im Tic Tac Toe-Programm wählt der Spieler aus, ob er als X oder als O setzen möchte. Der Anfangsspieler wird zufällig ausgewählt. Anschließend machen der Spieler und der Computergegner abwechselnd ihre Züge.
+
+Die Kästchen auf der linken Seite des Flussdiagramms beschreiben, was während des Zugs des Spielers passiert. Die rechte Seite zeigt, was während des Zugs des Computergegners passiert. Nachdem der Spieler oder der Comptuer gesetzt haben, prüft das Programm ob jemand gewonnen hat oder ein Unentschieden vorliegt, danach ist der jeweils andere an der Reihe. Nachdem das Spiel vorbei ist, fragt das Programm den Spieler, ob er nochmal spielen möchte.
+
+Abbildung 10-1: Ablaufdiagramm für Tic Tac Toe
+
+Abbildung 10-2: Das Spielfeld ist durchnummeriert wie der Ziffernblock auf einer Tastatur.
+
+Das Spielfeld mit Daten abbilden
+
+Zunächst muss man herausfinden, wie man das Spielfeld durch Daten abbildet, die dann in eiener Variable gespeichert werden. Auf dem Papier wird das Spielfeld mit zwei horizontalen und zwei vertikalen Linien gezeichnet, in jedem der neun Felder befindet sich entweder ein X, ein O oder kein Symbol.
+
+Im Programm wird das Tic Tac Toe-Feld als eine Liste von Zeichenketten dargestellt. Jede Zeichenkette wird eines der neuen Felder des Spiels repräsentieren. Um die Zuordnung zwischen Indizes und Feldern zu erleichtern, sind sie wie auf dem Ziffernblock einer Tastatur angeordnet (siehe Abbildung 10-2).
+
+Die Zeichenketten enthalten entweder 'X' für den Spieler mit dem X, 'O' für den Spieler mit dem O, oder ein einzelnes Leerzeichen ' ' für ein freies Feld.
+
+Wenn nun eine Liste mit zehn Zeichenketten in einer Variable namens spielfeld gespeichert wird, dann steht spielfeld[7] für das Kästchen oben links auf dem Spielfeld. spielfeld[5] ist das mittlere Feld. spielfeld[4] repräsentiert das linke seitliche Feld und so weiter. Das Programm wird die Zeichenkette mit Index 0 in der Liste ignorieren. Der Spieler wird eine Zahl zwischen 1 und 9 eingeben, um dem Spiel zu sagen, wohin er setzen möchte.
+
+Die KI des Spiels
+
+Die KI muss in der Lage sein, einen Blick auf das Spielfeld zu werfen und dann zu entscheiden, wohin sie setzen möchte. Zu diesem Zweck teilen wir die Kästen auf dem Spielfeld in drei Typen ein: Eckfelder, Seitenfelder und die Mitte. Abbildung 10-3 zeigt, welcher Kategorie welches Kästchen zugeordnet ist.
+
+Abbildung 10-3: Lage der Seitenfelder, Eckfelder und der Mitte.
+
+Die Taktik der KI für Tic Tac Toe wird einem einfachen Algorithmus folgen. Ein Algorithmus ist eine endliche Menge von Anweisungen um ein bestimmtes Ergebnis zu berechnen. Ein einziges Programm kann viele verschiedene Algorithmen benutzen. Ein Algorithmus kann durch ein Ablaufdiagramm dargestellt werden. Der Algorithmus unserer Tic Tac Toe-KI wird den besten nächsten Zug berechnen, so wie in Abbildung 10-4 dargestellt.
+
+Der Algorithmus der KI wird aus den folgenden Schritten bestehen:
+
+1.  Zuerst wird geschaut, ob es einen Zug gibt, mit dem der Computer das Spiel gewinnen kann. Falls es so einen Zug gibt, wird dieser ausgeführt. Falls nicht, gehe zu Schritt 2.
+2.  Schaue ob es einen Zug gibt, den der Spieler machen kann, damit der Computer verliert. Falls es so einen Zug gibt, ziehe dorthin um den Spieler zu blockieren. Falls nicht, gehe zu Schritt 3.
+3.  Prüfe, ob eines der Eckfelder (Felder 1, 3, 7, oder 9) frei ist. Falls ja, setze dorthin. Falls kein Eckfeld frei ist, gehe zu Schritt 4.
+4.  Prüfe, ob die Mitte frei ist. Falls ja, setze dorthin. Falls nicht, gehe zu Schritt 5.
+5.  Setze auf eines der Seitenfelder /spaces 2, 4, 6, or 8). Es gibt keine weiteren Schritte, denn wenn die Ausführung des Algorithmus bei Schritt 5 angekommen ist, sind die Seitenfelder die einzigen freien Felder, die noch übrig sind.
+
+Dies alles findet statt während des "Mache den Computerzug"-Kastens im Ablaufdiagramm in Abbildung 10-1. Man kann diese Information dem Ablaufdiagramm mit den Kästchen in Abbildung 10-4 hinzufügen.
+
+Abbildung 10-4: Die fünf Schritte des "Mache den Computerzug"-Algorithmus. Der ausgehende Pfeil führt zum "Prüfe, ob der Computer gewonnen hat"-Kasten.
+
+Dieser Algorithmus ist in der Funktion macheComputerZug() sowie in den Funktionen die von macheComputerZug() aufgerufen werden implementiert.
+
+Der Anfang des Programms
+
+  1. # Tic Tac Toe
+  2.
+  3. import random
+
+Die ersten Zeilen bestehen aus einem Kommentar und dem Import-Befehl für das random-Modul, so dass du die randint()-Funktion aufrufen kannst.
+
+Das Spielfeld auf dem Bildschirm zeichnen
+
+  5. def zeichneSpielfeld(spielfeld):
+  6.     # Diese Funktion zeichnet das Spielfeld, das ihr übergeben wurde.
+  7.
+  8.     # "spielfeld" ist eine Liste von 10 Zeichenketten, die das Spielfeld repräsentieren (Index 0 wird ignoriert)
+  9.     print('   |   |')
+ 10.     print(' ' + spielfeld[7] + ' | ' + spielfeld[8] + ' | ' + spielfeld[9])
+ 11.     print('   |   |')
+ 12.     print('-----------')
+ 13.     print('   |   |')
+ 14.     print(' ' + spielfeld[4] + ' | ' + spielfeld[5] + ' | ' + spielfeld[6])
+ 15.     print('   |   |')
+ 16.     print('-----------')
+ 17.     print('   |   |')
+ 18.     print(' ' + spielfeld[1] + ' | ' + spielfeld[2] + ' | ' + spielfeld[3])
+ 19.     print('   |   |')
+
+Die Funktion zeichneSpielfeld() gibt das durch den angegebenen Parameter repräsentierte Spielfeld aus. Erinnere dich, dass das Spielfeld durch eine Liste von Zeichenketten dargestellt wird, wobei die Zeichenkette an Index 1 das Symbol in Kästchen 1 des Tic Tac Toe-Feldes hat und so weiter. Die Zeichenkette an Stelle 0 wird ignoriert. Viele der Spielfunktionen arbeiten mit einer Liste von zehn Zeichenketten als Spielfeld.
+
+Pass gut auf, dass du die Leerzeichen in den Zeichenketten übernimmst, sonst wird das auf dem Bildschirm ausgegebene Spielfeld ziemlich merkwürdig aussehen. Hier sind ein paar beispielhafte Aufrufe der Funktion zeichneSpielfeld() und ihrer Ausgabe:
+
+>>> zeichneSpielfeld([' ', ' ', ' ', ' ', 'X', 'O', ' ', 'X', ' ', 'O'])
+   |   |
+ X |   | O
+   |   |
+-----------
+   |   |
+ X | O |
+   |   |
+-----------
+   |   |
+   |   |
+   |   |
+>>> zeichneSpielfeld([' ', 'O', 'O', ' ', ' ', 'X', ' ', ' ', ' ', ' '])
+   |   |
+   |   |
+   |   |
+-----------
+   |   |
+   | X |
+   |   |
+-----------
+   |   |
+ O | O |
+   |   |
+>>> zeichneSpielfeld([' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '])
+   |   |
+   |   |
+   |   |
+-----------
+   |   |
+   |   |
+   |   |
+-----------
+   |   |
+   |   |
+   |   |
+
+Den Spieler ein Symbol aussuchen lassen
+
+ 21. def gibSpielersymbolEin():
+ 22.     # Lässt den Spieler eingeben, ob er als X oder als O spielen will.
+ 23.     # Gibt eine Liste zurück, die als erstes Element das Spielersymbol enthält und als zweites Element das Symbol für den Computergegner.
+ 24.     buchstabe = ''
+ 25.     while not (buchstabe == 'X' or buchstabe == 'O'):
+ 26.         print('Möchtest du als X oder als O spielen?')
+ 27.         buchstabe = input().upper()
+
+Die Funktion gibSpielersymbolEin() fragt den Spieler, ob er als X oder als O setzen will. Sie wird nicht aufhören zu fragen bis der Spieler ein X oder ein O eingibt. In Zeile 27 wird die Zeichenkette, die mit Hilfe von input() eingegeben wurde, in Großbuchstaben umgewandelt. Dies passiert durch den Aufruf der Zeichenkettenfunktion upper().
+
+Die Bedingung der while-Schleife ist in Klammern gesetzt, das bedeutet, dass der Ausdruck innerhalb der Klammern zu erst ausgewertet wird. Enthält die Variable buchstabe ein 'X', wird der Ausdruck wie folgt ausgewertet:
+
+not (buchstabe == 'X' or buchstabe == 'O')
+      ▼
+not ('X' == 'X'    or 'X' == 'O')
+      ▼
+not (   True       or    False)
+      ▼
+not (True)
+      ▼
+not True
+      ▼
+    False
+
+Wenn buchstabe den Wert 'X' oder den Wert 'O' besitzt, wird die Schleifenbedingung zu False ausgewertet und das Programm geht nach dem while-Block weiter.
+
+ 29.     # Das erste Element in der Liste ist das Symbol des Spielers, das zweite ist das Symbol des Computergegners.
+ 30.     if buchstabe == 'X':
+ 31.         return ['X', 'O']
+ 32.     else:
+ 33.         return ['O', 'X']
+ 
+Diese Funktion gibt eine Liste mit zwei Elementen zurück. Das erste Element (die Zeichenkette an Stelle 0) ist das Symbol des Spielers, das zweite Element (die Zeichenkette an Stelle 1) ist das Symbol des Computergegners. Diese if-else-Anweisungen wählen die passende Liste aus.
+
+Entscheiden, wer anfängt
+
+ 35. def werFängtAn():
+ 36.     # Wähle zufällig den Startspieler aus.
+ 37.     if random.randint(0, 1) == 0:
+ 38.         return 'Computer'
+ 39.     else:
+ 40.         return 'Spieler'
+ 
+Die Funktion werFängtAn() wirft eine virtuelle Münze um zu bestimmen, ob der Computer oder der Spieler anfängt. Der Befehl für den Münzwurf lautet random.randint(0,1). Wenn diese Funktion eine 0 zurückgibt, gibt die werFängtAn()-Funktion die Zeichenkette 'Computer' zurück. Im anderen Fall wird die Zeichenkette 'Spieler' zurückgegeben. Der Programmcode, der diese Funktion aufruft wird den zurückgegebenen Text verwenden um zu bestimmen, wer den ersten Zug machen darf.
+
+Den Spieler nach einer neuen Runde fragen
+
+ 42. def nochmalSpielen():
+ 43.     # Diese Funktion gibt True zurück, wenn der Spieler nochmal spielen will. Wenn nicht, gibt sie False zurück.
+ 44.     print('Möchtest du nochmal spielen? (ja oder nein)')
+ 45.     return input().lower().startswith('j')
+
+Die Funktion nochmalSpielen() fragt den Spieler ob er eine weitere Runde Tic Tac Toe spielen möchte. Die Funktion gibt True zurück, falls der Spieler 'ja', 'JA', 'j' oder irgendetwas mit einem J am Anfang eingibt. Jede andere Antwort wird als False gewertet. Diese Funktion ist identisch mit der gleichnamigen Funktion im Galgenraten-Spiel.
+
+Ein Symbol auf das Spielfeld setzen
+
+ 47. def macheEinenZug(spielfeld, symbol, zug):
+ 48.     spielfeld[zug] = symbol
+
+Die Funktion macheEinenZug() ist einfach und besteht nur aus einer einzigen Zeile. Übergeben werden eine Liste mit zehn Zeichenketten namens spielfeld, das Symbol des Spielers (entweder 'X' oder 'O') als Variable symbol, und der Platz auf dem Spielfeld auf den der Spieler setzen möchte (eine Integer-Zahl zwischen 1 und 9), genannt zug.
+
+Moment mal. Dieser Code scheint eines der Elemente in der Spielfeld-Liste auf den Wert von symbol zu setzen. Da dies in einer Funktion aufgerufen wird, wird der spielfeld-Parameter aber wieder vergessen werden, wenn der Funktionsaufruf endet. Sollte dann die Änderung des Spielfelds nicht auch verloren sein?
+
+Tatsächlich ist dies hier nicht der Fall, und zwar weil Listen besonders behandelt werden, wenn sie einer Funktion übergeben werden. Genauer gesagt wird hier nur eine Referenz (ein Verweis) auf die Liste übergeben anstatt der Liste selbst. Lass uns mehr über den Unterschied zwischen Listen und Referenzen auf Listen lernen.
