@@ -22,15 +22,15 @@ Jeśli wprowadzisz zły kod, to komputer nie da co prawidłowego programu. Progr
 •   Błędy czasu wykonanie (ang. Runtime Errors) są błędami które zachodzą w czasie pracy programu. Program będzie pracował do czasu, aż napotka linię kody z błędem, a wtedy program zakończy się z komunikatem o błędzie (nazywamy to padem, ang. crashing). Interpreter Pythona wyświetli stos wywołań zwany z angielska “traceback” and pokaże linię w której wystąpił problem.
 •   Błędy semantyczne (ang. Semantic Errors) są najtrudniejsze do naprawienia. Te błędy nie powodują padu programu, ale program robi co innego niż chciał programista. Przykładowo programista chce, by zmienna total była sumą wartości w zmiennych a, b i c, ale zamiast napisał total = a * b * c, co sprawi, że wartość w total będzie nieprawidłowa. To może doprowadzić do padu programu w przyszłości, ale na pierwszy rzut oka błąd semantyczny nie jest oczywisty.
 
-Znalezienie błędu w programie może być trudne, o ile w ogóle go zauważysz! Kiedy uruchamiasz swój program, możesz odkryć, że czasem funkcje nie są wywoływane kiedy się tego spodziewasz, albo są wywoływane zbyt wiele razy. Mogłeś podać zły warunek w pętli while, więc wykona się ona nie tyle razy, ile zamierzałeś. Pętla z której nie ma wyjścia jest znanan pod nazwą nieskonczonej pętli (ang. infinite loop). Aby zatrzymać ten program możesz w interaktywnej powłoce nacisnąć Ctrl-C. Any of these things could mistakenly happen in your code if you are not careful.
+Znalezienie błędu w programie może być trudne, o ile w ogóle go zauważysz! Kiedy uruchamiasz swój program, możesz odkryć, że czasem funkcje nie są wywoływane kiedy się tego spodziewasz, albo są wywoływane zbyt wiele razy. Mogłeś podać zły warunek w pętli while, więc wykona się ona nie tyle razy, ile zamierzałeś. Pętla z której nie ma wyjścia jest znanan pod nazwą nieskonczonej pętli (ang. infinite loop). Aby zatrzymać ten program możesz w interaktywnej powłoce nacisnąć Ctrl-C. Każda z tych rzeczy może przez pomyłkę znaleźć się w twoim kodzie jeśli nie będziesz uważny.
 
-In fact, from the interactive shell, go ahead and create an infinite loop by typing this code in (you have to press ENTER twice to let the interactive shell know you are done typing in the while-block:
+Sprawdźmy tworzenie nieskończonej pętli w interaktywnej powłoce przez wpisane poniższego kodu (musisz dwukrotnie nacisnąć ENTER, aby dać znać interaktywnej powłoce, że zakończyłeś wpisywanie bloku while):
 
 >>> while True:
 ...     print('Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!')
 ...
 
-Now press and hold down the Ctrl key and press the C key to stop the program. The interactive shell will look like this:
+Teraz wciśnij i przytrzymaj klawisz Ctrl i jednocześnie wciśnij C, by zatrzymać program. Interaktywna powłoka będzie wyglądała tak:
 
 Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!
 Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!
@@ -42,19 +42,19 @@ Traceback (most recent call last):
     while True: print('Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!')
 KeyboardInterrupt
 
-The Debugger
+Odpluskwiacz (ang. debugger)
 
-It can be hard to figure out how your code could be causing a bug.  The lines of code get executed quickly and the values in variables change so often. A debugger is a program that lets you step through your code one line at a time in the same order that Python executes them. The debugger also shows you what values are stored in variables at each step.
+Znalezienie kodu który powoduje błąd może być bardzo trudne. Linie kodu wykonują się szybko a wartości w zmiennych często ulegają zmianom. Odpluskiwacz jest programem który pozwala na krokowe wykonywanie programu linia po linii w takiej samej kolejności jak robi to Python. Odpluskwiacz na każdym kroku pokazuje także wartości zmiennych.
 
-Starting the Debugger
+Uruchomienie odpluskwiacza
 
-In IDLE, open the Dragon Realm game you made in the last chapter. After opening the dragon.py file, click on the Debug ► Debugger to make the Debug Control window appear (Figure 7-1).
+W IDLE, otwórz grę Królestwo smoków którą stworzyłeś w ostatnim rozdziale. Po otwarciu pliku dragon.py, kliknij na Debug ► Debugger aby pojawiło się okno Debug Control (Rysunek 7-1).
 
-Figure 7-1: The Debug Control window.
+Rysunek 7-1: Okno Debug Control.
 
-Figure 7-2: Running the Dragon Realm game under the debugger.
+Rysunek 7-2: uruchomienie Królestwa smoków w odpluskwiaczu.
 
-Now when you run the Dragon Realm game by pressing F5, IDLE’s debugger will activate. This is called running a program “under a debugger”. In the Debug Control window, check the Source and Globals checkboxes.
+Kiedy uruchomisz Królestwo smoków przez naciśnięcie F5, odpluswiacz IDLE zostanie uaktywniony. Nazywamy to uruchomieniem programu “w odpluskwiaczu” (czasem mówimy "w debuggerze"). W oknie Debug Control, sprawdź checkboksy Source i Globals.
 
 When you run Python programs under the debugger, the program will stop before it executes the first instruction. If you click on the file editor window's title bar (and you’ve checked the Source checkbox in the Debug Control window), the first instruction is highlighted in gray. The Debug Control window shows the execution is on line 1, which is the import random line.
 
@@ -95,9 +95,9 @@ To terminate the program entirely, just click the Quit button at the top of the 
 
 Stepping Into, Over, and Out
 
-Start the Dragon Realm program with the debugger. Keep stepping until the debugger is at line 38. As shown in Figure 7-3, this is the line with displayIntro(). When you click Step again, the debugger will jump into this function call and appear on line 5, the first line in the displayIntro() function. The kind of stepping you have been doing is called stepping into. This is different from stepping over, explained next.
+Start the Dragon Realm program with the debugger. Keep stepping until the debugger is at line 38. As shown in Rysunek 7-3, this is the line with displayIntro(). When you click Step again, the debugger will jump into this function call and appear on line 5, the first line in the displayIntro() function. The kind of stepping you have been doing is called stepping into. This is different from stepping over, explained next.
 
-Figure 7-3: Keep stepping until you reach line 38.
+Rysunek 7-3: Keep stepping until you reach line 38.
 
 When the execution is paused at line 5, clicking Step one more time will step into the print() function. The print() function is one of Python’s built-in functions, so it isn’t useful to step through with the debugger. Python’s own functions such as print(), input(), str(), or random.randint() have been carefully checked for errors. You can assume they’re not the parts causing bugs in your program.
 
@@ -165,9 +165,9 @@ Next time, you can click Over to step over the randint() function instead of ste
 
 Line 4 is a print() call to show the player the random numbers. You know what numbers the program will print even before it prints them! Just look at the Globals area of the Debug Control window. You can see the number1 and number2 variables, and next to them are the integer values stored in those variables.
 
-The number1 variable has the value 4 and the number2 variable has the value 8. When you click Step, the program will display the string in the print() call with these values. The str() function will concatenate the string version of these integers. When I ran the debugger, it looked like Figure 7-4. (Your random numbers will probably be different.)
+The number1 variable has the value 4 and the number2 variable has the value 8. When you click Step, the program will display the string in the print() call with these values. The str() function will concatenate the string version of these integers. When I ran the debugger, it looked like Rysunek 7-4. (Your random numbers will probably be different.)
 
-Figure 7-4: number1 is set to 4 and number2 is set to 8.
+Rysunek 7-4: number1 is set to 4 and number2 is set to 8.
 
 5. heads = 0
 
@@ -201,7 +201,7 @@ When execution reaches that line, the debugger will “break into the debugger�
 
 To set a break point, right-click on the line in the file editor and select Set Breakpoint from the menu that appears. The file editor will highlight that line with yellow. You can set break points on as many lines as you want. To remove the break point, click on the line and select Clear Breakpoint from the menu that appears.
 
-Figure 7-5: The file editor with two break points set.
+Rysunek 7-5: The file editor with two break points set.
 
 Example Using Break Points
 
@@ -236,9 +236,9 @@ The program runs pretty fast. It spent more time waiting for the user to press E
 
 The program starts in the debugger on line 1. Press Step three times in the Debug Control window to execute the first three lines (that is, lines 1, 2, and 3). You’ll notice the buttons become disabled because input() was called and the interactive shell window is waiting for the user to type something. Click on the interactive shell window and press ENTER. (Be sure to click beneath the text in the interactive shell window, otherwise IDLE might not receive your keystrokes.)
 
-You can click Step a few more times, but you’ll find that it would take quite a while to get through the entire program. Instead, set a break point on lines 12, 14, and 16. The file editor will highlight these lines as shown in Figure 7-6.
+You can click Step a few more times, but you’ll find that it would take quite a while to get through the entire program. Instead, set a break point on lines 12, 14, and 16. The file editor will highlight these lines as shown in Rysunek 7-6.
 
-Figure 7-6: Three break points set.
+Rysunek 7-6: Three break points set.
 
 After setting the breakpoints, click Go in the Debug Control window. The program will run at normal speed until it reaches the next break point. When flip is set to 100, the condition for the if statement on line 13 is True. This causes line 14 (where there’s a break point set) to execute, which tells the debugger to stop the program and take over. Look at the Debug Control window in the Globals section to see what the value of flips and heads are.
 

@@ -2,6 +2,7 @@ Python, odmieniamy: Pythona, Pythonem, Pythonie itd
 
 backslash, odwrócony ukośnik
 click, kliknij
+debugger, odpluskiwacz
 download, pobranie
 Evaluation, Obliczanie, wyliczanie
 expression, wyrażenie
