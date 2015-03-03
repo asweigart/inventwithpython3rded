@@ -5,24 +5,24 @@ In diesem Kapitel behandelte Themen:
 
 •   3 unterschiedliche Fehlertypen
 •   Der IDLE-Debugger
-•   [Stepping: Into, Over und Out]
+•   Hineinschalten, Hinüberschalten und Herausschalten
 •   Go und Quit
-•   Breakpoints
+•   Unterbrechungspunkte
 
 Bugs!
 
 "Zu zwei Gelegenheiten wurde ich gefragt: 'Sagen Sie, Mr. Babbage, wenn Sie der Maschine die falschen Zahlen füttern, spuckt sie dann die richtige Antwort aus?' Ich bin nicht in der Lage, die Verwirrung zu begreifen, die so eine Frage verursacht."
 -Charles Babbage, Begründer des Konzepts des programmierbaren Computers im 19. Jahrhundert
 
-Wenn du einen falschen Befehl eingibst, gibt dir der Computer nicht das richtige Programm aus. Ein Computerprogramm tut immer, was du ihm befiehlst, aber was das Programm tut ist nicht unbedingt was du wolltest. Computerprogramme können Fehler haben. Bugs treten dann auf, wenn der Programmierer nicht vorsichtig darüber nachgedacht hat, was das Programm genau macht. Es gibt drei Fehlertypen, die in deinem Programm auftreten können:
+Wenn du einen falschen Befehl eingibst, gibt dir der Computer nicht das richtige Programm aus. Ein Computerprogramm tut immer, was du ihm befiehlst, aber was das Programm tut ist nicht unbedingt das, was du wolltest. Computerprogramme können Fehler haben - auch Bugs genannt. Bugs treten dann auf, wenn der Programmierer nicht vorsichtig darüber nachgedacht hat, was das Programm genau macht. Es gibt drei Fehlertypen, die in deinem Programm auftreten können:
 
 •   Syntaxfehler sind ein Fehlertyp, der durch Rechtschreibfehler entsteht. Wenn der [Python-Interpreter] einen Syntaxfehler sieht, liegt es daran, dass dein Code nicht in der korrekten Python-Sprache geschrieben ist. Ein einziger Syntaxfehler genügt, um zu verhindern, dass ein Python-Programm ausgeführt wird.
 •   [Laufzeitfehler] sind Bugs die auftreten, während das Programm läuft. Das Programm läuft bis zu der Zeile im Code, die den Fehler enthält, und beendet sich dann mit einer Fehlermeldung (das nennt man einen Absturz). Der Python-Interpreter zeigt eine Ablaufmeldung mit der Zeile an, in der das Problem auftritt.
 •   Semantische Fehler sind am schwierigsten zu beheben. Diese Bugs lassen ein Programm nicht abstürzen, aber es tut trotzdem nicht, was der Programmierer will. Wenn ein Programmierer zum Beispiel will, dass die Variable total die Summe der Werte der Variablen a, b und c enthält, aber in den code total = a * b * c schreibt, ist der Wert in total falsch. Das könnte später das Programm zum Absturz bringen, aber es ist nicht sofort offensichtlich, wo der semantische But auftritt.
 
-Bugs in einem Programm zu finden kann schwierig sein, wenn man sie überhaupt bemerkt! Wenn du dein Programm laufen lässt, fällt dir vielleicht auf, dass Funktionen nicht aufgerufen werden, wenn sie sollten, oder vielleicht werden sie zu oft aufgerufen. Du könntest die Bedingung eines while-Loops falsch schreiben, so dass der Loop die falsche Anzahl von Durchläufen macht. (Ein Loop in einem Programm, der nie zu Ende geht, wird auch "infinite loop" oder unendlicher Loop genannt. Um so ein Programm zu beenden, kannst du in der interaktiven Shell Strg+C drücken.) Das sind alles Fehler, die in deinem Code auftreten können, wenn du nicht aufpasst.
+Bugs in einem Programm zu finden kann schwierig sein, wenn man sie überhaupt bemerkt! Wenn du dein Programm laufen lässt, fällt dir vielleicht auf, dass Funktionen nicht aufgerufen werden, wenn sie sollten, oder vielleicht werden sie zu oft aufgerufen. Du könntest die Bedingung eines while-Loops falsch schreiben, so dass der Loop die falsche Anzahl von Durchläufen macht. (Ein Loop in einem Programm, der nie zu Ende geht, wird auch "infinite loop" oder unendlicher Loop genannt. Um so ein Programm zu beenden, kannst du in der interaktiven [Konsole] Strg+C drücken.) Das sind alles Fehler, die in deinem Code auftreten können, wenn du nicht vorsichtig bist.
 
-Geh einfach mal in die interaktive Shell und programmiere einen undendlichen Loop, indem du diesen Code eingibst (du musst zweimal EINGABE drücken, damit die Shell weiß, dass du mit der Eingabe im while-Block fertig bist):
+Geh einfach mal in die interaktive [Konsole] und programmiere einen undendlichen Loop, indem du diesen Code eingibst (du musst zweimal EINGABE drücken, damit die Shell weiß, dass du mit der Eingabe im while-Block fertig bist):
 
 >>> while True:
 ...		print('Drücke Strg-C, um diesen unendlichen Loop abzubrechen!!!')
@@ -46,13 +46,13 @@ Es kann schwierig sein, herauszufinden, wie dein Code einen Bug verursachen kön
 
 Den Debugger starten
 
-Öffne das [Dragon Realm]-Spiel, das du im letzten Kapitel geschrieben hast, in IDLE. Nachdem du die [dragon.py]-Datei geöffnet hast, klicke im Debug-Menü auf Debugger, um das Debug-Kontrollfenster aufzurufen (Abbildung 7-1).
+Öffne das Drachenreich-Spiel, das du im letzten Kapitel geschrieben hast, in IDLE. Nachdem du die [drachen.py]-Datei geöffnet hast, wähle das Konsolen-Fenster auf und klicke im Debug-Menü auf Debugger, um das Debug-Kontrollfenster aufzurufen (Abbildung 7-1).
 
 Abbildung 7-1: Das Debug-Kontrollfenster.
 
-Abbildung 7-2: Das [Dragon Realm]-Spiel im Debugger laufen lassen.
+Abbildung 7-2: Das Drachen-Reich-Spiel im Debugger laufen lassen.
 
-Wenn du das [Dragon Realm]-Spiel jetzt mit F5 startest, aktiviert sich der IDLE-Debugger. Das nennt man ein Programm "im Debugger" laufen lassen. Klicke die [Source-] und [Globals-]-Kontrollkästchen im Debug-Kontrollfenster an.
+Wenn du das Drachen-Reich-Spiel jetzt mit F5 startest, aktiviert sich der IDLE-Debugger. Das nennt man ein Programm "im Debugger" laufen lassen. Klicke die [Source-] und [Globals-]-Kontrollkästchen im Debug-Kontrollfenster an.
 
 Wenn du Python-Programme im Debugger laufen lässt, stoppt das Programm, bevor es die erste Anweisung ausführt. Wenn du auf die Fensterleiste des [Dateieditors]klickst (und im Debug-Kontrollfenster die [Source-] und [Globals-]-Kontrollkästchen aktiviert hast), ist die erste Anweisung grau hinterlegt. Das Debug-Kontrollfenster zeigt, dass die Ausführung auf Zeile 1 steht, die in diesem Fall random importiert.
 
@@ -60,18 +60,18 @@ Stepping
 
 Der Debugger erlaubt es dir, eine Anweisung nach der anderen auszuführen. Das wird Stepping genannt. Klicke auf den [Step]-Button, um eine einzelne Anweisung auszuführen. Python führt jetzt die Anweisung aus, random zu importieren, und hält dann wieder an, bevor die nächste Anweisung ausgeführt wird. Das Debug-Kontrollfenster zeigt jetzt, dass die Ausführung auf Zeile 2 steht, in der time importiert wird. Klicke auf den [Quit]-Button, um das Programm für den Augenblick zu beenden.
 
-Hier ist eine Zusammenfassung dessen, was passiert, wenn du auf den [Step]-Button klickst, während das [Dragon Realm]-Spiel im Debugger läuft. Drücke F5, um [Dragon Realm] neu zu starten und befolge diese Anweisungen:
+Hier ist eine Zusammenfassung dessen, was passiert, wenn du auf den [Step]-Button klickst, während das Drachen-Reich-Spiel im Debugger läuft. Drücke F5, um Drachen-Reich neu zu starten und befolge diese Anweisungen:
 
 1.	Klicke den [Step]-Button zweimal, um die beiden import-Zeilen auszuführen.
 2.	Klicke den [Step]-Button dreimal, um die drei def-Statements auszuführen.
-3. 	Klicke den [Step]-Button nochmal, um die playAgain-Variable zu definieren.
+3. 	Klicke den [Step]-Button nochmal, um die spieleNochEinmal-Variable zu definieren.
 4.	Klicke [Go], um den Rest des Programms auszuführen, oder klicke [Quit], um das Programm zu beenden.
 
 Das Debug-Kontrollfenster zeigt dir, welche Zeile gleich ausgeführt wird, wenn du den [Step]-Button im Debug-Kontrollfenster klickst. Der Debugger hat Zeile 3 übersprungen, weil sie leer ist. Beachte, dass du im Debugger nur vorwärts gehen kannst, du kannst nicht zurück gehen.
 
 Globals-Bereich
 
-Der Globals-Bereich im Debug-Kontrollfenster zeigt alle globalen Variablen an. Wie du dich bestimmt erinnerst, sind globale Variablen jene Variablen, die außerhalb von Funktionen definiert werden (also im globalen Geltungsbereich[Scope]).
+Der Globals-Bereich im Debug-Kontrollfenster zeigt alle globalen Variablen an. Wie du dich bestimmt erinnerst, sind globale Variablen jene Variablen, die außerhalb von Funktionen definiert werden (also im globalen Geltungsbereich).
 
 Wenn die drei def-Statements ausgeführt werden, tauchen sie im Globals-Bereich des Debug-Kontrollfenster auf.
 
@@ -79,7 +79,7 @@ Der Text neben den Funktionsnamen im Globals-Bereich wird etwa so aussehen: "<fu
 
 Die Zeilen mit __builtins__, __doc__ und __name__ im Globals-Bereich kannst du ebenfalls ignorieren. (Das sind Variablen, die in jedem Python-Programm enthalten sind.)
 
-Wenn die [playAgain]-Variable definiert wird, erscheint sie im Globals-Bereich. Neben dem Variablennamen steht dann der [String] 'yes'. Der Debugger zeigt dir die Werte aller Variablen im Programm, während es läuft. Das ist nützlich, um Bugs zu beheben.
+Wenn die spieleNochEinmal-Variable definiert wird, erscheint sie im Globals-Bereich. Neben dem Variablennamen steht dann der [String] 'ja'. Der Debugger zeigt dir die Werte aller Variablen im Programm, während es läuft. Das ist nützlich, um Bugs zu beheben.
 
 Locals-Bereich
 
@@ -93,29 +93,29 @@ Um das Programm ganz zu beenden, kannst du einfach den [Quit]-Button oben im Deb
 
 [Stepping Into, Over und Out] [Hineinschalten, Hinüberschalten und Herausschalten?]
 
-Starte das [Dragon-Realm]-Spiel im Debugger. Klicke dich mit dem [Step]-Button durch das Programm, bis du Zeile 38 erreichst. Wie du in Abbildung 7-3 siehst, ist das die Zeile mit displayIntro(). Wenn du wieder auf [Step] klickst, springt der Debugger in diesen Funktionsaufruf und erscheint auf Zeile 5, der ersten Zeile der displayIntro()-Funktion. Die Art von Stepping, die du gemacht hast, nennt sich "Stepping into". Das ist nicht das gleiche wie "Stepping over", das unten erklärt wird.
+Starte das Drachen-Reich-Spiel im Debugger. Klicke dich mit dem [Step]-Button durch das Programm, bis du Zeile 38 erreichst. Wie du in Abbildung 7-3 siehst, ist das die Zeile mit zeigeEinfuehrung(). Wenn du wieder auf [Step] klickst, springt der Debugger in diesen Funktionsaufruf und erscheint auf Zeile 5, der ersten Zeile der zeigeEinfuehrung()-Funktion. Die Art von Stepping, die du gemacht hast, nennt sich "Hineinschalten" oder "Stepping into". Das ist nicht das gleiche wie "Hinüberschalten" oder "Stepping over", das unten erklärt wird.
 
-Abbildung 7-3: "Steppe" weiter, bis du Zeile 38 erreichst.
+Abbildung 7-3: "Schalte" weiter, bis du Zeile 38 erreichst.
 
-Wenn der Debugger auf Zeile 5 steht und du noch einmal auf den [Step]-Button klickst, [stept]/[schaltest] du in die print()-Funktion hinein. Die print()-Funktion ist eine in Python enthaltene Funktion, es ist also nicht sinnvoll, mit dem Debugger [darüberzuschalten]. In Python enthaltene Funktionen wie print(), input(), str() oder random.randint() wurden bereits sorgfältig auf Fehler überprüft. Du kannst davon ausgehen, dass sie in deinem Programm keine Fehler verursachen.
+Wenn der Debugger auf Zeile 5 steht und du noch einmal auf den [Step]-Button klickst, schaltest du in die print()-Funktion hinein. Die print()-Funktion ist eine in Python enthaltene Funktion, es ist also nicht sinnvoll, mit dem Debugger [darüberzuschalten]. In Python enthaltene Funktionen wie print(), input(), str() oder random.randint() wurden bereits sorgfältig auf Fehler überprüft. Du kannst davon ausgehen, dass sie in deinem Programm keine Fehler verursachen.
 
 Du solltest also keine Zeit darauf verwenden, die interne Logik der print()-Funktion durchzuschalten. Anstatt auf [Step] zu klicken und dich durch den Code der print()-Funktion zu schalten, kannst du in diesem Fall auf [Over] klicken. Das schaltet über den Code der print()-Funktion hinaus. Der Code in der print()-Funktion wird mit normaler Geschwindigkeit ausgeführt, und der Debugger pausiert wieder, wenn die Ausführung von print() abgeschlossen ist.
 
-[Hinüberschalten] ist eine praktische Art, das Durchschalten von Code in einer Funktion zu umgehen. Der Debugger pausiert jetzt auf Zeile 40, caveNumber = chooseCave().
+[Hinüberschalten] ist eine praktische Art, das Durchschalten von Code in einer Funktion zu umgehen. Der Debugger pausiert jetzt auf Zeile 40, hoehlenNummer = sucheHoehleAus().
 
-Klicke nochmal auf [Step], um in die chooseCave()-Funktion [hineinzuschalten]. [Schalte weiter] durch den Code, bis du Zeile 15 erreicht hast: Den input()-Aufruf. Das Programm wartet jetzt auf eine Eingabe in der interaktiven [Konsole], genau so, als ob du das Programm normal ausführen würdest. Wenn du jetzt auf den [Step]-Button klickst, passiert nichts, weil das Programm auf eine Tastatureingabe wartet. 
+Klicke nochmal auf [Step], um in die sucheHoehleAus()-Funktion [hineinzuschalten]. [Schalte weiter] durch den Code, bis du Zeile 15 erreicht hast: Den input()-Aufruf. Das Programm wartet jetzt auf eine Eingabe in der interaktiven [Konsole], genau so, als ob du das Programm normal ausführen würdest. Wenn du jetzt auf den [Step]-Button klickst, passiert nichts, weil das Programm auf eine Tastatureingabe wartet. 
 
 Wechsle ins Fenster mit der interaktiven Konsole und gib ein, welche Höhle du betreten willst. Der blinkende Cursor muss auf der untersten Zeile sein, bevor du eine Eingabe machen kannst. Sonst erscheint deine Eingabe nicht.
 
 Wenn du EINGABE drückst, fährt der Debugger mit dem Durchschalten durch die Codezeilen fort. Klicke den [Out]-Button im Kontrollfenster des Debuggers. Das nennt man [Herausschalten], weil es dem Debugger sagt, er soll so viele Zeilen wie nötig überspringen, bis die Ausführung der Funktion, in der er sich befindet, beendet ist. Ist das geschehen, fährt die Ausführung auf der Zeile nach dem Aufruf der Funktion fort.
 
-Wenn du zum Beispiel innerhalb der displayIntro()-Funktion in Zeile 6 [Out] klickst, schaltet der Debugger durch die Funktion, bis die Ausführung zur die Zeile nach dem Aufruf von displayIntro() zurückkehrt. Das [Herausschalten] kann es dir ersparen, wiederholt [Step] zu klicken, um aus einer Funktion herauszuspringen. 
+Wenn du zum Beispiel innerhalb der zeigeEinfuehrung()-Funktion in Zeile 6 [Out] klickst, schaltet der Debugger durch die Funktion, bis die Ausführung zur die Zeile nach dem Aufruf von zeigeEinfuehrung() zurückkehrt. Das [Herausschalten] kann es dir ersparen, wiederholt [Step] zu klicken, um aus einer Funktion herauszuspringen. 
 
 Wenn du dich nicht in einer Funktion befindest, führt ein Klick auf [Out] dazu, dass der Debugger die restlichen Zeilen des Programmcodes ausführt. Das ist das gleiche Verhalten wie bei einem Klick auf den [Go]-Button.
 
 Hier eine kurze Zusammenfassung dessen, was jeder dieser Buttons tut:
 
-•   [Go] - Führt den Rest des Codes normal aus, entweder bis zum Ende des Programms oder bis ein [Anhaltepunkt] erreicht wird. ([Anhaltepunkte] werden später besprochen.)
+•   [Go] - Führt den Rest des Codes normal aus, entweder bis zum Ende des Programms oder bis ein [Unterbrechungspunkt] erreicht wird. ([Unterbrechungspunkte] werden später besprochen.)
 •   [Step] - Schaltet eine Anweisung weiter. Wenn die Zeile einen Funktionsaufruf enthält, schaltet der Debugger in die Funktion hinein.
 •   [Over] - Schaltet eine Anweisung weiter. Wenn die Zeile einen Funktionsaufruf enthält, schaltet der Debugger nicht in die Funktion hinein, sondern überspringt ihn.
 •   [Out] - Schaltet durch Codezeilen, bis der Debugger die Funktion verlassen hat, in der [Out] geklickt wurde. Schaltet aus der Funktion heraus.
@@ -128,14 +128,14 @@ Der Debugger kann dir dabei helfen, die Ursache von Bugs in deinen Programmen zu
 buggy.py
 
 1. import random
-2. number1 = random.randint(1, 10)
-3. number2 = random.randint(1, 10)
-4. print('Wieviel ist ' + str(number1) + ' + ' + str(number2) + '?')
-5. answer = input()
-6. if answer == number1 + number2:
+2. nummer1 = random.randint(1, 10)
+3. nummer2 = random.randint(1, 10)
+4. print('Wieviel ist ' + str(nummer1) + ' + ' + str(nummer2) + '?')
+5. antwort = input()
+6. if antwort == nummer1 + nummer2:
 7.     print('Richtig!')
 8. else:
-9.     print('Nein! Die Antwort ist ' + str(number1 + number2))
+9.     print('Nein! Die Antwort ist ' + str(nummer1 + nummer2))
 
 Tippe das Programm so ab wie oben, auch wenn du bereits weißt, wo der Fehler liegt. Versuche dann, das Programm mit F5 auszufühen. Es ist eine simple arithmetische Frage, die zwei Zufallszahlen generiert, die du addieren musst. So könnte es aussehen, wenn du das Programm ausführst:
 
@@ -145,45 +145,45 @@ Falsch! Die Antwort ist 6
 
 Das ist ein Bug! Das Programm stürzt zwar nicht ab, arbeitet aber auch nicht richtig. Das Programm sagt, die Antwort sei falsch, auch wenn du die richtige Zahl eingibst.
 
-Das Programm im Debugger auszuführen, hilft dir dabei, die Ursache des Bugs zu finden. Klikce oben im Fenster der interaktiven [Shell] auf Debug ► Debugger, um das Debug-Kontrollfenster anzuzeigen. Im Debug-Kontrollfenster wählst du alle vier Checkboxen ([Stack], [Source], [Locals] und [Globals]) aus. Damit zeigt dir das Debug-Kontrollfenster die meisten Informationen an. Dann wechsle ins Dateieditor-Fenster und drücke F5, um das PRogramm auszuführen. Aber dieses Mal läuft es im Debugger.
+Das Programm im Debugger auszuführen, hilft dir dabei, die Ursache des Bugs zu finden. Klikce oben im Fenster der interaktiven [Konsole] auf Debug ► Debugger, um das Debug-Kontrollfenster anzuzeigen. Im Debug-Kontrollfenster wählst du alle vier Checkboxen ([Stack], [Source], [Locals] und [Globals]) aus. Damit zeigt dir das Debug-Kontrollfenster die meisten Informationen an. Dann wechsle ins Dateieditor-Fenster und drücke F5, um das PRogramm auszuführen. Aber dieses Mal läuft es im Debugger.
 
 1. import random
 
 Der Debogger beginnt auf der Zeile mit import random. Hier passiert nichts besonderes, darum kannst du einfach [Step] klicken, um sie auszuführen. Danach siehst du, wie das random-Modul dem [Globals]-Bereich hinzugefügt wurde.
 
-2. number1 = random.randint(1,10)
+2. nummer1 = random.randint(1,10)
 
 Klicke erneut auf [Step], um Zeile 2 auszuführen. Ein neues Dateieditorfenster mit der Datei random.py öffnet sich. Du hast in de randint()-Funktion im Random-Modul hineingeschaltet. Die in Python eingebauten Funktionen sind nicht die Quelle deiner Bugs, also klicke auf [Out], um aus der randint()-Funktion herauszuschalten und zu deinem Programm zurückzukehren und schliesse das Fenster mit der random.py-Datei.
 
-3. number = random.randint(1,10)
+3. nummer2 = random.randint(1,10)
 
-Das nächste mal kannst du auf [Over] klicken, um über die randint()-Funktion hinwegzuschalten anstatt hinein. Zeile 3 ist auch ein Aufrauf der randint()-Funktion. Überspringe das Hineinschalten in deren Code, indem du auf [Over] klickst.
+Das nächste Mal kannst du auf [Over] klicken, um über die randint()-Funktion hinweg anstatt hineinzuschalten. Zeile 3 ist auch ein Aufrauf der randint()-Funktion. Überspringe das Hineinschalten in deren Code, indem du auf [Over] klickst.
 
-4. print('Wieviel ist ' + str(number1) + ' + ' + str(number2) + '?')
+4. print('Wieviel ist ' + str(nummer1) + ' + ' + str(nummer2) + '?')
 
-Zeile 4 ist ein Aufruf der print()-Funktion, um den Spieler die Zufalszahlen zu zeigen. Du siehst die Zahlen, die das Programm ausgeben wird, schon im Voraus! Wirf einfach einen Blick auf den [Globals]-Bereich im Debug-Kontrollfenster. Dort siehst du die Variablen [number1] und [number2] zusammen mit den Werten, die darin gespeichert werden. 
+Zeile 4 ist ein Aufruf der print()-Funktion, um den Spieler die Zufalszahlen zu zeigen. Du siehst die Zahlen, die das Programm ausgeben wird, schon im Voraus! Wirf einfach einen Blick auf den [Globals]-Bereich im Debug-Kontrollfenster. Dort siehst du die Variablen [nummer1] und [nummer2] zusammen mit den Werten, die darin gespeichert werden. 
 
-In unserem Beispiel hat die Variable [number1] den Wert 4 und die Varialbe [number2] hat den Wert 8. Wenn du [Step] klickst, zeigt dir das Programm den String im print()-Aufruf einschließlich dieser Werte an. Die str()-Funktion wandelt die diese Ganzzahlwerte (Integer) in Strings um. Als ich den Debugger ausführte, sah es aus wie in Abbildung 7-4. Deine Zufallszahlen haben wahrscheinlich andere Werte. 
+In unserem Beispiel hat die Variable [nummer1] den Wert 4 und die Variable [nummer2] hat den Wert 8. Wenn du [Step] klickst, zeigt dir das Programm den String im print()-Aufruf einschließlich dieser Werte an. Die str()-Funktion wandelt die diese Ganzzahlwerte (Integer) in Strings um. Als ich den Debugger ausführte, sah es aus wie in Abbildung 7-4. Deine Zufallszahlen haben wahrscheinlich andere Werte. 
 
-Abbildung 7-4: number1 hat den Wert 4 und number2 hat den Wert 8.
+Abbildung 7-4: nummer1 hat den Wert 4 und nummer2 hat den Wert 8.
 
-5. answer = input()
+5. antwort = input()
 
 Ein Klick auf [Step] auf Zeile 5 führt input() aus. Der Debugger wartet, bis der Spieler eine Antwort eingibt. Gib die richtige Antwort in der interaktiven Shell ein (in unserem Beispiel 12). Darauf fährt der Debugger mit Zeile 6 fort.
 
-6. if answer == number1 + number2:
+6. if antwort == nummer1 + nummer2:
 7.     print('Richtig!')
 
-Zeile 6 ist eine Wenn-Anweisung (if). Die Bedingung ist, dass der Wert der Antwort der Summe von number1 und number2 entsprechen muss. Wenn die Bedingung wahr (True) ist, fährt der Debugger auf Zeile 7 fort. Wenn die Bedingung falsch (False) ist, springt der Debugger zu Zeile 9. Klicke noch einmal auf [Step] um herauszufinden, wohin der Debugger springt.
+Zeile 6 ist eine Wenn-Anweisung (if). Die Bedingung ist, dass der Wert der Antwort der Summe von nummer1 und nummer2 entsprechen muss. Wenn die Bedingung wahr (True) ist, fährt der Debugger auf Zeile 7 fort. Wenn die Bedingung falsch (False) ist, springt der Debugger zu Zeile 9. Klicke noch einmal auf [Step], um herauszufinden, wohin der Debugger springt.
 
 8. else:
-9.     print('Nein! Die Antwort ist ' + str(number1 + number2))
+9.     print('Nein! Die Antwort ist ' + str(nummer1 + nummer2))
 
-Der Debugger springt zu Zeile 9! Was ist passiert? Die Bedingung in der Wenn-Anweisung muss falsch gewesen sein. Schau dir die Werte von number1, number2 und answer an. Wie du siehst, sind number1 und number2 Ganzzahlen (Integer), ihre Summe war also auch ein Integer. Aber answer ist ein String.
+Der Debugger springt zu Zeile 9! Was ist passiert? Die Bedingung in der Wenn-Anweisung muss falsch gewesen sein. Schau dir die Werte von nummer1, nummer2 und antwort an. Wie du siehst, sind nummer1 und nummer2 Ganzzahlen (Integer), ihre Summe war also auch ein Integer. Aber antwort ist ein String.
 
-Das heißt, dass answer == number1 + number2 wie folgt aufgelöst wurde: '12' == 12. Ein String-Wert und ein Ganzzahlwert sind nie gleich, darum wurde die Bedingung als falsch (False) ausgewertet.
+Das heißt, dass antwort == nummer1 + nummer2 wie folgt aufgelöst wurde: '12' == 12. Ein String-Wert und ein Ganzzahlwert sind nie gleich, darum wurde die Bedingung als falsch (False) ausgewertet.
 
-Das ist der Bug im Programm: Der Code enthält answer, sollte aber int(answer) enthalten. Ändere Zeile 6 in int(answer) == number1 + number2 und führe das Programm erneut aus.
+Das ist der Bug im Programm: Der Code enthält antwort, sollte aber int(antwort) enthalten. Ändere Zeile 6 in int(antwort) == nummer1 + nummer2 und führe das Programm erneut aus.
 
 Wieviel ist 5 + 1?
 6
@@ -191,56 +191,56 @@ Richtig!
 
 Dieses Mal hat das Programm richtig funktioniert. Führe es noch mal aus und gib absichtlich eine falsche Antwort ein. Das prüft das Programm komplett durch. Gratulation, du hast den Fehler in diesem Programm behoben! Denk daran, der Computer führt ein Programm exakt so aus, wie du es geschrieben hast, egal ob du es so geplant hast oder nicht.
 
-Unterbrechungspunkte (Breakpoint)
+Unterbrechungspunkte (Breakpoints)
 
-Zeile für Zeile durch ein Programm zu schalten, kann immer noch zu lange dauern. Oft will man, dass ein Programm in normaler Geschwindigkeit ausgeführt wird, bis eine bestimmte Zeile erreicht wird. Ein Unterbrechungspunkt wird auf einer Zeile gesetzt, wenn man will, dass der Debugger die Kontrolle übernimmt, wenn diese Zeile ausgeführt wird. Wenn du also glaubst, dass in Zeile 17 deines Codes ein Problem besteht, kannst du einen Unterbrechungspunkt auf Zeile 17 (oder ein paar Zeilen davor) setzen.
+Zeile für Zeile durch ein Programm zu schalten, kann immer noch zu lange dauern. Oft will man, dass ein Programm in normaler Geschwindigkeit ausgeführt wird, bis eine bestimmte Zeile erreicht wird. Ein Unterbrechungspunkt wird in einer Zeile gesetzt, wenn man will, dass der Debugger die Kontrolle übernimmt, wenn diese Zeile ausgeführt wird. Wenn du also glaubst, dass in Zeile 17 deines Codes ein Problem besteht, kannst du einen Unterbrechungspunkt auf Zeile 17 (oder ein paar Zeilen davor) setzen.
 
 Wenn die Ausführung des Programms diese Zeile erreicht, übernimmt der Debugger und du kannst jede Zeile einzeln durchschalten, um zu sehen, was geschieht. Ein Klick auf [Go] führt das Programm wieder normal aus, bis ein weiterer Unterbrechungspunkt oder das Ende des Programms erreicht wird.
 
-Um einen Unterbrechungspunkt zu setzen, kannst du im Dateieditor rechtsklicken und "Set Breakpoint" aus dem Kontextmenü auswählen. Der Dateieditor hebt die ausgewählte Zeile gelb hervor. Du kannst so viele Unterbrechungspunkte setzen, wie du willst. Um einen Unterbrechungspunkt zu entfernen, kannst du in der entsprechenden Zeile (rechts)klicken und im Kontextmenü "Clear Breakpoint" auswählen.
+Um einen Unterbrechungspunkt zu setzen, kannst du im Dateieditor rechtsklicken und ["Set Breakpoint"] aus dem Kontextmenü auswählen. Der Dateieditor hebt die ausgewählte Zeile gelb hervor. Du kannst so viele Unterbrechungspunkte setzen, wie du willst. Um einen Unterbrechungspunkt zu entfernen, kannst du in der entsprechenden Zeile rechtsklicken und im Kontextmenü ["Clear Breakpoint"] auswählen.
 
 Abbildung 7-5: Der Dateieditor mit zwei gesetzten Unterbrechungspunkten.
 
 Ein Beispiel für die Nutzung von Unterbrechungspunkten
 
-Hier ist ein Programm, das einen Münzwurf simuliert, indem es random.randint(0,1) aufruft. Ein Ergebnis von 1 steht für "Kopf" und ein Ergebnis von 0 steht für "Zahl". Die Variable flips zählt, wie oft die Münze geworfen wurde, und die Variable heads zählt, wie oft das Ergebnis Kopf ist.
+Hier ist ein Programm, das einen Münzwurf simuliert, indem es random.randint(0,1) aufruft. Ein Ergebnis von 1 steht für "Kopf" und ein Ergebnis von 0 steht für "Zahl". Die Variable wuerfe zählt, wie oft die Münze geworfen wurde, und die Variable kopf zählt, wie oft das Ergebnis Kopf ist.
 
-Das Programm simuliert 1000 Münzenwürfe. Ein Mensch würde dafür über eine Stunde brauchen, aber der Computer schafft das ein einer Sekunde! Gib den folgenden Code in den Dateieditor ein und speichere die Datei als [coinFlips.py]. Wenn du nach der Eingabe eine Fehlermeldung erhältst, kannst du das online Diff-Werkzeug auf http://invpy.com/diff/coinflips benutzen, um deinen Code mit dem Code des Buches zu verlgeichen.
+Das Programm simuliert 1000 Münzenwürfe. Ein Mensch würde dafür über eine Stunde brauchen, aber der Computer schafft das ein einer Sekunde! Gib den folgenden Code in den Dateieditor ein und speichere die Datei als muenzwurf.py. Wenn du nach der Eingabe eine Fehlermeldung erhältst, kannst du das online Diff-Werkzeug auf http://invpy.com/diff/coinflips benutzen, um deinen Code mit dem Code des Buches zu verlgeichen.
 
-coinFlips.py
+muenzwurf.py
 
  1. import random
  2. print('Ich simuliere 1000 Münzenwürfe. Rate, wie oft das Ergebnis Zahl ist. (Drücke Enter, um zu beginnen)')
  3. input()
- 4. flips = 0
- 5. heads = 0
- 6. while flips < 1000:
+ 4. wuerfe = 0
+ 5. kopf = 0
+ 6. while wuerfe < 1000:
  7.     if random.randint(0, 1) == 1:
- 8.         heads = heads + 1
- 9.     flips = flips + 1
+ 8.         kopf = kopf + 1
+ 9.     wuerfe = wuerfe + 1
 10.
-11.     if flips == 900:
-12.         print('900 Münzenwürfe, und Kopf kam ' + str(heads) + ' mal vor.')
-13.     if flips == 100:
-14.         print('100 Münzenwürfe, Kopf kam bisher ' + str(heads) + ' mal vor.')
-15.     if flips == 500:
-16.         print('Halbzeit, und Kopf kam ' + str(heads) + ' mal vor.')
+11.     if wuerfe == 900:
+12.         print('900 Münzenwürfe, und Kopf kam ' + str(kopf) + ' mal vor.')
+13.     if wuerfe == 100:
+14.         print('100 Münzenwürfe, Kopf kam bisher ' + str(kopf) + ' mal vor.')
+15.     if wuerfe == 500:
+16.         print('Halbzeit, und Kopf kam ' + str(kopf) + ' mal vor.')
 17.
 18. print()
-19. print('Von 1000 Münzwürfen hatten ' + str(heads) + ' das Ergebnis Kopf!')
+19. print('Von 1000 Münzwürfen hatten ' + str(kopf) + ' das Ergebnis Kopf!')
 20. print('Warst du nahe dran?')
 
-Das Programm läuft ziemlich schnell. Es wartet länger darauf, dass der Spieler ENTER drückt, als es für die Münzwürfe braucht. Nehmen wir an, du willst die Münzwürfe einzeln durchgehen. Klicke im Fenster der interaktiven [Shell] auf Debug ► Debugger, um das Debug-Kontrollfenster aufzurufen. Dann drücke F5, um das Programm auszuführen.
+Das Programm läuft ziemlich schnell. Es wartet länger darauf, dass der Spieler ENTER drückt, als es für die Münzwürfe braucht. Nehmen wir an, du willst die Münzwürfe einzeln durchgehen. Klicke im Fenster der interaktiven [Konsole] auf Debug ► Debugger, um das Debug-Kontrollfenster aufzurufen. Dann drücke F5, um das Programm auszuführen.
 
-Der Debugger beginnt, das Programm auf Zeile 1 auszuführen. Klicke im Debug-Kontrollfenster drei mal auf [Step], um die ersten drei Zeilen auszuführen (Zeilen 1, 2 und 3). Wie du siehst, wurden die Buttons deaktiviert, weil input() aufgerufen wurde und das Fenster der interaktiven [Shell] darauf wartet, dass der Nutzer etwas eingibt. Klicke auf das Fenster der interaktiven Shell und drücke ENTER. (Stell sicher, dass du unter den Text im Fenster der interaktiven Shell klickst, sonst erkennt IDLE deine Eingabe möglicherweise nicht.)
+Der Debugger beginnt, das Programm auf Zeile 1 auszuführen. Klicke im Debug-Kontrollfenster dreimal auf [Step], um die ersten drei Zeilen auszuführen (Zeilen 1, 2 und 3). Wie du siehst, wurden die Buttons deaktiviert, weil input() aufgerufen wurde und das Fenster der interaktiven [Konsole] darauf wartet, dass der Nutzer etwas eingibt. Klicke auf das Fenster der interaktiven Konsole und drücke ENTER. (Stell sicher, dass du unter den Text im Fenster der interaktiven Konsole klickst, sonst erkennt IDLE deine Eingabe möglicherweise nicht.)
 
 Du kannst ein paar Mal auf [Step] klicken, aber wie du schnell herausfinden wirst, würde es lange dauern, bis du dich durch das ganze Programm geklickt hast. Setze darum Unterbrechungspunkte in den Zeilen 12, 14 und 16. Der Dateieditor wird diese Zeilen wie in Abbildung 7-6 gezeigt hervorheben.
 
 Abbildung 7-6: Drei Unterbrechungspunkte wurden gesetzt.
 
-Nachdem du die Unterbrechungspunkte gesetzt hast, kannst du im Debug-Kontrollfenster auf [Go] klicken. Das Programm läuft jetzt mit normaler Geschwindigkeit, bis es den nächsten Unterbrechungspunkt erreicht. Wenn flip den Wert 100 hat, ist die Bedingung für die Wenn-Bedingung auf Zeile 13 wahr (True). Das führt dazu, dass Zeile 14 (auf der ein Unterbrechungspunkt gesetzt ist) ausgeführt wird, und der Debugger wird aufgefordert, das Programm zu unterbrechen und die Kontrolle zu übernehmen. Im Globals-Bereich des Debug-Kontrollfensters siehst du, welche Werte flips und heads haben.
+Nachdem du die Unterbrechungspunkte gesetzt hast, kannst du im Debug-Kontrollfenster auf [Go] klicken. Das Programm läuft jetzt mit normaler Geschwindigkeit, bis es den nächsten Unterbrechungspunkt erreicht. Wenn wuerfe den Wert 100 hat, ist die Bedingung für die Wenn-Bedingung auf Zeile 13 wahr (True). Das führt dazu, dass Zeile 14 (auf der ein Unterbrechungspunkt gesetzt ist) ausgeführt wird, und der Debugger wird aufgefordert, das Programm zu unterbrechen und die Kontrolle zu übernehmen. Im Globals-Bereich des Debug-Kontrollfensters siehst du, welche Werte wuerfe und kopf haben.
 
-Wenn du erneut auf [Go] klickst, wird das Programm weiter ausgeführt, bis der nächste Unterbrechungspunkt auf Zeile 16 erreicht wird. Schau dir an, wie sich die Werte für flips und heads verändert haben.
+Wenn du erneut auf [Go] klickst, wird das Programm weiter ausgeführt, bis der nächste Unterbrechungspunkt auf Zeile 16 erreicht wird. Schau dir an, wie sich die Werte für wuerfe und kopf verändert haben.
 
 Wenn du wieder auf [Go] klickst, läuft das PRogramm weiter, bis der nächste Unterbrechungspunkt auf Zeile 12 erreicht wird.
 
