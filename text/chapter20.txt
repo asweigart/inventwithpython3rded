@@ -287,7 +287,7 @@ Pygame requires that you call both pygame.quit() and sys.exit(). Put them both i
  21.     while True:
  22.         for event in pygame.event.get():
 
-Sometimes you’ll want to pause the game until the player presses a key. Create a new function called waitForPlayerToPressKey(). Inside this function, there’s an infinite loop that only breaks when a KEYDOWN or QUIT event is received. At the start of the loop, pygame.event.get() to return a list of Event objects to check out.
+Sometimes you’ll want to pause the game until the player presses a key. Create a new function called waitForPlayerToPressKey(). Inside this function, there’s an infinite loop that only breaks when a KEYDOWN or QUIT event is received. At the start of the loop, pygame.event.get() returns a list of Event objects to check out.
 
  23.             if event.type == QUIT:
  24.                 terminate()
@@ -357,7 +357,7 @@ The pygame.display.set_mode() function has a second, optional parameter. You can
 
  45. windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), pygame.FULLSCREEN)
 
-It will still be WINDOWWIDTH and WINDOWHEIGHT in size for the windows width and height, but the image will be stretched larger to fit the screen. Try running the program wiuth and without fullscreen mode.
+It will still be WINDOWWIDTH and WINDOWHEIGHT in size for the windows width and height, but the image will be stretched larger to fit the screen. Try running the program with and without fullscreen mode.
 
  49. # set up fonts
  50. font = pygame.font.SysFont(None, 48)
