@@ -292,16 +292,16 @@ En ocasiones desearás poner el juego en pausa hasta que el jugador pulse una te
  23.             if evento.type == QUIT:
  24.                 terminar()
 
-If the player has closed the window while the program is waiting for the player to press a key, Pygame will generate a QUIT event. In that case, call the terminate() function on line 24.
+Si el jugador cierra la ventana mientras el programa espera que el jugador pulse una tecla, Pygame generará un evento QUIT. En ese caso, la línea 24 llama a la función terminar().
 
  25.             if evento.type == KEYDOWN:
  26.                 if evento.key == K_ESCAPE:  # Sale del juego al presionar ESCAPE
  27.                     terminar()
  28.                 return
 
-If you receive a KEYDOWN event, then you should first check if it is the ESC key that was pressed. If the player presses the ESC key, the program should terminate. If that wasn’t the case, then execution will skip the if-block on line 27 and go straight to the return statement, which exits the waitForPlayerToPressKey() function.
+Si recibes un evento KEYDOWN, deberías primero comprobar si la tecla pulsada ha sido ESC. Si el jugador pulsa la tecla ESC, el programa debería terminar. Si no ha sido ese el caso, entonces la ejecución omitirá el bloque if de la línea 27 y proseguirá directamente a la sentencia return, la cual sale de la función esperarTeclaJugador().
 
-If a QUIT or KEYDOWN event isn’t generated, then the code keeps looping. Since the loop does nothing, this will make it look like the game has frozen until the player presses a key.
+Si no se genera ningún evento QUIT o KEYDOWN, el código continúa recorriendo el bucle. Como el bucle no hace nada, esto dará la impresión de que el juego se ha congelado hasta que el jugador pulse una tecla.
 
  30. def jugadorGolpeaVillano(rectanguloJugador, villanos):
  31.     for v in villanos:
@@ -309,11 +309,11 @@ If a QUIT or KEYDOWN event isn’t generated, then the code keeps looping. Since
  33.             return True
  34.     return False
 
-The playerHasHitBaddie() function will return True if the player’s character has collided with one of the baddies. The baddies parameter is a list of “baddie” dictionary data structures. Each of these dictionaries has a 'rect' key, and the value for that key is a Rect object that represents the baddie’s size and location.
+La función jugadorGolpeaVillano() devolverá True si el personaje del jugador ha colisionado con uno de los villanos. El parámetro villanos es una lista de estructuras de datos "villano". Cada uno de estos diccionarios contiene una clave 'rect', y el valor correspondiente a esa clave es un objeto Rect que representa el tamaño y la ubicación del villano.
 
-playerRect is also a Rect object. Rect objects have a method named colliderect() that returns True if the Rect object has collided with the Rect object that is passed to it. Otherwise, colliderect() will return False.
+rectanguloJugador también es un objeto Rect. Los objetos Rect tienen un método llamado colliderect() que devuelve True si este objeto Rect ha colisionado con el objeto Rect que se le pasa como parámetro. En caso contrario, colliderect() devuelve False.
 
-The for loop on line 31 iterates through each baddie dictionary in the baddies list. If any of these baddies collide with the player’s character, then playerHasHitBaddie() will return True. If the code manages to iterate through all the baddies in the baddies list without detecting a collision with any of them, it will return False.
+El bucle for de la línea 31 itera sobre cada diccionario villano en la lista. Si alguno de estos villanos colisiona con el personaje del jugador, entonces jugadorGolpeaVillano() devolverá True. Si el código consigue iterar por toda la lista de villanos en la lista sin detectar una colisión con alguno de ellos, devolverá False.
 
  36. def dibujarTexto(texto, fuente, superficie, x, y):
  37.     objetotexto = fuente.render(texto, 1, COLORVENTANA)
@@ -321,17 +321,17 @@ The for loop on line 31 iterates through each baddie dictionary in the baddies l
  39.     rectangulotexto.topleft = (x, y)
  40.     superficie.blit(objetotexto, rectangulotexto)
 
-Drawing text on the window involves a few steps. First, the render() method call on line 37 creates a Surface object that has the text rendered in a specific font on it.
+Dibujar texto en la ventana involucra varios pasos. Primero, la llamada al método render() en la línea 37 crea un objeto Surface sobre el cual se dibuja el texto con una fuente específica.
 
-Next, you need to know the size and location of the Surface object. You can get a Rect object with this information from the get_rect() Surface method.
+A continuación necesitas saber el tamaño y la ubicación del objeto Surface. Puedes obtener un objeto Rect con esta información a partir del método get_rect() de la clase Surface.
 
-The Rect object returned on line 38 from get_rect() has a copy of the width and height information from the Surface object. Line 39 changes the location of the Rect object by setting a new tuple value for its topleft attribute.
+El objeto Rect devuelto en la línea 38 por la función get_rect() tiene una copia de la información de ancho y alto del objeto Surface. La línea 39 cambia la ubicación del objeto Rect estableciendo un nuevo valor de tupla para su atributo topleft.
 
-Finally, line 40 blits the Surface object of the rendered text onto the Surface object that was passed to the drawText() function. Displaying text in Pygame take a few more steps than simply calling the print() function. But if you put this code into a single function named drawText(), then you only need to call this function to display text on the screen.
+Finalmente, la línea 40 dibuja el objeto Surface del texto renderizado sobre el objeto Surface que recibió como argumento la función dibujarTexto(). Mostrar texto en Pygame requiere más pasos que simplemente llamar a la función print(). Pero si encapsulas este código dentro de una sola función llamada dibujarTexto(), entonces sólo necesitas llamar a esta función para mostrar texto en la pantalla.
 
-Initializing Pygame and Setting Up the Window
+Iniciando Pygame y Configurando la Ventana
 
-Now that the constant variables and functions are finished, start calling the Pygame functions that set up the window and clock.
+Ahora que las variables constantes y las funciones han sido definidas, comenzamos a llamar a las funciones de Pygame que configuran la ventana y el reloj.
 
  42. # establece un pygame, la ventana y el cursor del ratón
  43. pygame.init()
