@@ -337,53 +337,53 @@ Ahora que las variables constantes y las funciones han sido definidas, comenzamo
  43. pygame.init()
  44. relojPrincipal = pygame.time.Clock()
 
-Line 43 sets up the Pygame by calling the pygame.init() function. Line 44 creates a pygame.time.Clock() object and stores it in the relojPrincipal variable. This object will help us keep the program from running too fast.
+La línea 43 configura Pygame llamando a la función pygame.init(). La línea 44 crea un objeto pygame.time.Clock() y lo almacena en la variable relojPrincipal. Este objeto nos ayudará a evitar que el programa se ejecute demasiado rápido.
 
  45. superficieVentana = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA))
 
-Line 45 creates a new Surface object which is used for the window displayed on the screen. You can specify the width and height of this Surface object (and the window) by passing a tuple with the WINDOWWIDTH and WINDOWHEIGHT constant variables. Notice that there’s only one argument passed to pygame.display.set_mode(): a tuple. The arguments for pygame.display.set_mode() are not two integers but one tuple of two integers.
+La línea 45 crea un nuevo objeto Surface el cual es utilizado por la ventana mostrada en la pantalla. Puedes especificar el ancho y la altura de este objeto Surface (y de la ventana) pasando como argumento una tupla con las variables constantes ANCHOVENTANA y ALTOVENTANA. Observa que pygame.display.set_mode() recibe sólo un argumento: una tupla. El argumento de pygame.display.set_mode() no consiste en dos enteros sino una tupla de dos enteros.
 
  46. pygame.display.set_caption('Esquivador')
 
-Line 46 sets the caption of the window to the string 'Dodger'. This caption will appear in the title bar at the top of the window.
+La línea 46 establece la cadena 'Evasor' como título de la ventana. Este título aparecerá en la barra de título en la parte superior de la ventana.
 
  47. pygame.mouse.set_visible(False)
 
-In Dodger, the mouse cursor shouldn’t be visible. This is because you want the mouse to be able to move the player’s character around the screen, but the mouse cursor would get in the way of the character’s image on the screen. Calling pygame.mouse.set_visible(False) will tell Pygame to make the cursor not visible.
+En Evasor, el cursor del ratón no debería ser visible. La razón de esto es que quieres usar el ratón para mover el personaje del jugador por la pantalla, pero el cursor del ratón interferiría con la imagen del personaje en la pantalla. Llamando a pygame.mouse.set_visible(False) indicamos a Pygame que el cursor no debe ser visible.
 
-Fullscreen Mode
+Modo Pantalla Completa
 
-The pygame.display.set_mode() function has a second, optional parameter. You can pass the pygame.FULLSCREEN constant to make the window take up the entire screen instead of being in a window. Look at this modification to line 45:
+La función pygame.display.set_mode() recibe opcionalmente un segundo parámetro. Puedes pasar la constante pygame.FULLSCREEN para hacer que la ventana tome la pantalla completa en lugar de ser una ventana. Observa esta modificación en la línea 45:
 
  45. superficieVentana = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA), pygame.FULLSCREEN)
 
-It will still be WINDOWWIDTH and WINDOWHEIGHT in size for the windows width and height, but the image will be stretched larger to fit the screen. Try running the program with and without fullscreen mode.
+El ancho y la altura de la ventana en píxeles seguirán siendo ANCHOVENTANA y ALTOVENTANA, pero la imagen se estirará hasta el tamaño de la pantalla. Prueba ejecutar el programa con y sin el modo pantalla completa.
 
  49. # establece las fuentes
  50. fuente = pygame.font.SysFont(None, 48)
 
-Line 49 creates a Font object to use by calling pygame.font.SysFont(). Passing None uses the default font. Passing 48 makes the font have a size of 48 points.
+La línea 49 crea un objeto Font a utilizar llamando a pygame.font.SysFont(). El argumento None denota la fuente por defecto del sistema. El entero 48 hace que la fuente tenga un tamaño de 48 puntos.
 
  52. # establece los sonidos
  53. sonidoJuegoTerminado = pygame.mixer.Sound('juegoterminado.wav')
  54. pygame.mixer.music.load('músicaDeFondo.mid')
 
-Next, create the Sound objects and set up the background music. The background music will constantly be playing during the game, but Sound objects will only be played when the player loses the game.
+A continuación, creamos los objetos Sound y establecemos la música de fondo. La música de fondo se reproducirá constantemente durante el juego, pero los objetos Sound se reproducirán sólo cuando el jugador pierda.
 
-You can use any .wav or .mid file for this game. Some sound files are available at this book’s website at http://invpy.com/downloads. Or you can use your own sound files for this game, as long as they have the filenames of gameover.wav and background.mid. (You can change the strings used on lines 53 and 54 to match the filenames.)
+Puedes usar cualquier archivo .wav o .mid para este juego. Algunos archivos de sonido están disponibles en el sitio web de este libro en http://invpy.com/downloads. O también puedes usar tus propios archivos de sonido para este programa, siempre que los nombres de archivo sean juegoterminado.wav y músicaDeFondo.mid. (Puedes cambiar las cadenas usadas en las líneas 53 y 54 para que coincidan con los nombres de los archivos.)
 
-The pygame.mixer.Sound() constructor function creates a new Sound object and stores a reference to this object in the gameOverSound variable. In your own games, you can create as many Sound objects as you like, each with a different sound file.
+La función constructor pygame.mixer.Sound() crea un nuevo objeto Sound y guarda una referencia a este objeto en la variable sonidoJuegoTerminado. Puedes crear tantos objetos Sound como quieras en tus juegos, cada uno con un archivo de sonido diferente.
 
-The pygame.mixer.music.load() function loads a sound file to play for the background music. This function doesn’t return any objects, and only one background sound file can be loaded at a time.
+La función pygame.mixer.music.load() carga un archivo de sonido para que sea reproducido como música de fondo. Esta función no devuelve ningún objeto, y sólo puede cargarse un archivo de música de fondo a la vez
 
  56. # establece las imagenes
  57. imagenJugador = pygame.image.load('jugador.png')
  58. rectanguloJugador = imagenJugador.get_rect()
  59. imagenVillano = pygame.image.load('villano.png')
 
-Next you’ll load the image files to be used for the player’s character and the baddies on the screen. The image for the character is stored in player.png and the image for the baddies is stored in baddie.png. All the baddies look the same, so you only need one image file for them. You can download these images from this book’s website at http://invpy.com/downloads.
+A continuación cargaremos los archivos de imagen a utilizar para el personaje del jugador y los villanos en la pantalla. La imagen para el personaje se encuentra en jugador.png y la imagen para los villanos está en el archivo villano.png. Todos los villanos son iguales, por lo que sólo necesitarás un archivo de imagen para ellos. Puedes descargar estas imagenes del sitio web de este libro en http://invpy.com/downloads.
 
-Display the Start Screen
+Mostrando la Pantalla de Inicio
 
 When the game first starts, display the “Dodger” name on the screen. You also want to instruct the player that they can start the game by pushing any key. This screen appears so that the player has time to get ready to start playing after running the program.
 
@@ -737,18 +737,14 @@ The Game Over Screen
 192.     pygame.mixer.music.stop()
 193.     sonidoJuegoTerminado.play()
 
-When the player loses, the game stops playing the background music and plays the “game over” sound effect. Line 192 calls the stop() function in the pygame.mixer.music module to stop the background music. Line 193 calls the play() method on the Sound object stored in gameOverSound.
-
-195.     dibujarTexto('Juego Terminado', fuente, superficieVentana, (ANCHOVENTANA / 3)-40, (ALTOVENTANA / 3))
+When the player loses, the game stops playing the background music and plays the “game over” sound effect. Line 192 calls the stop() function in the pygame.mixer.music module to stop the background music. Line 193 calls the play() method on the Sound object stored  sonidoJuegoTerminado. Puedes crear tantos objetos Sound como quieras en tus juegos, cada uno con un archivo de sonido diferente.i pygame.mixer.music.load() carga un archivo de sonido para que sea reproducido como música de fondo. Esta función no devuelve ningún objeto, y sólo puede cargarse un archivo de música de fondo a la vez
 196.     dibujarTexto('Presione una tecla jugar de nuevo.', fuente, superficieVentana, (ANCHOVENTANA / 3) - 150, (ALTOVENTANA / 3) + 50)
 197.     pygame.display.update()
 198.     esperarTeclaJugador()
 
-Lines 195 and 196 call the drawText() function to draw the “game over” text to the windowSurface object. Line 197 calls pygame.display.update() to draw this Surface object to the screen. After displaying this text, the game stops until the player presses a key by calling the waitForPlayerToPressKey() function.
 
-200.     sonidoJuegoTerminado.stop()
-
-After the player presses a key, the program execution will return from the waitForPlayerToPressKey() call on line 198. Depending on how long the player takes to press a key, the “game over” sound effect may or may not still be playing. To stop this sound effect before a new game starts, line 200 calls gameOverSound.stop().
+A continuación cargaremos los archivos de imagen a utilizar para el personaje del jugador y los villanos en la pantalla. La imagen para el personaje se encuentra en jugador.png y laLines 195 and 196 call the drawText() function to draw the “game over” text to the  imagen para los villanos está en el archivo villano.png. Todos los villanos son iguales, por lo que sólo necesitarás un archivo de imagen para ellos. Puedes descargar estas imagenes del sitio web de este libro en htwindowSurface object. Line 197 calls pygame.display.update() to draw this Surface object to the screen. After displaying this text, the game stops until the player presses a key by calling the waitForPlayerToPressKey() functionline 198. Depending on.
+ostrando la Pantalla de Inicioh  ct before a new game starts, line 200 calls sonidoJuegoTerminado.stop().
 
 Modifying the Dodger Game
 
