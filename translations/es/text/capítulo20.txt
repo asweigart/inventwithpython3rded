@@ -385,7 +385,7 @@ A continuación cargaremos los archivos de imagen a utilizar para el personaje d
 
 Mostrando la Pantalla de Inicio
 
-When the game first starts, display the “Dodger” name on the screen. You also want to instruct the player that they can start the game by pushing any key. This screen appears so that the player has time to get ready to start playing after running the program.
+Cuando el juego se inicia por primera vez, debemos mostrar el nombre "Evasor" en la pantalla. También queremos indicar al jugador que puede comenzar a jugar pulsando cualquier tecla. Esta pantalla aparece para que el jugador tenga tiempo de prepararse para empezar a jugaro luego de ejecutar el programa.
 
  61. # Muestra la pantalla inicial
  62. dibujarTexto('Evasor', fuente, superficieVentana, (ANCHOVENTANA / 3)+40, (ALTOVENTANA / 3))
@@ -393,60 +393,60 @@ When the game first starts, display the “Dodger” name on the screen. You als
  64. pygame.display.update()
  65. esperarTeclaJugador()
 
-On lines 62 and 63, call the drawText() function and pass it five arguments:
+En las líneas 62 y 63, llamamos a la función dibujarTexto() y le pasamos cinco argumentos:
 
-1)  The string of the text you want to appear.
-2)  The font that you want the string to appear in.
-3)  The Surface object onto which to render the text.
-4)  The X coordinate on the Surface object to draw the text at.
-5)  The Y coordinate on the Surface object to draw the text at.
+1)  La cadena del texto que quieres que aparezca en pantalla.
+2)  La fuente en que quieres que aparezca la cadena.
+3)  El objeto Surface sobre el cual dibujar el texto.
+4)  La coordenada X del objeto Surface en la cual dibujar el texto.
+5)  La coordenada Y del objeto Surface en la cual dibujar el texto.
 
-This may seem like many arguments to pass for a function call, but keep in mind that this function call replaces five lines of code each time you call it. This shortens the program and makes it easier to find bugs since there’s less code to check.
+Esto puede parecer como demasiados argumentos a pasar para una sola función, pero ten en cuenta que esta función reemplaza a cinco líneas de código cada vez que la llamamos. Esto reduce la extensión del programa y hace más fácil encontrar bugs ya que hay menos código que revisar.
 
-The waitForPlayerToPressKey() function will pause the game by looping until a KEYDOWN event is generated. Then the execution breaks out of the loop and the program continues to run.
+La función esperarTeclaJugador() pondrá al juego en pausa ejecutando sin parar un bucle hasta que se genere un evento KEYDOWN. Entonces la ejecución sale del bucle y el programa continúa ejecutándose.
 
-Start of the Main Game Code
+Inicio del Código Principal del Juego
 
  68. puntajeMax = 0
  69. while True:
 
-The value in the topScore variable starts at 0 when the program first runs. Whenever the player loses and has a score larger than the current top score, the top score is replaced with this larger score.
+El valor en la variable puntajeMax comienza siendo 0 cuando el programa se ejecuta por primera vez. Cada vez que el jugador pierde y su puntaje es mayor que el puntaje máximo actual, el puntaje máximo es reemplazado por este puntaje mayor.
 
-The infinite loop started on line 69 is technically not the “game loop”. The game loop handles events and drawing the window while the game is running. Instead, this while loop will iterate each time the player starts a new game. When the player loses and the game resets, the program’s execution will loop back to line 69.
+El bucle infinito que comienza en la línea 69 no es técnicamente el "bucle del juego". El bucle del juego gestiona los eventos y dibujar la ventana mientras el juego está ejecutándose. En cambio, este bucle while sumará una iteración cada vez que el jugador comience un nuevo juego. Cuando el jugador pierda y el juego se reinicie, la ejecución del programa volverá a la línea 69.
 
  70.     # establece el comienzo del juego
  71.     villanos = []
  72.     puntaje = 0
 
-At the beginning, you want to set baddies to an empty list. The baddies variable is a list of dictionary objects with the following keys:
+Al comienzo, quieres que villanos sea una lista vacía. La variable villanos es una list de objetos diccionario con las siguientes claves:
 
-• 'rect' - The Rect object that describes where and what size the baddie is.
-• 'velocidad' - How fast the baddie falls down the screen. This integer represents pixels per iteration through the game loop.
-• 'superficie' - The Surface object that has the scaled baddie image drawn on it. This is the Surface object that is blitted to the Surface object returned by pygame.display.set_mode().
+• 'rect' - El objeto Rect que describe la posición y el tamaño del villano.
+• 'velocidad' - Qué tan rápido los villanos caen por la pantalla. Este entero representa píxeles por iteración del bucle del juego.
+• 'superficie' - El objeto Surface que tiene dibujada la imagen estirada del villano. Este es el objeto Surface que se dibuja sobre el objeto Surface devuelto por pygame.display.set_mode().
 
-Line 72 resets the player’s score to 0.
+La línea 72 reinicia el puntaje del jugador a 0.
 
  73.     rectanguloJugador.topleft = (ANCHOVENTANA / 2, ALTOVENTANA - 50)
 
-The starting location of the player is in the center of the screen and 50 pixels up from the bottom. The first item in line 73’s tuple is the X-coordinate of the left edge. The second item in the tuple is the Y-coordinate of the top edge.
+La ubicación inicial del jugador es en el centro de la pantalla y 50 píxeles arriba del borde inferior. El primer elemento en la tupla de la línea 73 es la coordenada X de su borde izquierdo. El segundo elemento es la coordenada Y de su borde superior.
 
  74.     moverIzquierda = moverDerecha = moverArriba = moverAbajo = False
  75.     trucoReversa = trucoLento = False
  76.     contadorAgregarVillano = 0
 
-The movement variables moveLeft, moveRight, moveUp, and moveDown are set to False. The reverseCheat and slowCheat variables are also set to False. They will be set to True only when the player enables these cheats by holding down the “z” and “x” keys, respectively.
+Se asigna False a las variables de movimiento moverIzquierda, moverDerecha, moverArriba y moverAbajo. Tamién se asigna falso a las variables trucoReversa y trucoLento. Estas últimas recibirán el valor True sólo cuando el jugador active estos trucos manteniendo presionadas las teclas "z" y "x", respectivamente.
 
-The baddieAddCounter variable is a counter to tell the program when to add a new baddie at the top of the screen. The value in baddieAddCounter increments by one each time the game loop iterates.
+La variable contadorAgregarVillano es un contador para indicar al programa cuándo añadir un nuevo villano en el borde superior de la pantalla. El valor en contadorAgregarVillano se incrementa en uno cada vez que el bucle del juego itera.
 
-When baddieAddCounter is equal to ADDNEWBADDIERATE, then the baddieAddCounter counter resets to 0 and a new baddie is added to the top of the screen. (This check is done later on line 130.)
+Cuando contadorAgregarVillano es igual a TASANUEVOVILLANO, el la variable contadorAgregarVillano se reinicia a 0 y se agrega un nuevo villano al borde superior de la pantalla. (Esta comprobación se realiza más adelante en la línea 130.)
 
  77.     pygame.mixer.music.play(-1, 0.0)
 
-The background music starts playing on line 77 with a call to pygame.mixer.music.play(). The first argument is the number of times the music should repeat itself. -1 is a special value that tells Pygame you want the music to repeat endlessly.
+La música de fondo comienza a reproducirse en la línea 77 con una llamada a pygame.mixer.music.play(). El primer argumento es el número de veces que la música se repetirá. -1 es un valor especial que indica a Pygame que quieres que la música se repita sin parar.
 
-The second argument is a float that says how many seconds into the music you want it to start playing. Passing 0.0 means the music starts playing from the beginning.
+El segundo argumento es un float que dice a partir de cuántos segundos quieres que comience a reproducirse la música. Al pasar 0.0 determinamos que la música comience a reproducirse desde el principio.
 
-The Game Loop
+El Bucle del Juego
 
 The game loop’s code constantly updates the state of the game world by changing the position of the player and baddies, handling events generated by Pygame, and drawing the game world on the screen. All of this happens several dozen times a second, which makes it run in “real time”.
 
@@ -744,23 +744,25 @@ When the player loses, the game stops playing the background music and plays the
 
 
 A continuación cargaremos los archivos de imagen a utilizar para el personaje del jugador y los villanos en la pantalla. La imagen para el personaje se encuentra en jugador.png y laLines 195 and 196 call the drawText() function to draw the “game over” text to the  imagen para los villanos está en el archivo villano.png. Todos los villanos son iguales, por lo que sólo necesitarás un archivo de imagen para ellos. Puedes descargar estas imagenes del sitio web de este libro en htwindowSurface object. Line 197 calls pygame.display.update() to draw this Surface object to the screen. After displaying this text, the game stops until the player presses a key by calling the waitForPlayerToPressKey() functionline 198. Depending on.
-ostrando la Pantalla de Inicioh  ct before a new game starts, line 200 calls sonidoJuegoTerminado.stop().
 
+Cuando el juego se inicia por primera vez, se muestra el nombre "Evasor" en la debemos mostrar Pantalla de Inicioh  ct before a . queremos indicar al jugador que puede comenzar a jugar pulsando cualquier tecla. Esta pantalla aparece para que el jugador tenga tiempo de prepararse para empezar a jugaro luego de ejecutar el programa.T
 Modifying the Dodger Game
 
 That’s it for our graphical game. You may find that the game is too easy or too hard. But the game is easy to modify because we took the time to use constant variables instead of typing in the values directly. Now all we need to do to change the game is modify the value set in the constant variables.
 
-For example, if you want the game to run slower in general, change the FPS variable on line 8 to a smaller value such as 20. This will make both the baddies and the player’s character move slower since the game loop will only be executed 20 times a second instead of 40.
+For example, if you want the game to run slower in general, change the FPSEn las líneas 62 y 63, llamamos a la función dibujarTexto() y le pasamos cinco argumentos:game loop will only be executed 20 times a second instead of 40.
 
-If you just want to slow down the baddies and not the player, then change BADDIEMAXSPEED to a smaller value such as 4. This will make all the baddies move between 1 (the value in BADDIEMINSPEED) and 4 pixels per iteration through the game loop instead of 1 and 8.
+If yLa cadena del texto que quieres que aparezca en pantalla BADDIEMAXSPEED to a smaller value such as 4. This will make all the baddies move bLa fuente en que quieres que aparezca la cadenapixels per iteration through the game loop instead of 1 and 8.
 
-If you want the game to have fewer but larger baddies instead of many fast baddies, then increase ADDNEWBADDIERATE to 12, BADDIEMINSIZE to 40, and BADDIEMAXSIZE to 80. Now that baddies are being added every 12 iterations through the game loop instead of every 6 iterations, there will be half as many baddies as before. But to keep the game interesting, the baddies are now much larger than before.
-
-While the basic game remains the same, you can modify any of the constant variables to drastically affect the behavior of the game. Keep trying out new values for the constant variables until you find a set of values you like the best.
-
+El objeto Surface sobrY el cual dibujar el textou wantLa coordenada X del objeto Surface en la cual dibujar el texto have fewer but la  La coordenada X del
+Esto puede parecer como demasiados argumentos a pasar para una sola función, pero ten en cuenta que esta función reemplaza a cinco líneas de código cada vez que la llamamos. Esto reduce la extensión del programa y hace más fácil encontrar bugs ya que hay menos código que revisar. objeto Surface en la cual dibujar el texto.that baddies are being added every 12 iterations through the game l
+La función
+While the ba to u pondrá al juego en pausa ejecutando sin parar un bucle hasta que se genere un evento KEYDOWN. Entonces la ejecución sale del bucle y el programa continúa ejecutándose.s
+Inicio del Código Principal del Juego
 Summary
 
-Unlike our previous text-based games, Dodger really looks like the kind of modern computer game we usually play. It has graphics and music and uses the mouse. While Pygame provides functions and data types as building blocks, it is you the programmer who puts them together to create fun, interactive games.
+Unlike our previous text-based games, Dodger really looks like the kind of modern computer game we usually play. It has graphics and 
+El valor en la variable music and uses the mouse. While Pygame provides functions and data types as building blocks, it is you the them programmer who puts them together to create fun, interactive games.
 
 And it is all because you know how to instruct the computer to do it, step by step, line by line. You can speak the computer’s language, and get it to do large amounts of number crunching and drawing for you. This is a useful skill, and I hope you’ll continue to learn more about Python programming. (And there’s still much more to learn!)
 
