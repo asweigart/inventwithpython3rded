@@ -536,7 +536,7 @@ Lines 108 to 110 do the same thing for the “x” key and the slow cheat. When 
 111.                 if event.key == K_ESCAPE:
 112.                         terminate()
 
-At any time during the game, the player can press the ESC key on the keyboard to quit. Line 14 checks if the key that was released was the ESC key by checking event.key == K_ESCAPE. If so, line 112 calls the terminate() function to exit the program.
+At any time during the game, the player can press the ESC key on the keyboard to quit. Line 111 checks if the key that was released was the ESC key by checking event.key == K_ESCAPE. If so, line 112 calls the terminate() function to exit the program.
 
 114.                 if event.key == K_LEFT or event.key == ord('a'):
 115.                     moveLeft = False

@@ -498,26 +498,26 @@ La línea 91 comprueba si el jugador ha pulsado la flecha izquierda con el event
 
 Por ejemplo, si se pulsa la flecha izquierda, el código en la línea 93 asigna True a moverIzquierda, pero también asigna False a moverDerecha. Esto previene que el programa se confunda y piense que el personaje del jugador debe moverse en dos direcciones opuestas a la vez.
 
-Table 20-1 lists commonly-used constant variables for the key attribute of keyboard-related Event objects.
+La Tabla 20-1 lista variables constantes de uso común para el atributo key de los objetos Event relacionados al teclado.
 
-Table 20-1: Constant Variables for Keyboard Keys
-Pygame Constant Variable  Keyboard Key    Pygame Constant Variable  Keyboard Key
-K_LEFT  Left arrow    K_HOME  Home
-K_RIGHT Right arrow   K_END End
-K_UP  Up arrow    K_PAGEUP  PgUp
-K_DOWN  Down arrow    K_PAGEDOWN  PgDn
+Tabla 20-1: Variables Constantes para teclas comunes
+Variable Constante Pygame  Tecla    Variable Constante Pygame  Tecla
+K_LEFT  Flecha izquierda    K_HOME  Inicio
+K_RIGHT Flecha derecha   K_END Fin
+K_UP  Flecha arriba    K_PAGEUP  Re pág
+K_DOWN  Flecha abajo    K_PAGEDOWN  Av pág
 K_ESCAPE  Esc   K_F1  F1
-K_BACKSPACE Backspace   K_F2  F2
+K_BACKSPACE Retroceso   K_F2  F2
 K_TAB Tab   K_F3  F3
-K_RETURN  Return or Enter   K_F4  F4
-K_SPACE Space bar   K_F5  F5
-K_DELETE  Del   K_F6  F6
-K_LSHIFT  Left Shift    K_F7  F7
-K_RSHIFT  Right Shift   K_F8  F8
-K_LCTRL Left Ctrl   K_F9  F9
-K_RCTRL Right Ctrl    K_F10 F10
-K_LALT  Left Alt    K_F11 F11
-K_RALT  Right Alt   K_F12 F12
+K_RETURN  Intro o Enter   K_F4  F4
+K_SPACE Barra espaciadora   K_F5  F5
+K_DELETE  Supr   K_F6  F6
+K_LSHIFT  Shift izquierda    K_F7  F7
+K_RSHIFT  Shift derecha   K_F8  F8
+K_LCTRL Ctrl izquierda   K_F9  F9
+K_RCTRL Ctrl derecha    K_F10 F10
+K_LALT  Alt izquierda    K_F11 F11
+K_RALT  Alt derecha   K_F12 F12
 
 104.             if evento.type == KEYUP:
 105.                 if evento.key == ord('z'):
@@ -527,16 +527,16 @@ K_RALT  Right Alt   K_F12 F12
 109.                     trucoLento = False
 110.                     puntaje = 0
 
-The KEYUP event is created whenever the player stops pressing down on a keyboard key and releases it. Event objects with a type of KEYUP also have a key attribute just like KEYDOWN events.
+El evento KEYUP se crea cuando el jugador libera una tecla que estaba pulsando. Los objetos Event de tipo KEYUP también tienen un atributo key, igual que los eventos KEYDOWN.
 
-Line 105 checks if the player has released the “z” key, which will deactivate the reverse cheat. In that case, line 106 sets reverseCheat to False and line 107 resets the score to 0. The score reset is to discourage the player for using the cheats.
+La línea 105 comprueba si el jugador ha liberado la tecla "z", lo que desactivará el truco reversa. En ese caso, la línea 106 asignaFalse a trucoReversa y la línea 107 reinicia el puntaje a 0. Reiniciamos el puntaje para desalentar al jugador de usar los trucos.
 
-Lines 108 to 110 do the same thing for the “x” key and the slow cheat. When the “x” key is released, slowCheat is set to False and the player’s score is reset to 0.
+Las líneas 108 a 110 hacen lo mismo para la tecla "x" y el truco lento. Cuando la tecla "x" es liberada, se asigna False a trucoLento y el puntaje del jugador se reinicia a 0.
 
 111.                 if evento.key == K_ESCAPE:
 112.                         terminar()
 
-At any time during the game, the player can press the ESC key on the keyboard to quit. Line 14 checks if the key that was released was the ESC key by checking event.key == K_ESCAPE. If so, line 112 calls the terminate() function to exit the program.
+En cualquier momento del juego, el jugador puede pulsar la tecla ESC para salir del juego. La línea 111 comprueba si la tecla liberada ha sido ESC evaluando evento.key == K_ESCAPE. En ese caso, la línea 112 llama a la función terminar() para salir del programa.
 
 114.                 if evento.key == K_LEFT or evento.key == ord('a'):
 115.                     moverIzquierda = False
@@ -547,7 +547,7 @@ At any time during the game, the player can press the ESC key on the keyboard to
 120.                 if evento.key == K_DOWN or evento.key == ord('s'):
 121.                     moverAbajo = False
 
-Lines 114 to 121 check if the player has stopped holding down one of the arrow or WASD keys. In that case, the code sets the corresponding movement variable to False.
+Las líneas 114 a 121 comprueban si el jugador ha liberado una flecha o alguna de las teclas WASD. En ese caso, el código asigna False a la variable de movimiento correspondiente.
 
 For example, if the player was holding down the left arrow key, then the moveLeft would have been set to True on line 93. When they release it, the condition on line 114 will evaluate to True, and the moveLeft variable will be set to False.
 
