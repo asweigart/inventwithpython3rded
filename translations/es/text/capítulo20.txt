@@ -549,31 +549,31 @@ En cualquier momento del juego, el jugador puede pulsar la tecla ESC para salir 
 
 Las líneas 114 a 121 comprueban si el jugador ha liberado una flecha o alguna de las teclas WASD. En ese caso, el código asigna False a la variable de movimiento correspondiente.
 
-For example, if the player was holding down the left arrow key, then the moveLeft would have been set to True on line 93. When they release it, the condition on line 114 will evaluate to True, and the moveLeft variable will be set to False.
+Por ejemplo, si el jugador hubiese estado pulsando la flecha izquierda, la variable moverIzquierda habría recibido el valor True en la línea 93. Al soltar la tecla, la condición de la línea 114 habría sido evaluada a True, y se habría asignado False a la variable moverseIzquierda.
 
-The move_ip() Method
+El Método move_ip()
 
 123.             if evento.type == MOUSEMOTION:
 124.                 # Si se mueve el ratón, este se mueve al lugar donde esté el cursor.
 125.                 rectanguloJugador.move_ip(evento.pos[0] - rectanguloJugador.centerx, evento.pos[1] - rectanguloJugador.centery)
 
-Now that you’ve handled the keyboard events, let’s handle any mouse events that may have been generated. The Dodger game doesn’t do anything if the player has clicked a mouse button, but it does respond when the player moves the mouse. This gives the player two ways of controlling the player character in the game: the keyboard or the mouse.
+Ahora que hemos manipulado los eventos del teclado, vamos a manipular los eventos del ratón que se hayan generado. El juego Evasor no hace nada si el jugador ha pulsado un botón del ratón, pero responde al mover el ratón. Esto da al jugador dos formas de controlar al personaje del jugador en el juego: el teclado o el ratón.
 
-The MOUSEMOTION event is generated whenever the mouse is moved. Event objects with a type set to MOUSEMOTION also have an attribute named pos for the position of the mouse event. The pos attribute stores a tuple of the X- and Y-coordinates of where the mouse cursor moved in the window. If the event’s type is MOUSEMOTION, the player’s character moves to the position of the mouse cursor.
+El evento MOUSEMOTION se genera cuando el ratón se mueve. Los objetos Event cuyo atributo type es MOUSEMOTION también tienen un atributo llamado pos para la posición del evento. Este atributo pos almacena una tupla de coordenadas X e Y que indican a qué parte de la ventana se ha movido el cursor del ratón. Si el tipo del evento es MOUSEMOTION, el personaje del jugador se mueve a la posición del cursor del ratón.
 
-The move_ip() method for Rect objects will move the location of the Rect object horizontally or vertically by a number of pixels. For example, playerRect.move_ip(10, 20) would move the Rect object 10 pixels to the right and 20 pixels down. To move the Rect object left or up, pass negative values. For example, playerRect.move_ip(-5, -15) will move the Rect object left by 5 pixels and up 15 pixels.
+El método move_ip() para objetos Rect modificará horizontal o verticalmente la posición del objeto Rect en un número de píxeles. Por ejemplo, rectanguloJugador.move_ip(10, 20) desplaza al objeto Rect 10 píxeles a la derecha y 20 píxeles hacia abajo. Para mover al objeto Rect hacia la izquierda o hacia arriba, debes pasar valores negativos. Por ejemplo, rectanguloJugador.move_ip(-5, -15) mueve al objeto Rect 5 píxeles hacia la izquierda y 15 píxeles hacia arriba.
 
-The “ip” at the end of move_ip() stands for “in place”. This is because the method changes the Rect object itself, rather than return a new Rect object with the changes. There is also a move() method which doesn’t change the Rect object, but instead creates and returns a new Rect object in the new location.
+El "ip" al final del método move_ip() es la abreviatura de "in place" (que en español significa "en el lugar"). Esto quiere decir que el método modifica al propio objeto Rect, y no devuelve un nuevo objeto Rect con los cambios. También existe un método move() que no modifica al objeto Rect sino que crea y devuelve un nuevo objeto Rect en la nueva ubicación.
 
-Adding New Baddies
+Agregando Nuevos Villanos
 
 127.         # Añade villanos en la parte superior de la pantalla, de ser necesarios.
 128.         if not trucoReversa and not trucoLento:
 129.             contadorAgregarVillano += 1
 
-On each iteration of the game loop, increment the baddieAddCounter variable by one. This only happens if the cheats are not enabled. Remember that reverseCheat and slowCheat are set to True as long as the “z” and “x” keys are being held down, respectively
+En cada iteración del bucle del juego se incrementa en uno la variable contadorAgregarVillano. Esto sólo ocurre si los trucos no están activados. Recuerda que trucoReversa y trucoLento tienen asignado el valor True en tanto que las teclas "z" y "x", respectivamente, estén siendo pulsadas.
 
-And while those keys are being held down, baddieAddCounter isn’t incremented. Therefore, no new baddies will appear at the top of the screen.
+Y mientras esas teclas estén siendo pulsadas, no se incrementa contadorAgregarVillano. Luego, no aparecerán nuevos villanos en el borde superior de la pantalla.
 
 130.         if contadorAgregarVillano == TASANUEVOVILLANO:
 131.             contadorAgregarVillano = 0
@@ -583,19 +583,19 @@ And while those keys are being held down, baddieAddCounter isn’t incremented. 
 135.                         'superficie':pygame.transform.scale(imagenVillano, (tamañoVillano, tamañoVillano)),
 136.                         }
 
-When the baddieAddCounter reaches the value in ADDNEWBADDIERATE, it is time to add a new baddie to the top of the screen. First, the baddieAddCounter counter is reset back to 0.
+Cuando contadorAgregarVillano alcanza el valor en TASANUEVOVILLANO, es hora de agregar un nuevo villano al borde superior de la pantalla. Pero antes, se reinicia contadorAgregarVillano a 0.
 
-Line 132 generates a size for the baddie in pixels. The size will be a random integer between BADDIEMINSIZE and BADDIEMAXSIZE, which are constants set to 10 and 40 on lines 9 and 10.
+La línea 132 genera un tamaño para el villano en píxeles. El tamaño será un entero aleatorio entre TAMAÑOMINVILLANO y TAMAÑOMAXVILLANO, que son constantes que han recibido los valores 10 y 40 en las líneas 9 y 10.
 
-Line 133 is where a new baddie data structure is created. Remember, the data structure for baddies is simply a dictionary with keys 'rect', 'velocidad', and 'superficie'. The 'rect' key holds a reference to a Rect object which stores the location and size of the baddie. The call to the pygame.Rect() constructor function has four parameters: the X-coordinate of the top edge of the area, the Y-coordinate of the left edge of the area, the width in pixels, and the height in pixels.
+La línea 133 es donde se crea una nueva estructura de datos villano. Recuerda, la estructura de datos para los villanos es simplemente un diccionario con claves 'rect', 'velocidad' y 'superficie'. La clave 'rect' contiene una referencia a un objeto Rect que almacena la ubicación y el tamaño del villano. La llamada a la función constructor pygame.Rect() tiene cuatro parámetros: la coordenada X del borde superior del área, la coordenada Y del borde izquierdo del área, el ancho en píxeles y la altura en píxeles.
 
-The baddie needs to appear randomly across the top of the window, so pass random.randint(0, WINDOWWIDTH-baddieSize) for the X-coordinate of the left edge. The reason you pass WINDOWWIDTH-baddieSize instead of WINDOWWIDTH is because this value is for the left edge of the baddie. If the left edge of the baddie is too far on the right side of the screen, then part of the baddie will be off the edge of the window and not visible.
+El villano debe aparecer en una posición aleatoria sobre el borde superior de la pantalla, de modo que pasamos pygame.Rect(random.randint(0, ANCHOVENTANA-tamañoVillano) como la coordenada X del borde izquierdo. La razón de que pasemos ANCHOVENTANA-tamañoVillano en lugar de ANCHOVENTANA es que este valor es para el borde izquierdo del villano. Si el borde izquierdo del villano queda demasiado hacia la derecha, parte del villano quedará fuera de la pantalla y no será visible.
 
-The bottom edge of the baddie should be just above the top edge of the window. The Y-coordinate of the top edge of the window is 0. To put the baddie’s bottom edge there, set the top edge to 0 - baddieSize.
+El borde inferior del villano debería estar justo por sobre el borde superior de la ventana. La coordenada Y del borde superior de la ventana es 0. Para colocar allí el borde inferior del villano, asignamos 0 - tamañoVillano al borde superior del mismo
 
-The baddie’s width and height should be the same (the image is a square), so pass baddieSize for the third and fourth argument.
+El ancho y la altura del villano deberían ser iguales (la imagen es un cuadrado), de modo que pasamos tamañoVillano como tercer y cuarto argumentos.
 
-The rate of speed that the baddie moves down the screen is set in the 'velocidad' key. Set it to a random integer between BADDIEMINSPEED and BADDIEMAXSPEED.
+La velocidad a la cual el villano se mueve hacia abajo en la pantalla corresponde al valor en la clave 'velocidad'. Le asignaremos un entero aleatorio comprendido entre VELOCIDADMINVILLANO y VELOCIDADMAXVILLANO.
 
 138.             villanos.append(nuevoVillano)
 
