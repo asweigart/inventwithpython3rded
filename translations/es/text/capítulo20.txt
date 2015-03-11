@@ -599,21 +599,21 @@ La velocidad a la cual el villano se mueve hacia abajo en la pantalla correspond
 
 138.             villanos.append(nuevoVillano)
 
-Line 138 will add the newly created baddie data structure to the list of baddie data structures. The program will use this list to check if the player has collided with any of the baddies, and to know where to draw baddies on the window.
+La línea 138 agrega la recientemente creada estructura de datos villano a la lista de villanos. El programa usará esta lista para comprobar si el jugador ha colisionado con alguno de ellos, y para saber en qué lugar de la pantalla dibujar los villanos.
 
-Moving the Player’s Character
+Moviendo el Personaje del Jugador
 
 140.         # Mueve el jugador.
 141.         if moverIzquierda and rectanguloJugador.left > 0:
 142.             rectanguloJugador.move_ip(-1 * TASAMOVIMIENTOJUGADOR, 0)
 
-The four movement variables moveLeft, moveRight, moveUp and moveDown are set to True and False when Pygame generates the KEYDOWN and KEYUP events, respectively.
+Las cuatro variables de movimiento moverIzquierda, moverDerecha, moverArriba y moverAbajo reciben los valores True y False cuando Pygame genera los eventos KEYDOWN y KEYUP respectivamente.
 
-If the player’s character is moving left and the left edge of the player’s character is greater than 0 (which is the left edge of the window), then playerRect should be moved to the left.
+Si el personaje del jugador está moviéndose hacia la izquierda y la coordenada de su borde izquierdo es mayor que 0 (que corresponde al borde izquierdo de la ventana), entonces rectanguloJugador se desplazará hacia la izquierda.
 
-You’ll always move the playerRect object by the number of pixels in PLAYERMOVERATE. To get the negative form of an integer, multiple it by -1. On line 142, since 5 is stored in PLAYERMOVERATE, the expression -1 * PLAYERMOVERATE evaluates to -5.
+El desplazamiento del objeto rectanguloJugador será siempre un múltiplo del número de píxeles en TASAMOVIMIENTOJUGADOR. Para obtener la forma negativa de un entero, debemos multiplicarlo por -1. En la línea 142, siendo que TASAMOVIMIENTOJUGADOR contiene al valor 5, la expresión -1 * TASAMOVIMIENTOJUGADOR se evalúa a -5.
 
-Therefore, calling playerRect.move_ip(-1 * PLAYERMOVERATE, 0) will change the location of playerRect by 5 pixels to the left of its current location.
+Por lo tanto, la llamada a rectanguloJugador.move_ip(-1 * TASAMOVIMIENTOJUGADOR, 0) cambiará la ubicación de rectanguloJugador desplazándolo 5 píxeles hacia la izquierda de su ubicación actual.
 
 143.         if moverDerecha and rectanguloJugador.right < ANCHOVENTANA:
 144.             rectanguloJugador.move_ip(TASAMOVIMIENTOJUGADOR, 0)
@@ -622,28 +622,28 @@ Therefore, calling playerRect.move_ip(-1 * PLAYERMOVERATE, 0) will change the lo
 147.         if moverAbajo and rectanguloJugador.bottom < ALTOVENTANA:
 148.             rectanguloJugador.move_ip(0, TASAMOVIMIENTOJUGADOR)
 
-Lines 143 to 148 do the same thing for the other three directions: right, up, and down. Each of the three if statements in lines 143 to 148 checks that their movement variable is set to True and that the edge of the Rect object of the player is inside the window. Then it calls move_ip() to move the Rect object.
+Las líneas 143 a 148 hacen lo mismo para las otras tres direcciones: derecha, arriba y abajo. Cada uno de las tres sentencias if en las líneas 143 a 148 comprueba que su variable de movimiento contenga el valor True y que el borde del objeto Rect del jugador esté dentro de la ventana. Entonces llama a move_ip() para desplazar al objeto Rect.
 
-The pygame.mouse.set_pos() Function
+La Función pygame.mouse.set_pos()
 
 150.         # Mueve el cursor del ratón hacia el jugador.
 151.         pygame.mouse.set_pos(rectanguloJugador.centerx, rectanguloJugador.centery)
 
-Line 151 moves the mouse cursor to the same position as the player’s character. The pygame.mouse.set_pos() function moves the mouse cursor to the X- and Y-coordinates you pass it. This is so that the mouse cursor and player’s character are always in the same place.
+La línea 151 mueve el cursor a la misma posición que el personaje del jugador. La función pygame.mouse.set_pos() mueve el cursor del ratón a las coordenadas X e Y que le pases. Esto es para que el cursor del ratón y el personaje del jugador estén siempre en el mismo lugar.
 
-Specifically, the cursor will be right in the middle of the character’s Rect object because you passed the centerx and centery attributes of playerRect for the coordinates. The mouse cursor still exists and can be moved, even though it is invisible because of the pygame.mouse.set_visible(False) call on line 47.
+Específicamente, el cursor estará justo en el medio del objeto Rect del personaje ya que recibe como coordenadas los atributos centerx y centery de rectanguloJugador. El cursor del ratón sigue existiendo y puede ser desplazado, a pesar de que sea invisible a causa de la llamada a pygame.mouse.set_visible(False) en la línea 47.
 
 153.         # Mueve los villanos hacia abajo.
 154.         for b in villanos:
 
-Now loop through each baddie data structure in the baddies list to move them down a little.
+Ahora recorre cada estructura villano en la lista de villanos para desplazarlos ligeramente hacia abajo.
 
 155.             if not trucoReversa and not trucoLento:
 156.                 b['rect'].move_ip(0, b['velocidad'])
 
-If neither of the cheats have been activated, then move the baddie’s location down a number of pixels equal to its speed, which is stored in the 'velocidad' key.
+Si ninguno de los trucos ha sido activado, cada villano se desplaza hacia abajo en un número de píxeles igual a su velocidad, la cual se almacena en la clave 'velocidad'.
 
-Implementing the Cheat Codes
+Implementando los Trucos
 
 157.             elif trucoReversa:
 158.                 b['rect'].move_ip(0, -5)
