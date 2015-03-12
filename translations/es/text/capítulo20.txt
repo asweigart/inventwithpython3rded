@@ -648,62 +648,62 @@ Implementando los Trucos
 157.             elif trucoReversa:
 158.                 b['rect'].move_ip(0, -5)
 
-If the reverse cheat is activated, then the baddie should move up by five pixels. Passing -5 for the second argument to move_ip() will move the Rect object upwards by five pixels.
+Si se activa el truco reversa, el villano se moverá cinco píxeles hacia arriba. Para lograr este desplazamiento del objeto Rect, pasamos -5 como segundo argumento a la función move_ip().
 
 159.             elif trucoLento:
 160.                 b['rect'].move_ip(0, 1)
 
-If the slow cheat has been activated, then the baddie should move downwards, but only by the slow speed of one pixel per iteration through the game loop. The baddie’s normal speed (which is stored in the 'velocidad' key of the baddie’s data structure) is ignored while the slow cheat is activated.
+Si el truco lento ha sido activado, los villanos seguirán moviéndose hacia abajo pero su velocidad se reducirá a un píxel por iteración del bucle del juego. La velocidad normal del villano (almacenada en la clave 'velocidad' de la estructura de datos del villano) es ignorada mientras el truco lento está activado.
 
-Removing the Baddies
+Quitando los villanos
 
 162.         # Elimina los villanos que han caido por debajo.
 163.         for b in villanos[:]:
 
-Any baddies that fell below the bottom edge of the window should be removed from the baddies list. Remember that while iterating through a list, do not modify the contents of the list by adding or removing items. So instead of iterating through the baddies list with the for loop, iterate through a copy of the baddies list. This copy is made with the blank slicing operator [:].
+Cada villano que caiga por debajo del borde inferior de la ventana debe ser quitado de la lista de villanos. Recuerda que mientras iteramos sobre una lista no debemos modificar su contenido agregando o quitando elementos. Entonces en lugar de iterar sobre la lista de villanos con el bucle for, iteramos sobre una copia de la misma. Esta copia se crea usando una rebanada sin argumentos [:].
 
-The for loop on line 163 uses a variable b for the current item in the iteration through baddies[:].
+El bucle for de la línea 163 usa una variable b para el elemento actual en la iteración sobre villanos[:].
 
 164.             if b['rect'].top > ALTOVENTANA:
 165.                 villanos.remove(b)
 
-Let’s evaluate the expression b['rect'].top. b is the current baddie data structure from the baddies[:] list. Each baddie data structure in the list is a dictionary with a 'rect' key, which stores a Rect object. So b['rect'] is the Rect object for the baddie.
+Evaluemos la expresión b['rect'].top. b es la estructura de datos actual de la lista villanos[:]. Cada estructura de datos villano en la lista es un diccionario con una clave 'rect', que almacena un objeto Rect. Entonces b['rect'] es el objeto Rect correspondiente al villano.
 
-Finally, the top attribute is the Y-coordinate of the top edge of the rectangular area. Remember that the Y-coordinates increase going down. So b['rect'].top > WINDOWHEIGHT will check if the top edge of the baddie is below the bottom of the window.
+Finalmente, el atributo top es la coordenada Y del borde superior del área rectangular. Recuerda que las coordenadas Y aumentan cuando vamos hacia abajo. Entonces b['rect'].top > ALTOVENTANA comprobará si el borde superior el villano está por debajo del borde inferior de la ventana.
 
-If this condition is True, then line 165 removes the baddie data structure from the baddies list.
+Si esta condición es True, entonces la línea 165 quita la estructura de datos villano de la lista de villanos.
 
-Drawing the Window
+Dibujando la Ventana
 
-After all the data structures have been updated, the game world should be drawn using Pygame’s image functions. Because the game loop is executed several times a second, drawing the baddies and player in new positions makes their movement look smooth and natural.
+Después de haber actualizado todas las estructuras de datos, debemos dibujar el universo del juego usando las funciones gráficas de Pygame. Dado que el bucle del juego se ejecuta varias veces por segundo, simplemente dibujar a los villanos y al jugador en nuevas posiciones hace que su movimiento se vea suave y natural.
 
 167.         # Dibuja el mundo del juego en la ventana.
 168.         superficieVentana.fill(COLORFONDO)
 
-First, before drawing anything else, line 168 blacks out the entire screen to erase anything drawn on it previously.
+Primero, antes de dibujar cualquier otra cosa, la línea 168 pinta de negro toda la pantalla para borrar todo lo anterior.
 
-Remember that the Surface object in windowSurface is the special Surface object because it was the one returned by pygame.display.set_mode(). Therefore, anything drawn on that Surface object will appear on the screen after pygame.display.update() is called.
+Recuerda que el objeto Surface en superficieVentana es especial porque es el objeto Surface devuelto por pygame.display.set_mode(). Cualquier cosa que dbujemos sobre este objeto Surface aparecerá en la pantalla al llamar a pygame.display.update().
 
-Drawing the Player’s Score
+Dibujando el Puntaje del Jugador
 
 170.         # Dibuja el puntaje y el puntaje máximo
 171.         dibujarTexto('Puntaje: %s' % (puntaje), fuente, superficieVentana, 10, 0)
 172.         dibujarTexto('Puntaje Máximo: %s' % (puntajeMax), fuente, superficieVentana, 10, 40)
 
-Lines 171 and 172 render the text for the score and top score to the top left corner of the window. The 'Score: %s' % (score) expression uses string interpolation to insert the value in the score variable into the string.
+Las líneas 171 y 172 muestran el texto con el puntaje y el puntaje máximo en la esquina superior izquierda de la ventana. La expresión 'Puntaje: %s' % (puntaje) usa interpolación de cadenas para insertar el valor de la variable puntaje en la cadena.
 
-Pass this string, the Font object stored in the font variable, the Surface object on which to draw the text on, and the X- and Y-coordinates of where the text should be placed. The drawText() will handle the call to the render() and blit() methods.
+Pasamos como argumentos esta cadena, el objeto Font guardado en la variable fuente, el objeto Surface sobre el cual dibujar el texto y las coordenadas X e Y de donde deseamos colocar el texto. La función dibujarTexto() gestionará la llamada a los métodos render() y blit().
 
-For the top score, do the same thing. Pass 40 for the Y-coordinate instead of 0 so that the top score text appears beneath the score text.
+Hacemos lo mismo para el puntaje máximo. Sólo pasamos 40 como coordenada Y en lugar de 0 de modo que el puntaje máximo aparezca debajo del puntaje actual.
 
-Drawing the Player’s Character
+Dibujando el Personaje del Jugador
 
 174.         # Dibuja el rectángulo del jugador
 175.         superficieVentana.blit(imagenJugador, rectanguloJugador)
 
-The information about the player is kept in two different variables. playerImage is a Surface object that contains all the colored pixels that make up the player’s character’s image. playerRect is a Rect object that stores the information about the size and location of the player’s character.
+La información acerca del jugador se guarda en dos variables diferentes. imagenJugador es un objeto Surface que contiene todos los píxeles de colores que conforman la imagen del personaje del jugador. rectanguloJugador es un objeto Rect que guarda la información con el tamaño y la ubicación del personaje del jugador.
 
-The blit() method draws the player character’s image (in playerImage) on windowSurface at the location in playerRect.
+El método blit() dibuja la imagen del personaje del jugador (en imagenJugador) sobre superficieVentana en la ubicación contenida en rectanguloJugador.
 
 177.         # Dibuja cada villano
 178.         for b in villanos:
