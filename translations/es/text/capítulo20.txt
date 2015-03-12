@@ -222,7 +222,7 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
 188. 
 189.         relojPrincipal.tick(FPS)
 190. 
-191.     # Frena el juego y muestra "Juego Terminado"
+191.     # Detiene el juego y muestra "Juego Terminado"
 192.     pygame.mixer.music.stop()
 193.     sonidoJuegoTerminado.play()
 194. 
@@ -709,13 +709,13 @@ El método blit() dibuja la imagen del personaje del jugador (en imagenJugador) 
 178.         for b in villanos:
 179.             superficieVentana.blit(b['superficie'], b['rect'])
 
-Line 178’s for loop draws every baddie on the windowSurface object. Each item in the baddies list is a dictionary. The dictionaries’ 'superficie' and 'rect' keys contain the Surface object with the baddie image and the Rect object with the position and size information, respectively.
+El bucle for de la línea 178 dibuja cada villano en el objeto superficieVentana. Cada elemento en la lista de villanos es un diccionario. Las claves 'superficie' y 'rect' del diccionario contienen al objeto Surface con la imagen del villano y al objeto Rect con información sobre su tamaño y ubicación, respectivamente.
 
 181.         pygame.display.update()
 
-Now that everything has been drawn to windowSurface, draw this Surface object to the screen by calling pygame.display.update().
+Ahora que todo se ha dibujado sobre superficieVentana, dibujamos esta superficie sobre la ventana llamando a pygame.display.update().
 
-Collision Detection
+Detección de Colisiones
 
 183.         # Verifica si algún villano impactó en el jugador.
 184.         if jugadorGolpeaVillano(rectanguloJugador, villanos):
@@ -723,46 +723,48 @@ Collision Detection
 186.                 puntajeMax = puntaje # Establece nuevo puntaje máximo
 187.             break
 
-Lines 184 checks if the player has collided with any baddies by calling playerHasHitBaddie(). This function will return True if the player’s character has collided with any of the baddies in the baddies list. Otherwise, the function will return False.
+La línea 184 comprueba si el jugador ha colisionado con algún villano llamando a jugadorGolpeaVillano(). Esta función devuelve True si el personaje del jugador ha colisionada con alguno de los villanos de la lista. De lo contrario, la función devuelve False.
 
-If the player’s character has hit a baddie, lines 185 and 186 update the top score if the current score is greater than it. Then the execution breaks out of the game loop at line 187. The program’s execution will move to line 191.
+Si el personaje del jugador ha chocado con algún villano, las líneas 185 y 186 actualizan el puntaje máximo si es menor que el puntaje actual. Entonces la sentencia break de la línea 187 sale del bucle del juego. La ejecución del programa se mueve entonces a la línea 191.
 
 189.         relojPrincipal.tick(FPS)
 
-To keep the computer from running through the game loop as fast as possible (which would be much too fast for the player to keep up with), call relojPrincipal.tick() to pause for a brief amount of time. The pause will be long enough to ensure that about 40 (the value stored inside the FPS variable) iterations through the game loop occur each second.
+Para evitar que la computadora recorra el bucle del juego a su máxima velocidad (lo cual sería demasiado rápido incluso para las habilidades del mejor jugador), llamamos a relojPrincipal.tick() para pausar el juego por un instante. La pausa será suficiente para asegurar que se realizarán alrededor de 40 (el valor almacenado en la variable FPS) iteraciones sobre el bucle del juego.
 
-The Game Over Screen
+La Pantalla de Fin del Juego
 
-191.     # Frena el juego y muestra "Juego Terminado"
+191.     # Detiene el juego y muestra "Juego Terminado"
 192.     pygame.mixer.music.stop()
 193.     sonidoJuegoTerminado.play()
 
-When the player loses, the game stops playing the background music and plays the “game over” sound effect. Line 192 calls the stop() function in the pygame.mixer.music module to stop the background music. Line 193 calls the play() method on the Sound object stored  sonidoJuegoTerminado. Puedes crear tantos objetos Sound como quieras en tus juegos, cada uno con un archivo de sonido diferente.i pygame.mixer.music.load() carga un archivo de sonido para que sea reproducido como música de fondo. Esta función no devuelve ningún objeto, y sólo puede cargarse un archivo de música de fondo a la vez
+Cuando el jugador pierde, el juego deja de reproducir la música de fondo y reproduce el efecto de sonido de "juego terminado". La línea 192 llama a la función stop() en el módulo pygame.mixer.music para detener la música de fondo. La línea 193 llama al método play() del objeto Sound guardado en sonidoJuegoTerminado.
+
+195.     dibujarTexto('Juego Terminado', fuente, superficieVentana, (ANCHOVENTANA / 3)-40, (ALTOVENTANA / 3))
 196.     dibujarTexto('Presione una tecla jugar de nuevo.', fuente, superficieVentana, (ANCHOVENTANA / 3) - 150, (ALTOVENTANA / 3) + 50)
 197.     pygame.display.update()
 198.     esperarTeclaJugador()
 
+Las líneas 195 y 196 llaman a la función dibujarTexto para dibujar el texto "Juego Terminado" sobre el objeto superficieVentana. La línea 197 llama a pygame.display.update() para dibujar este objeto Surface sobre la pantalla. Después de mostrar el texto, el juego se detiene mediante la función esperarTeclaJugador() hasta que el jugador presione una tecla.
 
-A continuación cargaremos los archivos de imagen a utilizar para el personaje del jugador y los villanos en la pantalla. La imagen para el personaje se encuentra en jugador.png y laLines 195 and 196 call the drawText() function to draw the “game over” text to the  imagen para los villanos está en el archivo villano.png. Todos los villanos son iguales, por lo que sólo necesitarás un archivo de imagen para ellos. Puedes descargar estas imagenes del sitio web de este libro en htwindowSurface object. Line 197 calls pygame.display.update() to draw this Surface object to the screen. After displaying this text, the game stops until the player presses a key by calling the waitForPlayerToPressKey() functionline 198. Depending on.
+200.     sonidoJuegoTerminado.stop()
 
-Cuando el juego se inicia por primera vez, se muestra el nombre "Evasor" en la debemos mostrar Pantalla de Inicioh  ct before a . queremos indicar al jugador que puede comenzar a jugar pulsando cualquier tecla. Esta pantalla aparece para que el jugador tenga tiempo de prepararse para empezar a jugaro luego de ejecutar el programa.T
+After the player presses a key, the program execution will return from the waitForPlayerToPressKey() call on line 198. Depending on how long the player takes to press a key, the “game over” sound effect may or may not still be playing. To stop this sound effect before a new game starts, line 200 calls gameOverSound.stop().
+
 Modifying the Dodger Game
 
 That’s it for our graphical game. You may find that the game is too easy or too hard. But the game is easy to modify because we took the time to use constant variables instead of typing in the values directly. Now all we need to do to change the game is modify the value set in the constant variables.
 
-For example, if you want the game to run slower in general, change the FPSEn las líneas 62 y 63, llamamos a la función dibujarTexto() y le pasamos cinco argumentos:game loop will only be executed 20 times a second instead of 40.
+For example, if you want the game to run slower in general, change the FPS variable on line 8 to a smaller value such as 20. This will make both the baddies and the player’s character move slower since the game loop will only be executed 20 times a second instead of 40.
 
-If yLa cadena del texto que quieres que aparezca en pantalla BADDIEMAXSPEED to a smaller value such as 4. This will make all the baddies move bLa fuente en que quieres que aparezca la cadenapixels per iteration through the game loop instead of 1 and 8.
+If you just want to slow down the baddies and not the player, then change BADDIEMAXSPEED to a smaller value such as 4. This will make all the baddies move between 1 (the value in BADDIEMINSPEED) and 4 pixels per iteration through the game loop instead of 1 and 8.
 
-El objeto Surface sobrY el cual dibujar el textou wantLa coordenada X del objeto Surface en la cual dibujar el texto have fewer but la  La coordenada X del
-Esto puede parecer como demasiados argumentos a pasar para una sola función, pero ten en cuenta que esta función reemplaza a cinco líneas de código cada vez que la llamamos. Esto reduce la extensión del programa y hace más fácil encontrar bugs ya que hay menos código que revisar. objeto Surface en la cual dibujar el texto.that baddies are being added every 12 iterations through the game l
-La función
-While the ba to u pondrá al juego en pausa ejecutando sin parar un bucle hasta que se genere un evento KEYDOWN. Entonces la ejecución sale del bucle y el programa continúa ejecutándose.s
-Inicio del Código Principal del Juego
+If you want the game to have fewer but larger baddies instead of many fast baddies, then increase ADDNEWBADDIERATE to 12, BADDIEMINSIZE to 40, and BADDIEMAXSIZE to 80. Now that baddies are being added every 12 iterations through the game loop instead of every 6 iterations, there will be half as many baddies as before. But to keep the game interesting, the baddies are now much larger than before.
+
+While the basic game remains the same, you can modify any of the constant variables to drastically affect the behavior of the game. Keep trying out new values for the constant variables until you find a set of values you like the best.
+
 Summary
 
-Unlike our previous text-based games, Dodger really looks like the kind of modern computer game we usually play. It has graphics and 
-El valor en la variable music and uses the mouse. While Pygame provides functions and data types as building blocks, it is you the them programmer who puts them together to create fun, interactive games.
+Unlike our previous text-based games, Dodger really looks like the kind of modern computer game we usually play. It has graphics and music and uses the mouse. While Pygame provides functions and data types as building blocks, it is you the programmer who puts them together to create fun, interactive games.
 
 And it is all because you know how to instruct the computer to do it, step by step, line by line. You can speak the computer’s language, and get it to do large amounts of number crunching and drawing for you. This is a useful skill, and I hope you’ll continue to learn more about Python programming. (And there’s still much more to learn!)
 

@@ -188,7 +188,7 @@ while True:
 
         relojPrincipal.tick(FPS)
 
-    # Frena el juego y muestra "Juego Terminado"
+    # Detiene el juego y muestra "Juego Terminado"
     pygame.mixer.music.stop()
     sonidoJuegoTerminado.play()
 
