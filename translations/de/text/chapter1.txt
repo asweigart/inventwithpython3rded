@@ -53,7 +53,7 @@ Unter Windows, klicke auf den “Start”-Knopf in der linken unteren Ecke, gebe
 
 Unter Mac OS X, öffne das Finder-Fenster und klicke auf “Anwendungen”. Danach klicke auf “Python 3.4” und zuletzt auf das IDLE-Symbol.
 
-Unter Ubuntu/Linux, öffne ein Terminal-Fenster und gib “idle3” ein. Du magst auch in der Lage sein am oberen Bildschirmrand auf “Anwendungen” und dann auf “Programming and IDLE 3” zu klicken.
+Unter Ubuntu/Linux, öffne ein Terminal-Fenster und gib “idle3” ein. Du magst auch in der Lage sein am oberen Bildschirmrand auf “Anwendungen” und dann auf “Programming” and “IDLE 3” zu klicken.
 
 Das Fenster, das bei der ersten Ausführung von IDLE erscheint, wird als interaktiver Kommandozeileninterpreter bezeichnet (siehe Abb. 1-2). Man kann in es Befehle eingeben und Python wird diese ausführen und die Ergebnisse im selben Fenster anzeigen.
 

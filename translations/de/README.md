@@ -2,12 +2,12 @@ Translators
 ===========
 
 - Christian Schilter (schmittens)
-- Christian Von Aster
 - Dennis Bautembach (denniskb)
 - Frank Lehmann
 - Georg Ramer (GeorgRamer)
 - Horst Jens (horstjens)
 - Thomas Klemmer
+- Karoline Busse (kikidergecko)
 
 (You can always check the commit history of the files in this folder to find other translators, if this README is not up to date.)
 
@@ -33,10 +33,56 @@ Kapitel 1
 Kapitel 6
 ---------
 
-- "spam" wurde nicht übersetzt. Meinung?
+- "spam" wurde nicht übersetzt. Meinung? Kiki sagt: Nicht übersetzen.
+
+
+Kapitel 7
+---------
+
+Vorbemerkung: Ich habe nur eine englische Installation und habe nicht rausgekriegt, wo ich eine deutsche Version von IDLE herbekomme. Gibt es die überhaupt? Entsprechend war ich mir bei einigen Menüeinträgen nicht sicher. Diese Begriffe sind im Dokument mit [...] vermerkt.
+
+- Zeile 8: "Stepping: Into, Over and Out". Das sollte eigentlich den Buttons in der deutschen IDLE-Version entsprechen, die ich nicht habe. Kann das jemand verifizieren? Übersetzungsvorschlag von mir: Hineinschalten, Hinüberschalten und Herausschalten.
+
+- Zeile 17: "Bugs" als "Bugs" belassen
+
+- Zeile 20: "Runtime Error" wurde in "Laufzeitfehler" übersetzt. Meinungen? Gut so, sagt kiki.
+
+- Zeile 43: Habe "Debugger" 1:1 ins Deutsche übernommen, da ich keine sinnvolle Übersetzung gefunden habe. Ideen? Gut so, sagt Kiki.
+
+- Zeile 49: Habe "Drachen-Reich" aus Kapitel 5 übernommen. Wie handhabt ihr die Namen und Datainamen der Beispielprogramme? Ich habe sie ins Deutsche übersetzt und innerhalb des Codes Text und Variablenamen übersetzt.
+
+- Zeile 55: "Source and Globals checkboxes" wurden vorerst in "Source- und Globals-Kontrollkästchen" übersetzt. Sie Vorbemerkung.
+
+- Zeile 74: "Scope" wurde in "Geltungsbereich" übersetzt.
+
+- Zeile 82: "String" wurde als "String" belassen.
+
+- Zeile 106: Vorschlag für "shell": "Konsole"
+
+- Zeile 118: "Break points" wurde in "Unterbrechungspunkte" übersetzt. Evtl. Haltepunkte? Kiki sagt, "Haltepunkte" hört sich besser an.
+
+
+
+
+
+
 
 Kapitel 9
 ---------
 
 - ("spam" wurde nicht übersetzt.)
 - "range" (Kontext: range()) wurde nach "Wertebereich" übersetzt. Meinung?
+
+
+
+
+Kapitel 10
+----------
+
+- "numpad" wird zu "Ziffernblock".
+- "source code" zu "Programmcode" ("Quellcode" halte ich für zu hochgestochen).
+- "flow chart" mit "Ablaufdiagramm" übersetzt, das halte ich für selbsterklärender als "Flussdiagramm".
+- Zeile 306 mit den erwähnten Abbildungen in Einklang bringen.
+- "string" zu "Zeichenkette". Dies ist ein Konflikt mit Kapitel 7!
+- In dem Beispiel zu drawBoard() in Zeile 342ff. habe ich Klammern und Funktionsnamen ergänzt, damit alle Aufrufe syntaktisch korrekt sind.
+- TODO: prüfen, ob nochmalSpielen() identisch mit der Funktion im Galgenraten ist!
