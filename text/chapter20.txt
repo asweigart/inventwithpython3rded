@@ -758,7 +758,7 @@ For example, if you want the game to run slower in general, change the FPS varia
 
 If you just want to slow down the baddies and not the player, then change BADDIEMAXSPEED to a smaller value such as 4. This will make all the baddies move between 1 (the value in BADDIEMINSPEED) and 4 pixels per iteration through the game loop instead of 1 and 8.
 
-If you want the game to have fewer but larger baddies instead of many fast baddies, then increase ADDNEWBADDIERATE to 12, BADDIEMINSIZE to 40, and BADDIEMAXSIZE to 80. Now that baddies are being added every 12 iterations through the game loop instead of every 6 iterations, there will be half as many baddies as before. But to keep the game interesting, the baddies are now much larger than before.
+If you want the game to have fewer but larger baddies instead of many smaller baddies, then increase ADDNEWBADDIERATE to 12, BADDIEMINSIZE to 40, and BADDIEMAXSIZE to 80. Now that baddies are being added every 12 iterations through the game loop instead of every 6 iterations, there will be half as many baddies as before. But to keep the game interesting, the baddies are now much larger than before.
 
 While the basic game remains the same, you can modify any of the constant variables to drastically affect the behavior of the game. Keep trying out new values for the constant variables until you find a set of values you like the best.
 

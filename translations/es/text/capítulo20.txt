@@ -748,37 +748,37 @@ Las líneas 195 y 196 llaman a la función dibujarTexto para dibujar el texto "J
 
 200.     sonidoJuegoTerminado.stop()
 
-After the player presses a key, the program execution will return from the waitForPlayerToPressKey() call on line 198. Depending on how long the player takes to press a key, the “game over” sound effect may or may not still be playing. To stop this sound effect before a new game starts, line 200 calls gameOverSound.stop().
+Luego de que el jugador pulse una tecla, la ejecución del programa regresará de la llamada a esperarTeclaJugador() en la línea 198. Dependiendo de cuánto demore el jugador en pulsar una tecla, el efecto de sonido de "juego terminado" habrá terminado de reproducirse o no. En el segundo caso, para detener el efecto de sonido antes de comenzar un nuevo juego, la línea 200 llama a sonidoJuegoTerminado.stop().
 
-Modifying the Dodger Game
+Modificando el Juego Evasor
 
-That’s it for our graphical game. You may find that the game is too easy or too hard. But the game is easy to modify because we took the time to use constant variables instead of typing in the values directly. Now all we need to do to change the game is modify the value set in the constant variables.
+Con esto concluimos nuestro juego gráfico. Puede que halles este juego demasiado fácil o demasiado difícil. Afortunadamente esto es fácil de modificar ya que nos tomamos el trabajo de usar variables constantes en lugar de escribir los valores directamente. Ahora todo lo que tenemos que hacer para ajustar la dificultad del juego es modificar el valor de las variables constantes.
 
-For example, if you want the game to run slower in general, change the FPS variable on line 8 to a smaller value such as 20. This will make both the baddies and the player’s character move slower since the game loop will only be executed 20 times a second instead of 40.
+Por ejemplo, si quieres reducir la velocidad de todo el juego, cambia el valor FPS de la línea 8 a un valor menor como por ejemplo 20. Esto hará que tanto los villanos como el personaje del jugador se muevan más lento ya que el bucle del juego se ejecutará sólo 20 veces por segundo en lugar de 40.
 
-If you just want to slow down the baddies and not the player, then change BADDIEMAXSPEED to a smaller value such as 4. This will make all the baddies move between 1 (the value in BADDIEMINSPEED) and 4 pixels per iteration through the game loop instead of 1 and 8.
+Si sólo quieres reducir la velocidad de los villanos y no la del jugador, puedes cambiar VELOCIDADMAXVILLANO a un valor más pequeño como 4. Esto hará que todos los villanos se muevan entre 1 (el valor en VELOCIDADMINVILLANO) y 4 píxeles por iteración del bucle del juego, en lugar de entre 1 y 8.
 
-If you want the game to have fewer but larger baddies instead of many fast baddies, then increase ADDNEWBADDIERATE to 12, BADDIEMINSIZE to 40, and BADDIEMAXSIZE to 80. Now that baddies are being added every 12 iterations through the game loop instead of every 6 iterations, there will be half as many baddies as before. But to keep the game interesting, the baddies are now much larger than before.
+Si prefieres que el juego tenga pocos villanos grandes en lugar de muchos villanos pequeños, puedes aumentar TASANUEVOVILLANO a 12, TAMAÑOMINVILLANO a 40 y TAMAÑOMAXVILLANO a 80. Ahora que los villanos aparecen cada 12 iteraciones del bucle del juego en lugar de cada 6 iteraciones, habrá la mitad de villanos que antes. Pero para mantener el juego interesante, los villanos son ahora mucho más grandes que antes.
 
-While the basic game remains the same, you can modify any of the constant variables to drastically affect the behavior of the game. Keep trying out new values for the constant variables until you find a set of values you like the best.
+Aunque la base del juego sigue siendo la misma, puedes modificar cualquiera de las variables constantes para cambiar drásticamente el comportamiento del juego. Prueba con tus propios nuevos valores para las variables constantes hasta que encuentres el conjunto de parámetros que más te guste.
 
-Summary
+Resumen
 
-Unlike our previous text-based games, Dodger really looks like the kind of modern computer game we usually play. It has graphics and music and uses the mouse. While Pygame provides functions and data types as building blocks, it is you the programmer who puts them together to create fun, interactive games.
+A diferencia de nuestros juegos anteriores basados en texto, Evasor realmente se ve como los tipos de juego de computadora modernos que usualmente jugamos. Tiene gráficos y música y usa el ratón. Aunque Pygame provee funciones y tipos de datos como bloques constructivos, eres tú el programador quien los combina para crear juegos divertidos e interactivos.
 
-And it is all because you know how to instruct the computer to do it, step by step, line by line. You can speak the computer’s language, and get it to do large amounts of number crunching and drawing for you. This is a useful skill, and I hope you’ll continue to learn more about Python programming. (And there’s still much more to learn!)
+Y todo esto es posible gracias a que sabes cómo dar instrucciones paso a paso, línea por línea, a la computadora para que lo haga. Puedes hablar el lenguaje de la computadora, y pedirle que haga por tí enormes cantidades de dibujos y procesamiento de números. Esta es una habilidad muy útil, y espero que te motive a continuar aprendiendo más acerca de programación en Python. (¡Y todavía hay mucho por aprender!)
 
-Here are several websites that can teach you more about programming Python:
+Aquí hay una lista de sitios web que pueden enseñarte más sobre programación en Python:
 
-• http://reddit.com/r/inventwithpython – This site has several users who could help you with the material in this book.
-• http://inventwithpython.com - This book’s website, which includes all the source code for these programs and additional information. This site also has the image and sound files used in the Pygame programs.
-• http://inventwithpython.com/pygame – My second book, Making Games with Python & Pygame, which covers Pygame in more detail. It’s free to download and has the source code for many more games.
-• http://inventwithpython.com/hacking – My third book, Hacking Secret Ciphers with Python, which covers more cryptography and code breaking programs. It’s also free to download.
-• http://inventwithpython.com/automate – My fourth book, Automate the Boring Stuff with Python, which teaches you practical programming skills. It’s also free to download.
-• http://python.org/doc/ - More Python tutorials and the documentation of all the Python modules and functions.
-• http://pygame.org/docs/ - Complete documentation on the modules and functions for Pygame.
-• al@inventwithpython.com - My email address. Feel free to email me your questions about this book or about Python programming.
+• http://reddit.com/r/inventwithpython – En este sitio hay varios usuarios que pueden ayudarte con el material de este libro.
+• http://inventwithpython.com - El sitio web de este libro, que incluye todo el código fuente de estos programas e información adicional. Este sitio también tiene los archivos de imagen y sonido usados en nuestros programas Pygame.
+• http://inventwithpython.com/pygame – Mi segundo libro, Making Games with Python & Pygame (Creando Juegos con Python & Pygame), que cubre Pygame en mayor detalle. Es gratis descargarlo e incluye el código fuente de muchos más juegos.
+• http://inventwithpython.com/hacking – Mi tercer libro, Hacking Secret Ciphers with Python (Descifrando Códigos Secretos con Python), que cubre temas de criptografía e incluye programas de descifrado de códigos. También puedes descargarlo gratis.
+• http://inventwithpython.com/automate – Mi cuarto libro, Automate the Boring Stuff with Python (Automatiza las Cosas Aburridas con Python), que te enseña habilidades prácticas de programación. También es gratis para descargar.
+• http://python.org/doc/ - Más tutoriales de Python y la documentación de todos los módulos y funciones de Python.
+• http://pygame.org/docs/ - Documentación completa sobre los módulos y funciones de Pygame.
+• al@inventwithpython.com - Mi dirección de correo electrónico. No dudes en enviarme un email con tus preguntas acerca de este libro o de programación en Python.
 
-Or you can find out more about Python by searching the web. Go to http://google.com and search for “Python programming” or “Python tutorials” to find websites that can teach you more about Python programming.
+O puedes encontrar más información sobre Python buscando en la web. Ve a http://google.com y busca "Programación en Python" o "Tutoriales Python" para encontrar sitios web que te enseñen más acerca de programación en Python.
 
-Now get going and invent your own games. And good luck!
+Ahora ponte en marcha y comienza a inventar tus propios juegos. ¡Buena suerte!
