@@ -23,7 +23,7 @@ def esperarTeclaJugador():
             if evento.type == QUIT:
                 terminar()
             if evento.type == KEYDOWN:
-                if evento.key == K_ESCAPE: # Quita al presionar ESCAPE
+                if evento.key == K_ESCAPE:  # Sale del juego al presionar ESCAPE
                     terminar()
                 return
 
@@ -33,8 +33,8 @@ def jugadorGolpeaVillano(rectanguloJugador, villanos):
             return True
     return False
 
-def dibujarTexto(texto, font, superficie, x, y):
-    objetotexto = font.render(texto, 1, COLORVENTANA)
+def dibujarTexto(texto, fuente, superficie, x, y):
+    objetotexto = fuente.render(texto, 1, COLORVENTANA)
     rectangulotexto = objetotexto.get_rect()
     rectangulotexto.topleft = (x, y)
     superficie.blit(objetotexto, rectangulotexto)
@@ -46,21 +46,21 @@ superficieVentana = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA))
 pygame.display.set_caption('Esquivador')
 pygame.mouse.set_visible(False)
 
-# establece los fonts
-font = pygame.font.SysFont(None, 48)
+# establece las fuentes
+fuente = pygame.font.SysFont(None, 48)
 
 # establece los sonidos
-gameOverSound = pygame.mixer.Sound('juegoterminado.wav')
+sonidoJuegoTerminado = pygame.mixer.Sound('juegoterminado.wav')
 pygame.mixer.music.load('músicaDeFondo.mid')
 
 # establece las imagenes
-playerImage = pygame.image.load('jugador.png')
-rectanguloJugador = playerImage.get_rect()
-baddieImage = pygame.image.load('villano.png')
+imagenJugador = pygame.image.load('jugador.png')
+rectanguloJugador = imagenJugador.get_rect()
+imagenVillano = pygame.image.load('villano.png')
 
 # Muestra la pantalla inicial
-dibujarTexto('Evasor', font, superficieVentana, (ANCHOVENTANA / 3)+40, (ALTOVENTANA / 3))
-dibujarTexto('Presione una tecla para comenzar.', font, superficieVentana, (ANCHOVENTANA / 3) - 180, (ALTOVENTANA / 3) + 50)
+dibujarTexto('Evasor', fuente, superficieVentana, (ANCHOVENTANA / 3)+40, (ALTOVENTANA / 3))
+dibujarTexto('Presione una tecla para comenzar.', fuente, superficieVentana, (ANCHOVENTANA / 3) - 180, (ALTOVENTANA / 3) + 50)
 pygame.display.update()
 esperarTeclaJugador()
 
@@ -121,7 +121,7 @@ while True:
                     moverAbajo = False
 
             if evento.type == MOUSEMOTION:
-                # Si se mueve el ratón, este se mueve adonde el cursor esté.
+                # Si se mueve el ratón, este se mueve al lugar donde esté el cursor.
                 rectanguloJugador.move_ip(evento.pos[0] - rectanguloJugador.centerx, evento.pos[1] - rectanguloJugador.centery)
 
         # Añade villanos en la parte superior de la pantalla, de ser necesarios.
@@ -129,13 +129,13 @@ while True:
             contadorAgregarVillano += 1
         if contadorAgregarVillano == TASANUEVOVILLANO:
             contadorAgregarVillano = 0
-            baddieSize = random.randint(TAMAÑOMINVILLANO, TAMAÑOMAXVILLANO)
-            newBaddie = {'rect': pygame.Rect(random.randint(0, ANCHOVENTANA-baddieSize), 0 - baddieSize, baddieSize, baddieSize),
-                        'speed': random.randint(VELOCIDADMINVILLANO, VELOCIDADMAXVILLANO),
-                        'surface':pygame.transform.scale(baddieImage, (baddieSize, baddieSize)),
+            tamañoVillano = random.randint(TAMAÑOMINVILLANO, TAMAÑOMAXVILLANO)
+            nuevoVillano = {'rect': pygame.Rect(random.randint(0, ANCHOVENTANA-tamañoVillano), 0 - tamañoVillano, tamañoVillano, tamañoVillano),
+                        'velocidad': random.randint(VELOCIDADMINVILLANO, VELOCIDADMAXVILLANO),
+                        'superficie':pygame.transform.scale(imagenVillano, (tamañoVillano, tamañoVillano)),
                         }
 
-            villanos.append(newBaddie)
+            villanos.append(nuevoVillano)
 
         # Mueve el jugador.
         if moverIzquierda and rectanguloJugador.left > 0:
@@ -153,7 +153,7 @@ while True:
         # Mueve los villanos hacia abajo.
         for b in villanos:
             if not trucoReversa and not trucoLento:
-                b['rect'].move_ip(0, b['speed'])
+                b['rect'].move_ip(0, b['velocidad'])
             elif trucoReversa:
                 b['rect'].move_ip(0, -5)
             elif trucoLento:
@@ -168,15 +168,15 @@ while True:
         superficieVentana.fill(COLORFONDO)
 
         # Dibuja el puntaje y el puntaje máximo
-        dibujarTexto('Puntaje: %s' % (puntaje), font, superficieVentana, 10, 0)
-        dibujarTexto('Puntaje Máximo: %s' % (puntajeMax), font, superficieVentana, 10, 40)
+        dibujarTexto('Puntaje: %s' % (puntaje), fuente, superficieVentana, 10, 0)
+        dibujarTexto('Puntaje Máximo: %s' % (puntajeMax), fuente, superficieVentana, 10, 40)
 
         # Dibuja el rectángulo del jugador
-        superficieVentana.blit(playerImage, rectanguloJugador)
+        superficieVentana.blit(imagenJugador, rectanguloJugador)
 
         # Dibuja cada villano
         for b in villanos:
-            superficieVentana.blit(b['surface'], b['rect'])
+            superficieVentana.blit(b['superficie'], b['rect'])
 
         pygame.display.update()
 
@@ -188,13 +188,14 @@ while True:
 
         relojPrincipal.tick(FPS)
 
-    # Frena el juego y muestra "Juego Terminado"
+    # Detiene el juego y muestra "Juego Terminado"
     pygame.mixer.music.stop()
-    gameOverSound.play()
+    sonidoJuegoTerminado.play()
 
-    dibujarTexto('Juego Terminado', font, superficieVentana, (ANCHOVENTANA / 3)-40, (ALTOVENTANA / 3))
-    dibujarTexto('Presione una tecla para repetir.', font, superficieVentana, (ANCHOVENTANA / 3) - 150, (ALTOVENTANA / 3) + 50)
+    dibujarTexto('Juego Terminado', fuente, superficieVentana, (ANCHOVENTANA / 3)-40, (ALTOVENTANA / 3))
+    dibujarTexto('Presione una tecla jugar de nuevo.', fuente, superficieVentana, (ANCHOVENTANA / 3) - 150, (ALTOVENTANA / 3) + 50)
     pygame.display.update()
     esperarTeclaJugador()
 
-    gameOverSound.stop()
+    sonidoJuegoTerminado.stop()
+    
