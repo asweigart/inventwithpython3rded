@@ -7,6 +7,7 @@ Translators
 - Frank Lehmann
 - Georg Ramer (GeorgRamer)
 - Horst Jens (horstjens)
+- Karoline Busse (kikithegecko)
 - Thomas Klemmer
 
 (You can always check the commit history of the files in this folder to find other translators, if this README is not up to date.)
