@@ -6,6 +6,7 @@ Translators
 - Frank Lehmann
 - Georg Ramer (GeorgRamer)
 - Horst Jens (horstjens)
+- Karoline Busse (kikithegecko)
 - Thomas Klemmer
 - Karoline Busse (kikidergecko)
 
@@ -14,75 +15,75 @@ Translators
 Title
 =====
 
-Erschaffe Deine eigenen Spiele, mit Python
+Erfinde deine eigenen Computerspiele mit Python
 
-General Notes
-=============
+Glossary
+========
 
-Kapitel 1
+<dl>
+<dt>ASCII art</dt><dd>ASCII-Kunst</dd>
+<dt>argument (programming)</dt><dd>Argument</dd>
+<dt>assignment</dt><dd>Zuweisung</dd>
+<dt>blanked out</dt><dd>redigiert</dd>
+<dt>boolean</dt><dd>boolesch-e/er</dd>
+<dt>call (function call)</dt><dd>Aufruf</dd>
+<dt>code</dt><dd>Code</dd>
+<dt>concatenation</dt><dd>Verknüpfung</dd>
+<dt>constant (variable)</dt><dd>Konstante</dd>
+<dt>convention</dt><dd>Konvention</dd>
+<dt>convert</dt><dd>konvertieren</dd>
+<dt>declaration (function/variable declaration)</dt><dd>Deklaration</dd>
+<dt>definition (function/variable definition)</dt><dd>Definition</dd>
+<dt>editor</dt><dd>Editor</dd>
+<dt>equivalent</dt><dd>äquivalent</dd>
+<dt>evaluation</dt><dd>Auswertung</dd>
+<dt>expression</dt><dd>Ausdruck</dd>
+<dt>False (boolean literal)</dt><dd>False</dd>
+<dt>function</dt><dd>Funktion</dd>
+<dt>function call</dt><dd>Funktions-Aufruf</dd>
+<dt>“How the Code Works”</dt><dd>Wie der Code funktioniert</dd>
+<dt>index</dt><dd>Index</dd>
+<dt>indentation</dt><dd>Einrückung</dd>
+<dt>insert</dt><dd>einfügen</dd>
+<dt>interactive shell</dt><dd>interaktive Konsole</dd>
+<dt>item (list item)</dt><dd>(Listen-)Eintrag</dd>
+<dt>iterate</dt><dd>iterieren</dd>
+<dt>keyword</dt><dd>Schlüsselwort</dd>
+<dt>list (data structure)</dt><dd>Liste</dd>
+<dt>list item</dt><dd>Listen-Eintrag</dd>
+<dt>loop</dt><dd>Schleife</dd>
+<dt>method</dt><dd>Methode</dd>
+<dt>multi-line</dt><dd>mehrzeilig</dd>
+<dt>operator</dt><dd>Operator</dd>
+<dt>parameter (programming)</dt><dd>Parameter</dd>
+<dt>range (range())</dt><dd>Wertebereich</dd>
+<dt>replication</dt><dd>Replikation</dd>
+<dt>shell</dt><dd>Konsole</dd>
+<dt>slicing (list operation, idiomatic)</dt><dd>Slicing (use english term, but explain its meaning using the terms “(in Scheiben) schneiden”</dd>
+<dt>source code</dt><dd>Quellcode</dd>
+<dt>spam</dt><dd>Spam</dd>
+<dt>statement</dt><dd>Anweisung</dd>
+<dt>string</dt><dd>Zeichenkette</dd>
+<dt>“Summary”</dt><dd>Zusammenfassung</dd>
+<dt>terminate</dt><dd>terminieren</dd>
+<dt>“Topics Covered In This Chapter”</dt><dd>In diesem Kapitel behandelte Themen
+<dt>True (boolean literal)</dt><dd>True</dd>
+<dt>value</dt><dd>Wert</dd>
+</dl>
+
+Translation Difficulties
+========================
+
+Chapter 1
 ---------
 
 - Zeile 27: "incongruous" wurde nach "unangebrachter" übersetzt. Abhängig vom Bild mag eine andere Übersetzung treffender sein.
 
 - Zeile 56: "Programming and IDLE 3" muss ins Deutsche übersetzt werden (bitte jemand mit Ubuntu das Label in der deutschen Installation nachschlagen)
 
-- Zeile 58: "shell" wurde nach "Kommandozeileninterpreter" übersetzt. Eindeutschen ja/nein?
-
 - Zeile 108: Wie sollte "diff" (Kontext: "diff tool") übersetzt werden? (Wurde vorläufig mit "Diff-Werkzeug" übersetzt.)
 
-Kapitel 6
+Chapter 9
 ---------
 
-- "spam" wurde nicht übersetzt. Meinung? Kiki sagt: Nicht übersetzen.
-
-
-Kapitel 7
----------
-
-Vorbemerkung: Ich habe nur eine englische Installation und habe nicht rausgekriegt, wo ich eine deutsche Version von IDLE herbekomme. Gibt es die überhaupt? Entsprechend war ich mir bei einigen Menüeinträgen nicht sicher. Diese Begriffe sind im Dokument mit [...] vermerkt.
-
-- Zeile 8: "Stepping: Into, Over and Out". Das sollte eigentlich den Buttons in der deutschen IDLE-Version entsprechen, die ich nicht habe. Kann das jemand verifizieren? Übersetzungsvorschlag von mir: Hineinschalten, Hinüberschalten und Herausschalten.
-
-- Zeile 17: "Bugs" als "Bugs" belassen
-
-- Zeile 20: "Runtime Error" wurde in "Laufzeitfehler" übersetzt. Meinungen? Gut so, sagt kiki.
-
-- Zeile 43: Habe "Debugger" 1:1 ins Deutsche übernommen, da ich keine sinnvolle Übersetzung gefunden habe. Ideen? Gut so, sagt Kiki.
-
-- Zeile 49: Habe "Drachen-Reich" aus Kapitel 5 übernommen. Wie handhabt ihr die Namen und Datainamen der Beispielprogramme? Ich habe sie ins Deutsche übersetzt und innerhalb des Codes Text und Variablenamen übersetzt.
-
-- Zeile 55: "Source and Globals checkboxes" wurden vorerst in "Source- und Globals-Kontrollkästchen" übersetzt. Sie Vorbemerkung.
-
-- Zeile 74: "Scope" wurde in "Geltungsbereich" übersetzt.
-
-- Zeile 82: "String" wurde als "String" belassen.
-
-- Zeile 106: Vorschlag für "shell": "Konsole"
-
-- Zeile 118: "Break points" wurde in "Unterbrechungspunkte" übersetzt. Evtl. Haltepunkte? Kiki sagt, "Haltepunkte" hört sich besser an.
-
-
-
-
-
-
-
-Kapitel 9
----------
-
-- ("spam" wurde nicht übersetzt.)
-- "range" (Kontext: range()) wurde nach "Wertebereich" übersetzt. Meinung?
-
-
-
-
-Kapitel 10
-----------
-
-- "numpad" wird zu "Ziffernblock".
-- "source code" zu "Programmcode" ("Quellcode" halte ich für zu hochgestochen).
-- "flow chart" mit "Ablaufdiagramm" übersetzt, das halte ich für selbsterklärender als "Flussdiagramm".
-- Zeile 306 mit den erwähnten Abbildungen in Einklang bringen.
-- "string" zu "Zeichenkette". Dies ist ein Konflikt mit Kapitel 7!
-- In dem Beispiel zu drawBoard() in Zeile 342ff. habe ich Klammern und Funktionsnamen ergänzt, damit alle Aufrufe syntaktisch korrekt sind.
-- TODO: prüfen, ob nochmalSpielen() identisch mit der Funktion im Galgenraten ist!
+- Zeile 345: "Lists of Lists" -- Listen von Listen oder Listen aus Listen?
