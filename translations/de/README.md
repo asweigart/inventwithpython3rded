@@ -15,7 +15,7 @@ Translators
 Title
 =====
 
-Erschaffe Deine eigenen Spiele, mit Python
+Erfinde deine eigenen Computerspiele mit Python
 
 General Notes
 =============
