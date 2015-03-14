@@ -49,6 +49,7 @@ Glossary
 <dt>item (list item)</dt><dd>(Listen-)Eintrag</dd>
 <dt>iterate</dt><dd>iterieren</dd>
 <dt>keyword</dt><dd>Schlüsselwort</dd>
+<dt>keyword argument</dt><dd>Schlüsselwort-Argument</dd>
 <dt>list (data structure)</dt><dd>Liste</dd>
 <dt>list item</dt><dd>Listen-Eintrag</dd>
 <dt>loop</dt><dd>Schleife</dd>
@@ -58,9 +59,11 @@ Glossary
 <dt>parameter (programming)</dt><dd>Parameter</dd>
 <dt>range (range())</dt><dd>Wertebereich</dd>
 <dt>replication</dt><dd>Replikation</dd>
+<dt>“Sample Run”</dt><dd>Probelauf</dd>
 <dt>shell</dt><dd>Konsole</dd>
 <dt>slicing (list operation, idiomatic)</dt><dd>Slicing (use english term, but explain its meaning using the terms “(in Scheiben) schneiden”</dd>
 <dt>source code</dt><dd>Quellcode</dd>
+<dt>“Source Code of ...”</dt><dd>Der Quellcode zu ...</dd>
 <dt>spam</dt><dd>Spam</dd>
 <dt>statement</dt><dd>Anweisung</dd>
 <dt>string</dt><dd>Zeichenkette</dd>
