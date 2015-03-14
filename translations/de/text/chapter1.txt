@@ -6,9 +6,9 @@ In diesem Kapitel behandelte Themen:
 •   Wie dieses Buch verwendet werden sollte
 •   Die zum Buch gehörende Internetseite http://inventwithpython.com/de
 
-Hallo! Dieses Buch lehrt Dich die Programmierung anhand von Spieleentwicklung. Sobald Du erst ein Mal verstehst, wie die Spiele in diesem Buch funktionieren, wirst Du in der Lage sein, Deine eigenen zu kreieren. Alles was Du hierzu benötigst ist ein Computer, ein Programm namens “Python-Interpreter” und dieses Buch. Den Python-Interpreter gibt es kostenlos im Internet.
+Hallo! Dieses Buch lehrt dich die Programmierung anhand der Spieleentwicklung. Sobald du erst ein Mal verstehst, wie die Spiele in diesem Buch funktionieren, wirst du in der Lage sein, deine eigenen zu kreieren. Alles was du hierzu benötigst ist ein Computer, ein Programm namens “Python-Interpreter”, und dieses Buch. Den Python-Interpreter gibt es kostenlos im Internet.
 
-Als ich ein Kind war lehrte mich ein Buch wie dieses, meine ersten Programme und Spiele zu entwickeln. Es war einfach und machte viel Spaß. Heute als Erwachsener bereitet mir die Programmierung immer noch viel Freude und ich werde zusätzlich dafür bezahlt. Aber selbst falls Du später einmal kein Programmierer werden solltest, so ist Programmierung dennoch eine nützliche Fertigkeit mit viel Spaßpotential.
+Als ich ein Kind war lehrte mich ein Buch wie dieses, meine ersten Programme und Spiele zu entwickeln. Es war einfach und machte viel Spaß. Heute, als Erwachsener, bereitet mir die Programmierung immer noch viel Freude und ich werde zusätzlich dafür bezahlt. Aber selbst falls du später einmal kein(e) Programmierer(in) werden solltest, so ist Programmierung dennoch eine nützliche Fertigkeit mit viel Spaßpotential.
 
 Computer sind faszinierende Maschinen und sie zu programmieren ist nicht so schwer, wie man denken mag. Wenn man ein Buch lesen kann, dann kann man auch einen Computer programmieren. Ein Computer-Programm besteht aus einer Reihe von Anweisungen, die der Computer versteht — genauso wie eine Geschichte aus einer Reihe von Sätzen besteht, die der Leser versteht. Video-Spiele sind nichts anderes als Computer-Programme, d.h. auch sie sind nur Reihen von Anweisungen.
 
@@ -18,32 +18,32 @@ Zu meiner Kindeszeit war BASIC aufgrund ihrer Einfachheit eine gängige erste Sp
 
 Die Spiele, die wir in diesem Buch entwickeln werden, wirken simpel im Vergleich zu Titeln, wie sie für Xbox, Playstation oder Wii erscheinen. Sie haben keine schicke Grafik und sind bewusst einfach gehalten, damit wir uns auf die Programmierung konzentrieren können. Außerdem brauchen Spiele nicht komplex sein, um Spaß zu bereiten.
 
-Herunterladen und installieren von Python
+Herunterladen und Installieren von Python
 
 Bevor wir mit dem Programmieren beginnen können, müssen wir zuerst den Python-Interpreter installieren. Der Python-Interpreter versteht in der Programmiersprache Python geschriebene Befehle. Von nun an werde ich “Python-Interpreter” schlicht mit “Python” abkürzen.
 
-Wichtiger Hinweis! Stelle sicher, dass Du Python 3 installierst und nicht Python 2. Die Programme in diesem Buch sind in Python 3 geschrieben und führen zu Fehlern, wenn man versucht sie mit Python 2 zu starten. Ich habe sogar einen Zeichentrick-Pinguin in Abbildung 1-1 hinzugefügt, um Dich daran zu erinnern.
+Wichtiger Hinweis! Stelle sicher, dass du Python 3 installierst und nicht Python 2. Die Programme in diesem Buch sind in Python 3 geschrieben und führen zu Fehlern, wenn man versucht sie mit Python 2 zu starten. Ich habe sogar einen Zeichentrick-Pinguin in Abbildung 1-1 hinzugefügt, um dich daran zu erinnern.
 
-Abbildung 1-1: Ein unangebrachter Pinguin befiehlt Dir Python 3 zu installieren.
+Abbildung 1-1: Ein unangebrachter Pinguin befiehlt dir Python 3 zu installieren.
 
 Unter Windows, lade den Python-Installer herunter (welcher auf .msi endet) und doppelklicke darauf. Folge den Anweisungen des Installers, wie sie hier aufgelistet sind:
 
 1.   Wähle “Install for All Users” aus und klicke auf “Next”.
-2.   Installiere Python in den Ordner C:\Python34, indem Du “Next” klickst.
+2.   Installiere Python in den Ordner C:\Python34, indem du “Next” klickst.
 3.   Überspringe die benutzerdefinierte Anpassung durch einen Klick auf “Next”.
 
-Unter Mac OS X, lade die für Deine Betriebssystem-Version geeignete .dmg-Datei herunter und doppelklicke darauf. Folge den Anweisungen des Installers, wie sie hier aufgelistet sind:
+Unter Mac OS X, lade die für deine Betriebssystem-Version geeignete .dmg-Datei herunter und doppelklicke darauf. Folge den Anweisungen des Installers, wie sie hier aufgelistet sind:
 
-1.   Falls sich ein neues Fenster öffnet, doppelklicke auf die Datei Python.mpkg. Eventuell musst Du das Administrator-Passwort eingeben.
+1.   Falls sich ein neues Fenster öffnet, doppelklicke auf die Datei Python.mpkg. Eventuell musst du das Administrator-Passwort eingeben.
 2.   Klicke mehrmals auf “Continue”, bis zur Lizenzvereinbarung gelangst. Akzeptiere diese.
-3.   Wähle “HD Macintosh” (oder den Namen Deiner Festplatte) aus und klicke auf “Install”.
+3.   Wähle “HD Macintosh” (oder den Namen deiner Festplatte) aus und klicke auf “Install”.
 
 Unter Ubuntu, installiere Python über das “Ubuntu Software Center” wie folgt:
 
 1.   Öffne das “Ubuntu Software Center”.
 2.   Tippe “Python” in das Suchfeld oben rechts ein.
 3.   Wähle “IDLE (using Python 3.4)” (bzw. die aktuellste Version) aus.
-4.   Klicke auf “Installieren”. Eventuell musst Du das Administrator-Passwort eingeben.
+4.   Klicke auf “Installieren”. Eventuell musst du das Administrator-Passwort eingeben.
 
 IDLE starten
 
@@ -55,29 +55,29 @@ Unter Mac OS X, öffne das Finder-Fenster und klicke auf “Anwendungen”. Dana
 
 Unter Ubuntu/Linux, öffne ein Terminal-Fenster und gib “idle3” ein. Du magst auch in der Lage sein am oberen Bildschirmrand auf “Anwendungen” und dann auf “Programming” and “IDLE 3” zu klicken.
 
-Das Fenster, das bei der ersten Ausführung von IDLE erscheint, wird als interaktiver Kommandozeileninterpreter bezeichnet (siehe Abb. 1-2). Man kann in es Befehle eingeben und Python wird diese ausführen und die Ergebnisse im selben Fenster anzeigen.
+Das Fenster, das bei der ersten Ausführung von IDLE erscheint, wird als interaktive Konsole bezeichnet (siehe Abb. 1-2). Man kann darin Befehle eingeben und Python wird diese ausführen und die Ergebnisse im selben Fenster anzeigen.
 
-Abbildung 1-2: IDLEs interaktiver Kommandozeileninterpreter unter Windows, OS X und Ubuntu Linux.
+Abbildung 1-2: IDLEs interaktive Konsole unter Windows, OS X und Ubuntu Linux.
 
 Wie dieses Buch verwendet werden sollte
 
-Die meisten Kapitel in diesem Buch beginnen mit einem Probelauf des jeweils vorgestellten Programms. Dieser Probelauf zeigt Dir, welche Ausgabe Du zu erwarten hast, wenn Du das Programm ausführst. Die Benutzereingaben sind in fetter Schrift dargestellt.
+Die meisten Kapitel in diesem Buch beginnen mit einem Probelauf des jeweils vorgestellten Programms. Dieser Probelauf zeigt dir, welche Ausgabe du zu erwarten hast, wenn du das Programm ausführst. Die Benutzereingaben sind in fetter Schrift dargestellt.
 
-Gib den Programmcode selbst in IDLE ein, anstatt ihn herunterzuladen oder zu kopieren/einzufügen. Auf diese Art und Weise wirst Du schneller fließend im Schreiben von Python-Programmen.
+Gib den Programmcode selbst in IDLE ein, anstatt ihn herunterzuladen oder zu kopieren/einzufügen. Auf diese Art und Weise wirst du schneller fließend im Schreiben von Python-Programmen.
 
 Zeilennummern und Leerzeichen
 
-Tippe die Zeilennummern am Anfang jeder Quellcode-Zeile in diesem Buch nicht beim Schreiben des Programmcodes ab. Zur Verdeutlichung, wenn Du Folgendes im Buch siehst:
+Tippe die Zeilennummern am Anfang jeder Quellcode-Zeile in diesem Buch nicht beim Schreiben des Programmcodes ab. Zur Verdeutlichung, wenn du Folgendes im Buch siehst:
 
 9. zahl = random.randint(1, 20)
 
-, dann brauchst Du weder die “9.” auf der linken Seite noch das unmittelbar folgende Leerzeichen abzutippen. Schreibe einfach:
+, dann brauchst du weder die “9.” auf der linken Seite noch das unmittelbar folgende Leerzeichen abzutippen. Schreibe einfach:
 
 zahl = random.randint(1, 20)
 
 Die Zeilennummern sind nur dazu da, um uns die Diskussion von Programmen zu erleichtern. Sie sind nicht Teil des eigentlichen Programms.
 
-Abgesehen von den Zeilennummern (und dem unmittelbar darauf folgenden Leerzeichen), solltest Du den Code genauso, wie er erscheint, abtippen. Du wirst außerdem bemerken, dass einige Zeilen vier oder acht Leerzeichen eingerückt sind. Da jedes Zeichen in IDLE dieselbe Breite besitzt, ist es leicht die Anzahl der Leerzeichen zu ermitteln, indem man die Zeichen in der Zeile darüber oder darunter zählt.
+Abgesehen von den Zeilennummern (und dem unmittelbar darauf folgenden Leerzeichen), solltest du den Code genauso, wie er erscheint, abtippen. Du wirst außerdem bemerken, dass einige Zeilen vier oder acht Leerzeichen eingerückt sind. Da jedes Zeichen in IDLE dieselbe Breite besitzt, ist es leicht die Anzahl der Leerzeichen zu ermitteln, indem man die Zeichen in der Zeile darüber oder darunter zählt.
 
 Im folgenden Beispiel sind Leerzeichen mit einem ▪ schwarzen Quadrat kenntlich gemacht:
 
@@ -87,29 +87,29 @@ while rateVersuche < 10:
 
 Zeilenumbrüche in diesem Buch
 
-Einige Anweisungen sind zu lang, um sie im Buch in einer Zeile unterzubringen. Gib diesen Code in IDLE ohne Zeilenumbrüche (ohne die Enter-Taste zu betätigen) ein. Die Zeilennummern verraten Dir, ob eine neue Anweisung beginnt, oder ob es sich um die Fortsetzung der Anweisung in der Zeile darüber handelt. Das folgende Code-Beispiel besteht aus nur zwei Anweisungen:
+Einige Anweisungen sind zu lang, um sie im Buch in einer Zeile unterzubringen. Gib diesen Code in IDLE ohne Zeilenumbrüche (ohne die Enter-Taste zu betätigen) ein. Die Zeilennummern verraten dir, ob eine neue Anweisung beginnt, oder ob es sich um die Fortsetzung der Anweisung in der Zeile darüber handelt. Das folgende Code-Beispiel besteht aus nur zwei Anweisungen:
 
 1. print('Dies ist die erste Anweisung! xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 xxxxxxxxxxxx')
 2. print('Dies ist die zweite Anweisung, nicht die dritte.')
 
-Die erste Anweisung ist aus Platzgründen auf zwei Zeilen im Buch gedruckt und erweckt den Eindruck, das Code-Beispiel bestünde insgesamt aus drei Anweisungen. Dies liegt jedoch nur daran, dass die Buchseiten nicht breit genug sind, um die erste Anweisung in einer Zeile zu drucken.
+Die erste Anweisung ist aus Platzgründen auf zwei Zeilen im Buch gedruckt und erweckt den Eindruck, das Code-Beispiel bestünde insgesamt aus drei Anweisungen. Das liegt jedoch nur daran, dass die Buchseiten nicht breit genug sind, um die erste Anweisung in einer Zeile zu drucken.
 
 Hilfe im Internet finden
 
-Die zum Buch gehörende Internetseite findest Du unter http://inventwithpython.com/de. Sie enthält zahlreiche Hilfsmittel über den Inhalt des Buches hinaus. Außerdem nutzen viele Verweise in diesem Buch invpy.com, um die Adressen kurz zu halten.
+Die zum Buch gehörende Internetseite findest du unter http://inventwithpython.com/de. Sie enthält zahlreiche Hilfsmittel über den Inhalt des Buches hinaus. Außerdem nutzen viele Verweise in diesem Buch invpy.com, um die Adressen kurz zu halten.
 
 Die Internetseite http://reddit.com/r/inventwithpython ist ein großartiger Ort, um mit dem Buch verwandte Programmier-Fragen zu stellen. Allgemeine Fragen zur Python-Programmierung sollten hingegen auf den Internetseiten http://reddit.com/r/learnprogramming oder http://reddit.com/r/learnpython gestellt werden.
 
-Ich beantworte Deine Prgrammier-Fragen auch gerne per email. Schreib mir unter al@inventwithpython.com.
+Ich beantworte deine Prgrammier-Fragen auch gerne per email. Schreib mir unter al@inventwithpython.com.
 
-Bitte sei rücksichtsvoll, wenn Du Fragen stellst: Vergewissere Dich zuerst, ob Deine Frage nicht schon in der “Häufig gestellte Fragen”-Rubrik beantwortet wurde und beachte etwaige Regeln zum Stellen von Fragen auf der jeweiligen Internetseite. Hier ein paar Tipps:
+Bitte sei rücksichtsvoll, wenn du Fragen stellst: Vergewissere dich zuerst, ob deine Frage nicht schon in der “Häufig gestellte Fragen”-Rubrik beantwortet wurde und beachte etwaige Regeln zum Stellen von Fragen auf der jeweiligen Internetseite. Hier ein paar Tipps:
 
-•   Falls bei der Ausführung Deiner Programme Fehler auftreten, obwohl Du sie vom Buch abgetippt hast, stelle sicher, dass sie keine Tippfehler enthalten. Das Diff-Werkzeug unter http://invpy.com/de/diff ist hierzu besonders gut geeignet. Kopiere einfach Deinen Code in das Werkzeug hinein um herauszufinden, ob er Tippfehler enthält.
-•   Erläutere, was Du mit Deinem Code erreichen möchtest. Es kann nämlich sein, dass Du die falsche Fährte verfolgst.
-•   Kopiere stets die gesamte Fehlermeldung und Deinen kompletten Code — nicht nur Ausschnitte.
-•   Erkundige Dich, ob Deine Frage bereits im Internet beantwortet wurde.
-•   Teile mit, welche Ansätze Du bereits ausprobiert hast, um Dein Problem zu lösen. Auf diese Art und Weise lässt Du Andere wissen, dass Du bereits selbst Bemühungen angestellt hast.
+•   Falls bei der Ausführung deiner Programme Fehler auftreten, obwohl du sie vom Buch abgetippt hast, stelle sicher, dass sie keine Tippfehler enthalten. Das Diff-Werkzeug (abgewandelt vom englischen “differentiate”, zu Deutsch etwa “unterscheiden”/“differenzieren”) unter http://invpy.com/de/diff ist hierzu besonders gut geeignet. Kopiere einfach deinen Code in das Werkzeug hinein um herauszufinden, ob er Tippfehler enthält.
+•   Erläutere, was du mit deinem Code erreichen möchtest. Es kann nämlich sein, dass du die falsche Fährte verfolgst.
+•   Kopiere stets die gesamte Fehlermeldung und deinen kompletten Code — nicht nur Ausschnitte.
+•   Erkundige dich, ob deine Frage bereits im Internet beantwortet wurde.
+•   Teile mit, welche Ansätze du bereits ausprobiert hast, um dein Problem zu lösen. Auf diese Art und Weise lässt du Andere wissen, dass du bereits selbst Bemühungen angestellt hast.
 •   Sei höflich. Bestehe nicht auf Antworten und dränge Andere nicht auf schnelle Antworten.
 
-Jemanden zu fragen “Warum funktioniert mein Programm nicht?” sagt ihm nichts. Erläutere, was Du erreichen möchtest, die genaue(n) Fehlermeldung(en), die Du erhältst, und welches Betriebssystem Du benutzt.
+Jemanden zu fragen “Warum funktioniert mein Programm nicht?” sagt der Person nichts. Erläutere, was du erreichen möchtest, die genaue(n) Fehlermeldung(en), die du erhältst, und welches Betriebssystem du benutzt.
