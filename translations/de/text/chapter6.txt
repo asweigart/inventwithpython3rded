@@ -24,28 +24,28 @@ So spielt man Drachen-Reich
 
 In diesem Spiel findet sich der Spieler in einem Reich voller Drachen wieder. Die Drachen leben in Höhlen und behüten große Schätze. Einige Drachen sind freundlich und teilen ihre Beute mit dem Spieler. Andere Drachen fressen jeden, der ihre Höhle betritt, auf. Der Spieler steht vor zwei Höhleneingängen; einer führt zu einem freundlichen Drachen, der andere zu einem hungrigen. Er muss sich für eine der Höhlen entscheiden.
 
-Öffne ein neues, leeres Editor-Fenster, indem Du auf File ► New Window klickst. Tippe den Quellcode ab und speichere ihn unter drachen.py ab. Dann führe das Programm durch einen Druck auf F5 aus.
+Öffne ein neues, leeres Editor-Fenster, indem du auf File ► New Window klickst. Tippe den Quellcode ab und speichere ihn unter drachen.py ab. Dann führe das Programm durch einen Druck auf F5 aus.
 
 Probelauf von Drachen-Reich
 
-Du bist ein einem Land voller Drachen. Vor Dir
-siehst Du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,
-der seine Schätze mit Dir teilt. Der andere Drache
-ist gierig und hungrig, und wird Dich bei Sichtkontakt auffressen.
-In welche Höhle wirst Du gehen? (1 oder 2)
+Du bist ein einem Land voller Drachen. Vor dir
+siehst du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,
+der seine Schätze mit dir teilt. Der andere Drache
+ist gierig und hungrig, und wird dich bei Sichtkontakt auffressen.
+In welche Höhle wirst du gehen? (1 oder 2)
 1
-Du näherst Dich der Höhle...
+Du näherst dich der Höhle...
 Es ist dunkel und gruselig...
-Ein großer Drache springt vor Deine Füße! Er öffnet sein Maul und...
-Verschlingt Dich in einem Mal!
-Möchtest Du noch einmal spielen? (ja oder nein)
+Ein großer Drache springt vor deine Füße! Er öffnet sein Maul und...
+Verschlingt dich in einem Mal!
+Möchtest du noch einmal spielen? (ja oder nein)
 nein
 
 Der Quellcode zu Drachen-Reich
 
-WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät Dir, welche Version installiert ist. Falls es Python 2 ist, kannst Du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
+WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät dir, welche Version installiert ist. Falls es Python 2 ist, kannst du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
 
-Falls Du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/de/diff/dragon.
+Falls du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/de/diff/dragon.
 
 drachen.py
 
@@ -53,35 +53,35 @@ drachen.py
  2. import time
  3.
  4. def zeigeEinfuehrungAn():
- 5.     print('Du bist ein einem Land voller Drachen. Vor Dir')
- 6.     print('siehst Du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,')
- 7.     print('der seine Schätze mit Dir teilt. Der andere Drache')
- 8.     print('ist gierig und hungrig, und wird Dich bei Sichtkontakt auffressen.')
+ 5.     print('Du bist ein einem Land voller Drachen. Vor dir')
+ 6.     print('siehst du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,')
+ 7.     print('der seine Schätze mit dir teilt. Der andere Drache')
+ 8.     print('ist gierig und hungrig, und wird dich bei Sichtkontakt auffressen.')
  9.     print()
 10.
 11. def sucheHoehleAus():
 12.     hoehle = ''
 13.     while hoehle != '1' and hoehle != '2':
-14.         print('In welche Höhle wirst Du gehen? (1 oder 2)')
+14.         print('In welche Höhle wirst du gehen? (1 oder 2)')
 15.         hoehle = input()
 16.
 17.     return hoehle
 18.
 19. def ueberpruefeHoehle(ausgewaehlteHoehle):
-20.     print('Du näherst Dich der Höhle...')
+20.     print('Du näherst dich der Höhle...')
 21.     time.sleep(2)
 22.     print('Es ist dunkel und gruselig...')
 23.     time.sleep(2)
-24.     print('Ein großer Drache spring vor Deine Füße! Er öffnet sein Maul und...')
+24.     print('Ein großer Drache spring vor deine Füße! Er öffnet sein Maul und...')
 25.     print()
 26.     time.sleep(2)
 27.
 28.     freundlicheHoehle = random.randint(1, 2)
 29.
 30.     if ausgewaehlteHoehle == str(freundlicheHoehle):
-31.         print('Gibt Dir seinen Schatz!')
+31.         print('Gibt dir seinen Schatz!')
 32.     else:
-33.         print('Verschlingt Dich in einem Mal!')
+33.         print('Verschlingt dich in einem Mal!')
 34.
 35. spieleNochEinmal = 'ja'
 36. while spieleNochEinmal == 'ja' or spieleNochEinmal == 'j':
@@ -92,7 +92,7 @@ drachen.py
 41.
 42.     ueberpruefeHoehle(hoehlenNummer)
 43.
-44.     print('Möchtest Du noch einmal spielen? (ja oder nein)')
+44.     print('Möchtest du noch einmal spielen? (ja oder nein)')
 45.     spieleNochEinmal = input()
 
 Wie der Code funktioniert
@@ -107,10 +107,10 @@ Dieses Programm importiert zwei Module. Das Modul random beinhaltet die Funktion
 Der def-Ausdruck
 
  4. def zeigeEinfuehrungAn():
- 5.     print('Du bist ein einem Land voller Drachen. Vor Dir')
- 6.     print('siehst Du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,')
- 7.     print('der seine Schätze mit Dir teilt. Der andere Drache')
- 8.     print('ist gierig und hungrig, und wird Dich bei Sichtkontakt auffressen.')
+ 5.     print('Du bist ein einem Land voller Drachen. Vor dir')
+ 6.     print('siehst du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,')
+ 7.     print('der seine Schätze mit dir teilt. Der andere Drache')
+ 8.     print('ist gierig und hungrig, und wird dich bei Sichtkontakt auffressen.')
  9.     print()
 
 Zeile 4 ist ein def-Ausdruck. Der def-Ausdruck definiert eine neue Funktion, die später im Programm aufgerufen werden kann. Eine Funktion zu definieren heißt, die Anweisungen, aus denen sie besteht, in ihrem def-Block zu definieren. Eine Funktion aufzurufen heißt, die Anweisungen in ihrem def-Block auszuführen.
@@ -217,7 +217,7 @@ True
 
 Wahrheitstabellen
 
-Solltest Du jemals vergessen, wie die booleschen Operatoren funktionieren, kannst Du diese Wahrheitstabellen zurate ziehen:
+Solltest du jemals vergessen, wie die booleschen Operatoren funktionieren, kannst du diese Wahrheitstabellen zurate ziehen:
 
 Tabelle 6-1: Die Wahrheitstabelle des Operators and
 A and B ist  Gesamter Ausdruck
@@ -267,7 +267,7 @@ while              True:
 Benutzereingaben abfragen
 
 13.     while hoehle != '1' and hoehle != '2':
-14.         print('In welche Höhle wirst Du gehen? (1 oder 2)')
+14.         print('In welche Höhle wirst du gehen? (1 oder 2)')
 15.         hoehle = input()
 
 Zeile 14 fragt den Spieler, in welche Höhle er gehen möchte. Zeile 15 lässt den Spieler eine Antwort eingeben und ENTER drücken. Diese Antwort wird in hoehle gespeichert. Die Programm-Ausführung springt zurück zur while-Anweisung und überprüft die Bedingung erneut.
@@ -352,14 +352,14 @@ Parameter
 
 Die nächste Funktion, die das Programm definiert, heißt ueberpruefeHoehle(). Beachte den Text ausgewaehlteHoehle zwischen den Klammern. Diest ist ein Parameter: eine lokale Variable, an die das beim Funktionsaufruf übergebene Argument gebunden wird.
 
-Vielleicht erinnerst Du Dich, dass Du bei einigen Funktionsaufrufen wie str() oder randint() Argumente zwischen den Klammern übergeben hast:
+Vielleicht erinnerst du dich, dass du bei einigen Funktionsaufrufen wie str() oder randint() Argumente zwischen den Klammern übergeben hast:
 
 >>> str(5)
 '5'
 >>> random.randint(1, 20)
 14
 
-Das gleiche wirst Du beim Funktionsaufruf von ueberpruefeHoehle() tun. Das Argument wird in einer neuen Variablen namens ausgewaehlteHoehle gespeichert. Diese Variablen nennt man Parameter.
+Das gleiche wirst du beim Funktionsaufruf von ueberpruefeHoehle() tun. Das Argument wird in einer neuen Variablen namens ausgewaehlteHoehle gespeichert. Diese Variablen nennt man Parameter.
 
 Als Beispiel folgt ein kurzes Programm, das die Definition von Funktionen mit Parametern veranschaulicht:
 
@@ -371,19 +371,19 @@ sagHallo('Bob')
 spam = 'Carol'
 sagHallo(spam)
 
-Wenn Du dieses Programm ausführst, sieht die Ausgabe wie folgt aus:
+Wenn du dieses Programm ausführst, sieht die Ausgabe wie folgt aus:
 
 Hallo, Alice. Dein Name hat 5 Buchstaben.
 Hallo, Bob. Dein Name hat 3 Buchstaben.
 Hallo, Carol. Dein Name hat 5 Buchstaben.
 
-Wenn Du sagHallo() aufrufst, wird das Argument an den Parameter name gebunden. Parameter sind herkömmliche, lokale Variablen. Wie alle lokalen Variablen, werden sie zerstört, sobald die Funktion zurückkehrt.
+Wenn du sagHallo() aufrufst, wird das Argument an den Parameter name gebunden. Parameter sind herkömmliche, lokale Variablen. Wie alle lokalen Variablen, werden sie zerstört, sobald die Funktion zurückkehrt.
 
 Den Spielausgang anzeigen
 
 Zurück zum Quellcode des Spiels:
 
-20.     print('Du näherst Dich der Höhle...')
+20.     print('Du näherst dich der Höhle...')
 21.     time.sleep(2)
 
 Das Modul time beinhaltet eine Funktion namens sleep(), die das Programm pausiert. Zeile 21 übergibt die Ganzzahl 2, sodass time.sleep() das Programm für 2 Sekunden pausiert.
@@ -391,8 +391,8 @@ Das Modul time beinhaltet eine Funktion namens sleep(), die das Programm pausier
 22.     print('Es ist dunkel und gruselig...')
 23.     time.sleep(2)
 
-Das Programm gibt weiteren Text aus und wartet erneut 2 Sekunden. Diese kurzen Pausen erzeugen Spannung um Spiel, was den ganzen Text auf einmal anzuzeigen nicht tun würde. Im Programm aus dem vorherigen Kapitel, Witze, hast Du die input()-Funktion aufgerufen, um das Programm zu pausieren, bis der Spieler die ENTER-Taste drückt. In diesem Fall braucht der Spieler nichts zu drücken, außer ein paar Sekunden zu warten.
-24.     print('Ein großer Drache spring vor Deine Füße! Er öffnet sein Maul und...')
+Das Programm gibt weiteren Text aus und wartet erneut 2 Sekunden. Diese kurzen Pausen erzeugen Spannung um Spiel, was den ganzen Text auf einmal anzuzeigen nicht tun würde. Im Programm aus dem vorherigen Kapitel, Witze, hast du die input()-Funktion aufgerufen, um das Programm zu pausieren, bis der Spieler die ENTER-Taste drückt. In diesem Fall braucht der Spieler nichts zu drücken, außer ein paar Sekunden zu warten.
+24.     print('Ein großer Drache spring vor deine Füße! Er öffnet sein Maul und...')
 25.     print()
 26.     time.sleep(2)
 
@@ -405,7 +405,7 @@ Entscheiden, welche Höhle den freundlichen Drachen beherbergt
 Zeile 28 ruft die random.randint()-Funktion auf, die entweder 1 oder 2 zurückgibt. Dieser Ganzzahlwert wird in freundlicheHoehle gespeichert und repräsentiert die Höhle mit dem freundlichen Drachen.
 
 30.     if ausgewaehlteHoehle == str(freundlicheHoehle):
-31.          print('Gibt Dir seinen Schatz!')
+31.          print('Gibt dir seinen Schatz!')
 
 Zeile 30 überprüft, ob die vom Spieler ausgewählte Höhle in der ausgewaehlteHoehle-Variablen ('1' oder '2') gleich der freundlichen Drachen-Höhle ist.
 
@@ -418,11 +418,11 @@ Deswegen wird freundlicheHoehle and die str()-Funktion übergeben, die sie in ei
 Falls die Bedingung wahr ist, informiert Zeile 31 den Spieler, dass er den Schatz gewonnen hat.
 
 32.     else:
-33.          print('Verschlingt Dich in einem Mal!')
+33.          print('Verschlingt dich in einem Mal!')
 
 Zeile 32 ist ein else-Ausdruck (zu Deutsch “sonst”). Der else-Ausdruck kann nur auf einen if-Block folgen. Der else-Block wird ausgeführt, falls die Bedingung des if-Ausdrucks falsch ist. Dies kann man sich wie folgt veranschaulichen: “Wenn diese Bedingung wahr ist, dann führe den if-Block aus, sonst führe den else-Block aus.”
 
-Merke Dir, nach dem else-Schlüsselwort einen Doppelpunkt : zu schreiben.
+Merke dir, nach dem else-Schlüsselwort einen Doppelpunkt : zu schreiben.
 
 Wo der Hauptteil beginnt
 
@@ -447,11 +447,11 @@ Zeile 40 ruft ebenso eine Funktion auf, die wir definiert haben. Die Funktion su
 
 42.     ueberpruefeHoehle(hoehlenNummer)
 
-Zeile 42 ruft die Funktion ueberpruefeHoehle() auf und übergibt den in hoehlenNummer gespeicherten Wert als Argument. Die Programm-Ausführung springt in Zeile 20 und der in hoehlenNummer gespeicherte Wert wird in den Parameter ausgewaehlteHoehle innerhalb der ueberpruefeHoehle()-Funktion kopiert. Diese Funktion ist dafür verantwortlich entweder 'Gibt Dir seinen Schatz!' oder 'Verschlingt Dich in einem Mal!' anzuzeigen, je nachdem für welche Höhle sich der Spieler entschieden hat.
+Zeile 42 ruft die Funktion ueberpruefeHoehle() auf und übergibt den in hoehlenNummer gespeicherten Wert als Argument. Die Programm-Ausführung springt in Zeile 20 und der in hoehlenNummer gespeicherte Wert wird in den Parameter ausgewaehlteHoehle innerhalb der ueberpruefeHoehle()-Funktion kopiert. Diese Funktion ist dafür verantwortlich entweder 'Gibt dir seinen Schatz!' oder 'Verschlingt dich in einem Mal!' anzuzeigen, je nachdem für welche Höhle sich der Spieler entschieden hat.
 
 Den Spieler fragen, ob er erneut spielen möchte
 
-44.     print('Möchtest Du noch einmal spielen? (ja oder nein)')
+44.     print('Möchtest du noch einmal spielen? (ja oder nein)')
 45.     spieleNochEinmal = input()
 
 Unabhängig davon, ob der Spieler gewinnt oder verliert, wird er gefragt, ob er nochmal spielen möchte. Die Variable spieleNochEinmal speichert die Auswahl des Spielers. Zeile 45 ist die letzte Zeile des while-Blocks. Das Programm springt zurück zu Zeile 36, um die Schleifen-Bedingung zu überprüfen: spieleNochEinmal == 'ja' or spieleNochEinmal == 'j'
@@ -462,7 +462,7 @@ Gibt der Spieler 'nein', 'n' oder etwas Unsinniges, wie 'Abraham Linconl' ein, d
 
 Zu beachten: die Zeichenkette 'JA' ist ungleich der Zeichenkette 'ja'. Gibt der Spieler 'JA' ein, dann wird die Bedingung im while-Ausdruck falsch und das Programm terminiert trotzdem. Die Programme, die wir später im Buch kennen lernen werden, wissen dieses Problem zu vermeiden.
 
-Du hast gerade Dein zweites Spiel fertiggestellt! In Drachen-Reich hast Du viel des Wissens aus dem Rate die Zahl-Spiel angewandt und ein paar neue Tricks dazugelernt. Falls Du nicht alle Konzepte in diesem Programm verstanden hast, dann gehe noch einmal jede Codezeile durch und versuche den Quellcode zu verändern, um zu sehen, wie sich das Verhalten des Programms ändert.
+du hast gerade dein zweites Spiel fertiggestellt! In Drachen-Reich hast du viel des Wissens aus dem Rate die Zahl-Spiel angewandt und ein paar neue Tricks dazugelernt. Falls du nicht alle Konzepte in diesem Programm verstanden hast, dann gehe noch einmal jede Codezeile durch und versuche den Quellcode zu verändern, um zu sehen, wie sich das Verhalten des Programms ändert.
 
 Im nächsten Kapitel werden wir kein Spiel erschaffen, sondern lernen, wie man IDLEs Debugger verwendet.
 
@@ -472,20 +472,20 @@ Drachen-Reich ist ein einfaches Spiel. Die anderen Spiele in diesem Buch fallen 
 
 Zum Beispiel kann es hilfreich sein ein Flussdiagramm zu zeichnen. Ein Flussdiagramm ist ein Bild, das jede mögliche Aktion zeigt, die in einem Spiel passieren kann und welche Aktionen zu welchen anderen Aktionen führen. Abbildung 6-2 ist ein Flussdiagramm zu Drachen-Reich.
 
-Um zu sehen, was im Spiel passiert, lege Deinen Finger auf den “Start”-Kasten. Dann folge den Pfeilen von einem Kasten zum Nächsten. Dein Finger symbolisiert die Programm-Ausführung. Das Programm terminiert, wenn Dein Finger den “Ende”-Kasten erreicht.
+Um zu sehen, was im Spiel passiert, lege deinen Finger auf den “Start”-Kasten. Dann folge den Pfeilen von einem Kasten zum Nächsten. Dein Finger symbolisiert die Programm-Ausführung. Das Programm terminiert, wenn dein Finger den “Ende”-Kasten erreicht.
 
-Wenn Du in den Kasten “Auf freundlichen oder hungrigen Drachen überprüfen” gelangst, kannst Du zum Kasten “Spieler gewinnt” oder “Spieler verliert” gehen. Diese Gabelung bedeutet, dass das Programm verschiedene Dinge tun kann. Beide Pfade führen zum “Frage Spieler, ob er nochmal spielen möchte”-Kasten.
+Wenn du in den Kasten “Auf freundlichen oder hungrigen Drachen überprüfen” gelangst, kannst du zum Kasten “Spieler gewinnt” oder “Spieler verliert” gehen. Diese Gabelung bedeutet, dass das Programm verschiedene Dinge tun kann. Beide Pfade führen zum “Frage Spieler, ob er nochmal spielen möchte”-Kasten.
 
 Zusammenfassung
 
-Im Spiel Drachen-Reich hast Du Deine eigenen Funktionen geschrieben. Funktionen sind Mini-Programme innerhalb von Programmen. Der Code innerhalb einer Funktion wird ausgeführt, wenn diese aufgerufen wird. Das Aufteilen in Funktionen gliedert ein Programm in kleinere und einfacher zu verstehende Abschnitte.
+Im Spiel Drachen-Reich hast du deine eigenen Funktionen geschrieben. Funktionen sind Mini-Programme innerhalb von Programmen. Der Code innerhalb einer Funktion wird ausgeführt, wenn diese aufgerufen wird. Das Aufteilen in Funktionen gliedert ein Programm in kleinere und einfacher zu verstehende Abschnitte.
 
 Argumente sind Werte, die in die Parameter einer Funktion zum Zeitpunkt ihres Aufrufs kopiert werden. Der Funktionsaufruf selbst nimmt den Wert des Rückgabe-Wertes an.
 
 Abbildung 6-2: Flussdiagramm zum Spiel Drachen-Reich.
 
-Du hast ebenso vom Geltungsbereich von Variablen gelernt. Variablen, die innerhalb einer Funktion deklariert sind, existieren im lokalen Geltungsbereich, während Variablen, die außerhalb aller Funktionen deklariert sind, im globalen Geltungsbereich existieren. Auf lokale Variablen kann vom globalen Geltungsbereich aus nicht zugegriffen werden. Hat eine lokale Variable denselben Namen, wie eine globale Variable, so behandelt Python beide als separate Variablen. Änderungen an der lokalen Variablen haben keine Auswirkungen auf die globale.
+du hast ebenso vom Geltungsbereich von Variablen gelernt. Variablen, die innerhalb einer Funktion deklariert sind, existieren im lokalen Geltungsbereich, während Variablen, die außerhalb aller Funktionen deklariert sind, im globalen Geltungsbereich existieren. Auf lokale Variablen kann vom globalen Geltungsbereich aus nicht zugegriffen werden. Hat eine lokale Variable denselben Namen, wie eine globale Variable, so behandelt Python beide als separate Variablen. Änderungen an der lokalen Variablen haben keine Auswirkungen auf die globale.
 
-Variablen-Geltungsbereiche mögen kompliziert erscheinen, sind jedoch nützlich, um Programme in unabhängige Abschnitte zu gliedern. Da jede Funktion ihren eigenen lokalen Geltungsbereich besitzt, kannst Du Dir sicher sein, dass der Code in einer Funktion keine Fehler in anderen Funktionen verursacht.
+Variablen-Geltungsbereiche mögen kompliziert erscheinen, sind jedoch nützlich, um Programme in unabhängige Abschnitte zu gliedern. Da jede Funktion ihren eigenen lokalen Geltungsbereich besitzt, kannst du dir sicher sein, dass der Code in einer Funktion keine Fehler in anderen Funktionen verursacht.
 
-Fast jedes Programm benutzt Funktionen aufgrund ihrer Nützlichkeit. Indem Du verstehst, wie Funktionen funktionieren, kannst Du Dir viel Tipparbeit ersparen und Fehler einfacher beheben.
+Fast jedes Programm benutzt Funktionen aufgrund ihrer Nützlichkeit. Indem du verstehst, wie Funktionen funktionieren, kannst du dir viel Tipparbeit ersparen und Fehler einfacher beheben.
