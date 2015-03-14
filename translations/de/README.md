@@ -26,8 +26,10 @@ Glossary
 <dt>assignment</dt><dd>Zuweisung</dd>
 <dt>blanked out</dt><dd>redigiert</dd>
 <dt>boolean</dt><dd>boolesch-e/er</dd>
+<dt>boolean value</dt><dd>Wahrheitswert</dd>
 <dt>call (function call)</dt><dd>Aufruf</dd>
 <dt>code</dt><dd>Code</dd>
+<dt>comparison operator</dt><dd>Vergleichsoperator</dd>
 <dt>concatenation</dt><dd>Verknüpfung</dd>
 <dt>constant (variable)</dt><dd>Konstante</dd>
 <dt>convention</dt><dd>Konvention</dd>
@@ -38,6 +40,7 @@ Glossary
 <dt>equivalent</dt><dd>äquivalent</dd>
 <dt>evaluation</dt><dd>Auswertung</dd>
 <dt>expression</dt><dd>Ausdruck</dd>
+<dt>false</dt><dd>falsch</dd>
 <dt>False (boolean literal)</dt><dd>False</dd>
 <dt>function</dt><dd>Funktion</dd>
 <dt>function call</dt><dd>Funktions-Aufruf</dd>
@@ -60,6 +63,7 @@ Glossary
 <dt>range (range())</dt><dd>Wertebereich</dd>
 <dt>replication</dt><dd>Replikation</dd>
 <dt>“Sample Run”</dt><dd>Probelauf</dd>
+<dt>scope (variable scope)</dt><dd>Geltungsbereich</dd>
 <dt>shell</dt><dd>Konsole</dd>
 <dt>slicing (list operation, idiomatic)</dt><dd>Slicing (use english term, but explain its meaning using the terms “(in Scheiben) schneiden”</dd>
 <dt>source code</dt><dd>Quellcode</dd>
@@ -70,7 +74,9 @@ Glossary
 <dt>“Summary”</dt><dd>Zusammenfassung</dd>
 <dt>terminate</dt><dd>terminieren</dd>
 <dt>“Topics Covered In This Chapter”</dt><dd>In diesem Kapitel behandelte Themen
+<dt>true</dt><dd>wahr</dd>
 <dt>True (boolean literal)</dt><dd>True</dd>
+<dt>truth table</dt><dd>Wahrheitstabelle</dd>
 <dt>value</dt><dd>Wert</dd>
 </dl>
 
