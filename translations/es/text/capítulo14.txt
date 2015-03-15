@@ -30,11 +30,11 @@ El proceso de convertir el texto plano en el mensaje codificado se llama cifrado
 
 Yvccf kyviv! Kyv bvpj kf kyv yfljv riv yzuuve leuvi kyv wcfnvi gfk.
 
-But if you know about the cipher used to encrypt the message, you can decrypt the ciphertext back to the plaintext. (Decryption is the opposite of encryption.)
+Pero si conoces el sistema de cifrado usado para encriptar el mensaje, puedes desencriptar el criptograma y convertirlo en el texto plano. (Desencriptar es lo opuesto a encriptar.)
 
-Many ciphers also use keys. Keys are secret values that let you decrypt ciphertext that was encrypted using a specific cipher. Think of the cipher as being like a door lock. You can only unlock it with a particular key.
+Muchos cifrados también usan claves. Las claves son valores secretos que permiten desencriptar los criptogramas que fueron encriptados usando un cifrado específico. Piensa en el cifrado como si fuera la cerradura de una puerta. Sólo puedes abrirla con una llave particular.
 
-If you are interested in writing cryptography programs, you can read my other book, “Hacking Secret Ciphers with Python”. It is free to download from http://inventwithpython.com/hacking.
+Si estás interesado en escribir programas de criptografía, puedes leer mi otro libro, “Hacking Secret Ciphers with Python” ("Descifrando Códigos Secretos con Python"). Es gratis y puedes descargarlo de http://inventwithpython.com/hacking.
 
 The Caesar Cipher
 
