@@ -5,8 +5,8 @@ Tematy omówione w tym rozdziale:
 
 •   3 różne typy błędów
 •   Odpluskiwacz w IDLE
-•   Stepping Into, Over, and Out
-•   Go and Quit
+•   Praca krokowa
+•   Wejdź i Wyjdź
 •   Break Points
 
 Pluskwy!
@@ -56,22 +56,22 @@ Rysunek 7-2: uruchomienie Królestwa smoków w odpluskwiaczu.
 
 Kiedy uruchomisz Królestwo smoków przez naciśnięcie F5, odpluswiacz IDLE zostanie uaktywniony. Nazywamy to uruchomieniem programu “w odpluskwiaczu” (czasem mówimy "w debuggerze"). W oknie Debug Control, sprawdź checkboksy Source i Globals.
 
-When you run Python programs under the debugger, the program will stop before it executes the first instruction. If you click on the file editor window's title bar (and you’ve checked the Source checkbox in the Debug Control window), the first instruction is highlighted in gray. The Debug Control window shows the execution is on line 1, which is the import random line.
+Kiedy uruchamiasz program w odpluskwiaczu, program zatrzyma się nim wykonana zostanie pierwsza instrukcja. Gdy klikniesz w tytułowe okno edytora (i zaznaczyłeś wcześniej checkboks Source w oknie Debug Control), pierwsza instrukcja będzie podświetlona na szaro. Okno Debug Controlpokazuje, że wykonanie jest w linii 1, czyli linii z import random.
 
-Stepping
+Praca krokowa
 
-The debugger lets you execute one instruction at a time. This is called stepping. To execute a single instruction, click the Step button in the Debug Window. Go ahead and do this now. Python will execute the import random instruction, and then stop before it executes the next instruction. The Debug Control window will show the execution is now on line 2, the import time line. Click the Quit button to terminate the program for now.
+Odpluskwiacz pozwala na wykonanie pojedynczych instrukcji. Nazywamy to pracą krokową. Aby wykonać pojedynczą instrukcję kliknij przycisk Step w oknie Debug Window. Zrób to proszę. Python wykona instrukcję import random i zatrzyma się przed wykonaniem kolejnej instrukcji. Okno Debug Control pokaże, że wyknanie jest obecnie w linii 2 z import time. Kliknij przycisk Quit by zakończyć działanie programu.
 
-Here is a summary of what happens when you click the Step button when you run the Dragon Realm game under a debugger. Press F5 to start running Dragon Realm again, then follow these instructions:
+Mamy tu podsumowanie tego, co dzieje się gdy klikniejsz przycisk Step z grą Królestwo smoków uruchomioną w odpluskwiaczu. Naciśnij F5 by ponownie uruchomić Królestwo smoków i wykonaj następujące polecenia:
 
 1. import random
 2. print('Rzucę monetą 1000 razy. Zgadnij ile razy wypadnie orzeł. (Naciśnij enter by rozpocząć)')
 3. input()
 4. flips = 0
 
-The Debug Control window will show you what line is about to be executed when you click the Step button in the Debug Control window. The debugger skipped line 3 because it’s a blank line. Notice you can only step forward with the debugger, you cannot go backwards.
+Okno Debug Control będzie pokazywało jaka linia zostanie wykonanan po naciśnięciu przycisku Stepw oknie Debug Control. Odpluskwiacz ominie linię 3, ponieważ jest to pusta linia. Zauważ, że w odpluskwiaczu można tylko iść naprzód, nie można wrócić.
 
-Globals Area
+Przestrzeń zmiennych globalnych (Globals Area)
 
 The Globals area in the Debug Control window is where all the global variables can be seen. Remember, global variables are the variables that are created outside of any functions (that is, in the global scope).
 
