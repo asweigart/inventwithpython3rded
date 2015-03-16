@@ -24,11 +24,11 @@ La ciencia de escribir códigos secretos se llama criptografía. Por miles de a�
 
 En criptografía, llamamos texto plano al mensaje que queremos codificar. El texto plano podría ser algo como esto:
 
-¡Hola! Las llaves de la casa están escondidas debajo de la maceta.
+¡Hola! Las llaves de la casa te esperan escondidas bajo la maceta.
 
 El proceso de convertir el texto plano en el mensaje codificado se llama cifrado o encriptación. El texto cifrado también se llama criptograma. El criptograma da un aspecto de ser letras aleatorias, y no es posible entender el texto plano original simplemente mirando el criptograma. Aquí está el criptograma correspondiente a la encriptación del ejemplo anterior:
 
-Yvccf kyviv! Kyv bvpj kf kyv yfljv riv yzuuve leuvi kyv wcfnvi gfk.
+¡Yfcr! Crj ccrmvj uv cr trjr kv vjgvire vjtfeuzurj sraf cr drtvkr.
 
 Pero si conoces el sistema de cifrado usado para encriptar el mensaje, puedes desencriptar el criptograma y convertirlo en el texto plano. (Desencriptar es lo opuesto a encriptar.)
 
@@ -36,48 +36,48 @@ Muchos cifrados también usan claves. Las claves son valores secretos que permit
 
 Si estás interesado en escribir programas de criptografía, puedes leer mi otro libro, “Hacking Secret Ciphers with Python” ("Descifrando Códigos Secretos con Python"). Es gratis y puedes descargarlo de http://inventwithpython.com/hacking.
 
-The Caesar Cipher
+El Cifrado César
 
-The key for the Caesar Cipher will be a number from 1 to 26. Unless you know the key (that is, know the number used to encrypt the message), you won’t be able to decrypt the secret code.
+La clave para el Cifrado César será un número entre 1 y 26. A menos que conozcas la clave (es decir, conozcas el número usado para encriptar el mensaje), no podrás desencriptar el código secreto.
 
-The Caesar Cipher was one of the earliest ciphers ever invented. In this cipher, you encrypt a message by taking each letter in the message (in cryptography, these letters are called symbols because they can be letters, numbers, or any other sign) and replacing it with a “shifted” letter. If you shift the letter A by one space, you get the letter B. If you shift the letter A by two spaces, you get the letter C. Figure 14-1 is a picture of some letters shifted over by three spaces.
+El Cifrado César fue uno de los primeros sistemas de cifrado que se inventaron. Con este cifrado, para encriptar un mensaje se toma cada letra del mismo (en criptografía, estas letras se llaman símbolos porque pueden ser letras, números o cualquier otro signo) y se la reemplaza con una letra "desplazada". Si desplazas la letra A un espacio, obtienes la letra B. Si desplazas la A dos espacios, obtienes la letra C. La Figura 14-1 es una ilustración de letras desplazadas tres espacios.
 
-Figure 14-1: Shifting over letters by three spaces. Here, B becomes E.
+Figura 14-1: Letras desplazadas tres espacios. Aquí B se transforma en E.
 
-To get each shifted letter, draw out a row of boxes with each letter of the alphabet. Then draw a second row of boxes under it, but start a certain number (this number is the key) of spaces over. After the letters at the end, wrap around back to the start of the boxes. Here is an example with the letters shifted by three spaces:
+Para obtener cada letra desplazada, dibuja una fila de casilleros con cada letra del alfabeto. Luego dibuja una segunda fila de casilleros debajo de ella, pero comienza un cierto número (este número es la clave) de casilleros hacia la derecha. Luego de la última letra, vuelve a comenzar con la primera. Aquí hay un ejemplo con las letras desplazadas tres espacios.
 
-Figure 14-2: The entire alphabet shifted by three spaces.
+Figura 14-2: El alfabeto completo desplazado tres espacios.
 
-The number of spaces you shift is the key in the Caesar Cipher. The example above shows the letter translations for the key 3.
+El número de espacios que te desplazas es la clave en el Cifrado César. El ejemplo anterior muestra las traducciones de cada letra para la clave 3.
 
-If you encrypt the plaintext “Howdy” with a key of 3, then:
+Si encriptas el texto plano "Adios" con una clave 3, entonces:
 
-•   The “H” becomes “K”.
-•   The letter “o” becomes “r”.
-•   The letter “w” becomes “z”.
-•   The letter “d” becomes “g”.
-•   The letter “y” becomes “b”.
+•   La “A” se convierte en “D”.
+•   La letra “d” se convierte en “g”.
+•   La letra “i” se convierte en “l”.
+•   La letra “o” se convierte en “r”.
+•   La letra “s” se convierte en “v”.
 
-The ciphertext of “Hello” with key 3 becomes “Krzgb”.
+El criptograma de "Adios" con clave 3 resulta "Dglrv".
 
-We will keep any non-letter characters the same. To decrypt “Krzgb” with the key 3, we go from the bottom boxes back to the top:
+Los caracteres que no correspondan a letras no serán alterados. Para desencriptar "Dglrv" con la clave 3, partimos de la fila inferior de casilleros y volvemos hacia arriba:
 
-•   The letter “K” becomes “H”.
-•   The letter “r” becomes “o”.
-•   The letter “z” becomes “w”.
-•   The letter “g” becomes “d”.
-•   The letter “b” becomes “y”.
+•   La letra “D” se convierte en “A”.
+•   La letra “g” se convierte en “d”.
+•   La letra “l” se convierte en “i”.
+•   La letra “r” se convierte en “o”.
+•   La letra “v” se convierte en “s”.
 
-ASCII, and Using Numbers for Letters
+ASCII, y Usando Números por Letras
 
-How do we implement this shifting of the letters as code? We can do this by representing each letter as a number called an ordinal, and then adding or subtracting from this number to form a new ordinal (and a new letter). ASCII (pronounced “ask-ee” and stands for American Standard Code for Information Interchange) is a code that connects each character to a number between 32 and 126.
+¿Cómo implementamos este cambio de letras en un programa? Podemos hacer esto representando cada letra como un número llamado ordinal, y luego sumando o restando a este número para formar un nuevo ordinal (y una nueva letra). ASCII (que se pronuncia "asqui" y corresponde a las siglas en inglés de Código Estándar Americano para el Intercambio de Información) es un código que relaciona cada caracter con un número entre 32 y 126.
 
-The capital letters “A” through “Z” have the ASCII numbers 65 through 90. The lowercase letters “a” through “z” have the ASCII numbers 97 through 122. The numeric digits “0” through “9” have the ASCII numbers 48 through 57. Table 14-1 shows all the ASCII characters and ordinals.
+Las mayúsculas de la "A" a la "Z" reciben números ASCII entre 65 y 90. Las minúsculas de "a" a "z" reciben los números ASCII entre 97 y 122. Los caracteres numéricos de "0" a "9" reciben números ASCII de 48 a 57. La Tabla 14-1 muestra todos los caracteres y ordinales ASCII.
 
-Modern computers use UTF-8 instead of ASCII. But UTF-8 is backwards compatible with ASCII, so the UTF-8 ordinals for ASCII characters are the same as ASCII’s ordinals.
+Las computadoras modernas usan UTF-8 en lugar de ASCII. Pero UTF-8 es compatible con ASCII, de modo que los ordinales UTF-8 para los caracteres ASCII son los mismos que los ordinales ASCII.
 
-Table 14-1: The ASCII Table
-32  (space) 48  0   64  @   80  P   96  `   112 p
+Tabla 14-1: La Tabla ASCII
+32  (espacio) 48  0   64  @   80  P   96  `   112 p
 33  !   49  1   65  A   81  Q   97  a   113 q
 34  "   50  2   66  B   82  R   98  b   114 r
 35  #   51  3   67  C   83  S   99  c   115 s
