@@ -4,21 +4,21 @@ TAM_MAX_CLAVE = 26
 
 def obtenerModo():
     while True:
-        print('Deseas encriptar o desencriptar un mensaje?')
+        print('¿Deseas encriptar o desencriptar un mensaje?')
         modo = input().lower()
         if modo in 'encriptar e desencriptar d'.split():
             return modo
         else:
-            print('Ingrese "encriptar" o "e" o "desencriptar" o "d"')
+            print('Ingresa "encriptar" o "e" o "desencriptar" o "d"')
 
 def obtenerMensaje():
-    print('Ingrese su mensaje:')
+    print('Ingresa tu mensaje:')
     return input()
 
 def obtenerClave():
     clave = 0
     while True:
-        print('Ingrese el número de clave (1-%s)' % (TAM_MAX_CLAVE))
+        print('Ingresa el número de clave (1-%s)' % (TAM_MAX_CLAVE))
         clave = int(input())
         if (clave >= 1 and clave <= TAM_MAX_CLAVE):
             return clave
