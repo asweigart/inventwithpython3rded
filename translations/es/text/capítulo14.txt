@@ -217,61 +217,61 @@ cifrado.py
 56. print('Tu texto traducido es:')
 57. print(obtenerMensajeTraducido(modo, mensaje, clave))
 
-How the Code Works
+Cómo Funciona el Código
 
-The encryption and decryption processes are the reverse of the other, and even then they still share much of the same code. Let’s look at how each line works.
+Los procesos de encriptación y desencripción son inversos el uno del otro, y aún así utilizan en gran medida el mismo código. Veamos cómo funciona cada línea.
 
- 1. # Caesar Cipher
- 2.
- 3. MAX_KEY_SIZE = 26
+ 1. # Cifrado Cesar
+ 2. 
+ 3. TAM_MAX_CLAVE = 26
 
-The first line is just a comment. MAX_KEY_SIZE is a constant that stores the integer 26 in it. MAX_KEY_SIZE reminds us that in this program, the key used in the cipher should be between 1 and 26.
+La primera línea es simplemente un comentario. TAM_MAX_CLAVE es una constante que almacena al entero 26. TAM_MAX_CLAVE nos recuerda que en este programa, la clave usada para el cifrado debe estar comprendida entre 1 y 26.
 
-Deciding to Encrypt or Decrypt
+Decidiendo si Encriptar o Desencriptar
 
- 5. def getMode():
+ 5. def obtenerModo():
  6.     while True:
- 7.         print('Do you wish to encrypt or decrypt a message?')
- 8.         mode = input().lower()
- 9.         if mode in 'encrypt e decrypt d'.split():
-10.             return mode
+ 7.         print('¿Deseas encriptar o desencriptar un mensaje?')
+ 8.         modo = input().lower()
+ 9.         if modo in 'encriptar e desencriptar d'.split():
+10.             return modo
 11.         else:
-12.             print('Enter either "encrypt" or "e" or "decrypt" or "d".')
+12.             print('Ingresa "encriptar" o "e" o "desencriptar" o "d"')
 
-The getMode() function will let the user type in if they want encryption or decryption mode for the program. The value returned from input() and lower() is stored in mode. The if statement’s condition checks if the string stored in mode exists in the list returned by 'encrypt e decrypt d'.split().
+La función obtenerModo() permite al usuario elegir si quieren entrar al modo de cifrado o descifrado del programa. El valor devuelto de input() y lower() se almacena en modo. La condición de la sentencia if comprueba si la cadena almacenada en modo existe en la lista devuelta por 'encriptar e desencriptar d'.split().
 
-This list is ['encrypt', 'e', 'decrypt', 'd'], but it is easier for the programmer to type 'encrypt e decrypt d'.split() and not type in all those quotes and commas. Use whichever is easiest for you; they both evaluate to the same list value.
+Esta lista es ['encriptar', 'e', 'desencriptar', 'd'], pero es más fácil para el programador escribir 'encriptar e desencriptar d'.split() y no tener que escribir todas esas comas y comillas. Usa la forma que sea más fácil para tí; ambas son evaluadas al mismo valor de lista.
 
-This function will return the string in mode as long as mode is equal to 'encrypt', 'e', 'decrypt', or 'd'. Therefore, getMode() will return the string 'e' or the string 'd' (but the user can type in either “e”, “encrypt”, “d”, or “decrypt”.)
+Esta función devolverá la cadena en modo siempre que modo sea igual a 'encriptar', 'e', 'desencriptar' o 'd'. Entonces, obtenerModo() devolverá la cadena 'e' o la cadena 'd' (pero el usuario puede escribir "e", "encriptar", "d" o "desencriptar".)
 
-Getting the Message from the Player
+Obteniendo el Mensaje del Jugador
 
-14. def getMessage():
-15.     print('Enter your message:')
+14. def obtenerMensaje():
+15.     print('Ingresa tu mensaje:')
 16.     return input()
 
-The getMessage() function simply gets the message to encrypt or decrypt from the user and returns it.
+La función obtenerMensaje simplemente obtiene el mensaje a encriptar o desencriptar del usuario y devuelve este valor.
 
-Getting the Key from the Player
+Obteniendo la Clave del Jugador
 
-18. def getKey():
-19.     key = 0
+18. def obtenerClave():
+19.     clave = 0
 20.     while True:
-21.         print('Enter the key number (1-%s)' % (MAX_KEY_SIZE))
-22.         key = int(input())
-23.         if (key >= 1 and key <= MAX_KEY_SIZE):
-24.             return key
+21.         print('Ingresa el número de clave (1-%s)' % (TAM_MAX_CLAVE))
+22.         clave = int(input())
+23.         if (clave >= 1 and clave <= TAM_MAX_CLAVE):
+24.             return clave
 
-The getKey() function lets the player type in the key they will use to encrypt or decrypt the message. The while loop ensures that the function keeps looping until the user enters a valid key.
+La función obtenerClave permite al jugador escribir la clave que desea usar para encriptar o desencriptar el mensaje. El bucle while asegura que la función se mantenga ciclando hasta que el usuario ingrese una clave válida.
 
-A valid key here is one that is between the integer values 1 and 26 (remember that MAX_KEY_SIZE will only ever have the value 26 because it is constant). It then returns this key. Line 22 sets key to the integer version of what the user typed in, so getKey() returns an integer.
+Una clave válida es aquella que está comprendida entre los valores enteros 1 y 26 (recuerda que TAM_MAX_CLAVE tendrá siempre el valor 26 porque es constante). La función devuelve entonces esta clave. La línea 22 establece la clave como la versión entera de lo que el jugador haya escrito, de modo que obtenerClave() devuelve un entero.
 
 Encrypt or Decrypt the Message with the Given Key
 
-26. def getTranslatedMessage(mode, message, key):
-27.     if mode[0] == 'd':
-28.         key = -key
-29.     translated = ''
+26. def obtenerMensajeTraducido(modo, mensaje, clave):
+27.     if modo[0] == 'd':
+28.         clave = -clave
+29.     traduccion = ''
 
 getTranslatedMessage() does the encrypting and decrypting. It has three parameters:
 
@@ -304,10 +304,10 @@ As you can see, 'Forty two'.isalpha() will return False because 'Forty two' has 
 
 The isalpha() method is used in the next few lines of the program.
 
-31.     for symbol in message:
-32.         if symbol.isalpha():
-33.             num = ord(symbol)
-34.             num += key
+31.     for letra in mensaje:
+32.         if letra.isalpha():
+33.             num = ord(letra)
+34.             num += clave
 
 Line 31’s for loop iterates over each letter (in cryptography they are called symbols) in the message string. On each iteration through this loop, symbol will have the value of a letter in message.
 
@@ -342,7 +342,7 @@ False
 
 Encrypting or Decrypting Each Letter
 
-36.             if symbol.isupper():
+36.             if letra.isupper():
 37.                 if num > ord('Z'):
 38.                     num -= 26
 39.                 elif num < ord('A'):
@@ -352,7 +352,7 @@ Line 36 checks if the symbol is an uppercase letter. If so, there are two specia
 
 Check if num has a value larger than the ordinal value for “Z”. If so, then subtract 26 (because there are 26 letters in total) from num. After doing this, the value of num is 68. 68 is the correct ordinal value for 'D'.
 
-41.             elif symbol.islower():
+41.             elif letra.islower():
 42.                 if num > ord('z'):
 43.                     num -= 26
 44.                 elif num < ord('a'):
@@ -362,25 +362,25 @@ If the symbol is a lowercase letter, the program runs code that is similar to li
 
 In decrypting mode, then key would be negative. The special case would be where num -= 26 is less than the ASCII value for “a”. In that case, add 26 to num to have it “wrap around” to the end of the alphabet.
 
-47.             translated += chr(num)
+47.             traduccion += chr(num)
 48.         else:
-49.             translated += symbol
+49.             traduccion += letra
 
 Line 47 concatenates the encrypted/decrypted character to the translated string.
 
 If the symbol was not an uppercase or lowercase letter, then line 48 concatenates the original symbol to the translated string. Therefore, spaces, numbers, punctuation marks, and other characters won’t be encrypted or decrypted.
 
-50.     return translated
+50.     return traduccion
 
 The last line in the getTranslatedMessage() function returns the translated string.
 
 The Start of the Program
 
-52. mode = getMode()
-53. message = getMessage()
-54. key = getKey()
-55. print('Your translated text is:')
-56. print(getTranslatedMessage(mode, message, key))
+52. modo = obtenerModo()
+53. mensaje = obtenerMensaje()
+54. clave = obtenerClave()
+55. 
+56. print('Tu texto traducido es:')
 
 The start of the program calls each of the three functions defined previously to get the mode, message, and key from the user. These three values are passed to getTranslatedMessage() whose return value (the translated string) is printed to the user.
 
