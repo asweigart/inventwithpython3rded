@@ -28,17 +28,17 @@ def obtenerMensajeTraducido(modo, mensaje, clave):
         clave = -clave
     traduccion = ''
 
-    for letra in mensaje:
-        if letra.isalpha():
-            num = ord(letra)
+    for simbolo in mensaje:
+        if simbolo.isalpha():
+            num = ord(simbolo)
             num += clave
 
-            if letra.isupper():
+            if simbolo.isupper():
                 if num > ord('Z'):
                     num -= 26
                 elif num < ord('A'):
                     num += 26
-            elif letra.islower():
+            elif simbolo.islower():
                 if num > ord('z'):
                     num -= 26
                 elif num < ord('a'):
@@ -46,7 +46,7 @@ def obtenerMensajeTraducido(modo, mensaje, clave):
 
             traduccion += chr(num)
         else:
-            traduccion += letra
+            traduccion += simbolo
     return traduccion
 
 modo = obtenerModo()

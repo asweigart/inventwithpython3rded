@@ -189,17 +189,17 @@ cifrado.py
 28.         clave = -clave
 29.     traduccion = ''
 30. 
-31.     for letra in mensaje:
-32.         if letra.isalpha():
-33.             num = ord(letra)
+31.     for simbolo in mensaje:
+32.         if simbolo.isalpha():
+33.             num = ord(simbolo)
 34.             num += clave
 35. 
-36.             if letra.isupper():
+36.             if simbolo.isupper():
 37.                 if num > ord('Z'):
 38.                     num -= 26
 39.                 elif num < ord('A'):
 40.                     num += 26
-41.             elif letra.islower():
+41.             elif simbolo.islower():
 42.                 if num > ord('z'):
 43.                     num -= 26
 44.                 elif num < ord('a'):
@@ -207,7 +207,7 @@ cifrado.py
 46. 
 47.             traduccion += chr(num)
 48.         else:
-49.             traduccion += letra
+49.             traduccion += simbolo
 50.     return traduccion
 51. 
 52. modo = obtenerModo()
@@ -266,54 +266,54 @@ La función obtenerClave permite al jugador escribir la clave que desea usar par
 
 Una clave válida es aquella que está comprendida entre los valores enteros 1 y 26 (recuerda que TAM_MAX_CLAVE tendrá siempre el valor 26 porque es constante). La función devuelve entonces esta clave. La línea 22 establece la clave como la versión entera de lo que el jugador haya escrito, de modo que obtenerClave() devuelve un entero.
 
-Encrypt or Decrypt the Message with the Given Key
+Encriptar o Desencriptar el Mensaje con la Clave Dada
 
 26. def obtenerMensajeTraducido(modo, mensaje, clave):
 27.     if modo[0] == 'd':
 28.         clave = -clave
 29.     traduccion = ''
 
-getTranslatedMessage() does the encrypting and decrypting. It has three parameters:
+obtenerMensajeTraducido() realiza la encriptación y desencriptación. Tiene tres parámetros:
 
-•   mode sets the function to encryption mode or decryption mode.
-•   message is the plaintext (or ciphertext) to be encrypted (or decrypted).
-•   key is the key that is used in this cipher.
+•   modo elige entre los modos de encriptación y desencriptación.
+•   mensaje es el texto plano (o criptograma) a encriptar (o desencriptar).
+•   clave es la clave numérica a usar para este cifrado.
 
-Line 27 checks if the first letter in the mode variable is the string 'd'. If so, then the program is in decryption mode. The only difference between the decryption and encryption mode is that in decryption mode the key is set to the negative version of itself. If key was the integer 22, then in decryption mode set it to -22. The reason why will be explained later.
+La línea 27 comprueba si la primera letra en la variable modo es la cadena 'd'. En ese caso, el programa entra en modo de desencriptación. La única diferencia entre los modos de desencriptación y encriptación es que para desencriptar un mensaje se usa la versión negativa de la clave. Si clave fuera el entero 22, entonces en modo de desencriptación clave se transforma en -22. Explicaremos la razón de esto más adelante.
 
-translated is the string of the result: either the ciphertext (if you are encrypting) or the plaintext (if you are decrypting). It starts as the blank string and has encrypted or decrypted characters concatenated to the end of it.
+traduccion es la cadena que contiene al resultado, es decir, el criptograma (ei estás encriptando) o el texto plano (si estás desencriptando). Comienza como una cadena vacía a cuyo final se van añadiendo caracteres encriptados o desencriptados.
 
-The isalpha() String Method
+El Método de Cadena isalpha()
 
-The isalpha() string method will return True if the string is an uppercase or lowercase letter from A to Z. If the string contains any non-letter characters, then isalpha() will return False. Try entering the following into the interactive shell:
+El método de cadena isalpha() devolverá True si la cadena es una letra mayúscula o minúscula entre A y Z. Si la cadena contiene algún caracter no alfabético, entonces isalpha() devolverá False. Prueba ingresar lo siguiente en la consola interactiva:
 
->>> 'Hello'.isalpha()
+>>> 'Hola'.isalpha()
 True
->>> 'Forty two'.isalpha()
+>>> 'Cuarenta y dos'.isalpha()
 False
->>> 'Fortytwo'.isalpha()
+>>> 'Cuarentaydos'.isalpha()
 True
 >>> '42'.isalpha()
 False
 >>> ''.isalpha()
 False
 
-As you can see, 'Forty two'.isalpha() will return False because 'Forty two' has a space in it, which is a non-letter character. 'Fortytwo'.isalpha() returns True because it doesn’t have this space.
+Como puedes observar, 'Cuarenta y dos'.isalpha() devuelve False porque 'Cuarenta y dos' incluye dos espacios, los cuales son caracteres no alfabéticos. 'Cuarentaydos'.isalpha() devuelve True porque no contiene espacios.
 
-'42'.isalpha() returns False because both '4' and '2' are non-letter characters. isalpha() only returns True if the string has only letter characters and isn’t blank.
+'42'.isalpha() devuelve False porque ni '4' ni '2' son letras. isalpha() sólo devuelve True si la cadena no está vacía y está compuesta únicamente por letras.
 
-The isalpha() method is used in the next few lines of the program.
+El método isalpha() se usa en las siguientes líneas del programa.
 
-31.     for letra in mensaje:
-32.         if letra.isalpha():
-33.             num = ord(letra)
+31.     for simbolo in mensaje:
+32.         if simbolo.isalpha():
+33.             num = ord(simbolo)
 34.             num += clave
 
-Line 31’s for loop iterates over each letter (in cryptography they are called symbols) in the message string. On each iteration through this loop, symbol will have the value of a letter in message.
+El bucle for de la línea 31 itera sobre cada letra (en criptografía se llaman símbolos) de la cadena del mensaje. En cada iteración sobre este bucle, simbolo tendrá el valor de una letra en el mensaje.
 
-Line 32 is there because only letters will be encrypted or decrypted. Numbers, punctuation marks, and everything else will stay in their original form. The num variable will hold the integer ordinal value of the letter stored in symbol. Line 34 then “shifts” the value in num by the value in key.
+La línea 32 está presente porque sólo las letras serán encriptadas o desencriptadas. Los números, signos de puntuación y todo lo demás conservará su forma original. La variable num almacenará el valor ordinal entero de la letra en la variable simbolo. La línea 34 "desplaza" entonces el valor de num en el número de casilleros correspondiente a la clave.
 
-The isupper() and islower() String Methods
+Los Métodos de Cadena isupper() e islower()
 
 The isupper() and islower() string methods (which are on line 36 and 41) work in a way that is similar to the isdigit() and isalpha() methods.
 
@@ -342,7 +342,7 @@ False
 
 Encrypting or Decrypting Each Letter
 
-36.             if letra.isupper():
+36.             if simbolo.isupper():
 37.                 if num > ord('Z'):
 38.                     num -= 26
 39.                 elif num < ord('A'):
@@ -352,7 +352,7 @@ Line 36 checks if the symbol is an uppercase letter. If so, there are two specia
 
 Check if num has a value larger than the ordinal value for “Z”. If so, then subtract 26 (because there are 26 letters in total) from num. After doing this, the value of num is 68. 68 is the correct ordinal value for 'D'.
 
-41.             elif letra.islower():
+41.             elif simbolo.islower():
 42.                 if num > ord('z'):
 43.                     num -= 26
 44.                 elif num < ord('a'):
@@ -364,7 +364,7 @@ In decrypting mode, then key would be negative. The special case would be where 
 
 47.             traduccion += chr(num)
 48.         else:
-49.             traduccion += letra
+49.             traduccion += simbolo
 
 Line 47 concatenates the encrypted/decrypted character to the translated string.
 
