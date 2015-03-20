@@ -315,21 +315,22 @@ La línea 32 está presente porque sólo las letras serán encriptadas o desencr
 
 Los Métodos de Cadena isupper() e islower()
 
-The isupper() and islower() string methods (which are on line 36 and 41) work in a way that is similar to the isdigit() and isalpha() methods.
+Los métodos de cadena isupper() e islower() (los cuales utilizamos en las líneas 36 y 41) funcionan de forma similar a los métodos isdigit() e isalpha().
 
-isupper() will return True if the string it is called on contains at least one uppercase letter and no lowercase letters. islower() returns True if the string it is called on contains at least one lowercase letter and no uppercase letters. Otherwise these methods return False.
+isupper() devuelve True si la cadena sobre la cual es llamado contiene al menos una letra mayúscula y ninguna minúscula.
+islower() devuelve True si la cadena sobre la cual es llamado contiene al menos una letra minúscula y ninguna mayúscula. De otro modo estos métodos devuelven False.
 
-Try entering the following into the interactive shell:
+Prueba ingresar lo siguiente en la consola interactiva:
 
->>> 'HELLO'.isupper()
+>>> 'HOLA'.isupper()
 True
->>> 'hello'.isupper()
+>>> 'hola'.isupper()
 False
->>> 'hello'.islower()
+>>> 'hola'.islower()
 True
->>> 'Hello'.islower()
+>>> 'Hola'.islower()
 False
->>> 'LOOK OUT BEHIND YOU!'.isupper()
+>>> 'CUIDADO DETRAS DE TI!'.isupper()
 True
 >>> '42'.isupper()
 False
@@ -340,7 +341,7 @@ False
 >>> ''.islower()
 False
 
-Encrypting or Decrypting Each Letter
+Encriptando o Desencriptando Cada Letra
 
 36.             if simbolo.isupper():
 37.                 if num > ord('Z'):
@@ -348,9 +349,9 @@ Encrypting or Decrypting Each Letter
 39.                 elif num < ord('A'):
 40.                     num += 26
 
-Line 36 checks if the symbol is an uppercase letter. If so, there are two special cases to worry about. What if symbol was 'Z' and key was 4? If that were the case, the value of num here would be the character '^' (The ordinal of '^' is 94). But ^ isn’t a letter at all. You want the ciphertext to “wrap around” to the beginning of the alphabet.
+La línea 36 comprueba si el símbolo es una letra mayúscula. Si lo es, hay dos casos especiales a tener en cuenta. Qué ocurriría si el símbolo fuese 'Z' y la clave 4? En este caso, el valor de num aquí sería el caracter '^' (El ordinal de '^' es 94). Pero ^ no es ninguna letra. Y nosotros queremos que el criptograma "reinicie la vuelta" por el principio del alfabeto.
 
-Check if num has a value larger than the ordinal value for “Z”. If so, then subtract 26 (because there are 26 letters in total) from num. After doing this, the value of num is 68. 68 is the correct ordinal value for 'D'.
+Comprobamos si num tiene un valor mayor que el valor ordinal de "Z". Si es así, restamos 26 a num (porque hay 26 letras en total). Luego de hacer esto, el valor de num es 68. 68 es el valor ordinal correcto ya que corresponde a "D".
 
 41.             elif simbolo.islower():
 42.                 if num > ord('z'):
@@ -358,17 +359,17 @@ Check if num has a value larger than the ordinal value for “Z”. If so, then 
 44.                 elif num < ord('a'):
 45.                     num += 26
 
-If the symbol is a lowercase letter, the program runs code that is similar to lines 36 through 40. The only difference is that it uses ord('z') and ord('a') instead of ord('Z') and ord('A').
+Si el símbolo es una letra minúscula, el programa ejecuta un código que es similar a las líneas 36 a 40. la única diferencia es que utiliza ord('z') y ord('a') en lugar de ord('Z') y ord ('A').
 
-In decrypting mode, then key would be negative. The special case would be where num -= 26 is less than the ASCII value for “a”. In that case, add 26 to num to have it “wrap around” to the end of the alphabet.
+En modo desencriptación, la clave es negativa. El caso especial sería si num -= 26 es menor que el valor ASCII de "a". En ese caso, sumamos 26 a num para que "reinicie la vuelta" por el final del alfabeto.
 
 47.             traduccion += chr(num)
 48.         else:
 49.             traduccion += simbolo
 
-Line 47 concatenates the encrypted/decrypted character to the translated string.
+La línea 47 concatena el caracter encriptado/desencriptado a la cadena traducida.
 
-If the symbol was not an uppercase or lowercase letter, then line 48 concatenates the original symbol to the translated string. Therefore, spaces, numbers, punctuation marks, and other characters won’t be encrypted or decrypted.
+Si el símbolo no es una letra mayúscula o minúscula, la línea 49 concatena el símbolo original a la cadena traducida. Por lo tanto, espacios, números, signos de puntuación y otros caracteres no serán encriptados o desencriptados.
 
 50.     return traduccion
 

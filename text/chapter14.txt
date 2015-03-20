@@ -368,7 +368,7 @@ In decrypting mode, then key would be negative. The special case would be where 
 
 Line 47 concatenates the encrypted/decrypted character to the translated string.
 
-If the symbol was not an uppercase or lowercase letter, then line 48 concatenates the original symbol to the translated string. Therefore, spaces, numbers, punctuation marks, and other characters won’t be encrypted or decrypted.
+If the symbol was not an uppercase or lowercase letter, then line 49 concatenates the original symbol to the translated string. Therefore, spaces, numbers, punctuation marks, and other characters won’t be encrypted or decrypted.
 
 50.     return translated
 
