@@ -317,8 +317,7 @@ Los Métodos de Cadena isupper() e islower()
 
 Los métodos de cadena isupper() e islower() (los cuales utilizamos en las líneas 36 y 41) funcionan de forma similar a los métodos isdigit() e isalpha().
 
-isupper() devuelve True si la cadena sobre la cual es llamado contiene al menos una letra mayúscula y ninguna minúscula.
-islower() devuelve True si la cadena sobre la cual es llamado contiene al menos una letra minúscula y ninguna mayúscula. De otro modo estos métodos devuelven False.
+isupper() devuelve True si la cadena sobre la cual es llamado contiene al menos una letra mayúscula y ninguna minúscula. islower() devuelve True si la cadena sobre la cual es llamado contiene al menos una letra minúscula y ninguna mayúscula. De otro modo estos métodos devuelven False.
 
 Prueba ingresar lo siguiente en la consola interactiva:
 
@@ -373,9 +372,9 @@ Si el símbolo no es una letra mayúscula o minúscula, la línea 49 concatena e
 
 50.     return traduccion
 
-The last line in the getTranslatedMessage() function returns the translated string.
+La última línea en la función obtenerMensajeTraducido() devuelve la cadena traducida.
 
-The Start of the Program
+El Inicio del Programa
 
 52. modo = obtenerModo()
 53. mensaje = obtenerMensaje()
@@ -383,87 +382,87 @@ The Start of the Program
 55. 
 56. print('Tu texto traducido es:')
 
-The start of the program calls each of the three functions defined previously to get the mode, message, and key from the user. These three values are passed to getTranslatedMessage() whose return value (the translated string) is printed to the user.
+El comienzo del programa llama a cada una de las tres funciones definidas anteriormente para obtener el modo, el mensaje y la clave del usuario. Estos tres valores son pasados a obtenerMensajeTraducido(), cuyo valor de retorno (la cadena traducida) es mostrada en pantalla al usuario.
 
-Brute Force
+Fuerza Bruta
 
-That’s the entire Caesar Cipher. However, while this cipher may fool some people who don’t understand cryptography, it won’t keep a message secret from someone who knows cryptanalysis. While cryptography is the science of making codes, cryptanalysis is the science of breaking codes.
+Eso es todo con respecto al Cifrado César. Sin embargo, a pesar de que este cifrado puede engañar a gente que no entiende criptografía, no será suficiente para alguien que sepa de criptoanálisis. Así como criptografía es la ciencia de crear códigos, criptoanálisis es la ciencia de descifrarlos.
 
-Do you wish to encrypt or decrypt a message?
-encrypt
-Enter your message:
-Doubts may not be pleasant, but certainty is absurd.
-Enter the key number (1-26)
+¿Deseas encriptar o desencriptar un mensaje?
+encriptar
+Ingresa tu mensaje:
+La duda puede no ser agradable, pero la certeza es absurda.
+Ingresa el número de clave (1-26)
 8
-Your translated text is:
-Lwcjba uig vwb jm xtmiaivb, jcb kmzbiqvbg qa ijaczl.
-The whole point of cryptography is that so if someone else gets their hands on the encrypted message, they cannot figure out the original unencrypted message from it. Let’s pretend we are the code breaker and all we have is the encrypted text:
-Lwcjba uig vwb jm xtmiaivb, jcb kmzbiqvbg qa ijaczl.
+Tu texto traducido es:
+Ti lcli xcmlm vw amz iozilijtm, xmzw ti kmzbmhi ma ijaczli.
+La idea central de la criptografía es que si alguien más consigue apoderarse del mensaje encriptado, no consiga obtener la información del mensaje original sin encriptar. Hagamos de cuenta que somos descifradores de códigos y todo lo que tenemos es el texto encriptado:
+Ti lcli xcmlm vw amz iozilijtm, xmzw ti kmzbmhi ma ijaczli.
 
-Brute force is the technique of trying every possible key until you find the correct one. Because there are only 26 possible keys, it would be easy for a cryptanalyst to write a hacking program than decrypts with every possible key. Then they could look for the key that decrypts to plain English. Let’s add a brute force feature to the program.
+Fuerza bruta es la técnica de probar cada todas las claves posibles hasta encontrar la correcta. Como hay sólo 26 claves posibles, sería fácil para un criptoanalista escribir un programa que desencriptara con todas las claves posibles. Luego podría fijarse cuál de las claves resulta en un mensaje en Español. Agreguemos un modo de fuerza bruta a nuestro programa.
 
-Adding the Brute Force Mode
+Agregando el Modo de Fuerza Bruta
 
-First, change lines 7, 9, and 12 (which are in the getMode() function) to look like the following (the changes are in bold):
+Primero, cambiamos las líneas 7, 9 y 12 (que están dentro de la función obtenerModo()) para convertirlas en lo siguiente (los cambios están en negrita):
 
- 5. def getMode():
+ 5. def obtenerModo():
  6.     while True:
- 7.         print('Do you wish to encrypt or decrypt or brute force a message?')
- 8.         mode = input().lower()
- 9.         if mode in 'encrypt e decrypt d brute b'.split():
-10.             return mode[0]
+ 7.         print('¿Deseas encriptar, desencriptar o descifrar por fuerza bruta un mensaje?')
+ 8.         modo = input().lower()
+ 9.         if modo in 'encriptar e desencriptar d bruta b'.split():
+10.             return modo[0]
 11.         else:
-12.             print('Enter either "encrypt" or "e" or "decrypt" or "d" or "brute" or "b".')
+12.             print('Ingresa "encriptar" o "e" o "desencriptar" o "d" o "bruta" o "b"')
 
-This code will let the user select “brute force” as a mode. Modify and add the following changes to the main part of the program:
+Este código permitirá al usuario elegir "fuerza bruta" como un modo. Modifica y agrega los siguientes cambios a la parte principal del programa:
 
-52. mode = getMode()
-53. message = getMessage()
-54. if mode[0] != 'b':
-55.     key = getKey()
+52. modo = obtenerModo()
+53. mensaje = obtenerMensaje()
+54. if modo[0] != 'b':
+55.     clave = obtenerClave()
 56.
-57. print('Your translated text is:')
-58. if mode[0] != 'b':
-59.     print(getTranslatedMessage(mode, message, key))
+57. print('Tu texto traducido es:')
+58. if modo[0] != 'b':
+59.     print(obtenerMensajeTraducido(modo, mensaje, clave))
 60. else:
-61.     for key in range(1, MAX_KEY_SIZE + 1):
-62.         print(key, getTranslatedMessage('decrypt', message, key))
+61.     for clave in range(1, TAM_MAX_CLAVE + 1):
+62.         print(clave, obtenerMensajeTraducido('desencriptar', mensaje, clave))
 
-These changes ask the user for a key if they are not in “brute force” mode. The original getTranslatedMessage() call is made and the translated string is printed.
+Estos cambios piden una clave al usuario si no se encuentra en el modo de "fuerza bruta". Se efectúa entonces la llamada original a obtenerMensajeTraducido() y se muestra la cadena traducida.
 
-However, if the user is in “brute force” mode then getTranslatedMessage() loop that iterates from 1 all the way up to MAX_KEY_SIZE (which is 26). Remember that when the range() function returns a list of integers up to, but not including, the second parameter, which is why you have + 1. This program will print every possible translation of the message (including the key number used in the translation). Here is a sample run of this modified program:
+Sin embargo, si el usuario está en el modo de "fuerza bruta" entonces obtenerMensajeTraducido() se ejecuta en un bucle que recorre todos los valores entre 1 y TAM_MAX_CLAVE (que es 26). Recuerda que la función range() devuelve una lista de enteros hasta el segundo parámetro pero sin incluirlo, por lo que agregamos + 1 a la expresión. Este programa imprimirá en la pantalla cada posible traducción del mensaje (incluyendo el número de clave usado para la traducción). Aquí hay una prueba de ejecución del programa modificado:
 
-Do you wish to encrypt or decrypt or brute force a message?
-brute
-Enter your message:
-Lwcjba uig vwb jm xtmiaivb, jcb kmzbiqvbg qa ijaczl.
-Your translated text is:
-1 Kvbiaz thf uva il wslhzhua, iba jlyahpuaf pz hizbyk.
-2 Juahzy sge tuz hk vrkgygtz, haz ikxzgotze oy ghyaxj.
-3 Itzgyx rfd sty gj uqjfxfsy, gzy hjwyfnsyd nx fgxzwi.
-4 Hsyfxw qec rsx fi tpiewerx, fyx givxemrxc mw efwyvh.
-5 Grxewv pdb qrw eh sohdvdqw, exw fhuwdlqwb lv devxug.
-6 Fqwdvu oca pqv dg rngcucpv, dwv egtvckpva ku cduwtf.
-7 Epvcut nbz opu cf qmfbtbou, cvu dfsubjouz jt bctvse.
-8 Doubts may not be pleasant, but certainty is absurd.
-9 Cntasr lzx mns ad okdzrzms, ats bdqszhmsx hr zartqc.
-10 Bmszrq kyw lmr zc njcyqylr, zsr acpryglrw gq yzqspb.
-11 Alryqp jxv klq yb mibxpxkq, yrq zboqxfkqv fp xyproa.
-12 Zkqxpo iwu jkp xa lhawowjp, xqp yanpwejpu eo wxoqnz.
-13 Yjpwon hvt ijo wz kgzvnvio, wpo xzmovdiot dn vwnpmy.
-14 Xiovnm gus hin vy jfyumuhn, von wylnuchns cm uvmolx.
-15 Whnuml ftr ghm ux iextltgm, unm vxkmtbgmr bl tulnkw.
-16 Vgmtlk esq fgl tw hdwsksfl, tml uwjlsaflq ak stkmjv.
-17 Uflskj drp efk sv gcvrjrek, slk tvikrzekp zj rsjliu.
-18 Tekrji cqo dej ru fbuqiqdj, rkj suhjqydjo yi qrikht.
-19 Sdjqih bpn cdi qt eatphpci, qji rtgipxcin xh pqhjgs.
-20 Rciphg aom bch ps dzsogobh, pih qsfhowbhm wg opgifr.
-21 Qbhogf znl abg or cyrnfnag, ohg pregnvagl vf nofheq.
-22 Pagnfe ymk zaf nq bxqmemzf, ngf oqdfmuzfk ue mnegdp.
-23 Ozfmed xlj yze mp awpldlye, mfe npceltyej td lmdfco.
-24 Nyeldc wki xyd lo zvokckxd, led mobdksxdi sc klcebn.
-25 Mxdkcb vjh wxc kn yunjbjwc, kdc lnacjrwch rb jkbdam.
-26 Lwcjba uig vwb jm xtmiaivb, jcb kmzbiqvbg qa ijaczl.
+¿Deseas encriptar, desencriptar o descifrar por fuerza bruta un mensaje?
+bruta
+Ingresa tu mensaje:
+Ti lcli xcmlm vw amz iozilijtm, xmzw ti kmzbmhi ma ijaczli.
+Tu texto traducido es:
+1 Sh kbkh wblkl uv zly hnyhkhisl, wlyv sh jlyalgh lz hizbykh.
+2 Rg jajg vakjk tu ykx gmxgjghrk, vkxu rg ikxzkfg ky ghyaxjg.
+3 Qf izif uzjij st xjw flwfifgqj, ujwt qf hjwyjef jx fgxzwif.
+4 Pe hyhe tyihi rs wiv ekvehefpi, tivs pe givxide iw efwyvhe.
+5 Od gxgd sxhgh qr vhu djudgdeoh, shur od fhuwhcd hv devxugd.
+6 Nc fwfc rwgfg pq ugt citcfcdng, rgtq nc egtvgbc gu cduwtfc.
+7 Mb eveb qvfef op tfs bhsbebcmf, qfsp mb dfsufab ft bctvseb.
+8 La duda puede no ser agradable, pero la certeza es absurda.
+9 Kz ctcz otdcd mn rdq zfqzczakd, odqn kz bdqsdyz dr zartqcz.
+10 Jy bsby nscbc lm qcp yepybyzjc, ncpm jy acprcxy cq yzqspby.
+11 Ix arax mrbab kl pbo xdoxaxyib, mbol ix zboqbwx bp xyproax.
+12 Hw zqzw lqaza jk oan wcnwzwxha, lank hw yanpavw ao wxoqnzw.
+13 Gv ypyv kpzyz ij nzm vbmvyvwgz, kzmj gv xzmozuv zn vwnpmyv.
+14 Fu xoxu joyxy hi myl ualuxuvfy, jyli fu wylnytu ym uvmolxu.
+15 Et wnwt inxwx gh lxk tzktwtuex, ixkh et vxkmxst xl tulnkwt.
+16 Ds vmvs hmwvw fg kwj syjsvstdw, hwjg ds uwjlwrs wk stkmjvs.
+17 Cr ulur glvuv ef jvi rxirurscv, gvif cr tvikvqr vj rsjliur.
+18 Bq tktq fkutu de iuh qwhqtqrbu, fuhe bq suhjupq ui qrikhtq.
+19 Ap sjsp ejtst cd htg pvgpspqat, etgd ap rtgitop th pqhjgsp.
+20 Zo riro disrs bc gsf ouforopzs, dsfc zo qsfhsno sg opgifro.
+21 Yn qhqn chrqr ab fre ntenqnoyr, creb yn pregrmn rf nofheqn.
+22 Xm pgpm bgqpq za eqd msdmpmnxq, bqda xm oqdfqlm qe mnegdpm.
+23 Wl ofol afpop yz dpc lrclolmwp, apcz wl npcepkl pd lmdfcol.
+24 Vk nenk zeono xy cob kqbknklvo, zoby vk mobdojk oc klcebnk.
+25 Uj mdmj ydnmn wx bna jpajmjkun, ynax uj lnacnij nb jkbdamj.
+26 Ti lcli xcmlm vw amz iozilijtm, xmzw ti kmzbmhi ma ijaczli.
 
 After looking over each row, you can see that the 8th message isn’t garbage, but plain English! The cryptanalyst can deduce that the original key for this encrypted text must have been 8. This brute force would have been difficult to do back in the days of Caesars and the Roman Empire, but today we have computers that can quickly go through millions or even billions of keys in a short time.
 
