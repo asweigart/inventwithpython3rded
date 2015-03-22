@@ -464,14 +464,14 @@ Tu texto traducido es:
 25 Uj mdmj ydnmn wx bna jpajmjkun, ynax uj lnacnij nb jkbdamj.
 26 Ti lcli xcmlm vw amz iozilijtm, xmzw ti kmzbmhi ma ijaczli.
 
-After looking over each row, you can see that the 8th message isn’t garbage, but plain English! The cryptanalyst can deduce that the original key for this encrypted text must have been 8. This brute force would have been difficult to do back in the days of Caesars and the Roman Empire, but today we have computers that can quickly go through millions or even billions of keys in a short time.
+Luego de examinar cada columna, puedes ver que el 8vo mensaje no es basura, sino texto en español. El criptoanalista puede deducir que la clave original de este mensaje encriptado debe haber sido 8. Este método de fuerza bruta habría sido difícil de emplear en los tiempos del César y del imperio romano, pero hoy en día tenemos computadoras que pueden examinar millonde de claves rápidamente.
 
-Summary
+Resumen
 
-Computers are good at doing mathematics. When we create a system to translate some piece of information into numbers (such as we do with text and ordinals or with space and coordinate systems), computer programs can process these numbers quickly and efficiently.
+Las computadoras son muy efectivas para hacer operaciones matemáticas. Cuando creamos un sistema para traducir fragmentos de información a números (así como hacemos con texto y ordinales o con información espacial y sistemas de coordenadas), los programas de computadora pueden procesar estos números en forma rápida y eficiente.
 
-But while our Caesar cipher program here can encrypt messages that will keep them secret from people who have to figure it out with pencil and paper, it won’t keep it secret from people who know how to get computers to process information for them. (Our brute force mode proves this.)
+Pero aunque nuestro programa de cifrado César puede encriptar mensajes y mantenerlos secretos para gente que sólo tiene a disposición papel y lápiz, no conseguirá ocultarlos a gente que sepa cómo hacer que una computadora procese información por ellos. (Nuestro modo de fuerza bruta lo comprueba.)
 
-A large part of figuring out how to write a program is figuring out how to represent the information you want to manipulate as values that Python can understand.
+Una parte fundamental del proceso de escribir un programa es entender cómo representar la información que queremos manipular utilizando valores que Python puede comprender.
 
-The next chapter will present Reversi (also known as Othello). The AI that plays this game will be much more advanced than the AI that played Tic Tac Toe in chapter 9. In fact, the AI is so good most of the time you’ll be unable to beat it!
+El próximo capítulo presentará Reversi (también conocido como Othello). La IA que maneja este juego es mucho más avanzada que la IA que diseñamos para el Ta Te Ti en el capítulo 9. De hecho, la IA es tan buena que... ¡te vencerá en casi todas las partidas!
