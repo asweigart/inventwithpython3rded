@@ -11,7 +11,7 @@ Das Meiste aus print() herausholen
 
 Die meisten Spiele in diesem Buch verwenden einfachen Text für die Ein- und Ausgabe: Der Benutzer tippt Eingaben über die Tastatur ein und die Ausgaben werden auf dem Bildschirm dargestellt. In Python dient die Funktion print() zur Ausgabe von Text auf dem Bildschirm. Schauen wir uns genauer an, wie Zeichenketten und print() in Python funktionieren.
 
-Das Programm in diesem Kapitel erzählt dem Benutzer Witze und demonstriert fortgeschrittene Techniken zu Zeichenketten und print().
+Das Programm in diesem Kapitel erzählt dem Benutzer Witze und demonstriert fortgeschrittene Techniken rund um Zeichenketten und print().
 
 Probelauf von Witze
 
@@ -35,11 +35,11 @@ An'na Tür hat wer geklingelt-HAHA!
 
 Der Quellcode zu Witze
 
-Öffne eine neues IDLE-Fenster, indem Du auf File ► New Window klickst. Tippe den Quellcode ab und speichere ihn als witze.py ab. Dann führe ihn über einen Druck auf die F5-Taste aus.
+Öffne eine neues IDLE-Fenster, indem du auf File ► New Window klickst. Tippe den Quellcode ab und speichere ihn als witze.py ab. Dann führe ihn über einen Druck auf die F5-Taste aus.
 
-WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät Dir, welche Version installiert ist. Falls es Python 2 ist, kannst Du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
+WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät dir, welche Version installiert ist. Falls es Python 2 ist, kannst du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
 
-Falls Du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/de/diff/jokes.
+Falls du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/de/diff/jokes.
 
 witze.py
 
@@ -73,7 +73,7 @@ Die Zeilen 1 bis 4 enthalten drei print()-Aufrufe. Um zu vermeiden, dass der Spi
 
 Der Benutzer könnte zwar Text eingeben, bevor er ENTER drückt, aber dieser Text wird in keiner Variablen gespeichert. Das Programm ignoriert daher jegliche Eingaben und fährt mit der Ausführung der nächsten Codezeile fort.
 
-Der letzte print()-Aufruf enthält kein Zeichenketten-Argument. Dies weist das Programm an, eine leere Zeile auszugeben. Leerzeilen sind nützlich zur Formatierung von Ausgaben.
+Der letzte print()-Aufruf enthält kein Zeichenketten-Argument. Dies weist das Programm an, eine leere Zeile auszugeben. Leerzeilen sind nützlich für die Formatierung von Ausgaben.
 
 Escape-Zeichen
 
@@ -88,7 +88,7 @@ Escape-Zeichen
 17. print('An\'na Tür hat wer geklingelt', end='')
 18. print('-HAHA!')
 
-Zeile 17 beinhaltet einen Backslash vor dem zweiten einfachen Anführungszeichen (auch Apostroph genannt): \'. Beachte, dass \ ein Backslash ist, während / ein Schrägstrich ist. Der Backslash verrät uns, dass das unmittelbar darauf folgende Zeichen ein Escape-Zeichen ist. Escape-Zeichen erlauben es uns Sonderzeichen auszugeben (Zeichen, die normalerweise den Programmablauf beeinflussen würden oder die nicht darstellbar sind (z.B. Tabulator)) und die Ausgabe zu formatieren.
+Zeile 17 beinhaltet einen Backslash vor dem zweiten einfachen Anführungszeichen: \'. Beachte, dass \ ein Backslash ist, während / ein Schrägstrich ist. Der Backslash verrät uns, dass das unmittelbar darauf folgende Zeichen ein Escape-Zeichen ist. Escape-Zeichen erlauben es uns, Sonderzeichen auszugeben (Zeichen, die normalerweise den Programmablauf beeinflussen würden oder die nicht darstellbar sind (z.B. Tabulator)) und die Ausgabe zu formatieren.
 
 Der Backslash im obigen Beispiel wird deshalb benötigt, weil Python sonst annehmen würde, dass das darauf folgende Anführungszeichen das Ende der Zeichenkette markiert. Es ist jedoch Teil der Zeichenkette. Backslashes weisen den Python-Interpreter an, die auf sie folgenden Zeichen anders zu interpretieren, als sonst.
 
@@ -98,7 +98,7 @@ Was, wenn wir tatsächlich einen Backslash ausgeben wollten? Die folgende Anweis
 
 >>> print('Sie flogen in einem grünen\tannengrünen Hubschrauber davon.')
 Sie flogen in einem grünen    annengrünen Hubschrauber davon.
-Dies liegt daran, dass das “t” in “tannengrün” als Escape-Zeichen interpretiert wird (weil es nach einem Backslash folgt). Das Escape-Zeichen t simuliert den Druck auf die Tabulatortaste — ein Beispiel für ein nicht darstellbares Zeichen. Stattdessen, versuche folgendes:
+Dies liegt daran, dass das “t” in “tannengrün” als Escape-Zeichen interpretiert wird (weil es auf einen Backslash folgt). Das Escape-Zeichen t simuliert den Druck auf die Tabulatortaste — ein Beispiel für ein nicht darstellbares Zeichen. Stattdessen, versuche Folgendes:
 >>> print('Sie flogen in einem grünen\\tannengrünen Hubschrauber davon.')
 Sie flogen in einem grünen\tannengrünen Hubschrauber davon.
 
@@ -147,7 +147,7 @@ print()s Schlüsselwort-Argument end
 17. print('An\'na Tür hat wer geklingelt', end='')
 18. print('-HAHA!')
 
-Ist Dir der zweite Parameter der print()-Funktion in Zeile 17 aufgefallen? Normalerweise fügt print() automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Deshalb resultiert der Aufruf print() auch in einer leeren Zeile auf dem Bildschirm. print() kann jedoch einen zweiten Parameter namens end entgegennehmen.
+Ist dir der zweite Parameter der print()-Funktion in Zeile 17 aufgefallen? Normalerweise fügt print() automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Deshalb resultiert der Aufruf print() auch in einer leeren Zeile auf dem Bildschirm. print() kann jedoch einen zweiten Parameter namens end entgegennehmen.
 
 Die leere Zeichenkette, die im Code-Beispiel an end übergeben wird, wird als Schlüsselwort-Argument bezeichnet. Um Schlüsselwort-Argumente an Paramter zu übergeben, schreibt man [Paramter-Name]=[Wert] (in diesem Fall end='').
 
@@ -159,4 +159,4 @@ Dieses Kapitel untersucht die verschiedenen Arten, auf die man die print()-Funkt
 
 Die Funktion print() hängt automatisch eine neue Zeile an das Ende der ausgegebenen Zeichenkette an. Oft ist dies das gewünschte Verhalten. Manchmal jedoch möchten wir das verhindern. Dazu übergeben wir eine leere Zeichenkette an das Schlüsselwort-Argument end der Funktion print(). Um zum Beispiel “Spam” auf dem Bildschirm auszugeben — ohne in die nächste Zeile zu wechseln — würden wir print('Spam', end='') aufrufen.
 
-Python ermöglicht es Text auf viele verschiedene Arten und Weisen auf dem Bildschirm auszugeben.
+Python ermöglicht es, Text auf viele verschiedene Arten und Weisen auf dem Bildschirm auszugeben.
