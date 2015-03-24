@@ -195,311 +195,311 @@ Si obtienes errores luego de escribir este código, compara el código que has e
 reversi.py
 
   1. # Reversi
-  2.
-  3. import random
-  4. import sys
-  5.
-  6. def drawBoard(board):
-  7.     # This function prints out the board that it was passed. Returns None.
-  8.     HLINE = '  +---+---+---+---+---+---+---+---+'
-  9.     VLINE = '  |   |   |   |   |   |   |   |   |'
- 10.
- 11.     print('    1   2   3   4   5   6   7   8')
- 12.     print(HLINE)
- 13.     for y in range(8):
- 14.         print(VLINE)
- 15.         print(y+1, end=' ')
- 16.         for x in range(8):
- 17.             print('| %s' % (board[x][y]), end=' ')
- 18.         print('|')
- 19.         print(VLINE)
- 20.         print(HLINE)
- 21.
- 22.
- 23. def resetBoard(board):
- 24.     # Blanks out the board it is passed, except for the original starting position.
- 25.     for x in range(8):
- 26.         for y in range(8):
- 27.             board[x][y] = ' '
- 28.
- 29.     # Starting pieces:
- 30.     board[3][3] = 'X'
- 31.     board[3][4] = 'O'
- 32.     board[4][3] = 'O'
- 33.     board[4][4] = 'X'
- 34.
- 35.
- 36. def getNewBoard():
- 37.     # Creates a brand new, blank board data structure.
- 38.     board = []
- 39.     for i in range(8):
- 40.         board.append([' '] * 8)
- 41.
- 42.     return board
- 43.
- 44.
- 45. def isValidMove(board, tile, xstart, ystart):
- 46.     # Returns False if the player's move on space xstart, ystart is invalid.
- 47.     # If it is a valid move, returns a list of spaces that would become the player's if they made a move here.
- 48.     if board[xstart][ystart] != ' ' or not isOnBoard(xstart, ystart):
- 49.         return False
- 50.
- 51.     board[xstart][ystart] = tile # temporarily set the tile on the board.
- 52.
- 53.     if tile == 'X':
- 54.         otherTile = 'O'
- 55.     else:
- 56.         otherTile = 'X'
- 57.
- 58.     tilesToFlip = []
- 59.     for xdirection, ydirection in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
- 60.         x, y = xstart, ystart
- 61.         x += xdirection # first step in the direction
- 62.         y += ydirection # first step in the direction
- 63.         if isOnBoard(x, y) and board[x][y] == otherTile:
- 64.             # There is a piece belonging to the other player next to our piece.
- 65.             x += xdirection
- 66.             y += ydirection
- 67.             if not isOnBoard(x, y):
- 68.                 continue
- 69.             while board[x][y] == otherTile:
- 70.                 x += xdirection
- 71.                 y += ydirection
- 72.                 if not isOnBoard(x, y): # break out of while loop, then continue in for loop
- 73.                     break
- 74.             if not isOnBoard(x, y):
- 75.                 continue
- 76.             if board[x][y] == tile:
- 77.                 # There are pieces to flip over. Go in the reverse direction until we reach the original space, noting all the tiles along the way.
- 78.                 while True:
- 79.                     x -= xdirection
- 80.                     y -= ydirection
- 81.                     if x == xstart and y == ystart:
- 82.                         break
- 83.                     tilesToFlip.append([x, y])
- 84.
- 85.     board[xstart][ystart] = ' ' # restore the empty space
- 86.     if len(tilesToFlip) == 0: # If no tiles were flipped, this is not a valid move.
- 87.         return False
- 88.     return tilesToFlip
- 89.
- 90.
- 91. def isOnBoard(x, y):
- 92.     # Returns True if the coordinates are located on the board.
- 93.     return x >= 0 and x <= 7 and y >= 0 and y <=7
- 94.
- 95.
- 96. def getBoardWithValidMoves(board, tile):
- 97.     # Returns a new board with . marking the valid moves the given player can make.
- 98.     dupeBoard = getBoardCopy(board)
- 99.
-100.     for x, y in getValidMoves(dupeBoard, tile):
-101.         dupeBoard[x][y] = '.'
-102.     return dupeBoard
-103.
-104.
-105. def getValidMoves(board, tile):
-106.     # Returns a list of [x,y] lists of valid moves for the given player on the given board.
-107.     validMoves = []
-108.
-109.     for x in range(8):
+  1. 
+  1. import random
+  1. import sys
+  1. 
+  1. def dibujarTablero(tablero):
+  1.     # Esta funcion dibuja el tablero recibido. Devuelve None
+  1.     LÍNEAH = '  +---+---+---+---+---+---+---+---+'
+  1.     LÍNEAV = '  |   |   |   |   |   |   |   |   |'
+ 10. 
+ 10.     print('    1   2   3   4   5   6   7   8')
+ 10.     print(LÍNEAH)
+ 10.     for y in range(8):
+ 10.         print(LÍNEAV)
+ 10.         print(y+1, end=' ')
+ 10.         for x in range(8):
+ 10.             print('| %s' % (tablero[x][y]), end=' ')
+ 10.         print('|')
+ 10.         print(LÍNEAV)
+ 20.         print(LÍNEAH)
+ 20. 
+ 20. 
+ 20. def reiniciarTablero(tablero):
+ 20.     # Deja en blanco el tablero recibido como argumento, excepto la posición inicial
+ 20.     for x in range(8):
+ 20.         for y in range(8):
+ 20.             tablero[x][y] = ' '
+ 20. 
+ 20.     # Piezas iniciales:
+ 30.     tablero[3][3] = 'X'
+ 30.     tablero[3][4] = 'O'
+ 30.     tablero[4][3] = 'O'
+ 30.     tablero[4][4] = 'X'
+ 30. 
+ 30. 
+ 30. def obtenerNuevoTablero():
+ 30.     # Crea un tablero nuevo, vacío.
+ 30.     tablero = []
+ 30.     for i in range(8):
+ 40.         tablero.append([' '] * 8)
+ 40. 
+ 40.     return tablero
+ 40. 
+ 40. 
+ 40. def esJugadaVálida(tablero, baldosa, comienzox, comienzoy):
+ 40.     # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida
+ 40.     # Si es una jugada válida, devuelve una lista de espacios que pasarían a ser del jugador si moviera aquí.
+ 40.     if tablero[comienzox][comienzoy] != ' ' or not estáEnTablero(comienzox, comienzoy):
+ 40.         return False
+ 50. 
+ 50.     tablero[comienzox][comienzoy] = baldosa # coloca temporariamente la baldosa sobre el tablero.
+ 50. 
+ 50.     if baldosa == 'X':
+ 50.         otraBaldosa = 'O'
+ 50.     else:
+ 50.         otraBaldosa = 'X'
+ 50. 
+ 50.     baldosasAConvertir = []
+ 50.     for direcciónx, direccióny in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
+ 60.         x, y = comienzox, comienzoy
+ 60.         x += direcciónx # primer paso en la dirección
+ 60.         y += direccióny # primer paso en la dirección
+ 60.         if estáEnTablero(x, y) and tablero[x][y] == otraBaldosa:
+ 60.             # Hay una pieza perteneciente al otro jugador al lado de nustra pieza
+ 60.             x += direcciónx
+ 60.             y += direccióny
+ 60.             if not estáEnTablero(x, y):
+ 60.                 continue
+ 60.             while tablero[x][y] == otraBaldosa:
+ 70.                 x += direcciónx
+ 70.                 y += direccióny
+ 70.                 if not estáEnTablero(x, y): # sale del bucle while y continua en el bucle for.
+ 70.                     break
+ 70.             if not estáEnTablero(x, y):
+ 70.                 continue
+ 70.             if tablero[x][y] == baldosa:
+ 70.                 # Hay fichas a convertir. Caminar en dirección opuesta hasta llegar al casillero original, registrando todas las posiciones en el camino.
+ 70.                 while True:
+ 70.                     x -= direcciónx
+ 80.                     y -= direccióny
+ 80.                     if x == comienzox and y == comienzoy:
+ 80.                         break
+ 80.                     baldosasAConvertir.append([x, y])
+ 80. 
+ 80.     tablero[comienzox][comienzoy] = ' ' # restablecer el espacio vacío
+ 80.     if len(baldosasAConvertir) == 0: # Si no se convirtió ninguna baldosa, la jugada no es válida.
+ 80.         return False
+ 80.     return baldosasAConvertir
+ 80. 
+ 90. 
+ 90. def estáEnTablero(x, y):
+ 90.     # Devuelve True si las coordenadas se encuentran dentro del tablero
+ 90.     return x >= 0 and x <= 7 and y >= 0 and y <=7
+ 90. 
+ 90. 
+ 90. def obtenerTableroConJugadasVálidas(tablero, baldosa):
+ 90.     # Devuelve un nuevo tablero, marcando con "." las jugadas válidas que el jugador puede realizar.
+ 90.     réplicaTablero = obtenerCopiaTablero(tablero)
+ 90. 
+100.     for x, y in obtenerJugadasVálidas(réplicaTablero, baldosa):
+100.         réplicaTablero[x][y] = '.'
+100.     return réplicaTablero
+100. 
+100. 
+100. def obtenerJugadasVálidas(tablero, baldosa):
+100.     # Devuelve una lista de listas [x,y] de jugadas válidas para el jugador en el tablero dado.
+100.     jugadasVálidas = []
+100. 
+100.     for x in range(8):
 110.         for y in range(8):
-111.             if isValidMove(board, tile, x, y) != False:
-112.                 validMoves.append([x, y])
-113.     return validMoves
-114.
-115.
-116. def getScoreOfBoard(board):
-117.     # Determine the score by counting the tiles. Returns a dictionary with keys 'X' and 'O'.
-118.     xscore = 0
-119.     oscore = 0
+110.             if esJugadaVálida(tablero, baldosa, x, y) != False:
+110.                 jugadasVálidas.append([x, y])
+110.     return jugadasVálidas
+110. 
+110. 
+110. def obtenerPuntajeTablero(tablero):
+110.     # Determina el puntaje contando las piezas. Devuelve un diccionario con claves 'X' y 'O'.
+110.     puntajex = 0
+110.     puntajeo = 0
 120.     for x in range(8):
-121.         for y in range(8):
-122.             if board[x][y] == 'X':
-123.                 xscore += 1
-124.             if board[x][y] == 'O':
-125.                 oscore += 1
-126.     return {'X':xscore, 'O':oscore}
-127.
-128.
-129. def enterPlayerTile():
-130.     # Lets the player type which tile they want to be.
-131.     # Returns a list with the player's tile as the first item, and the computer's tile as the second.
-132.     tile = ''
-133.     while not (tile == 'X' or tile == 'O'):
-134.         print('Do you want to be X or O?')
-135.         tile = input().upper()
-136.
-137.     # the first element in the list is the player's tile, the second is the computer's tile.
-138.     if tile == 'X':
-139.         return ['X', 'O']
+120.         for y in range(8):
+120.             if tablero[x][y] == 'X':
+120.                 puntajex += 1
+120.             if tablero[x][y] == 'O':
+120.                 puntajeo += 1
+120.     return {'X':puntajex, 'O':puntajeo}
+120. 
+120. 
+120. def ingresarBaldosaJugador():
+130.     # Permite al jugador elegir que baldosa desea ser.
+130.     # Devuelve una lista con la baldosa del jugador como primer elemento y el de la computadora como segundo.
+130.     baldosa = ''
+130.     while not (baldosa == 'X' or baldosa == 'O'):
+130.         print('¿Deseas ser X ó O?')
+130.         baldosa = input().upper()
+130. 
+130.     #  El primer elemento en la lista es la baldosa del juegador, el segundo es la de la computadora.
+130.     if baldosa == 'X':
+130.         return ['X', 'O']
 140.     else:
-141.         return ['O', 'X']
-142.
-143.
-144. def whoGoesFirst():
-145.     # Randomly choose the player who goes first.
-146.     if random.randint(0, 1) == 0:
-147.         return 'computer'
-148.     else:
-149.         return 'player'
-150.
-151.
-152. def playAgain():
-153.     # This function returns True if the player wants to play again, otherwise it returns False.
-154.     print('Do you want to play again? (yes or no)')
-155.     return input().lower().startswith('y')
-156.
-157.
-158. def makeMove(board, tile, xstart, ystart):
-159.     # Place the tile on the board at xstart, ystart, and flip any of the opponent's pieces.
-160.     # Returns False if this is an invalid move, True if it is valid.
-161.     tilesToFlip = isValidMove(board, tile, xstart, ystart)
-162.
-163.     if tilesToFlip == False:
-164.         return False
-165.
-166.     board[xstart][ystart] = tile
-167.     for x, y in tilesToFlip:
-168.         board[x][y] = tile
-169.     return True
-170.
-171.
-172. def getBoardCopy(board):
-173.     # Make a duplicate of the board list and return the duplicate.
-174.     dupeBoard = getNewBoard()
-175.
-176.     for x in range(8):
-177.         for y in range(8):
-178.             dupeBoard[x][y] = board[x][y]
-179.
-180.     return dupeBoard
-181.
-182.
-183. def isOnCorner(x, y):
-184.     # Returns True if the position is in one of the four corners.
-185.     return (x == 0 and y == 0) or (x == 7 and y == 0) or (x == 0 and y == 7) or (x == 7 and y == 7)
-186.
-187.
-188. def getPlayerMove(board, playerTile):
-189.     # Let the player type in their move.
-190.     # Returns the move as [x, y] (or returns the strings 'hints' or 'quit')
-191.     DIGITS1TO8 = '1 2 3 4 5 6 7 8'.split()
-192.     while True:
-193.         print('Enter your move, or type quit to end the game, or hints to turn off/on hints.')
-194.         move = input().lower()
-195.         if move == 'quit':
-196.             return 'quit'
-197.         if move == 'hints':
-198.             return 'hints'
-199.
-200.         if len(move) == 2 and move[0] in DIGITS1TO8 and move[1] in DIGITS1TO8:
-201.             x = int(move[0]) - 1
-202.             y = int(move[1]) - 1
-203.             if isValidMove(board, playerTile, x, y) == False:
-204.                 continue
-205.             else:
-206.                 break
-207.         else:
-208.             print('That is not a valid move. Type the x digit (1-8), then the y digit (1-8).')
-209.             print('For example, 81 will be the top-right corner.')
-210.
-211.     return [x, y]
-212.
-213.
-214. def getComputerMove(board, computerTile):
-215.     # Given a board and the computer's tile, determine where to
-216.     # move and return that move as a [x, y] list.
-217.     possibleMoves = getValidMoves(board, computerTile)
-218.
-219.     # randomize the order of the possible moves
-220.     random.shuffle(possibleMoves)
-221.
-222.     # always go for a corner if available.
-223.     for x, y in possibleMoves:
-224.         if isOnCorner(x, y):
-225.             return [x, y]
-226.
-227.     # Go through all the possible moves and remember the best scoring move
-228.     bestScore = -1
-229.     for x, y in possibleMoves:
-230.         dupeBoard = getBoardCopy(board)
-231.         makeMove(dupeBoard, computerTile, x, y)
-232.         score = getScoreOfBoard(dupeBoard)[computerTile]
-233.         if score > bestScore:
-234.             bestMove = [x, y]
-235.             bestScore = score
-236.     return bestMove
-237.
-238.
-239. def showPoints(playerTile, computerTile):
-240.     # Prints out the current score.
-241.     scores = getScoreOfBoard(mainBoard)
-242.     print('You have %s points. The computer has %s points.' % (scores[playerTile], scores[computerTile]))
-243.
-244.
-245.
-246. print('Welcome to Reversi!')
-247.
-248. while True:
-249.     # Reset the board and game.
-250.     mainBoard = getNewBoard()
-251.     resetBoard(mainBoard)
-252.     playerTile, computerTile = enterPlayerTile()
-253.     showHints = False
-254.     turn = whoGoesFirst()
-255.     print('The ' + turn + ' will go first.')
-256.
-257.     while True:
-258.         if turn == 'player':
-259.             # Player's turn.
-260.             if showHints:
-261.                 validMovesBoard = getBoardWithValidMoves(mainBoard, playerTile)
-262.                 drawBoard(validMovesBoard)
-263.             else:
-264.                 drawBoard(mainBoard)
-265.             showPoints(playerTile, computerTile)
-266.             move = getPlayerMove(mainBoard, playerTile)
-267.             if move == 'quit':
-268.                 print('Thanks for playing!')
-269.                 sys.exit() # terminate the program
-270.             elif move == 'hints':
-271.                 showHints = not showHints
-272.                 continue
-273.             else:
-274.                 makeMove(mainBoard, playerTile, move[0], move[1])
-275.
-276.             if getValidMoves(mainBoard, computerTile) == []:
-277.                 break
-278.             else:
-279.                 turn = 'computer'
-280.
-281.         else:
-282.             # Computer's turn.
-283.             drawBoard(mainBoard)
-284.             showPoints(playerTile, computerTile)
-285.             input('Press Enter to see the computer\'s move.')
-286.             x, y = getComputerMove(mainBoard, computerTile)
-287.             makeMove(mainBoard, computerTile, x, y)
-288.
-289.             if getValidMoves(mainBoard, playerTile) == []:
+140.         return ['O', 'X']
+140. 
+140. 
+140. def quiénComienza():
+140.     # Elije al azar qué jugador comienza.
+140.     if random.randint(0, 1) == 0:
+140.         return 'computadora'
+140.     else:
+140.         return 'jugador'
+150. 
+150. 
+150. def jugarDeNuevo():
+150.     # Esta función devuelve True si el jugador quiere jugar de nuevo, de lo contrario devuelve False.
+150.     print('¿Quieres jugar de nuevo? (sí o no)')
+150.     return input().lower().startswith('s')
+150. 
+150. 
+150. def hacerJugada(tablero, baldosa, comienzox, comienzoy):
+150.     # Coloca la baldosa sobre el tablero en comienzox, comienzoy, y convierte cualquier baldosa del oponente.
+160.     # Devuelve False si la jugada es inválida, True si es válida.
+160.     baldosasAConvertir = esJugadaVálida(tablero, baldosa, comienzox, comienzoy)
+160. 
+160.     if baldosasAConvertir == False:
+160.         return False
+160. 
+160.     tablero[comienzox][comienzoy] = baldosa
+160.     for x, y in baldosasAConvertir:
+160.         tablero[x][y] = baldosa
+160.     return True
+170. 
+170. 
+170. def obtenerCopiaTablero(tablero):
+170.     # Duplica la lista del tablero y devuelve el duplicado.
+170.     réplicaTablero = obtenerNuevoTablero()
+170. 
+170.     for x in range(8):
+170.         for y in range(8):
+170.             réplicaTablero[x][y] = tablero[x][y]
+170. 
+180.     return réplicaTablero
+180. 
+180. 
+180. def esEsquina(x, y):
+180.     # Devuelve True si la posicion es una de las esquinas.
+180.     return (x == 0 and y == 0) or (x == 7 and y == 0) or (x == 0 and y == 7) or (x == 7 and y == 7)
+180. 
+180. 
+180. def obtenerJugadaJugador(tablero, baldosaJugador):
+180.     # Permite al jugador tipear su jugada.
+190.     # Devuelve la jugada como [x, y] (o devuelve las cadenas 'pistas' o 'salir')
+190.     CIFRAS1A8 = '1 2 3 4 5 6 7 8'.split()
+190.     while True:
+190.         print('Ingresa tu jugada, salir para terminar el juego, o pistas para activar/desactivar las pistas.')
+190.         jugada = input().lower()
+190.         if jugada == 'salir':
+190.             return 'salir'
+190.         if jugada == 'pistas':
+190.             return 'pistas'
+190. 
+200.         if len(jugada) == 2 and jugada[0] in CIFRAS1A8 and jugada[1] in CIFRAS1A8:
+200.             x = int(jugada[0]) - 1
+200.             y = int(jugada[1]) - 1
+200.             if esJugadaVálida(tablero, baldosaJugador, x, y) == False:
+200.                 continue
+200.             else:
+200.                 break
+200.         else:
+200.             print('Esta no es una jugada válida. Ingresa la coordenada x (1-8), luego la coordenada y (1-8).')
+200.             print('Por ejemplo, 81 corresponde a la esquina superior derecha.')
+210. 
+210.     return [x, y]
+210. 
+210. 
+210. def obtenerJugadaComputadora(tablero, baldosaComputadora):
+210.     # Dado un tablero y la baldosa de la computadora, determinar dónde
+210.     # jugar y devolver esa jugada como una lista [x, y].
+210.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosaComputadora)
+210. 
+210.     # ordena al azar el orden de las jugadas posibles
+220.     random.shuffle(jugadasPosibles)
+220. 
+220.     # siempre jugar en una esquina si está disponible.
+220.     for x, y in jugadasPosibles:
+220.         if esEsquina(x, y):
+220.             return [x, y]
+220. 
+220.     # Recorrer la lista de jugadas posibles y recordar la que da el mejor puntaje
+220.     mejorPuntaje = -1
+220.     for x, y in jugadasPosibles:
+230.         réplicaTablero = obtenerCopiaTablero(tablero)
+230.         hacerJugada(réplicaTablero, baldosaComputadora, x, y)
+230.         puntaje = obtenerPuntajeTablero(réplicaTablero)[baldosaComputadora]
+230.         if puntaje > mejorPuntaje:
+230.             mejorJugada = [x, y]
+230.             mejorPuntaje = puntaje
+230.     return mejorJugada
+230. 
+230. 
+230. def mostrarPuntajes(baldosaJugador, baldosaComputadora):
+240.     # Imprime el puntaje actual.
+240.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
+240.     print('Tienes %s puntos. La computadora tiene %s puntos.' % (puntajes[baldosaJugador], puntajes[baldosaComputadora]))
+240. 
+240. 
+240. 
+240. print('¡Bienvenido a Reversi!')
+240. 
+240. while True:
+240.     # Reiniciar el tablero y el juego.
+250.     tableroPrincipal = obtenerNuevoTablero()
+250.     reiniciarTablero(tableroPrincipal)
+250.     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
+250.     mostrarPistas = False
+250.     turno = quiénComienza()
+250.     print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
+250. 
+250.     while True:
+250.         if turno == 'jugador':
+250.             # Turno del jugador
+260.             if mostrarPistas:
+260.                 tableroConJugadasVálidas = obtenerTableroConJugadasVálidas(tableroPrincipal, baldosaJugador)
+260.                 dibujarTablero(tableroConJugadasVálidas)
+260.             else:
+260.                 dibujarTablero(tableroPrincipal)
+260.             mostrarPuntajes(baldosaJugador, baldosaComputadora)
+260.             jugada = obtenerJugadaJugador(tableroPrincipal, baldosaJugador)
+260.             if jugada == 'salir':
+260.                 print('¡Gracias por jugar!')
+260.                 sys.exit() # terminar el programa
+270.             elif jugada == 'pistas':
+270.                 mostrarPistas = not mostrarPistas
+270.                 continue
+270.             else:
+270.                 hacerJugada(tableroPrincipal, baldosaJugador, jugada[0], jugada[1])
+270. 
+270.             if obtenerJugadasVálidas(tableroPrincipal, baldosaComputadora) == []:
+270.                 break
+270.             else:
+270.                 turno = 'computadora'
+280. 
+280.         else:
+280.             # Turno de la computadora
+280.             dibujarTablero(tableroPrincipal)
+280.             mostrarPuntajes(baldosaJugador, baldosaComputadora)
+280.             input('Presiona enter para ver la jugada de la computadora.')
+280.             x, y = obtenerJugadaComputadora(tableroPrincipal, baldosaComputadora)
+280.             hacerJugada(tableroPrincipal, baldosaComputadora, x, y)
+280. 
+280.             if obtenerJugadasVálidas(tableroPrincipal, baldosaJugador) == []:
 290.                 break
-291.             else:
-292.                 turn = 'player'
-293.
-294.     # Display the final score.
-295.     drawBoard(mainBoard)
-296.     scores = getScoreOfBoard(mainBoard)
-297.     print('X scored %s points. O scored %s points.' % (scores['X'], scores['O']))
-298.     if scores[playerTile] > scores[computerTile]:
-299.         print('You beat the computer by %s points! Congratulations!' % (scores[playerTile] - scores[computerTile]))
-300.     elif scores[playerTile] < scores[computerTile]:
-301.         print('You lost. The computer beat you by %s points.' % (scores[computerTile] - scores[playerTile]))
-302.     else:
-303.         print('The game was a tie!')
-304.
-305.     if not playAgain():
-306.         break
+290.             else:
+290.                 turno = 'jugador'
+290. 
+290.     # Mostrar el puntaje final.
+290.     dibujarTablero(tableroPrincipal)
+290.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
+290.     print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
+290.     if puntajes[baldosaJugador] > puntajes[baldosaComputadora]:
+290.         print('¡Has vencido a la computadora por %s puntos! ¡Felicitaciones!' % (puntajes[baldosaJugador] - puntajes[baldosaComputadora]))
+300.     elif puntajes[baldosaJugador] < puntajes[baldosaComputadora]:
+300.         print('Has perdido. La computadora te ha vencido por %s puntos.' % (puntajes[baldosaComputadora] - puntajes[baldosaJugador]))
+300.     else:
+300.         print('¡Ha sido un empate!')
+300. 
+300.     if not jugarDeNuevo():
+300.         break
 
 How the Code Works
 
