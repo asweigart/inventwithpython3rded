@@ -367,24 +367,24 @@ sonar.py
 216.     if not jugarDeNuevo():
 217.         sys.exit()
 
-Designing the Program
+Diseñando el Programa
 
-Before trying to understand the source code, play the game a few times first to understand what is going on. The Sonar game uses lists of lists and other such complicated variables, called data structures. Data structures are variables that store arrangements of values to represent something. For example, in the Tic Tac Toe chapter, a Tic Tac Toe board data structure was a list of strings. The string represented an X, O, or empty space and the index of the string in the list represented the space on the board. The Sonar game will have similar data structures for the locations of treasure chests and sonar devices.
+Antes de intentar entender el código fuente, juega el juego un par de veces para entender lo que sucede. El juego Sonar usa listas de listas y otras variables complicadas, llamadas estructuras de datos. Las estructuras de datos son variables que almacenan arreglos de valores para representar algo. Por ejemplo, en el capítulo de Ta Te Ti, la estructura de datos de tablero era una lista de cadenas. La cadena representaba una X, O, o un espacio en blanco y el índice de la cadena dentro de la lista representaba el espacio en el tablero. El juego del Sonar tendrá estructuras de datos siilares para las locaciones de los tesoros y los dispositivos de sonar.
 
-How the Code Works
+Como funciona el código
 
   1. # Sonar
   2.
   3. import random
   4. import sys
 
-Lines 3 and 4 import modules random and sys. The sys module contains the exit() function, which causes the program to terminate immediately. This function is used later in the program.
+Las líneas 3 y 4 importan los módulos random y sys. El módulo sys contiene la función exit(), la cuál hace que el programa termine inmediatamente. Esta funcion es utilizada luego en el programa.
 
-Drawing the Game Board
+Dibujando el Tablero de Juego
 
-  6. def drawBoard(board):
+  6. def dibujarTablero(tablero):
 
-The Sonar game’s board is an ASCII art ocean with X- and Y-axis coordinates around it. The back tick (`) and tilde (~) characters are located next to the 1 key on your keyboard will be used for the ocean waves. It looks like this:
+El tablero del Sonar es un océano de arte ASCII con los ejes X e Y a su alrededor. La tilde invertida (`) y la virguilla (~) serán utulizadas para las olas del océano. Se verá así:  
 
              1         2         3         4         5
    012345678901234567890123456789012345678901234567890123456789
@@ -406,144 +406,144 @@ The Sonar game’s board is an ASCII art ocean with X- and Y-axis coordinates ar
    012345678901234567890123456789012345678901234567890123456789
              1         2         3         4         5
 
-The drawing in the drawBoard() function has four steps.
+El dibujo en la función dibujarTablero() tiene cuatro pasos.
 
-• First, create a string variable of the line with 1, 2, 3, 4, and 5 spaced out with wide gaps (to mark the coordinates for 10, 20, 30, 40, and 50 on the X-axis).
-• Second, use that string to display the X-axis coordinates along the top of the screen.
-• Third, print each row of the ocean along with the Y-axis coordinates on both sides of the screen.
-• Fourth, print the X-axis again at the bottom. Coordinates on all sides makes it easier to see coordinates for where to place a sonar device.
+• Primero, crea una variable de cadena con 1, 2, 3, 4 y 5 espaciados con espacios anchos (para marcar las coordenadas 10, 20, 30, 50 y 50 del eje X).
+• Segundo, utiliza esa cadena para mostrar las coordenadas del eje X en la parte superior de la pantalla. 
+• Tercero, imprime cada fila del océano así como también las coordenadas del eje Y a ambos lados de la pantalla.
+• Cuarto, vuelve a imprimir el eje X en el margen inferior. Las coordenadas alrededor de la pantalla hace más facil localizar los dispositivos de sonar.
 
-Drawing the X-Coordinates Along the Top
+Dibujar las coordenadas X
 
-  7.     # Draw the board data structure.
-  8.
-  9.     hline = '    ' # initial space for the numbers down the left side of the board
+  7.     # Dibuja la estructura de datos del tablero.
+  8. 
+  9.     líneah = '    ' # espacio inicial para los números a lo largo del lado izquierdo del tablero
  10.     for i in range(1, 6):
- 11.         hline += (' ' * 9) + str(i)
+ 11.         líneah += (' ' * 9) + str(i)
 
-Look again at the top part of the board in Figure 13-3.  It has + plus signs instead of blank spaces so you can count the blank spaces easier:
+Mira la parte superior del tablero en la Figura 13-3. Posee un + en vez de espacios en blanco para que puedas contar los espacios facilmente:
 
-Figure 13-3: The spacing used for printing the top of the game board.
+Figura 13-3: El espaciado utilizado para imprimir la parte superior del tablero.
 
-The numbers on the first line which mark the tens position all have nine spaces between them, and there are thirteen spaces in front of the 1. Lines 9 to 11 create this string with this line and store it in a variable named hline.
+Los números en la primer línea que marcna las posiciones de diez, tienen nueve espacios entre ellas, y hay trece espacios frente al 1. Las líneas 9 a 11 crean esta cadena con con esta línea y la guarda en una variable llamada lineah.
 
- 13.     # print the numbers across the top
- 14.     print(hline)
+ 13.     # imprimir los números a lo largo del borde superior
+ 14.     print(líneah)
  15.     print('   ' + ('0123456789' * 6))
  16.     print()
 
-To print the numbers across the top of the sonar board, first print the contents of the hline variable. Then on the next line, print three spaces (so that this row lines up correctly), and then print the string '012345678901234567890123456789012345678901234567890123456789'. But as a shortcut you can use ('0123456789' * 6), which evaluates to the same string.
+Para imprimir los números en el tope del tablero, primero imprime el contenido del a variable lineah. Luego en la siguiente línea, imprime tres espacios (para alinear la línea), y luego imprime la cadena '012345678901234567890123456789012345678901234567890123456789'. Pero como atajo puedes usar ('0123456789' * 6), que se evalúa a la misma cadena.
 
-Drawing the Rows of the Ocean
+Dibujando las Filas del Océano
 
- 18.     # print each of the 15 rows
+ 18.     # imprimir cada una de las 15 filas
  19.     for i in range(15):
- 20.         # single-digit numbers need to be padded with an extra space
+ 20.         # los números de una sola cifra deben ser precedidos por un espacio extra
  21.         if i < 10:
- 22.             extraSpace = ' '
+ 22.             espacioExtra = ' '
  23.         else:
- 24.             extraSpace = ''
- 25.         print('%s%s %s %s' % (extraSpace, i, getRow(board, i), i))
+ 24.             espacioExtra = ''
+ 25.         print('%s%s %s %s' % (espacioExtra, i, obtenerFila(tablero, i), i))
 
-Lines 19 to 25 print each row of ocean waves, including the numbers down the side to label the Y-axis. The for loop prints rows 0 through 14, along with the row numbers on either side of the board.
+Las líneas 19 a 25 imprimen las olas del océano, incluyeno los números a los costados para mostar el eje Y. Para el ciclo se imprimen las filas 0 a 14, incluyendo el número de fila a ambos lados.
 
-There’s a small problem. Numbers with only one digit (like 0, 1, 2, and so on) only take up one space when printed, but numbers with two digits (like 10, 11, and 12) take up two spaces. The rows won’t line up if the coordinates have different sizes. It will look like this:
+Hay un pequeño problema. Los números con sólo un dígito (como 0, 1, 2..) sólo ocupan un espacio, sin embargo números con dos dígitos (como 10, 11 y 12) ocupan dos espacios. Las filas no se alinearán si las coordenadas tienen distintos tamaños. Se verá así:
 
 8 ~~`~`~~```~``~~``~~~``~~`~`~~`~`~```~```~~~```~~~~~~`~`~~~~` 8
 9 ```~``~`~~~`~~```~``~``~~~```~````~```~`~~`~~~~~`~``~~~~~``` 9
 10 `~~~~```~`~````~`~`~~``~`~~~~`~``~``~```~~```````~`~``~````` 10
 11 ~~`~`~~`~``~`~~~````````````````~~`````~`~~``~`~~~~`~~~`~~`~ 11
 
-The solution is easy. Add a space only in front of all the single-digit numbers. Lines 21 to 24 set the variable extraSpace to either a space or an empty string. The extraSpace variable is always printed, but only has a space character in it for single-digit row numbers. Otherwise, it is the empty string. This way, all of the rows will line up when you print them.
+La solución es sencilla. Agrega espacios frente a todos los números de un dígito. Las lineas 21 a 24 setean el espacioExtra tanto a un espacio o una cadena vacía. La variable espacioExtra siempre es impresa, pero sólo posee un caracter en las filas de un dígito. Caso contrario, es una cadena vacía. De esta manera, todas las filas se alinearán cuando las imprimas.
 
-The getRow() function takes a row number and returns a string representing that row’s ocean waves. Its two parameters are the board data structure stored in the board variable and a row number. Let’s look at this function next.
+La función obtenerLinea() requere un número de fila y devuelve una cadena representando las olas de dicha fila. Sus dos parámetros son la estructura de datos del tablero almacenada en la variable tablero y un número de fila. Veremos esta función luego.
 
-Drawing the X-Coordinates Along the Bottom
+Dibujando las coordenadas X en el margen Inferior
 
- 27.     # print the numbers across the bottom
+ 27.     # imprimir los números a lo largo del borde inferior
  28.     print()
  29.     print('   ' + ('0123456789' * 6))
- 30.     print(hline)
+ 30.     print(líneah)
 
-Lines 27 to 30 are similar to lines 13 to 16. They print the X-axis coordinates at the bottom of the screen.
+Las líneas 27 a 30 son similares a las 13 a 16. Ellas imprimen el eje X en la parte inferior de la pantalla.
 
-Getting the State of a Row in the Ocean
+Obteniendo el Estado de una Fila en el Océano
 
- 33. def getRow(board, row):
- 34.     # Return a string from the board data structure at a certain row.
- 35.     boardRow = ''
+ 33. def obtenerFila(tablero, fila):
+ 34.     # Devuelve una cadena con la estructura de datos de un tablero para una fila determinada.
+ 35.     filaTablero = ''
  36.     for i in range(60):
- 37.         boardRow += board[i][row]
- 38.     return boardRow
+ 37.         filaTablero += tablero[i][fila]
+ 38.     return filaTablero
 
-While the board parameter is a data structure for the entire ocean’s waves, the getRow() function creates a string for a single row.
+Mientras el parámetro talbero es una estructura de datos para todo el océano, la función obtenerFila crea una cadena para una sóla línea.
 
-First set boardRow to the blank string. The Y-axis coordinate is passed as the row parameter. The string is made by concatenating board[0][row], board[1][row], board[2][row], and so on up to board[59][row]. This is because the row contains 60 characters, from index 0 to index 59.
+Primero, establece filaTablero a una cadena vacía. Las coordenadas Y son pasadas como el parámetro fila. La cadena se consigue de concatenar tablero[0][fila], tablero[2][fila] y así sucesivamente hasta talbero[59][fila]. Esto se debe a que la fila contiene 60 carácteres, desde índice 0 al 59.
 
-The for loop on line 36 iterates over integers 0 to 59. On each iteration, the next character in the board data structure is copied on to the end of boardRow. By the time the loop is done, boardRow has the complete row’s ASCII art waves and is returned.
+El ciclo for en la línea 36 itera sobre los enteros 0 a 59. En cada iteración, el siguiente carácter en el tablero es copiado al final de filaTablero. Para cuando el ciclo se termina, filaTablero tendrá el arte ASCII de las olas completos y será devuelto.
 
-Creating a New Game Board
+Creando un Nuevo Tablero de Juego
 
- 40. def getNewBoard():
- 41.     # Create a new 60x15 board data structure.
- 42.     board = []
- 43.     for x in range(60): # the main list is a list of 60 lists
- 44.         board.append([])
+ 40. def obtenerNuevoTablero():
+ 41.     # Crear una nueva estructura de datos para un tablero de 60x15.
+ 42.     tablero = []
+ 43.     for x in range(60): # la lista principal es una lista de 60 listas
+ 44.         tablero.append([])
 
-A new board data structure is needed at the start of each new game. The board data structure is a list of lists of strings. The first list represents the X coordinate. Since the game’s board is 60 characters across, this first list needs to contain 60 lists. Create a for loop that will append 60 blank lists to it.
+Una nueva estructura de datos de tablero es necesaria al inicio de cada juego. La estructura es una lista de listas de cadenas. La primera lista repesenta el eje X. Dado que el tablero posee un ancho de 60 carácteres, la primera lísta necesita contener 60 listas. Crea un ciclo for que agregue 60 listas en blanco.
 
- 45.         for y in range(15): # each list in the main list has 15 single-character strings
- 46.             # use different characters for the ocean to make it more readable.
+ 45.         for y in range(15): # cada lista en la lista principal tiene 15 cadenas de un solo caracter
+ 46.             # usar diferentes caracteres para el océano para hacerlo más fácil de leer.
  47.             if random.randint(0, 1) == 0:
- 48.                 board[x].append('~')
+ 48.                 tablero[x].append('~')
  49.             else:
- 50.                 board[x].append('`')
+ 50.                 tablero[x].append('`')
 
-But board is more than just a list of 60 blank lists. Each of the 60 lists represents an X coordinate of the game board. There are 15 rows in the board, so each of these 60 lists must have 15 characters in them. Line 45 is another for loop to add 15 single-character strings that represent the ocean.
+Pero el tablero es más que sólo una listta de 60 listas en blanco. Cada una de las 60 listas representa una coordenada X del juego. Hay 15 filas en el tablero, así que cada una de estas 60 listas debe contener 15 carácteres en ellas. La línea 45 es otro ciclo para agregar 15 carácteres que representan el océano.
 
-The “ocean” will be a bunch of randomly chosen '~' and '`' strings. If the return value of random.randint() is 0, add the '~' string. Otherwise add the '`' string. This will give the ocean a random, choppy look to it.
+El "océano" será un conjunto de '~' y '`' aleatorios. Si el valor de retorno de random.randint() es 0, agrega '~'. De lo contrario agrega '`'. Esto le dará un aspecto aleatorio y picado al océano.
 
-Remember that the board variable is a list of 60 lists, each list having 15 strings. That means to get the string at coordinate 26, 12, you would access board[26][12], and not board[12][26]. The X coordinate is first, then the Y coordinate.
+Recuerda que la variable tablero es una lista de 60 listas, cada una conteniendo 15 cadenas. Esto significa que obtienes la cadena en la coordenada 26, 12, mediante tablero[26][12] y no tablero[12][26]. La coordenada X primero y luego la Y.
 
- 51.     return board
+ 51.     return tablero
 
-Finally, the function returns the value in the board variable.
+Finalmente, la función devuelve el valor en la variable tablero.
 
-Creating the Random Treasure Chests
+Creando Cofres de Tesoro Aleatorios
 
- 53. def getRandomChests(numChests):
- 54.     # Create a list of chest data structures (two-item lists of x, y int coordinates)
- 55.     chests = []
- 56.     for i in range(numChests):
- 57.         chests.append([random.randint(0, 59), random.randint(0, 14)])
- 58.     return chests
+ 53. def obtenerCofresAleatorios(númCofres):
+ 54.     # Crear una lista de estructuras de datos cofre (listas de dos ítems con coordenadas x, y)
+ 55.     cofres = []
+ 56.     for i in range(númCofres):
+ 57.         cofres.append([random.randint(0, 59), random.randint(0, 14)])
+ 58.     return cofres
 
-The game also randomly decides where the hidden treasure chests are. The treasure chests are represented as a list of lists of two integers. These two integers will be the X and Y coordinates of a single chest.
+El juego también decide aleatoriamente donde se encuentran los cofres ocultos. Los cofres son representados como una lista de listas de dos enteros. Estos dos enteros serán el eje X e Y de un único cofre.
 
-For example, if the chest data structure was [[2, 2], [2, 4], [10, 0]], then this would mean there are three treasure chests, one at 2, 2, another chest at 2, 4, and a third one at 10, 0.
+Por ejemplo, si la estructura de datos del cofre es [[2, 2], [2, 4], [10, 0]], significará que hay tres cofres, uno en 2,2, otro en 2,4 y un tercero en 10,0.
 
-The numChests parameter tells the function how many treasure chests to generate. Line 56’s for loop will iterate numChests number of times, and on each iteration line 57 appends a list of two random integers. The X coordinate can be anywhere from 0 to 59, and the Y coordinate can be from anywhere between 0 and 14. The expression [random.randint(0, 59), random.randint(0, 14)] that is passed to the append method will evaluate to a list value like [2, 2] or [2, 4] or [10, 0]. This list value is appended to chests.
+EL parámetro númCofres le dice a la función cuantos cofres generar. La línea 56 itera un númCofres cantidad de veces, y cada una de esas iteraciones la línea 57 agregará una lista de dos números enteros aleatorios. La coordenada X puede ser cualquiera de 0 a 59, y la Y cualquiera de 0 a 14. La expresión [random.randint(0, 59), random.randint(0, 14)] que es pasada al método append se evaluará a una lista [2, 2] o [2, 4] o [10, 0]. Esta lista se agregará a cofres. 
 
-Determining if a Move is Valid
+Determinando si una Movida es Válida
 
- 60. def isValidMove(x, y):
- 61.     # Return True if the coordinates are on the board, otherwise False.
+ 60. def esMovidaVálida(x, y):
+ 61.     # Devuelve True si las coordenadas pertenecen al tablero, de lo contrario False.
  62.     return x >= 0 and x <= 59 and y >= 0 and y <= 14
 
-When the player types in X and Y coordinates of where they want to drop a sonar device, they may not type invalid coordinates. The X coordinate must be between 0 and 59 and the Y coordinate must be between 0 and 14.
+Cuando el jugador escribe las coorneadas X e Y donde quiere colocar un sonar, pueden no ser coordenadas válidas. Las coordenadas X deben ser de 0 a 59 y las coordenadas Y deben ser de 0 a 14.
 
-The isValidMove() function uses a simple expression that uses and operators to ensure that each part of the condition is True. If even one part is False, then the entire expression evaluates to False. This function returns this Boolean value.
+La función esMovidaVálida() utiliza una simple expresión con operadoras para asegurar que cada parte del a condición sea True (Verdadera). Aún con sólo una expresión False (Falsa), toda la expresión se evalúa como False. Esta función devuelve un valor Booleano. 
 
-Placing a Move on the Board
+Realizar una Movida en el Tablero
 
- 64. def makeMove(board, chests, x, y):
- 65.     # Change the board data structure with a sonar device character. Remove treasure chests
- 66.     # from the chests list as they are found. Return False if this is an invalid move.
- 67.     # Otherwise, return the string of the result of this move.
- 68.     if not isValidMove(x, y):
+ 64. def realizarMovida(tablero, cofres, x, y):
+ 65.     # Cambia la estructura de datos del tablero agregando un caracter de dispositivo sonar. Elimina los cofres
+ 66.     # de la lista de cofres a medida que son encontrados. Devuelve False si la movida no es válida.
+ 67.     # En caso contrario, devuelve una cadena con el resultado de esa movida.
+ 68.     if not esMovidaVálida(x, y):
  69.         return False
 
-In the Sonar game, the game board is updated to display a number for each sonar device dropped to show how far away the closest treasure chest is. So when the player makes a move by giving the program an X and Y coordinate, the board changes based on the positions of the treasure chests.
+En el juego Sonar, el tablero es actualizado para mostrar un número por cada uno de los dispositivos empleados para mostrar que tan lejos se encuentra del cofre más cercano. Cuando el jugador realize una movida dándole al programa unas coordenadas X e Y, el tablero cambia en base a las posiciones de los cofres.
 
 The makeMove() function takes four parameters: the game board data structure, the treasure chests data structure, and the X and Y coordinates. Line 69 returns False if the X and Y coordinates if was passed do not exist on the game board. If isValidMove() returns False, then makeMove() will itself return False.
 
