@@ -252,7 +252,7 @@ while True:
     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
     mostrarPistas = False
     turno = quiénComienza()
-    print(("El " if turno == "jugador" else "La ") + turno + ' will go first.')
+    print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
 
     while True:
         if turno == 'jugador':
