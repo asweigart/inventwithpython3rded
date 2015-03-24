@@ -147,7 +147,7 @@ Has perdido. La computadora te ha vencido por 31 puntos.
 ¿Quieres jugar de nuevo? (sí o no)
 no
 
-As you can see, the AI was pretty good at beating me 46 to 15. To help the player out, we’ll program the game to provide hints. If the player types 'hints' as their move, they can toggle the hints mode on and off. When hints mode is on, all the possible moves the player can make will show up on the board as '.' characters, like this:
+Como puedes ver, la IA hizo un buen trabajo y me venció 46 a 15. Para ayudar al jugador, programaremos el juego de modo que ofrezca pistas. Si el jugador escribe 'pistas' como su jugada, se activarán o desactivarán las pistas. Cuando el modo pistas está activado, se verán marcas '.' en el tablero para todas las jugadas posibles, como se muestra a continuación: 
 
     1   2   3   4   5   6   7   8
   +---+---+---+---+---+---+---+---+
@@ -184,13 +184,13 @@ As you can see, the AI was pretty good at beating me 46 to 15. To help the playe
   |   |   |   |   |   |   |   |   |
   +---+---+---+---+---+---+---+---+
 
-Source Code of Reversi
+Código Fuente de Reversi
 
-Reversi is a mammoth program compared to our previous games. It’s over 300 lines long! But don’t worry, many of these lines are comments or blank lines to space out the code and make it more readable.
+Reversi es un programa mamut comparado con nuestros juegos anteriores. ¡Tiene más de 300 líneas! Pero no te preocupes, muchas de estas líneas son comentarios o líneas en blanco para separar el código y hacerlo más legible.
 
-As with our other programs, we’ll first create several functions to carry out Reversi-related tasks that the main section will call. Roughly the first 250 lines of code are for these helper functions, and the last 50 lines of code implement the Reversi game itself.
+Como hemos hecho con los otros programas, primero crearemos varias funciones para llevar a cabo tareas relacionadas con Reversi que serán llamadas por la sección principal. Aproximadamente las primeras 250 líneas de código son para estas funciones auxiliares, y las últimas 50 líneas de código implementan el juego Reversi en sí.
 
-If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/reversi.
+Si obtienes errores luego de escribir este código, compara el código que has escrito con el código del libro usando la herramienta diff online en http://invpy.com/diff/reversi.
 
 reversi.py
 
