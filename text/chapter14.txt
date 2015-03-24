@@ -368,7 +368,7 @@ In decrypting mode, then key would be negative. The special case would be where 
 
 Line 47 concatenates the encrypted/decrypted character to the translated string.
 
-If the symbol was not an uppercase or lowercase letter, then line 48 concatenates the original symbol to the translated string. Therefore, spaces, numbers, punctuation marks, and other characters won’t be encrypted or decrypted.
+If the symbol was not an uppercase or lowercase letter, then line 49 concatenates the original symbol to the translated string. Therefore, spaces, numbers, punctuation marks, and other characters won’t be encrypted or decrypted.
 
 50.     return translated
 
@@ -430,7 +430,7 @@ This code will let the user select “brute force” as a mode. Modify and add t
 
 These changes ask the user for a key if they are not in “brute force” mode. The original getTranslatedMessage() call is made and the translated string is printed.
 
-However, if the user is in “brute force” mode then getTranslatedMessage() loop that iterates from 1 all the way up to MAX_KEY_SIZE (which is 26). Remember that when the range() function returns a list of integers up to, but not including, the second parameter, which is why you have + 1. This program will print every possible translation of the message (including the key number used in the translation). Here is a sample run of this modified program:
+However, if the user is in “brute force” mode then getTranslatedMessage() is executed in a loop that iterates from 1 all the way up to MAX_KEY_SIZE (which is 26). Remember that the range() function returns a list of integers up to, but not including, the second parameter, which is why you have + 1. This program will print every possible translation of the message (including the key number used in the translation). Here is a sample run of this modified program:
 
 Do you wish to encrypt or decrypt or brute force a message?
 brute

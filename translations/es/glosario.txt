@@ -1,8 +1,10 @@
 backslash, barra inversa
 cake, torta
 case-sensitive, sensible a mayúsculas
+cheat, truco
 computer, computadora
 draw, dibujar
+flag, bandera
 get, obtener
 I/O, E/S
 indentation, indentación
