@@ -512,8 +512,8 @@ This character can either be a ' ' space character (to represent a blank space),
 Importing Other Modules
 
   1. # Reversi
-  2. import random
-  3. import sys
+  3. import random
+  4. import sys
 
 Line 2 imports the random module for its randint() and choice() functions. Line 3 imports the sys module for its exit() function.
 
@@ -643,12 +643,12 @@ Checking if a Move is Valid
  47.     # If it is a valid move, returns a list of spaces that would become the player's if they made a move here.
  48.     if board[xstart][ystart] != ' ' or not isOnBoard(xstart, ystart):
  49.         return False
- 50.     board[xstart][ystart] = tile # temporarily set the tile on the board.
- 51.     if tile == 'X':
- 52.         otherTile = 'O'
- 53.     else:
- 54.         otherTile = 'X'
- 55.     tilesToFlip = []
+ 51.     board[xstart][ystart] = tile # temporarily set the tile on the board.
+ 53.     if tile == 'X':
+ 54.         otherTile = 'O'
+ 55.     else:
+ 56.         otherTile = 'X'
+ 58.     tilesToFlip = []
 
 Given a board data structure, the player’s tile, and the XY coordinates for player’s move, isValidMove() should return True if the Reversi game rules allow a move to those coordinates and False if they don’t.
 
