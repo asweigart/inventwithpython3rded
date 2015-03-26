@@ -6,7 +6,7 @@ Tematy omówione w tym rozdziale:
 •   3 różne typy błędów
 •   Odpluskiwacz w IDLE
 •   Praca krokowa
-•   Wejdź i Wyjdź
+•   Naprzód i Wyjdź
 •   Break Points
 
 Pluskwy!
@@ -71,37 +71,37 @@ Mamy tu podsumowanie tego, co dzieje się gdy klikniejsz przycisk Step z grą Kr
 
 Okno Debug Control będzie pokazywało jaka linia zostanie wykonanan po naciśnięciu przycisku Stepw oknie Debug Control. Odpluskwiacz ominie linię 3, ponieważ jest to pusta linia. Zauważ, że w odpluskwiaczu można tylko iść naprzód, nie można wrócić.
 
-Przestrzeń zmiennych globalnych (Globals Area)
+Obszar globalny (Globals Area)
 
-The Globals area in the Debug Control window is where all the global variables can be seen. Remember, global variables are the variables that are created outside of any functions (that is, in the global scope).
+Obbszar globalny w oknie Debug Control pozwala na oglądanie zmiennych globalnych. Pamiętaj, że zmienne globalne są tworzone poza funkcjami (to znaczy w zakresie globalnym).
 
-As the three def statements execute and define functions, they will appear in the Globals area of the Debug Control window.
+Jako, że zostały wykonane trzy dyrektywy def które zdefiniowały funkcje, pojawią się one w oknie Debug Control w obszarze globalnym.
 
-The text next to the function names in the Globals area will look like “<function checkCave at 0x012859B0>“. The module names also have confusing looking text next to them, such as “<module 'random' from 'C:\\Python31\\lib\\random.pyc'>“. You don’t need to know what it means to debug your programs. Just seeing that the functions and modules are there in the Global area will tell you if the function has been defined or the module has been imported.
+Napis obok nazw funkcji w obszarze globalnym wygląda jak: “<function checkCave at 0x012859B0>“. Także nazwy modułów mają tajemniczo wyglądający napis jak “<module 'random' from 'C:\\Python31\\lib\\random.pyc'>“. Nie potrzebujesz wiedzieć co to znaczy gdy odpluskwiasz swoje programy. To, że funkcje i moduły są w obszarze globalnym mówi, czy te funkcje zostały zdefiniowane, albo czy zaimportowano moduł.
 
-You can also ignore the __builtins__, __doc__, and __name__ lines in the Global area. (Those are variables that appear in every Python program.)
+Możesz także zignorować linie __builtins__, __doc__ i __name__ w obszarze globalnym. Są to zmienne jakie pojawiają się w każdym programie w Pythonie,
 
-When the playAgain variable is created it will show up in the Global area. Next to the variable name will be the string 'yes'. The debugger lets you see the values of all the variables in the program as the program runs. This is useful for fixing bugs.
+Kiedy zostanie stworzona zmienna playAgain, to pojawi się ona w obszarze globalnym. Obok nazwy zmiennej będzie napis 'tak'. Odpluskwiacz pozwala ci oglądać wartości wszystkich zmiennych w programie w trakcie jego wykonania. To jest bardzo użyteczne gdy naprawia się błędy.
 
-Locals Area
+Obszar lokalny
 
-There is also a Locals area, which shows you the local scope variables and their values. The local area will only have variables in it when the program execution is inside of a function. When the execution is in the global scope, this area is blank.
+Mamy także obszar lokalny, gdzie pokazywane są zmienne z zasięgu lokalnego. Obszar lokalny zawiera jedynie zmienne w czasie, gdy wykonanie jest we wnętrzu funkcji. Gdy wykonanie przejdzie do zasięgu globalnego, to ten obszar jest pusty.
 
-The Go and Quit Buttons
+Przycisk Naprzód (ang. Go) i Wyjdź (ang. Quit)
 
-If you get tired of clicking the Step button repeatedly and just want the program to run normally, click the Go button at the top of the Debug Control window. This will tell the program to run normally instead of stepping.
+Jeśli zmęczyłeś się klikając wciąż przycisk Krok (ang. Step) i chcesz by program działał normalnie, kliknij przycisk Naprzód (ang. Go)na górze okna Debug Control. Sprawi to, że program zadziała normalnie, a nie krokowo.
 
-To terminate the program entirely, just click the Quit button at the top of the Debug Control window. The program will exit immediately. This is helpful if you must start debugging again from the beginning of the program.
+Aby zakończyć pracę programu po prostu kliknij przycisk Wyjdź (ang. Quit) na górze okna Debug Control. Program natychmiast się zakończy. Jest to pomocne gdy musisz rozpocząć odpluskwianie od początku programu.
 
-Stepping Into, Over, and Out
+Wchodzenie do, Przekraczanie i Zstępowanie
 
-Start the Dragon Realm program with the debugger. Keep stepping until the debugger is at line 38. As shown in Rysunek 7-3, this is the line with displayIntro(). When you click Step again, the debugger will jump into this function call and appear on line 5, the first line in the displayIntro() function. The kind of stepping you have been doing is called stepping into. This is different from stepping over, explained next.
+Uruchom Królestwo smoków w odpluskwiaczu. Przejdź krokowo do momentu, gdy odpluskiwacz będzie w linii 38. Jak pokazano na rysunku 7-3, jest to linia z displayIntro(). Kiedy znowu klikniesz Krok (ang. Step), to odpluskwiacz przeskosczy do tej funkcji i pokawi się w linii 5, pierwszej linii funkcji displayIntro(). Ten rodzaj pracy krokowej nazywamy wchodzeniem do. Różni się to od przechodzenia, które zaraz omówimy.
 
-Rysunek 7-3: Keep stepping until you reach line 38.
+Rysunek 7-3: Przejdź krokowo, aż dotrzesz do linii 38.
 
-When the execution is paused at line 5, clicking Step one more time will step into the print() function. The print() function is one of Python’s built-in functions, so it isn’t useful to step through with the debugger. Python’s own functions such as print(), input(), str(), or random.randint() have been carefully checked for errors. You can assume they’re not the parts causing bugs in your program.
+Kiedy wykonanie zatrzyma się w linii 5, jeszcze jedno kliknięcie w Krok (ang. Step) spowoduje wejście do funkcji print(). Funkcja print() jest jedną z wbudowanych funkcji Pythona, więc wejście do niech przez odpluskiwacza nie jest zbyt użyteczne. Wbudowane w Pythona funkcje takie jak print(), input(), str(), lub random.randint() zostały dokłądanie sprawdzone. Możesz przyjąć, że nie powodują one błędów w twoim programie.
 
-So you don’t want to waste time stepping through the internals of the print() function. So instead of clicking Step to step into the print() function’s code, click Over. This will step over the code inside the print() function. The code inside print() will be executed at normal speed, and then the debugger will pause once the execution returns from print().
+Nie chcesz tracić czasu na krokowe wykonywanie funkcji print(). Zamiast klikać Step by wkroczyć do wnętrza funkcji print() kliknij Over (Przekrocz). To spowoduje przejście przez funkcję print(). Kod we wnętrzu print() będzie wykonany ze zwykłą prędkością, po czym odpluskwiacz zatrzyma się jak tylko wykonanie opuści print().
 
 Stepping over is a convenient way to skip stepping through code inside a function. The debugger will now be paused at line 40, caveNumber = chooseCave().
 

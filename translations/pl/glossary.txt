@@ -9,7 +9,9 @@ expression, wyrażenie
 Figure, Rysunek
 file, plik
 run, uruchom
+scope, zasięg
 shell, powłoka
 slash, ukośnik
 statement, dyrektywa
+stepping into, wchodzenie do (debugger)
 string, napis
