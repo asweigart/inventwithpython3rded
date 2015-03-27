@@ -550,25 +550,25 @@ La línea 11 contiene a la primera ejecución de la función print(), e imprime 
  19.         print(LÍNEAV)
  20.         print(LÍNEAH)
 
-The for loop will loop eight times, once for each row. Line 15 prints the label for the Y-axis on the left side of the board, and has an end=' ' keyword argument to print a single space instead of a new line. This is so that another loop (which again loops eight times, once for each space) prints each space (along with the 'X', 'O', or ' ' character depending on what is stored in board[x][y].)
+El bucle for se ejecutará ocho veces, una por cada fila. La línea 15 imprime la etiqueta del eje Y sobre el lado izquierdo del tablero, y tiene como argumento la palabra clave end=' ' para terminar la línea con un espacio simple en lugar de saltar a la siguiente línea. Esto es para que otro bucle (que también se ejecuta ocho veces, una por cada espacio) imprima cada espacio (junto con el caracter 'X', 'O' o ' ' dependiendo de lo que esté almacenado en tablero[x][y].)
 
-The print() function call inside the inner loop also has an end=' ' keyword argument at the end of it, meaning a space character is printed instead of a newline character. That will produce a single line on the screen that looks like '| X | X | X | X | X | X | X | X ' (if each of the board[x][y] values were 'X').
+La llamada a la función print() dentro del bucle interno también tiene como argumento la palabra clave end=' ' al final, con lo cual se imprime un espacio en lugar de una nueva línea. Esto produce una única línea con el aspecto '| X | X | X | X | X | X | X | X ' (si cada uno de los valores de tablero[x][y] fuera 'X').
 
-After the inner loop is done, the print() function call on line 18 prints the final '|' character along with a newline.
+Luego de que el bucle interno ha concluido, la llamada a la función print() en la línea 18 imprime el último caracter '|' junto con una nueva línea.
 
-The code inside the outer for loop from line 14 to line 20 prints an entire row of the board like this:
-
-|   |   |   |   |   |   |   |   |
-| X | X | X | X | X | X | X | X |
-|   |   |   |   |   |   |   |   |
-+---+---+---+---+---+---+---+---+
-
-When the for loop on line 13 prints the row eight times, it forms the entire board (of course, some of the spaces on the board will have 'O' or ' ' instead of 'X'):
+El código comprendido por el bucle completo entre las líneas 14 y 20 imprime una fila completa del tablero en este formato:
 
 |   |   |   |   |   |   |   |   |
 | X | X | X | X | X | X | X | X |
 |   |   |   |   |   |   |   |   |
 +---+---+---+---+---+---+---+---+
+
+Cuando el bucle for de la línea 13 imprime la fila ocho veces, se forma el tablero completo (por supuesto, algunos de los espacios en el tablero tendrán caracteres 'O' o ' ' en lugar de 'X'):
+
+|   |   |   |   |   |   |   |   |
+| X | X | X | X | X | X | X | X |
+|   |   |   |   |   |   |   |   |
++---+---+---+---+---+---+---+---+
 |   |   |   |   |   |   |   |   |
 | X | X | X | X | X | X | X | X |
 |   |   |   |   |   |   |   |   |
@@ -598,7 +598,7 @@ When the for loop on line 13 prints the row eight times, it forms the entire boa
 |   |   |   |   |   |   |   |   |
 +---+---+---+---+---+---+---+---+
 
-Resetting the Game Board
+Reiniciando el Tablero de Juego
 
  23. def reiniciarTablero(tablero):
  24.     # Deja en blanco el tablero recibido como argumento, excepto la posición inicial
