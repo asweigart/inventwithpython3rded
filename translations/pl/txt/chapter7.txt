@@ -103,51 +103,51 @@ Kiedy wykonanie zatrzyma się w linii 5, jeszcze jedno kliknięcie w Krok (ang. 
 
 Nie chcesz tracić czasu na krokowe wykonywanie funkcji print(). Zamiast klikać Step by wkroczyć do wnętrza funkcji print() kliknij Over (Przekrocz). To spowoduje przejście przez funkcję print(). Kod we wnętrzu print() będzie wykonany ze zwykłą prędkością, po czym odpluskwiacz zatrzyma się jak tylko wykonanie opuści print().
 
-Stepping over is a convenient way to skip stepping through code inside a function. The debugger will now be paused at line 40, caveNumber = chooseCave().
+Przekraczanie jest wygodnym sposobem na uniknięcie krokowego wykonania kodu w funkcji. Odpluskwiacz zatrzyma się teraz na linii 40, caveNumber = chooseCave().
 
-Click Step one more time to step into the chooseCave() function. Keep stepping through the code until line 15, the input() call. The program will wait until you type a response into the interactive shell, just like when you run the program normally. If you try clicking the Step button now, nothing will happen because the program is waiting for a keyboard response.
+Ponownie kliknij Step, by wejść do funkcji chooseCave(). Przejdź kod krokowo do linii 15, do wywołania input(). Program zaczeka aż coś wpiszesz w interakcyjnej powłoce, tak jak przy normalnym uruchomieniu programu. Jeśli spróbujesz kliknąć Step, nic się nie stanie ponieważ program czeka na odpowiedź z klawiatury.
 
-Click back on the interactive shell window and type which cave you want to enter. The blinking cursor must be on the bottom line in the interactive shell before you can type. Otherwise the text you type will not appear.
+Przejdz do okna interaktywnej powłoki i wpis do której z jaskiń chcesz wejść. Mrugając kursor musi być w dolnej linii interaktywnej powłoki byś mógł w niej coś wpisać. Jeśli go nie ma, to tekst który wpisujesz nie pojawi się.
 
-Once you press ENTER, the debugger will continue to step lines of code again. Click the Out button on the Debug Control window. This is called stepping out, because it will cause the debugger to step over as many lines as it needs to until execution has returned from the function it is in. After it jumps out, the execution will be on the line after the line that called the function.
+Jak tylko wciśniesz ENTER, odpluskwiacz przejdzie do krokowej pracy z kodem. Kliknij przycisk Out w oknie Debug Control. Nazywamy to zstępowaniem (ang. stepping out), ponieważ spowoduje, że odpluskiwacz przejdzie tyle linii, ile potrzebuje by opuścić funkcję w której jest. Jak tylko wyskoczy na zewnątrz, wykonanie będzie na linii po linii wywołującej funkcję.
 
-For example, clicking Out inside the displayIntro() function on line 6 would step until the function returned to the line after the call to displayIntro(). Stepping out can save you from having to click Step repeatedly to jump out of the function.
+Przykładowo klikając Out w środku funkcji displayIntro() w linii 6 spowoduje pracę krokową aż funkcja wróci do linii za wywołaniem displayIntro(). Zstępowanie może oszczędzić ci klikanie w Step by wyjść z funkcji.
 
-If you are not inside a function, clicking Out will cause the debugger will execute all the remaining lines in the program. This is the same behavior as clicking the Go button.
+Jeśli nie jesteś wewnątrz funkcji, kliknięcie Out spowoduje, że odpluskiwacz wykonana wszystkie pozostałe linie programu. Cyzli zachowa jię tak, jakbyś kliknął przycisk Go (Naprzód).
 
-Here’s a recap of what each button does:
+Małe przypomnienie co robią poszczególne przyciski:
 
-•   Go - Executes the rest of the code as normal, or until it reaches a break point. (Break points are described later.)
-•   Step - Step one instruction. If the line is a function call, the debugger will step into the function.
-•   Over - Step one instruction. If the line is a function call, the debugger won’t step into the function, but instead step over the call.
-•   Out - Keeps stepping over lines of code until the debugger leaves the function it was in when Out was clicked. This steps out of the function.
-•   Quit - Immediately terminates the program.
+•   Go - Wykonuje resztę kodu tak, jak w normalnej pracy, lub do osiągnięcia punkti krytycznego (ang. break point). Punkty krytyczne zostaną omówione później.
+•   Step - Wykona krokowo jedną instrukcję. Jeśli linia jest wywołaniem funkcji, odpluskiwacz do niej wejdzie.
+•   Over - Wykona krokowo jedną instrukcję. Jeśli linia jest wywołaniem funkcji, odpluskiwacz do nie nie wejdzie, ale przez nią przejdzie.
+•   Out - Przechodzi przez linie kodu aż odpluskiacz opuści funkcję w której był w momencie kliknięcie Out. Powoduje wyjście z funkcji.
+•   Quit - Natychmiast kończy działanie programu.
 
-Find the Bug
+Znajdź błąd
 
-The debugger can help you find the cause of bugs in your program. As an example, here is a small program with a bug. The program comes up with a random addition problem for the user to solve. In the interactive shell window, click on File, then New Window to open a new file editor window. Type this program into that window, and save the program as buggy.py.
+Odpluskiwacz może pomóc w znalezieniu przyczyny błędu w programie. Jako przykład mamy tu mały program z błędem. Program ma lowosy problem z dodawaniem który należy rozwiązać. W oknie interaktywnej powłoki kliknij File, potem New Window by otworzyć nowe okno edytora. Wpisz ten program i zapisz jako buggy.py.
 
 buggy.py
 
 1. import random
-2. print('Rzucę monetą 1000 razy. Zgadnij ile razy wypadnie orzeł. (Naciśnij enter by rozpocząć)')
-3. input()
-4. flips = 0
-5. heads = 0
-6. while flips < 1000:
-7.     if random.randint(0, 1) == 1:
-8.         heads = heads + 1
-9.     flips = flips + 1
+2. number1 = random.randint(1, 10)
+3. number2 = random.randint(1, 10)
+4. print('Jaki jest wynik ' + str(number1) + ' + ' + str(number2) + '?')
+5. answer = input()
+6. if answer == number1 + number2:
+7.     print('Bardzo dobrze!')
+8. else:
+9.     print('Niestety! Prawidłowa odpowiedź to ' + str(number1 + number2))
 
-Type the program as it is above, even if you can already tell what the bug is. Then trying running the program by pressing F5. This is a simple arithmetic quiz that comes up with two random numbers and asks you to add them. Here’s what it might look like when you run the program:
+Wpisz ten program w tej postaci nawet, jesli jusz wiesz gdzie jest błąd. Uruchom program naciskając F5. To prosty quiz arytmetyczny który pokazuje dwie losowe liczby i pyta cię o ich sumę. Oto jak może wyglądać uruchomienie programu:
 
-What is 5 + 1?
+Jaki jest wynik 5 + 1?
 6
-Nope! The answer is 6
+Niestety! Prawidłowa odpowiedź to 6
 
-That’s a bug! The program doesn’t crash but it is not working correctly. The program says the user is wrong even if they type the correct answer.
+Mamy błąd! Program nie zgłasza problemu, ale też nie działa prawidłowo. Program twierdzi, że użytkownik podał złą odpowiedź nawet, jeśli odpowiedź była prawidłowa.
 
-Running the program under a debugger will help find the bug’s cause. At the top of the interactive shell window, click on Debug ► Debugger to display the Debug Control window. In the Debug Control window, check all four checkboxes (Stack, Source, Locals, and Globals). This makes the Debug Control window provide the most information. Then press F5 in the file editor window to run the program. This time it will be run under the debugger.
+Urchomienie programu w odpluskiwaczu pomoże w znalezieniu przyczyny błędu. Na górze okna interaktywnej powłoki kliknij Debug ► Debugger by wyświetlić okno Debug Control. W oknie tym włącz wszystkie 4 opcje (Stack, Source, Locals i Globals). Sprawi to, że w oknie tym pojawi się większość informacji. Teraz oknie edytora uruchom program wciskając F5. Tym razem program uruchomi się w odpluskwiaczu.
 
 1. import random
 
