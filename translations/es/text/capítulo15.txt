@@ -606,9 +606,9 @@ Reiniciando el Tablero de Juego
  26.         for y in range(8):
  27.             tablero[x][y] = ' '
 
-Line 25 and 26 have nested loops to set the board data structure to be all single-space strings. This makes a blank Reversi board. The resetBoard() function is called as part of starting a new game.
+Las líneas 25 y 26 contienen bucles anidados para asignar espacios simples a cada elemento de la estructura de datos tablero. Esto crea un tablero vacío de Reversi. La función reiniciarTablero() es parte de la rutina de comenzar un nuevo juego.
 
-Setting Up the Starting Pieces
+Colocando las Piezas Iniciales
 
  29.     # Piezas iniciales:
  30.     tablero[3][3] = 'X'
@@ -616,11 +616,11 @@ Setting Up the Starting Pieces
  32.     tablero[4][3] = 'O'
  33.     tablero[4][4] = 'X'
 
-At the beginning of a game, each player has two tiles already laid down in the center. Lines 30 to 33 set those tiles on the blank board.
+Al comienzo del juego, cada jugador tiene dos baldosas ya colocadas en el centro. Las líneas 30 a 33 colocan esas baldosas en el tablero vacío.
 
-The resetBoard() function does not have to return the board variable, because board is a reference to a list. Making changes inside the function’s local scope will modify the original list that was passed as the argument. (See the References section in Chapter 10.)
+La función reiniciarTablero() no necesita devolver la variable tablero, porque tablero es una referencia a una lista. Los cambios realizados en el entorno local de la función modificará la lista original que fue pasada como argumento. (Explicado en la sección Referencias del Capítulo 10.)
 
-Creating a New Game Board Data Structure
+Creando una Nueva Estructura de Datos Tablero
 
  36. def obtenerNuevoTablero():
  37.     # Crea un tablero nuevo, vacío.
@@ -630,13 +630,13 @@ Creating a New Game Board Data Structure
  41. 
  42.     return tablero
 
-The getNewBoard() function creates a new board data structure and returns it. Line 38 creates the outer list and stores a reference to this list in board. Line 40 creates the inner lists using list replication. ([' '] * 8 evaluates to be the same as [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '] but with less typing.)
+La función obtenerNuevoTablero() crea una nueva estructura de datos tablero y la devuelve. La línea 38 crea la lista exterior y guarda una referencia a esta lista en tablero. La línea 40 crea las listas interiores usando replicación de listas. ([' ']) * 8 se evalúa al mismo valor que [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], pero hay que escribir menos.)
 
-Line 39’s for loop here creates the eight inner lists. The spaces represent a completely empty game board.
+El bucle for de la línea 39 crea las ocho listas internas. Los espacios representan un tablero de juego completamente vacío.
 
-What board ends up being is a list of eight lists, and each of those eight lists themselves has eight strings. The result is 64 ' ' strings.
+Lo que la variable tablero termina siendo es una lista de ocho listas, y cada una de esas listas tiene ocho cadenas. El resultado son 64 cadenas ' ' con un caracter espacio.
 
-Checking if a Move is Valid
+Comprobando si una Jugada es Válida
 
  45. def esJugadaVálida(tablero, baldosa, comienzox, comienzoy):
  46.     # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida
@@ -650,11 +650,11 @@ Checking if a Move is Valid
  56.         otraBaldosa = 'X'
  58.     baldosasAConvertir = []
 
-Given a board data structure, the player’s tile, and the XY coordinates for player’s move, isValidMove() should return True if the Reversi game rules allow a move to those coordinates and False if they don’t.
+Dada una estructura de datos tablero, la baldosa del jugador y las coordenadas XY de la jugada del jugador, esJugadaVálida() devuelve True si las reglas de Reversi permiten una jugada en esas coordenadas y False en caso contrario.
 
-Line 48 checks if the XY coordinates are not on the game board, or if the space isn’t empty. isOnBoard() is a function defined later in the program that makes sure both the X and Y coordinates are between 0 and 7.
+La línea 48 comprueba si las coordenadas XY están fuera del tablero, o si el espacio no está vacío. estáEnTablero() es una función definida más adelante en el programa que se asegura de que el valor de ambas coordenadas X e Y esté comprendido entre 0 y 7.
 
-The next step is to temporarily place the player’s tile on the board. This tile will be removed (by setting the board space back to ' ' before returning).
+El próximo paso es colocar temporariamente la baldosa del jugador sobre el tablero. Esta baldosa será removida (volviendo a asignar ' ' al espacio del tablero antes de volver de la función).
 
 The player’s tile (either the human player or the computer player) is in tile, but this function will need to know the other player’s tile. If the player’s tile is 'X' then obviously the other player’s tile is 'O', and vice versa.
 
