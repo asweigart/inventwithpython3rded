@@ -7,21 +7,21 @@ Temas Tratados En Este Capítulo:
 
 En este capítulo, crearemos un juego llamado Reversi (también llamado Othello). Reversi es un juego de mesa que se juega sobre una grilla, de modo que tendremos que usar un sistema de coordenadas Cartesiano con coordenadas XY. Es un juego para dos jugadores. En nuestra versión del juego la computadora tendrá una IA más avanzada que la que hemos creado para el Ta Te Ti. De hecho, esta IA es tan buena que probablemente te gane todas las partidas que juegues. (¡Al menos yo pierdo cada vez que juego contra ella!)
 
-Reversi tiene un tablero de 8 x 8 y baldosas que son negras de un lado y blancas del otro (nuestro juego las reemplazará por O's y X's). El tablero inicial se ve como la Figura 15-1. El jugador negro y el jugador blanco toman turnos para colocar una nueva baldosa de su color. Cualquier baldosa del oponente que se encuentre entre la nueva baldosa y las otras baldosas de ese color es volteada. El objetivo del juego es tener tantas baldosas de tu color como sea posible. Por ejemplo, la Figura 15-2 es como se vería si el jugador blanco colocara una nueva baldosa blanca en el espacio 5, 6.
+Reversi tiene un tablero de 8 x 8 y baldosas que son negras de un lado y blancas del otro (nuestro juego las reemplazará por O's y X's). El tablero inicial se ve como la Figura 15-1. El jugador negro y el jugador blanco toman turnos para colocar una nueva baldosa de su color. Cualquier baldosa del oponente que se encuentre entre la nueva baldosa y las otras baldosas de ese color es convertida. El objetivo del juego es tener tantas baldosas de tu color como sea posible. Por ejemplo, la Figura 15-2 es como se vería si el jugador blanco colocara una nueva baldosa blanca en el espacio 5, 6.
 
 Figura 15-1: El tablero inicial en Reversi tiene dos baldosas blancas y dos negras.  Figura 15-2: El jugador blanco coloca una nueva baldosa.
 
 La baldosa negra en 5, 5 está entre la nueva baldosa blanca y la baldosa blanca existente en 5, 4. Esa baldosa blanca es volteada y se convierte en una nueva baldosa blanca, haciendo que el tablero se vea como en la Figura 15-3. El jugador negro hace a continuación una movida similar, colocando una baldosa negra en 4, 6 la cual voltea la baldosa blanca en 4, 5. Esto resulta en una disposición del tablero como se muestra en la Figura 15-4.
 
-Figura 15-3: La movida del jugador blanco voltea una de las baldosas negras.  Figura 15-4: El jugador negro coloca una nueva baldosa, la cual voltea una de las baldosas blancas.
+Figura 15-3: La movida del jugador blanco convierte una de las baldosas negras.  Figura 15-4: El jugador negro coloca una nueva baldosa, la cual convierte una de las baldosas blancas.
 
-Las baldosas en todas las direcciones son volteadas en tanto se encuentren entre la nueva baldosa del jugador y sus baldosas existentes. En la Figura 15-5, el jugador blanco coloca una baldosa en 3, 6 y voltea baldosas en ambas direcciones (indicadas por las líneas). El resultado se muestra en la Figura 15-6.
+Las baldosas en todas las direcciones son convertidas en tanto se encuentren entre la nueva baldosa del jugador y sus baldosas existentes. En la Figura 15-5, el jugador blanco coloca una baldosa en 3, 6 y convierte baldosas en ambas direcciones (indicadas por las líneas). El resultado se muestra en la Figura 15-6.
 
-Figura 15-5: La segunda movida del jugador blanco en 3, 6 volteará dos baldosas negras.  Figura 15-6: El tablero luego de la segunda movida del jugador blanco.
+Figura 15-5: La segunda movida del jugador blanco en 3, 6 convertirá dos baldosas negras.  Figura 15-6: El tablero luego de la segunda movida del jugador blanco.
 
-Cada jugador puede rápidamente voltear muchas baldosas en el tablero en uno o dos movimientos. Los jugadores deben hacer siempre jugadas que capturen al menos una baldosa. El juego termina cuando ningún jugador puede seguir moviendo, o el tablero está completamente lleno. Gana el jugador con más baldosas de su color.
+Cada jugador puede rápidamente convertir muchas baldosas en el tablero en uno o dos movimientos. Los jugadores deben hacer siempre jugadas que capturen al menos una baldosa. El juego termina cuando ningún jugador puede seguir moviendo, o el tablero está completamente lleno. Gana el jugador con más baldosas de su color.
 
-La IA que crearemos para este juego simplemente intentará jugar en las esquinas. Si no es posible jugar en una esquina, la computadora seleccionará la jugada que voltee más baldosas.
+La IA que crearemos para este juego simplemente intentará jugar en las esquinas. Si no es posible jugar en una esquina, la computadora seleccionará la jugada que convierta más baldosas.
 
 Prueba de Ejecución de Reversi
 
@@ -656,30 +656,30 @@ La línea 48 comprueba si las coordenadas XY están fuera del tablero, o si el e
 
 El próximo paso es colocar temporariamente la baldosa del jugador sobre el tablero. Esta baldosa será removida (volviendo a asignar ' ' al espacio del tablero antes de volver de la función).
 
-The player’s tile (either the human player or the computer player) is in tile, but this function will need to know the other player’s tile. If the player’s tile is 'X' then obviously the other player’s tile is 'O', and vice versa.
+La baldosa del jugador (tanto el jugador humano como la computadora) se guarda en la variable baldosa, pero esta función necesitará saber la baldosa del otro jugador. Si la baldosa del jugador es 'X' entonces obviamente la baldosa del otro jugador será 'O' y viceversa.
 
-Finally, if the given XY coordinate ends up as a valid position, isValidMove() returns a list of all the opponent's tiles that would be flipped by this move.
+Finalmente, si la coordenada XY ingresada corresponde a una jugada válida, la función esJugadaVálida() devuelve una lista de todas las baldosas del oponente que serán invertidas con esta jugada.
 
  59.     for direcciónx, direccióny in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
 
-The for loop iterates through a list of lists which represent directions you can move on the game board. The game board is a Cartesian coordinate system with an X and Y direction. There are eight directions you can move: up, down, left, right, and the four diagonal directions. Each of the eight 2-item lists in the list on line 59 is used for moving in one of these directions. The program moves in a direction by adding the first value in the two-item list to the X coordinate, and the second value to the Y coordinate.
+El bucle for itera a través de una lista de listas que representan direcciones en las que puedes moverte en el tablero de juego. El tablero es un sistema de coordenadas cartesianas con direcciones X e Y. Hay ocho direcciones en las que puedes moverte: arriba, abajo, izquierda, derecha y las cuatro diagonales. Cada una de las ocho listas de dos elementos en la lista de la línea 59 se usa para moverse en una de estas direcciones. El programa se mueve en una dirección sumando el primer valor en la lista de dos elementos a la coordenada X, y el segundo valor a la coordenada Y.
 
-Because the X coordinates increase as you go to the right, you can “move” to the right by adding 1 to the X coordinate. So the [1, 0] list adds 1 to the X coordinate and 0 to the Y coordinate, resulting in “movement” to the right. Moving to the left is the opposite: you would subtract 1 (that is, add -1) from the X coordinate.
+Como la coordenada X aumenta a medida que te desplazas hacia la derecha, puedes "moverte" a la derecha sumando 1 a la coordenada X. Entonces, la lista [1, 0] suma 1 a la coordenada X y 0 a la coordenada Y, resultando en un "movimiento" hacia la derecha. Moverse a la izquierda es lo opuesto: en este caso restas 1 (es decir, sumas -1) a la coordenada X.
 
-But to move diagonally, you need to add or subtract to both coordinates. For example, adding 1 to the X coordinate to move right and adding -1 to the Y coordinate to move up would result in moving to the up-right diagonal direction.
+Pero para moverte en diagonal necesitarás sumar o restar a ambas coordenadas. Por ejemplo, sumar 1 a la coordenada X para moverte hacia la derecha y a su vez sumar -1 a la coordenada Y para moverte hacia arriba resulta en un movimiento en diagonal hacia arriba y a la derecha.
 
-Checking Each of the Eight Directions
+Comprobando Cada Una de las Ocho Direcciones
 
-Here is a diagram to make it easier to remember which two-item list represents which direction:
+Aquí hay un diagrama para hacerte más fácil recordar qué lista de dos elementos representa cada dirección:
 
-Figure 15-7: Each two-item list represents one of the eight directions.
+Figura 15-7: Cada lista de dos elementos representa una de las ocho direcciones.
 
  59.     for direcciónx, direccióny in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
  60.         x, y = comienzox, comienzoy
  61.         x += direcciónx # primer paso en la dirección
  62.         y += direccióny # primer paso en la dirección
 
-Line 60 sets an x and y variable to be the same value as xstart and ystart, respectively, using multiple assignment. Change x and y to “move” in the direction that xdirection and ydirection dictate. The xstart and ystart variables will stay the same so that the program can remember which space it originally started from.
+La línea 60 asigna a las variables x e y el mismo valor que comienzos y comienzoy, respectivamente, utilizando asignación múltiple. A continuación se modifican las variables x e y para "moverse" en la dirección determinada por direcciónx y direccióny. Las variables comienzox y comienzoy no se modificarán de modo que el programa pueda recordar desde qué espacio comenzó el movimiento.
 
  63.         if estáEnTablero(x, y) and tablero[x][y] == otraBaldosa:
  64.             # Hay una pieza perteneciente al otro jugador al lado de nustra pieza
@@ -688,9 +688,9 @@ Line 60 sets an x and y variable to be the same value as xstart and ystart, resp
  67.             if not estáEnTablero(x, y):
  68.                 continue
 
-Remember, in order for this to be a valid move, the first step in this direction must be 1) on the board and 2) must be occupied by the other player’s tile. Otherwise there aren’t any of the opponent’s tiles to flip, and a valid move must flip over at least one tile. If these two things aren’t true, line 63’s condition isn’t True and the execution goes back to the for statement for the next direction.
+Recuerda que para que esta movida sea válida, el primer paso en esta dirección debe 1) pertenecer al tablero y 2) estar ocupado por una baldosa del otro jugador. De otro modo no hay ninguna baldosa del oponente para convertir, y una jugada válida debe convertir al menos una baldosa. Si no se cumplen estas dos condiciones, la condición de la línea 63 no es True y la ejecución vuelve a la sentencia for correspondiente a la próxima dirección.
 
-But if the first space does have the other player’s tile, then the program should keep checking in that direction until it reaches one of the player’s tiles. If it reaches past the end of the board though, then line 68 should continue back to the for statement to try the next direction.
+Pero si el primer espacio contiene una baldosa del otro jugador, entonces el programa debe seguir comprobando en esta dirección hasta alcanzar una de las baldosas propias del jugador. Sin embargo, si continúa hasta más allá del tablero, la línea 68 hace que el programa vuelva al comienzo del bucle for y continúe con la siguiente dirección.
 
  69.             while tablero[x][y] == otraBaldosa:
  70.                 x += direcciónx
@@ -700,11 +700,11 @@ But if the first space does have the other player’s tile, then the program sho
  74.             if not estáEnTablero(x, y):
  75.                 continue
 
-The while loop on line 69 keeps looping so that x and y keep going in the current direction as long as it keeps seeing a trail of the other player’s tiles. If line 72 detects that x and y moved off of the board, line 73 breaks out of the for loop and the flow of execution moves to line 74.
+El bucle while de la línea 69 continúa ciclando de forma que x e y continúen moviéndose en la misma dirección siempre que sigan encontrando baldosas del otro jugador. Si la línea 72 detecta que x e y están fuera del tablero, la línea 73 sale del bucle for y el flujo de ejecución se mueve a la línea 74.
 
-What you really want to do is break out of the while loop but continue in the for loop. This is why line 74 rechecks not isOnBoard(x, y) and runs continue, which moves execution to the next direction in line 59’s for statement. Remember, break and continue statements will only break or continue from the innermost loop they are in.
+Lo que realmente quieres hacer aquí es salir del bucle while pero continuar dentro del bucle for. Es por esto que la línea 74 vuelve a comprobar not estáEnTablero(x, y) y ejecuta continue, lo que lleva a la ejecución hasta la próxima dirección en la sentencia for de la línea 59. Recuerda, las sentencias break y continue sólo interrumpen el bucle de nivel más bajo en el que se encuentran.
 
-Finding Out if There are Pieces to Flip Over
+Averiguando si Hay Fichas a Convertir
 
  76.             if tablero[x][y] == baldosa:
  77.                 # Hay fichas a convertir. Caminar en dirección opuesta hasta llegar al casillero original, registrando todas las posiciones en el camino.
