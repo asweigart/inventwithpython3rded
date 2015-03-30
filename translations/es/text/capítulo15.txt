@@ -715,30 +715,30 @@ Averiguando si Hay Fichas a Convertir
  82.                         break
  83.                     baldosasAConvertir.append([x, y])
 
-Line 69’s while loop stops looping when the code has reached the end of the otherTile tiles. Line 76 checks if this space on the board holds one of our tiles. If it does, then the move originally passed to isValidMove() is valid.
+El bucle while de la línea 69 deja de iterar cuando el código ha llegado al final de la secuencia de baldosas otraBaldosa. La línea 76 comprueba si este espacio en el tablero contiene una de nuestras baldosas. Si es así, entonces la jugada pasada originalmente a esJugadaVálida() es válida.
 
-Line 78 loops by moving x and y in reverse back to the original xstart and ystart position by subtracting x and y. Each space is appended to the tilesToFlip list.
+La línea 78 itera moviendo x e y en reversa hacia la posición original comienzox, comienzoy restando pasos del movimiento anterior. Cada espacio es añadido al final de la lista baldosasAConvertir.
 
  85.     tablero[comienzox][comienzoy] = ' ' # restablecer el espacio vacío
  86.     if len(baldosasAConvertir) == 0: # Si no se convirtió ninguna baldosa, la jugada no es válida.
  87.         return False
  88.     return baldosasAConvertir
 
-The for loop that started on line 59 does this in all eight directions. After that loop is done, the tilesToFlip list will contain the XY coordinates all of our opponent’s tiles that would be flipped if the player moved on xstart, ystart. Remember, the isValidMove() function is only checking to see if the original move was valid. It doesn’t actually permanently change the data structure of the game board.
+El bucle for que comienza en la línea 59 repite todo esto en cada una de las ocho direccions. Luego de que el bucle concluye, la lista baldosasAConvertir contendrá las coordenadas XY de todas las baldosas del oponente que serían convertidas si el jugador colocara una baldosa en comienzox, comienzoy. Recuerda que la función esJugadaVálida() sólo comprueba si la jugada original era válida. Esta función no altera permanentemente la estructura del tablero de juego.
 
-If none of the eight directions ended up flipping at least one of the opponent’s tiles, then tilesToFlip will be an empty list. This is a sign that this move is not valid and isValidMove() should return False.
+Si ninguna de las ocho direcciones ha convertido al menos una de las baldosas del oponente, entonces baldosasAConvertir contendrá una lista vacía. Esto quiere decir que esta jugada no es válida, por lo que esJugadaVálida() debe devolver False.
 
-Otherwise, isValidMove() returns tilesToFlip.
+En caso contrario, esJugadaVálida() devuelve baldosasAConvertir.
 
-Checking for Valid Coordinates
+Comprobando la Validez de las Coordenadas
 
  91. def estáEnTablero(x, y):
  92.     # Devuelve True si las coordenadas se encuentran dentro del tablero
  93.     return x >= 0 and x <= 7 and y >= 0 and y <=7
 
-isOnBoard() is a function called from isValidMove(). Calling the function is shorthand for the Boolean expression on line 93 that is True if both x and y are between 0 and 7. This function checks if an X and Y coordinate is actually on the game board. For example, an X coordinate of 4 and a Y coordinate of 9999 would not be on the board since Y coordinates only go up to 7.
+estáEnTablero() es una función llamada desde esJugadaVálida(). Llamar a esta función es una forma de abreviar la expresión Booleana de la línea 93 que devuelve True si tanto x como y están comprendidos entre 0 y 7. Esta función comprueba si un par ordenado X Y corresponde a una posición dentro del tablero. Por ejemplo, una coordenada X de 4 y una coordenada Y de 9999 no se encuentran dentro del tablero ya que las coordenadas Y sólo llegan hasta 7.
 
-Getting a List with All Valid Moves
+Obteniendo una Lista con Todas las Jugadas Válidas
 
  96. def obtenerTableroConJugadasVálidas(tablero, baldosa):
  97.     # Devuelve un nuevo tablero, marcando con "." las jugadas válidas que el jugador puede realizar.
@@ -748,9 +748,9 @@ Getting a List with All Valid Moves
 101.         réplicaTablero[x][y] = '.'
 102.     return réplicaTablero
 
-getBoardWithValidMoves() returns a game board data structure that has '.' characters for all spaces that are valid moves. The periods are for the hints mode that displays a board with all possible moves marked on it.
+obtenerTableroConJugadasVálidas() devuelve una estructura de datos tablero que contiene caracteres '.' en cada espacio que es una jugada válida. Los puntos son para el modo pistas que muestra un tablero donde están marcadas todas las jugadas posibles.
 
-This function creates a duplicate game board data structure (returned by getBoardCopy() on line 98) instead of modifying the one passed to it in the board parameter. Line 100 calls getValidMoves() to get a list of XY coordinates with all the legal moves the player could make. The board copy is marked with periods in those spaces and returned.
+Esta función crea un duplicado de la estructura de datos tablero (devuelto por obtenerCopiaTablero() en la línea 98) en lugar de modificar la que recibe a través del parámetro tablero. La línea 100 llama a obtenerJugadasVálidas() para obtener una lista de coordenadas XY con todas las jugadas válidas que el jugador podría tomar. La copia del tablero se marca con puntos en cada uno de esos espacios y se devuelve.
 
 105. def obtenerJugadasVálidas(tablero, baldosa):
 106.     # Devuelve una lista de listas [x,y] de jugadas válidas para el jugador en el tablero dado.
@@ -762,7 +762,7 @@ This function creates a duplicate game board data structure (returned by getBoar
 112.                 jugadasVálidas.append([x, y])
 113.     return jugadasVálidas
 
-The getValidMoves() function returns a list of two-item lists. These lists hold the XY coordinates for all valid moves for tile’s player for the board data structure in the board parameter.
+La función obtenerJugadasVálidas() devuelve una lista de listas de dos elementos. Estas listas contienen las coordenadas XY de todas las jugadas válidas para el jugador correspondiente al parámetro baldosa y el estado del juego correspondiente al parámetro tablero.
 
 This function uses nested loops (on lines 109 and 110) to check every XY coordinate (all sixty four of them) by calling isValidMove() on that space and checking if it returns False or a list of possible moves (in which case it is a valid move). Each valid XY coordinate is appended to the list in validMoves.
 
