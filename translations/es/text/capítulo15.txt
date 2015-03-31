@@ -764,13 +764,13 @@ Esta función crea un duplicado de la estructura de datos tablero (devuelto por 
 
 La función obtenerJugadasVálidas() devuelve una lista de listas de dos elementos. Estas listas contienen las coordenadas XY de todas las jugadas válidas para el jugador correspondiente al parámetro baldosa y el estado del juego correspondiente al parámetro tablero.
 
-This function uses nested loops (on lines 109 and 110) to check every XY coordinate (all sixty four of them) by calling isValidMove() on that space and checking if it returns False or a list of possible moves (in which case it is a valid move). Each valid XY coordinate is appended to the list in validMoves.
+Esta función usa bucles anidados (en las líneas 109 y 110) para comprobar cada par de coordenadas XY (las 64 combinaciones posibles) llamando a esJugadaVálida() en ese casillero y comprobando si devuelve False o una lista de casilleros (en cuyo caso es una jugada válida). Cada coordenada XY válida es añadida a la lista jugadasVálidas.
 
-The bool() Function
+La Función bool()
 
-The bool() is similar to the int() and str() functions. It returns the Boolean value form of the value passed to it.
+La función bool() es similar a las funciones int() y str(). Devuelve la forma Booleana del valor que recibe.
 
-Most data types have one value that is considered the False value for that data type. Every other value is consider True. For example, the integer 0, the floating point number 0.0, the empty string, the empty list, and the empty dictionary are all considered to be False when used as the condition for an if or loop statement. All other values are True. Try entering the following into the interactive shell:
+La mayoría de los tipos de datos tiene un valor que se considera False para ese tipo de datos. Todos los otros valores se consideran True. Por ejemplo, el entero 0, el número de punto flotante 0.0, la cadena vacía, la lista vacía y el diccionario vacío se consideran False cuando se usan como condición para una sentencia if o una sentencia de bucle. Todos los otros valores son True. Prueba ingresar lo siguiente en la consola interactiva:
 
 >>> bool(0)
 False
@@ -784,18 +784,18 @@ False
 False
 >>> bool(1)
 True
->>> bool('Hello')
+>>> bool('Hola')
 True
 >>> bool([1, 2, 3, 4, 5])
 True
 >>> bool({'spam':'cheese', 'fizz':'buzz'})
 True
 
-Imagine that any statement’s condition is placed inside a call to bool(). That is, conditions are automatically interpreted as Boolean values. This is why the condition on line 111 works correctly. The call to the isValidMove() function either returns the Boolean value False or a non-empty list.
+Imagina que la condición de cualquier sentencia se colocase dentro de la llamada a bool(). Es decir, las condiciones son automáticamente interpretadas como valores Booleanos. Es por esto que la condición en la línea 111 funciona correctamente. La llamada a la función esJugadaVálida() devuelve el valor Booleano False o una lista no vacía.
 
-If you imagine that the entire condition is placed inside a call to bool(), then line 111’s condition False becomes bool(False) (which, of course, evaluates to False). And a condition of a non-empty list placed as the parameter to bool() will return True.
+Si te imaginas que la condición entera se coloca dentro de una llamada a bool(), entonces la condición False de la línea 111 se convierte en bool(False) (lo cuál, por supuesto, se evalúa a False). Y una condición de una lista no vacía colocada como el parámetro de bool devolverá True.
 
-Getting the Score of the Game Board
+Obteniendo el Puntaje del Tablero de Juego
 
 116. def obtenerPuntajeTablero(tablero):
 117.     # Determina el puntaje contando las piezas. Devuelve un diccionario con claves 'X' y 'O'.
@@ -809,9 +809,9 @@ Getting the Score of the Game Board
 125.                 puntajeo += 1
 126.     return {'X':puntajex, 'O':puntajeo}
 
-The getScoreOfBoard() function uses nested for loops to check all 64 spaces on the board (8 rows times 8 columns per row is 64 spaces) and see which tile (if any) is on them. For each 'X' tile, the code increments xscore on line 123. For each 'O' tile, the code increments oscore on line 125
+La función obtenerPuntajeTablero() usa bucles for anidados para comprobar los 64 espacios del tablero (8 filas multiplicadas por 8 columnas nos dan 64 espacios) y ver qué baldosas (si es que hay alguna) están sobre ellos. Por cada baldosa 'X', el código aumenta puntajex en la línea 123. Por cada baldosa 'X', el código incrementa puntajeo en la línea 125.
 
-Getting the Player’s Tile Choice
+Obteniendo la Opción de Baldosa del Jugador
 
 129. def ingresarBaldosaJugador():
 130.     # Permite al jugador elegir que baldosa desea ser.
