@@ -1,124 +1,124 @@
-    Chapter 4
-    GUESS THE NUMBER
+    Kapitel 4
+    GISSA TALET
 
-Topics Covered In This Chapter:
+Ämnen som behandlas i detta kapitel:
 
-•   import statements
-•   Modules
-•   while statements
-•   Conditions
-•   Blocks
-•   Booleans
-•   Comparison operators
-•   The difference between = and ==
-•   if statements
-•   The break keyword
-•   The str()and int()and float() functions
-•   The random.randint() function
+•   import-satser
+•   Moduler
+•   while-satser
+•   Villkor
+•   Block
+•   Booleska värden
+•   Jämförelseoperatorer
+•   Skillnaden mellan = och ==
+•   if-satser
+•   Nyckelordet break
+•   Funktionerna str(), int() och float()
+•   Funktionen random.randint()
 
-In this chapter, you’re going to make a “Guess the Number” game. The computer will think of a random number from 1 to 20, and ask you to guess it. The computer will tell you if each guess is too high or too low. You win if you can guess the number within six tries.
+I det här kapitlet så kommer du att skapa ett "Gissa talet"-spel. Datorn kommer att tänka på ett tal mellan 1 och 20, och be dig att försöka gissa talet. Sedan kommer datorn att tala om ifall det tal du gissat på är för högt eller för lågt. Du vinner om du gissar rätt på högst sex försök.
 
-This is a good game to code because it uses random numbers, loops, and input from the user in a short program. You’ll learn how to convert values to different data types, and why you would need to do this. Since this program is a game, we’ll call the user the player. But “user” would be correct too.
+Det här är ett bra spel att koda eftersom det använder både slumptal, loopar och indata från användaren samtidigt som programmet är kort. Du får lära dig att konvertera värden till andra datatyper, och varför detta ibland är nödvändigt. Eftersom det här programmet är ett spel så kallar vi användaren för spelaren. Men "användaren" hade också varit korrekt.
 
-Sample Run of Guess the Number
+Provköring av Gissa talet
 
-Here’s what the program looks like to the player when run. The text that the player types in is in bold.
+Så här ser det ut för spelaren när programmet körs. Texten med fet stil är det som spelaren skriver in. 
 
-Hello! What is your name?
+Hej! Vad heter du?
 Albert
-Well, Albert, I am thinking of a number between 1 and 20.
-Take a guess.
+Okej, Albert, jag tänker på ett tal mellan 1 och 20.
+Gör en gissning.
 10
-Your guess is too high.
-Take a guess.
+Du gissade på ett för högt tal.
+Gör en gissning.
 2
-Your guess is too low.
-Take a guess.
+Du gissade på ett för lågt tal.
+Gör en gissning.
 4
-Good job, Albert! You guessed my number in 3 guesses!
+Bra jobbat, Albert! Du gissade rätt på 3 gissningar!
 
-Source Code of Guess the Number
+Gissa talets källkod
 
-Open a new file editor window by clicking on the File ► New Window. In the blank window that appears, type in the source code and save it as guess.py. Then run the program by pressing F5. When you enter this code into the file editor, be sure to pay attention to the spacing at the front of some of the lines. Some lines have four or eight spaces of indentation.
+Öppna ett nytt fönster i fileditorn genom att klicka på File ► New File. Skriv in källkoden i det tomma fönster som öppnas och spara den som gissa.py. Kör sedan programmet genom att trycka på F5. När du skriver in koden i fileditorn, var uppmärksam på mellanslagen framför vissa rader. En del rader är indragna med fyra eller åtta mellanslag.
 
-IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.2” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
+OBS, VIKTIGT! Programmen i den här boken kan bara köras med Python 3, inte med Python 2. När IDLE-fönstret öppnas, så ska det stå något i stil med “Python 3.4.2” längst upp. Du kan ha både Python 2 och Python 3 installerat samtidigt. För att ladda ner Python 3, gå till https://python.org/download/.
 
-If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/guess.
+Om du får felmeddelanden när du försöker köra koden, så jämför den kod du skrivit in med bokens kod med diff-verktyget på adressen http://invpy.com/diff/gissa.
 
-guess.py
+gissa.py
 
- 1. # This is a guess the number game.
+ 1. # Det här spelet går ut på att gissa rätt tal.
  2. import random
- 3.
- 4. guessesTaken = 0
- 5.
- 6. print('Hello! What is your name?')
- 7. myName = input()
- 8.
- 9. number = random.randint(1, 20)
-10. print('Well, ' + myName + ', I am thinking of a number between 1 and 20.')
-11.
-12. while guessesTaken < 6:
-13.     print('Take a guess.') # There are four spaces in front of print.
-14.     guess = input()
-15.     guess = int(guess)
-16.
-17.     guessesTaken = guessesTaken + 1
-18.
-19.     if guess < number:
-20.         print('Your guess is too low.') # There are eight spaces in front of print.
+ 3. 
+ 4. antalGissningar = 0
+ 5. 
+ 6. print('Hej! Vad heter du?')
+ 7. namn = input()
+ 8. 
+ 9. tal = random.randint(1, 20)
+10. print('Okej, ' + namn + ', jag tänker på ett tal mellan 1 och 20.')
+11. 
+12. while antalGissningar < 6:
+13.     print('Gör en gissning.') # Det är fyra mellanslag före print.
+14.     gissning = input()
+15.     gissning = int(gissning)
+16. 
+17.     antalGissningar = antalGissningar + 1
+18. 
+19.     if gissning < tal:
+20.         print('Du gissade på ett för lågt tal.') # Det är åtta mellanslag före print.
 21.
-22.     if guess > number:
-23.         print('Your guess is too high.')
-24.
-25.     if guess == number:
+22.     if gissning > tal:
+23.         print('Du gissade på ett för högt tal.')
+24. 
+25.     if gissning == tal:
 26.         break
-27.
-28. if guess == number:
-29.     guessesTaken = str(guessesTaken)
-30.     print('Good job, ' + myName + '! You guessed my number in ' + guessesTaken + ' guesses!')
-31.
-32. if guess != number:
-33.     number = str(number)
-34.     print('Nope. The number I was thinking of was ' + number)
+27. 
+28. if gissning == tal:
+29.     antalGissningar = str(antalGissningar)
+30.     print('Bra jobbat, ' + namn + '! Du gissade rätt på ' + antalGissningar + ' gissningar!')
+31. 
+32. if gissning != tal:
+33.     tal = str(tal)
+34.     print('Nix. Talet jag tänkte på var ' + tal)
 
-import statements
+import-satser
 
-1. # This is a guess the number game.
+1. # Det här spelet går ut på att gissa rätt tal.
 2. import random
 
-The first line is a comment. Remember that Python will ignore everything after the # sign. This just reminds us what this program does.
+Första raden är en kommentar. Kom ihåg att Python ignorerar allt som följer efter tecknet #. Den här raden bara påminner oss om vad programmet gör.
 
-The second line is an import statement. Remember, statements are instructions that perform some action but don’t evaluate to a value like expressions do. You’ve already seen statements: assignment statements store a value in a variable.
+Andra raden är en import-sats. Du kanske minns att satser är instruktioner som utför något, men som till skillnad från uttryck inte utvärderas till något värde. Du har sett satser tidigare: tilldelningssatser lagrar ett värde i en variabel.
 
-While Python includes many built-in functions, some functions exist in separate programs called modules. You can use these functions by importing their modules into your program with an import statement.
+Även om Python har många inbyggda funktioner så ligger vissa av funktionerna i separata program som kallas för moduler. Du kan använda de här funktionerna genom att importera modulerna till ditt program med en import-sats.
 
-Line 2 imports the module named random so that the program can call random.randint(). This function will come up with a random number for the user to guess.
+Rad 2 importerar en modul kallad random, så att programmet kan anropa funktionen random.randint(). Den här funktionen returnerar ett slumptal som användaren ska försöka gissa. 
 
-4. guessesTaken = 0
+4. antalGissningar = 0
 
-Line 4 creates a new variable named guessesTaken. You’ll store the number of guesses the player has made in this variable. Since the player hasn’t made any guesses at this point in the program, store the integer 0 here.
+På rad 4 skapas en ny variabel kallad antalGissningar. Du lagrar antalet gissningar som spelaren har gjort i denna variabel. Eftersom spelaren inte har gjort några gissningar så här långt i programmet, så sparas heltalet 0 här.
 
-6. print('Hello! What is your name?')
-7. myName = input()
+6. print('Hej! Vad heter du?')
+7. namn = input()
 
-Lines 6 and 7 are the same as the lines in the Hello World program that you saw in Chapter 3. Programmers often reuse code from their other programs to save themselves work.
+Rad 6 och 7 är samma rader som i Hejsan världen-programmet i kapitel 3. Programmerare återanvänder ofta kod från andra program för att spara tid. 
 
-Line 6 is a function call to the print() function. Remember that a function is like a mini-program inside your program. When your program calls a function, it runs this mini-program. The code inside the print() function displays the string argument you passed it on the screen.
+Rad 6 är ett funktionsanrop till print()-funktionen. Kom ihåg att en funktion är som ett mini-program inuti ditt program. När ditt program anropar en funktion så körs detta mini-program. Koden inuti print()-funktionen visar det sträng-argument som du skickat till den på skärmen.
 
-Line 7 lets the user type in their name and stores it in the myName variable. (Remember, the string might not really be the player’s name. It’s just whatever string the player typed. Computers are dumb and just follow their instructions no matter what.)
+Rad 7 låter användaren skriva in sitt namn och sparar det i variabeln namn. (Som du nog minns så behöver strängen inte innehålla spelarens namn. Utan den innehåller det som spelaren skriver in, oavsett vad. Datorer är dumma och följer bara de instruktioner vi ger dem.)
 
-The random.randint() Function
+Funktionen random.randint()
 
-9. number = random.randint(1, 20)
+9. tal = random.randint(1, 20)
 
-Line 9 calls a new function named randint() and stores the return value in number. Remember, function calls can be part of expressions because they evaluate to a value.
+Rad 9 anropar en ny funktion kallad randint() och sparar returvärdet i tal. Kom ihåg att funktionsanrop kan ingå i uttryck eftersom de utvärderas till ett värde. 
 
-The randint() function is provided by the random module, so you must precede it with random. (don’t forget the period!) to tell Python that the function randint() is in the random module.
+Funktionen randint() ingår i modulen random, så du måste skriva random. (glöm inte punkten!) före för att tala om för Python att randint()-funktionen finns i random-modulen.
 
-The randint() function will return a random integer between (and including) the two integer arguments you pass to it. Line 9 passes 1 and 20 between the parentheses separated by commas that follow the function name. The random integer that randint() returns is stored in a variable named number; this is the secret number the player is trying to guess.
+Funktionen randint() returnerar ett slumpmässigt heltal mellan (och inklusive) de två heltal du skickar med som argument. På rad 9 skickas 1 och 20, med komma emellan, med mellan de parenteser som följer efter funktionsnamnet. Det slumpmässiga heltalet som randint() returnerar sparas i en variabel kallad tal; detta är det hemliga tal som spelaren ska försöka gissa.
 
-Just for a moment, go back to the interactive shell and enter import random to import the random module. Then enter random.randint(1, 20) to see what the function call evaluates to. It will return an integer between 1 and 20. Repeat the code again and the function call will return a different integer. The randint() function returns random integer each time, just as rolling dice you’ll get a random number each time:
+För ett ögonblick, gå tillbaka till den interaktiva kommandotolken och skriv in import random för att importera random-modulen. Skriv sedan in random.randint(1, 20) för att se vad funktionsanropet utvärderas till. Funktionen kommer att returnerar ett heltal mellan 1 och 20. Upprepa koden igen och funktionsanropet kommer att returnera ett annat heltal. Funktionen randint() returnerar ett slumpmässigt heltal varje gång, ungefär som när du kastar en tärning:
 
 >>> import random
 >>> random.randint(1, 20)
@@ -132,69 +132,69 @@ Just for a moment, go back to the interactive shell and enter import random to i
 >>> random.randint(1, 20)
 7
 
-Use the randint() function when you want to add randomness to your games. You’ll use randomness in many games. (Think of how many board games use dice.)
+Använd funktionen randint() när du vill ha slumpmässighet i dina spel. Du kommer att använda slumpen i många spel. (Tänk bara hur många brädspel som använder tärningar.)
 
-You can also try different ranges of numbers by changing the arguments. For example, enter random.randint(1, 4) to only get integers between 1 and 4 (including both 1 and 4). Or try random.randint(1000, 2000) to get integers between 1000 and 2000.
+Du kan också testa olika intervall genom att ändra funktionsargumenten. Till exempel kan du skriva in random.randint(1, 4) för att få slumptal endast mellan 1 och 4 (inklusive både 1 och 4). Eller prova med random.randint(1000, 2000) för att få slumptal mellan 1000 och 2000.
 
-For example, enter the following into the interactive shell. The results you get when you call the random.randint() function will probably be different (it is random, after all).
+Till exempel kan du prova att mata in följande kod i den interaktiva tolken. Du kommer förmodligen få andra resultat än de nedan från random.randint() (det är ju slumptal som returneras).
 
 >>> random.randint(1, 4)
 3
 >>> random.randint(1000, 2000)
 1294
 
-You can change the game’s code slightly to make the game behave differently. Try changing line 9 and 10 from this:
+Genom att ändra spelets kod något kan du få spelet att bete sig på ett annat sätt. Prova att ändra rad 9 och 10 från det här:
 
- 9. number = random.randint(1, 20)
-10. print('Well, ' + name + ', I am thinking of a number between 1 and 20.')
+ 9. tal = random.randint(1, 20)
+10. print('Okej, ' + namn + ', jag tänker på ett tal mellan 1 och 20.')
 
-…into these lines:
+...till det här:
 
- 9. number = random.randint(1, 100)
-10. print('Well, ' + name + ', I am thinking of a number between 1 and 100.')
+ 9. tal = random.randint(1, 100)
+10. print('Okej, ' + namn + ', jag tänker på ett tal mellan 1 och 100.')
 
-And now the computer will think of an integer between 1 and 100 instead of 1 and 20. Changing line 9 will change the range of the random number, but remember to change line 10 so that the game also tells the player the new range instead of the old one.
+Nu kommer datorn att tänka på ett tal mellan 1 och 100 i stället för mellan 1 och 20. Ändringen på rad 9 ändrar intervallet för slumptalet, men kom ihåg att även ändra rad 10 så att spelet skriver ut det nya intervallet och inte det gamla.
 
-Welcoming the Player
+Att välkomna spelaren
 
-10. print('Well, ' + myName + ', I am thinking of a number between 1 and 20.')
+10. print('Okej, ' + namn + ', jag tänker på ett tal mellan 1 och 20.')
 
-On line 10 the print() function welcomes the player by name, and tells them that the computer is thinking of a random number.
+På rad 10 så används print()-funktionen för att välkomna spelaren med namn och tala om att datorn tänker på ett slumptal.
 
-It may look like there’s more than one string argument in line 10, but look at the line carefully. The plus signs concatenate the three strings to evaluate down to one string. And that one string is the argument passed to the print() function. If you look closely, you’ll see that the commas are inside the quotes and part of the strings themselves.
+Det kanske ser ut som att fler än ett sträng-argument skickas till funktionen, men titta noga på koden. Plustecknet slår ihop de tre strängarna så att de utvärderas till en enda sträng. Och det är den strängen som skickas som argument till print()-funktionen. Om du tittar riktigt noga så ser du att kommatecknen står innanför citattecknen och alltså ingår i själva strängarna.
 
-Loops
+Loopar
 
-12. while guessesTaken < 6:
+12. while antalGissningar < 6:
 
-Line 12 is a while statement, which indicates the beginning of a while loop. Loops let you execute code over and over again. However, you need to learn a few other concepts first before learning about loops. Those concepts are blocks, Booleans, comparison operators, conditions, and the while statement.
+Rad 12 är en while-sats, som indikerar början på en while-loop. Loopar används för att köra kod om och om igen. Men innan du lär dig om loopar behöver du känna till några andra koncept. Dessa koncept är block, booleska variabler, jämförelseoperatorer, villkor och while-satser.
 
-Blocks
+Block
 
-Several lines of code can be grouped together in a block. Every line in a block of code has the same minimum amount of indentation. You can tell where a block begins and ends by looking at the number of spaces at the front of the lines. This is the line’s indentation.
+Flera rader kod kan grupperas i ett block. Varje rad i ett kodblock är indragen minst lika mycket som de andra raderna. Du kan se var ett block börjar och slutar genom att se på antalet mellanslag före raden. Det är detta som är radens indrag, eller indentering.
 
-A block begins when a line’s indentation increases (usually by four spaces). Any following line also indented by four spaces is part of the block. The block ends when there’s a line of code with the same indentation before the block started. This means blocks can exist within other blocks. Figure 4-1 is a diagram of code with the blocks outlined and numbered.
+Ett block börjar när indenteringen av en rad ökar (vanligen med fyra mellanslag). Varje följande rad som också är indragen med fyra mellanslag ingår i blocket. Blocket slutar där det kommer en rad som är indragen lika mycket som koden före blocket. Det här betyder att block kan finnas inuti andra block. I koden i Figur 4-1 har de olika blocken markerats och numrerats. 
 
-In Figure 4-1, line 12 has no indentation and isn’t inside any block. Line 13 has an indentation of four spaces. Since this indentation is larger than the previous line’s indentation, a new block has started. This block is labeled (1) in Figure 4-1. This block will continue until a line with zero spaces (the original indentation before the block began). Blank lines are ignored.
+I Figur 4-1 har rad 12 inget indrag, och ingår därmed inte i något block. Rad 13 är indragen med fyra mellanslag. Eftersom detta indrag är större än föregående rads, så påbörjar denna rad ett nytt block. Detta block är märkt med (1) i Figur 4-1. Blocket fortsätter fram till den rad vars indentering är noll mellanslag (det ursprungliga indraget innan blocket började). Blankrader ignoreras.
 
-Line 20 has an indentation of eight spaces. Eight spaces is more than four spaces, which starts a new block. This block is labeled (2) in Figure 4-1. This block is inside of another block.
+Rad 20 är indragen me åtta mellanslag. Åtta mellanslag är mer än fyra mellanslag, så här börjar ett nytt block. Blocket är märkt med (2) i Figur 4-1. Detta block ligger inuti ett annat block.
 
-Figure 4-1: Blocks and their indentation. The black dots represent spaces.
+Figur 4-1: Block och deras indrag. De svarta prickarna motsvarar mellanslag.
 
-Line 22 has only four spaces. Because the indentation has decreased, you know that block has ended. Line 20 is the only line in that block. Line 22 is in the same block as the other lines with four spaces.
+Rad 22 är bara indragen med fyra mellanslag. Eftersom indenteringen har minskat så vet du att det föregående blocket är slut. Rad 20 är den enda raden i det blocket. Rad 22 ingår i samma block som de andra raderna som är indragna med fyra mellanslag.
 
-Line 23 increases the indentation to eight spaces, so again a new block has started. It is labeled (3) in Figure 4-1.
+På rad 23 ökas indenteringen till åtta mellanslag, så återigen påbörjas ett nytt block. Det är märkt med (3) i Figur 4-1.
 
-To recap, line 12 isn’t in any block. Lines 13 to 23 all in one block marked (1). Line 20 is in a block in a block marked as (2). Line 23 is the only line in another block in a block marked as (3).
+För att repetera, rad 12 ingår inte i något block. Rad 13 till 23 ligger i ett block märkt (1). Rad 20 utgör ett block inuti ett annat block och är markerat med (2). Rad 23 är enda raden i ytterligare ett block som ligger i ett annat block, och markeras med (3).
 
-The Boolean Data Type
+Datatypen Boolean
 
-The Boolean data type has only two values: True or False. These values must be typed with a capital “T” and “F”. The rest of the value’s name must be in lowercase. You will use Boolean values (called bools for short) with comparison operators to form conditions. (Conditions are explained later.)
+Datatypen Boolean kan bara ha två olika värden: True och False (sant och falskt). De här värdena måste skrivas med stort "T" respektive "F". Resten av namnen måste skrivas med små bokstäver. Du kommer att använda booleska värden tillsammans med jämförelseoperatorer för att bilda villkor. (Villkor förklaras senare.)
 
-For example, try storing the Boolean values in variables:
+Prova till exempel att lagra booleska värden i variabler:
 
->>> spam = True
->>> eggs = False
+>>> skräp = True
+>>> ägg = False
 
 The data types that have been introduced so far are integers, floats, strings, and now bools. Every value in Python belongs to one data type.
 
