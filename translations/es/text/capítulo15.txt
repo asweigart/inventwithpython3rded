@@ -821,7 +821,7 @@ Obteniendo la Opción de Baldosa del Jugador
 134.         print('¿Deseas ser X ó O?')
 135.         baldosa = input().upper()
 
-This function asks the player which tile they want to be, either 'X' or 'O'. The for loop will keep looping until the player types in 'X' or 'O'.
+Esta función pregunta al jugador qué baldosa quiere ser, 'X' u 'O'. El bucle for continuará ciclando hasta que el jugador escriba 'X' u 'O'.
 
 137.     #  El primer elemento en la lista es la baldosa del juegador, el segundo es la de la computadora.
 138.     if baldosa == 'X':
@@ -829,9 +829,9 @@ This function asks the player which tile they want to be, either 'X' or 'O'. The
 140.     else:
 141.         return ['O', 'X']
 
-The enterPlayerTile() function then returns a two-item list, where the player’s tile choice is the first item and the computer’s tile is the second. Line 252, which calls enterPlayerTile(), uses multiple assignment to put these two returned items in two variables.
+La función ingresarBaldosaJugador() devuelve una lista de dos elementos, donde la selección de baldosa del jugador es el primer elemento y la baldosa de la computadora es el segundo. La línea 252, que llama a ingresarBaldosaJugador(), usa asignación múltiple para colocar estos dos elementos devueltos en dos variables.
 
-Determining Who Goes First
+Determinando Quién Comienza
 
 144. def quiénComienza():
 145.     # Elije al azar qué jugador comienza.
@@ -840,27 +840,27 @@ Determining Who Goes First
 148.     else:
 149.         return 'jugador'
 
-The whoGoesFirst() function randomly selects who goes first, and returns either the string 'computer' or the string 'player'.
+La función quiénComienza() decide aleatoriamente quién tomará el primer turno, y devuelve la cadena 'computadora' o la cadena 'jugador'.
 
-Asking the Player to Play Again
+Preguntando al Jugador si Quiere Jugar de Nuevo
 
 152. def jugarDeNuevo():
 153.     # Esta función devuelve True si el jugador quiere jugar de nuevo, de lo contrario devuelve False.
 154.     print('¿Quieres jugar de nuevo? (sí o no)')
 155.     return input().lower().startswith('s')
 
-The playAgain() function was also in previous games. If the player types in a string that begins with 'y', then the function returns True. Otherwise the function returns False.
+La función jugarDeNuevo() ha estado presente en juegos anteriores. Si el jugador escribe una cadena que comienza con 's', entonces la función devuelve True. De otro modo la función devuelve False.
 
-Placing Down a Tile on the Game Board
+Colocando una Ficha en el Tablero de Juego
 
 158. def hacerJugada(tablero, baldosa, comienzox, comienzoy):
 159.     # Coloca la baldosa sobre el tablero en comienzox, comienzoy, y convierte cualquier baldosa del oponente.
 160.     # Devuelve False si la jugada es inválida, True si es válida.
 161.     baldosasAConvertir = esJugadaVálida(tablero, baldosa, comienzox, comienzoy)
 
-makeMove() is called when you want to place a tile on the board and flip the other tiles according to the rules of Reversi. This function modifies the board data structure that is passed in-place. Changes made to the board variable (because it is a list reference) will be made to the global scope.
+hacerJugada() es llamada cuando quieres colocar una baldosa en el tablero y convertir otras fichas de acuerdo con las reglas del reversi. Esta función modifica en el lugar la estructura de datos tablero que recibe. Es decir, los cambios realizados a la variable tablero (porque es una referencia a una lista) serán visibles en el entorno global.
 
-Most of the work is done by isValidMove(), which returns a list of XY coordinates (in a two-item list) of tiles that need to be flipped. (Remember, if the xstart and ystart arguments point to an invalid move, then isValidMove() will return the Boolean value False.)
+La mayor parte del trabajo es realizado por esJugadaVálida(), que devuelve una lista de coordenadas XY (en forma de listas de dos elementos) de baldosas que deben ser convertidas. (Recuerda que si los argumentos comienzox y comienzoy señalan una movida inválida, entonces esJugadaVálida() devolverá el valor Booleano False.)
 
 163.     if baldosasAConvertir == False:
 164.         return False
