@@ -899,7 +899,6 @@ Determinando si un Espacio está sobre una Esquina
 La función esEsquina() devuelve True si las coordenadas corresponden a uno de los espacios de las esquinas con los valores (0,0), (7,0), (0,7) or (7,7). De lo contrario esEsquina() devuelve False.
 
 Obteniendo la Movida del Jugador
-Getting the Player’s Move
 
 188. def obtenerJugadaJugador(tablero, baldosaJugador):
 189.     # Permite al jugador tipear su jugada.
@@ -918,9 +917,9 @@ La variable constante CIFRAS1A8 es la lista ['1', '2', '3', '4', '5', '6', '7', 
 197.         if jugada == 'pistas':
 198.             return 'pistas'
 
-The while loop will keep looping until the player has typed in a valid move. Lines 195 to 198 check if the player wants to quit or toggle hints mode, and return the string 'quit' or 'hints', respectively. The lower() method is called on the string returned by input() so the player can type 'HINTS' or 'Quit' but still have the command understood.
+El bucle while continuará iterando hasta que el jugador haya ingresado una jugada válida. Las líneas 195 a 198 comprueban si el jugador quiere salir o activar/desactivar las pistas, y devuelve en esos casos la cadena 'salir' o 'pistas' respectivamente. El método lower() se llama sobre la cadena devuelta por input(), de modo que el comando será entendido aunque si el jugador escriba 'PISTAS' o 'Salir'.
 
-The code that called getPlayerMove() will handle what to do if the player wants to quit or toggle hints mode.
+El código que llama a obtenerJugadaJugador() determinará qué hacer si el jugador quiere salir o activar/desactivar las pistas.
 
 200.         if len(jugada) == 2 and jugada[0] in CIFRAS1A8 and jugada[1] in CIFRAS1A8:
 201.             x = int(jugada[0]) - 1
@@ -930,43 +929,43 @@ The code that called getPlayerMove() will handle what to do if the player wants 
 205.             else:
 206.                 break
 
-The game is expecting that the player would have typed in the XY coordinates of their move as two numbers without anything between them. Line 200 first checks that the size of the string the player typed in is 2. After that, it also checks that both move[0] (the first character in the string) and move[1] (the second character in the string) are strings that exist in DIGITS1TO8.
+El juego espera que el jugador ingrese las coordenadas XY de su jugada en forma de dos números sin otro caracter entre ellos. La línea 200 comprueba primero que la longitud de la cadena ingresada sea 2. Luego de esto comprueba también que tanto jugada[0] (el primer caracter de la cadena) como jugada[1] (el segundo caracter de la cadena) sean cadenas que existen en CIFRAS1A8.
 
-Remember that the game board data structures have indexes from 0 to 7, not 1 to 8. The code prints 1 to 8 when the board is displayed in drawBoard() because non-programmers are used to numbers beginning at 1 instead of 0. So to convert the strings in move[0] and move[1] to integers, lines 201 and 202 subtract 1.
+Recuerda que las estructuras de datos tableros tienen índices que van de 0 a 7, no de 1 a 8. El programa imprime 1 a 8 al mostrar el tablero en la función dibujarTablero() porque los no-programadores están acostumbrados a comenzar a contar desde 1 y no desde 0. Entonces para convertir las cadenas en move[0] y move[1] a enteros, las líneas 201 y 202 restan 1 al valor ingresado.
 
-Even if the player typed in a correct move, the code still needs to check that the move is allowed by the rules of Reversi. This is done by isValidMove() which is passed the game board data structure, the player’s tile, and the XY coordinates of the move.
+Incluso si el jugador ha ingresado una coordenada dentro del tablero, el código necesita comprobar que las reglas de Reversi permitan esa jugada. Esto se hace a través de esJugadaVálida() que recibe la estructura de datos tablero, la baldosa del jugador y las coordenadas XY de la jugada.
 
-If isValidMove() returns False, then line 204’s continue statement executes. The execution will then go back to the beginning of the while loop and asks the player for a valid move again.
+Si esJugadaVálida() devuelve False, se ejecuta la sentencia continue de la línea 204. Entonces la ejecución vuelve al principio del bucle while y vuelve a solicitar al jugador que ingrese una jugada válida.
 
-Otherwise, the player did type in a valid move and the execution needs to break out of the while loop.
+En caso contrario, significa que el jugador ha ingresado una jugada válida y la ejecución debe salir (break) del bucle while.
 
 207.         else:
 208.             print('Esta no es una jugada válida. Ingresa la coordenada x (1-8), luego la coordenada y (1-8).')
 209.             print('Por ejemplo, 81 corresponde a la esquina superior derecha.')
 
-If the if statement’s condition on line 200 was False, then the player didn’t type in a valid move. Lines 208 and 209 instructs them on how to correctly type in moves. Afterwards, the execution moves back to the while statement on line 192 because line 209 isn’t only the last line in the else-block, but also the last line in the while-block.
+Si la condición de la sentencia if en la línea 200 fuese False, significaría que el jugador no ha ingresado una jugada válida. Las líneas 208 y 209 le explican cómo ingresar jugadas correctamente. Luego, la ejecución regresa a la sentencia while de la línea 192 pues la línea 209 no sólo es la última línea del bloque else, sino que también es la última línea del bloque while.
 
 211.     return [x, y]
 
-Finally, getPlayerMove() returns a two-item list with the XY coordinates of the player’s valid move.
+Finalmente, obtenerJugadaJugador() devuelve una lista de dos elementos con las coordenadas XY de la jugada válida del jugador.
 
-Getting the Computer’s Move
+Obteniendo la Jugada de la Computadora
 
 214. def obtenerJugadaComputadora(tablero, baldosaComputadora):
 215.     # Dado un tablero y la baldosa de la computadora, determinar dónde
 216.     # jugar y devolver esa jugada como una lista [x, y].
 217.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosaComputadora)
 
-getComputerMove() and is where the AI algorithm is implemented. Normally you use the results from getValidMoves() for hints mode. Hints mode will print '.' period characters on the board to show the player all the potential moves they can make.
+obtenerJugadaComputadora() es donde se implementa el algoritmo de IA. Normalmente se usan los resultados de obtenerJugadasVálidas() del modo pistas. El modo pistas imprimirá caracteres punto '.' sobre el tablero para mostrar al jugador todas las jugadas entre las cuales puede elegir.
 
-But if getValidMoves() is called with the computer AI’s tile (in computerTile), it will also find all the possible moves that the computer can make. The AI will select the best move from this list.
+Pero si llamamos a obtenerJugadasVálidas() con la baldosa de la computadora como argumento (en baldosaComputadora), la función encontrará todas las posibles jugadas disponibles para la computadora. La IA seleccionará su jugada como la mejor de esta lista.
 
 219.     # ordena al azar el orden de las jugadas posibles
 220.     random.shuffle(jugadasPosibles)
 
-First, random.shuffle() will randomize the order of moves in the possibleMoves list. Why we want to shuffle the possibleMoves list will be explained later, but first let’s look at the algorithm.
+Primero, random.shuffle() coloca en orden aleatorio las jugadas en la lista jugadasPosibles. Explicaremos después nuestra motivación para desordenar la lista jugadasPosibles, pero primero echemos un vistazo al algoritmo.
 
-Corner Moves are the Best Moves
+Jugar en la Esquina es la Mejor Jugada
 
 222.     # siempre jugar en una esquina si está disponible.
 223.     for x, y in jugadasPosibles:

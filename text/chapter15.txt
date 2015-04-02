@@ -956,7 +956,7 @@ Getting the Computer’s Move
 216.     # move and return that move as a [x, y] list.
 217.     possibleMoves = getValidMoves(board, computerTile)
 
-getComputerMove() and is where the AI algorithm is implemented. Normally you use the results from getValidMoves() for hints mode. Hints mode will print '.' period characters on the board to show the player all the potential moves they can make.
+getComputerMove() is where the AI algorithm is implemented. Normally you use the results from getValidMoves() for hints mode. Hints mode will print '.' period characters on the board to show the player all the potential moves they can make.
 
 But if getValidMoves() is called with the computer AI’s tile (in computerTile), it will also find all the possible moves that the computer can make. The AI will select the best move from this list.
 
