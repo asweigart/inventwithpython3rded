@@ -991,7 +991,7 @@ Get a List of the Best Scoring Moves
 
 If there are no corner moves, loop through the entire list and find out which move results in the highest score. Line 229’s for loop will set x and y to every move in possibleMoves. bestMove is set to the highest scoring move the code has found so far, and bestScore is set to the best move’s score.
 
-When the code in the loop finds a move that scores higher than bestScore, line 233 to 235 will store that move and score as the new values in bestMove and bestScore.
+When the code in the loop finds a move that scores higher than bestScore, lines 233 to 235 will store that move and score as the new values in bestMove and bestScore.
 
 Simulate All Possible Moves on Duplicate Board Data Structures
 
@@ -999,7 +999,7 @@ Before simulating a move, line 230 makes a duplicate game board data structure b
 
 Then line 231 calls makeMove(), passing the duplicate board (stored in dupeBoard) instead of the real board. This will simulate what would happen on the real board if this move was made. makeMove() will handle placing the computer’s tile and the flipping the player’s tiles on the duplicate board.
 
-Line 232 calls getScoreOfBoard()with the duplicate board, which returns a dictionary where the keys are 'X' and 'O', and the values are the scores.
+Line 232 calls getScoreOfBoard() with the duplicate board, which returns a dictionary where the keys are 'X' and 'O', and the values are the scores.
 
 For example, pretend that getScoreOfBoard() returns the dictionary {'X':22, 'O':8} and computerTile is 'X'. Then getScoreOfBoard(dupeBoard)[computerTile] would evaluate to {'X':22, 'O':8}['X'], which would then evaluate to 22. If 22 is larger than bestScore, bestScore is set to 22 and bestMove is set to the current x and y values.
 

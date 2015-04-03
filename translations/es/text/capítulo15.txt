@@ -972,11 +972,11 @@ Jugar en la Esquina es la Mejor Jugada
 224.         if esEsquina(x, y):
 225.             return [x, y]
 
-First, line 223 loops through every move in possibleMoves. If any of them are on the corner, return that space is returned as the move. Corner moves are a good idea in Reversi because once a tile has been placed on the corner, it can never be flipped over. Since possibleMoves is a list of two-item lists, use multiple assignment in the for loop to set x and y.
+Primero, la línea 223 recorre cada jugada posible en jugadasPosibles. Si alguna de ellas corresponde a una esquina, se devuelve como jugada ese espacio. Jugar en una esquina es una buena idea en Reversi ya que una vez que una baldosa ha sido colocada sobre una esquina no puede ser convertida. Como jugadasPosibles es una lista de listas de dos elementos, usamos asignación múltiple en el bucle for para asignar los valores x e y.
 
-If possibleMoves contains multiple corner moves, the first one is always used. But since possibleMoves was shuffled on line 220, it is random which corner move is first in the list.
+Si jugadasPosibles contiene múltiples jugadas sobre esquinas, se usa siempre la primera de la lista. Pero como jugadasPosibles se ha mezclado previamente en la línea 220, es aleatorio cuál de las esquinas aparecerá primero en la lista.
 
-Get a List of the Best Scoring Moves
+Obtener una Lista con las Jugadas Mejor Puntuadas
 
 227.     # Recorrer la lista de jugadas posibles y recordar la que da el mejor puntaje
 228.     mejorPuntaje = -1
@@ -989,38 +989,38 @@ Get a List of the Best Scoring Moves
 235.             mejorPuntaje = puntaje
 236.     return mejorJugada
 
-If there are no corner moves, loop through the entire list and find out which move results in the highest score. Line 229’s for loop will set x and y to every move in possibleMoves. bestMove is set to the highest scoring move the code has found so far, and bestScore is set to the best move’s score.
+Si no se puede jugar sobre las esquinas, el programa recorre toda la lista y averigua qué jugada resulta en el puntaje más alto. El bucle for de la línea 229 asigna x e y a cada posible jugada en jugadasPosibles. Se asigna a mejorJugada la jugada con mejor puntaje que el código ha encontrado hasta el momento, y el puntaje de esta jugada se guarda en mejorPuntaje.
 
-When the code in the loop finds a move that scores higher than bestScore, line 233 to 235 will store that move and score as the new values in bestMove and bestScore.
+Cuando el código del bucle encuentra una jugada que da un puntaje más alto que mejorPuntaje, las líneas 233 a 235 guardan esa jugada y su puntaje en mejorJugada y mejorPuntaje.
 
-Simulate All Possible Moves on Duplicate Board Data Structures
+Simulando Todas las Jugadas Posibles en Réplicas de la Estructura de Datos Tablero
 
-Before simulating a move, line 230 makes a duplicate game board data structure by calling getBoardCopy(). You’ll want a copy so you can modify without changing the real game board data structure stored in the board variable.
+Antes de simular una jugada, la línea 230 crea una réplica del tablero de juego llamando a obtenerCopiaTablero(). Esto es para poder ensayar una jugada sin cambiar la estructura de datos original guardada en la variable tablero.
 
-Then line 231 calls makeMove(), passing the duplicate board (stored in dupeBoard) instead of the real board. This will simulate what would happen on the real board if this move was made. makeMove() will handle placing the computer’s tile and the flipping the player’s tiles on the duplicate board.
+Entonces la línea 231 llama a hacerJugada(), pasándole la réplica del tablero (almacenada en réplicaTablero) en lugar del tablero original. Esto simula qué es lo que ocurriría en el tablero real si se realizara esta jugada. hacerJugada() se encarga de colocar la baldosa de la computadora y convertir las baldosas del jugador en el tablero duplicado.
 
-Line 232 calls getScoreOfBoard()with the duplicate board, which returns a dictionary where the keys are 'X' and 'O', and the values are the scores.
+La línea 232 llama a obtenerPuntajeTablero() con el tablero duplicado, lo que devuelve un diccionario cuyas claves son 'X' y 'O', y cuyos valores son los puntajes.
 
-For example, pretend that getScoreOfBoard() returns the dictionary {'X':22, 'O':8} and computerTile is 'X'. Then getScoreOfBoard(dupeBoard)[computerTile] would evaluate to {'X':22, 'O':8}['X'], which would then evaluate to 22. If 22 is larger than bestScore, bestScore is set to 22 and bestMove is set to the current x and y values.
+Por ejemplo, supongamos que obtenerPuntajeTablero() devuelve el diccionario {'X':22, 'O':8} y baldosaComputadora es 'X'. Entonces obtenerPuntajeTablero(réplicaTablero)[baldosaComputadora] se evaluará a {'X':22, 'O':8}['X'], lo cual será evaluado a 22. Si 22 es mayor que mejorPuntaje, se asigna 22 a mejorPuntaje y se asignan los valores actuales x e y a mejorJugada.
 
-By the time this for loop is finished, you can be sure that bestScore is the highest possible score a move can make, and that move is stored in bestMove.
+Para cuando este bucle haya concluido podemos estar seguros que mejorPuntaje es el máximo puntaje posible para una jugada. Esta jugada es almacenada en mejorJugada.
 
-Line 228 first sets bestScore to -1 so that the first move the code checks will be set to the first bestMove. This will guarantee that bestMove is set to one of the moves from possibleMoves when it returns.
+La línea 228 asigna mejorPuntaje a -1, de modo que la primera jugada comprobada por el código siempre sea asignada a mejorJugada. Esto garantiza que mejorJugada contendrá una de las jugadas en jugadasPosibles al retornar de la función.
 
-Even though the code always chooses the first in the list of these tied moves, it’s random because the list order was shuffled on line 220. This ensures that the AI won’t be predictable when there’s more than one best move.
+Aunque el código elija siempre la primera en la lista si es que hay varias jugadas compartiendo el mejor puntaje, la selección sigue siendo aleatoria pues la lista ha sido ordenada aleatoriamente en la línea 220. Esto asegura que la IA no será predecible cuando haya más que una única opción para la mejor movida.
 
-Printing the Scores to the Screen
+Imprimiendo los Puntajes sobre la Pantalla
 
 239. def mostrarPuntajes(baldosaJugador, baldosaComputadora):
 240.     # Imprime el puntaje actual.
 241.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
 242.     print('Tienes %s puntos. La computadora tiene %s puntos.' % (puntajes[baldosaJugador], puntajes[baldosaComputadora]))
 
-showPoints() calls the getScoreOfBoard() function and then prints the player’s and computer’s scores. Remember that getScoreOfBoard() returns a dictionary with the keys 'X' and 'O' and values of the scores for the X and O players.
+mostrarPuntajes() llama a la función obtenerPuntajeTablero() e imprime los puntajes del jugador y la computadora. Recuerda que obtenerPuntajeTablero() devuelve un diccionario con las claves 'X' y 'O' y valores correspondientes a los puntajes de los jugadores X y O.
 
-That’s all the functions for the Reversi game. The code starting on line 246 will implement the actual game and calls these functions as needed.
+Estas son todas las funciones para el juego Reversi. El código que comienza en la línea 246 implementa el juego en sí y llama a estas funciones a medida que son requeridas.
 
-The Start of the Game
+El Comienzo del Juego
 
 246. print('¡Bienvenido a Reversi!')
 247. 
