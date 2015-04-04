@@ -20,7 +20,7 @@ I det här kapitlet så kommer du att skapa ett "Gissa talet"-spel. Datorn komme
 
 Det här är ett bra spel att koda eftersom det använder både slumptal, loopar och indata från användaren samtidigt som programmet är kort. Du får lära dig att konvertera värden till andra datatyper, och varför detta ibland är nödvändigt. Eftersom det här programmet är ett spel så kallar vi användaren för spelaren. Men "användaren" hade också varit korrekt.
 
-Provköring av Gissa talet
+Provkörning av Gissa talet
 
 Så här ser det ut för spelaren när programmet körs. Texten med fet stil är det som spelaren skriver in. 
 
@@ -161,7 +161,7 @@ Att välkomna spelaren
 
 På rad 10 så används print()-funktionen för att välkomna spelaren med namn och tala om att datorn tänker på ett slumptal.
 
-Det kanske ser ut som att fler än ett sträng-argument skickas till funktionen, men titta noga på koden. Plustecknet slår ihop de tre strängarna så att de utvärderas till en enda sträng. Och det är den strängen som skickas som argument till print()-funktionen. Om du tittar riktigt noga så ser du att kommatecknen står innanför citattecknen och alltså ingår i själva strängarna.
+Det kanske ser ut som att fler än ett sträng-argument skickas till funktionen, men titta noga på koden. Plustecknen slår ihop de tre strängarna så att de utvärderas till en enda sträng. Och det är den strängen som skickas som argument till print()-funktionen. Om du tittar riktigt noga så ser du att kommatecknen står innanför citattecknen och alltså ingår i själva strängarna.
 
 Loopar
 
@@ -177,7 +177,7 @@ Ett block börjar när indenteringen av en rad ökar (vanligen med fyra mellansl
 
 I Figur 4-1 har rad 12 inget indrag, och ingår därmed inte i något block. Rad 13 är indragen med fyra mellanslag. Eftersom detta indrag är större än föregående rads, så påbörjar denna rad ett nytt block. Detta block är märkt med (1) i Figur 4-1. Blocket fortsätter fram till den rad vars indentering är noll mellanslag (det ursprungliga indraget innan blocket började). Blankrader ignoreras.
 
-Rad 20 är indragen me åtta mellanslag. Åtta mellanslag är mer än fyra mellanslag, så här börjar ett nytt block. Blocket är märkt med (2) i Figur 4-1. Detta block ligger inuti ett annat block.
+Rad 20 är indragen med åtta mellanslag. Åtta mellanslag är mer än fyra mellanslag, så här börjar ett nytt block. Blocket är märkt med (2) i Figur 4-1. Detta block ligger inuti ett annat block.
 
 Figur 4-1: Block och deras indrag. De svarta prickarna motsvarar mellanslag.
 
@@ -187,55 +187,55 @@ På rad 23 ökas indenteringen till åtta mellanslag, så återigen påbörjas e
 
 För att repetera, rad 12 ingår inte i något block. Rad 13 till 23 ligger i ett block märkt (1). Rad 20 utgör ett block inuti ett annat block och är markerat med (2). Rad 23 är enda raden i ytterligare ett block som ligger i ett annat block, och markeras med (3).
 
-Datatypen Boolean
+Datatypen boolean
 
-Datatypen Boolean kan bara ha två olika värden: True och False (sant och falskt). De här värdena måste skrivas med stort "T" respektive "F". Resten av namnen måste skrivas med små bokstäver. Du kommer att använda booleska värden tillsammans med jämförelseoperatorer för att bilda villkor. (Villkor förklaras senare.)
+Datatypen boolean kan bara ha två olika värden: True och False (sant och falskt). De här värdena måste skrivas med stort "T" respektive "F". Resten av namnen måste skrivas med små bokstäver. Du kommer att använda boolean-värden, eller booleska värden, tillsammans med jämförelseoperatorer för att bilda villkor. (Villkor förklaras senare.)
 
 Prova till exempel att lagra booleska värden i variabler:
 
 >>> skräp = True
 >>> ägg = False
 
-The data types that have been introduced so far are integers, floats, strings, and now bools. Every value in Python belongs to one data type.
+De datatyper som har introducerats hittills är heltal, flyttal, strängar och nu booleska värden. Varje värde i Python har en datatyp.
 
-Comparison Operators
+Jämförelseoperatorer
 
-Line 12 has a while statement:
+Rad 12 består av en while-sats:
 
-12. while guessesTaken < 6:
+12. while antalGissningar < 6:
 
-The expression that follows the while keyword (the guessesTaken < 6 part) contains two values (the value in the variable guessesTaken, and the integer value 6) connected by an operator (the < “less than” sign). The < sign is a comparison operator.
+Uttrycket som följer efter nyckelordet while (antalGissningar < 6) innehåller två värden (värdet i variabeln antalGissningar, och heltalsvärdet 6) förbundna av en operator ("mindre än"-tecknet, <). Tecknet < är en jämförelseoperator.
 
-Comparison operators compare two values and evaluate to a True or False Boolean value. A list of all the comparison operators is in Table 4-1.
+Jämförelseoperatorer jämför två värden och evalueras till ett booleskt värde, True eller False. Du ser en lista på alla jämförelseoperatorer i Tabell 4-1.
 
-Table 4-1: Comparison operators.
-Operator Sign   Operator Name
-<   Less than
->   Greater than
-<=  Less than or equal to
->=  Greater than or equal to
-==  Equal to
-!=  Not equal to
+Tabell 4-1: Jämförelseoperatorer.
+Operatorns tecken   Operatorns namn
+<   Mindre än
+>   Större än
+<=  Mindre än eller lika med
+>=  Större än eller lika med
+==  Lika med
+!=  Ej lika med
 
-You’ve already read about the +, -, *, and / math operators. Like any operator, the comparison operators combine with values to form expressions such as guessesTaken < 6.
+Du har redan läst om de matematiska operatorerna +, -, * och /. Precis som andra operatorer så används jämförelseoperatorer i kombination med värden för att forma uttryck, som antalGissningar < 6.
 
-Conditions
+Villkor
 
-A condition is an expression that combines two values with a comparison operator (such as < or >) and evaluates to a Boolean value. A condition is just another name for an expression that evaluates to True or False. Conditions are used in while statements (and a few other instructions, explained later.)
+Ett villkor är ett uttryck som kombinerar två värden med en jämförelseoperator (så som < eller >) och utvärderas till ett booleskt värde. Ett villkor är bara ett annat namn för ett uttryck som utvärderas till True eller False. Villkor används i while-satser (och i några andra instruktioner som förklaras senare).
 
-For example, the condition guessesTaken < 6 asks, “is the value stored in guessesTaken less than the number 6?” If so, then the condition evaluates to True. If not, the condition evaluates to False.
+Till exempel kan du se det som att villkoret antalGissningar < 6 ställer frågan "är värdet i antalGissningar mindre än talet 6?". Om så är fallet utvärderas uttrycket till True. Annars utvärderas uttrycket till False.
 
-In the case of the “Guess the Number” program, on line 4 you stored the value 0 in guessesTaken. Because 0 is less than 6, this condition evaluates to the Boolean value of True. The evaluation would look like this:
+När det gäller "Gissa talet"-programmet så lagras, på rad 4, värdet 0 i antalGissningar. Eftersom 0 är mindre än 6 så utvärderas villkoret till det booleska värdet True. Utvärderingen ser ut så här:
 
-guessesTaken < 6
+antalGissningar < 6
              ▼
            0 < 6
              ▼
             True
 
-Experiment with Booleans, Comparison Operators, and Conditions
+Experiment med booleska värden, jämförelseoperatorer och villkor
 
-Enter the following expressions in the interactive shell to see their Boolean results:
+Skriv in de följande uttrycken i den interaktiva kommandotolken för att se deras booleska resultat:
 
 >>> 0 < 6
 True
@@ -248,11 +248,11 @@ True
 >>> 10 < 10
 False
 
-The condition 0 < 6 returns the Boolean value True because the number 0 is less than the number 6. But because 6 isn’t less than 0, the condition 6 < 0 evaluates to False. 50 isn’t less than 10, so 50 < 10 is False. 10 is less than 11, so 10 < 11 is True.
+Villkoret 0 < 6 returnerar det booleska värdet True eftersom talet 0 är mindre än talet 6. Men eftersom 6 inte är mindre än 0 så utvärderas villkoret 6 < 0 till False. 50 är inte mindre än 10, så 50 < 10 blir False. 10 är mindre än 11, så 10 < 11 blir True.
 
-Notice that 10 < 10 evaluates to False because the number 10 isn’t smaller than the number 10. They are the same size. If Alice were the same height as Bob, you wouldn't say that Alice is taller than Bob or that Alice is shorter than Bob. Both of those statements would be false.
+Notera att 10 < 10 utvärderas till False eftersom talet 10 inte är mindre än talet 10. De är lika stora. Om Alice är lika lång som Bo så säger du inte att Alice är längre än Bo eller att hon är kortare än Bo. Båda dessa påståendet skulle vara falska.
 
-Now try entering these expressions into the interactive shell:
+Prova nu att mata in dessa uttryck i den interaktiva tolken:
 
 >>> 10 == 10
 True
@@ -264,69 +264,69 @@ False
 False
 >>> 10 != 11
 True
->>> 'Hello' == 'Hello'
+>>> 'Hejsan' == 'Hejsan'
 True
->>> 'Hello' == 'Goodbye'
+>>> 'Hejsan' == 'Hejdå'
 False
->>> 'Hello' == 'HELLO'
+>>> 'Hejsan' == 'HEJSAN'
 False
->>> 'Goodbye' != 'Hello'
+>>> 'Hejdå' != 'Hejsan'
 True
 
-The Difference Between = and ==
+Skillnaden mellan = och ==
 
-Try not to confuse the assignment operator (=) and the “equal to” comparison operator (==). The equal sign (=) is used in assignment statements to store a value to a variable, while the equal-equal sign (==) is used in expressions to see whether two values are equal. It’s easy to accidentally use one when you meant to use the other.
+Försök att inte förväxla tilldelningsoperatorn (=) och jämförelseoperatorn "lika med" (==). Lika med-tecknet (=) används i tilldelningssatser för att spara ett värde i en variabel, medan dubbla lika med-tecken (==) används i uttryck för att se om två värden är lika. Det är lätt hänt att man råkar använda den ena när man egentligen tänkte använda den andra.
 
-Just remember that the “equal to” comparison operator (==) has two characters in it, just as the “not equal to” comparison operator (!=) has two characters in it.
+En minnesregel är att jämförelseoperatorn "lika med" (==) består av två tecken, precis som jämförelseoperatorn "ej lika med" (!=).
 
-String and integer values will never be equal to each other. For example, try entering the following into the interactive shell:
+Strängvärden och heltalsvärden kan aldrig vara lika. Prova till exempel att mata in följande i den interaktiva tolken:
 
->>> 42 == 'Hello'
+>>> 42 == 'Hejsan'
 False
 >>> 42 != '42'
 True
 
-Looping with while statements
+Loopa med while-satser
 
-The while statement marks the beginning of a loop. Loops can execute the same code repeatedly. When the execution reaches a while statement, it evaluates the condition next to the while keyword. If the condition evaluates to True, the execution moves inside the following block, called the while-block. (In the program, the while-block begins on line 13.) If the condition evaluates to False, the execution moves all the way past the while-block. In Guess the Number, the first line after the while-block is line 28.
+En while-sats markerar början på en loop. Loopar kan exekvera samma kod upprepade gångar. När exekveringen når fram till en while-sats, så utvärderas villkoret intill nyckelordet while. Om villkoret utvärderas till True så fortsätter exekveringen i det följande kodblocket, som vi kan kalla while-blocket. (I programmet så börjar while-blocket på rad 13.) Om villkoret utvärderas till False så fortsätter exekveringen först efter while-blocket. I Gissa talet så är den första raden efter while-blocket rad 28.
 
-A while statement always has a : colon after the condition. Statements that end with a colon expect a new block on the next line.
+En while-sats har alltid ett kolon (:) efter villkoret. Satser som slutar med ett kolon förväntar sig ett nytt block på nästa rad.
 
-12. while guessesTaken < 6:
+12. while antalGissningar < 6:
 
-Figure 4-2: The while loop’s condition.
+Figur 4-2: While-loopens villkor.
 
-Figure 4-2 shows how the execution flows depending on the condition. If the condition evaluates to True (which it does the first time, because the value of guessesTaken is 0), execution will enter the while-block at line 13 and keep going down. Once the program reaches the end of the while-block, instead of going down to the next line, the execution loops back up to the while statement’s line (line 12) and re-evaluates the condition. As before, if the condition is True the execution enters the while-block again. Each time the execution goes through the loop is called an iteration.
+Figur 4-2 visar hur exekveringsflödet beror på villkoret. Om villkoret utvärderas till True (vilket det gör den första gången eftersom värdet på antalGissningar är 0) så fortsätter exekveringen i while-blocket på rad 13 och sedan nedåt. När programmet når fram till slutet av while-blocket så hoppar exekveringen, i stället för till nästa rad, tillbaka upp till raden med while-satsen (rad 12) där villkoret utvärderas på nytt. Om villkoret blir True även denna gång så går exekveringen in i while-blocket igen. Varje varv i loopen kallas för en iteration.
 
-This is how the loop works. As long as the condition is True, the program keeps executing the code inside the while-block repeatedly until the first time the condition is False. Think of the while statement as saying, “while this condition is true, keep executing the code in the following block”.
+Så här fungerar loopen. Så länge villkoret är True (sant), så fortsätter programmet att exekvera koden inuti while-blocket upprepade gånger tills villkoret har blivit False (falskt). Du kan tänka att while-satsen betyder "så länge (while) detta villkor är sant, fortsätt exekvera koden i följande block".
 
-The Player Guesses
+Spelarens gissningar
 
-13.     print('Take a guess.') # There are four spaces in front of print.
-14.     guess = input()
+13.    print('Gör en gissning.') # Det är fyra mellanslag före print.
+14.    gissning = input()
+    
+Rad 13 till 17 ber spelaren att gissa på det hemliga talet och mata in sin gissning. Det talet lagras i en variabel kallad gissning.
 
-Lines 13 to 17 ask the player to guess what the secret number is and lets them enter their guess. That number is stored in a variable named guess.
+Omvandla värden med funktionerna int(), float() och str()
 
-Converting Values with the int(), float(), and str() Functions
+15.    gissning = int(gissning)
 
-15.     guess = int(guess)
-
-Line 15 calls a new function named int(). The int() function takes one argument and returns an integer value form of that argument. Try entering the following into the interactive shell:
+Rad 15 anropar en ny funktion kallad int(). Funktionen int() tar ett argument och returnerar det heltalsvärde som argumentet motsvarar. Testa att mata in följande i den interaktiva kommandotolken:
 
 >>> int('42')
 42
 >>> 3 + int('2')
 5
 
-The int('42') call will return the integer value 42. However, even though you can pass a string to the int() function, you cannot pass just any string. Passing 'forty-two' to int() will result in an error. The string you pass to int() must be made up of numbers:
+Anropet int('42') returnerar heltalsvärdet 42. Men även om du kan skicka en sträng till int()-funktionen så kan du inte skicka vilken sträng som helst. Om du skickar 'fyrtiotvå' till int() så får du ett felmeddelande. Den sträng du skickar till int() måste bestå av siffror:
 
->>> int('forty-two')
+>>> int('fyrtiotvå')
 Traceback (most recent call last):
   File "<pyshell#5>", line 1, in <module>
-int('forty-two')
-ValueError: invalid literal for int() with base 10: 'forty-two'
+int('fyrtiotvå')
+ValueError: invalid literal for int() with base 10: 'fyrtiotvå'
 
-The 3 + int('2') line shows an expression that uses the return value of int() as part of an expression. It evaluates to the integer value 5:
+Raden med 3 + int('2') visar ett uttryck där returvärdet från int() används som en del av uttrycket. Det utvärderas till heltalsvärdet 5:
 
 3 + int('2')
   ▼
@@ -334,7 +334,7 @@ The 3 + int('2') line shows an expression that uses the return value of int() as
   ▼
   5
 
-Remember, the input() function always returns a string of text the player typed. If the player types 5, the input() function will return the string value '5', not the integer value 5. Python cannot use the < and > comparison operators to compare a string and an integer value:
+Funktionen input() returnerar alltid det som spelaren matar in i form av en textsträng. Om spelaren skriver 5 så returnerar input() strängvärdet '5', inte heltalsvärdet 5. I Python kan man inte använda jämförelseoperatorerna < och > för att jämföra strängar och heltal:
 
 >>> 4 < '5'
 Traceback (most recent call last):
@@ -342,11 +342,11 @@ Traceback (most recent call last):
     4 < '5'
 TypeError: unorderable types: int() < str()
 
-On line 14 the guess variable originally held the string value of what the player typed. Line 15 overwrites the string value in guess with the integer value returned by int(). This lets the code later in the program compare if guess is greater than, less than, or equal to the secret number in the number variable.
+Från början, på rad 14, så innehåller variabeln gissning strängvärdet av det som spelaren matar in. På rad 15 skrivs detta strängvärde över med heltalsvärdet som returneras av int(). På så vis kan koden senare i programmet jämföra om gissning är större än, mindre än eller lika med det hemliga talet i variabeln tal.
 
-One last thing: Calling int(guess) doesn’t change the value in the guess variable. The code int(guess) is an expression that evaluates to the integer value form of the string stored in the guess variable. What changes guess is the assignment statement: guess = int(guess)
+En sista sak: Anropet int(gissning) ändrar inte värdet i variabeln gissning. Koden int(gissning) är ett uttryck som utvärderas till heltalsvärdet av den sträng som lagrats i variabeln gissning. Förändringen sker på grund av tilldelningen: gissning = int(gissning)
 
-The float(), str(), and bool() functions will similarly return float, string, and Boolean versions of the arguments passed to them. Try entering the following into the interactive shell:
+Funktionerna float(), str(), och bool() returnerar på liknande sätt flyttals-, sträng- och booleska former av de argument som skickas till dem. Prova att mata in följande i den interaktiva tolken:
 
 >>> float('42')
 42.0
@@ -360,111 +360,111 @@ The float(), str(), and bool() functions will similarly return float, string, an
 'False'
 >>> bool('')
 False
->>> bool('any nonempty string')
+>>> bool('en sträng som inte är tom')
 True
 
-Using the int(), float(), str(), and bool() functions, you can take a value of one data type and return it as a value of a different data type.
+Med hjälp av funktionerna int(), float(), str() och bool() kan du alltså ta ett värde av en viss datatyp och omvandla det till en annan datatyp. 
 
-Incrementing Variables
+Inkrementera variabler
 
-17.     guessesTaken = guessesTaken + 1
+17.    antalGissningar = antalGissningar + 1
 
-Once the player has taken a guess, the number of guesses should be increased by one.
+När spelaren väl har gjort en gissning så ska antalet gissningar ökas med 1.
 
-On the first iteration of the loop, guessesTaken has the value of 0. Python will take this value and add 1 to it. 0 + 1 evaluates to 1, which is stored as the new value of guessesTaken. Think of line 17 as meaning, “the guessesTaken variable should be one more than what it already is”.
+Under loopens första iteration så har antalGissningar först värdet 0. Python tar detta värde och adderar 1 till det. 0 + 1 utvärderas till 1, vilket blir det nya värdet i antalGissningar. Du kan tänka att rad 17 betyder "variabeln antalGissningar ska innehålla 1 mer än vad den gjorde tidigare".
 
-Adding one to a variable’s integer or float value is called incrementing the variable. Subtracting one from a variable’s integer or float value is called decrementing the variable.
+Att öka en heltals- eller flyttalsvariabel med 1 kallas för att inkrementera variabeln. Att dra bort 1 från en variabels heltals- eller flyttalsvärde kallas för att dekrementera variabeln.
 
-if statements
+if-satser
 
-19.     if guess < number:
-20.          print('Your guess is too low.') # There are eight spaces in front of print.
+19.   if gissning < tal:
+20.        print('Du gissade på ett för lågt tal.') # Det är åtta mellanslag före print.
 
-Line 19 is an if statement. The execution will run the code in the following block if the if statement’s condition evaluates to True. If the condition is False, then the code in the if-block is skipped. Using if statements, you can make the program only run certain code when you want it to.
+Rad 19 är en if-sats. Om if-satsens villkor utvärderas till True så kommer koden i det följande blocket att exekveras. Om villkoret blir False, så kommer koden i blocket att skippas. Genom att använda if-satser kan du få kod att köras bara när du vill att den ska köras.
 
-Line 19 checks if the player’s guess is less than the computer’s secret number. If so, then the execution moves inside the if-block on line 20 and prints a message telling the player this.
+På rad 19 kontrolleras om det tal spelaren har gissat på är lägre än datorns hemliga tal. Om så är fallet så fortsätter exekveringen inuti if-blocket på rad 20 och skriver ut ett meddelande om detta till spelaren.
 
-The if statement works almost the same as a while statement, too. But unlike the while-block, the execution doesn’t jump back to the if statement at the end of the if-block. It just continues down to the next line. In other words, if statements don’t loop. See Figure 4-3 for a comparison of the two statements.
+En if-sats fungerar på nästan samma sätt som en while-sats. Men till skillnad från i ett while-block så hoppar exekveringen inte tillbaka till början när den nått slutet av if-blocket. Den bara fortsätter nedåt till nästa rad. Med andra ord så loopar inte if-satser. Se Figur 4-3 före en jämförelse mellan de två satserna.
 
-Figure 4-3: if and while statements.
+Figur 4-3: if- och while-satser.
 
-22.     if guess > number:
-23.          print('Your guess is too high.')
+22.    if gissning > tal:
+23.        print('Du gissade på ett för högt tal.')
 
-Line 22 checks if the player’s guess is greater than the secret number. If this condition is True, then the print() function call tells the player that their guess is too high.
+Rad 22 kontrollerar om talet spelaren gissat på är större än det hemliga talet. Om detta villkor är True så talar datorn, genom anropet till print()-funktionen, om för spelaren att talet är för högt.
 
-Leaving Loops Early with the break statement
+Att avbryta loopar i förtid med break
 
-25.     if guess == number:
-26.          break
+25.    if gissning == tal:
+26.        break
 
-The if statement on line 25 checks if the guess is equal to the secret number. If it is, the program runs the break statement on line 26.
+If-satsen på rad 25 kontrollerar om det gissade talet är lika stort som det hemliga talet. Om så är fallet exekveras break-satsen på rad 26.
 
-A break statement tells the execution to jump immediately out of the while-block to the first line after the end of the while-block. The break statement doesn’t bother rechecking the while loop’s condition.
+En break-sats gör så att exekveringen omedelbart hoppar ut ur while-blocket till den rad som följer efter slutet på blocket. Break-satsen bryr sig inte om att kontrollera while-loopens villkor.
 
-The break statement is only found inside loops, such as in a while-block.
+Break-satser hittar man bara inuti loopar såsom i ett while-block.
 
-If the player’s guess isn’t equal to the secret number, the execution reaches the bottom of the while-block. This means the execution will loop back to the top and recheck the condition on line 12 (guessesTaken < 6). Remember after the guessesTaken = guessesTaken + 1 instruction executed, the new value of guessesTaken is 1. Because 1 < 6 is True, the execution enters the loop again.
+Om det tal spelaren har gissat på inte är det hemliga talet så når exekveringen slutet av while-blocket. Det betyder att exekveringen kommer att loopa tillbaka till början och återigen kontrollera villkoret på rad 12 (antalGissningar < 6). Kom ihåg att efter det att instruktionen antalGissningar = antalGissningar + 1 instruction har exekverats så är det nya värdet på antalGissningar 1. Eftersom 1 < 6 är True så går exekveringen in i loopen igen.
 
-If the player keeps guessing too low or too high, the value of guessesTaken will change to 2, then 3, then 4, then 5, then 6. When guessesTaken has the number 6 stored in it, the while statement’s condition (guessesTaken < 6) is False, since 6 isn’t less than 6. Because the while statement’s condition is False, the execution moves to the first line after the while-block, line 28.
+Om spelaren fortsätter att gissa på för låga eller för höga tal så kommer värdet på antalGissningar att ändras till 2, sedan 3, sedan 4, sedan 5, sedan 6. När talet 6 har sparats i antalGissningar så kommer while-satsens villkor (antalGissningar < 6) bli False, eftersom 6 inte är mindre än 6. Eftersom while-satsens villkor är False så kommer exekveringen att hoppa till den första raden efter while-blocket, rad 28.
 
-Check if the Player Won
+Kontrollera om spelaren vunnit
 
-28. if guess == number:
+28. if gissning == tal:
 
-Line 28 has no indentation, which means the while-block has ended and this is the first line after the while-block. The execution left the while-block either because the while statement’s condition was False (when the player runs out of guesses) or the break statement on line 26 was executed (when the player guesses the number correctly).
+Rad 28 har ingen indentering, vilket betyder att while-blocket har avslutats och att detta är första raden efter while-blocket. Exekveringen har lämnat while-blocket antingen för att while-satsens villkor har blivit False (när spelaren fått slut på gissningar) eller för att break-satsen på rad 26 har exekverats (för att spelaren gissat på det korrekta talet).
 
-Line 28 checks to see if the player guessed correctly. If so, the execution enters the if-block at line 29.
+Rad 28 kontrollerar om spelaren har gissat rätt. Om så är fallet går exekveringen in i if-blocket på rad 29.
 
-29.     guessesTaken = str(guessesTaken)
-30.     print('Good job, ' + myName + '! You guessed my number in ' + guessesTaken + ' guesses!')
+29.    antalGissningar = str(antalGissningar)
+30.    print('Bra jobbat, ' + namn + '! Du gissade rätt på ' + antalGissningar + ' gissningar!')
 
-Lines 29 and 30 only execute if the condition in the if statement on line 28 was True (that is, if the player correctly guessed the computer’s number).
+Rad 29 och 30 exekveras bara om villkoret i if-satsen på rad 28 var True (det vill säga om spelaren har gissat på det korrekta talet).
 
-Line 29 calls the str() function, which returns the string form of guessesTaken. Line 30 concatenates strings to tell the player they have won and how many guesses it took them. Only string values can concatenate to other strings. This is why line 29 had to change guessesTaken to the string form. Otherwise, trying to concatenate a string to an integer would cause Python to display an error.
+Rad 29 anropar funktionen str(), som returnerar värdet i antalGissningar omvandlat till en sträng. Rad 30 slår ihop strängar till ett meddelande som berättar att spelaren vunnit och hur många gissningar som användes. Bara strängvärden kan slås ihop med andra strängar. Det är därför som vi på rad 29 behövde omvandla värdet i antalGissningar till en sträng. Annars hade försöket att slå ihop en sträng med ett heltal fått Python att visa ett felmeddelande.
 
-Check if the Player Lost
+Kontrollera om spelaren förlorat
 
-32. if guess != number:
+32. if gissning != tal:
 
-Line 32 uses the “not equal to” comparison operator != to check if player’s last guess is not equal to the secret number. If this condition evaluates to True, the execution moves into the if-block on line 33.
+På rad 32 används jämförelseoperatorn !=, "ej lika med", för att kontrollera så att spelarens sista gissning inte var lika med det hemliga talet. Om detta villkor utvärderas till True så går exekveringen in i if-blocket på rad 33.
 
-Lines 33 and 34 are inside the if-block, and only execute if the condition on line 32 was True.
+Rad 33 och 34 ligger inuti if-blocket och körs bara om villkoret på rad 32 blir True.
 
-33.     number = str(number)
-34.     print('Nope. The number I was thinking of was ' + number)
+33.    tal = str(tal)
+34.    print('Nix. Talet jag tänkte på var ' + tal)
 
-In this block, the program tells the player what the secret number they failed to guess correctly was. This requires concatenating strings, but number stores an integer value. Line 33 will overwrite number with a string form so that it can be concatenated to the 'Nope. The number I was thinking of was ' string on line 34.
+I det här blocket så talar programmet om vilket det hemliga talet, som spelaren inte lyckades lista ut, var. För detta krävs sammanslagning av strängar, men variabeln tal innehåller ett heltalsvärde. Rad 33 skriver över värdet i tal med en sträng så att det kan slås ihop med strängen 'Nix. Talet jag tänkte på var ' på rad 34.
 
-At this point, the execution has reached the end of the code, and the program terminates. Congratulations! You’ve just programmed your first real game!
+Nu har exekveringen nått slutet på koden och programmet avslutas. Grattis! Du har just programmerat ditt första riktiga spel!
 
-You can change the game’s difficulty by changing the number of guesses the player gets. To give the player only four guesses, change the code on line 12:
+Du kan förändra spelets svårighetsgrad genom att ändra antalet gissningar som spelaren har på sig. För att minska antalet gissningar till fyra, ändra rad 12:
 
-12. while guessesTaken < 6:
+12. while antalGissningar < 6:
 
-into this line:
+på det här viset:
 
-12. while guessesTaken < 4:
+12. while antalGissningar < 4:
 
-Code later in the while-block increases the guessesTaken variable by 1 on each iteration. By setting the condition to guessesTaken < 4, you ensure that the code inside the loop only runs four times instead of six. This makes the game much more difficult. To make the game easier, set the condition to guessesTaken < 8 or guessesTaken < 10. This will cause the loop to run a few more times and accept more guesses from the player.
+Koden senare i while-blocket ökar variabeln antalGissningar med 1 under varje iteration. Genom att ändra villkoret till antalGissningar < 4 ser du till att koden inuti loopen bara körs högst fyra gånger i stället för sex. På så vis blir spelet svårare att klara av. För att göra spelet lättare kan du ändra villkoret till antalGissningar < 8 eller antalGissningar < 10. Då körs loopen fler gånger och spelaren får ytterligare några gissningar på sig.
 
-Flow Control Statements
+Satser för flödeskontroll
 
-In previous chapters, the program execution started at the top instruction in program and went straight down, executing each instruction in order. But with the while, if, else, and break statements, you can cause the execution to loop and skip instructions based on conditions. The name for these kinds of statements is flow control statement, since they change the “flow” of the program execution as it moves around your program.
+I tidigare kapitel så har programmens exekvering startat med instruktionen längst upp och fortsatt rakt nedåt, så att instruktionerna körts i tur och ordning. Men med while-, if-, else- och break-satser kan du få exekveringen att loopa och hoppa över instruktioner beroende på villkor. Denna typ av satser kallas för flödeskontrollsatser, eftersom de ändrar "flödet" i ett programs exekvering.
 
-Summary
+Sammanfattning
 
-If someone asked you, “What exactly is programming anyway?” what could you say to them? Programming is just the action of writing code for programs, that is, creating programs that can be executed by a computer.
+Om någon frågade dig "Vad är egentligen programmering?", vad skulle du svara? Programmering är att sätta ihop kod till program, det vill säga att skapa program som datorn kan exekvera. 
 
-“But what exactly is a program?” When you see someone using a computer program (for example, playing your “Guess the Number” game), all you see is some text appearing on the screen. The program decides what exact text to show on the screen (the program’s output), based on its instructions and on the text that the player typed on the keyboard (the program’s input). A program is just a collection of instructions that act on the user’s input.
+"Men vad exakt är ett program?" När du ser någon använda ett datorprogram (till exempel spela "Gissa talet"-spelet) så är allt du ser text som visas på skärmen. Programmet avgör exakt vilken text som ska visas på skärmen (programmets utdata) baserat på sina instruktioner och på den text spelaren matar in via tangentbordet (programmets indata). Ett program är bara en samling instruktioner som använder sig av indata från användaren.
 
-“What kind of instructions?” There are only a few different kinds of instructions, really.
+"Vad då för några instruktioner?" Faktum är att det finns bara ett fåtal olika slag av instruktioner.
 
-1.  Expressions are values connected by operators. Expressions are all evaluated down to a single value, as 2 + 2 evaluates to 4 or 'Hello' + ' ' + 'World' evaluates to 'Hello World'. When expressions are next to the if and while keywords, you can also call them conditions.
-2.  Assignment statements store values in variables so you can remember the values later in the program.
-3.  The if, while, and break statements are flow control statements that can cause the execution to skip instructions, loop over instructions, or break out of loops. Function calls also change the flow of execution by jumping to the instructions inside of a function.
-4.  The print() and input() functions. These functions display text on the screen and get text from the keyboard. This is called I/O (pronounced like the letters, “eye-oh”), because it deals with the Input and Output of the program.
+1.  Uttryck är värden som är förbundna med operatorer. Alla uttryck utvärderas till ett enskilt värde, som när 2 + 2 utvärderas till 4 eller 'Hejsan' + ' ' + 'världen' utvärderas till 'Hejsan världen'. När uttryck står intill något av nyckelorden if och while så kan du också kalla dem för villkor.
+2.  Tilldelningssatser lagrar värden i variabler så att du kan använda värdena senare i programmet. 
+3.  If-, while- och break-satser är satser för flödeskontroll, som kan få exekveringen att hoppa över instruktioner, upprepa instruktioner i en loop och hoppa ut ur loopar. Även funktionsanrop påverkar exekveringsflödet genom att hoppa till instruktionerna inuti en funktion.
+4.  Funktionerna print() och input(). Dessa funktioner visar text på skärmen och hämtar text från tangentbordet. Det här kallas för I/O eftersom det handlar om indata (Input på engelska) till och utdata (Output) från programmet.
 
-And that’s it, just those four things. Of course, there are many details about those four types of instructions. In this book you’ll learn about new data types and operators, new flow control statements, and many other functions that come with Python. There are also different types of I/O such as input from the mouse or outputting sound and graphics instead of just text.
+Och det är allt, de här fyra sakerna. Det finns förstås en massa detaljer kring de här fyra typerna av instruktioner. I den här boken kommer du att få lära dig om nya datatyper, nya satser för flödeskontroll och många andra funktioner som är inbyggda i Python. Det finns också andra typer av I/O såsom indata från musen och utdata i form av ljud och grafik i stället för text.
 
-For the person using your programs, they only care about that last type, I/O. The user types on the keyboard and then sees things on the screen or hears things from the speakers. But for the computer to figure out what sights to show and what sounds to play, it needs a program, and programs are just a bunch of instructions that you, the programmer, have written.
+För den person som använder dina program är det bara den sista typen, I/O, som är relevant. Användaren skriver in saker med tangentbordet och ser saker på skärmen eller hör saker från högtalarna. Men för att datorn ska veta vad som ska visas eller vilka ljud som ska spelas upp behövs ett program, och ett program är bara ett gäng instruktioner som du, programmeraren, har skrivit.
