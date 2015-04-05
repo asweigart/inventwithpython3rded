@@ -1033,13 +1033,13 @@ El Comienzo del Juego
 254.     turno = quiénComienza()
 255.     print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
 
-The while loop on line 248 is the main game loop. The program will loop back to line 248 when a new game starts. First get a new game board data structure by calling getNewBoard() and set the starting tiles by calling resetBoard(). mainBoard is the main game board data structure for the program. The call to enterPlayerTile() will let the player type in whether they want to be 'X' or 'O'. The return value is then stored in playerTile and computerTile using multiple assignment.
+El bucle while de la línea 248 es el bucle principal del juego. El programa volverá a la línea 248 cuando comience un nuevo juego. Primero se genera una nueva estructura de datos tablero llamando a obtenerNuevoTablero() y se colocan las baldosas iniciales llamando a reiniciarTablero(). tableroPrincipal es la principal estructura de datos tablero de este programa. La llamada a ingresarBaldosaJugador() permitirá al jugador elegir si quiere ser 'X' u 'O'. Los valores de retorno se almacenan entonces en baldosaJugador y baldosaComputadora utilizando asignación múltiple.
 
-showHints is a Boolean value that determines if hints mode is on or off. It starts as off as False on line 253.
+mostrarPistas es un valor Booleano que determina si el modo pistas está activado o no. Se inicializa como False en la línea 253.
 
-The turn variable is a string that either has the string value 'player' or 'computer'. It will keep track of whose turn it is. It is set to the return value of whoGoesFirst(), which randomly chooses who will go first.
+La variable turno es una cadena que puede tener alguno de los valores 'jugador' o 'computadora'. Esta variable lleva un registro de a quién le toca jugar. Se inicializa con el valor de retorno de la función quiénComienza(), la cual decide en forma aleatoria quien comenzará.
 
-Running the Player’s Turn
+Ejecutando el Turno del Jugador
 
 257.     while True:
 258.         if turno == 'jugador':
@@ -1051,23 +1051,23 @@ Running the Player’s Turn
 264.                 dibujarTablero(tableroPrincipal)
 265.             mostrarPuntajes(baldosaJugador, baldosaComputadora)
 
-The while loop that starts on line 257 will keep looping each time the player or computer takes a turn. The execution will break out of this loop when the current game is over.
+El bucle while que comienza en la línea 257 se repetirá cada vez que el jugador o la computadora tomen un turno. La ejecución saldrá de este bucle al terminar el juego actual.
 
-Line 258 has an if statement whose body has the code that runs if it is the player’s turn. (The else-block that starts on line 282 has the code for the computer’s turn.)
+La línea 258 tiene una sentencia if cuyo bloque asociado se ejecuta si es el turno del jugador. (El bloque else que comienza en la línea 282 se ejecuta si es el turno de la computadora.)
 
-First the board is displayed on the screen. If hints mode is on (that is, showHints is True), then the board data structure needs to have '.' period characters on every valid space the player could move.
+Primero se muestra el tablero en la pantalla. Si en modo pistas está activado (es decir, mostrarPistas es True), entonces la estructura de datos tablero debe tener caracteres punto '.' en cada espacio correspondiente a una jugada válida para el jugador.
 
-The getBoardWithValidMoves() function does that. It is passed a game board data structure and returns a copy that also contains '.' period characters. Line 262 passes this board to the drawBoard() function.
+La función obtenerTableroConJugadasVálidas() se encarga de esto. Recibe como argumento una estructura de datos tablero y devuelve una copia a la que se han agregado los caracteres punto '.'. La línea 262 pasa este tablero a la función dibujarTablero().
 
-If hints mode is off, then line 264 passes mainBoard to drawBoard().
+Si el modo pistas está desactivado, entonces la línea 264 simplemente pasa tableroPrincipal a dibujarTablero().
 
-After printing out the game board to the player, you also want to print the current score by calling showPoints() on line 265.
+Luego de mostrar el tablero de juego al jugador, también queremos imprimir el puntaje actual llamando a mostrarPuntajes() en la línea 265.
 
 266.             jugada = obtenerJugadaJugador(tableroPrincipal, baldosaJugador)
 
-Next, let the player type in their move. getPlayerMove() handles this, and its return value is a two-item list of the XY coordinate of the player’s move. getPlayerMove() has already made sure that the move the player typed in is a valid move.
+A continuación, permitimos al jugador escribir su jugada. obtenerJugadaJugador() se encarga de esto, y su valor de retorno es una lista de dos elementos con las coordenadas XY de la jugada. obtenerJugadaJugador() se asegura de controlar que la jugada que el jugador ha ingresado es válida.
 
-Handling the Quit or Hints Commands
+Manejando los Comandos Salir y Pistas
 
 267.             if jugada == 'salir':
 268.                 print('¡Gracias por jugar!')
@@ -1078,11 +1078,11 @@ Handling the Quit or Hints Commands
 273.             else:
 274.                 hacerJugada(tableroPrincipal, baldosaJugador, jugada[0], jugada[1])
 
-If the player typed in the string 'quit' for their move, then getPlayerMove() would have returned the string 'quit'. In that case, line 269 calls the sys.exit() to terminate the program.
+Si el jugador ingresa la cadena 'salir' en su turno, obtenerJugadaJugador() retorna la cadena 'salir'. En ese caso, la línea 269 llama a sys.exit() para terminar el programa.
 
-If the player typed in the string 'hints' for their move, then getPlayerMove() would have returned the string 'hints'. In that case, you want to turn hints mode on (if it was off) or off (if it was on).
+Si el jugador ingresa la cadena 'pistas' en su turno, obtenerJugadaJugador() retorna la cadena 'pistas'. En ese caso, activaremos el modo pistas (si estaba desactivado) o lo desactivaremos (si estaba activado).
 
-The showHints = not showHints assignment statement on line 271 handles both of these cases, because not False evaluates to True and not True evaluates to False. Then the continue statement moves the execution to the start of the loop (turn has not changed, so it will still be the player’s turn).
+La sentencia de asignación mostrarPistas = not mostrarPistas de la línea 271 se encarga de ambos casos, ya que not False se evalúa a True y not True se evalúa a False. Entonces la sentencia continue lleva la ejecución hacia el comienzo del bucle (el turno no ha cambiado, por lo que todavía seguirá siendo el turno del jugador).
 
 Otherwise, if the player didn’t quit or toggle hints mode, line 274 calls makeMove() to make the player’s move on the board.
 

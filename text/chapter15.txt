@@ -1078,7 +1078,7 @@ Handling the Quit or Hints Commands
 273.             else:
 274.                 makeMove(mainBoard, playerTile, move[0], move[1])
 
-If the player typed in the string 'quit' for their move, then getPlayerMove() would have returned the string 'quit'. In that case, line 269 calls the sys.exit() to terminate the program.
+If the player typed in the string 'quit' for their move, then getPlayerMove() would have returned the string 'quit'. In that case, line 269 calls sys.exit() to terminate the program.
 
 If the player typed in the string 'hints' for their move, then getPlayerMove() would have returned the string 'hints'. In that case, you want to turn hints mode on (if it was off) or off (if it was on).
 
