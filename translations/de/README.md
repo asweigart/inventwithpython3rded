@@ -8,7 +8,6 @@ Translators
 - Horst Jens (horstjens)
 - Karoline Busse (kikithegecko)
 - Thomas Klemmer
-- Karoline Busse (kikidergecko)
 
 (You can always check the commit history of the files in this folder to find other translators, if this README is not up to date.)
 
@@ -30,8 +29,9 @@ Glossary
 <dt>call (function call)</dt><dd>Aufruf</dd>
 <dt>code</dt><dd>Code</dd>
 <dt>comparison operator</dt><dd>Vergleichsoperator</dd>
-<dt>concatenation</dt><dd>Verknüpfung</dd>
+<dt>concatenate</dt><dd>verketten/verknüpfen</dd>
 <dt>constant (variable)</dt><dd>Konstante</dd>
+<dt>control flow</dt><dd>Kontrollfluss</dd>
 <dt>convention</dt><dd>Konvention</dd>
 <dt>convert</dt><dd>konvertieren</dd>
 <dt>declaration (function/variable declaration)</dt><dd>Deklaration</dd>
@@ -43,11 +43,14 @@ Glossary
 <dt>false</dt><dd>falsch</dd>
 <dt>False (boolean literal)</dt><dd>False</dd>
 <dt>function</dt><dd>Funktion</dd>
-<dt>function call</dt><dd>Funktions-Aufruf</dd>
+<dt>function call</dt><dd>Funktionsaufruf</dd>
 <dt>“How the Code Works”</dt><dd>Wie der Code funktioniert</dd>
+<dt>“If you get errors after typing this code in..”</dt><dd>Falls du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/de/diff/jokes.</dd>
+<dt>“IMPORTANT NOTE! The programs in this book..”</dt><dd>WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät dir, welche Version installiert ist. Falls es Python 2 ist, kannst du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.</dd>
 <dt>index</dt><dd>Index</dd>
 <dt>indentation</dt><dd>Einrückung</dd>
 <dt>insert</dt><dd>einfügen</dd>
+<dt>integer</dt><dd>Ganzzahl</dd>
 <dt>interactive shell</dt><dd>interaktive Konsole</dd>
 <dt>item (list item)</dt><dd>(Listen-)Eintrag</dd>
 <dt>iterate</dt><dd>iterieren</dd>
