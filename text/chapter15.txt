@@ -1122,7 +1122,7 @@ Finally, pass x and y, along with the game board data structure and the computer
 
 Lines 289 to 292 are similar to lines 276 to 279. After the computer has made its move, line 289 checks if there exist any valid moves the human player can make. If getValidMoves() returns an empty list, then there are no valid moves. That means the game is over, and line 290 breaks out of the while loop.
 
-Otherwise, there’s at least one possible move the player should make. The turn variable is to 'player'. There is no more code in the while-block after line 292, so execution loops back to the while statement on line 257.
+Otherwise, there’s at least one possible move the player should make. The turn variable is set to 'player'. There is no more code in the while-block after line 292, so execution loops back to the while statement on line 257.
 
 Drawing Everything on the Screen
 

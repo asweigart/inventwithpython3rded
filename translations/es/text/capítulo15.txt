@@ -1084,20 +1084,20 @@ Si el jugador ingresa la cadena 'pistas' en su turno, obtenerJugadaJugador() ret
 
 La sentencia de asignación mostrarPistas = not mostrarPistas de la línea 271 se encarga de ambos casos, ya que not False se evalúa a True y not True se evalúa a False. Entonces la sentencia continue lleva la ejecución hacia el comienzo del bucle (el turno no ha cambiado, por lo que todavía seguirá siendo el turno del jugador).
 
-Otherwise, if the player didn’t quit or toggle hints mode, line 274 calls makeMove() to make the player’s move on the board.
+En cambio, si el jugador no ha salido o activado/desactivado el modo pistas, la línea 274 llama a hacerJugada() para hacer la jugada del jugador.
 
-Make the Player’s Move
+Efectuando la Jugada del Jugador
 
 276.             if obtenerJugadasVálidas(tableroPrincipal, baldosaComputadora) == []:
 277.                 break
 278.             else:
 279.                 turno = 'computadora'
 
-After making the player’s move, line 276 calls getValidMoves() to see if the computer could make any moves. If getValidMoves() returns a blank list, then there are no more valid moves that the computer could make. In that case, line 277 breaks out of the while loop and ends the game.
+Después de hacer la jugada del jugador, la línea 276 llama a obtenerJugadasVálidas() para ver si la computadora dispone de jugadas disponibles. Si obtenerJugadasVálidas() devuelve una lista vacía, quiere decir que no hay jugadas válidas que la computadora pueda hacer. En ese caso, la línea 277 sale del bucle while y termina el juego.
 
-Otherwise, line 279 sets turn to 'computer'. The flow of execution skips the else-block and reaches the end of the while-block, so execution jumps back to the while statement on line 257. This time, however, it will be the computer’s turn.
+Si este no es el caso, la línea 279 asigna 'computadora' a la variable turno. El flujo de ejecución omite el bloque else y llega al final del bloque while, de modo que la ejecución vuelve a la sentencia while de la línea 257. Esta vez, sin embargo, será el turno de la computadora.
 
-Running the Computer’s Turn
+Ejecutando el Turno de la Computadora
 
 281.         else:
 282.             # Turno de la computadora
@@ -1107,24 +1107,24 @@ Running the Computer’s Turn
 286.             x, y = obtenerJugadaComputadora(tableroPrincipal, baldosaComputadora)
 287.             hacerJugada(tableroPrincipal, baldosaComputadora, x, y)
 
-After printing out the board with drawBoard(), also print the current score with a call to showPoints() on line 284.
+Después de imprimir el tablero con dibujarTablero(), queremos mostrar también el puntaje actual llamando a mostrarPuntajes() en la línea 284.
 
-Line 285 calls input() to pause the script while the player can look at the board. This is much like how input() was used to pause the program in the Jokes chapter. Instead of using a print() call to print a string before a call to input(), you can do the same thing by passing the string to print to input().
+La línea 285 llama a input() para poner el juego en pausa y dar tiempo al jugador para mirar el tablero. Esto es bastante parecido a nuestro uso de input() para pausar el programa del capítulo Chistes. En lugar de llamar a print() para imprimir una cadena antes de llamar a input(), puedes conseguir el mismo resultado pasando la cadena a imprimir a la función input().
 
-After the player has looked at the board and pressed ENTER, line 286 calls getComputerMove() to get the XY coordinates of the computer’s next move. These coordinates are stored in variables x and y using multiple assignment.
+Luego de que el jugador ha tenido tiempo de ver el tablero y pulsar INTRO, la línea 286 llama a obtenerJugadaComputadora() para obtener las coordenadas XY de la próxima jugada de la computadora. Estas coordenadas se guardan en las variables x e y usando asignación múltiple.
 
-Finally, pass x and y, along with the game board data structure and the computer’s tile, to the makeMove() function. This places the computer’s tile on the game board in mainBoard to reflect the computer’s move. Line 286’s call to getComputerMove() got the computer’s move (and stored it in variables x and y). The call to makeMove() on line 287 makes the move on the board.
+Finalmente pasamos x e y, junto con la estructura de datos tablero y la baldosa de la computadora, a la función hacerJugada(). Esto coloca la baldosa de la computadora sobre el tablero de juego en tableroPrincipal para reflejar la jugada de la computadora. La llamada de la línea 286 a obtenerJugadaComputadora() ya ha obtenido a jugada de la computadora (y la ha almacenado en las variables x e y). La llamada a hacerJugada() en la línea 287 efectúa esta jugada sobre el tablero.
 
 289.             if obtenerJugadasVálidas(tableroPrincipal, baldosaJugador) == []:
 290.                 break
 291.             else:
 292.                 turno = 'jugador'
 
-Lines 289 to 292 are similar to lines 276 to 279. After the computer has made its move, line 289 checks if there exist any valid moves the human player can make. If getValidMoves() returns an empty list, then there are no valid moves. That means the game is over, and line 290 breaks out of the while loop.
+Las líneas 289 a 292 son similares a las líneas 276 a 279. Luego de que la computadora ha hecho su jugada, la línea 289 comprueba si hay alguna jugada válida disponible para el jugador humano. Si obtenerJugadasVálidas() devuelve una lista vacía, significa que no hay jugadas válidas. Entonces el juego concluye, y la línea 290 sale del bucle while.
 
-Otherwise, there’s at least one possible move the player should make. The turn variable is to 'player'. There is no more code in the while-block after line 292, so execution loops back to the while statement on line 257.
+En caso contrario, hay al menos una jugada posible para el jugador. Entonces se asigna 'jugador' a la variable turno. No hay más código en el bloque while luego de la línea 292, de modo que la ejecución regresa a la sentencia while de la línea 257.
 
-Drawing Everything on the Screen
+Dibujando Todo sobre la Pantalla
 
 294.     # Mostrar el puntaje final.
 295.     dibujarTablero(tableroPrincipal)
