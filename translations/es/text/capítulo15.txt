@@ -1137,22 +1137,22 @@ Dibujando Todo sobre la Pantalla
 302.     else:
 303.         print('¡Ha sido un empate!')
 
-Line 294 is the first line beyond the while-block that started on line 257. This code is executed when the execution breaks out of that while loop from line 290 or 277. At this point, the game is over. Now the program should print the board and scores and determine who won the game.
+La línea 294 es la primera línea después del bloque while que comenzaba en la línea 257. Este código se ejecuta cuando se sale de ese bucle while desde las líneas 290 o 277. En este punto, el juego ha terminado. Ahora el programa debe imprimir el tablero y los puntajes y determinar quién ha ganado.
 
-getScoreOfBoard() will return a dictionary with keys 'X' and 'O' and values of both players’ scores. By checking if the player’s score is greater than, less than, or equal to the computer’s score, you can know if the player won, lost, or tied, respectively.
+obtenerPuntajeTablero() devuelve un diccionario con las claves 'X' y 'O' y valores correspondientes a los puntajes de ambos jugadores. Comprobando si el puntaje del jugador es mayor, menor o igual que el de la computadora podemos saber si el jugador ha ganado, perdido o empatado respectivamente.
 
-Ask the Player to Play Again
+Preguntando al Jugador si quiere Jugar de Nuevo
 
 305.     if not jugarDeNuevo():
 306.         break
 
-Call the playAgain() function, which returns True if the player typed in that they want to play another game. If playAgain() returns False, the not operator makes the if statement’s condition True, the execution breaks out of the while loop that started on line 248. Since there are no more lines of code after this while-block, the program terminates.
+Se llama a la función jugarDeNuevo(), la cual devuelve True si el jugador responde que quiere volver a jugar. Si jugarDeNuevo() devuelve False, el operador not convierte a la condición de la sentencia if en True. Entonces la ejecución sale del bucle while que ha comenzado en la línea 248. Como no hay más líneas de código después de este bloque while, el programa termina.
 
-Otherwise, playAgain() has returned True (making the if statement’s condition False), and so execution loops back to the while statement on line 248 and a new game board is created.
+En caso contrario, jugarDeNuevo() devuelve True (convirtiendo a la condición de la sentencia if en False), y entonces la ejecución regresa a la sentencia while de la línea 248 donde se crea un nuevo tablero de juego.
 
-Changing the drawBoard() Function
+Cambiando la Función dibujarTablero()
 
-The board you draw for the Reversi game is large. But you could change the drawBoard() function’s code to draw out a much smaller board, while keeping the rest of the game code the same. The new, smaller board would look like this:
+El tablero que se dibuja para el juego Reversi es grande. Pero puedes cambiar el código de la función dibujarTablero() para que el tablero dibujado sea mucho más pequeño sin modificar el resto del código del juego. La nueva versión del tablero se vería así:
 
   12345678
  +--------+
@@ -1165,29 +1165,29 @@ The board you draw for the Reversi game is large. But you could change the drawB
 7| ..O..  |
 8|   O    |
  +--------+
-You have 8 points. The computer has 9 points.
-Enter your move, or type quit to end the game, or hints to turn off/on hints.
+Tienes 8 puntos. La computadora tiene 9 puntos.
+Ingresa tu jugada, salir para terminar el juego, o pistas para activar/desactivar las pistas.
 
-Here is the code for this new drawBoard() function, starting at line 6. You can also download this code from http://invpy.com/reversi_mini.py.
+Aquí está el código para la nueva versión de la función dibujarTablero(), comenzando en la línea 6. También puedes descargar este código desde http://invpy.com/reversi_mini.py.
 
-  6. def drawBoard(board):
-  7.     # This function prints out the board that it was passed. Returns None.
+  6. def dibujarTablero(tablero):
+  7.     # Esta funcion dibuja el tablero recibido. Devuelve None
   8.     LÍNEAH = ' +--------+'
   9.     print(' 12345678')
  10.     print(LÍNEAH)
  11.     for y in range(8):
  12.         print('%s|' % (y+1), end='')
  13.         for x in range(8):
- 14.             print(board[x][y], end='')
+ 14.             print(tablero[x][y], end='')
  15.         print('|')
  16.     print(LÍNEAH)
 
-Summary
+Resumen
 
-The AI may seem almost unbeatable, but this isn’t because the computer is smart. The strategy it follows is simple: move on the corner if you can, otherwise make the move that will flip over the most tiles. We could do that, but it would be slow to figure out how many tiles would be flipped for every possible valid move we could make. But calculating this for the computer is simple. The computer isn’t smarter than us, it’s just much faster!
+La IA puede parecer casi imbatible, pero esto no se debe a que la computadora sea inteligente. La estrategia que sigue es simple: jugar en la esquina si es posible, de lo contrario tomar la jugada que convierta más baldosas. Nosotros podríamos hacer lo mismo, pero nos tomaría tiempo contar cuántas baldosas serían convertidas con cada una de nuestras posibles jugadas. En cambio esto es sencillo para la computadora. La computadora no es más inteligente que nosotros, ¡simplemente es mucho más rápida!
 
-This game is similar to Sonar because it makes use of a grid for a board. It is also like the Tic Tac Toe game because there’s an AI that plans out the best move for it to take. This chapter only introduced one new concept: that empty lists, blank strings, and the integer 0 all evaluate to False in the context of a condition.
+Este juego se parece a Sonar en el hecho de que utiliza una grilla como tablero. También es similar al Ta Te Ti, donde hay una IA que elige la mejor jugada para la computadora. Este capítulo sólo ha introducido un nuevo concepto: las listas y cadenas vacías y el entero 0 se evalúan a False en el contexto de una condición.
 
-Other than that, this game used programming concepts you already knew! You don’t have to know much about programming to create interesting games. However, this game is stretching how far you can get with ASCII art. The board took up almost the entire screen to draw, and the game didn't have any color.
+Descontando esto, ¡este juego utiliza conceptos de programación que ya conocías! No necesitas saber mucho de programación para crear juegos interesantes. Sin embargo, esto está cerca de lo mejor que puedes lograr empleando sólo arte ASCII. El tablero utiliza casi toda la pantalla, y el juego no tiene colores.
 
-Later in this book, we will learn how to create games with graphics and animation, not just text. We will do this using a module called Pygame, which adds new functions and features to Python so that we can break away from using only text and keyboard input.
+Más adelante en este libro, aprenderemos a crear juegos con gráficos y animación, no sólo texto. Lograremos esto utilizando un módulo llamado Pygame, que agrega a Python nuevas funciones y características que nos permitirán usar más que sólo texto y entradas del teclado.
