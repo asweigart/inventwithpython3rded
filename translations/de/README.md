@@ -26,7 +26,11 @@ Glossary
 <dt>blanked out</dt><dd>redigiert</dd>
 <dt>boolean</dt><dd>boolesch-e/er</dd>
 <dt>boolean value</dt><dd>Wahrheitswert</dd>
+<dt>break point</dt><dd>Unterbrechungspunkt</dd>
+<dt>bug</dt><dd>Fehler/Bug</dd>
+<dt>button</dt><dd>Knopf</dd>
 <dt>call (function call)</dt><dd>Aufruf</dd>
+<dt>checkbox</dt><dd>Kontrollkästchen</dd>
 <dt>code</dt><dd>Code</dd>
 <dt>comparison operator</dt><dd>Vergleichsoperator</dd>
 <dt>concatenate</dt><dd>verketten/verknüpfen</dd>
@@ -34,6 +38,9 @@ Glossary
 <dt>control flow</dt><dd>Kontrollfluss</dd>
 <dt>convention</dt><dd>Konvention</dd>
 <dt>convert</dt><dd>konvertieren</dd>
+<dt>debug</dt><dd>debuggen</dd>
+<dt>debugger</dt><dd>Debugger</dd>
+<dt>debug control window (python IDLE)</dt><dd>Debug-Kontrollfenster</dd>
 <dt>declaration (function/variable declaration)</dt><dd>Deklaration</dd>
 <dt>definition (function/variable definition)</dt><dd>Definition</dd>
 <dt>editor</dt><dd>Editor</dd>
@@ -54,6 +61,9 @@ Glossary
 <dt>interactive shell</dt><dd>interaktive Konsole</dd>
 <dt>item (list item)</dt><dd>(Listen-)Eintrag</dd>
 <dt>iterate</dt><dd>iterieren</dd>
+<dt>jump into (debugger action)</dt><dd>hineinschalten</dd>
+<dt>jump out of (debugger action)</dt><dd>herausschalten</dd>
+<dt>jump over (debugger action)</dt><dd>hinüberschalten</dd>
 <dt>keyword</dt><dd>Schlüsselwort</dd>
 <dt>keyword argument</dt><dd>Schlüsselwort-Argument</dd>
 <dt>list (data structure)</dt><dd>Liste</dd>
@@ -63,8 +73,10 @@ Glossary
 <dt>multi-line</dt><dd>mehrzeilig</dd>
 <dt>operator</dt><dd>Operator</dd>
 <dt>parameter (programming)</dt><dd>Parameter</dd>
+<dt>python interpreter</dt><dd>Python-Interpreter</dd>
 <dt>range (range())</dt><dd>Wertebereich</dd>
 <dt>replication</dt><dd>Replikation</dd>
+<dt>runtime error</dt><dd>Laufzeitfehler</dd>
 <dt>“Sample Run”</dt><dd>Probelauf</dd>
 <dt>scope (variable scope)</dt><dd>Geltungsbereich</dd>
 <dt>shell</dt><dd>Konsole</dd>
@@ -73,6 +85,9 @@ Glossary
 <dt>“Source Code of ...”</dt><dd>Der Quellcode zu ...</dd>
 <dt>spam</dt><dd>Spam</dd>
 <dt>statement</dt><dd>Anweisung</dd>
+<dt>step into (debugger action)</dt><dd>hineinschalten</dd>
+<dt>step out of (debugger action)</dt><dd>herausschalten</dd>
+<dt>step over (debugger action)</dt><dd>hinüberschalten</dd>
 <dt>string</dt><dd>Zeichenkette</dd>
 <dt>“Summary”</dt><dd>Zusammenfassung</dd>
 <dt>terminate</dt><dd>terminieren</dd>
