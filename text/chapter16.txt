@@ -12,7 +12,7 @@ Topics Covered In This Chapter:
 
 The Reversi AI algorithm was simple, but it beats me almost every time I play it. This is because the computer can process instructions fast, so checking each possible position on the board and selecting the highest scoring move is easy for the computer. It would take a long time for me to find the best move this way.
 
-The Reversi program in Chapter 14 had two functions, getPlayerMove() and getComputerMove() which both returned the move selected as a two-item list like [x, y]. The both also had the same parameters, the game board data structure and which tile they were. getPlayerMove() decided which [x, y] move to return by letting the player type in the coordinates. getComputerMove() decided which [x, y] move to return by running the Reversi AI algorithm.
+The Reversi program in Chapter 14 had two functions, getPlayerMove() and getComputerMove() which both returned the move selected as a two-item list like [x, y]. They both also had the same parameters, the game board data structure and which tile they were. getPlayerMove() decided which [x, y] move to return by letting the player type in the coordinates. getComputerMove() decided which [x, y] move to return by running the Reversi AI algorithm.
 
 What happens when we replace the call to getPlayerMove() with a call to getComputerMove()? Then the player never types in a move, it is decided for them! The computer is playing against itself!
 
@@ -26,7 +26,7 @@ You can either type these changes in yourself, or download them from the book’
 
 Making the Computer Play Against Itself
 
-Save the old reversi.py file as AISim1.py by clicking on File ► Save As, and then entering AISim1.py for the file name and clicking Ok. This will create a copy of our Reversi source code as a new file that you can make changes to, while leaving the original Reversi game the same (you may want to play it again). Change the following code in AISim1.py:
+Save the old reversi.py file as AISim1.py by clicking on File ► Save As, and then entering AISim1.py for the file name and clicking Save. This will create a copy of our Reversi source code as a new file that you can make changes to, while leaving the original Reversi game the same (you may want to play it again). Change the following code in AISim1.py:
 
 266. move = getPlayerMove(mainBoard, playerTile)
 

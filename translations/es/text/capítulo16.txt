@@ -10,63 +10,63 @@ Temas Tratados En Este Capítulo:
 •   La función round()
 •   Juegos “Computadora vs. Computadora”
 
-The Reversi AI algorithm was simple, but it beats me almost every time I play it. This is because the computer can process instructions fast, so checking each possible position on the board and selecting the highest scoring move is easy for the computer. It would take a long time for me to find the best move this way.
+El algoritmo de IA de Reversi es simple, pero consigue vencerme en casi todas las partidas. Esto es porque la computadora puede procesar instrucciones rápido, entonces comprobar todas las posiciones en el tablero y elegir la jugada que da el mayor puntaje es fácil para la computadora. Seguir este procedimiento a mano me tomaría demasiado tiempo.
 
-The Reversi program in Chapter 14 had two functions, getPlayerMove() and getComputerMove() which both returned the move selected as a two-item list like [x, y]. The both also had the same parameters, the game board data structure and which tile they were. getPlayerMove() decided which [x, y] move to return by letting the player type in the coordinates. getComputerMove() decided which [x, y] move to return by running the Reversi AI algorithm.
+El programa Reversi del Capítulo 14 tenía dos funciones, obtenerJugadaJugador() y obtenerJugadaComputadora(), las cuales devolvían una jugada en forma de lista [x, y] de dos elementos. Además ambas funciones tenían los mismos parámetros: la estructura de datos tablero y la baldosa correspondiente al jugador. obtenerJugadaJugador() decidía qué jugada [x, y] devolver permitiendo al jugador escribir sus coordenadas. obtenerJugadaComputadora() decidía qué jugada devolver ejecutando el algoritmo de IA de Reversi.
 
-What happens when we replace the call to getPlayerMove() with a call to getComputerMove()? Then the player never types in a move, it is decided for them! The computer is playing against itself!
+¿Qué pasa cuando reemplazamos la llamada a obtenerJugadaJugador() por una llamada a obtenerJugadaComputadora()? En este caso el jugador nunca ingresaría una jugada, sino que ¡la computadora lo haría por él! ¡La computadora estaría jugando contra sí misma!
 
-We will make three new programs, each based on the Reversi program in the last chapter:
+Crearemos tres nuevos programas, cada uno basado en el programa Reversi del capítulo anterior:
 
-•   AISim1.py will be made by making changes to reversi.py
-•   AISim2.py will be made by making changes to AISim1.py
-•   AISim3.py will be made by making changes to AISim2.py
+•   Crearemos AISim1.py a partir de reversi.py
+•   Crearemos AISim2.py a partir de AISim1.py
+•   Crearemos AISim3.py a partir de AISim2.py
 
-You can either type these changes in yourself, or download them from the book’s website at the URL http://invpy.com/chap16.
+Puedes introducir los cambios tú mismo, o descargarlos del sitio web del libro en la URL http://invpy.com/chap16.
 
-Making the Computer Play Against Itself
+Haciendo que la Computadora Juegue contra sí Misma
 
-Save the old reversi.py file as AISim1.py by clicking on File ► Save As, and then entering AISim1.py for the file name and clicking Ok. This will create a copy of our Reversi source code as a new file that you can make changes to, while leaving the original Reversi game the same (you may want to play it again). Change the following code in AISim1.py:
+Para guardar el archivo reversi.py como AISim1.py haz clic en Archivo ► Guardar Como, y luego ingresa AISim1.py como nombre de archivo y haz clic en Guardar. Esto creará una copia del código fuente de Reversi en un nuevo archivo que podrás modificar sin que los cambios afecten al juego Reversi original (tal vez quieras volver a jugarlo). Cambia la siguiente línea en AISim1.py:
 
-266. move = getPlayerMove(mainBoard, playerTile)
+266. jugada = obtenerJugadaJugador(tableroPrincipal, baldosaJugador)
 
-To this (the change is in bold):
+Por esta otra (el cambio está en negrita):
 
-266. move = getComputerMove(mainBoard, playerTile)
+266. jugada = obtenerJugadaComputadora(tableroPrincipal, baldosaJugador)
 
-Now run the program. Notice that the game still asks you if you want to be X or O, but it won’t ask you to enter any moves. When you replaced getPlayerMove(), you no longer call any code that takes this input from the player. You still press ENTER after the original computer’s moves (because of the input('Press Enter to see the computer\'s move.') on line 285), but the game plays itself!
+Ahora ejecuta el programa. Observa que el juego aún te pregunta si quieres ser X u O, pero no te pedirá que ingreses ninguna jugada. Al haber reemplazado obtenerJugadaJugador(), ya no se llama al código que obtiene esta entrada del jugador. Todavía debes pulsar INTRO luego de las jugadas que originalmente correspondían a la computadora (debido a la instrucción input('Presiona enter para ver la jugada de la computadora.') en la línea 285), ¡pero el juego se juega solo!
 
-Let’s make some other changes to AISim1.py. All of the functions you defined for Reversi can stay the same. But replace the entire main section of the program (line 246 and on) to look like the following code. Some of the code has remained, but most of it has been altered. But all of the lines before line 246 are the same as in Reversi in the last chapter. You can also avoid typing in the code by downloading the source from the URL http://invpy.com/chap16.
+Hagamos algunos otros cambios a AISim1.py. Todas las funciones que has definido para Reversi pueden permanecer iguales. Pero reemplacemos toda la sección principal del programa (de la línea 246 en adelante) por el código que se muestra a continuación. Aunque algo del código permanecerá igual, cambiaremos la mayor parte. Pero las líneas anteriores a 246 son las mismas que en el programa Reversi del capítulo anterior. Puedes evitar tener que escribirlas todas descargando el código fuente de la URL http://invpy.com/chap16.
 
-If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/AISim1.
+Si obtienes errores luego de escribir este código, compara lo que has escrito con el código del libro usando la herramienta diff online en http://invpy.com/diff/AISim1.
 
 AISim1.py
 
-246. print('Welcome to Reversi!')
+246. print('¡Bienvenido a Reversi!')
 247.
 248. while True:
-249.     # Reset the board and game.
-250.     mainBoard = getNewBoard()
-251.     resetBoard(mainBoard)
-252.     if whoGoesFirst() == 'player':
-253.         turn = 'X'
+249.     # Reiniciar el tablero y el juego.
+250.     tableroPrincipal = obtenerNuevoTablero()
+251.     reiniciarTablero(tableroPrincipal)
+252.     if quiénComienza() == 'jugador':
+253.         turno = 'X'
 254.     else:
-255.         turn = 'O'
-256.     print('The ' + turn + ' will go first.')
+255.         turno = 'O'
+256.     print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
 257.
 258.     while True:
-259.          drawBoard(mainBoard)
-260.          scores = getScoreOfBoard(mainBoard)
-261.          print('X has %s points. O has %s points' % (scores['X'], scores['O']))
-262.          input('Press Enter to continue.')
+259.          dibujarTablero(tableroPrincipal)
+260.          puntajes = obtenerPuntajeTablero(tableroPrincipal)
+261.          print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
+262.          input('Presiona Enter para continuar.')
 263.
-264.          if turn == 'X':
-265.               # X's turn.
-266.               otherTile = 'O'
-267.               x, y = getComputerMove(mainBoard, 'X')
-268.               makeMove(mainBoard, 'X', x, y)
+264.          if turno == 'X':
+265.               # Turno de X.
+266.               otraBaldosa = 'O'
+267.               x, y = obtenerJugadaComputadora(tableroPrincipal, 'X')
+268.               hacerJugada(tableroPrincipal, 'X', x, y)
 269.          else:
-270.               # O's turn.
+270.               # Turno de O.
 271.               otherTile = 'X'
 272.               x, y = getComputerMove(mainBoard, 'O')
 273.               makeMove(mainBoard, 'O', x, y)
@@ -74,7 +74,7 @@ AISim1.py
 275.          if getValidMoves(mainBoard, otherTile) == []:
 276.               break
 277.          else:
-278.               turn = otherTile
+278.               turno = otherTile
 279.
 280.     # Display the final score.
 281.     drawBoard(mainBoard)
@@ -120,13 +120,13 @@ AISim2.py
 255.     # Reset the board and game.
 256.     mainBoard = getNewBoard()
 257.     resetBoard(mainBoard)
-258.     if whoGoesFirst() == 'player':
-259.         turn = 'X'
+258.     if quiénComienza() == 'jugador':
+259.         turno = 'X'
 260.     else:
-261.         turn = 'O'
+261.         turno = 'O'
 262.
 263.     while True:
-264.         if turn == 'X':
+264.         if turno == 'X':
 265.             # X's turn.
 266.             otherTile = 'O'
 267.             x, y = getComputerMove(mainBoard, 'X')
@@ -140,7 +140,7 @@ AISim2.py
 275.         if getValidMoves(mainBoard, otherTile) == []:
 276.             break
 277.         else:
-278.             turn = otherTile
+278.             turno = otherTile
 279.
 280.     # Display the final score.
 281.     scores = getScoreOfBoard(mainBoard)
