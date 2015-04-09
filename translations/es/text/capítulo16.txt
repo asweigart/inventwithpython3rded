@@ -55,56 +55,56 @@ AISim1.py
 256.     print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
 257.
 258.     while True:
-259.          dibujarTablero(tableroPrincipal)
-260.          puntajes = obtenerPuntajeTablero(tableroPrincipal)
-261.          print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
-262.          input('Presiona Enter para continuar.')
+259.         dibujarTablero(tableroPrincipal)
+260.         puntajes = obtenerPuntajeTablero(tableroPrincipal)
+261.         print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
+262.         input('Presiona Enter para continuar.')
 263.
-264.          if turno == 'X':
-265.               # Turno de X.
-266.               otraBaldosa = 'O'
-267.               x, y = obtenerJugadaComputadora(tableroPrincipal, 'X')
-268.               hacerJugada(tableroPrincipal, 'X', x, y)
-269.          else:
-270.               # Turno de O.
-271.               otherTile = 'X'
-272.               x, y = getComputerMove(mainBoard, 'O')
-273.               makeMove(mainBoard, 'O', x, y)
+264.         if turno == 'X':
+265.             # Turno de X.
+266.             otraBaldosa = 'O'
+267.             x, y = obtenerJugadaComputadora(tableroPrincipal, 'X')
+268.             hacerJugada(tableroPrincipal, 'X', x, y)
+269.         else:
+270.             # Turno de O.
+271.             otraBaldosa = 'X'
+272.             x, y = obtenerJugadaComputadora(tableroPrincipal, 'O')
+273.             hacerJugada(tableroPrincipal, 'O', x, y)
 274.
-275.          if getValidMoves(mainBoard, otherTile) == []:
-276.               break
-277.          else:
-278.               turno = otherTile
+275.         if obtenerJugadasVálidas(tableroPrincipal, otraBaldosa) == []:
+276.             break
+277.         else:
+278.             turno = otraBaldosa
 279.
-280.     # Display the final score.
-281.     drawBoard(mainBoard)
-282.     scores = getScoreOfBoard(mainBoard)
-283.     print('X scored %s points. O scored %s points.' % (scores['X'], scores['O']))
+280.    # Mostrar el puntaje final.
+281.    dibujarTablero(tableroPrincipal)
+282.    puntajes = obtenerPuntajeTablero(tableroPrincipal)
+283.    print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
 284.
-285.     if not playAgain():
-286.          sys.exit()
+285.    if not jugarDeNuevo():
+286.        sys.exit()
 
-How the AISim1.py Code Works
+Cómo Funciona el Código de AISim1.py
 
-The AISim1.py program is the same as the original Reversi program, except that the call to getPlayerMove() has been replaced with a call to getComputerMove(). There have been some other changes to the text that is printed to the screen to make the game easier to follow.
+El programa AISim1.py es prácticamente igual programa original Reversi, excepto que la llamada a obtenerJugadaJugador() ha sido reemplazada por una llamada a obtenerJugadaComputadora(). Ha habido también otros cambios menores al texto que se imprime en la pantalla para hacer que el juego sea más fácil de seguir.
 
-When you run the AISim1.py program, all you can do is press Enter for each turn until the game ends. Run through a few games and watch the computer play itself. Since both the X and O players are using the same algorithm, it really is just a matter of luck to see who wins. The X player will win half the time, and the O player will win half the time.
+Cuando ejecutas el programa AISim1.py, todo lo que puedes hacer es pulsar Intro luego de cada turno hasta que el juego termine. Prueba ejecutar algunos juegos y observa a la computadora jugar contra sí misma. Ambos jugadores X y O usan el mismo algoritmo, de modo que es realmente cuestión de suerte quién gana. Cada jugador ganará aproximadamente la mitad de las veces.
 
-Making the Computer Play Itself Several Times
+Haciendo que la Computadora Juegue contra sí Misma Varias Veces
 
-But what if we created a new algorithm? Then we could set this new AI against the one implemented in getComputerMove(), and see which one is better. Let’s make some changes to the source code. Do the following to make AISim2.py:
+Pero ¿qué pasaría si crearamos un nuevo algoritmo? Entonces podríamos hacer jugar esta nueva IA contra la que hemos implementado en obtenerJugadaComputadora(), y ver cuál es mejor. Hagamos algunos cambios al código fuente. Haz lo siguiente para crear AISim2.py:
 
-1.  Click on File ► Save As.
-2.  Save this file as AISim2.py so that you can make changes without affecting AISim1.py. (At this point, AISim1.py and AISim2.py will have the same code.)
-3.  Make changes to AISim2.py and save that file. (AISim2.py will have the new changes and AISim1.py will have the original, unchanged code.)
+1.  Haz clic en Archivo ► Guardar Como.
+2.  Guarda este archivo como AISim2.py de modo que puedas hacer cambios sin afectar a AISim1.py. (En este punto, AISim1.py y AISim2.py tendrán el mismo código.)
+3.  Haz cambios a AISim2.py y guarda ese archivo. (AISim2.py contendrá los nuevos cambios y AISim1.py mantendrá el código original, sin modificar.)
 
-Add the following code. The additions are in bold, and some lines have been removed. When you are done changing the file, save it as AISim2.py.
+Añade el siguiente código. Los agregados están en negrita, y algunas líneas han sido eliminadas. Cuando hayas terminado de hacer cambios en el archivo, guárdalo como AISim2.py.
 
-If this is confusing, you can always download the AISim2.py source code from the book’s website at http://invpy.com/chap16.
+Si esto es confuso, siempre puedes descargar el código fuente de AISim2.py desde el sitio web del libro en http://invpy.com/chap16.
 
 AISim2.py
 
-If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/AISim2.
+Si obtienes errores luego de escribir esto, compara el código que has escrito con el código fuente del libro usando la herramienta diff online en http://invpy.com/diff/AISim2.
 
 AISim2.py
 
