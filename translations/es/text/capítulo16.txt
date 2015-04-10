@@ -8,7 +8,7 @@ Temas Tratados En Este Capítulo:
 •   Gráficos de Torta
 •   División Entera
 •   La función round()
-•   Juegos “Computadora vs. Computadora”
+•   Partidas “Computadora vs. Computadora”
 
 El algoritmo de IA de Reversi es simple, pero consigue vencerme en casi todas las partidas. Esto es porque la computadora puede procesar instrucciones rápido, entonces comprobar todas las posiciones en el tablero y elegir la jugada que da el mayor puntaje es fácil para la computadora. Seguir este procedimiento a mano me tomaría demasiado tiempo.
 
@@ -34,7 +34,7 @@ Por esta otra (el cambio está en negrita):
 
 266. jugada = obtenerJugadaComputadora(tableroPrincipal, baldosaJugador)
 
-Ahora ejecuta el programa. Observa que el juego aún te pregunta si quieres ser X u O, pero no te pedirá que ingreses ninguna jugada. Al haber reemplazado obtenerJugadaJugador(), ya no se llama al código que obtiene esta entrada del jugador. Todavía debes pulsar INTRO luego de las jugadas que originalmente correspondían a la computadora (debido a la instrucción input('Presiona enter para ver la jugada de la computadora.') en la línea 285), ¡pero el juego se juega solo!
+Ahora ejecuta el programa. Observa que el juego aún te pregunta si quieres ser X u O, pero no te pedirá que ingreses ninguna jugada. Al haber reemplazado obtenerJugadaJugador(), ya no se llama al código que obtiene esta entrada del jugador. Todavía debes pulsar INTRO luego de las jugadas que originalmente correspondían a la computadora (debido a la instrucción input('Presiona enter para ver la jugada de la computadora.') en la línea 285), ¡pero la partida se juega sola!
 
 Hagamos algunos otros cambios a AISim1.py. Todas las funciones que has definido para Reversi pueden permanecer iguales. Pero reemplacemos toda la sección principal del programa (de la línea 246 en adelante) por el código que se muestra a continuación. Aunque algo del código permanecerá igual, cambiaremos la mayor parte. Pero las líneas anteriores a 246 son las mismas que en el programa Reversi del capítulo anterior. Puedes evitar tener que escribirlas todas descargando el código fuente de la URL http://invpy.com/chap16.
 
@@ -45,7 +45,7 @@ AISim1.py
 246. print('¡Bienvenido a Reversi!')
 247.
 248. while True:
-249.     # Reiniciar el tablero y el juego.
+249.     # Reiniciar el tablero y la partida.
 250.     tableroPrincipal = obtenerNuevoTablero()
 251.     reiniciarTablero(tableroPrincipal)
 252.     if quiénComienza() == 'jugador':
@@ -86,9 +86,9 @@ AISim1.py
 
 Cómo Funciona el Código de AISim1.py
 
-El programa AISim1.py es prácticamente igual programa original Reversi, excepto que la llamada a obtenerJugadaJugador() ha sido reemplazada por una llamada a obtenerJugadaComputadora(). Ha habido también otros cambios menores al texto que se imprime en la pantalla para hacer que el juego sea más fácil de seguir.
+El programa AISim1.py es prácticamente igual programa original Reversi, excepto que la llamada a obtenerJugadaJugador() ha sido reemplazada por una llamada a obtenerJugadaComputadora(). Ha habido también otros cambios menores al texto que se imprime en la pantalla para hacer que la partida sea más fácil de seguir.
 
-Cuando ejecutas el programa AISim1.py, todo lo que puedes hacer es pulsar Intro luego de cada turno hasta que el juego termine. Prueba ejecutar algunos juegos y observa a la computadora jugar contra sí misma. Ambos jugadores X y O usan el mismo algoritmo, de modo que es realmente cuestión de suerte quién gana. Cada jugador ganará aproximadamente la mitad de las veces.
+Cuando ejecutas el programa AISim1.py, todo lo que puedes hacer es pulsar Intro luego de cada turno hasta que la partida termine. Prueba ejecutar algunas partidas y observa a la computadora jugar contra sí misma. Ambos jugadores X y O usan el mismo algoritmo, de modo que es realmente cuestión de suerte quién gana. Cada jugador ganará aproximadamente la mitad de las veces.
 
 Haciendo que la Computadora Juegue contra sí Misma Varias Veces
 
@@ -108,18 +108,18 @@ Si obtienes errores luego de escribir esto, compara el código que has escrito c
 
 AISim2.py
 
-246. print('Welcome to Reversi!')
+246. print('¡Bienvenido a Reversi!')
 247.
-248. xwins = 0
-249. owins = 0
-250. ties = 0
-251. numGames = int(input('Enter number of games to run: '))
+248. victoriasx = 0
+249. victoriaso = 0
+250. empates = 0
+251. numPartidas = int(input('Ingresa el número de partidas a jugar: '))
 252.
-253. for game in range(numGames):
-254.     print('Game #%s:' % (game), end=' ')
-255.     # Reset the board and game.
-256.     mainBoard = getNewBoard()
-257.     resetBoard(mainBoard)
+253. for partida in range(numPartidas):
+254.     print('Partida #%s:' % (partida), end=' ')
+255.     # Reiniciar el tablero y la partida.
+256.     tableroPrincipal = obtenerNuevoTablero()
+257.     reiniciarTablero(tableroPrincipal)
 258.     if quiénComienza() == 'jugador':
 259.         turno = 'X'
 260.     else:
@@ -127,46 +127,46 @@ AISim2.py
 262.
 263.     while True:
 264.         if turno == 'X':
-265.             # X's turn.
-266.             otherTile = 'O'
-267.             x, y = getComputerMove(mainBoard, 'X')
-268.             makeMove(mainBoard, 'X', x, y)
+265.             # Turno de X.
+266.             otraBaldosa = 'O'
+267.             x, y = obtenerJugadaComputadora(tableroPrincipal, 'X')
+268.             hacerJugada(tableroPrincipal, 'X', x, y)
 269.         else:
-270.             # O's turn.
-271.             otherTile = 'X'
-272.             x, y = getComputerMove(mainBoard, 'O')
-273.             makeMove(mainBoard, 'O', x, y)
+270.             # Turno de O.
+271.             otraBaldosa = 'X'
+272.             x, y = obtenerJugadaComputadora(tableroPrincipal, 'O')
+273.             hacerJugada(tableroPrincipal, 'O', x, y)
 274.
-275.         if getValidMoves(mainBoard, otherTile) == []:
+275.         if obtenerJugadasVálidas(tableroPrincipal, otraBaldosa) == []:
 276.             break
 277.         else:
-278.             turno = otherTile
+278.             turno = otraBaldosa
 279.
-280.     # Display the final score.
-281.     scores = getScoreOfBoard(mainBoard)
-282.     print('X scored %s points. O scored %s points.' % (scores['X'], scores['O']))
+280.     # Mostrar el puntaje final.
+281.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
+282.     print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
 283.
-284.     if scores['X'] > scores['O']:
-285.         xwins += 1
-286.     elif scores['X'] < scores['O']:
-287.         owins += 1
+284.     if puntajes['X'] > puntajes['O']:
+285.         victoriasx += 1
+286.     elif puntajes['X'] < puntajes['O']:
+287.         victoriaso += 1
 288.     else:
-289.         ties += 1
+289.         empates += 1
 290.
-291. numGames = float(numGames)
-292. xpercent = round(((xwins / numGames) * 100), 2)
-293. opercent = round(((owins / numGames) * 100), 2)
-294. tiepercent = round(((ties / numGames) * 100), 2)
-295. print('X wins %s games (%s%%), O wins %s games (%s%%), ties for %s games (%s%%) of %s games total.' % (xwins, xpercent, owins, opercent, ties, tiepercent, numGames))
+291. numPartidas = float(numPartidas)
+292. porcentajex = round(((victoriasx / numPartidas) * 100), 2)
+293. porcentajeo = round(((victoriaso / numPartidas) * 100), 2)
+294. porcentajeempate = round(((empates / numPartidas) * 100), 2)
+295. print('X gana %s partidas (%s%%), O gana %s partidas (%s%%), empates en %s partidas (%s%%) sobre un total de %s partidas.' % (victoriasx, porcentajex, victoriaso, porcentajeo, empates, porcentajeempate, numPartidas))
 
 How the AISim2.py Code Works
 
-You have added the variables xwins, owins, and ties to lines 248 to 250 to keep track of how many times X wins, O wins, and when they tie. Lines 284 to 289 increment these variables at the end of each game, before it loops back to start a new game.
+You have added the variables victoriasx, victoriaso, and empates to lines 248 to 250 to keep track of how many times X wins, O wins, and when they tie. Lines 284 to 289 increment these variables at the end of each game, before it loops back to start a new game.
 
-You have removed most of the print() function calls from the program, as well as the calls to drawBoard(). When you run AISim2.py, it asks you how many games you want to run. Now that you’ve taken out the call to drawBoard() and replace the while True: loop with a for game in range(numGames): loop, you can run a number of games without stopping for the user to type anything. Here is a sample run of ten of computer vs. computer Reversi games:
+You have removed most of the print() function calls from the program, as well as the calls to drawBoard(). When you run AISim2.py, it asks you how many games you want to run. Now that you’ve taken out the call to drawBoard() and replace the while True: loop with a for game in range(numPartidas): loop, you can run a number of games without stopping for the user to type anything. Here is a sample run of ten of computer vs. computer Reversi games:
 
 Welcome to Reversi!
-Enter number of games to run: 10
+Ingresa el número de partidas a jugar: 10
 Game #0: X scored 40 points. O scored 23 points.
 Game #1: X scored 24 points. O scored 39 points.
 Game #2: X scored 31 points. O scored 30 points.
@@ -177,7 +177,7 @@ Game #6: X scored 29 points. O scored 33 points.
 Game #7: X scored 31 points. O scored 33 points.
 Game #8: X scored 32 points. O scored 32 points.
 Game #9: X scored 41 points. O scored 22 points.
-X wins 5 games (50.0%), O wins 4 games (40.0%), ties for 1 games (10.0%) of 10.0 games total.
+X wins 5 games (50.0%), O wins 4 games (40.0%), empates for 1 games (10.0%) of 10.0 games total.
 
 Because the algorithms include randomness, your run won’t have the exact numbers as above.
 
@@ -229,22 +229,22 @@ The round() function also has an optional parameter, where you can specify to wh
 
 Displaying the Statistics
 
-291. numGames = float(numGames)
-292. xpercent = round(((xwins / numGames) * 100), 2)
-293. opercent = round(((owins / numGames) * 100), 2)
-294. tiepercent = round(((ties / numGames) * 100), 2)
-295. print('X wins %s games (%s%%), O wins %s games (%s%%), ties for %s games (%s%%) of %s games total.' % (xwins, xpercent, owins, opercent, ties, tiepercent, numGames))
+291. numPartidas = float(numPartidas)
+292. porcentajex = round(((victoriasx / numPartidas) * 100), 2)
+293. porcentajeo = round(((victoriaso / numPartidas) * 100), 2)
+294. porcentajeempate = round(((empates / numPartidas) * 100), 2)
+295. print('X wins %s games (%s%%), O wins %s games (%s%%), empates for %s games (%s%%) of %s games total.' % (victoriasx, porcentajex, victoriaso, porcentajeo, empates, porcentajeempate, numPartidas))
 
-The code at the bottom of the program will show the user how many wins X and O had, how many ties there were, and how what percentages these make up. Statistically, the more games you run, the more accurate your percentages will be for finding the best AI algorithm. If you only ran ten games, and X won three of them, then it would seem that X’s algorithm only wins 30% of the time. However, if you run a hundred, or even a thousand games, then you may find that X’s algorithm wins closer to 50% (that is, half) of the games.
+The code at the bottom of the program will show the user how many wins X and O had, how many empates there were, and how what percentages these make up. Statistically, the more games you run, the more accurate your percentages will be for finding the best AI algorithm. If you only ran ten games, and X won three of them, then it would seem that X’s algorithm only wins 30% of the time. However, if you run a hundred, or even a thousand games, then you may find that X’s algorithm wins closer to 50% (that is, half) of the games.
 
-To find the percentages, divide the number of wins or ties by the total number of games. Then multiply the result by 100. However, you may end up with a number like 66.66666666666667. So pass this number to the round() function with the second parameter of 2 to limit the precision to two decimal places, so it will return a float like 66.67 instead (which is much more readable).
+To find the percentages, divide the number of wins or empates by the total number of games. Then multiply the result by 100. However, you may end up with a number like 66.66666666666667. So pass this number to the round() function with the second parameter of 2 to limit the precision to two decimal places, so it will return a float like 66.67 instead (which is much more readable).
 
 Let’s try another experiment. Run AISim2.py again, but this time have it run a hundred games:
 
 Sample Run of AISim2.py
 
 Welcome to Reversi!
-Enter number of games to run: 100
+Ingresa el número de partidas a jugar: 100
 Game #0: X scored 42 points. O scored 18 points.
 Game #1: X scored 26 points. O scored 37 points.
 Game #2: X scored 34 points. O scored 29 points.
@@ -254,7 +254,7 @@ Game #96: X scored 22 points. O scored 39 points.
 Game #97: X scored 38 points. O scored 26 points.
 Game #98: X scored 35 points. O scored 28 points.
 Game #99: X scored 24 points. O scored 40 points.
-X wins 46 games (46.0%), O wins 52 games (52.0%), ties for 2 games (2.0%) of 100.0 games total.
+X wins 46 games (46.0%), O wins 52 games (52.0%), empates for 2 games (2.0%) of 100.0 games total.
 
 Depending on how fast your computer is, this run might have taken a about a couple minutes. You can see that the results of all one hundred games still evens out to about fifty-fifty, because both X and O are using the same algorithm to win.
 
@@ -372,7 +372,7 @@ Now the only thing to do is replace one of the getComputerMove() calls in the ma
 When you run the program with a hundred games now, it will look something like this:
 
 Welcome to Reversi!
-Enter number of games to run: 100
+Ingresa el número de partidas a jugar: 100
 Game #0: X scored 25 points. O scored 38 points.
 Game #1: X scored 32 points. O scored 32 points.
 Game #2: X scored 15 points. O scored 0 points.
@@ -382,7 +382,7 @@ Game #2: X scored 15 points. O scored 0 points.
 Game #97: X scored 41 points. O scored 23 points.
 Game #98: X scored 33 points. O scored 31 points.
 Game #99: X scored 45 points. O scored 19 points.
-X wins 84 games (84.0%), O wins 15 games (15.0%), ties for 1 games (1.0%) of 100.0 games total.
+X wins 84 games (84.0%), O wins 15 games (15.0%), empates for 1 games (1.0%) of 100.0 games total.
 
 Wow! X won far more often than O did. That means that the algorithm in getComputerMove() (take any available corners, otherwise take the space that flips the most tiles) wins more games than the algorithm in getRandomMove() (which makes moves randomly). This makes sense, because making intelligent choices is usually better than just choosing things at random.
 
@@ -391,7 +391,7 @@ Comparing the Random Algorithm Against Itself
 What if we changed O’s algorithm to also use the algorithm in getRandomMove()? Let’s find out by changing O’s function call on line 351 from getComputerMove() to getRandomMove() and running the program again.
 
 Welcome to Reversi!
-Enter number of games to run: 100
+Ingresa el número de partidas a jugar: 100
 Game #0: X scored 37 points. O scored 24 points.
 Game #1: X scored 19 points. O scored 45 points.
 
@@ -399,7 +399,7 @@ Game #1: X scored 19 points. O scored 45 points.
 
 Game #98: X scored 27 points. O scored 37 points.
 Game #99: X scored 38 points. O scored 22 points.
-X wins 42 games (42.0%), O wins 54 games (54.0%), ties for 4 games (4.0%) of 100.0 games total.
+X wins 42 games (42.0%), O wins 54 games (54.0%), empates for 4 games (4.0%) of 100.0 games total.
 
 As you can see, when both players are making random moves, they each win about 50% of the time. (In the above case, O happen to get lucky and won a little bit more than half of the time.)
 
@@ -410,7 +410,7 @@ Comparing the Regular Algorithm Against the CornersSideBest Algorithm
 Change X’s algorithm on line 346 to use getComputerMove() (the original algorithm) and O’s algorithm on line 351 to use getCornerSideBestMove() (which first tries to move on a corner, then tries to move on a side space, and then takes the best remaining move), and let’s run a hundred games to see which is better. Try changing the function calls and running the program again.
 
 Welcome to Reversi!
-Enter number of games to run: 100
+Ingresa el número de partidas a jugar: 100
 Game #0: X scored 52 points. O scored 12 points.
 Game #1: X scored 10 points. O scored 54 points.
 
@@ -418,12 +418,12 @@ Game #1: X scored 10 points. O scored 54 points.
 
 Game #98: X scored 41 points. O scored 23 points.
 Game #99: X scored 46 points. O scored 13 points.
-X wins 65 games (65.0%), O wins 31 games (31.0%), ties for 4 games (4.0%) of 100.0 games total.
+X wins 65 games (65.0%), O wins 31 games (31.0%), empates for 4 games (4.0%) of 100.0 games total.
 
 Wow! That’s unexpected. It seems that choosing the side spaces over a space that flips more tiles is a bad strategy to use. The benefit of the side space isn’t greater than the cost of flipping fewer of the opponent’s tiles. Can we be sure of these results? Let’s run the program again, but this time play one thousand games. This may take a few minutes for your computer to run (but it would take weeks for you to do this by hand!) Try changing the function calls and running the program again.
 
 Welcome to Reversi!
-Enter number of games to run: 1000
+Ingresa el número de partidas a jugar: 1000
 Game #0: X scored 20 points. O scored 44 points.
 Game #1: X scored 54 points. O scored 9 points.
 
@@ -440,7 +440,7 @@ Comparing the Regular Algorithm Against the Worst Algorithm
 Now set the X player’s algorithm on line 346 to use getComputerMove() and the O player’s algorithm on line 351 to getWorstMove() (which makes the move that flips over the least number of tiles), and run a hundred games. Try changing the function calls and running the program again.
 
 Welcome to Reversi!
-Enter number of games to run: 100
+Ingresa el número de partidas a jugar: 100
 Game #0: X scored 50 points. O scored 14 points.
 Game #1: X scored 38 points. O scored 8 points.
 ...skipped for brevity...
@@ -456,7 +456,7 @@ Comparing the Regular Algorithm Against the WorstCorner Algorithm
 How about when we replace getWorstMove() on line 351 with getCornerWorstMove()? This is the same algorithm except it takes any available corner pieces before taking the worst move. Try changing the function calls and running the program again.
 
 Welcome to Reversi!
-Enter number of games to run: 100
+Ingresa el número de partidas a jugar: 100
 Game #0: X scored 36 points. O scored 7 points.
 Game #1: X scored 44 points. O scored 19 points.
 
@@ -473,7 +473,7 @@ Comparing the Worst Algorithm Against the WorstCorner Algorithm
 You can check by setting X’s algorithm to getWorstMove() and O’s algorithm to getCornerWorstMove(), and then running the program. Try changing the function calls and running the program again.
 
 Welcome to Reversi!
-Enter number of games to run: 100
+Ingresa el número de partidas a jugar: 100
 Game #0: X scored 25 points. O scored 39 points.
 Game #1: X scored 26 points. O scored 33 points.
 

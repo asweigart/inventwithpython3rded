@@ -246,7 +246,7 @@ def mostrarPuntajes(baldosaJugador, baldosaComputadora):
 print('¡Bienvenido a Reversi!')
 
 while True:
-    # Reiniciar el tablero y el juego.
+    # Reiniciar el tablero y la partida.
     tableroPrincipal = obtenerNuevoTablero()
     reiniciarTablero(tableroPrincipal)
     if quiénComienza() == 'jugador':
