@@ -157,49 +157,49 @@ AISim2.py
 292. porcentajex = round(((victoriasx / numPartidas) * 100), 2)
 293. porcentajeo = round(((victoriaso / numPartidas) * 100), 2)
 294. porcentajeempate = round(((empates / numPartidas) * 100), 2)
-295. print('X gana %s partidas (%s%%), O gana %s partidas (%s%%), empates en %s partidas (%s%%) sobre un total de %s partidas.' % (victoriasx, porcentajex, victoriaso, porcentajeo, empates, porcentajeempate, numPartidas))
+295. print('X ha ganado %s partidas (%s%%), O ha ganado %s partidas (%s%%), empates en %s partidas (%s%%) sobre un total de %s partidas.' % (victoriasx, porcentajex, victoriaso, porcentajeo, empates, porcentajeempate, numPartidas))
 
-How the AISim2.py Code Works
+Cómo Funciona el Código de AISim2.py
 
-You have added the variables victoriasx, victoriaso, and empates to lines 248 to 250 to keep track of how many times X wins, O wins, and when they tie. Lines 284 to 289 increment these variables at the end of each game, before it loops back to start a new game.
+Hemos agregado las variables victoriasx, victoriaso y empates en las líneas 248 a 250 para llevar un registro de cuántas veces gana X, cuántas gana O y cuántas veces se produce un empate. Las líneas 284 a 289 incrementan estas variables al final de cada partida, antes de que el bucle se reinicie con un nuevo juego.
 
-You have removed most of the print() function calls from the program, as well as the calls to drawBoard(). When you run AISim2.py, it asks you how many games you want to run. Now that you’ve taken out the call to drawBoard() and replace the while True: loop with a for game in range(numPartidas): loop, you can run a number of games without stopping for the user to type anything. Here is a sample run of ten of computer vs. computer Reversi games:
+Hemos eliminado del programa la mayoría de las llamadas a la función print(), así como las llamadas a dibujarTablero(). Cuando ejecutes AISim2.py, te preguntará cuántas partidas deseas simular. Ahora que hemos quitado la llamada a dibujarTablero() y reemplazado el bucle while True el bucle for partida in range(numPartidas):, el programa puede simular un número de partidas sin detenerse a esperar que el usuario escriba nada. Aquí hay una prueba de ejecución de diez partidas computadora vs. computadora de Reversi:
 
-Welcome to Reversi!
+¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 10
-Game #0: X scored 40 points. O scored 23 points.
-Game #1: X scored 24 points. O scored 39 points.
-Game #2: X scored 31 points. O scored 30 points.
-Game #3: X scored 41 points. O scored 23 points.
-Game #4: X scored 30 points. O scored 34 points.
-Game #5: X scored 37 points. O scored 27 points.
-Game #6: X scored 29 points. O scored 33 points.
-Game #7: X scored 31 points. O scored 33 points.
-Game #8: X scored 32 points. O scored 32 points.
-Game #9: X scored 41 points. O scored 22 points.
-X wins 5 games (50.0%), O wins 4 games (40.0%), empates for 1 games (10.0%) of 10.0 games total.
+Partida #0: X ha obtenido 40 puntos. O ha obtenido 23 puntos.
+Partida #1: X ha obtenido 24 puntos. O ha obtenido 39 puntos.
+Partida #2: X ha obtenido 31 puntos. O ha obtenido 30 puntos.
+Partida #3: X ha obtenido 41 puntos. O ha obtenido 23 puntos.
+Partida #4: X ha obtenido 30 puntos. O ha obtenido 34 puntos.
+Partida #5: X ha obtenido 37 puntos. O ha obtenido 27 puntos.
+Partida #6: X ha obtenido 29 puntos. O ha obtenido 33 puntos.
+Partida #7: X ha obtenido 31 puntos. O ha obtenido 33 puntos.
+Partida #8: X ha obtenido 32 puntos. O ha obtenido 32 puntos.
+Partida #9: X ha obtenido 41 puntos. O ha obtenido 22 puntos.
+X ha ganado 5 partidas (50.0%), O ha ganado 4 partidas (40.0%), empates en 1 partidas (10.0%) sobre un total de 10.0 partidas.
 
-Because the algorithms include randomness, your run won’t have the exact numbers as above.
+Como los algoritmos tienen una componente aleatoria, puede ser que no obtengas exactamente los mismos números.
 
-Printing things out to the screen slows the computer down, but now that you have removed that code, the computer can run an entire game of Reversi in about a second or two. Think about it. Each time the program printed out one of those lines with the final score, it ran through an entire game (which is about fifty or sixty moves, each move carefully checked to be the one that gets the most points).
+Imprimir cosas en la pantalla enlentece a la computadora, pero ahora que hemos eliminado ese código, la computadora puede jugar una partida completa de Reversi en uno o dos segundos. Piensa en esto. Cada vez que el programa imprime una de esas líneas con el puntaje final significa que ha jugado una partida completa (que son alrededor de cincuenta o sesenta jugadas, cada una de las cuales ha sido cuidadosamente comprobada para verificar que da la mayor cantidad posible de puntos).
 
-Percentages
+Porcentajes
 
-Figure 16-1: A pie chart with 10%, 15%, 25%, and 50% portions.
+Figura 16-1: Un gráfico de torta con porciones de 10%, 15%, 25% y 50%.
 
-Percentages are a portion of a total amount, and range from 0% to 100%. If you had 100% of a pie, you would have the entire pie. If you had 0% of a pie, you wouldn't have any pie at all. 50% of the pie would be half of the pie. A pie is a common image to use for percentages. In fact, there’s a kind of chart called a pie chart which shows how much of the full total a certain portion is. Figure 16-1 is a pie chart with 10%, 15%, 25%, and 50% portions below. Notice that 10% + 15% + 25% + 50% adds up to 100%: a whole pie.
+Los porcentajes son una porción de una cantidad total, y están comprendidos entre 0% y 100%. Si tienes el 100% de una torta, quiere decir que tienes toda la torta. Si tienes el 0% de una torta, significa que no tienes torta en absoluto. 50% de la torta corresponde a la mitad de la torta. Una torta es una imagen de uso común cuando hablamos de porcentajes. De hecho, hay un tipo de gráfico llamado gráfico de torta que muestra a qué fracción del total corresponde una dada porción. La Figura 16-1 muestra un gráfico de torta dividido en porciones de 10%, 15%, 25% y 50%. Nota que la suma de 10% + 15% + 25% + 50% da un total de 100%: una torta entera.
 
-We can calculate the percentage with division. To get a percentage, divide the part you have by the total, and then multiply by one hundred. For example, if X won 50 out of 100 games, you would calculate the expression 50 / 100, which would evaluate to 0.5. Multiply this by 100 to get a percentage (in this case, 50%).
+Podemos calcular el porcentaje a través de una división. Para obtener un porcentaje, divide la parte que tienes por el total, y multiplica ese resultado por cien. Por ejemplo, si X ha ganado 50 partidas de 100, puedes calcular la expresión 50 / 100, que da como resultado 0.5. Multiplica este resultado por 100 para obtener un porcentaje (en este caso, 50%).
 
-Notice that if X won 100 out of 200 games, you could calculate the percentage with 100 / 200, which would also evaluate to 0.5. When you multiply 0.5 by 100 to get the percentage, you get 50%. Winning 100 out of 200 games is the same percentage (that is, the same portion) as winning 50 out of 100 games.
+Observa que si X hubiese ganado 100 partidas de 200, podrías calcular el porcentaje dividiendo 100 / 200, que también se evaluaría a 0.5. Al multiplicar 0.5 por 100 para obtener el porcentaje, volverías a obtener 50%. Ganar 100 partidas de 200 es el mismo porcentaje (es decir, la misma porción) que ganar 50 juegos de 100.
 
-Division Evaluates to Floating Point
+La División se Evalúa a Punto Flotante
 
-It is important to note that when you use the / division operator, the expression will always evaluate to a floating point number. For example, the expression 10 / 2 will evaluate to the floating point value 5.0, not to the integer value 5.
+Es importante destacar que cuando al usar el operador / división, la expresión siempre se evaluará a un número de punto flotante. Por ejemplo, la expresión 10 / 2 se evaluará al valor de punto flotante 5.0, no al valor entero 5.
 
-This is important to remember, because adding an integer to a floating point value with the + addition operator will also always evaluate to a floating point value. For example, 3 + 4.0 will evaluate to the floating point value 7.0 and not to the integer 7.
+Es importante recordar esto, porque sumar un entero a un valor de punto flotante con el operador + suma también se evaluará siempre a un valor de punto flotante. Por ejemplo, 3 + 4.0 se evaluará al valor de punto flotante 7.0 y no al entero 7.
 
-Try entering the following code into the interactive shell:
+Prueba ingresar el siguiente código en la consola interactiva:
 
 >>> spam = 100 / 4
 >>> spam

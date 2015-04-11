@@ -242,18 +242,18 @@ def mostrarPuntajes(baldosaJugador, baldosaComputadora):
     print('Tienes %s puntos. La computadora tiene %s puntos.' % (puntajes[baldosaJugador], puntajes[baldosaComputadora]))
 
 
-def obtenerJugadaAzar(tablero, baldosa):
+def obtenerJugadaAleatoria(tablero, baldosa):
     # Devuelve una jugada al azar.
-    return random.choice( obtenerJugadasValidas(tablero, baldosa) )
+    return random.choice(obtenerJugadasVálidas(tablero, baldosa))
 
 
-def estaEnBorde(x, y):
+def esBorde(x, y):
     return x == 0 or x == 7 or y == 0 or y ==7
 
 
-def obtenerJugadaEsquinaBordeMejor(tablero, baldosa):
-    # Devuelve una jugada a una esquina, lado o la mejor jugada.
-    jugadasPosibles = obtenerJugadasValidas(tablero, baldosa)
+def obtenerEsquinaBordeMejorJugada(tablero, baldosa):
+    # Devuelve una jugada sobre una esquina, lado o la mejor jugada.
+    jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
 
     # Ordena al azar las jugadas posibles.
     random.shuffle(jugadasPosibles)
@@ -263,9 +263,9 @@ def obtenerJugadaEsquinaBordeMejor(tablero, baldosa):
         if esEsquina(x, y):
             return [x, y]
 
-    # Si no hay ninguna esquina, devuelve una jugada de lado.
+    # Si no hay ninguna esquina, devuelve una jugada sobre un borde.
     for x, y in jugadasPosibles:
-        if estaEnBorde(x, y):
+        if esBorde(x, y):
             return [x, y]
 
     return obtenerJugadaComputadora(tablero, baldosa)
@@ -273,22 +273,22 @@ def obtenerJugadaEsquinaBordeMejor(tablero, baldosa):
 
 def obtenerBordeMejorJugada(tablero, baldosa):
     # Devuelve una jugada a una esquina, un lado o la mejor jugada posible.
-    jugadasPosibles = obtenerJugadasValidas(tablero, baldosa)
+    jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
 
     # Ordena al azar las jugadas posibles.
     random.shuffle(jugadasPosibles)
 
-    # Devuelve una jugada hacia un lado, de estar disponible.
+    # Devuelve una jugada sobre un borde de ser posible.
     for x, y in jugadasPosibles:
-        if estaEnBorde(x, y):
+        if esBorde(x, y):
             return [x, y]
 
     return obtenerJugadaComputadora(tablero, baldosa)
 
 
 def obtenerPeorJugada(tablero, baldosa):
-    # Devuelve la jugada que que voltea la menor cantidad de baldosas.
-    jugadasPosibles = obtenerJugadasValidas(tablero, baldosa)
+    # Devuelve la jugada que que convierta la menor cantidad de baldosas.
+    jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
 
     # Ordena al azar las jugadas posibles.
     random.shuffle(jugadasPosibles)
@@ -296,9 +296,9 @@ def obtenerPeorJugada(tablero, baldosa):
     # Recorre todas las jugadas posibles y recuerda la de mejor puntaje.
     peorPuntaje = 64
     for x, y in jugadasPosibles:
-        dupTablero = getBoardCopy(tablero)
-        hacerJugada(dupTablero, baldosa, x, y)
-        puntaje = getScoreOfBoard(dupTablero)[baldosa]
+        réplicaTablero = obtenerCopiaTablero(tablero)
+        hacerJugada(réplicaTablero, baldosa, x, y)
+        puntaje = obtenerPuntajeTablero(réplicaTablero)[baldosa]
         if puntaje < peorPuntaje:
             peorJugada = [x, y]
             peorPuntaje = puntaje
@@ -307,13 +307,13 @@ def obtenerPeorJugada(tablero, baldosa):
 
 
 def obtenerEsquinaPeorJugada(tablero, baldosa):
-    # Devuelve la esquina, el especio o la jugada que voltea la menor cantidad de baldosas.
-    jugadasPosibles = obtenerJugadasValidas(tablero, baldosa)
+    # Devuelve la esquina, el especio o la jugada que convierta la menor cantidad de baldosas.
+    jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
 
     # Ordena al azar las jugadas posibles.
     random.shuffle(jugadasPosibles)
 
-    # Siempre ir hacia una esquina de ser posible.
+    # Siempre jugar sobre una esquina de ser posible.
     for x, y in jugadasPosibles:
         if esEsquina(x, y):
             return [x, y]
@@ -324,51 +324,51 @@ def obtenerEsquinaPeorJugada(tablero, baldosa):
 
 print('¡Bienvenido a Reversi!')
 
-ganadasx = 0
-ganadaso = 0
+victoriasx = 0
+victoriaso = 0
 empates = 0
-numJuegos = int(input('Ingrese la cantidad de juegos a simular: '))
+numPartidas = int(input('Ingresa el número de partidas a jugar: '))
 
-for juego in range(numJuegos):
-    print('juego #%s:' % (juego), end=' ')
-    # Blanquea el tablero y el juego
+for partida in range(numPartidas):
+    print('Partida #%s:' % (partida), end=' ')
+    # Reiniciar el tablero y la partida.
     tableroPrincipal = obtenerNuevoTablero()
-    blanquearTablero(tableroPrincipal)
-    if quienComienza() == 'jugador':
+    reiniciarTablero(tableroPrincipal)
+    if quiénComienza() == 'jugador':
         turno = 'X'
     else:
         turno = 'O'
 
     while True:
         if turno == 'X':
-            # Turno de X
+            # Turno de X.
             otraBaldosa = 'O'
             x, y = obtenerJugadaComputadora(tableroPrincipal, 'X')
             hacerJugada(tableroPrincipal, 'X', x, y)
         else:
-            # Turno de O
+            # Turno de O.
             otraBaldosa = 'X'
             x, y = obtenerJugadaComputadora(tableroPrincipal, 'O')
             hacerJugada(tableroPrincipal, 'O', x, y)
 
-        if obtenerJugadasValidas(tableroPrincipal, otraBaldosa) == []:
+        if obtenerJugadasVálidas(tableroPrincipal, otraBaldosa) == []:
             break
         else:
             turno = otraBaldosa
 
-    # Muestra el puntaje final
+    # Mostrar el puntaje final.
     puntajes = obtenerPuntajeTablero(tableroPrincipal)
-    print('X obtuvo %s puntos. O obtuvo %s puntos.' % (puntajes['X'], puntajes['O']))
+    print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
 
     if puntajes['X'] > puntajes['O']:
-        ganadasx += 1
+        victoriasx += 1
     elif puntajes['X'] < puntajes['O']:
-        ganadaso += 1
+        victoriaso += 1
     else:
         empates += 1
 
-numJuegos = float(numJuegos)
-porcientox = round(((ganadasx / numJuegos) * 100), 2)
-porcientoo = round(((ganadaso / numJuegos) * 100), 2)
-porcientoempate = round(((empates / numJuegos) * 100), 2)
-print('X ganó %s juegos (%s%%), O ganó %s juegos (%s%%), y hubo %s juegos empatados (%s%%) of %s juegos total.' % (ganadasx, porcientox, ganadaso, porcientoo, empates, porcientoempate, numJuegos))
+numPartidas = float(numPartidas)
+porcentajex = round(((victoriasx / numPartidas) * 100), 2)
+porcentajeo = round(((victoriaso / numPartidas) * 100), 2)
+porcentajeempate = round(((empates / numPartidas) * 100), 2)
+print('X ha ganado %s partidas (%s%%), O ha ganado %s partidas (%s%%), empates en %s partidas (%s%%) sobre un total de %s partidas.' % (victoriasx, porcentajex, victoriaso, porcentajeo, empates, porcentajeempate, numPartidas))
