@@ -208,11 +208,11 @@ Prueba ingresar el siguiente código en la consola interactiva:
 >>> spam
 45.0
 
-Notice that in the above example, the data type of the value stored in spam is always a floating point value. You can pass the floating point value to the int() function, which will return an integer form of the floating point value. But this will always round the floating point value down. For example, the expressions int(4.0), int(4.2), and int(4.9) will all evaluate to 4, and never 5.
+Observa que en el ejemplo de arriba, el tipo de datos del valor almacenado en spam es siempre un valor de punto flotante. Puedes pasar el valor de punto flotante a la función int(), la cuál devolverá una forma entera del valor de punto flotante. Pero esto siempre redondeará el valor de punto flotante hacia abajo. Por ejemplo, las expresiones int(4.0), int(4.2) e int(4.9) se evaluarán a 4, y nunca a 5.
 
-The round() function
+La función round()
 
-The round() function will round a float number to the nearest whole float number. Try entering the following into the interactive shell:
+La función round() redondeará un número float al float entero más cercano. Prueba ingresar lo siguiente en la consola interactiva:
 
 >>> round(10.0)
 10.0
@@ -225,9 +225,9 @@ The round() function will round a float number to the nearest whole float number
 >>> round(2.5422, 2)
 2.54
 
-The round() function also has an optional parameter, where you can specify to what place you want to round the number to. For example, the expression round(2.5422, 2) evaluates to 2.54 and round(2.5422, 3) evaluates to 2.542.
+La función round() también tiene un parámetro opcional, donde puedes especificar hasta qué lugar quieres redondear el número. Por ejemplo, la expresión round(2.5422, 2) se evalúa a 2.54 y round(2.5422, 3) se evalúa a 2.542.
 
-Displaying the Statistics
+Mostrando las Estadísticas
 
 291. numPartidas = float(numPartidas)
 292. porcentajex = round(((victoriasx / numPartidas) * 100), 2)
@@ -235,30 +235,30 @@ Displaying the Statistics
 294. porcentajeempate = round(((empates / numPartidas) * 100), 2)
 295. print('X wins %s games (%s%%), O wins %s games (%s%%), empates for %s games (%s%%) of %s games total.' % (victoriasx, porcentajex, victoriaso, porcentajeo, empates, porcentajeempate, numPartidas))
 
-The code at the bottom of the program will show the user how many wins X and O had, how many empates there were, and how what percentages these make up. Statistically, the more games you run, the more accurate your percentages will be for finding the best AI algorithm. If you only ran ten games, and X won three of them, then it would seem that X’s algorithm only wins 30% of the time. However, if you run a hundred, or even a thousand games, then you may find that X’s algorithm wins closer to 50% (that is, half) of the games.
+El código al final del programa muestra al usuario cuántas veces han ganado X y O, cuántas veces han empatado, y a qué porcentajes corresponden estos números. Estadísticamente, cuantas más partidas simules, más exactos serán tus resultados para indicar cuál es el mejor algoritmo IA. Si sólo simulas diez partidas y X gana 3 de ellas, parecerá que el algoritmo de X gana sólo el 30% de las veces. Sin embargo, si simulases cien, o incluso mil partidas, probablemente veas que el algoritmo de X gana cerca del 50% (es decir, la mitad) de las partidas.
 
-To find the percentages, divide the number of wins or empates by the total number of games. Then multiply the result by 100. However, you may end up with a number like 66.66666666666667. So pass this number to the round() function with the second parameter of 2 to limit the precision to two decimal places, so it will return a float like 66.67 instead (which is much more readable).
+Para hallar los porcentajes, divide el número de victorias o empates por el número total de partidas. Luego, multiplica el resultado por 100. Aquí es posible que llegues a un número como 66.66666666666667. Entonces pasa este número a la función round() utilizando 2 como segundo parámetro para limitar la precisión a dos lugares decimales, de modo que devuelva en su lugar un float como 66.67 (el cual es mucho más legible).
 
-Let’s try another experiment. Run AISim2.py again, but this time have it run a hundred games:
+Probemos otro experimento. Ejecuta AISim2.py de nuevo, pero esta vez hazlo simular 100 juegos:
 
-Sample Run of AISim2.py
+Prueba de Ejecución de AISim2.py
 
-Welcome to Reversi!
+¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
-Game #0: X scored 42 points. O scored 18 points.
-Game #1: X scored 26 points. O scored 37 points.
-Game #2: X scored 34 points. O scored 29 points.
-Game #3: X scored 40 points. O scored 24 points.
-...skipped for brevity...
-Game #96: X scored 22 points. O scored 39 points.
-Game #97: X scored 38 points. O scored 26 points.
-Game #98: X scored 35 points. O scored 28 points.
-Game #99: X scored 24 points. O scored 40 points.
-X wins 46 games (46.0%), O wins 52 games (52.0%), empates for 2 games (2.0%) of 100.0 games total.
+Partida #0: X ha obtenido 42 puntos. O ha obtenido 18 puntos.
+Partida #1: X ha obtenido 26 points. O ha obtenido 37 points.
+Partida #2: X ha obtenido 34 points. O ha obtenido 29 points.
+Partida #3: X ha obtenido 40 points. O ha obtenido 24 points.
+...omitido por brevedad...
+Partida #96: X ha obtenido 22 points. O ha obtenido 39 points.
+Partida #97: X ha obtenido 38 points. O ha obtenido 26 points.
+Partida #98: X ha obtenido 35 points. O ha obtenido 28 points.
+Partida #99: X ha obtenido 24 points. O ha obtenido 40 points.
+X ha ganado 46 partidas (46.0%), O ha ganado 52 partidas (52.0%), empates en 2 partidas (2.0%) sobre un total de 100.0 partidas.
 
-Depending on how fast your computer is, this run might have taken a about a couple minutes. You can see that the results of all one hundred games still evens out to about fifty-fifty, because both X and O are using the same algorithm to win.
+Dependiendo de qué tan rápida sea tu computadora, esto puede llegar a tomar un par de minutos. Puedes ver que los resultados de los cien juegos tienden a ser mitad y mitad, ya que tanto X como O están usando el mismo algoritmo.
 
-Comparing Different AI Algorithms
+Comparando Diferentes Algoritmos IA
 
 Let’s add some new functions with new algorithms. But first click on File ► Save As, and save this file as AISim3.py. Before the print('Welcome to Reversi!') line, add these functions in the following source code listing.
 

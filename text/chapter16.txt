@@ -235,7 +235,7 @@ Displaying the Statistics
 294. tiepercent = round(((ties / numGames) * 100), 2)
 295. print('X wins %s games (%s%%), O wins %s games (%s%%), ties for %s games (%s%%) of %s games total.' % (xwins, xpercent, owins, opercent, ties, tiepercent, numGames))
 
-The code at the bottom of the program will show the user how many wins X and O had, how many ties there were, and how what percentages these make up. Statistically, the more games you run, the more accurate your percentages will be for finding the best AI algorithm. If you only ran ten games, and X won three of them, then it would seem that X’s algorithm only wins 30% of the time. However, if you run a hundred, or even a thousand games, then you may find that X’s algorithm wins closer to 50% (that is, half) of the games.
+The code at the bottom of the program will show the user how many wins X and O had, how many ties there were, and what percentages these make up. Statistically, the more games you run, the more accurate your percentages will be for finding the best AI algorithm. If you only ran ten games, and X won three of them, then it would seem that X’s algorithm only wins 30% of the time. However, if you run a hundred, or even a thousand games, then you may find that X’s algorithm wins closer to 50% (that is, half) of the games.
 
 To find the percentages, divide the number of wins or ties by the total number of games. Then multiply the result by 100. However, you may end up with a number like 66.66666666666667. So pass this number to the round() function with the second parameter of 2 to limit the precision to two decimal places, so it will return a float like 66.67 instead (which is much more readable).
 
