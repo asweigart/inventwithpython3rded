@@ -260,95 +260,95 @@ Dependiendo de qué tan rápida sea tu computadora, esto puede llegar a tomar un
 
 Comparando Diferentes Algoritmos IA
 
-Let’s add some new functions with new algorithms. But first click on File ► Save As, and save this file as AISim3.py. Before the print('Welcome to Reversi!') line, add these functions in the following source code listing.
+Vamos a agregar algunas nuevas funciones con algoritmos nuevos. Pero primero hagamos clic en Archivo ► Guardar Como, y guardemos este archivo como AISim3.py. Agrega las siguientes funciones antes de la línea print('¡Bienvenido a Reversi!').
 
 AISim3.py
 
-If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/AISim3.
+Si obtienes errores luego de escribir este código, compáralo con el código fuente del libro usando la herramienta diff online en http://invpy.com/diff/AISim3.
 
 AISim3.py
 
-245. def getRandomMove(board, tile):
-246.     # Return a random move.
-247.     return random.choice( getValidMoves(board, tile) )
-248.
-249.
-250. def isOnSide(x, y):
+245. def obtenerJugadaAleatoria(tablero, baldosa):
+246.     # Devuelve una jugada al azar.
+247.     return random.choice(obtenerJugadasVálidas(tablero, baldosa))
+248. 
+249. 
+250. def esBorde(x, y):
 251.     return x == 0 or x == 7 or y == 0 or y ==7
-252.
-253.
-254. def getCornerSideBestMove(board, tile):
-255.     # Return a corner move, or a side move, or the best move.
-256.     possibleMoves = getValidMoves(board, tile)
-257.
-258.     # randomize the order of the possible moves
-259.     random.shuffle(possibleMoves)
-260.
-261.     # always go for a corner if available.
-262.     for x, y in possibleMoves:
-263.         if isOnCorner(x, y):
+252. 
+253. 
+254. def obtenerEsquinaBordeMejorJugada(tablero, baldosa):
+255.     # Devuelve una jugada sobre una esquina, lado o la mejor jugada.
+256.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
+257. 
+258.     # Ordena al azar las jugadas posibles.
+259.     random.shuffle(jugadasPosibles)
+260. 
+261.     # Siempre ir por una esquina de ser posible.
+262.     for x, y in jugadasPosibles:
+263.         if esEsquina(x, y):
 264.             return [x, y]
-265.
-266.     # if there is no corner, return a side move.
-267.     for x, y in possibleMoves:
-268.         if isOnSide(x, y):
+265. 
+266.     # Si no hay ninguna esquina, devuelve una jugada sobre un borde.
+267.     for x, y in jugadasPosibles:
+268.         if esBorde(x, y):
 269.             return [x, y]
-270.
-271.     return getComputerMove(board, tile)
-272.
-273.
-274. def getSideBestMove(board, tile):
-275.     # Return a corner move, or a side move, or the best move.
-276.     possibleMoves = getValidMoves(board, tile)
-277.
-278.     # randomize the order of the possible moves
-279.     random.shuffle(possibleMoves)
-280.
-281.     # return a side move, if available
-282.     for x, y in possibleMoves:
-283.         if isOnSide(x, y):
+270. 
+271.     return obtenerJugadaComputadora(tablero, baldosa)
+272. 
+273. 
+274. def obtenerBordeMejorJugada(tablero, baldosa):
+275.     # Devuelve una jugada a una esquina, un lado o la mejor jugada posible.
+276.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
+277. 
+278.     # Ordena al azar las jugadas posibles.
+279.     random.shuffle(jugadasPosibles)
+280. 
+281.     # Devuelve una jugada sobre un borde de ser posible.
+282.     for x, y in jugadasPosibles:
+283.         if esBorde(x, y):
 284.             return [x, y]
-285.
-286.     return getComputerMove(board, tile)
-287.
-288.
-289. def getWorstMove(board, tile):
-290.     # Return the move that flips the least number of tiles.
-291.     possibleMoves = getValidMoves(board, tile)
-292.
-293.     # randomize the order of the possible moves
-294.     random.shuffle(possibleMoves)
-295.
-296.     # Go through all the possible moves and remember the best scoring move
-297.     worstScore = 64
-298.     for x, y in possibleMoves:
-299.         dupeBoard = getBoardCopy(board)
-300.         makeMove(dupeBoard, tile, x, y)
-301.         score = getScoreOfBoard(dupeBoard)[tile]
-302.         if score < worstScore:
-303.             worstMove = [x, y]
-304.             worstScore = score
-305.
-306.     return worstMove
-307.
-308.
-309. def getCornerWorstMove(board, tile):
-310.     # Return a corner, a space, or the move that flips the least number of tiles.
-311.     possibleMoves = getValidMoves(board, tile)
-312.
-313.     # randomize the order of the possible moves
-314.     random.shuffle(possibleMoves)
-315.
-316.     # always go for a corner if available.
-317.     for x, y in possibleMoves:
-318.         if isOnCorner(x, y):
+285. 
+286.     return obtenerJugadaComputadora(tablero, baldosa)
+287. 
+288. 
+289. def obtenerPeorJugada(tablero, baldosa):
+290.     # Devuelve la jugada que que convierta la menor cantidad de baldosas.
+291.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
+292. 
+293.     # Ordena al azar las jugadas posibles.
+294.     random.shuffle(jugadasPosibles)
+295. 
+296.     # Recorre todas las jugadas posibles y recuerda la de mejor puntaje.
+297.     peorPuntaje = 64
+298.     for x, y in jugadasPosibles:
+299.         réplicaTablero = obtenerCopiaTablero(tablero)
+300.         hacerJugada(réplicaTablero, baldosa, x, y)
+301.         puntaje = obtenerPuntajeTablero(réplicaTablero)[baldosa]
+302.         if puntaje < peorPuntaje:
+303.             peorJugada = [x, y]
+304.             peorPuntaje = puntaje
+305. 
+306.     return peorJugada
+307. 
+308. 
+309. def obtenerEsquinaPeorJugada(tablero, baldosa):
+310.     # Devuelve la esquina, el especio o la jugada que convierta la menor cantidad de baldosas.
+311.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
+312. 
+313.     # Ordena al azar las jugadas posibles.
+314.     random.shuffle(jugadasPosibles)
+315. 
+316.     # Siempre jugar sobre una esquina de ser posible.
+317.     for x, y in jugadasPosibles:
+318.         if esEsquina(x, y):
 319.             return [x, y]
-320.
-321.     return getWorstMove(board, tile)
-322.
-323.
-324.
-325. print('Welcome to Reversi!')
+320. 
+321.     return obtenerPeorJugada(tablero, baldosa)
+322. 
+323. 
+324. 
+325. print('¡Bienvenido a Reversi!')
 
 How the AISim3.py Code Works
 
