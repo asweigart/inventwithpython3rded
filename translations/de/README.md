@@ -43,12 +43,14 @@ Glossary
 <dt>debug control window (python IDLE)</dt><dd>Debug-Kontrollfenster</dd>
 <dt>declaration (function/variable declaration)</dt><dd>Deklaration</dd>
 <dt>definition (function/variable definition)</dt><dd>Definition</dd>
+<dt>design (software design)</dt><dd>Entwurf/Design</dd>
 <dt>editor</dt><dd>Editor</dd>
 <dt>equivalent (adj.)</dt><dd>äquivalent</dd>
 <dt>evaluation</dt><dd>Auswertung</dd>
 <dt>expression</dt><dd>Ausdruck</dd>
 <dt>false (adj.)</dt><dd>falsch</dd>
 <dt>False (boolean literal)</dt><dd>False</dd>
+<dt>flow chart</dt><dd>Flussdiagramm</dd>
 <dt>function</dt><dd>Funktion</dd>
 <dt>function call</dt><dd>Funktionsaufruf</dd>
 <dt>“How the Code Works”</dt><dd>Wie der Code funktioniert</dd>
