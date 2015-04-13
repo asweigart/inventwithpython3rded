@@ -512,8 +512,8 @@ This character can either be a ' ' space character (to represent a blank space),
 Importing Other Modules
 
   1. # Reversi
-  2. import random
-  3. import sys
+  3. import random
+  4. import sys
 
 Line 2 imports the random module for its randint() and choice() functions. Line 3 imports the sys module for its exit() function.
 
@@ -643,12 +643,12 @@ Checking if a Move is Valid
  47.     # If it is a valid move, returns a list of spaces that would become the player's if they made a move here.
  48.     if board[xstart][ystart] != ' ' or not isOnBoard(xstart, ystart):
  49.         return False
- 50.     board[xstart][ystart] = tile # temporarily set the tile on the board.
- 51.     if tile == 'X':
- 52.         otherTile = 'O'
- 53.     else:
- 54.         otherTile = 'X'
- 55.     tilesToFlip = []
+ 51.     board[xstart][ystart] = tile # temporarily set the tile on the board.
+ 53.     if tile == 'X':
+ 54.         otherTile = 'O'
+ 55.     else:
+ 56.         otherTile = 'X'
+ 58.     tilesToFlip = []
 
 Given a board data structure, the player’s tile, and the XY coordinates for player’s move, isValidMove() should return True if the Reversi game rules allow a move to those coordinates and False if they don’t.
 
@@ -956,7 +956,7 @@ Getting the Computer’s Move
 216.     # move and return that move as a [x, y] list.
 217.     possibleMoves = getValidMoves(board, computerTile)
 
-getComputerMove() and is where the AI algorithm is implemented. Normally you use the results from getValidMoves() for hints mode. Hints mode will print '.' period characters on the board to show the player all the potential moves they can make.
+getComputerMove() is where the AI algorithm is implemented. Normally you use the results from getValidMoves() for hints mode. Hints mode will print '.' period characters on the board to show the player all the potential moves they can make.
 
 But if getValidMoves() is called with the computer AI’s tile (in computerTile), it will also find all the possible moves that the computer can make. The AI will select the best move from this list.
 
@@ -991,7 +991,7 @@ Get a List of the Best Scoring Moves
 
 If there are no corner moves, loop through the entire list and find out which move results in the highest score. Line 229’s for loop will set x and y to every move in possibleMoves. bestMove is set to the highest scoring move the code has found so far, and bestScore is set to the best move’s score.
 
-When the code in the loop finds a move that scores higher than bestScore, line 233 to 235 will store that move and score as the new values in bestMove and bestScore.
+When the code in the loop finds a move that scores higher than bestScore, lines 233 to 235 will store that move and score as the new values in bestMove and bestScore.
 
 Simulate All Possible Moves on Duplicate Board Data Structures
 
@@ -999,7 +999,7 @@ Before simulating a move, line 230 makes a duplicate game board data structure b
 
 Then line 231 calls makeMove(), passing the duplicate board (stored in dupeBoard) instead of the real board. This will simulate what would happen on the real board if this move was made. makeMove() will handle placing the computer’s tile and the flipping the player’s tiles on the duplicate board.
 
-Line 232 calls getScoreOfBoard()with the duplicate board, which returns a dictionary where the keys are 'X' and 'O', and the values are the scores.
+Line 232 calls getScoreOfBoard() with the duplicate board, which returns a dictionary where the keys are 'X' and 'O', and the values are the scores.
 
 For example, pretend that getScoreOfBoard() returns the dictionary {'X':22, 'O':8} and computerTile is 'X'. Then getScoreOfBoard(dupeBoard)[computerTile] would evaluate to {'X':22, 'O':8}['X'], which would then evaluate to 22. If 22 is larger than bestScore, bestScore is set to 22 and bestMove is set to the current x and y values.
 
@@ -1078,7 +1078,7 @@ Handling the Quit or Hints Commands
 273.             else:
 274.                 makeMove(mainBoard, playerTile, move[0], move[1])
 
-If the player typed in the string 'quit' for their move, then getPlayerMove() would have returned the string 'quit'. In that case, line 269 calls the sys.exit() to terminate the program.
+If the player typed in the string 'quit' for their move, then getPlayerMove() would have returned the string 'quit'. In that case, line 269 calls sys.exit() to terminate the program.
 
 If the player typed in the string 'hints' for their move, then getPlayerMove() would have returned the string 'hints'. In that case, you want to turn hints mode on (if it was off) or off (if it was on).
 
@@ -1122,7 +1122,7 @@ Finally, pass x and y, along with the game board data structure and the computer
 
 Lines 289 to 292 are similar to lines 276 to 279. After the computer has made its move, line 289 checks if there exist any valid moves the human player can make. If getValidMoves() returns an empty list, then there are no valid moves. That means the game is over, and line 290 breaks out of the while loop.
 
-Otherwise, there’s at least one possible move the player should make. The turn variable is to 'player'. There is no more code in the while-block after line 292, so execution loops back to the while statement on line 257.
+Otherwise, there’s at least one possible move the player should make. The turn variable is set to 'player'. There is no more code in the while-block after line 292, so execution loops back to the while statement on line 257.
 
 Drawing Everything on the Screen
 
