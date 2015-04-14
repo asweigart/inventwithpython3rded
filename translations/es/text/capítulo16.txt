@@ -350,55 +350,55 @@ AISim3.py
 324. 
 325. print('¡Bienvenido a Reversi!')
 
-How the AISim3.py Code Works
+Cómo Funciona el Código de AISim3.py
 
-A lot of these functions are similar to one another, and some of them use the new isOnSide() function. Here’s a review of the new algorithms we’ve made:
+Muchas de estas funciones son similares entre sí, y algunas de ellas usan la nueva función esBorde(). Aquí hay un recuento de los nuevos algoritmos que hemos creado:
 
-Table 17-1: Functions used for our Reversi AI.
+Tabla 17-1: Funciones usadas para nuestra IA Reversi.
 
-Function    Description
-getRandomMove() Randomly choose a valid move to make.
-getCornerSideBestMove() Take a corner move if available. If there’s no corner, take a space on the side. If no sides are available, use the regular getComputerMove() algorithm.
-getSideBestMove()   Take a side space if there’s one available. If not, then use the regular getComputerMove() algorithm. This means side spaces are chosen before corner spaces.
-getWorstMove()  Take the space that will result in the fewest tiles being flipped.
-getCornerWorstMove()    Take a corner space, if available. If not, use the getWorstMove() algorithm.
+Función    Descripción
+obtenerJugadaAleatoria() Elige al azar una jugada válida.
+obtenerEsquinaBordeMejorJugada() Juega en una esquina si hay alguna disponible. Si no hay esquinas, juega sobre un borde. Si no hay bordes disponibles, usa el algoritmo obtenerJugadaComputadora().
+obtenerBordeMejorJugada()   Toma un espacio sobre un borde si hay alguno disponible. Si no los hay, usa el algoritmo obtenerJugadaComputadora(). Esto quiere decir que se prefiere jugar sobre un borde antes que sobre una esquina.
+obtenerPeorJugada()  Elige el espacio que resulta en la menor cantidad de baldosas convertidas.
+obtenerEsquinaPeorJugada()    Juega sobre una esquina, si hay alguna disponible. Si no hay ninguna, usa el algoritmo obtenerPeorJugada().
 
-Comparing the Random Algorithm Against the Regular Algorithm
+Comparando el Algoritmo Aleatorio contra el Algoritmo Común
 
-Now the only thing to do is replace one of the getComputerMove() calls in the main part of the program with one of the new functions. Then you can run several games and see how often one algorithm wins over the other. First, let’s replace O’s algorithm with the one in getComputerMove() with getRandomMove() on line 351:
+Ahora lo único que queda por hacer es reemplazar una de las llamadas a obtenerJugadaComputadora() en la parte principal del programa por una de las nuevas funciones. Luego puedes simular varias partidas y ver con qué frecuencia un algoritmo vence al otro. Primero, reemplacemos el algoritmo de O por obtenerJugadaAleatoria() en la línea 351:
 
-351.            x, y = getRandomMove(mainBoard, 'O')
+351.            x, y = obtenerJugadaAleatoria(tableroPrincipal, 'O')
 
-When you run the program with a hundred games now, it will look something like this:
+Ahora cuando ejecutes el programa con cien juegos, se verá aproximadamente así:
 
-Welcome to Reversi!
+¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
-Game #0: X scored 25 points. O scored 38 points.
-Game #1: X scored 32 points. O scored 32 points.
-Game #2: X scored 15 points. O scored 0 points.
+Partida #0: X ha obtenido 25 puntos. O ha obtenido 38 puntos.
+Partida #1: X ha obtenido 32 puntos. O ha obtenido 32 puntos.
+Partida #2: X ha obtenido 15 puntos. O ha obtenido 0 puntos.
 
-...skipped for brevity...
+...omitido por brevedad...
 
-Game #97: X scored 41 points. O scored 23 points.
-Game #98: X scored 33 points. O scored 31 points.
-Game #99: X scored 45 points. O scored 19 points.
-X wins 84 games (84.0%), O wins 15 games (15.0%), empates for 1 games (1.0%) of 100.0 games total.
+Partida #97: X ha obtenido 41 puntos. O ha obtenido 23 puntos.
+Partida #98: X ha obtenido 33 puntos. O ha obtenido 31 puntos.
+Partida #99: X ha obtenido 45 puntos. O ha obtenido 19 puntos.
+X ha ganado 84 partidas (84.0%), O ha ganado 15 partidas (15.0%), empates en 1 partidas (1.0%) sobre un total de 100.0 partidas.
 
-Wow! X won far more often than O did. That means that the algorithm in getComputerMove() (take any available corners, otherwise take the space that flips the most tiles) wins more games than the algorithm in getRandomMove() (which makes moves randomly). This makes sense, because making intelligent choices is usually better than just choosing things at random.
+¡Vaya! X ha ganado muchas más partidas que O. Esto quiere decir que el algoritmo de obtenerJugadaComputadora() (jugar sobre las esquinas disponibles, o de otro modo tomar la jugada que convierta la mayor cantidad de baldosas) ha ganado más partidas que el algoritmo de obtenerJugadaAleatoria() (que elige jugadas al azar). Esto tiene sentido, ya que hacer elecciones inteligentes suele ser mejor que simplemente jugar al azar.
 
-Comparing the Random Algorithm Against Itself
+Comparando el Algoritmo Aleatorio contra sí Mismo
 
-What if we changed O’s algorithm to also use the algorithm in getRandomMove()? Let’s find out by changing O’s function call on line 351 from getComputerMove() to getRandomMove() and running the program again.
+¿Y qué pasaría si cambiásemos el algoritmo de X para que también usase obtenerJugadaAleatoria()? Averigüémoslo cambiando obtenerJugadaComputadora() por obtenerJugadaAleatoria() en la llamada a la función de X en la línea 346 y ejecutando el programa otra vez.
 
-Welcome to Reversi!
+¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
-Game #0: X scored 37 points. O scored 24 points.
-Game #1: X scored 19 points. O scored 45 points.
+Partida #0: X ha obtenido 37 points. O ha obtenido 24 points.
+Partida #1: X ha obtenido 19 points. O ha obtenido 45 points.
 
-...skipped for brevity...
+...omitido por brevedad...
 
-Game #98: X scored 27 points. O scored 37 points.
-Game #99: X scored 38 points. O scored 22 points.
+Partida #98: X ha obtenido 27 points. O ha obtenido 37 points.
+Partida #99: X ha obtenido 38 points. O ha obtenido 22 points.
 X wins 42 games (42.0%), O wins 54 games (54.0%), empates for 4 games (4.0%) of 100.0 games total.
 
 As you can see, when both players are making random moves, they each win about 50% of the time. (In the above case, O happen to get lucky and won a little bit more than half of the time.)

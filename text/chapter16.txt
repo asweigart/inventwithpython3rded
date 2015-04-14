@@ -365,7 +365,7 @@ getCornerWorstMove()    Take a corner space, if available. If not, use the getWo
 
 Comparing the Random Algorithm Against the Regular Algorithm
 
-Now the only thing to do is replace one of the getComputerMove() calls in the main part of the program with one of the new functions. Then you can run several games and see how often one algorithm wins over the other. First, let’s replace O’s algorithm with the one in getComputerMove() with getRandomMove() on line 351:
+Now the only thing to do is replace one of the getComputerMove() calls in the main part of the program with one of the new functions. Then you can run several games and see how often one algorithm wins over the other. First, let’s replace O’s algorithm with the one in getRandomMove() on line 351:
 
 351.            x, y = getRandomMove(mainBoard, 'O')
 
@@ -388,7 +388,7 @@ Wow! X won far more often than O did. That means that the algorithm in getComput
 
 Comparing the Random Algorithm Against Itself
 
-What if we changed O’s algorithm to also use the algorithm in getRandomMove()? Let’s find out by changing O’s function call on line 351 from getComputerMove() to getRandomMove() and running the program again.
+What if we changed X’s algorithm to also use the algorithm in getRandomMove()? Let’s find out by changing X’s function call on line 346 from getComputerMove() to getRandomMove() and running the program again.
 
 Welcome to Reversi!
 Enter number of games to run: 100
