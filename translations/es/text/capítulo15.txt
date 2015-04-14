@@ -7,21 +7,21 @@ Temas Tratados En Este Capítulo:
 
 En este capítulo, crearemos un juego llamado Reversi (también llamado Othello). Reversi es un juego de mesa que se juega sobre una grilla, de modo que tendremos que usar un sistema de coordenadas Cartesiano con coordenadas XY. Es un juego para dos jugadores. En nuestra versión del juego la computadora tendrá una IA más avanzada que la que hemos creado para el Ta Te Ti. De hecho, esta IA es tan buena que probablemente te gane todas las partidas que juegues. (¡Al menos yo pierdo cada vez que juego contra ella!)
 
-Reversi tiene un tablero de 8 x 8 y baldosas que son negras de un lado y blancas del otro (nuestro juego las reemplazará por O's y X's). El tablero inicial se ve como la Figura 15-1. El jugador negro y el jugador blanco toman turnos para colocar una nueva baldosa de su color. Cualquier baldosa del oponente que se encuentre entre la nueva baldosa y las otras baldosas de ese color es volteada. El objetivo del juego es tener tantas baldosas de tu color como sea posible. Por ejemplo, la Figura 15-2 es como se vería si el jugador blanco colocara una nueva baldosa blanca en el espacio 5, 6.
+Reversi tiene un tablero de 8 x 8 y baldosas que son negras de un lado y blancas del otro (nuestro juego las reemplazará por O's y X's). El tablero inicial se ve como la Figura 15-1. El jugador negro y el jugador blanco toman turnos para colocar una nueva baldosa de su color. Cualquier baldosa del oponente que se encuentre entre la nueva baldosa y las otras baldosas de ese color es convertida. El objetivo del juego es tener tantas baldosas de tu color como sea posible. Por ejemplo, la Figura 15-2 es como se vería si el jugador blanco colocara una nueva baldosa blanca en el espacio 5, 6.
 
 Figura 15-1: El tablero inicial en Reversi tiene dos baldosas blancas y dos negras.  Figura 15-2: El jugador blanco coloca una nueva baldosa.
 
 La baldosa negra en 5, 5 está entre la nueva baldosa blanca y la baldosa blanca existente en 5, 4. Esa baldosa blanca es volteada y se convierte en una nueva baldosa blanca, haciendo que el tablero se vea como en la Figura 15-3. El jugador negro hace a continuación una movida similar, colocando una baldosa negra en 4, 6 la cual voltea la baldosa blanca en 4, 5. Esto resulta en una disposición del tablero como se muestra en la Figura 15-4.
 
-Figura 15-3: La movida del jugador blanco voltea una de las baldosas negras.  Figura 15-4: El jugador negro coloca una nueva baldosa, la cual voltea una de las baldosas blancas.
+Figura 15-3: La movida del jugador blanco convierte una de las baldosas negras.  Figura 15-4: El jugador negro coloca una nueva baldosa, la cual convierte una de las baldosas blancas.
 
-Las baldosas en todas las direcciones son volteadas en tanto se encuentren entre la nueva baldosa del jugador y sus baldosas existentes. En la Figura 15-5, el jugador blanco coloca una baldosa en 3, 6 y voltea baldosas en ambas direcciones (indicadas por las líneas). El resultado se muestra en la Figura 15-6.
+Las baldosas en todas las direcciones son convertidas en tanto se encuentren entre la nueva baldosa del jugador y sus baldosas existentes. En la Figura 15-5, el jugador blanco coloca una baldosa en 3, 6 y convierte baldosas en ambas direcciones (indicadas por las líneas). El resultado se muestra en la Figura 15-6.
 
-Figura 15-5: La segunda movida del jugador blanco en 3, 6 volteará dos baldosas negras.  Figura 15-6: El tablero luego de la segunda movida del jugador blanco.
+Figura 15-5: La segunda movida del jugador blanco en 3, 6 convertirá dos baldosas negras.  Figura 15-6: El tablero luego de la segunda movida del jugador blanco.
 
-Cada jugador puede rápidamente voltear muchas baldosas en el tablero en uno o dos movimientos. Los jugadores deben hacer siempre jugadas que capturen al menos una baldosa. El juego termina cuando ningún jugador puede seguir moviendo, o el tablero está completamente lleno. Gana el jugador con más baldosas de su color.
+Cada jugador puede rápidamente convertir muchas baldosas en el tablero en uno o dos movimientos. Los jugadores deben hacer siempre jugadas que capturen al menos una baldosa. El juego termina cuando ningún jugador puede seguir moviendo, o el tablero está completamente lleno. Gana el jugador con más baldosas de su color.
 
-La IA que crearemos para este juego simplemente intentará jugar en las esquinas. Si no es posible jugar en una esquina, la computadora seleccionará la jugada que voltee más baldosas.
+La IA que crearemos para este juego simplemente intentará jugar en las esquinas. Si no es posible jugar en una esquina, la computadora seleccionará la jugada que convierta más baldosas.
 
 Prueba de Ejecución de Reversi
 
@@ -147,7 +147,7 @@ Has perdido. La computadora te ha vencido por 31 puntos.
 ¿Quieres jugar de nuevo? (sí o no)
 no
 
-As you can see, the AI was pretty good at beating me 46 to 15. To help the player out, we’ll program the game to provide hints. If the player types 'hints' as their move, they can toggle the hints mode on and off. When hints mode is on, all the possible moves the player can make will show up on the board as '.' characters, like this:
+Como puedes ver, la IA hizo un buen trabajo y me venció 46 a 15. Para ayudar al jugador, programaremos el juego de modo que ofrezca pistas. Si el jugador escribe 'pistas' como su jugada, se activarán o desactivarán las pistas. Cuando el modo pistas está activado, se verán marcas '.' en el tablero para todas las jugadas posibles, como se muestra a continuación: 
 
     1   2   3   4   5   6   7   8
   +---+---+---+---+---+---+---+---+
@@ -184,350 +184,350 @@ As you can see, the AI was pretty good at beating me 46 to 15. To help the playe
   |   |   |   |   |   |   |   |   |
   +---+---+---+---+---+---+---+---+
 
-Source Code of Reversi
+Código Fuente de Reversi
 
-Reversi is a mammoth program compared to our previous games. It’s over 300 lines long! But don’t worry, many of these lines are comments or blank lines to space out the code and make it more readable.
+Reversi es un programa mamut comparado con nuestros juegos anteriores. ¡Tiene más de 300 líneas! Pero no te preocupes, muchas de estas líneas son comentarios o líneas en blanco para separar el código y hacerlo más legible.
 
-As with our other programs, we’ll first create several functions to carry out Reversi-related tasks that the main section will call. Roughly the first 250 lines of code are for these helper functions, and the last 50 lines of code implement the Reversi game itself.
+Como hemos hecho con los otros programas, primero crearemos varias funciones para llevar a cabo tareas relacionadas con Reversi que serán llamadas por la sección principal. Aproximadamente las primeras 250 líneas de código son para estas funciones auxiliares, y las últimas 50 líneas de código implementan el juego Reversi en sí.
 
-If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/reversi.
+Si obtienes errores luego de escribir este código, compara el código que has escrito con el código del libro usando la herramienta diff online en http://invpy.com/diff/reversi.
 
 reversi.py
 
   1. # Reversi
-  2.
+  2. 
   3. import random
   4. import sys
-  5.
-  6. def drawBoard(board):
-  7.     # This function prints out the board that it was passed. Returns None.
-  8.     HLINE = '  +---+---+---+---+---+---+---+---+'
-  9.     VLINE = '  |   |   |   |   |   |   |   |   |'
- 10.
+  5. 
+  6. def dibujarTablero(tablero):
+  7.     # Esta funcion dibuja el tablero recibido. Devuelve None
+  8.     LÍNEAH = '  +---+---+---+---+---+---+---+---+'
+  9.     LÍNEAV = '  |   |   |   |   |   |   |   |   |'
+ 10. 
  11.     print('    1   2   3   4   5   6   7   8')
- 12.     print(HLINE)
+ 12.     print(LÍNEAH)
  13.     for y in range(8):
- 14.         print(VLINE)
+ 14.         print(LÍNEAV)
  15.         print(y+1, end=' ')
  16.         for x in range(8):
- 17.             print('| %s' % (board[x][y]), end=' ')
+ 17.             print('| %s' % (tablero[x][y]), end=' ')
  18.         print('|')
- 19.         print(VLINE)
- 20.         print(HLINE)
- 21.
- 22.
- 23. def resetBoard(board):
- 24.     # Blanks out the board it is passed, except for the original starting position.
+ 19.         print(LÍNEAV)
+ 20.         print(LÍNEAH)
+ 21. 
+ 22. 
+ 23. def reiniciarTablero(tablero):
+ 24.     # Deja en blanco el tablero recibido como argumento, excepto la posición inicial
  25.     for x in range(8):
  26.         for y in range(8):
- 27.             board[x][y] = ' '
- 28.
- 29.     # Starting pieces:
- 30.     board[3][3] = 'X'
- 31.     board[3][4] = 'O'
- 32.     board[4][3] = 'O'
- 33.     board[4][4] = 'X'
- 34.
- 35.
- 36. def getNewBoard():
- 37.     # Creates a brand new, blank board data structure.
- 38.     board = []
+ 27.             tablero[x][y] = ' '
+ 28. 
+ 29.     # Piezas iniciales:
+ 30.     tablero[3][3] = 'X'
+ 31.     tablero[3][4] = 'O'
+ 32.     tablero[4][3] = 'O'
+ 33.     tablero[4][4] = 'X'
+ 34. 
+ 35. 
+ 36. def obtenerNuevoTablero():
+ 37.     # Crea un tablero nuevo, vacío.
+ 38.     tablero = []
  39.     for i in range(8):
- 40.         board.append([' '] * 8)
- 41.
- 42.     return board
- 43.
- 44.
- 45. def isValidMove(board, tile, xstart, ystart):
- 46.     # Returns False if the player's move on space xstart, ystart is invalid.
- 47.     # If it is a valid move, returns a list of spaces that would become the player's if they made a move here.
- 48.     if board[xstart][ystart] != ' ' or not isOnBoard(xstart, ystart):
+ 40.         tablero.append([' '] * 8)
+ 41. 
+ 42.     return tablero
+ 43. 
+ 44. 
+ 45. def esJugadaVálida(tablero, baldosa, comienzox, comienzoy):
+ 46.     # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida
+ 47.     # Si es una jugada válida, devuelve una lista de espacios que pasarían a ser del jugador si moviera aquí.
+ 48.     if tablero[comienzox][comienzoy] != ' ' or not estáEnTablero(comienzox, comienzoy):
  49.         return False
- 50.
- 51.     board[xstart][ystart] = tile # temporarily set the tile on the board.
- 52.
- 53.     if tile == 'X':
- 54.         otherTile = 'O'
+ 50. 
+ 51.     tablero[comienzox][comienzoy] = baldosa # coloca temporariamente la baldosa sobre el tablero.
+ 52. 
+ 53.     if baldosa == 'X':
+ 54.         otraBaldosa = 'O'
  55.     else:
- 56.         otherTile = 'X'
- 57.
- 58.     tilesToFlip = []
- 59.     for xdirection, ydirection in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
- 60.         x, y = xstart, ystart
- 61.         x += xdirection # first step in the direction
- 62.         y += ydirection # first step in the direction
- 63.         if isOnBoard(x, y) and board[x][y] == otherTile:
- 64.             # There is a piece belonging to the other player next to our piece.
- 65.             x += xdirection
- 66.             y += ydirection
- 67.             if not isOnBoard(x, y):
+ 56.         otraBaldosa = 'X'
+ 57. 
+ 58.     baldosasAConvertir = []
+ 59.     for direcciónx, direccióny in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
+ 60.         x, y = comienzox, comienzoy
+ 61.         x += direcciónx # primer paso en la dirección
+ 62.         y += direccióny # primer paso en la dirección
+ 63.         if estáEnTablero(x, y) and tablero[x][y] == otraBaldosa:
+ 64.             # Hay una pieza perteneciente al otro jugador al lado de nustra pieza
+ 65.             x += direcciónx
+ 66.             y += direccióny
+ 67.             if not estáEnTablero(x, y):
  68.                 continue
- 69.             while board[x][y] == otherTile:
- 70.                 x += xdirection
- 71.                 y += ydirection
- 72.                 if not isOnBoard(x, y): # break out of while loop, then continue in for loop
+ 69.             while tablero[x][y] == otraBaldosa:
+ 70.                 x += direcciónx
+ 71.                 y += direccióny
+ 72.                 if not estáEnTablero(x, y): # sale del bucle while y continua en el bucle for.
  73.                     break
- 74.             if not isOnBoard(x, y):
+ 74.             if not estáEnTablero(x, y):
  75.                 continue
- 76.             if board[x][y] == tile:
- 77.                 # There are pieces to flip over. Go in the reverse direction until we reach the original space, noting all the tiles along the way.
+ 76.             if tablero[x][y] == baldosa:
+ 77.                 # Hay fichas a convertir. Caminar en dirección opuesta hasta llegar al casillero original, registrando todas las posiciones en el camino.
  78.                 while True:
- 79.                     x -= xdirection
- 80.                     y -= ydirection
- 81.                     if x == xstart and y == ystart:
+ 79.                     x -= direcciónx
+ 80.                     y -= direccióny
+ 81.                     if x == comienzox and y == comienzoy:
  82.                         break
- 83.                     tilesToFlip.append([x, y])
- 84.
- 85.     board[xstart][ystart] = ' ' # restore the empty space
- 86.     if len(tilesToFlip) == 0: # If no tiles were flipped, this is not a valid move.
+ 83.                     baldosasAConvertir.append([x, y])
+ 84. 
+ 85.     tablero[comienzox][comienzoy] = ' ' # restablecer el espacio vacío
+ 86.     if len(baldosasAConvertir) == 0: # Si no se convirtió ninguna baldosa, la jugada no es válida.
  87.         return False
- 88.     return tilesToFlip
- 89.
- 90.
- 91. def isOnBoard(x, y):
- 92.     # Returns True if the coordinates are located on the board.
+ 88.     return baldosasAConvertir
+ 89. 
+ 90. 
+ 91. def estáEnTablero(x, y):
+ 92.     # Devuelve True si las coordenadas se encuentran dentro del tablero
  93.     return x >= 0 and x <= 7 and y >= 0 and y <=7
- 94.
- 95.
- 96. def getBoardWithValidMoves(board, tile):
- 97.     # Returns a new board with . marking the valid moves the given player can make.
- 98.     dupeBoard = getBoardCopy(board)
- 99.
-100.     for x, y in getValidMoves(dupeBoard, tile):
-101.         dupeBoard[x][y] = '.'
-102.     return dupeBoard
-103.
-104.
-105. def getValidMoves(board, tile):
-106.     # Returns a list of [x,y] lists of valid moves for the given player on the given board.
-107.     validMoves = []
-108.
+ 94. 
+ 95. 
+ 96. def obtenerTableroConJugadasVálidas(tablero, baldosa):
+ 97.     # Devuelve un nuevo tablero, marcando con "." las jugadas válidas que el jugador puede realizar.
+ 98.     réplicaTablero = obtenerCopiaTablero(tablero)
+ 99. 
+100.     for x, y in obtenerJugadasVálidas(réplicaTablero, baldosa):
+101.         réplicaTablero[x][y] = '.'
+102.     return réplicaTablero
+103. 
+104. 
+105. def obtenerJugadasVálidas(tablero, baldosa):
+106.     # Devuelve una lista de listas [x,y] de jugadas válidas para el jugador en el tablero dado.
+107.     jugadasVálidas = []
+108. 
 109.     for x in range(8):
 110.         for y in range(8):
-111.             if isValidMove(board, tile, x, y) != False:
-112.                 validMoves.append([x, y])
-113.     return validMoves
-114.
-115.
-116. def getScoreOfBoard(board):
-117.     # Determine the score by counting the tiles. Returns a dictionary with keys 'X' and 'O'.
-118.     xscore = 0
-119.     oscore = 0
+111.             if esJugadaVálida(tablero, baldosa, x, y) != False:
+112.                 jugadasVálidas.append([x, y])
+113.     return jugadasVálidas
+114. 
+115. 
+116. def obtenerPuntajeTablero(tablero):
+117.     # Determina el puntaje contando las piezas. Devuelve un diccionario con claves 'X' y 'O'.
+118.     puntajex = 0
+119.     puntajeo = 0
 120.     for x in range(8):
 121.         for y in range(8):
-122.             if board[x][y] == 'X':
-123.                 xscore += 1
-124.             if board[x][y] == 'O':
-125.                 oscore += 1
-126.     return {'X':xscore, 'O':oscore}
-127.
-128.
-129. def enterPlayerTile():
-130.     # Lets the player type which tile they want to be.
-131.     # Returns a list with the player's tile as the first item, and the computer's tile as the second.
-132.     tile = ''
-133.     while not (tile == 'X' or tile == 'O'):
-134.         print('Do you want to be X or O?')
-135.         tile = input().upper()
-136.
-137.     # the first element in the list is the player's tile, the second is the computer's tile.
-138.     if tile == 'X':
+122.             if tablero[x][y] == 'X':
+123.                 puntajex += 1
+124.             if tablero[x][y] == 'O':
+125.                 puntajeo += 1
+126.     return {'X':puntajex, 'O':puntajeo}
+127. 
+128. 
+129. def ingresarBaldosaJugador():
+130.     # Permite al jugador elegir que baldosa desea ser.
+131.     # Devuelve una lista con la baldosa del jugador como primer elemento y el de la computadora como segundo.
+132.     baldosa = ''
+133.     while not (baldosa == 'X' or baldosa == 'O'):
+134.         print('¿Deseas ser X ó O?')
+135.         baldosa = input().upper()
+136. 
+137.     #  El primer elemento en la lista es la baldosa del juegador, el segundo es la de la computadora.
+138.     if baldosa == 'X':
 139.         return ['X', 'O']
 140.     else:
 141.         return ['O', 'X']
-142.
-143.
-144. def whoGoesFirst():
-145.     # Randomly choose the player who goes first.
+142. 
+143. 
+144. def quiénComienza():
+145.     # Elije al azar qué jugador comienza.
 146.     if random.randint(0, 1) == 0:
-147.         return 'computer'
+147.         return 'computadora'
 148.     else:
-149.         return 'player'
-150.
-151.
-152. def playAgain():
-153.     # This function returns True if the player wants to play again, otherwise it returns False.
-154.     print('Do you want to play again? (yes or no)')
-155.     return input().lower().startswith('y')
-156.
-157.
-158. def makeMove(board, tile, xstart, ystart):
-159.     # Place the tile on the board at xstart, ystart, and flip any of the opponent's pieces.
-160.     # Returns False if this is an invalid move, True if it is valid.
-161.     tilesToFlip = isValidMove(board, tile, xstart, ystart)
-162.
-163.     if tilesToFlip == False:
+149.         return 'jugador'
+150. 
+151. 
+152. def jugarDeNuevo():
+153.     # Esta función devuelve True si el jugador quiere jugar de nuevo, de lo contrario devuelve False.
+154.     print('¿Quieres jugar de nuevo? (sí o no)')
+155.     return input().lower().startswith('s')
+156. 
+157. 
+158. def hacerJugada(tablero, baldosa, comienzox, comienzoy):
+159.     # Coloca la baldosa sobre el tablero en comienzox, comienzoy, y convierte cualquier baldosa del oponente.
+160.     # Devuelve False si la jugada es inválida, True si es válida.
+161.     baldosasAConvertir = esJugadaVálida(tablero, baldosa, comienzox, comienzoy)
+162. 
+163.     if baldosasAConvertir == False:
 164.         return False
-165.
-166.     board[xstart][ystart] = tile
-167.     for x, y in tilesToFlip:
-168.         board[x][y] = tile
+165. 
+166.     tablero[comienzox][comienzoy] = baldosa
+167.     for x, y in baldosasAConvertir:
+168.         tablero[x][y] = baldosa
 169.     return True
-170.
-171.
-172. def getBoardCopy(board):
-173.     # Make a duplicate of the board list and return the duplicate.
-174.     dupeBoard = getNewBoard()
-175.
+170. 
+171. 
+172. def obtenerCopiaTablero(tablero):
+173.     # Duplica la lista del tablero y devuelve el duplicado.
+174.     réplicaTablero = obtenerNuevoTablero()
+175. 
 176.     for x in range(8):
 177.         for y in range(8):
-178.             dupeBoard[x][y] = board[x][y]
-179.
-180.     return dupeBoard
-181.
-182.
-183. def isOnCorner(x, y):
-184.     # Returns True if the position is in one of the four corners.
+178.             réplicaTablero[x][y] = tablero[x][y]
+179. 
+180.     return réplicaTablero
+181. 
+182. 
+183. def esEsquina(x, y):
+184.     # Devuelve True si la posicion es una de las esquinas.
 185.     return (x == 0 and y == 0) or (x == 7 and y == 0) or (x == 0 and y == 7) or (x == 7 and y == 7)
-186.
-187.
-188. def getPlayerMove(board, playerTile):
-189.     # Let the player type in their move.
-190.     # Returns the move as [x, y] (or returns the strings 'hints' or 'quit')
-191.     DIGITS1TO8 = '1 2 3 4 5 6 7 8'.split()
+186. 
+187. 
+188. def obtenerJugadaJugador(tablero, baldosaJugador):
+189.     # Permite al jugador tipear su jugada.
+190.     # Devuelve la jugada como [x, y] (o devuelve las cadenas 'pistas' o 'salir')
+191.     CIFRAS1A8 = '1 2 3 4 5 6 7 8'.split()
 192.     while True:
-193.         print('Enter your move, or type quit to end the game, or hints to turn off/on hints.')
-194.         move = input().lower()
-195.         if move == 'quit':
-196.             return 'quit'
-197.         if move == 'hints':
-198.             return 'hints'
-199.
-200.         if len(move) == 2 and move[0] in DIGITS1TO8 and move[1] in DIGITS1TO8:
-201.             x = int(move[0]) - 1
-202.             y = int(move[1]) - 1
-203.             if isValidMove(board, playerTile, x, y) == False:
+193.         print('Ingresa tu jugada, salir para terminar el juego, o pistas para activar/desactivar las pistas.')
+194.         jugada = input().lower()
+195.         if jugada == 'salir':
+196.             return 'salir'
+197.         if jugada == 'pistas':
+198.             return 'pistas'
+199. 
+200.         if len(jugada) == 2 and jugada[0] in CIFRAS1A8 and jugada[1] in CIFRAS1A8:
+201.             x = int(jugada[0]) - 1
+202.             y = int(jugada[1]) - 1
+203.             if esJugadaVálida(tablero, baldosaJugador, x, y) == False:
 204.                 continue
 205.             else:
 206.                 break
 207.         else:
-208.             print('That is not a valid move. Type the x digit (1-8), then the y digit (1-8).')
-209.             print('For example, 81 will be the top-right corner.')
-210.
+208.             print('Esta no es una jugada válida. Ingresa la coordenada x (1-8), luego la coordenada y (1-8).')
+209.             print('Por ejemplo, 81 corresponde a la esquina superior derecha.')
+210. 
 211.     return [x, y]
-212.
-213.
-214. def getComputerMove(board, computerTile):
-215.     # Given a board and the computer's tile, determine where to
-216.     # move and return that move as a [x, y] list.
-217.     possibleMoves = getValidMoves(board, computerTile)
-218.
-219.     # randomize the order of the possible moves
-220.     random.shuffle(possibleMoves)
-221.
-222.     # always go for a corner if available.
-223.     for x, y in possibleMoves:
-224.         if isOnCorner(x, y):
+212. 
+213. 
+214. def obtenerJugadaComputadora(tablero, baldosaComputadora):
+215.     # Dado un tablero y la baldosa de la computadora, determinar dónde
+216.     # jugar y devolver esa jugada como una lista [x, y].
+217.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosaComputadora)
+218. 
+219.     # ordena al azar el orden de las jugadas posibles
+220.     random.shuffle(jugadasPosibles)
+221. 
+222.     # siempre jugar en una esquina si está disponible.
+223.     for x, y in jugadasPosibles:
+224.         if esEsquina(x, y):
 225.             return [x, y]
-226.
-227.     # Go through all the possible moves and remember the best scoring move
-228.     bestScore = -1
-229.     for x, y in possibleMoves:
-230.         dupeBoard = getBoardCopy(board)
-231.         makeMove(dupeBoard, computerTile, x, y)
-232.         score = getScoreOfBoard(dupeBoard)[computerTile]
-233.         if score > bestScore:
-234.             bestMove = [x, y]
-235.             bestScore = score
-236.     return bestMove
-237.
-238.
-239. def showPoints(playerTile, computerTile):
-240.     # Prints out the current score.
-241.     scores = getScoreOfBoard(mainBoard)
-242.     print('You have %s points. The computer has %s points.' % (scores[playerTile], scores[computerTile]))
-243.
-244.
-245.
-246. print('Welcome to Reversi!')
-247.
+226. 
+227.     # Recorrer la lista de jugadas posibles y recordar la que da el mejor puntaje
+228.     mejorPuntaje = -1
+229.     for x, y in jugadasPosibles:
+230.         réplicaTablero = obtenerCopiaTablero(tablero)
+231.         hacerJugada(réplicaTablero, baldosaComputadora, x, y)
+232.         puntaje = obtenerPuntajeTablero(réplicaTablero)[baldosaComputadora]
+233.         if puntaje > mejorPuntaje:
+234.             mejorJugada = [x, y]
+235.             mejorPuntaje = puntaje
+236.     return mejorJugada
+237. 
+238. 
+239. def mostrarPuntajes(baldosaJugador, baldosaComputadora):
+240.     # Imprime el puntaje actual.
+241.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
+242.     print('Tienes %s puntos. La computadora tiene %s puntos.' % (puntajes[baldosaJugador], puntajes[baldosaComputadora]))
+243. 
+244. 
+245. 
+246. print('¡Bienvenido a Reversi!')
+247. 
 248. while True:
-249.     # Reset the board and game.
-250.     mainBoard = getNewBoard()
-251.     resetBoard(mainBoard)
-252.     playerTile, computerTile = enterPlayerTile()
-253.     showHints = False
-254.     turn = whoGoesFirst()
-255.     print('The ' + turn + ' will go first.')
-256.
+249.     # Reiniciar el tablero y el juego.
+250.     tableroPrincipal = obtenerNuevoTablero()
+251.     reiniciarTablero(tableroPrincipal)
+252.     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
+253.     mostrarPistas = False
+254.     turno = quiénComienza()
+255.     print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
+256. 
 257.     while True:
-258.         if turn == 'player':
-259.             # Player's turn.
-260.             if showHints:
-261.                 validMovesBoard = getBoardWithValidMoves(mainBoard, playerTile)
-262.                 drawBoard(validMovesBoard)
+258.         if turno == 'jugador':
+259.             # Turno del jugador
+260.             if mostrarPistas:
+261.                 tableroConJugadasVálidas = obtenerTableroConJugadasVálidas(tableroPrincipal, baldosaJugador)
+262.                 dibujarTablero(tableroConJugadasVálidas)
 263.             else:
-264.                 drawBoard(mainBoard)
-265.             showPoints(playerTile, computerTile)
-266.             move = getPlayerMove(mainBoard, playerTile)
-267.             if move == 'quit':
-268.                 print('Thanks for playing!')
-269.                 sys.exit() # terminate the program
-270.             elif move == 'hints':
-271.                 showHints = not showHints
+264.                 dibujarTablero(tableroPrincipal)
+265.             mostrarPuntajes(baldosaJugador, baldosaComputadora)
+266.             jugada = obtenerJugadaJugador(tableroPrincipal, baldosaJugador)
+267.             if jugada == 'salir':
+268.                 print('¡Gracias por jugar!')
+269.                 sys.exit() # terminar el programa
+270.             elif jugada == 'pistas':
+271.                 mostrarPistas = not mostrarPistas
 272.                 continue
 273.             else:
-274.                 makeMove(mainBoard, playerTile, move[0], move[1])
-275.
-276.             if getValidMoves(mainBoard, computerTile) == []:
+274.                 hacerJugada(tableroPrincipal, baldosaJugador, jugada[0], jugada[1])
+275. 
+276.             if obtenerJugadasVálidas(tableroPrincipal, baldosaComputadora) == []:
 277.                 break
 278.             else:
-279.                 turn = 'computer'
-280.
+279.                 turno = 'computadora'
+280. 
 281.         else:
-282.             # Computer's turn.
-283.             drawBoard(mainBoard)
-284.             showPoints(playerTile, computerTile)
-285.             input('Press Enter to see the computer\'s move.')
-286.             x, y = getComputerMove(mainBoard, computerTile)
-287.             makeMove(mainBoard, computerTile, x, y)
-288.
-289.             if getValidMoves(mainBoard, playerTile) == []:
+282.             # Turno de la computadora
+283.             dibujarTablero(tableroPrincipal)
+284.             mostrarPuntajes(baldosaJugador, baldosaComputadora)
+285.             input('Presiona enter para ver la jugada de la computadora.')
+286.             x, y = obtenerJugadaComputadora(tableroPrincipal, baldosaComputadora)
+287.             hacerJugada(tableroPrincipal, baldosaComputadora, x, y)
+288. 
+289.             if obtenerJugadasVálidas(tableroPrincipal, baldosaJugador) == []:
 290.                 break
 291.             else:
-292.                 turn = 'player'
-293.
-294.     # Display the final score.
-295.     drawBoard(mainBoard)
-296.     scores = getScoreOfBoard(mainBoard)
-297.     print('X scored %s points. O scored %s points.' % (scores['X'], scores['O']))
-298.     if scores[playerTile] > scores[computerTile]:
-299.         print('You beat the computer by %s points! Congratulations!' % (scores[playerTile] - scores[computerTile]))
-300.     elif scores[playerTile] < scores[computerTile]:
-301.         print('You lost. The computer beat you by %s points.' % (scores[computerTile] - scores[playerTile]))
+292.                 turno = 'jugador'
+293. 
+294.     # Mostrar el puntaje final.
+295.     dibujarTablero(tableroPrincipal)
+296.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
+297.     print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
+298.     if puntajes[baldosaJugador] > puntajes[baldosaComputadora]:
+299.         print('¡Has vencido a la computadora por %s puntos! ¡Felicitaciones!' % (puntajes[baldosaJugador] - puntajes[baldosaComputadora]))
+300.     elif puntajes[baldosaJugador] < puntajes[baldosaComputadora]:
+301.         print('Has perdido. La computadora te ha vencido por %s puntos.' % (puntajes[baldosaComputadora] - puntajes[baldosaJugador]))
 302.     else:
-303.         print('The game was a tie!')
-304.
-305.     if not playAgain():
+303.         print('¡Ha sido un empate!')
+304. 
+305.     if not jugarDeNuevo():
 306.         break
 
-How the Code Works
+Cómo Funciona el Código
 
-The Game Board Data Structure
+La Estructura de Datos del Tablero de Juego
 
-Before getting into the code, let’s figure out the board’s data structure. This data structure is a list of lists, just like the one in the previous Sonar game. The list of lists is created so that board[x][y] will represent the character on space located at position x on the X-axis (going left/right) and position y on the Y-axis (going up/down).
+Antes de meternos en el código, entendamos la estructura de datos del tablero. Esta estructura de datos es una lista de listas, igual que la de nuestro juego anterior Sonar. La lista de listas se crea para que tablero[x][y] represente al caracter en la posición x sobre el eje X (de izquierda a derecha) y la posición y sobre el eje Y (de arriba hacia abajo).
 
-This character can either be a ' ' space character (to represent a blank space), a '.' period character (to represent a possible move in hint mode), or an 'X' or 'O' (to represent a player’s tile). Whenever you see a parameter named board, it is meant to be this kind of list of lists data structure.
+Este caracter puede ser un espacio ' ' en blanco (para representar un casillero vacío), un punto'.' (para representar una jugada posible en el modo de pistas), o un caracter 'X' o 'O' (para representar las baldosas de los jugadores). Cada vez que veas un parámetro llamado tablero, se tratará de esta especie de lista de listas.
 
-Importing Other Modules
+Importando Otros Módulos
 
   1. # Reversi
-  2. import random
-  3. import sys
+  3. import random
+  4. import sys
 
-Line 2 imports the random module for its randint() and choice() functions. Line 3 imports the sys module for its exit() function.
+La línea 2 importa el módulo random para usar sus funciones randint() y choice(). La línea 3 importa el módulo sys para usar su función exit().
 
-Drawing the Board Data Structure on the Screen
+Dibujando la Estructura de Datos del Tablero sobre la Pantalla
 
-  6. def drawBoard(board):
-  7.     # This function prints out the board that it was passed. Returns None.
-  8.     HLINE = '  +---+---+---+---+---+---+---+---+'
-  9.     VLINE = '  |   |   |   |   |   |   |   |   |'
- 10.
+  6. def dibujarTablero(tablero):
+  7.     # Esta funcion dibuja el tablero recibido. Devuelve None
+  8.     LÍNEAH = '  +---+---+---+---+---+---+---+---+'
+  9.     LÍNEAV = '  |   |   |   |   |   |   |   |   |'
+ 10. 
  11.     print('    1   2   3   4   5   6   7   8')
- 12.     print(HLINE)
+ 12.     print(LÍNEAH)
 
-The drawBoard() function will print the current game board based on the data structure in board. Notice that each square of the board looks like this (there could also be a 'O', '.', or ' ' string instead of the 'X'):
+La función dibujarTablero() imprimirá el tablero actual del juego basado en la estructura de datos en la variable tablero. Observa que cada casillero del tablero se ve así (también podría haber una cadena 'O', '.' o ' ' en lugar de 'X'):
 
 +---+
 |   |
@@ -535,40 +535,36 @@ The drawBoard() function will print the current game board based on the data str
 |   |
 +---+
 
-Since the horizontal line is printed over and over again, line 8 stores it in a constant variable named HLINE. This will save you from typing out the string repeatedly.
+Ya que la línea horizontal se imprime una y otra vez, la línea 8 la almacena en una variable constante llamada LÍNEAH. Esto nos ahorrará el trabajo de tener que escribir esta cadena cada vez.
 
-There are also lines above and below the center of tile that are nothing but '|' characters (called “pipe” characters) with three spaces between. This is stored in a constant named VLINE.
+También hay líneas por encima y por debajo del centro de cada casillero que son simplemente repeticiones del caracter '|' (llamado "pleca") con 3 espacios entre cada uno. Este conjunto se almacena en una constante llamada LÍNEAV.
 
-Line 11 is the first print() function call executed, and it prints the labels for the X-axis along the top of the board. Line 12 prints the top horizontal line of the board.
+La línea 11 contiene a la primera ejecución de la función print(), e imprime las etiquetas para el eje X a lo largo del borde superior del tablero. La línea 12 imprime la línea horizontal superior del tablero.
 
  13.     for y in range(8):
- 14.         print(VLINE)
+ 14.         print(LÍNEAV)
  15.         print(y+1, end=' ')
  16.         for x in range(8):
- 17.             print('| %s' % (board[x][y]), end=' ')
+ 17.             print('| %s' % (tablero[x][y]), end=' ')
  18.         print('|')
- 19.         print(VLINE)
- 20.         print(HLINE)
+ 19.         print(LÍNEAV)
+ 20.         print(LÍNEAH)
 
-The for loop will loop eight times, once for each row. Line 15 prints the label for the Y-axis on the left side of the board, and has an end=' ' keyword argument to print a single space instead of a new line. This is so that another loop (which again loops eight times, once for each space) prints each space (along with the 'X', 'O', or ' ' character depending on what is stored in board[x][y].)
+El bucle for se ejecutará ocho veces, una por cada fila. La línea 15 imprime la etiqueta del eje Y sobre el lado izquierdo del tablero, y tiene como argumento la palabra clave end=' ' para terminar la línea con un espacio simple en lugar de saltar a la siguiente línea. Esto es para que otro bucle (que también se ejecuta ocho veces, una por cada espacio) imprima cada espacio (junto con el caracter 'X', 'O' o ' ' dependiendo de lo que esté almacenado en tablero[x][y].)
 
-The print() function call inside the inner loop also has an end=' ' keyword argument at the end of it, meaning a space character is printed instead of a newline character. That will produce a single line on the screen that looks like '| X | X | X | X | X | X | X | X ' (if each of the board[x][y] values were 'X').
+La llamada a la función print() dentro del bucle interno también tiene como argumento la palabra clave end=' ' al final, con lo cual se imprime un espacio en lugar de una nueva línea. Esto produce una única línea con el aspecto '| X | X | X | X | X | X | X | X ' (si cada uno de los valores de tablero[x][y] fuera 'X').
 
-After the inner loop is done, the print() function call on line 18 prints the final '|' character along with a newline.
+Luego de que el bucle interno ha concluido, la llamada a la función print() en la línea 18 imprime el último caracter '|' junto con una nueva línea.
 
-The code inside the outer for loop from line 14 to line 20 prints an entire row of the board like this:
-
-|   |   |   |   |   |   |   |   |
-| X | X | X | X | X | X | X | X |
-|   |   |   |   |   |   |   |   |
-+---+---+---+---+---+---+---+---+
-
-When the for loop on line 13 prints the row eight times, it forms the entire board (of course, some of the spaces on the board will have 'O' or ' ' instead of 'X'):
+El código comprendido por el bucle completo entre las líneas 14 y 20 imprime una fila completa del tablero en este formato:
 
 |   |   |   |   |   |   |   |   |
 | X | X | X | X | X | X | X | X |
 |   |   |   |   |   |   |   |   |
 +---+---+---+---+---+---+---+---+
+
+Cuando el bucle for de la línea 13 imprime la fila ocho veces, se forma el tablero completo (por supuesto, algunos de los espacios en el tablero tendrán caracteres 'O' o ' ' en lugar de 'X'):
+
 |   |   |   |   |   |   |   |   |
 | X | X | X | X | X | X | X | X |
 |   |   |   |   |   |   |   |   |
@@ -597,180 +593,184 @@ When the for loop on line 13 prints the row eight times, it forms the entire boa
 | X | X | X | X | X | X | X | X |
 |   |   |   |   |   |   |   |   |
 +---+---+---+---+---+---+---+---+
+|   |   |   |   |   |   |   |   |
+| X | X | X | X | X | X | X | X |
+|   |   |   |   |   |   |   |   |
++---+---+---+---+---+---+---+---+
 
-Resetting the Game Board
+Reiniciando el Tablero de Juego
 
- 23. def resetBoard(board):
- 24.     # Blanks out the board it is passed, except for the original starting position.
+ 23. def reiniciarTablero(tablero):
+ 24.     # Deja en blanco el tablero recibido como argumento, excepto la posición inicial
  25.     for x in range(8):
  26.         for y in range(8):
- 27.             board[x][y] = ' '
+ 27.             tablero[x][y] = ' '
 
-Line 25 and 26 have nested loops to set the board data structure to be all single-space strings. This makes a blank Reversi board. The resetBoard() function is called as part of starting a new game.
+Las líneas 25 y 26 contienen bucles anidados para asignar espacios simples a cada elemento de la estructura de datos tablero. Esto crea un tablero vacío de Reversi. La función reiniciarTablero() es parte de la rutina de comenzar un nuevo juego.
 
-Setting Up the Starting Pieces
+Colocando las Piezas Iniciales
 
- 29.     # Starting pieces:
- 30.     board[3][3] = 'X'
- 31.     board[3][4] = 'O'
- 32.     board[4][3] = 'O'
- 33.     board[4][4] = 'X'
+ 29.     # Piezas iniciales:
+ 30.     tablero[3][3] = 'X'
+ 31.     tablero[3][4] = 'O'
+ 32.     tablero[4][3] = 'O'
+ 33.     tablero[4][4] = 'X'
 
-At the beginning of a game, each player has two tiles already laid down in the center. Lines 30 to 33 set those tiles on the blank board.
+Al comienzo del juego, cada jugador tiene dos baldosas ya colocadas en el centro. Las líneas 30 a 33 colocan esas baldosas en el tablero vacío.
 
-The resetBoard() function does not have to return the board variable, because board is a reference to a list. Making changes inside the function’s local scope will modify the original list that was passed as the argument. (See the References section in Chapter 10.)
+La función reiniciarTablero() no necesita devolver la variable tablero, porque tablero es una referencia a una lista. Los cambios realizados en el entorno local de la función modificará la lista original que fue pasada como argumento. (Explicado en la sección Referencias del Capítulo 10.)
 
-Creating a New Game Board Data Structure
+Creando una Nueva Estructura de Datos Tablero
 
- 36. def getNewBoard():
- 37.     # Creates a brand new, blank board data structure.
- 38.     board = []
+ 36. def obtenerNuevoTablero():
+ 37.     # Crea un tablero nuevo, vacío.
+ 38.     tablero = []
  39.     for i in range(8):
- 40.         board.append([' '] * 8)
- 41.
- 42.     return board
+ 40.         tablero.append([' '] * 8)
+ 41. 
+ 42.     return tablero
 
-The getNewBoard() function creates a new board data structure and returns it. Line 38 creates the outer list and stores a reference to this list in board. Line 40 creates the inner lists using list replication. ([' '] * 8 evaluates to be the same as [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '] but with less typing.)
+La función obtenerNuevoTablero() crea una nueva estructura de datos tablero y la devuelve. La línea 38 crea la lista exterior y guarda una referencia a esta lista en tablero. La línea 40 crea las listas interiores usando replicación de listas. ([' ']) * 8 se evalúa al mismo valor que [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], pero hay que escribir menos.)
 
-Line 39’s for loop here creates the eight inner lists. The spaces represent a completely empty game board.
+El bucle for de la línea 39 crea las ocho listas internas. Los espacios representan un tablero de juego completamente vacío.
 
-What board ends up being is a list of eight lists, and each of those eight lists themselves has eight strings. The result is 64 ' ' strings.
+Lo que la variable tablero termina siendo es una lista de ocho listas, y cada una de esas listas tiene ocho cadenas. El resultado son 64 cadenas ' ' con un caracter espacio.
 
-Checking if a Move is Valid
+Comprobando si una Jugada es Válida
 
- 45. def isValidMove(board, tile, xstart, ystart):
- 46.     # Returns False if the player's move on space xstart, ystart is invalid.
- 47.     # If it is a valid move, returns a list of spaces that would become the player's if they made a move here.
- 48.     if board[xstart][ystart] != ' ' or not isOnBoard(xstart, ystart):
+ 45. def esJugadaVálida(tablero, baldosa, comienzox, comienzoy):
+ 46.     # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida
+ 47.     # Si es una jugada válida, devuelve una lista de espacios que pasarían a ser del jugador si moviera aquí.
+ 48.     if tablero[comienzox][comienzoy] != ' ' or not estáEnTablero(comienzox, comienzoy):
  49.         return False
- 50.     board[xstart][ystart] = tile # temporarily set the tile on the board.
- 51.     if tile == 'X':
- 52.         otherTile = 'O'
- 53.     else:
- 54.         otherTile = 'X'
- 55.     tilesToFlip = []
+ 51.     tablero[comienzox][comienzoy] = baldosa # coloca temporariamente la baldosa sobre el tablero.
+ 53.     if baldosa == 'X':
+ 54.         otraBaldosa = 'O'
+ 55.     else:
+ 56.         otraBaldosa = 'X'
+ 58.     baldosasAConvertir = []
 
-Given a board data structure, the player’s tile, and the XY coordinates for player’s move, isValidMove() should return True if the Reversi game rules allow a move to those coordinates and False if they don’t.
+Dada una estructura de datos tablero, la baldosa del jugador y las coordenadas XY de la jugada del jugador, esJugadaVálida() devuelve True si las reglas de Reversi permiten una jugada en esas coordenadas y False en caso contrario.
 
-Line 48 checks if the XY coordinates are not on the game board, or if the space isn’t empty. isOnBoard() is a function defined later in the program that makes sure both the X and Y coordinates are between 0 and 7.
+La línea 48 comprueba si las coordenadas XY están fuera del tablero, o si el espacio no está vacío. estáEnTablero() es una función definida más adelante en el programa que se asegura de que el valor de ambas coordenadas X e Y esté comprendido entre 0 y 7.
 
-The next step is to temporarily place the player’s tile on the board. This tile will be removed (by setting the board space back to ' ' before returning).
+El próximo paso es colocar temporariamente la baldosa del jugador sobre el tablero. Esta baldosa será removida (volviendo a asignar ' ' al espacio del tablero antes de volver de la función).
 
-The player’s tile (either the human player or the computer player) is in tile, but this function will need to know the other player’s tile. If the player’s tile is 'X' then obviously the other player’s tile is 'O', and vice versa.
+La baldosa del jugador (tanto el jugador humano como la computadora) se guarda en la variable baldosa, pero esta función necesitará saber la baldosa del otro jugador. Si la baldosa del jugador es 'X' entonces obviamente la baldosa del otro jugador será 'O' y viceversa.
 
-Finally, if the given XY coordinate ends up as a valid position, isValidMove() returns a list of all the opponent's tiles that would be flipped by this move.
+Finalmente, si la coordenada XY ingresada corresponde a una jugada válida, la función esJugadaVálida() devuelve una lista de todas las baldosas del oponente que serán invertidas con esta jugada.
 
- 59.     for xdirection, ydirection in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
+ 59.     for direcciónx, direccióny in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
 
-The for loop iterates through a list of lists which represent directions you can move on the game board. The game board is a Cartesian coordinate system with an X and Y direction. There are eight directions you can move: up, down, left, right, and the four diagonal directions. Each of the eight 2-item lists in the list on line 59 is used for moving in one of these directions. The program moves in a direction by adding the first value in the two-item list to the X coordinate, and the second value to the Y coordinate.
+El bucle for itera a través de una lista de listas que representan direcciones en las que puedes moverte en el tablero de juego. El tablero es un sistema de coordenadas cartesianas con direcciones X e Y. Hay ocho direcciones en las que puedes moverte: arriba, abajo, izquierda, derecha y las cuatro diagonales. Cada una de las ocho listas de dos elementos en la lista de la línea 59 se usa para moverse en una de estas direcciones. El programa se mueve en una dirección sumando el primer valor en la lista de dos elementos a la coordenada X, y el segundo valor a la coordenada Y.
 
-Because the X coordinates increase as you go to the right, you can “move” to the right by adding 1 to the X coordinate. So the [1, 0] list adds 1 to the X coordinate and 0 to the Y coordinate, resulting in “movement” to the right. Moving to the left is the opposite: you would subtract 1 (that is, add -1) from the X coordinate.
+Como la coordenada X aumenta a medida que te desplazas hacia la derecha, puedes "moverte" a la derecha sumando 1 a la coordenada X. Entonces, la lista [1, 0] suma 1 a la coordenada X y 0 a la coordenada Y, resultando en un "movimiento" hacia la derecha. Moverse a la izquierda es lo opuesto: en este caso restas 1 (es decir, sumas -1) a la coordenada X.
 
-But to move diagonally, you need to add or subtract to both coordinates. For example, adding 1 to the X coordinate to move right and adding -1 to the Y coordinate to move up would result in moving to the up-right diagonal direction.
+Pero para moverte en diagonal necesitarás sumar o restar a ambas coordenadas. Por ejemplo, sumar 1 a la coordenada X para moverte hacia la derecha y a su vez sumar -1 a la coordenada Y para moverte hacia arriba resulta en un movimiento en diagonal hacia arriba y a la derecha.
 
-Checking Each of the Eight Directions
+Comprobando Cada Una de las Ocho Direcciones
 
-Here is a diagram to make it easier to remember which two-item list represents which direction:
+Aquí hay un diagrama para hacerte más fácil recordar qué lista de dos elementos representa cada dirección:
 
-Figure 15-7: Each two-item list represents one of the eight directions.
+Figura 15-7: Cada lista de dos elementos representa una de las ocho direcciones.
 
- 59.     for xdirection, ydirection in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
- 60.         x, y = xstart, ystart
- 61.         x += xdirection # first step in the direction
- 62.         y += ydirection # first step in the direction
+ 59.     for direcciónx, direccióny in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
+ 60.         x, y = comienzox, comienzoy
+ 61.         x += direcciónx # primer paso en la dirección
+ 62.         y += direccióny # primer paso en la dirección
 
-Line 60 sets an x and y variable to be the same value as xstart and ystart, respectively, using multiple assignment. Change x and y to “move” in the direction that xdirection and ydirection dictate. The xstart and ystart variables will stay the same so that the program can remember which space it originally started from.
+La línea 60 asigna a las variables x e y el mismo valor que comienzos y comienzoy, respectivamente, utilizando asignación múltiple. A continuación se modifican las variables x e y para "moverse" en la dirección determinada por direcciónx y direccióny. Las variables comienzox y comienzoy no se modificarán de modo que el programa pueda recordar desde qué espacio comenzó el movimiento.
 
- 63.         if isOnBoard(x, y) and board[x][y] == otherTile:
- 64.             # There is a piece belonging to the other player next to our piece.
- 65.             x += xdirection
- 66.             y += ydirection
- 67.             if not isOnBoard(x, y):
+ 63.         if estáEnTablero(x, y) and tablero[x][y] == otraBaldosa:
+ 64.             # Hay una pieza perteneciente al otro jugador al lado de nustra pieza
+ 65.             x += direcciónx
+ 66.             y += direccióny
+ 67.             if not estáEnTablero(x, y):
  68.                 continue
 
-Remember, in order for this to be a valid move, the first step in this direction must be 1) on the board and 2) must be occupied by the other player’s tile. Otherwise there aren’t any of the opponent’s tiles to flip, and a valid move must flip over at least one tile. If these two things aren’t true, line 63’s condition isn’t True and the execution goes back to the for statement for the next direction.
+Recuerda que para que esta movida sea válida, el primer paso en esta dirección debe 1) pertenecer al tablero y 2) estar ocupado por una baldosa del otro jugador. De otro modo no hay ninguna baldosa del oponente para convertir, y una jugada válida debe convertir al menos una baldosa. Si no se cumplen estas dos condiciones, la condición de la línea 63 no es True y la ejecución vuelve a la sentencia for correspondiente a la próxima dirección.
 
-But if the first space does have the other player’s tile, then the program should keep checking in that direction until it reaches one of the player’s tiles. If it reaches past the end of the board though, then line 68 should continue back to the for statement to try the next direction.
+Pero si el primer espacio contiene una baldosa del otro jugador, entonces el programa debe seguir comprobando en esta dirección hasta alcanzar una de las baldosas propias del jugador. Sin embargo, si continúa hasta más allá del tablero, la línea 68 hace que el programa vuelva al comienzo del bucle for y continúe con la siguiente dirección.
 
- 69.             while board[x][y] == otherTile:
- 70.                 x += xdirection
- 71.                 y += ydirection
- 72.                 if not isOnBoard(x, y): # break out of while loop, then continue in for loop
+ 69.             while tablero[x][y] == otraBaldosa:
+ 70.                 x += direcciónx
+ 71.                 y += direccióny
+ 72.                 if not estáEnTablero(x, y): # sale del bucle while y continua en el bucle for.
  73.                     break
- 74.             if not isOnBoard(x, y):
+ 74.             if not estáEnTablero(x, y):
  75.                 continue
 
-The while loop on line 69 keeps looping so that x and y keep going in the current direction as long as it keeps seeing a trail of the other player’s tiles. If line 72 detects that x and y moved off of the board, line 73 breaks out of the for loop and the flow of execution moves to line 74.
+El bucle while de la línea 69 continúa ciclando de forma que x e y continúen moviéndose en la misma dirección siempre que sigan encontrando baldosas del otro jugador. Si la línea 72 detecta que x e y están fuera del tablero, la línea 73 sale del bucle for y el flujo de ejecución se mueve a la línea 74.
 
-What you really want to do is break out of the while loop but continue in the for loop. This is why line 74 rechecks not isOnBoard(x, y) and runs continue, which moves execution to the next direction in line 59’s for statement. Remember, break and continue statements will only break or continue from the innermost loop they are in.
+Lo que realmente quieres hacer aquí es salir del bucle while pero continuar dentro del bucle for. Es por esto que la línea 74 vuelve a comprobar not estáEnTablero(x, y) y ejecuta continue, lo que lleva a la ejecución hasta la próxima dirección en la sentencia for de la línea 59. Recuerda, las sentencias break y continue sólo interrumpen el bucle de nivel más bajo en el que se encuentran.
 
-Finding Out if There are Pieces to Flip Over
+Averiguando si Hay Fichas a Convertir
 
- 76.             if board[x][y] == tile:
- 77.                 # There are pieces to flip over. Go in the reverse direction until we reach the original space, noting all the tiles along the way.
+ 76.             if tablero[x][y] == baldosa:
+ 77.                 # Hay fichas a convertir. Caminar en dirección opuesta hasta llegar al casillero original, registrando todas las posiciones en el camino.
  78.                 while True:
- 79.                     x -= xdirection
- 80.                     y -= ydirection
- 81.                     if x == xstart and y == ystart:
+ 79.                     x -= direcciónx
+ 80.                     y -= direccióny
+ 81.                     if x == comienzox and y == comienzoy:
  82.                         break
- 83.                     tilesToFlip.append([x, y])
+ 83.                     baldosasAConvertir.append([x, y])
 
-Line 69’s while loop stops looping when the code has reached the end of the otherTile tiles. Line 76 checks if this space on the board holds one of our tiles. If it does, then the move originally passed to isValidMove() is valid.
+El bucle while de la línea 69 deja de iterar cuando el código ha llegado al final de la secuencia de baldosas otraBaldosa. La línea 76 comprueba si este espacio en el tablero contiene una de nuestras baldosas. Si es así, entonces la jugada pasada originalmente a esJugadaVálida() es válida.
 
-Line 78 loops by moving x and y in reverse back to the original xstart and ystart position by subtracting x and y. Each space is appended to the tilesToFlip list.
+La línea 78 itera moviendo x e y en reversa hacia la posición original comienzox, comienzoy restando pasos del movimiento anterior. Cada espacio es añadido al final de la lista baldosasAConvertir.
 
- 85.     board[xstart][ystart] = ' ' # restore the empty space
- 86.     if len(tilesToFlip) == 0: # If no tiles were flipped, this is not a valid move.
+ 85.     tablero[comienzox][comienzoy] = ' ' # restablecer el espacio vacío
+ 86.     if len(baldosasAConvertir) == 0: # Si no se convirtió ninguna baldosa, la jugada no es válida.
  87.         return False
- 88.     return tilesToFlip
+ 88.     return baldosasAConvertir
 
-The for loop that started on line 59 does this in all eight directions. After that loop is done, the tilesToFlip list will contain the XY coordinates all of our opponent’s tiles that would be flipped if the player moved on xstart, ystart. Remember, the isValidMove() function is only checking to see if the original move was valid. It doesn’t actually permanently change the data structure of the game board.
+El bucle for que comienza en la línea 59 repite todo esto en cada una de las ocho direccions. Luego de que el bucle concluye, la lista baldosasAConvertir contendrá las coordenadas XY de todas las baldosas del oponente que serían convertidas si el jugador colocara una baldosa en comienzox, comienzoy. Recuerda que la función esJugadaVálida() sólo comprueba si la jugada original era válida. Esta función no altera permanentemente la estructura del tablero de juego.
 
-If none of the eight directions ended up flipping at least one of the opponent’s tiles, then tilesToFlip will be an empty list. This is a sign that this move is not valid and isValidMove() should return False.
+Si ninguna de las ocho direcciones ha convertido al menos una de las baldosas del oponente, entonces baldosasAConvertir contendrá una lista vacía. Esto quiere decir que esta jugada no es válida, por lo que esJugadaVálida() debe devolver False.
 
-Otherwise, isValidMove() returns tilesToFlip.
+En caso contrario, esJugadaVálida() devuelve baldosasAConvertir.
 
-Checking for Valid Coordinates
+Comprobando la Validez de las Coordenadas
 
- 91. def isOnBoard(x, y):
- 92.     # Returns True if the coordinates are located on the board.
+ 91. def estáEnTablero(x, y):
+ 92.     # Devuelve True si las coordenadas se encuentran dentro del tablero
  93.     return x >= 0 and x <= 7 and y >= 0 and y <=7
 
-isOnBoard() is a function called from isValidMove(). Calling the function is shorthand for the Boolean expression on line 93 that is True if both x and y are between 0 and 7. This function checks if an X and Y coordinate is actually on the game board. For example, an X coordinate of 4 and a Y coordinate of 9999 would not be on the board since Y coordinates only go up to 7.
+estáEnTablero() es una función llamada desde esJugadaVálida(). Llamar a esta función es una forma de abreviar la expresión Booleana de la línea 93 que devuelve True si tanto x como y están comprendidos entre 0 y 7. Esta función comprueba si un par ordenado X Y corresponde a una posición dentro del tablero. Por ejemplo, una coordenada X de 4 y una coordenada Y de 9999 no se encuentran dentro del tablero ya que las coordenadas Y sólo llegan hasta 7.
 
-Getting a List with All Valid Moves
+Obteniendo una Lista con Todas las Jugadas Válidas
 
- 96. def getBoardWithValidMoves(board, tile):
- 97.     # Returns a new board with . marking the valid moves the given player can make.
- 98.     dupeBoard = getBoardCopy(board)
- 99.
-100.     for x, y in getValidMoves(dupeBoard, tile):
-101.         dupeBoard[x][y] = '.'
-102.     return dupeBoard
+ 96. def obtenerTableroConJugadasVálidas(tablero, baldosa):
+ 97.     # Devuelve un nuevo tablero, marcando con "." las jugadas válidas que el jugador puede realizar.
+ 98.     réplicaTablero = obtenerCopiaTablero(tablero)
+ 99. 
+100.     for x, y in obtenerJugadasVálidas(réplicaTablero, baldosa):
+101.         réplicaTablero[x][y] = '.'
+102.     return réplicaTablero
 
-getBoardWithValidMoves() returns a game board data structure that has '.' characters for all spaces that are valid moves. The periods are for the hints mode that displays a board with all possible moves marked on it.
+obtenerTableroConJugadasVálidas() devuelve una estructura de datos tablero que contiene caracteres '.' en cada espacio que es una jugada válida. Los puntos son para el modo pistas que muestra un tablero donde están marcadas todas las jugadas posibles.
 
-This function creates a duplicate game board data structure (returned by getBoardCopy() on line 98) instead of modifying the one passed to it in the board parameter. Line 100 calls getValidMoves() to get a list of XY coordinates with all the legal moves the player could make. The board copy is marked with periods in those spaces and returned.
+Esta función crea un duplicado de la estructura de datos tablero (devuelto por obtenerCopiaTablero() en la línea 98) en lugar de modificar la que recibe a través del parámetro tablero. La línea 100 llama a obtenerJugadasVálidas() para obtener una lista de coordenadas XY con todas las jugadas válidas que el jugador podría tomar. La copia del tablero se marca con puntos en cada uno de esos espacios y se devuelve.
 
-105. def getValidMoves(board, tile):
-106.     # Returns a list of [x,y] lists of valid moves for the given player on the given board.
-107.     validMoves = []
-108.
+105. def obtenerJugadasVálidas(tablero, baldosa):
+106.     # Devuelve una lista de listas [x,y] de jugadas válidas para el jugador en el tablero dado.
+107.     jugadasVálidas = []
+108. 
 109.     for x in range(8):
 110.         for y in range(8):
-111.             if isValidMove(board, tile, x, y) != False:
-112.                 validMoves.append([x, y])
-113.     return validMoves
+111.             if esJugadaVálida(tablero, baldosa, x, y) != False:
+112.                 jugadasVálidas.append([x, y])
+113.     return jugadasVálidas
 
-The getValidMoves() function returns a list of two-item lists. These lists hold the XY coordinates for all valid moves for tile’s player for the board data structure in the board parameter.
+La función obtenerJugadasVálidas() devuelve una lista de listas de dos elementos. Estas listas contienen las coordenadas XY de todas las jugadas válidas para el jugador correspondiente al parámetro baldosa y el estado del juego correspondiente al parámetro tablero.
 
-This function uses nested loops (on lines 109 and 110) to check every XY coordinate (all sixty four of them) by calling isValidMove() on that space and checking if it returns False or a list of possible moves (in which case it is a valid move). Each valid XY coordinate is appended to the list in validMoves.
+Esta función usa bucles anidados (en las líneas 109 y 110) para comprobar cada par de coordenadas XY (las 64 combinaciones posibles) llamando a esJugadaVálida() en ese casillero y comprobando si devuelve False o una lista de casilleros (en cuyo caso es una jugada válida). Cada coordenada XY válida es añadida a la lista jugadasVálidas.
 
-The bool() Function
+La Función bool()
 
-The bool() is similar to the int() and str() functions. It returns the Boolean value form of the value passed to it.
+La función bool() es similar a las funciones int() y str(). Devuelve la forma Booleana del valor que recibe.
 
-Most data types have one value that is considered the False value for that data type. Every other value is consider True. For example, the integer 0, the floating point number 0.0, the empty string, the empty list, and the empty dictionary are all considered to be False when used as the condition for an if or loop statement. All other values are True. Try entering the following into the interactive shell:
+La mayoría de los tipos de datos tiene un valor que se considera False para ese tipo de datos. Todos los otros valores se consideran True. Por ejemplo, el entero 0, el número de punto flotante 0.0, la cadena vacía, la lista vacía y el diccionario vacío se consideran False cuando se usan como condición para una sentencia if o una sentencia de bucle. Todos los otros valores son True. Prueba ingresar lo siguiente en la consola interactiva:
 
 >>> bool(0)
 False
@@ -784,375 +784,375 @@ False
 False
 >>> bool(1)
 True
->>> bool('Hello')
+>>> bool('Hola')
 True
 >>> bool([1, 2, 3, 4, 5])
 True
 >>> bool({'spam':'cheese', 'fizz':'buzz'})
 True
 
-Imagine that any statement’s condition is placed inside a call to bool(). That is, conditions are automatically interpreted as Boolean values. This is why the condition on line 111 works correctly. The call to the isValidMove() function either returns the Boolean value False or a non-empty list.
+Imagina que la condición de cualquier sentencia se colocase dentro de la llamada a bool(). Es decir, las condiciones son automáticamente interpretadas como valores Booleanos. Es por esto que la condición en la línea 111 funciona correctamente. La llamada a la función esJugadaVálida() devuelve el valor Booleano False o una lista no vacía.
 
-If you imagine that the entire condition is placed inside a call to bool(), then line 111’s condition False becomes bool(False) (which, of course, evaluates to False). And a condition of a non-empty list placed as the parameter to bool() will return True.
+Si te imaginas que la condición entera se coloca dentro de una llamada a bool(), entonces la condición False de la línea 111 se convierte en bool(False) (lo cuál, por supuesto, se evalúa a False). Y una condición de una lista no vacía colocada como el parámetro de bool devolverá True.
 
-Getting the Score of the Game Board
+Obteniendo el Puntaje del Tablero de Juego
 
-116. def getScoreOfBoard(board):
-117.     # Determine the score by counting the tiles. Returns a dictionary with keys 'X' and 'O'.
-118.     xscore = 0
-119.     oscore = 0
+116. def obtenerPuntajeTablero(tablero):
+117.     # Determina el puntaje contando las piezas. Devuelve un diccionario con claves 'X' y 'O'.
+118.     puntajex = 0
+119.     puntajeo = 0
 120.     for x in range(8):
 121.         for y in range(8):
-122.             if board[x][y] == 'X':
-123.                 xscore += 1
-124.             if board[x][y] == 'O':
-125.                 oscore += 1
-126.     return {'X':xscore, 'O':oscore}
+122.             if tablero[x][y] == 'X':
+123.                 puntajex += 1
+124.             if tablero[x][y] == 'O':
+125.                 puntajeo += 1
+126.     return {'X':puntajex, 'O':puntajeo}
 
-The getScoreOfBoard() function uses nested for loops to check all 64 spaces on the board (8 rows times 8 columns per row is 64 spaces) and see which tile (if any) is on them. For each 'X' tile, the code increments xscore on line 123. For each 'O' tile, the code increments oscore on line 125
+La función obtenerPuntajeTablero() usa bucles for anidados para comprobar los 64 espacios del tablero (8 filas multiplicadas por 8 columnas nos dan 64 espacios) y ver qué baldosas (si es que hay alguna) están sobre ellos. Por cada baldosa 'X', el código aumenta puntajex en la línea 123. Por cada baldosa 'X', el código incrementa puntajeo en la línea 125.
 
-Getting the Player’s Tile Choice
+Obteniendo la Opción de Baldosa del Jugador
 
-129. def enterPlayerTile():
-130.     # Lets the player type which tile they want to be.
-131.     # Returns a list with the player's tile as the first item, and the computer's tile as the second.
-132.     tile = ''
-133.     while not (tile == 'X' or tile == 'O'):
-134.         print('Do you want to be X or O?')
-135.         tile = input().upper()
+129. def ingresarBaldosaJugador():
+130.     # Permite al jugador elegir que baldosa desea ser.
+131.     # Devuelve una lista con la baldosa del jugador como primer elemento y el de la computadora como segundo.
+132.     baldosa = ''
+133.     while not (baldosa == 'X' or baldosa == 'O'):
+134.         print('¿Deseas ser X ó O?')
+135.         baldosa = input().upper()
 
-This function asks the player which tile they want to be, either 'X' or 'O'. The for loop will keep looping until the player types in 'X' or 'O'.
+Esta función pregunta al jugador qué baldosa quiere ser, 'X' u 'O'. El bucle for continuará ciclando hasta que el jugador escriba 'X' u 'O'.
 
-137.     # the first element in the list is the player's tile, the second is the computer's tile.
-138.     if tile == 'X':
+137.     #  El primer elemento en la lista es la baldosa del juegador, el segundo es la de la computadora.
+138.     if baldosa == 'X':
 139.         return ['X', 'O']
 140.     else:
 141.         return ['O', 'X']
 
-The enterPlayerTile() function then returns a two-item list, where the player’s tile choice is the first item and the computer’s tile is the second. Line 252, which calls enterPlayerTile(), uses multiple assignment to put these two returned items in two variables.
+La función ingresarBaldosaJugador() devuelve una lista de dos elementos, donde la selección de baldosa del jugador es el primer elemento y la baldosa de la computadora es el segundo. La línea 252, que llama a ingresarBaldosaJugador(), usa asignación múltiple para colocar estos dos elementos devueltos en dos variables.
 
-Determining Who Goes First
+Determinando Quién Comienza
 
-144. def whoGoesFirst():
-145.     # Randomly choose the player who goes first.
+144. def quiénComienza():
+145.     # Elije al azar qué jugador comienza.
 146.     if random.randint(0, 1) == 0:
-147.         return 'computer'
+147.         return 'computadora'
 148.     else:
-149.         return 'player'
+149.         return 'jugador'
 
-The whoGoesFirst() function randomly selects who goes first, and returns either the string 'computer' or the string 'player'.
+La función quiénComienza() decide aleatoriamente quién tomará el primer turno, y devuelve la cadena 'computadora' o la cadena 'jugador'.
 
-Asking the Player to Play Again
+Preguntando al Jugador si Quiere Jugar de Nuevo
 
-152. def playAgain():
-153.     # This function returns True if the player wants to play again, otherwise it returns False.
-154.     print('Do you want to play again? (yes or no)')
-155.     return input().lower().startswith('y')
+152. def jugarDeNuevo():
+153.     # Esta función devuelve True si el jugador quiere jugar de nuevo, de lo contrario devuelve False.
+154.     print('¿Quieres jugar de nuevo? (sí o no)')
+155.     return input().lower().startswith('s')
 
-The playAgain() function was also in previous games. If the player types in a string that begins with 'y', then the function returns True. Otherwise the function returns False.
+La función jugarDeNuevo() ha estado presente en juegos anteriores. Si el jugador escribe una cadena que comienza con 's', entonces la función devuelve True. De otro modo la función devuelve False.
 
-Placing Down a Tile on the Game Board
+Colocando una Ficha en el Tablero de Juego
 
-158. def makeMove(board, tile, xstart, ystart):
-159.     # Place the tile on the board at xstart, ystart, and flip any of the opponent's pieces.
-160.     # Returns False if this is an invalid move, True if it is valid.
-161.     tilesToFlip = isValidMove(board, tile, xstart, ystart)
+158. def hacerJugada(tablero, baldosa, comienzox, comienzoy):
+159.     # Coloca la baldosa sobre el tablero en comienzox, comienzoy, y convierte cualquier baldosa del oponente.
+160.     # Devuelve False si la jugada es inválida, True si es válida.
+161.     baldosasAConvertir = esJugadaVálida(tablero, baldosa, comienzox, comienzoy)
 
-makeMove() is called when you want to place a tile on the board and flip the other tiles according to the rules of Reversi. This function modifies the board data structure that is passed in-place. Changes made to the board variable (because it is a list reference) will be made to the global scope.
+hacerJugada() es llamada cuando quieres colocar una baldosa en el tablero y convertir otras fichas de acuerdo con las reglas del reversi. Esta función modifica en el lugar la estructura de datos tablero que recibe. Es decir, los cambios realizados a la variable tablero (porque es una referencia a una lista) serán visibles en el entorno global.
 
-Most of the work is done by isValidMove(), which returns a list of XY coordinates (in a two-item list) of tiles that need to be flipped. (Remember, if the xstart and ystart arguments point to an invalid move, then isValidMove() will return the Boolean value False.)
+La mayor parte del trabajo es realizado por esJugadaVálida(), que devuelve una lista de coordenadas XY (en forma de listas de dos elementos) de baldosas que deben ser convertidas. (Recuerda que si los argumentos comienzox y comienzoy señalan una movida inválida, entonces esJugadaVálida() devolverá el valor Booleano False.)
 
-163.     if tilesToFlip == False:
+163.     if baldosasAConvertir == False:
 164.         return False
-165.
-166.     board[xstart][ystart] = tile
-167.     for x, y in tilesToFlip:
-168.         board[x][y] = tile
+165. 
+166.     tablero[comienzox][comienzoy] = baldosa
+167.     for x, y in baldosasAConvertir:
+168.         tablero[x][y] = baldosa
 169.     return True
 
-On lines 163 and 164, if the return value of isValidMove() (now stored in tilesToFlip) was False, then makeMove() will also return False.
+En las líneas 163 y 164, si el valor de retorno de esJugadaVálida() (ahora almacenado en baldosasAConvertir) fuese False, entonces hacerJugada() también devolvería False.
 
-Otherwise, isValidMove() returns a list of spaces on the board to put down the tiles (the 'X' or 'O' string in tile). Line 166 sets the space that the player has moved on. Line 167’s for loop sets all the tiles that are in tilesToFlip.
+De otro modo, esJugadaVálida() devuelve una lista de espacios del tablero donde colocar las baldosas (las cadenas 'X' u 'O' en baldosa). La línea 166 asigna el espacio en el que el jugador ha jugado. El bucle for de la línea 167 convierte todas las baldosas en baldosasAConvertir.
 
-Copying the Board Data Structure
+Copiando la Estructura de Datos Tablero
 
-172. def getBoardCopy(board):
-173.     # Make a duplicate of the board list and return the duplicate.
-174.     dupeBoard = getNewBoard()
-175.
+172. def obtenerCopiaTablero(tablero):
+173.     # Duplica la lista del tablero y devuelve el duplicado.
+174.     réplicaTablero = obtenerNuevoTablero()
+175. 
 176.     for x in range(8):
 177.         for y in range(8):
-178.             dupeBoard[x][y] = board[x][y]
-179.
-180.     return dupeBoard
+178.             réplicaTablero[x][y] = tablero[x][y]
+179. 
+180.     return réplicaTablero
 
-getBoardCopy() is different from getNewBoard(). getNewBoad() will create a blank game board data structure which has only empty spaces and the four starting tiles. getBoardCopy() will create a blank game board data structure, but then copy all of the spaces from the board parameter. This function is used by the AI to have a game board that it can change around without changing the real game board. This technique was also used by the previous Tic Tac Toe program.
+obtenerCopiaTablero() es diferente de obtenerNuevoTablero(). obtenerNuevoTablero() creará una estructura de datos tablero nueva, con sólo espacios vacíos y las cuatro baldosas iniciales. obtenerCopiaTablero() creará también una estructura de datos vacía, pero luego copiará todos los espacios del parámetro tablero. Esta función es usada por la IA para obtener un tablero de juego sobre el que pueda hacer cambios sin modificar el tablero real. Esta técnica es la misma que hemos usado en nuestro programa anterior Ta Te Ti.
 
-A call to getNewBoard() handles getting a fresh game board data structure. Then the two nested for loops copy each of the 64 tiles from board to the duplicate board data structure in dupeBoard.
+La llamada a obtenerNuevoTablero() crea una nueva estructura de datos tablero. Luego los dos bucles anidados copian cada una de las 64 baldosas de tablero a la estructura de datos duplicada en réplicaTablero.
 
-Determining if a Space is on a Corner
+Determinando si un Espacio está sobre una Esquina
 
-183. def isOnCorner(x, y):
-184.     # Returns True if the position is in one of the four corners.
+183. def esEsquina(x, y):
+184.     # Devuelve True si la posicion es una de las esquinas.
 185.     return (x == 0 and y == 0) or (x == 7 and y == 0) or (x == 0 and y == 7) or (x == 7 and y == 7)
 
-The isOnCorner() function returns True if the coordinates are on a corner space at coordinates (0,0), (7,0), (0,7) or (7,7). Otherwise isOnCorner() returns False.
+La función esEsquina() devuelve True si las coordenadas corresponden a uno de los espacios de las esquinas con los valores (0,0), (7,0), (0,7) or (7,7). De lo contrario esEsquina() devuelve False.
 
-Getting the Player’s Move
+Obteniendo la Movida del Jugador
 
-188. def getPlayerMove(board, playerTile):
-189.     # Let the player type in their move.
-190.     # Returns the move as [x, y] (or returns the strings 'hints' or 'quit')
-191.     DIGITS1TO8 = '1 2 3 4 5 6 7 8'.split()
+188. def obtenerJugadaJugador(tablero, baldosaJugador):
+189.     # Permite al jugador tipear su jugada.
+190.     # Devuelve la jugada como [x, y] (o devuelve las cadenas 'pistas' o 'salir')
+191.     CIFRAS1A8 = '1 2 3 4 5 6 7 8'.split()
 
-The getPlayerMove() function is called to let the player type in the coordinates of their next move (and check if the move is valid). The player can also type in 'hints' to turn hints mode on (if it is off) or off (if it is on). The player can also type in 'quit' to quit the game.
+La función obtenerJugadaJugador es llamada para permitir al jugador escribir las coordenadas de su próxima jugada (y comprobar si la jugada es válida). El jugador también puede escribir 'pistas' para activar el modo pistas (si está desactivado) o desactivarlo (si está activado). El jugador también puede escribir 'salir' para salir del juego.
 
-The DIGITS1TO8 constant variable is the list ['1', '2', '3', '4', '5', '6', '7', '8']. The DIGITS1TO8 constant is used because it is easier to type than the entire list. You can’t use the isdigit() method because that would allow 0 and 9 to be entered, which are not valid coordinates on the 8 × 8 board.
+La variable constante CIFRAS1A8 es la lista ['1', '2', '3', '4', '5', '6', '7', '8']. La constante CIFRAS1A8 se usa porque es más fácil que escribir la lista entera. No podemos usar el método isdigit() porque de esta forma aceptaríamos los valores 0 y 9, los cuales no son coordenadas válidas en un tablero de 8 x 8.
 
 192.     while True:
-193.         print('Enter your move, or type quit to end the game, or hints to turn off/on hints.')
-194.         move = input().lower()
-195.         if move == 'quit':
-196.             return 'quit'
-197.         if move == 'hints':
-198.             return 'hints'
+193.         print('Ingresa tu jugada, salir para terminar el juego, o pistas para activar/desactivar las pistas.')
+194.         jugada = input().lower()
+195.         if jugada == 'salir':
+196.             return 'salir'
+197.         if jugada == 'pistas':
+198.             return 'pistas'
 
-The while loop will keep looping until the player has typed in a valid move. Lines 195 to 198 check if the player wants to quit or toggle hints mode, and return the string 'quit' or 'hints', respectively. The lower() method is called on the string returned by input() so the player can type 'HINTS' or 'Quit' but still have the command understood.
+El bucle while continuará iterando hasta que el jugador haya ingresado una jugada válida. Las líneas 195 a 198 comprueban si el jugador quiere salir o activar/desactivar las pistas, y devuelve en esos casos la cadena 'salir' o 'pistas' respectivamente. El método lower() se llama sobre la cadena devuelta por input(), de modo que el comando será entendido aunque si el jugador escriba 'PISTAS' o 'Salir'.
 
-The code that called getPlayerMove() will handle what to do if the player wants to quit or toggle hints mode.
+El código que llama a obtenerJugadaJugador() determinará qué hacer si el jugador quiere salir o activar/desactivar las pistas.
 
-200.         if len(move) == 2 and move[0] in DIGITS1TO8 and move[1] in DIGITS1TO8:
-201.             x = int(move[0]) - 1
-202.             y = int(move[1]) - 1
-203.             if isValidMove(board, playerTile, x, y) == False:
+200.         if len(jugada) == 2 and jugada[0] in CIFRAS1A8 and jugada[1] in CIFRAS1A8:
+201.             x = int(jugada[0]) - 1
+202.             y = int(jugada[1]) - 1
+203.             if esJugadaVálida(tablero, baldosaJugador, x, y) == False:
 204.                 continue
 205.             else:
 206.                 break
 
-The game is expecting that the player would have typed in the XY coordinates of their move as two numbers without anything between them. Line 200 first checks that the size of the string the player typed in is 2. After that, it also checks that both move[0] (the first character in the string) and move[1] (the second character in the string) are strings that exist in DIGITS1TO8.
+El juego espera que el jugador ingrese las coordenadas XY de su jugada en forma de dos números sin otro caracter entre ellos. La línea 200 comprueba primero que la longitud de la cadena ingresada sea 2. Luego de esto comprueba también que tanto jugada[0] (el primer caracter de la cadena) como jugada[1] (el segundo caracter de la cadena) sean cadenas que existen en CIFRAS1A8.
 
-Remember that the game board data structures have indexes from 0 to 7, not 1 to 8. The code prints 1 to 8 when the board is displayed in drawBoard() because non-programmers are used to numbers beginning at 1 instead of 0. So to convert the strings in move[0] and move[1] to integers, lines 201 and 202 subtract 1.
+Recuerda que las estructuras de datos tableros tienen índices que van de 0 a 7, no de 1 a 8. El programa imprime 1 a 8 al mostrar el tablero en la función dibujarTablero() porque los no-programadores están acostumbrados a comenzar a contar desde 1 y no desde 0. Entonces para convertir las cadenas en move[0] y move[1] a enteros, las líneas 201 y 202 restan 1 al valor ingresado.
 
-Even if the player typed in a correct move, the code still needs to check that the move is allowed by the rules of Reversi. This is done by isValidMove() which is passed the game board data structure, the player’s tile, and the XY coordinates of the move.
+Incluso si el jugador ha ingresado una coordenada dentro del tablero, el código necesita comprobar que las reglas de Reversi permitan esa jugada. Esto se hace a través de esJugadaVálida() que recibe la estructura de datos tablero, la baldosa del jugador y las coordenadas XY de la jugada.
 
-If isValidMove() returns False, then line 204’s continue statement executes. The execution will then go back to the beginning of the while loop and asks the player for a valid move again.
+Si esJugadaVálida() devuelve False, se ejecuta la sentencia continue de la línea 204. Entonces la ejecución vuelve al principio del bucle while y vuelve a solicitar al jugador que ingrese una jugada válida.
 
-Otherwise, the player did type in a valid move and the execution needs to break out of the while loop.
+En caso contrario, significa que el jugador ha ingresado una jugada válida y la ejecución debe salir (break) del bucle while.
 
 207.         else:
-208.             print('That is not a valid move. Type the x digit (1-8), then the y digit (1-8).')
-209.             print('For example, 81 will be the top-right corner.')
+208.             print('Esta no es una jugada válida. Ingresa la coordenada x (1-8), luego la coordenada y (1-8).')
+209.             print('Por ejemplo, 81 corresponde a la esquina superior derecha.')
 
-If the if statement’s condition on line 200 was False, then the player didn’t type in a valid move. Lines 208 and 209 instructs them on how to correctly type in moves. Afterwards, the execution moves back to the while statement on line 192 because line 209 isn’t only the last line in the else-block, but also the last line in the while-block.
+Si la condición de la sentencia if en la línea 200 fuese False, significaría que el jugador no ha ingresado una jugada válida. Las líneas 208 y 209 le explican cómo ingresar jugadas correctamente. Luego, la ejecución regresa a la sentencia while de la línea 192 pues la línea 209 no sólo es la última línea del bloque else, sino que también es la última línea del bloque while.
 
 211.     return [x, y]
 
-Finally, getPlayerMove() returns a two-item list with the XY coordinates of the player’s valid move.
+Finalmente, obtenerJugadaJugador() devuelve una lista de dos elementos con las coordenadas XY de la jugada válida del jugador.
 
-Getting the Computer’s Move
+Obteniendo la Jugada de la Computadora
 
-214. def getComputerMove(board, computerTile):
-215.     # Given a board and the computer's tile, determine where to
-216.     # move and return that move as a [x, y] list.
-217.     possibleMoves = getValidMoves(board, computerTile)
+214. def obtenerJugadaComputadora(tablero, baldosaComputadora):
+215.     # Dado un tablero y la baldosa de la computadora, determinar dónde
+216.     # jugar y devolver esa jugada como una lista [x, y].
+217.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosaComputadora)
 
-getComputerMove() and is where the AI algorithm is implemented. Normally you use the results from getValidMoves() for hints mode. Hints mode will print '.' period characters on the board to show the player all the potential moves they can make.
+obtenerJugadaComputadora() es donde se implementa el algoritmo de IA. Normalmente se usan los resultados de obtenerJugadasVálidas() del modo pistas. El modo pistas imprimirá caracteres punto '.' sobre el tablero para mostrar al jugador todas las jugadas entre las cuales puede elegir.
 
-But if getValidMoves() is called with the computer AI’s tile (in computerTile), it will also find all the possible moves that the computer can make. The AI will select the best move from this list.
+Pero si llamamos a obtenerJugadasVálidas() con la baldosa de la computadora como argumento (en baldosaComputadora), la función encontrará todas las posibles jugadas disponibles para la computadora. La IA seleccionará su jugada como la mejor de esta lista.
 
-219.     # randomize the order of the possible moves
-220.     random.shuffle(possibleMoves)
+219.     # ordena al azar el orden de las jugadas posibles
+220.     random.shuffle(jugadasPosibles)
 
-First, random.shuffle() will randomize the order of moves in the possibleMoves list. Why we want to shuffle the possibleMoves list will be explained later, but first let’s look at the algorithm.
+Primero, random.shuffle() coloca en orden aleatorio las jugadas en la lista jugadasPosibles. Explicaremos después nuestra motivación para desordenar la lista jugadasPosibles, pero primero echemos un vistazo al algoritmo.
 
-Corner Moves are the Best Moves
+Jugar en la Esquina es la Mejor Jugada
 
-222.     # always go for a corner if available.
-223.     for x, y in possibleMoves:
-224.         if isOnCorner(x, y):
+222.     # siempre jugar en una esquina si está disponible.
+223.     for x, y in jugadasPosibles:
+224.         if esEsquina(x, y):
 225.             return [x, y]
 
-First, line 223 loops through every move in possibleMoves. If any of them are on the corner, return that space is returned as the move. Corner moves are a good idea in Reversi because once a tile has been placed on the corner, it can never be flipped over. Since possibleMoves is a list of two-item lists, use multiple assignment in the for loop to set x and y.
+Primero, la línea 223 recorre cada jugada posible en jugadasPosibles. Si alguna de ellas corresponde a una esquina, se devuelve como jugada ese espacio. Jugar en una esquina es una buena idea en Reversi ya que una vez que una baldosa ha sido colocada sobre una esquina no puede ser convertida. Como jugadasPosibles es una lista de listas de dos elementos, usamos asignación múltiple en el bucle for para asignar los valores x e y.
 
-If possibleMoves contains multiple corner moves, the first one is always used. But since possibleMoves was shuffled on line 220, it is random which corner move is first in the list.
+Si jugadasPosibles contiene múltiples jugadas sobre esquinas, se usa siempre la primera de la lista. Pero como jugadasPosibles se ha mezclado previamente en la línea 220, es aleatorio cuál de las esquinas aparecerá primero en la lista.
 
-Get a List of the Best Scoring Moves
+Obtener una Lista con las Jugadas Mejor Puntuadas
 
-227.     # Go through all the possible moves and remember the best scoring move
-228.     bestScore = -1
-229.     for x, y in possibleMoves:
-230.         dupeBoard = getBoardCopy(board)
-231.         makeMove(dupeBoard, computerTile, x, y)
-232.         score = getScoreOfBoard(dupeBoard)[computerTile]
-233.         if score > bestScore:
-234.             bestMove = [x, y]
-235.             bestScore = score
-236.     return bestMove
+227.     # Recorrer la lista de jugadas posibles y recordar la que da el mejor puntaje
+228.     mejorPuntaje = -1
+229.     for x, y in jugadasPosibles:
+230.         réplicaTablero = obtenerCopiaTablero(tablero)
+231.         hacerJugada(réplicaTablero, baldosaComputadora, x, y)
+232.         puntaje = obtenerPuntajeTablero(réplicaTablero)[baldosaComputadora]
+233.         if puntaje > mejorPuntaje:
+234.             mejorJugada = [x, y]
+235.             mejorPuntaje = puntaje
+236.     return mejorJugada
 
-If there are no corner moves, loop through the entire list and find out which move results in the highest score. Line 229’s for loop will set x and y to every move in possibleMoves. bestMove is set to the highest scoring move the code has found so far, and bestScore is set to the best move’s score.
+Si no se puede jugar sobre las esquinas, el programa recorre toda la lista y averigua qué jugada resulta en el puntaje más alto. El bucle for de la línea 229 asigna x e y a cada posible jugada en jugadasPosibles. Se asigna a mejorJugada la jugada con mejor puntaje que el código ha encontrado hasta el momento, y el puntaje de esta jugada se guarda en mejorPuntaje.
 
-When the code in the loop finds a move that scores higher than bestScore, line 233 to 235 will store that move and score as the new values in bestMove and bestScore.
+Cuando el código del bucle encuentra una jugada que da un puntaje más alto que mejorPuntaje, las líneas 233 a 235 guardan esa jugada y su puntaje en mejorJugada y mejorPuntaje.
 
-Simulate All Possible Moves on Duplicate Board Data Structures
+Simulando Todas las Jugadas Posibles en Réplicas de la Estructura de Datos Tablero
 
-Before simulating a move, line 230 makes a duplicate game board data structure by calling getBoardCopy(). You’ll want a copy so you can modify without changing the real game board data structure stored in the board variable.
+Antes de simular una jugada, la línea 230 crea una réplica del tablero de juego llamando a obtenerCopiaTablero(). Esto es para poder ensayar una jugada sin cambiar la estructura de datos original guardada en la variable tablero.
 
-Then line 231 calls makeMove(), passing the duplicate board (stored in dupeBoard) instead of the real board. This will simulate what would happen on the real board if this move was made. makeMove() will handle placing the computer’s tile and the flipping the player’s tiles on the duplicate board.
+Entonces la línea 231 llama a hacerJugada(), pasándole la réplica del tablero (almacenada en réplicaTablero) en lugar del tablero original. Esto simula qué es lo que ocurriría en el tablero real si se realizara esta jugada. hacerJugada() se encarga de colocar la baldosa de la computadora y convertir las baldosas del jugador en el tablero duplicado.
 
-Line 232 calls getScoreOfBoard()with the duplicate board, which returns a dictionary where the keys are 'X' and 'O', and the values are the scores.
+La línea 232 llama a obtenerPuntajeTablero() con el tablero duplicado, lo que devuelve un diccionario cuyas claves son 'X' y 'O', y cuyos valores son los puntajes.
 
-For example, pretend that getScoreOfBoard() returns the dictionary {'X':22, 'O':8} and computerTile is 'X'. Then getScoreOfBoard(dupeBoard)[computerTile] would evaluate to {'X':22, 'O':8}['X'], which would then evaluate to 22. If 22 is larger than bestScore, bestScore is set to 22 and bestMove is set to the current x and y values.
+Por ejemplo, supongamos que obtenerPuntajeTablero() devuelve el diccionario {'X':22, 'O':8} y baldosaComputadora es 'X'. Entonces obtenerPuntajeTablero(réplicaTablero)[baldosaComputadora] se evaluará a {'X':22, 'O':8}['X'], lo cual será evaluado a 22. Si 22 es mayor que mejorPuntaje, se asigna 22 a mejorPuntaje y se asignan los valores actuales x e y a mejorJugada.
 
-By the time this for loop is finished, you can be sure that bestScore is the highest possible score a move can make, and that move is stored in bestMove.
+Para cuando este bucle haya concluido podemos estar seguros que mejorPuntaje es el máximo puntaje posible para una jugada. Esta jugada es almacenada en mejorJugada.
 
-Line 228 first sets bestScore to -1 so that the first move the code checks will be set to the first bestMove. This will guarantee that bestMove is set to one of the moves from possibleMoves when it returns.
+La línea 228 asigna mejorPuntaje a -1, de modo que la primera jugada comprobada por el código siempre sea asignada a mejorJugada. Esto garantiza que mejorJugada contendrá una de las jugadas en jugadasPosibles al retornar de la función.
 
-Even though the code always chooses the first in the list of these tied moves, it’s random because the list order was shuffled on line 220. This ensures that the AI won’t be predictable when there’s more than one best move.
+Aunque el código elija siempre la primera en la lista si es que hay varias jugadas compartiendo el mejor puntaje, la selección sigue siendo aleatoria pues la lista ha sido ordenada aleatoriamente en la línea 220. Esto asegura que la IA no será predecible cuando haya más que una única opción para la mejor movida.
 
-Printing the Scores to the Screen
+Imprimiendo los Puntajes sobre la Pantalla
 
-239. def showPoints(playerTile, computerTile):
-240.     # Prints out the current score.
-241.     scores = getScoreOfBoard(mainBoard)
-242.     print('You have %s points. The computer has %s points.' % (scores[playerTile], scores[computerTile]))
+239. def mostrarPuntajes(baldosaJugador, baldosaComputadora):
+240.     # Imprime el puntaje actual.
+241.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
+242.     print('Tienes %s puntos. La computadora tiene %s puntos.' % (puntajes[baldosaJugador], puntajes[baldosaComputadora]))
 
-showPoints() calls the getScoreOfBoard() function and then prints the player’s and computer’s scores. Remember that getScoreOfBoard() returns a dictionary with the keys 'X' and 'O' and values of the scores for the X and O players.
+mostrarPuntajes() llama a la función obtenerPuntajeTablero() e imprime los puntajes del jugador y la computadora. Recuerda que obtenerPuntajeTablero() devuelve un diccionario con las claves 'X' y 'O' y valores correspondientes a los puntajes de los jugadores X y O.
 
-That’s all the functions for the Reversi game. The code starting on line 246 will implement the actual game and calls these functions as needed.
+Estas son todas las funciones para el juego Reversi. El código que comienza en la línea 246 implementa el juego en sí y llama a estas funciones a medida que son requeridas.
 
-The Start of the Game
+El Comienzo del Juego
 
-246. print('Welcome to Reversi!')
-247.
+246. print('¡Bienvenido a Reversi!')
+247. 
 248. while True:
-249.     # Reset the board and game.
-250.     mainBoard = getNewBoard()
-251.     resetBoard(mainBoard)
-252.     playerTile, computerTile = enterPlayerTile()
-253.     showHints = False
-254.     turn = whoGoesFirst()
-255.     print('The ' + turn + ' will go first.')
+249.     # Reiniciar el tablero y el juego.
+250.     tableroPrincipal = obtenerNuevoTablero()
+251.     reiniciarTablero(tableroPrincipal)
+252.     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
+253.     mostrarPistas = False
+254.     turno = quiénComienza()
+255.     print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
 
-The while loop on line 248 is the main game loop. The program will loop back to line 248 when a new game starts. First get a new game board data structure by calling getNewBoard() and set the starting tiles by calling resetBoard(). mainBoard is the main game board data structure for the program. The call to enterPlayerTile() will let the player type in whether they want to be 'X' or 'O'. The return value is then stored in playerTile and computerTile using multiple assignment.
+El bucle while de la línea 248 es el bucle principal del juego. El programa volverá a la línea 248 cuando comience un nuevo juego. Primero se genera una nueva estructura de datos tablero llamando a obtenerNuevoTablero() y se colocan las baldosas iniciales llamando a reiniciarTablero(). tableroPrincipal es la principal estructura de datos tablero de este programa. La llamada a ingresarBaldosaJugador() permitirá al jugador elegir si quiere ser 'X' u 'O'. Los valores de retorno se almacenan entonces en baldosaJugador y baldosaComputadora utilizando asignación múltiple.
 
-showHints is a Boolean value that determines if hints mode is on or off. It starts as off as False on line 253.
+mostrarPistas es un valor Booleano que determina si el modo pistas está activado o no. Se inicializa como False en la línea 253.
 
-The turn variable is a string that either has the string value 'player' or 'computer'. It will keep track of whose turn it is. It is set to the return value of whoGoesFirst(), which randomly chooses who will go first.
+La variable turno es una cadena que puede tener alguno de los valores 'jugador' o 'computadora'. Esta variable lleva un registro de a quién le toca jugar. Se inicializa con el valor de retorno de la función quiénComienza(), la cual decide en forma aleatoria quien comenzará.
 
-Running the Player’s Turn
+Ejecutando el Turno del Jugador
 
 257.     while True:
-258.         if turn == 'player':
-259.             # Player's turn.
-260.             if showHints:
-261.                 validMovesBoard = getBoardWithValidMoves(mainBoard, playerTile)
-262.                 drawBoard(validMovesBoard)
+258.         if turno == 'jugador':
+259.             # Turno del jugador
+260.             if mostrarPistas:
+261.                 tableroConJugadasVálidas = obtenerTableroConJugadasVálidas(tableroPrincipal, baldosaJugador)
+262.                 dibujarTablero(tableroConJugadasVálidas)
 263.             else:
-264.                 drawBoard(mainBoard)
-265.             showPoints(playerTile, computerTile)
+264.                 dibujarTablero(tableroPrincipal)
+265.             mostrarPuntajes(baldosaJugador, baldosaComputadora)
 
-The while loop that starts on line 257 will keep looping each time the player or computer takes a turn. The execution will break out of this loop when the current game is over.
+El bucle while que comienza en la línea 257 se repetirá cada vez que el jugador o la computadora tomen un turno. La ejecución saldrá de este bucle al terminar el juego actual.
 
-Line 258 has an if statement whose body has the code that runs if it is the player’s turn. (The else-block that starts on line 282 has the code for the computer’s turn.)
+La línea 258 tiene una sentencia if cuyo bloque asociado se ejecuta si es el turno del jugador. (El bloque else que comienza en la línea 282 se ejecuta si es el turno de la computadora.)
 
-First the board is displayed on the screen. If hints mode is on (that is, showHints is True), then the board data structure needs to have '.' period characters on every valid space the player could move.
+Primero se muestra el tablero en la pantalla. Si en modo pistas está activado (es decir, mostrarPistas es True), entonces la estructura de datos tablero debe tener caracteres punto '.' en cada espacio correspondiente a una jugada válida para el jugador.
 
-The getBoardWithValidMoves() function does that. It is passed a game board data structure and returns a copy that also contains '.' period characters. Line 262 passes this board to the drawBoard() function.
+La función obtenerTableroConJugadasVálidas() se encarga de esto. Recibe como argumento una estructura de datos tablero y devuelve una copia a la que se han agregado los caracteres punto '.'. La línea 262 pasa este tablero a la función dibujarTablero().
 
-If hints mode is off, then line 264 passes mainBoard to drawBoard().
+Si el modo pistas está desactivado, entonces la línea 264 simplemente pasa tableroPrincipal a dibujarTablero().
 
-After printing out the game board to the player, you also want to print the current score by calling showPoints() on line 265.
+Luego de mostrar el tablero de juego al jugador, también queremos imprimir el puntaje actual llamando a mostrarPuntajes() en la línea 265.
 
-266.             move = getPlayerMove(mainBoard, playerTile)
+266.             jugada = obtenerJugadaJugador(tableroPrincipal, baldosaJugador)
 
-Next, let the player type in their move. getPlayerMove() handles this, and its return value is a two-item list of the XY coordinate of the player’s move. getPlayerMove() has already made sure that the move the player typed in is a valid move.
+A continuación, permitimos al jugador escribir su jugada. obtenerJugadaJugador() se encarga de esto, y su valor de retorno es una lista de dos elementos con las coordenadas XY de la jugada. obtenerJugadaJugador() se asegura de controlar que la jugada que el jugador ha ingresado es válida.
 
-Handling the Quit or Hints Commands
+Manejando los Comandos Salir y Pistas
 
-267.             if move == 'quit':
-268.                 print('Thanks for playing!')
-269.                 sys.exit() # terminate the program
-270.             elif move == 'hints':
-271.                 showHints = not showHints
+267.             if jugada == 'salir':
+268.                 print('¡Gracias por jugar!')
+269.                 sys.exit() # terminar el programa
+270.             elif jugada == 'pistas':
+271.                 mostrarPistas = not mostrarPistas
 272.                 continue
 273.             else:
-274.                 makeMove(mainBoard, playerTile, move[0], move[1])
+274.                 hacerJugada(tableroPrincipal, baldosaJugador, jugada[0], jugada[1])
 
-If the player typed in the string 'quit' for their move, then getPlayerMove() would have returned the string 'quit'. In that case, line 269 calls the sys.exit() to terminate the program.
+Si el jugador ingresa la cadena 'salir' en su turno, obtenerJugadaJugador() retorna la cadena 'salir'. En ese caso, la línea 269 llama a sys.exit() para terminar el programa.
 
-If the player typed in the string 'hints' for their move, then getPlayerMove() would have returned the string 'hints'. In that case, you want to turn hints mode on (if it was off) or off (if it was on).
+Si el jugador ingresa la cadena 'pistas' en su turno, obtenerJugadaJugador() retorna la cadena 'pistas'. En ese caso, activaremos el modo pistas (si estaba desactivado) o lo desactivaremos (si estaba activado).
 
-The showHints = not showHints assignment statement on line 271 handles both of these cases, because not False evaluates to True and not True evaluates to False. Then the continue statement moves the execution to the start of the loop (turn has not changed, so it will still be the player’s turn).
+La sentencia de asignación mostrarPistas = not mostrarPistas de la línea 271 se encarga de ambos casos, ya que not False se evalúa a True y not True se evalúa a False. Entonces la sentencia continue lleva la ejecución hacia el comienzo del bucle (el turno no ha cambiado, por lo que todavía seguirá siendo el turno del jugador).
 
-Otherwise, if the player didn’t quit or toggle hints mode, line 274 calls makeMove() to make the player’s move on the board.
+En cambio, si el jugador no ha salido o activado/desactivado el modo pistas, la línea 274 llama a hacerJugada() para hacer la jugada del jugador.
 
-Make the Player’s Move
+Efectuando la Jugada del Jugador
 
-276.             if getValidMoves(mainBoard, computerTile) == []:
+276.             if obtenerJugadasVálidas(tableroPrincipal, baldosaComputadora) == []:
 277.                 break
 278.             else:
-279.                 turn = 'computer'
+279.                 turno = 'computadora'
 
-After making the player’s move, line 276 calls getValidMoves() to see if the computer could make any moves. If getValidMoves() returns a blank list, then there are no more valid moves that the computer could make. In that case, line 277 breaks out of the while loop and ends the game.
+Después de hacer la jugada del jugador, la línea 276 llama a obtenerJugadasVálidas() para ver si la computadora dispone de jugadas disponibles. Si obtenerJugadasVálidas() devuelve una lista vacía, quiere decir que no hay jugadas válidas que la computadora pueda hacer. En ese caso, la línea 277 sale del bucle while y termina el juego.
 
-Otherwise, line 279 sets turn to 'computer'. The flow of execution skips the else-block and reaches the end of the while-block, so execution jumps back to the while statement on line 257. This time, however, it will be the computer’s turn.
+Si este no es el caso, la línea 279 asigna 'computadora' a la variable turno. El flujo de ejecución omite el bloque else y llega al final del bloque while, de modo que la ejecución vuelve a la sentencia while de la línea 257. Esta vez, sin embargo, será el turno de la computadora.
 
-Running the Computer’s Turn
+Ejecutando el Turno de la Computadora
 
 281.         else:
-282.             # Computer’s turn.
-283.             drawBoard(mainBoard)
-284.             showPoints(playerTile, computerTile)
-285.             input('Press Enter to see the computer\'s move.')
-286.             x, y = getComputerMove(mainBoard, computerTile)
-287.             makeMove(mainBoard, computerTile, x, y)
+282.             # Turno de la computadora
+283.             dibujarTablero(tableroPrincipal)
+284.             mostrarPuntajes(baldosaJugador, baldosaComputadora)
+285.             input('Presiona enter para ver la jugada de la computadora.')
+286.             x, y = obtenerJugadaComputadora(tableroPrincipal, baldosaComputadora)
+287.             hacerJugada(tableroPrincipal, baldosaComputadora, x, y)
 
-After printing out the board with drawBoard(), also print the current score with a call to showPoints() on line 284.
+Después de imprimir el tablero con dibujarTablero(), queremos mostrar también el puntaje actual llamando a mostrarPuntajes() en la línea 284.
 
-Line 285 calls input() to pause the script while the player can look at the board. This is much like how input() was used to pause the program in the Jokes chapter. Instead of using a print() call to print a string before a call to input(), you can do the same thing by passing the string to print to input().
+La línea 285 llama a input() para poner el juego en pausa y dar tiempo al jugador para mirar el tablero. Esto es bastante parecido a nuestro uso de input() para pausar el programa del capítulo Chistes. En lugar de llamar a print() para imprimir una cadena antes de llamar a input(), puedes conseguir el mismo resultado pasando la cadena a imprimir a la función input().
 
-After the player has looked at the board and pressed ENTER, line 286 calls getComputerMove() to get the XY coordinates of the computer’s next move. These coordinates are stored in variables x and y using multiple assignment.
+Luego de que el jugador ha tenido tiempo de ver el tablero y pulsar INTRO, la línea 286 llama a obtenerJugadaComputadora() para obtener las coordenadas XY de la próxima jugada de la computadora. Estas coordenadas se guardan en las variables x e y usando asignación múltiple.
 
-Finally, pass x and y, along with the game board data structure and the computer’s tile, to the makeMove() function. This places the computer’s tile on the game board in mainBoard to reflect the computer’s move. Line 286’s call to getComputerMove() got the computer’s move (and stored it in variables x and y). The call to makeMove() on line 287 makes the move on the board.
+Finalmente pasamos x e y, junto con la estructura de datos tablero y la baldosa de la computadora, a la función hacerJugada(). Esto coloca la baldosa de la computadora sobre el tablero de juego en tableroPrincipal para reflejar la jugada de la computadora. La llamada de la línea 286 a obtenerJugadaComputadora() ya ha obtenido a jugada de la computadora (y la ha almacenado en las variables x e y). La llamada a hacerJugada() en la línea 287 efectúa esta jugada sobre el tablero.
 
-289.             if getValidMoves(mainBoard, playerTile) == []:
+289.             if obtenerJugadasVálidas(tableroPrincipal, baldosaJugador) == []:
 290.                 break
 291.             else:
-292.                 turn = 'player'
+292.                 turno = 'jugador'
 
-Lines 289 to 292 are similar to lines 276 to 279. After the computer has made its move, line 289 checks if there exist any valid moves the human player can make. If getValidMoves() returns an empty list, then there are no valid moves. That means the game is over, and line 290 breaks out of the while loop.
+Las líneas 289 a 292 son similares a las líneas 276 a 279. Luego de que la computadora ha hecho su jugada, la línea 289 comprueba si hay alguna jugada válida disponible para el jugador humano. Si obtenerJugadasVálidas() devuelve una lista vacía, significa que no hay jugadas válidas. Entonces el juego concluye, y la línea 290 sale del bucle while.
 
-Otherwise, there’s at least one possible move the player should make. The turn variable is to 'player'. There is no more code in the while-block after line 292, so execution loops back to the while statement on line 257.
+En caso contrario, hay al menos una jugada posible para el jugador. Entonces se asigna 'jugador' a la variable turno. No hay más código en el bloque while luego de la línea 292, de modo que la ejecución regresa a la sentencia while de la línea 257.
 
-Drawing Everything on the Screen
+Dibujando Todo sobre la Pantalla
 
-294.     # Display the final score.
-295.     drawBoard(mainBoard)
-296.     scores = getScoreOfBoard(mainBoard)
-297.     print('X scored %s points. O scored %s points.' % (scores['X'], scores['O']))
-298.     if scores[playerTile] > scores[computerTile]:
-299.         print('You beat the computer by %s points! Congratulations!' % (scores[playerTile] - scores[computerTile]))
-300.     elif scores[playerTile] < scores[computerTile]:
-301.         print('You lost. The computer beat you by %s points.' % (scores[computerTile] - scores[playerTile]))
+294.     # Mostrar el puntaje final.
+295.     dibujarTablero(tableroPrincipal)
+296.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
+297.     print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
+298.     if puntajes[baldosaJugador] > puntajes[baldosaComputadora]:
+299.         print('¡Has vencido a la computadora por %s puntos! ¡Felicitaciones!' % (puntajes[baldosaJugador] - puntajes[baldosaComputadora]))
+300.     elif puntajes[baldosaJugador] < puntajes[baldosaComputadora]:
+301.         print('Has perdido. La computadora te ha vencido por %s puntos.' % (puntajes[baldosaComputadora] - puntajes[baldosaJugador]))
 302.     else:
-303.         print('The game was a tie!')
+303.         print('¡Ha sido un empate!')
 
-Line 294 is the first line beyond the while-block that started on line 257. This code is executed when the execution breaks out of that while loop from line 290 or 277. At this point, the game is over. Now the program should print the board and scores and determine who won the game.
+La línea 294 es la primera línea después del bloque while que comenzaba en la línea 257. Este código se ejecuta cuando se sale de ese bucle while desde las líneas 290 o 277. En este punto, el juego ha terminado. Ahora el programa debe imprimir el tablero y los puntajes y determinar quién ha ganado.
 
-getScoreOfBoard() will return a dictionary with keys 'X' and 'O' and values of both players’ scores. By checking if the player’s score is greater than, less than, or equal to the computer’s score, you can know if the player won, lost, or tied, respectively.
+obtenerPuntajeTablero() devuelve un diccionario con las claves 'X' y 'O' y valores correspondientes a los puntajes de ambos jugadores. Comprobando si el puntaje del jugador es mayor, menor o igual que el de la computadora podemos saber si el jugador ha ganado, perdido o empatado respectivamente.
 
-Ask the Player to Play Again
+Preguntando al Jugador si quiere Jugar de Nuevo
 
-305.     if not playAgain():
+305.     if not jugarDeNuevo():
 306.         break
 
-Call the playAgain() function, which returns True if the player typed in that they want to play another game. If playAgain() returns False, the not operator makes the if statement’s condition True, the execution breaks out of the while loop that started on line 248. Since there are no more lines of code after this while-block, the program terminates.
+Se llama a la función jugarDeNuevo(), la cual devuelve True si el jugador responde que quiere volver a jugar. Si jugarDeNuevo() devuelve False, el operador not convierte a la condición de la sentencia if en True. Entonces la ejecución sale del bucle while que ha comenzado en la línea 248. Como no hay más líneas de código después de este bloque while, el programa termina.
 
-Otherwise, playAgain() has returned True (making the if statement’s condition False), and so execution loops back to the while statement on line 248 and a new game board is created.
+En caso contrario, jugarDeNuevo() devuelve True (convirtiendo a la condición de la sentencia if en False), y entonces la ejecución regresa a la sentencia while de la línea 248 donde se crea un nuevo tablero de juego.
 
-Changing the drawBoard() Function
+Cambiando la Función dibujarTablero()
 
-The board you draw for the Reversi game is large. But you could change the drawBoard() function’s code to draw out a much smaller board, while keeping the rest of the game code the same. The new, smaller board would look like this:
+El tablero que se dibuja para el juego Reversi es grande. Pero puedes cambiar el código de la función dibujarTablero() para que el tablero dibujado sea mucho más pequeño sin modificar el resto del código del juego. La nueva versión del tablero se vería así:
 
   12345678
  +--------+
@@ -1165,29 +1165,29 @@ The board you draw for the Reversi game is large. But you could change the drawB
 7| ..O..  |
 8|   O    |
  +--------+
-You have 8 points. The computer has 9 points.
-Enter your move, or type quit to end the game, or hints to turn off/on hints.
+Tienes 8 puntos. La computadora tiene 9 puntos.
+Ingresa tu jugada, salir para terminar el juego, o pistas para activar/desactivar las pistas.
 
-Here is the code for this new drawBoard() function, starting at line 6. You can also download this code from http://invpy.com/reversi_mini.py.
+Aquí está el código para la nueva versión de la función dibujarTablero(), comenzando en la línea 6. También puedes descargar este código desde http://invpy.com/reversi_mini.py.
 
-  6. def drawBoard(board):
-  7.     # This function prints out the board that it was passed. Returns None.
-  8.     HLINE = ' +--------+'
+  6. def dibujarTablero(tablero):
+  7.     # Esta funcion dibuja el tablero recibido. Devuelve None
+  8.     LÍNEAH = ' +--------+'
   9.     print(' 12345678')
- 10.     print(HLINE)
+ 10.     print(LÍNEAH)
  11.     for y in range(8):
  12.         print('%s|' % (y+1), end='')
  13.         for x in range(8):
- 14.             print(board[x][y], end='')
+ 14.             print(tablero[x][y], end='')
  15.         print('|')
- 16.     print(HLINE)
+ 16.     print(LÍNEAH)
 
-Summary
+Resumen
 
-The AI may seem almost unbeatable, but this isn’t because the computer is smart. The strategy it follows is simple: move on the corner if you can, otherwise make the move that will flip over the most tiles. We could do that, but it would be slow to figure out how many tiles would be flipped for every possible valid move we could make. But calculating this for the computer is simple. The computer isn’t smarter than us, it’s just much faster!
+La IA puede parecer casi imbatible, pero esto no se debe a que la computadora sea inteligente. La estrategia que sigue es simple: jugar en la esquina si es posible, de lo contrario tomar la jugada que convierta más baldosas. Nosotros podríamos hacer lo mismo, pero nos tomaría tiempo contar cuántas baldosas serían convertidas con cada una de nuestras posibles jugadas. En cambio esto es sencillo para la computadora. La computadora no es más inteligente que nosotros, ¡simplemente es mucho más rápida!
 
-This game is similar to Sonar because it makes use of a grid for a board. It is also like the Tic Tac Toe game because there’s an AI that plans out the best move for it to take. This chapter only introduced one new concept: that empty lists, blank strings, and the integer 0 all evaluate to False in the context of a condition.
+Este juego se parece a Sonar en el hecho de que utiliza una grilla como tablero. También es similar al Ta Te Ti, donde hay una IA que elige la mejor jugada para la computadora. Este capítulo sólo ha introducido un nuevo concepto: las listas y cadenas vacías y el entero 0 se evalúan a False en el contexto de una condición.
 
-Other than that, this game used programming concepts you already knew! You don’t have to know much about programming to create interesting games. However, this game is stretching how far you can get with ASCII art. The board took up almost the entire screen to draw, and the game didn't have any color.
+Descontando esto, ¡este juego utiliza conceptos de programación que ya conocías! No necesitas saber mucho de programación para crear juegos interesantes. Sin embargo, esto está cerca de lo mejor que puedes lograr empleando sólo arte ASCII. El tablero utiliza casi toda la pantalla, y el juego no tiene colores.
 
-Later in this book, we will learn how to create games with graphics and animation, not just text. We will do this using a module called Pygame, which adds new functions and features to Python so that we can break away from using only text and keyboard input.
+Más adelante en este libro, aprenderemos a crear juegos con gráficos y animación, no sólo texto. Lograremos esto utilizando un módulo llamado Pygame, que agrega a Python nuevas funciones y características que nos permitirán usar más que sólo texto y entradas del teclado.
