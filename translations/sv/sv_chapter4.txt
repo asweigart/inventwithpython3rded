@@ -1,0 +1,470 @@
+    Kapitel 4
+    GISSA TALET
+
+Ämnen som behandlas i detta kapitel:
+
+•   import-satser
+•   Moduler
+•   while-satser
+•   Villkor
+•   Block
+•   Booleska värden
+•   Jämförelseoperatorer
+•   Skillnaden mellan = och ==
+•   if-satser
+•   Nyckelordet break
+•   Funktionerna str(), int() och float()
+•   Funktionen random.randint()
+
+I det här kapitlet så kommer du att skapa ett "Gissa talet"-spel. Datorn kommer att tänka på ett tal mellan 1 och 20, och be dig att försöka gissa talet. Sedan kommer datorn att tala om ifall det tal du gissat på är för högt eller för lågt. Du vinner om du gissar rätt på högst sex försök.
+
+Det här är ett bra spel att koda eftersom det använder både slumptal, loopar och indata från användaren samtidigt som programmet är kort. Du får lära dig att konvertera värden till andra datatyper, och varför detta ibland är nödvändigt. Eftersom det här programmet är ett spel så kallar vi användaren för spelaren. Men "användaren" hade också varit korrekt.
+
+Provkörning av Gissa talet
+
+Så här ser det ut för spelaren när programmet körs. Texten med fet stil är det som spelaren skriver in. 
+
+Hej! Vad heter du?
+Albert
+Okej, Albert, jag tänker på ett tal mellan 1 och 20.
+Gör en gissning.
+10
+Du gissade på ett för högt tal.
+Gör en gissning.
+2
+Du gissade på ett för lågt tal.
+Gör en gissning.
+4
+Bra jobbat, Albert! Du gissade rätt på 3 gissningar!
+
+Gissa talets källkod
+
+Öppna ett nytt fönster i fileditorn genom att klicka på File ► New File. Skriv in källkoden i det tomma fönster som öppnas och spara den som gissa.py. Kör sedan programmet genom att trycka på F5. När du skriver in koden i fileditorn, var uppmärksam på mellanslagen framför vissa rader. En del rader är indragna med fyra eller åtta mellanslag.
+
+OBS, VIKTIGT! Programmen i den här boken kan bara köras med Python 3, inte med Python 2. När IDLE-fönstret öppnas, så ska det stå något i stil med “Python 3.4.2” längst upp. Du kan ha både Python 2 och Python 3 installerat samtidigt. För att ladda ner Python 3, gå till https://python.org/download/.
+
+Om du får felmeddelanden när du försöker köra koden, så jämför den kod du skrivit in med bokens kod med diff-verktyget på adressen http://invpy.com/diff/gissa.
+
+gissa.py
+
+ 1. # Det här spelet går ut på att gissa rätt tal.
+ 2. import random
+ 3. 
+ 4. antalGissningar = 0
+ 5. 
+ 6. print('Hej! Vad heter du?')
+ 7. namn = input()
+ 8. 
+ 9. tal = random.randint(1, 20)
+10. print('Okej, ' + namn + ', jag tänker på ett tal mellan 1 och 20.')
+11. 
+12. while antalGissningar < 6:
+13.     print('Gör en gissning.') # Det är fyra mellanslag före print.
+14.     gissning = input()
+15.     gissning = int(gissning)
+16. 
+17.     antalGissningar = antalGissningar + 1
+18. 
+19.     if gissning < tal:
+20.         print('Du gissade på ett för lågt tal.') # Det är åtta mellanslag före print.
+21.
+22.     if gissning > tal:
+23.         print('Du gissade på ett för högt tal.')
+24. 
+25.     if gissning == tal:
+26.         break
+27. 
+28. if gissning == tal:
+29.     antalGissningar = str(antalGissningar)
+30.     print('Bra jobbat, ' + namn + '! Du gissade rätt på ' + antalGissningar + ' gissningar!')
+31. 
+32. if gissning != tal:
+33.     tal = str(tal)
+34.     print('Nix. Talet jag tänkte på var ' + tal)
+
+import-satser
+
+1. # Det här spelet går ut på att gissa rätt tal.
+2. import random
+
+Första raden är en kommentar. Kom ihåg att Python ignorerar allt som följer efter tecknet #. Den här raden bara påminner oss om vad programmet gör.
+
+Andra raden är en import-sats. Du kanske minns att satser är instruktioner som utför något, men som till skillnad från uttryck inte utvärderas till något värde. Du har sett satser tidigare: tilldelningssatser lagrar ett värde i en variabel.
+
+Även om Python har många inbyggda funktioner så ligger vissa av funktionerna i separata program som kallas för moduler. Du kan använda de här funktionerna genom att importera modulerna till ditt program med en import-sats.
+
+Rad 2 importerar en modul kallad random, så att programmet kan anropa funktionen random.randint(). Den här funktionen returnerar ett slumptal som användaren ska försöka gissa. 
+
+4. antalGissningar = 0
+
+På rad 4 skapas en ny variabel kallad antalGissningar. Du lagrar antalet gissningar som spelaren har gjort i denna variabel. Eftersom spelaren inte har gjort några gissningar så här långt i programmet, så sparas heltalet 0 här.
+
+6. print('Hej! Vad heter du?')
+7. namn = input()
+
+Rad 6 och 7 är samma rader som i Hejsan världen-programmet i kapitel 3. Programmerare återanvänder ofta kod från andra program för att spara tid. 
+
+Rad 6 är ett funktionsanrop till print()-funktionen. Kom ihåg att en funktion är som ett mini-program inuti ditt program. När ditt program anropar en funktion så körs detta mini-program. Koden inuti print()-funktionen visar det sträng-argument som du skickat till den på skärmen.
+
+Rad 7 låter användaren skriva in sitt namn och sparar det i variabeln namn. (Som du nog minns så behöver strängen inte innehålla spelarens namn. Utan den innehåller det som spelaren skriver in, oavsett vad. Datorer är dumma och följer bara de instruktioner vi ger dem.)
+
+Funktionen random.randint()
+
+9. tal = random.randint(1, 20)
+
+Rad 9 anropar en ny funktion kallad randint() och sparar returvärdet i tal. Kom ihåg att funktionsanrop kan ingå i uttryck eftersom de utvärderas till ett värde. 
+
+Funktionen randint() ingår i modulen random, så du måste skriva random. (glöm inte punkten!) före för att tala om för Python att randint()-funktionen finns i random-modulen.
+
+Funktionen randint() returnerar ett slumpmässigt heltal mellan (och inklusive) de två heltal du skickar med som argument. På rad 9 skickas 1 och 20, med komma emellan, med mellan de parenteser som följer efter funktionsnamnet. Det slumpmässiga heltalet som randint() returnerar sparas i en variabel kallad tal; detta är det hemliga tal som spelaren ska försöka gissa.
+
+För ett ögonblick, gå tillbaka till den interaktiva kommandotolken och skriv in import random för att importera random-modulen. Skriv sedan in random.randint(1, 20) för att se vad funktionsanropet utvärderas till. Funktionen kommer att returnerar ett heltal mellan 1 och 20. Upprepa koden igen och funktionsanropet kommer att returnera ett annat heltal. Funktionen randint() returnerar ett slumpmässigt heltal varje gång, ungefär som när du kastar en tärning:
+
+>>> import random
+>>> random.randint(1, 20)
+12
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+3
+>>> random.randint(1, 20)
+18
+>>> random.randint(1, 20)
+7
+
+Använd funktionen randint() när du vill ha slumpmässighet i dina spel. Du kommer att använda slumpen i många spel. (Tänk bara hur många brädspel som använder tärningar.)
+
+Du kan också testa olika intervall genom att ändra funktionsargumenten. Till exempel kan du skriva in random.randint(1, 4) för att få slumptal endast mellan 1 och 4 (inklusive både 1 och 4). Eller prova med random.randint(1000, 2000) för att få slumptal mellan 1000 och 2000.
+
+Till exempel kan du prova att mata in följande kod i den interaktiva tolken. Du kommer förmodligen få andra resultat än de nedan från random.randint() (det är ju slumptal som returneras).
+
+>>> random.randint(1, 4)
+3
+>>> random.randint(1000, 2000)
+1294
+
+Genom att ändra spelets kod något kan du få spelet att bete sig på ett annat sätt. Prova att ändra rad 9 och 10 från det här:
+
+ 9. tal = random.randint(1, 20)
+10. print('Okej, ' + namn + ', jag tänker på ett tal mellan 1 och 20.')
+
+...till det här:
+
+ 9. tal = random.randint(1, 100)
+10. print('Okej, ' + namn + ', jag tänker på ett tal mellan 1 och 100.')
+
+Nu kommer datorn att tänka på ett tal mellan 1 och 100 i stället för mellan 1 och 20. Ändringen på rad 9 ändrar intervallet för slumptalet, men kom ihåg att även ändra rad 10 så att spelet skriver ut det nya intervallet och inte det gamla.
+
+Att välkomna spelaren
+
+10. print('Okej, ' + namn + ', jag tänker på ett tal mellan 1 och 20.')
+
+På rad 10 så används print()-funktionen för att välkomna spelaren med namn och tala om att datorn tänker på ett slumptal.
+
+Det kanske ser ut som att fler än ett sträng-argument skickas till funktionen, men titta noga på koden. Plustecknen slår ihop de tre strängarna så att de utvärderas till en enda sträng. Och det är den strängen som skickas som argument till print()-funktionen. Om du tittar riktigt noga så ser du att kommatecknen står innanför citattecknen och alltså ingår i själva strängarna.
+
+Loopar
+
+12. while antalGissningar < 6:
+
+Rad 12 är en while-sats, som indikerar början på en while-loop. Loopar används för att köra kod om och om igen. Men innan du lär dig om loopar behöver du känna till några andra koncept. Dessa koncept är block, booleska variabler, jämförelseoperatorer, villkor och while-satser.
+
+Block
+
+Flera rader kod kan grupperas i ett block. Varje rad i ett kodblock är indragen minst lika mycket som de andra raderna. Du kan se var ett block börjar och slutar genom att se på antalet mellanslag före raden. Det är detta som är radens indrag, eller indentering.
+
+Ett block börjar när indenteringen av en rad ökar (vanligen med fyra mellanslag). Varje följande rad som också är indragen med fyra mellanslag ingår i blocket. Blocket slutar där det kommer en rad som är indragen lika mycket som koden före blocket. Det här betyder att block kan finnas inuti andra block. I koden i Figur 4-1 har de olika blocken markerats och numrerats. 
+
+I Figur 4-1 har rad 12 inget indrag, och ingår därmed inte i något block. Rad 13 är indragen med fyra mellanslag. Eftersom detta indrag är större än föregående rads, så påbörjar denna rad ett nytt block. Detta block är märkt med (1) i Figur 4-1. Blocket fortsätter fram till den rad vars indentering är noll mellanslag (det ursprungliga indraget innan blocket började). Blankrader ignoreras.
+
+Rad 20 är indragen med åtta mellanslag. Åtta mellanslag är mer än fyra mellanslag, så här börjar ett nytt block. Blocket är märkt med (2) i Figur 4-1. Detta block ligger inuti ett annat block.
+
+Figur 4-1: Block och deras indrag. De svarta prickarna motsvarar mellanslag.
+
+Rad 22 är bara indragen med fyra mellanslag. Eftersom indenteringen har minskat så vet du att det föregående blocket är slut. Rad 20 är den enda raden i det blocket. Rad 22 ingår i samma block som de andra raderna som är indragna med fyra mellanslag.
+
+På rad 23 ökas indenteringen till åtta mellanslag, så återigen påbörjas ett nytt block. Det är märkt med (3) i Figur 4-1.
+
+För att repetera, rad 12 ingår inte i något block. Rad 13 till 23 ligger i ett block märkt (1). Rad 20 utgör ett block inuti ett annat block och är markerat med (2). Rad 23 är enda raden i ytterligare ett block som ligger i ett annat block, och markeras med (3).
+
+Datatypen boolean
+
+Datatypen boolean kan bara ha två olika värden: True och False (sant och falskt). De här värdena måste skrivas med stort "T" respektive "F". Resten av namnen måste skrivas med små bokstäver. Du kommer att använda boolean-värden, eller booleska värden, tillsammans med jämförelseoperatorer för att bilda villkor. (Villkor förklaras senare.)
+
+Prova till exempel att lagra booleska värden i variabler:
+
+>>> skräp = True
+>>> ägg = False
+
+De datatyper som har introducerats hittills är heltal, flyttal, strängar och nu booleska värden. Varje värde i Python har en datatyp.
+
+Jämförelseoperatorer
+
+Rad 12 består av en while-sats:
+
+12. while antalGissningar < 6:
+
+Uttrycket som följer efter nyckelordet while (antalGissningar < 6) innehåller två värden (värdet i variabeln antalGissningar, och heltalsvärdet 6) förbundna av en operator ("mindre än"-tecknet, <). Tecknet < är en jämförelseoperator.
+
+Jämförelseoperatorer jämför två värden och evalueras till ett booleskt värde, True eller False. Du ser en lista på alla jämförelseoperatorer i Tabell 4-1.
+
+Tabell 4-1: Jämförelseoperatorer.
+Operatorns tecken   Operatorns namn
+<   Mindre än
+>   Större än
+<=  Mindre än eller lika med
+>=  Större än eller lika med
+==  Lika med
+!=  Ej lika med
+
+Du har redan läst om de matematiska operatorerna +, -, * och /. Precis som andra operatorer så används jämförelseoperatorer i kombination med värden för att forma uttryck, som antalGissningar < 6.
+
+Villkor
+
+Ett villkor är ett uttryck som kombinerar två värden med en jämförelseoperator (så som < eller >) och utvärderas till ett booleskt värde. Ett villkor är bara ett annat namn för ett uttryck som utvärderas till True eller False. Villkor används i while-satser (och i några andra instruktioner som förklaras senare).
+
+Till exempel kan du se det som att villkoret antalGissningar < 6 ställer frågan "är värdet i antalGissningar mindre än talet 6?". Om så är fallet utvärderas uttrycket till True. Annars utvärderas uttrycket till False.
+
+När det gäller "Gissa talet"-programmet så lagras, på rad 4, värdet 0 i antalGissningar. Eftersom 0 är mindre än 6 så utvärderas villkoret till det booleska värdet True. Utvärderingen ser ut så här:
+
+antalGissningar < 6
+             ▼
+           0 < 6
+             ▼
+            True
+
+Experiment med booleska värden, jämförelseoperatorer och villkor
+
+Skriv in de följande uttrycken i den interaktiva kommandotolken för att se deras booleska resultat:
+
+>>> 0 < 6
+True
+>>> 6 < 0
+False
+>>> 50 < 10
+False
+>>> 10 < 11
+True
+>>> 10 < 10
+False
+
+Villkoret 0 < 6 returnerar det booleska värdet True eftersom talet 0 är mindre än talet 6. Men eftersom 6 inte är mindre än 0 så utvärderas villkoret 6 < 0 till False. 50 är inte mindre än 10, så 50 < 10 blir False. 10 är mindre än 11, så 10 < 11 blir True.
+
+Notera att 10 < 10 utvärderas till False eftersom talet 10 inte är mindre än talet 10. De är lika stora. Om Alice är lika lång som Bo så säger du inte att Alice är längre än Bo eller att hon är kortare än Bo. Båda dessa påståendet skulle vara falska.
+
+Prova nu att mata in dessa uttryck i den interaktiva tolken:
+
+>>> 10 == 10
+True
+>>> 10 == 11
+False
+>>> 11 == 10
+False
+>>> 10 != 10
+False
+>>> 10 != 11
+True
+>>> 'Hejsan' == 'Hejsan'
+True
+>>> 'Hejsan' == 'Hejdå'
+False
+>>> 'Hejsan' == 'HEJSAN'
+False
+>>> 'Hejdå' != 'Hejsan'
+True
+
+Skillnaden mellan = och ==
+
+Försök att inte förväxla tilldelningsoperatorn (=) och jämförelseoperatorn "lika med" (==). Lika med-tecknet (=) används i tilldelningssatser för att spara ett värde i en variabel, medan dubbla lika med-tecken (==) används i uttryck för att se om två värden är lika. Det är lätt hänt att man råkar använda den ena när man egentligen tänkte använda den andra.
+
+En minnesregel är att jämförelseoperatorn "lika med" (==) består av två tecken, precis som jämförelseoperatorn "ej lika med" (!=).
+
+Strängvärden och heltalsvärden kan aldrig vara lika. Prova till exempel att mata in följande i den interaktiva tolken:
+
+>>> 42 == 'Hejsan'
+False
+>>> 42 != '42'
+True
+
+Loopa med while-satser
+
+En while-sats markerar början på en loop. Loopar kan exekvera samma kod upprepade gångar. När exekveringen når fram till en while-sats, så utvärderas villkoret intill nyckelordet while. Om villkoret utvärderas till True så fortsätter exekveringen i det följande kodblocket, som vi kan kalla while-blocket. (I programmet så börjar while-blocket på rad 13.) Om villkoret utvärderas till False så fortsätter exekveringen först efter while-blocket. I Gissa talet så är den första raden efter while-blocket rad 28.
+
+En while-sats har alltid ett kolon (:) efter villkoret. Satser som slutar med ett kolon förväntar sig ett nytt block på nästa rad.
+
+12. while antalGissningar < 6:
+
+Figur 4-2: While-loopens villkor.
+
+Figur 4-2 visar hur exekveringsflödet beror på villkoret. Om villkoret utvärderas till True (vilket det gör den första gången eftersom värdet på antalGissningar är 0) så fortsätter exekveringen i while-blocket på rad 13 och sedan nedåt. När programmet når fram till slutet av while-blocket så hoppar exekveringen, i stället för till nästa rad, tillbaka upp till raden med while-satsen (rad 12) där villkoret utvärderas på nytt. Om villkoret blir True även denna gång så går exekveringen in i while-blocket igen. Varje varv i loopen kallas för en iteration.
+
+Så här fungerar loopen. Så länge villkoret är True (sant), så fortsätter programmet att exekvera koden inuti while-blocket upprepade gånger tills villkoret har blivit False (falskt). Du kan tänka att while-satsen betyder "så länge (while) detta villkor är sant, fortsätt exekvera koden i följande block".
+
+Spelarens gissningar
+
+13.    print('Gör en gissning.') # Det är fyra mellanslag före print.
+14.    gissning = input()
+    
+Rad 13 till 17 ber spelaren att gissa på det hemliga talet och mata in sin gissning. Det talet lagras i en variabel kallad gissning.
+
+Omvandla värden med funktionerna int(), float() och str()
+
+15.    gissning = int(gissning)
+
+Rad 15 anropar en ny funktion kallad int(). Funktionen int() tar ett argument och returnerar det heltalsvärde som argumentet motsvarar. Testa att mata in följande i den interaktiva kommandotolken:
+
+>>> int('42')
+42
+>>> 3 + int('2')
+5
+
+Anropet int('42') returnerar heltalsvärdet 42. Men även om du kan skicka en sträng till int()-funktionen så kan du inte skicka vilken sträng som helst. Om du skickar 'fyrtiotvå' till int() så får du ett felmeddelande. Den sträng du skickar till int() måste bestå av siffror:
+
+>>> int('fyrtiotvå')
+Traceback (most recent call last):
+  File "<pyshell#5>", line 1, in <module>
+int('fyrtiotvå')
+ValueError: invalid literal for int() with base 10: 'fyrtiotvå'
+
+Raden med 3 + int('2') visar ett uttryck där returvärdet från int() används som en del av uttrycket. Det utvärderas till heltalsvärdet 5:
+
+3 + int('2')
+  ▼
+3 + 2
+  ▼
+  5
+
+Funktionen input() returnerar alltid det som spelaren matar in i form av en textsträng. Om spelaren skriver 5 så returnerar input() strängvärdet '5', inte heltalsvärdet 5. I Python kan man inte använda jämförelseoperatorerna < och > för att jämföra strängar och heltal:
+
+>>> 4 < '5'
+Traceback (most recent call last):
+  File "<pyshell#0>", line 1, in <module>
+    4 < '5'
+TypeError: unorderable types: int() < str()
+
+Från början, på rad 14, så innehåller variabeln gissning strängvärdet av det som spelaren matar in. På rad 15 skrivs detta strängvärde över med heltalsvärdet som returneras av int(). På så vis kan koden senare i programmet jämföra om gissning är större än, mindre än eller lika med det hemliga talet i variabeln tal.
+
+En sista sak: Anropet int(gissning) ändrar inte värdet i variabeln gissning. Koden int(gissning) är ett uttryck som utvärderas till heltalsvärdet av den sträng som lagrats i variabeln gissning. Förändringen sker på grund av tilldelningen: gissning = int(gissning)
+
+Funktionerna float(), str(), och bool() returnerar på liknande sätt flyttals-, sträng- och booleska former av de argument som skickas till dem. Prova att mata in följande i den interaktiva tolken:
+
+>>> float('42')
+42.0
+>>> float(42)
+42.0
+>>> str(42)
+'42'
+>>> str(42.0)
+'42.0'
+>>> str(False)
+'False'
+>>> bool('')
+False
+>>> bool('en sträng som inte är tom')
+True
+
+Med hjälp av funktionerna int(), float(), str() och bool() kan du alltså ta ett värde av en viss datatyp och omvandla det till en annan datatyp. 
+
+Inkrementera variabler
+
+17.    antalGissningar = antalGissningar + 1
+
+När spelaren väl har gjort en gissning så ska antalet gissningar ökas med 1.
+
+Under loopens första iteration så har antalGissningar först värdet 0. Python tar detta värde och adderar 1 till det. 0 + 1 utvärderas till 1, vilket blir det nya värdet i antalGissningar. Du kan tänka att rad 17 betyder "variabeln antalGissningar ska innehålla 1 mer än vad den gjorde tidigare".
+
+Att öka en heltals- eller flyttalsvariabel med 1 kallas för att inkrementera variabeln. Att dra bort 1 från en variabels heltals- eller flyttalsvärde kallas för att dekrementera variabeln.
+
+if-satser
+
+19.   if gissning < tal:
+20.        print('Du gissade på ett för lågt tal.') # Det är åtta mellanslag före print.
+
+Rad 19 är en if-sats. Om if-satsens villkor utvärderas till True så kommer koden i det följande blocket att exekveras. Om villkoret blir False, så kommer koden i blocket att skippas. Genom att använda if-satser kan du få kod att köras bara när du vill att den ska köras.
+
+På rad 19 kontrolleras om det tal spelaren har gissat på är lägre än datorns hemliga tal. Om så är fallet så fortsätter exekveringen inuti if-blocket på rad 20 och skriver ut ett meddelande om detta till spelaren.
+
+En if-sats fungerar på nästan samma sätt som en while-sats. Men till skillnad från i ett while-block så hoppar exekveringen inte tillbaka till början när den nått slutet av if-blocket. Den bara fortsätter nedåt till nästa rad. Med andra ord så loopar inte if-satser. Se Figur 4-3 före en jämförelse mellan de två satserna.
+
+Figur 4-3: if- och while-satser.
+
+22.    if gissning > tal:
+23.        print('Du gissade på ett för högt tal.')
+
+Rad 22 kontrollerar om talet spelaren gissat på är större än det hemliga talet. Om detta villkor är True så talar datorn, genom anropet till print()-funktionen, om för spelaren att talet är för högt.
+
+Att avbryta loopar i förtid med break
+
+25.    if gissning == tal:
+26.        break
+
+If-satsen på rad 25 kontrollerar om det gissade talet är lika stort som det hemliga talet. Om så är fallet exekveras break-satsen på rad 26.
+
+En break-sats gör så att exekveringen omedelbart hoppar ut ur while-blocket till den rad som följer efter slutet på blocket. Break-satsen bryr sig inte om att kontrollera while-loopens villkor.
+
+Break-satser hittar man bara inuti loopar såsom i ett while-block.
+
+Om det tal spelaren har gissat på inte är det hemliga talet så når exekveringen slutet av while-blocket. Det betyder att exekveringen kommer att loopa tillbaka till början och återigen kontrollera villkoret på rad 12 (antalGissningar < 6). Kom ihåg att efter det att instruktionen antalGissningar = antalGissningar + 1 instruction har exekverats så är det nya värdet på antalGissningar 1. Eftersom 1 < 6 är True så går exekveringen in i loopen igen.
+
+Om spelaren fortsätter att gissa på för låga eller för höga tal så kommer värdet på antalGissningar att ändras till 2, sedan 3, sedan 4, sedan 5, sedan 6. När talet 6 har sparats i antalGissningar så kommer while-satsens villkor (antalGissningar < 6) bli False, eftersom 6 inte är mindre än 6. Eftersom while-satsens villkor är False så kommer exekveringen att hoppa till den första raden efter while-blocket, rad 28.
+
+Kontrollera om spelaren vunnit
+
+28. if gissning == tal:
+
+Rad 28 har ingen indentering, vilket betyder att while-blocket har avslutats och att detta är första raden efter while-blocket. Exekveringen har lämnat while-blocket antingen för att while-satsens villkor har blivit False (när spelaren fått slut på gissningar) eller för att break-satsen på rad 26 har exekverats (för att spelaren gissat på det korrekta talet).
+
+Rad 28 kontrollerar om spelaren har gissat rätt. Om så är fallet går exekveringen in i if-blocket på rad 29.
+
+29.    antalGissningar = str(antalGissningar)
+30.    print('Bra jobbat, ' + namn + '! Du gissade rätt på ' + antalGissningar + ' gissningar!')
+
+Rad 29 och 30 exekveras bara om villkoret i if-satsen på rad 28 var True (det vill säga om spelaren har gissat på det korrekta talet).
+
+Rad 29 anropar funktionen str(), som returnerar värdet i antalGissningar omvandlat till en sträng. Rad 30 slår ihop strängar till ett meddelande som berättar att spelaren vunnit och hur många gissningar som användes. Bara strängvärden kan slås ihop med andra strängar. Det är därför som vi på rad 29 behövde omvandla värdet i antalGissningar till en sträng. Annars hade försöket att slå ihop en sträng med ett heltal fått Python att visa ett felmeddelande.
+
+Kontrollera om spelaren förlorat
+
+32. if gissning != tal:
+
+På rad 32 används jämförelseoperatorn !=, "ej lika med", för att kontrollera så att spelarens sista gissning inte var lika med det hemliga talet. Om detta villkor utvärderas till True så går exekveringen in i if-blocket på rad 33.
+
+Rad 33 och 34 ligger inuti if-blocket och körs bara om villkoret på rad 32 blir True.
+
+33.    tal = str(tal)
+34.    print('Nix. Talet jag tänkte på var ' + tal)
+
+I det här blocket så talar programmet om vilket det hemliga talet, som spelaren inte lyckades lista ut, var. För detta krävs sammanslagning av strängar, men variabeln tal innehåller ett heltalsvärde. Rad 33 skriver över värdet i tal med en sträng så att det kan slås ihop med strängen 'Nix. Talet jag tänkte på var ' på rad 34.
+
+Nu har exekveringen nått slutet på koden och programmet avslutas. Grattis! Du har just programmerat ditt första riktiga spel!
+
+Du kan förändra spelets svårighetsgrad genom att ändra antalet gissningar som spelaren har på sig. För att minska antalet gissningar till fyra, ändra rad 12:
+
+12. while antalGissningar < 6:
+
+på det här viset:
+
+12. while antalGissningar < 4:
+
+Koden senare i while-blocket ökar variabeln antalGissningar med 1 under varje iteration. Genom att ändra villkoret till antalGissningar < 4 ser du till att koden inuti loopen bara körs högst fyra gånger i stället för sex. På så vis blir spelet svårare att klara av. För att göra spelet lättare kan du ändra villkoret till antalGissningar < 8 eller antalGissningar < 10. Då körs loopen fler gånger och spelaren får ytterligare några gissningar på sig.
+
+Satser för flödeskontroll
+
+I tidigare kapitel så har programmens exekvering startat med instruktionen längst upp och fortsatt rakt nedåt, så att instruktionerna körts i tur och ordning. Men med while-, if-, else- och break-satser kan du få exekveringen att loopa och hoppa över instruktioner beroende på villkor. Denna typ av satser kallas för flödeskontrollsatser, eftersom de ändrar "flödet" i ett programs exekvering.
+
+Sammanfattning
+
+Om någon frågade dig "Vad är egentligen programmering?", vad skulle du svara? Programmering är att sätta ihop kod till program, det vill säga att skapa program som datorn kan exekvera. 
+
+"Men vad exakt är ett program?" När du ser någon använda ett datorprogram (till exempel spela "Gissa talet"-spelet) så är allt du ser text som visas på skärmen. Programmet avgör exakt vilken text som ska visas på skärmen (programmets utdata) baserat på sina instruktioner och på den text spelaren matar in via tangentbordet (programmets indata). Ett program är bara en samling instruktioner som använder sig av indata från användaren.
+
+"Vad då för några instruktioner?" Faktum är att det finns bara ett fåtal olika slag av instruktioner.
+
+1.  Uttryck är värden som är förbundna med operatorer. Alla uttryck utvärderas till ett enskilt värde, som när 2 + 2 utvärderas till 4 eller 'Hejsan' + ' ' + 'världen' utvärderas till 'Hejsan världen'. När uttryck står intill något av nyckelorden if och while så kan du också kalla dem för villkor.
+2.  Tilldelningssatser lagrar värden i variabler så att du kan använda värdena senare i programmet. 
+3.  If-, while- och break-satser är satser för flödeskontroll, som kan få exekveringen att hoppa över instruktioner, upprepa instruktioner i en loop och hoppa ut ur loopar. Även funktionsanrop påverkar exekveringsflödet genom att hoppa till instruktionerna inuti en funktion.
+4.  Funktionerna print() och input(). Dessa funktioner visar text på skärmen och hämtar text från tangentbordet. Det här kallas för I/O eftersom det handlar om indata (Input på engelska) till och utdata (Output) från programmet.
+
+Och det är allt, de här fyra sakerna. Det finns förstås en massa detaljer kring de här fyra typerna av instruktioner. I den här boken kommer du att få lära dig om nya datatyper, nya satser för flödeskontroll och många andra funktioner som är inbyggda i Python. Det finns också andra typer av I/O såsom indata från musen och utdata i form av ljud och grafik i stället för text.
+
+För den person som använder dina program är det bara den sista typen, I/O, som är relevant. Användaren skriver in saker med tangentbordet och ser saker på skärmen eller hör saker från högtalarna. Men för att datorn ska veta vad som ska visas eller vilka ljud som ska spelas upp behövs ett program, och ett program är bara ett gäng instruktioner som du, programmeraren, har skrivit.
