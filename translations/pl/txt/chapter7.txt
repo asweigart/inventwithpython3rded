@@ -7,7 +7,7 @@ Tematy omówione w tym rozdziale:
 •   Odpluskiwacz w IDLE
 •   Praca krokowa
 •   Naprzód i Wyjdź
-•   Break Points
+•   Punkty zatrzymania (ang. Break Points)
 
 Pluskwy!
 
@@ -151,68 +151,68 @@ Urchomienie programu w odpluskiwaczu pomoże w znalezieniu przyczyny błędu. Na
 
 1. import random
 
-The debugger starts at the import random line. Nothing special happens here, so just click Step to execute it. You will see the random module added to the Globals area.
+Odpluswiacz rozpoczyna od linii import random. Nie dzieje sie tu nic specjalnego, więc kliknij Step by to wykonać. Zobaczysz, że moduł random został dodany do obszaru gloalnego (ang. Globals area).
 
 2. print('Rzucę monetą 1000 razy. Zgadnij ile razy wypadnie orzeł. (Naciśnij enter by rozpocząć)')
 
-Click Step again to run line 2. A new file editor window will appear with the random.py file. You have stepped inside the randint() function inside the random module. Python’s built-in functions won’t be the source of your bugs, so click Out to step out of the randint() function and back to your program. Then close the random.py file's window.
+Ponownie kliknij Step by uruchomić linię 2. Zostanie otwarte nowe okno edytora z plikiem random.py. Wkroczyłeś do wnętrza funkcji randint() z modułu random. Wbudowane funkcje Pythona nie są źródłem problemów, więc kliknij Out, by ją opuścići wrócić do swojego programu. Zamknij też okno z plikiem random.py.
 
 3. input()
 
-Next time, you can click Over to step over the randint() function instead of stepping into it. Line 3 is also a randint() function call. Skip stepping into this code by clicking Over.
+Następnym razem możesz kliknąć Over by przekroczyć funkcję randint() zamiast do niej wkraczać. Linia 3 to także wywołanie funkcji randint(). Omiń ją klikając Over.
 
 4. flips = 0
 
-Line 4 is a print() call to show the player the random numbers. You know what numbers the program will print even before it prints them! Just look at the Globals area of the Debug Control window. You can see the number1 and number2 variables, and next to them are the integer values stored in those variables.
+Linia 4 to tylko wywołanie print(), by pokazać graczowi losowe liczby. Wiesz już jakie liczby zostaną wypisane, nim program je wypisze! Zerknij do obszaru glablnego (ang. Globals area) w oknie Debug Control. Zobaczysz zmienne number1 i number2, a obok nich wartości całkowite jakie są w nich zapisane.
 
-The number1 variable has the value 4 and the number2 variable has the value 8. When you click Step, the program will display the string in the print() call with these values. The str() function will concatenate the string version of these integers. When I ran the debugger, it looked like Rysunek 7-4. (Your random numbers will probably be different.)
+Zmienna number1 ma wartość 4, a number2 ma wartość 8. Kiedy klikniesz Step, program pokaże tekst z tymi wartościami przy wywołaniu funkcji print(). Funkcja str() połączy napisowe wartości tych liczb całkowitych. Kiedy uruchomiłem odpluskwiacz, wyglądało to jak na rysunku 7-4. (Twoje liczby losowe prawdopodobnie będą inne.)
 
-Rysunek 7-4: number1 is set to 4 and number2 is set to 8.
+Rysunek 7-4: number1 ma wartość 4, a number2 wartość 8.
 
 5. heads = 0
 
-Clicking on Step from line 5 will execute input(). The debugger waits until the player enters a response into the program. Enter the correct answer (in my case, 12) into the interactive shell window. The debugger will resume and move down to line 6.
+Kliknięcie na Step z linii 5 wykona input(). Odpluskwiacz zaczeka aż gracz wprowadzi odpowiedź. Wpisz prawidłową odpowiedź (w moim wypadku 12) w oknie intraktywnej powłoki. Odpluskiwacz wznowi prawcę i przejdzie do linii 6:
 
 6. while flips < 1000:
 7.     if random.randint(0, 1) == 1:
 
-Line 6 is an if statement. The condition is that the value in answer must match the sum of number1 and number2. If the condition is True, then the debugger will move to line 7. If the condition is False, the debugger will move to line 9. Click Step one more time to find out where it goes.
+Linia 6 jest dykrektywą if. Sprawdzanie jest, czy wartość podana w odpowiedzi użytkownika jest równa sumie number1 i number2. Jeśli warunek jest spełniony (True), to odpluskiwacz przejdzie do linii 7. Jeśli nie jest spełniony (False), to odpluskwiacz przejdzie do linii 9. Ponownie naciśnij Step by zobaczyć dokąd przejdzie.
 
 8.         heads = heads + 1
 9.     flips = flips + 1
 
-The debugger is now on line 9! What happened? The condition in the if statement must have been False. Take a look at the values for number1, number2, and answer. Notice that number1 and number2 are integers, so their sum would have also been an integer. But answer is a string.
+Odpluskwiacz przeszedł do linii 9! Co się stało? Warunek w dyrektywie if musiał dać False. Zerknijmy na wartości dla number1, number2 i answer. Zwróć uwagę, że number1 i number2 są liczbami całkowitymi, więc ich suma też będzie wartością całkowitą. Jednak answer jest napisem.
 
-That means that answer == number1 + number2 would have evaluated to '12' == 12. A string value and an integer value will always not equal each other, so the condition evaluated to False.
+To oznacza, że answer == number1 + number2 zostaną wyliczone do '12' == 12. Wartość napisowa i całkowita nigdy nię będą sobie równe, więc sprawdzenie to daje False.
 
-That is the bug in the program. The bug is that the code has answer when it should have int(answer). Change line 6 to int(answer) == number1 + number2, and run the program again.
+To jest nasz błąd (ang. bug) w programie. Błąd polega na tym, że w kodzie użyliśmy answer, a powinniśmy int(answer). Zmień linię 6 na  int(answer) == number1 + number2 i ponownie uruchom program.
 
-What is 2 + 3?
+Jaki jest wynik 2 + 3?
 5
-Correct!
+Bardzo dobrze!
 
-This time, the program worked correctly. Run it one more time and enter a wrong answer on purpose. This will completely test the program. You’ve now debugged this program! Remember, the computer will run your programs exactly as you type them, even if what you type isn’t what you intend.
+Tym razem program zadziałał prawidłowo. Uruchom go ponownie i celowo wprowadź złą odpwowiedź. W ten sposób dogłębnie prztestowałeś program. Udało ci się go odpluskwić! Pamiętaj, że komputer wykona twój program dokładnie jak go wpisałeś, nawet jeśli wpisałeś nie to, co zamierzałeś.
 
-Break Points
+Punkty zatrzymania (ang. Break Points)
 
-Stepping through the code one line at a time might still be too slow. Often you’ll want the program to run at normal speed until it reaches a certain line. A break point is set on a line when you want the debugger to take control once execution reaches that line. If you think there’s a problem with your code on, say, line 17, just set a break point on line 17 (or maybe a few lines before that).
+Przechodzenie krokowe linia po linii może być zbyt powolne. Często chcesz wykonać program z normalną szybkością do momentu dojścia do pewnej linii. Punkt zatrzymania to linia w której chcesz, by odpluskwiacz zatrzymał wykonanie programu i wziął kontrolę nad dalszym jego wykonaniem. Jeśli uważasz, że problem z twoim kodem jest, przykładowo, w linii 17, ustaw tam punk zatrzymania (można taki punkt ustawić kilka linii wcześniej).
 
-When execution reaches that line, the debugger will “break into the debugger”. Then you can step through lines one at a time to see what is happening. Clicking Go will execute the program normally until it reaches another break point or the end of the program.
+Kiedy wykonanie dotrze do tej linii odpluskwiacz “przejdzie do odpluskiwacza”. Możesz teraz krokowo przechodzić przez linie by zobaczyć co się stanie. Kliknięcie Go (Naprzód) wykona program normalnie, aż do kolejnego punktu zatrzymania, lub zakończenia programu.
 
-To set a break point, right-click on the line in the file editor and select Set Breakpoint from the menu that appears. The file editor will highlight that line with yellow. You can set break points on as many lines as you want. To remove the break point, click on the line and select Clear Breakpoint from the menu that appears.
+Aby ustawić punkt zatrzymania, kliknij prawym przyciskiem w linii w edytorze i z menu jakie się pojawi wybierz Set Breakpoint. Edytor podświetli wybraną linię na żółto. Możesz ustawić tyle punktów zatrzymania, ile chcesz. Aby usunąć punkt zatrzymania kliknij na taką linię i z menu jakie się pojawi wybierz Clear Breakpoint.
 
-Rysunek 7-5: The file editor with two break points set.
+Rysunek 7-5: Edytor z ustawionymi dwoma punktami zatrzymania.
 
-Example Using Break Points
+Przykład użycia punktów zatrzymania
 
-Here is a program that simulates coin flips by calling random.randint(0, 1). The function returning the integer 1 will be “heads” and returning the integer 0 will be “tails”. The  flips variable will track how many coin flips have been done. The heads variable will track how many came up heads.
+Mamy tu program który symuluje rzucanie monetą przez wywoływanie random.randint(0, 1). Jak funkcja zwróci 1, to będzie oznaczało "orła", a jak 0, to będzie "reszka". Zmienna flips będzie oznaczała liczbę wykonanych rzutów. Zmienna heads będzie zliczała ile razy wypadł orzeł.
 
-The program will do “coin flips” one thousand times. This would take a person over an hour to do, but the computer can do it in one second! Type in the following code into the file editor and save it as coinFlips.py. If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/coinflips.
+Program wykona tysiąć “rzutów monetą”. Człowiekowi zajęłoby to ponad godzinę, ale komputer może to zrobić w sekundę! Wpisz nen kod w edytorze plikowym i zapisz jako coinFlips.py. Jeśli dostaniesz błędy po wpisaniu tego kodu, to porównaj kod jaki wwpisałeś z kodem z książki za pomocą narzędzia porównującego z http://invpy.com/diff/coinflips.
 
 coinFlips.py
 
  1. import random
- 2. print('I will flip a coin 1000 times. Guess how many times it will come up heads. (Press enter to begin)')
+ 2. print('Rzucę monetą 1000 razy. Zgadnij ile razy wypadnie orzeł. (Naciśnij enter by rozpocząć)')
  3. input()
  4. flips = 0
  5. heads = 0
@@ -232,15 +232,15 @@ coinFlips.py
 19. print('Na 1000 rzutów, orzeł wypadł ' + str(heads) + ' razy!')
 20. print('Byłeś bliski?')
 
-The program runs pretty fast. It spent more time waiting for the user to press ENTER than doing the coin flips. Let’s say you wanted to see it do coin flips one by one. On the interactive shell's window, click on Debug ► Debugger to bring up the Debug Control window. Then press F5 to run the program.
+Program działa całkiem szybko. Więcej czasu spędził czekając, aż użytkownik wciśnie ENTER, niż na wykonywanie rzutów monetą. Powiedzmy że chcesz zobaczyć rzuty monetą jeden po drugim. W oknie interaktywnej powłoki kliknij na Debug ► Debugger by uruchomić okno Debug Control. Teraz wciśnij F5, by uruchomić program.
 
-The program starts in the debugger on line 1. Press Step three times in the Debug Control window to execute the first three lines (that is, lines 1, 2, and 3). You’ll notice the buttons become disabled because input() was called and the interactive shell window is waiting for the user to type something. Click on the interactive shell window and press ENTER. (Be sure to click beneath the text in the interactive shell window, otherwise IDLE might not receive your keystrokes.)
+Program startuje w odpliskwiaczu na linii 1. W oknie Debug Control naciśnij Step trzy razy by wykonać pierwsze trzy linie (czyki linie 1, 2 i 3). Zauważysz, że przyciski zostały wyłączone ponieważ wywołano input() i powłoka interaktywna czaka, że użytkownik coś wpisze. Kliknij na oknie interaktywnej powłoki i wciśnij ENTER. (Upewnij się, że kliknąłeś pod tekstem w oknie insteraktywnej powłoki, bo inaczej IDLE może nie otrzymać tego, co wpisujesz na klawiaturze.)
 
-You can click Step a few more times, but you’ll find that it would take quite a while to get through the entire program. Instead, set a break point on lines 12, 14, and 16. The file editor will highlight these lines as shown in Rysunek 7-6.
+Możesz kliknąć Step parę razy, ale zobaczysz, że przejście przez cały program potrwa dosyć długo. Zamiast tego ustaw punkt zatrzymania na liniach 12, 14 i 16. Edytor plikowy podświetli je jak pokazano na rysunku 7-6.
 
-Rysunek 7-6: Three break points set.
+Rysunek 7-6: Ustawiona trzy punkty zatrzymania.
 
-After setting the breakpoints, click Go in the Debug Control window. The program will run at normal speed until it reaches the next break point. When flip is set to 100, the condition for the if statement on line 13 is True. This causes line 14 (where there’s a break point set) to execute, which tells the debugger to stop the program and take over. Look at the Debug Control window in the Globals section to see what the value of flips and heads are.
+Po ustawieniu punktów zatrzymania kliknij Go w oknie Debug Control. Program zadziała z normalną prędkością aż dotrze do następnego punktu zatrzymania. Kiedy flip ma wartość 100, warunek dla dyrektywy if w linii 13 jest spełniony. To sprawia, że wykonana zostanie linia 14  (gdzie ustawiliśmy punkt zatrzymania), co sprawi, że odpluskwiacz zatrzyma program i przejmie kontrolę. Spójrz w okno Debug Control w sekcję Globals i sprawdź warości w zmiennych flips i heads.
 
 Click Go again and the program will continue until it reaches the next break point on line 16. Again, see how the values in flips and heads have changed.
 
