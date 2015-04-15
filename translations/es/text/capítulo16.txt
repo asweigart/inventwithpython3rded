@@ -233,7 +233,7 @@ Mostrando las Estadísticas
 292. porcentajex = round(((victoriasx / numPartidas) * 100), 2)
 293. porcentajeo = round(((victoriaso / numPartidas) * 100), 2)
 294. porcentajeempate = round(((empates / numPartidas) * 100), 2)
-295. print('X wins %s games (%s%%), O wins %s games (%s%%), empates for %s games (%s%%) of %s games total.' % (victoriasx, porcentajex, victoriaso, porcentajeo, empates, porcentajeempate, numPartidas))
+295. print('X ha ganado %s partidas (%s%%), O ha ganado %s partidas (%s%%), empates en %s partidas (%s%%) sobre un total de %s partidas.' % (victoriasx, porcentajex, victoriaso, porcentajeo, empates, porcentajeempate, numPartidas))
 
 El código al final del programa muestra al usuario cuántas veces han ganado X y O, cuántas veces han empatado, y a qué porcentajes corresponden estos números. Estadísticamente, cuantas más partidas simules, más exactos serán tus resultados para indicar cuál es el mejor algoritmo IA. Si sólo simulas diez partidas y X gana 3 de ellas, parecerá que el algoritmo de X gana sólo el 30% de las veces. Sin embargo, si simulases cien, o incluso mil partidas, probablemente veas que el algoritmo de X gana cerca del 50% (es decir, la mitad) de las partidas.
 
@@ -246,14 +246,14 @@ Prueba de Ejecución de AISim2.py
 ¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
 Partida #0: X ha obtenido 42 puntos. O ha obtenido 18 puntos.
-Partida #1: X ha obtenido 26 points. O ha obtenido 37 points.
-Partida #2: X ha obtenido 34 points. O ha obtenido 29 points.
-Partida #3: X ha obtenido 40 points. O ha obtenido 24 points.
+Partida #1: X ha obtenido 26 puntos. O ha obtenido 37 puntos.
+Partida #2: X ha obtenido 34 puntos. O ha obtenido 29 puntos.
+Partida #3: X ha obtenido 40 puntos. O ha obtenido 24 puntos.
 ...omitido por brevedad...
-Partida #96: X ha obtenido 22 points. O ha obtenido 39 points.
-Partida #97: X ha obtenido 38 points. O ha obtenido 26 points.
-Partida #98: X ha obtenido 35 points. O ha obtenido 28 points.
-Partida #99: X ha obtenido 24 points. O ha obtenido 40 points.
+Partida #96: X ha obtenido 22 puntos. O ha obtenido 39 puntos.
+Partida #97: X ha obtenido 38 puntos. O ha obtenido 26 puntos.
+Partida #98: X ha obtenido 35 puntos. O ha obtenido 28 puntos.
+Partida #99: X ha obtenido 24 puntos. O ha obtenido 40 puntos.
 X ha ganado 46 partidas (46.0%), O ha ganado 52 partidas (52.0%), empates en 2 partidas (2.0%) sobre un total de 100.0 partidas.
 
 Dependiendo de qué tan rápida sea tu computadora, esto puede llegar a tomar un par de minutos. Puedes ver que los resultados de los cien juegos tienden a ser mitad y mitad, ya que tanto X como O están usando el mismo algoritmo.
@@ -363,7 +363,7 @@ obtenerBordeMejorJugada()   Toma un espacio sobre un borde si hay alguno disponi
 obtenerPeorJugada()  Elige el espacio que resulta en la menor cantidad de baldosas convertidas.
 obtenerEsquinaPeorJugada()    Juega sobre una esquina, si hay alguna disponible. Si no hay ninguna, usa el algoritmo obtenerPeorJugada().
 
-Comparando el Algoritmo Aleatorio contra el Algoritmo Común
+Comparando el Algoritmo Aleatorio contra el Algoritmo Regular
 
 Ahora lo único que queda por hacer es reemplazar una de las llamadas a obtenerJugadaComputadora() en la parte principal del programa por una de las nuevas funciones. Luego puedes simular varias partidas y ver con qué frecuencia un algoritmo vence al otro. Primero, reemplacemos el algoritmo de O por obtenerJugadaAleatoria() en la línea 351:
 
@@ -392,62 +392,62 @@ Comparando el Algoritmo Aleatorio contra sí Mismo
 
 ¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
-Partida #0: X ha obtenido 37 points. O ha obtenido 24 points.
-Partida #1: X ha obtenido 19 points. O ha obtenido 45 points.
+Partida #0: X ha obtenido 37 puntos. O ha obtenido 24 puntos.
+Partida #1: X ha obtenido 19 puntos. O ha obtenido 45 puntos.
 
 ...omitido por brevedad...
 
-Partida #98: X ha obtenido 27 points. O ha obtenido 37 points.
-Partida #99: X ha obtenido 38 points. O ha obtenido 22 points.
-X wins 42 games (42.0%), O wins 54 games (54.0%), empates for 4 games (4.0%) of 100.0 games total.
+Partida #98: X ha obtenido 27 puntos. O ha obtenido 37 puntos.
+Partida #99: X ha obtenido 38 puntos. O ha obtenido 22 puntos.
+X ha ganado 42 partidas (42.0%), O ha ganado 54 partidas (54.0%), empates en 4 partidas (4.0%) sobre un total de 100.0 partidas.
 
-As you can see, when both players are making random moves, they each win about 50% of the time. (In the above case, O happen to get lucky and won a little bit more than half of the time.)
+Como puedes ver, cuando ambos jugadores juegan al azar cada uno gana aproximadamente el 50% de las veces. (En el caso de arriba, O parece haber tenido suerte ya que ganó algo más que la mitad de las partidas.)
 
-Just like moving on the corner spaces is a good idea because they cannot be flipped, moving on the side spaces may also be a good idea. On the side, the tile has the edge of the board and isn’t as out in the open as the other pieces. The corners are still preferable to the side spaces, but moving on the sides (even when there’s a move that can flip more pieces) may be a good strategy.
+Así como jugar en las esquinas es una buena idea porque estas fichas no pueden ser reconvertidas, jugar sobre los bordes también puede ser una buena idea. Sobre los lados, una baldosa tiene el borde del tablero y no está tan expuesta como las otras fichas. Las esquinas siguen siendo preferibles a los bordes, pero jugar sobre los lados (incluso cuando haya una movida que puede convertir más fichas) puede ser una buena estrategia.
 
-Comparing the Regular Algorithm Against the CornersSideBest Algorithm
+Comparando el Algoritmo Regular contra el Algoritmo EsquinaBordeMejor
 
-Change X’s algorithm on line 346 to use getComputerMove() (the original algorithm) and O’s algorithm on line 351 to use getCornerSideBestMove() (which first tries to move on a corner, then tries to move on a side space, and then takes the best remaining move), and let’s run a hundred games to see which is better. Try changing the function calls and running the program again.
+Cambiemos el algoritmo de X en la línea 346 por la función obtenerJugadaComputadora (el algoritmo original) y el algoritmo de O en la línea 351 por obtenerEsquinaBordeMejorJugada() (que primero intenta jugar en una esquina, luego sobre un lado y finalmente toma la mejor jugada restante), y simulemos cien juegos para ver cuál es mejor. Prueba cambiar las llamadas a las funciones y ejecutar el programa de nuevo.
 
-Welcome to Reversi!
+¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
-Game #0: X scored 52 points. O scored 12 points.
-Game #1: X scored 10 points. O scored 54 points.
+Partida #0: X ha obtenido 52 puntos. O ha obtenido 12 puntos.
+Partida #1: X ha obtenido 10 puntos. O ha obtenido 54 puntos.
 
-...skipped for brevity...
+...omitido por brevedad...
 
-Game #98: X scored 41 points. O scored 23 points.
-Game #99: X scored 46 points. O scored 13 points.
-X wins 65 games (65.0%), O wins 31 games (31.0%), empates for 4 games (4.0%) of 100.0 games total.
+Partida #98: X ha obtenido 41 puntos. O ha obtenido 23 puntos.
+Partida #99: X ha obtenido 46 puntos. O ha obtenido 13 puntos.
+X ha ganado 65 partidas (65.0%), O ha ganado 31 partidas (31.0%), empates en 4 partidas (4.0%) sobre un total de 100.0 partidas.
 
-Wow! That’s unexpected. It seems that choosing the side spaces over a space that flips more tiles is a bad strategy to use. The benefit of the side space isn’t greater than the cost of flipping fewer of the opponent’s tiles. Can we be sure of these results? Let’s run the program again, but this time play one thousand games. This may take a few minutes for your computer to run (but it would take weeks for you to do this by hand!) Try changing the function calls and running the program again.
+¡Vaya! Eso fue inesperado. Parece que elegir una jugada sobre el borde antes que una jugada que convierte más baldosas es una mala estrategia. El beneficio de jugar sobre el borde es menor que el costo de convertir menos baldosas del oponente. ¿Podemos confiar en estos resultados? Ejecutemos el programa de nuevo, pero juguemos mil partidas esta vez. EstoEs posible que esto tome algunos minutos en tu computadora (¡pero tomaría semanas si quisieras hacerlo a mano!) Intenta cambiar las llamadas a las funciones y ejecutar de nuevo el programa.
 
-Welcome to Reversi!
+¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 1000
-Game #0: X scored 20 points. O scored 44 points.
-Game #1: X scored 54 points. O scored 9 points.
+Partida #0: X ha obtenido 20 puntos. O ha obtenido 44 puntos.
+Partida #1: X ha obtenido 54 puntos. O ha obtenido 9 puntos.
 
-...skipped for brevity...
+...omitido por brevedad...
 
-Game #998: X scored 38 points. O scored 23 points.
-Game #999: X scored 38 points. O scored 26 points.
-X wins 611 games (61.1%), O wins 363 games (36.3%), ties for 26 games (2.6%) of 1000.0 games total.
+Partida #998: X ha obtenido 38 puntos. O ha obtenido 23 puntos.
+Partida #999: X ha obtenido 38 puntos. O ha obtenido 26 puntos.
+X ha ganado 611 partidas (61.1%), O ha ganado 363 partidas (36.3%), empates en 26 partidas (2.6%) sobre un total de 1000.0 partidas.
 
-The more accurate statistics from the thousand-games run are about the same as the statistics from the hundred-games run. It seems that choosing the move that flips the most tiles is a better idea than choosing a side move.
+La estadística de mayor precisión correspondiente a una ejecución de mil juegos es aproximadamente la misma que la estadística de la ejecución de mil juegos. Parece ser que elegir una jugada que convierte más baldosas es mejor idea que jugar sobre un borde.
 
-Comparing the Regular Algorithm Against the Worst Algorithm
+Comparando el Algoritmo Regular contra el Peor Algoritmo
 
-Now set the X player’s algorithm on line 346 to use getComputerMove() and the O player’s algorithm on line 351 to getWorstMove() (which makes the move that flips over the least number of tiles), and run a hundred games. Try changing the function calls and running the program again.
+Ahora usemos obtenerJugadaComputadora() en la línea 346 para el algoritmo del jugador X y obtenerPeorJugada() en la línea 351 para el algoritmo del jugador O (este último elige la jugada que convierte la menor cantidad de fichas), y simulemos cien juegos. Prueba cambiar las llamadas a las funciones y ejecutar el programa de nuevo.
 
-Welcome to Reversi!
+¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
-Game #0: X scored 50 points. O scored 14 points.
-Game #1: X scored 38 points. O scored 8 points.
-...skipped for brevity...
-Game #98: X scored 36 points. O scored 16 points.
-Game #99: X scored 19 points. O scored 0 points.
+Partida #0: X ha obtenido 50 puntos. O ha obtenido 14 puntos.
+Partida #1: X ha obtenido 38 puntos. O ha obtenido 8 puntos.
+...omitido por brevedad...
+Partida #98: X ha obtenido 36 puntos. O ha obtenido 16 puntos.
+Partida #99: X ha obtenido 19 puntos. O ha obtenido 0 puntos.
 
-X wins 98 games (98.0%), O wins 2 games (2.0%), ties for 0 games (0.0%) of 100.0 games total.
+X ha ganado 98 partidas (98.0%), O ha ganado 2 partidas (2.0%), empates en 0 partidas (0.0%) sobre un total de 100.0 partidas.
 
 Whoa! The algorithm in getWorstMove(), which always chose the move that flips the fewest tiles, will almost always lose to the regular algorithm. This isn’t really surprising at all. (In fact, it’s surprising that this strategy wins even 2% of the time!)
 
@@ -455,16 +455,16 @@ Comparing the Regular Algorithm Against the WorstCorner Algorithm
 
 How about when we replace getWorstMove() on line 351 with getCornerWorstMove()? This is the same algorithm except it takes any available corner pieces before taking the worst move. Try changing the function calls and running the program again.
 
-Welcome to Reversi!
+¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
-Game #0: X scored 36 points. O scored 7 points.
-Game #1: X scored 44 points. O scored 19 points.
+Partida #0: X ha obtenido 36 puntos. O ha obtenido 7 puntos.
+Partida #1: X ha obtenido 44 puntos. O ha obtenido 19 puntos.
 
-...skipped for brevity...
+...omitido por brevedad...
 
-Game #98: X scored 47 points. O scored 17 points.
-Game #99: X scored 36 points. O scored 18 points.
-X wins 94 games (94.0%), O wins 6 games (6.0%), ties for 0 games (0.0%) of 100.0 games total.
+Partida #98: X ha obtenido 47 puntos. O ha obtenido 17 puntos.
+Partida #99: X ha obtenido 36 puntos. O ha obtenido 18 puntos.
+X ha ganado 94 partidas (94.0%), O ha ganado 6 partidas (6.0%), empates en 0 partidas (0.0%) sobre un total de 100.0 partidas.
 
 The getCornerWorstMove() still loses most of the games, but it seems to win a few more games than getWorstMove() (6% compared to 2%). Does taking the corner spaces when they are available really make a difference?
 
@@ -472,16 +472,16 @@ Comparing the Worst Algorithm Against the WorstCorner Algorithm
 
 You can check by setting X’s algorithm to getWorstMove() and O’s algorithm to getCornerWorstMove(), and then running the program. Try changing the function calls and running the program again.
 
-Welcome to Reversi!
+¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
-Game #0: X scored 25 points. O scored 39 points.
-Game #1: X scored 26 points. O scored 33 points.
+Partida #0: X ha obtenido 25 puntos. O ha obtenido 39 puntos.
+Partida #1: X ha obtenido 26 puntos. O ha obtenido 33 puntos.
 
-...skipped for brevity...
+...omitido por brevedad...
 
-Game #98: X scored 36 points. O scored 25 points.
-Game #99: X scored 29 points. O scored 35 points.
-X wins 32 games (32.0%), O wins 67 games (67.0%), ties for 1 games (1.0%) of 100.0 games total.
+Partida #98: X ha obtenido 36 puntos. O ha obtenido 25 puntos.
+Partida #99: X ha obtenido 29 puntos. O ha obtenido 35 puntos.
+X ha ganado 32 partidas (32.0%), O ha ganado 67 partidas (67.0%), empates en 1 partidas (1.0%) sobre un total de 100.0 partidas.
 
 Yes, even when otherwise making the worst move, it does seem like taking the corners results in many more wins. While you’ve found out that going for the sides makes you lose more often, going for the corners is always a good idea.
 
