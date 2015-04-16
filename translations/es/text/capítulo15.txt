@@ -442,7 +442,7 @@ reversi.py
 246. print('¡Bienvenido a Reversi!')
 247. 
 248. while True:
-249.     # Reiniciar el tablero y el juego.
+249.     # Reiniciar el tablero y la partida.
 250.     tableroPrincipal = obtenerNuevoTablero()
 251.     reiniciarTablero(tableroPrincipal)
 252.     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
@@ -1025,7 +1025,7 @@ El Comienzo del Juego
 246. print('¡Bienvenido a Reversi!')
 247. 
 248. while True:
-249.     # Reiniciar el tablero y el juego.
+249.     # Reiniciar el tablero y la partida.
 250.     tableroPrincipal = obtenerNuevoTablero()
 251.     reiniciarTablero(tableroPrincipal)
 252.     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
