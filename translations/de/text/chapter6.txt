@@ -1,5 +1,5 @@
   Kapitel 6
-  DRACHEN-REICH
+  DRACHENREICH
 
 In diesem Kapitel behandelte Themen:
 
@@ -18,15 +18,15 @@ Wir haben bereits einige Funktionen benutzt: print(), input(), random.randint(),
 
 Funktionen erlauben es, eine Befehlsabfolge wiederzuverwenden, ohne den dazugehörigen Quellcode mehrmals zu tippen. Da eine Funktion nur einmal definiert werden braucht und anschließend beliebig oft aufgerufen werden kann, spart sie einem nicht nur Tipp-Arbeit, sondern erleichtert auch das Ändern von Programmen/Beseitigen von Fehlern (der Code braucht nur an einer Stelle geändert werden).
 
-Das Spiel, das wir in diesem Kapitel erschaffen, heißt “Drachen-Reich”. Der Spieler muss sich zwischen zwei Höhlen entscheiden, in denen entweder Schätze oder Verderben warten.
+Das Spiel, das wir in diesem Kapitel erschaffen, heißt “Drachenreich”. Der Spieler muss sich zwischen zwei Höhlen entscheiden, in denen entweder Schätze oder Verderben warten.
 
-So spielt man Drachen-Reich
+So spielt man Drachenreich
 
 In diesem Spiel findet sich der Spieler in einem Reich voller Drachen wieder. Die Drachen leben in Höhlen und behüten große Schätze. Einige Drachen sind freundlich und teilen ihre Beute mit dem Spieler. Andere Drachen fressen jeden, der ihre Höhle betritt, auf. Der Spieler steht vor zwei Höhleneingängen; einer führt zu einem freundlichen Drachen, der andere zu einem hungrigen. Er muss sich für eine der Höhlen entscheiden.
 
 Öffne ein neues, leeres Editor-Fenster, indem du auf File ► New Window klickst. Tippe den Quellcode ab und speichere ihn unter drachen.py ab. Dann führe das Programm durch einen Druck auf F5 aus.
 
-Probelauf von Drachen-Reich
+Probelauf von Drachenreich
 
 Du bist ein einem Land voller Drachen. Vor dir
 siehst du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,
@@ -41,7 +41,7 @@ Verschlingt dich in einem Mal!
 Möchtest du noch einmal spielen? (ja oder nein)
 nein
 
-Der Quellcode zu Drachen-Reich
+Der Quellcode zu Drachenreich
 
 WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät dir, welche Version installiert ist. Falls es Python 2 ist, kannst du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
 
@@ -340,7 +340,7 @@ Dieser Code produziert die folgende Ausgabe:
 99
 42
 
-Der Ort, an dem eine Variable deklariert wird, bestimmt ihren Geltungsbereich. Wenn Drachen-Reich folgende Zeile ausführt:
+Der Ort, an dem eine Variable deklariert wird, bestimmt ihren Geltungsbereich. Wenn Drachenreich folgende Zeile ausführt:
 
 12.     hoehle = ''
 
@@ -462,15 +462,15 @@ Gibt der Spieler 'nein', 'n' oder etwas Unsinniges, wie 'Abraham Linconl' ein, d
 
 Zu beachten: die Zeichenkette 'JA' ist ungleich der Zeichenkette 'ja'. Gibt der Spieler 'JA' ein, dann wird die Bedingung im while-Ausdruck falsch und das Programm terminiert trotzdem. Die Programme, die wir später im Buch kennen lernen werden, wissen dieses Problem zu vermeiden.
 
-du hast gerade dein zweites Spiel fertiggestellt! In Drachen-Reich hast du viel des Wissens aus dem Rate die Zahl-Spiel angewandt und ein paar neue Tricks dazugelernt. Falls du nicht alle Konzepte in diesem Programm verstanden hast, dann gehe noch einmal jede Codezeile durch und versuche den Quellcode zu verändern, um zu sehen, wie sich das Verhalten des Programms ändert.
+du hast gerade dein zweites Spiel fertiggestellt! In Drachenreich hast du viel des Wissens aus dem Rate die Zahl-Spiel angewandt und ein paar neue Tricks dazugelernt. Falls du nicht alle Konzepte in diesem Programm verstanden hast, dann gehe noch einmal jede Codezeile durch und versuche den Quellcode zu verändern, um zu sehen, wie sich das Verhalten des Programms ändert.
 
 Im nächsten Kapitel werden wir kein Spiel erschaffen, sondern lernen, wie man IDLEs Debugger verwendet.
 
 Programmentwurf
 
-Drachen-Reich ist ein einfaches Spiel. Die anderen Spiele in diesem Buch fallen ein wenig komplexer aus. Oft hilft es, alles, was das Spiel oder Programm tun soll, niederzuschreiben, bevor man mit dem Schreiben des Codes beginnt. Diesen Vorgang nennt man “Programmentwurft”.
+Drachenreich ist ein einfaches Spiel. Die anderen Spiele in diesem Buch fallen ein wenig komplexer aus. Oft hilft es, alles, was das Spiel oder Programm tun soll, niederzuschreiben, bevor man mit dem Schreiben des Codes beginnt. Diesen Vorgang nennt man “Programmentwurft”.
 
-Zum Beispiel kann es hilfreich sein ein Flussdiagramm zu zeichnen. Ein Flussdiagramm ist ein Bild, das jede mögliche Aktion zeigt, die in einem Spiel passieren kann und welche Aktionen zu welchen anderen Aktionen führen. Abbildung 6-2 ist ein Flussdiagramm zu Drachen-Reich.
+Zum Beispiel kann es hilfreich sein ein Flussdiagramm zu zeichnen. Ein Flussdiagramm ist ein Bild, das jede mögliche Aktion zeigt, die in einem Spiel passieren kann und welche Aktionen zu welchen anderen Aktionen führen. Abbildung 6-2 ist ein Flussdiagramm zu Drachenreich.
 
 Um zu sehen, was im Spiel passiert, lege deinen Finger auf den “Start”-Kasten. Dann folge den Pfeilen von einem Kasten zum Nächsten. Dein Finger symbolisiert die Programm-Ausführung. Das Programm terminiert, wenn dein Finger den “Ende”-Kasten erreicht.
 
@@ -478,11 +478,11 @@ Wenn du in den Kasten “Auf freundlichen oder hungrigen Drachen überprüfen”
 
 Zusammenfassung
 
-Im Spiel Drachen-Reich hast du deine eigenen Funktionen geschrieben. Funktionen sind Mini-Programme innerhalb von Programmen. Der Code innerhalb einer Funktion wird ausgeführt, wenn diese aufgerufen wird. Das Aufteilen in Funktionen gliedert ein Programm in kleinere und einfacher zu verstehende Abschnitte.
+Im Spiel Drachenreich hast du deine eigenen Funktionen geschrieben. Funktionen sind Mini-Programme innerhalb von Programmen. Der Code innerhalb einer Funktion wird ausgeführt, wenn diese aufgerufen wird. Das Aufteilen in Funktionen gliedert ein Programm in kleinere und einfacher zu verstehende Abschnitte.
 
 Argumente sind Werte, die in die Parameter einer Funktion zum Zeitpunkt ihres Aufrufs kopiert werden. Der Funktionsaufruf selbst nimmt den Wert des Rückgabe-Wertes an.
 
-Abbildung 6-2: Flussdiagramm zum Spiel Drachen-Reich.
+Abbildung 6-2: Flussdiagramm zum Spiel Drachenreich.
 
 du hast ebenso vom Geltungsbereich von Variablen gelernt. Variablen, die innerhalb einer Funktion deklariert sind, existieren im lokalen Geltungsbereich, während Variablen, die außerhalb aller Funktionen deklariert sind, im globalen Geltungsbereich existieren. Auf lokale Variablen kann vom globalen Geltungsbereich aus nicht zugegriffen werden. Hat eine lokale Variable denselben Namen, wie eine globale Variable, so behandelt Python beide als separate Variablen. Änderungen an der lokalen Variablen haben keine Auswirkungen auf die globale.
 
