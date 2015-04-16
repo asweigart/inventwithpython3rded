@@ -433,11 +433,11 @@ Partida #998: X ha obtenido 38 puntos. O ha obtenido 23 puntos.
 Partida #999: X ha obtenido 38 puntos. O ha obtenido 26 puntos.
 X ha ganado 611 partidas (61.1%), O ha ganado 363 partidas (36.3%), empates en 26 partidas (2.6%) sobre un total de 1000.0 partidas.
 
-La estadística de mayor precisión correspondiente a una ejecución de mil juegos es aproximadamente la misma que la estadística de la ejecución de mil juegos. Parece ser que elegir una jugada que convierte más baldosas es mejor idea que jugar sobre un borde.
+La estadística de mayor precisión correspondiente a una ejecución de mil partidas es aproximadamente la misma que la estadística de la ejecución de cien partidas. Parece ser que elegir una jugada que convierte más baldosas es mejor idea que jugar sobre un borde.
 
-Comparando el Algoritmo Regular contra el Peor Algoritmo
+Comparando el Algoritmo Regular contra el Algoritmo Peor
 
-Ahora usemos obtenerJugadaComputadora() en la línea 346 para el algoritmo del jugador X y obtenerPeorJugada() en la línea 351 para el algoritmo del jugador O (este último elige la jugada que convierte la menor cantidad de fichas), y simulemos cien juegos. Prueba cambiar las llamadas a las funciones y ejecutar el programa de nuevo.
+Ahora usemos obtenerJugadaComputadora() en la línea 346 para el algoritmo del jugador X y obtenerPeorJugada() en la línea 351 para el algoritmo del jugador O (este último elige la jugada que convierte la menor cantidad de fichas), y simulemos cien partidas. Prueba cambiar las llamadas a las funciones y ejecutar el programa de nuevo.
 
 ¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
@@ -449,11 +449,11 @@ Partida #99: X ha obtenido 19 puntos. O ha obtenido 0 puntos.
 
 X ha ganado 98 partidas (98.0%), O ha ganado 2 partidas (2.0%), empates en 0 partidas (0.0%) sobre un total de 100.0 partidas.
 
-Whoa! The algorithm in getWorstMove(), which always chose the move that flips the fewest tiles, will almost always lose to the regular algorithm. This isn’t really surprising at all. (In fact, it’s surprising that this strategy wins even 2% of the time!)
+¡Vaya! El algoritmo en obtenerPeorJugada(), que siempre elige la jugada que convierte el menor número de baldosas, perderá casi siempre contra el algoritmo regular. Esto realmente no es sorprendente. (De hecho, ¡es sorprendente que esta estrategia haya conseguido ganar incluso un 2% de las partidas!)
 
-Comparing the Regular Algorithm Against the WorstCorner Algorithm
+Comparando el Algoritmo Regular contra el Algoritmo EsquinaPeor
 
-How about when we replace getWorstMove() on line 351 with getCornerWorstMove()? This is the same algorithm except it takes any available corner pieces before taking the worst move. Try changing the function calls and running the program again.
+¿Qué tal si reemplazamos obtener obtenerPeorJugada() en la línea 351 por obtenerEsquinaPeorJugada()? Este es el mismo algoritmo, excepto que toma cualquier posición disponible sobre una esquina antes de elegir la peor jugada. Prueba cambiar la llamada a la función y ejecutar de nuevo el programa.
 
 ¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
@@ -466,11 +466,11 @@ Partida #98: X ha obtenido 47 puntos. O ha obtenido 17 puntos.
 Partida #99: X ha obtenido 36 puntos. O ha obtenido 18 puntos.
 X ha ganado 94 partidas (94.0%), O ha ganado 6 partidas (6.0%), empates en 0 partidas (0.0%) sobre un total de 100.0 partidas.
 
-The getCornerWorstMove() still loses most of the games, but it seems to win a few more games than getWorstMove() (6% compared to 2%). Does taking the corner spaces when they are available really make a difference?
+El algoritmo obtenerEsquinaPeorJugada() aún pierde la mayoría de las partidas, pero parece ganar algunas más que obtenerPeorJugada() (6% comparado con un 2% del anterior). ¿Hace realmente una diferencia el jugar sobre las esquinas cuando están disponibles? 
 
-Comparing the Worst Algorithm Against the WorstCorner Algorithm
+Comparando el Algoritmo Peor contra el Algoritmo EsquinaPeor
 
-You can check by setting X’s algorithm to getWorstMove() and O’s algorithm to getCornerWorstMove(), and then running the program. Try changing the function calls and running the program again.
+Podemos comprobar esto asignando obtenerPeorJugada() al algoritmo de X y obtenerEsquinaPeorJugada() al algoritmo de O, y luego ejecutando el programa. Prueba cambiar las llamadas a las funciones y ejecutar de nuevo el programa.
 
 ¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
@@ -483,12 +483,12 @@ Partida #98: X ha obtenido 36 puntos. O ha obtenido 25 puntos.
 Partida #99: X ha obtenido 29 puntos. O ha obtenido 35 puntos.
 X ha ganado 32 partidas (32.0%), O ha ganado 67 partidas (67.0%), empates en 1 partidas (1.0%) sobre un total de 100.0 partidas.
 
-Yes, even when otherwise making the worst move, it does seem like taking the corners results in many more wins. While you’ve found out that going for the sides makes you lose more often, going for the corners is always a good idea.
+Efectivamente, incluso cuando en el resto de los casos estamos tomando la peor jugada, parece ser que jugar sobre las esquinas resulta en un mayor número de victorias. A pesar de que hemos comprobado que jugar sobre un borde hace que pierdas más frecuentemente, jugar sobre las esquinas siempre es una buena idea.
 
-Summary
+Resumen
 
-This chapter didn't really cover a game, but it modeled various strategies for Reversi. If we thought that taking side moves in Reversi was a good idea, we would have to spend weeks, even months, carefully playing games of Reversi by hand and writing down the results. But if we know how to program a computer to play Reversi, then we can have the computer play Reversi using these strategies for us. If you think about it, you’ll realize that the computer is executing millions of lines of our Python program in seconds! Your experiments with the simulation of Reversi can help you learn more about playing Reversi in real life.
+Este capítulo no se ha tratado realmente de ningún juego nuevo, sino que ha presentad el modelado de varias estrategias para Reversi. Si quisiésemos comprobar a mano la efectividad de una estrategia tendríamos que pasar semanas, incluso meses, ejecutando cuidadosamente partidas de Reversi a mano y anotando los resultados. Pero si sabemos cómo programar una computadora para jugar Reversi, entonces podemos hacer que simule partidas por nosotros utilizando estas estrategias. Si piensas en esto, ¡verás que la computadora ejecuta millones de líneas de nuestro programa de Python en segundos! Tus experimentos con la simulación de Reversi pueden incluso ayudarte a mejorar tu estrategia para jugar Reversi en la vida real.
 
-In fact, this chapter would make a good science fair project. Your problem can be which set of moves leads to the most wins against other sets of moves, and make a hypothesis about which is the best strategy. After running several simulations, you can determine which strategy works best. With programming you can make a science fair project out of a simulation of any board game! And it is all because you know how to instruct the computer to do it, step by step, line by line. You can speak the computer’s language, and get it to do large amounts of data processing and number crunching for you.
+De hecho, este capítulo podría ser un buen proyecto para una feria de ciencias. El problema aquí es averiguar qué conjunto de jugadas consigue el mayor número de victorias contra otros conjuntos de jugadas, y elaborar una hipótesis sobre cuál es la mejor estrategia. Después de ejecutar varias simulaciones, puedes determinar qué estrategia funciona mejor. ¡Usando programación puedes convertir en un proyecto de feria de ciencias la simulación de cualquier juego de mesa! Y todo gracias a que sabes cómo dar instrucciones a la computadora para hacerlo, paso por paso, línea por línea. Puedes hablar el idioma de la computadora, y conseguir que haga por tí una enorme cantidad de procesamiento de datos y cálculo de números.
 
-That’s all for the text-based games in this book. Games that only use text can be fun, even though they’re simple. But most modern games use graphics, sound, and animation to make much more exciting looking games. For the rest of the chapters in this book, we will learn how to create games with graphics by using a Python module called Pygame.
+Eso ha sido lo último que veremos en este libro sobre juegos basados en texto. Los juegos que sólo utilizan texto pueden ser divertidos, incluso a pesar de ser simples. Pero la mayoría de los juegos modernos usan gráficos, sonido y animación para crear juegos con mucho más atractivo visual. En el resto de los capítulos de este libro, aprenderemos a crear juegos con gráficos usando un módulo de Python llamado Pygame.
