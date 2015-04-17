@@ -4,29 +4,29 @@ import random
 import sys
 
 def dibujarTablero(tablero):
-    # Esta funcion dibuja el tablero pasado. Devuelve None
-    LINEAH = '  +---+---+---+---+---+---+---+---+'
-    LINEAV = '  |   |   |   |   |   |   |   |   |'
+    # Esta funcion dibuja el tablero recibido. Devuelve None
+    LÍNEAH = '  +---+---+---+---+---+---+---+---+'
+    LÍNEAV = '  |   |   |   |   |   |   |   |   |'
 
     print('    1   2   3   4   5   6   7   8')
-    print(LINEAH)
+    print(LÍNEAH)
     for y in range(8):
-        print(LINEAV)
+        print(LÍNEAV)
         print(y+1, end=' ')
         for x in range(8):
             print('| %s' % (tablero[x][y]), end=' ')
         print('|')
-        print(LINEAV)
-        print(LINEAH)
+        print(LÍNEAV)
+        print(LÍNEAH)
 
 
-def blanquearTablero(tablero):
-    # Blanquea el tablero pasado, excepto la posicion original.
+def reiniciarTablero(tablero):
+    # Deja en blanco el tablero recibido como argumento, excepto la posición inicial
     for x in range(8):
         for y in range(8):
             tablero[x][y] = ' '
 
-    # Piezas que comienzan:
+    # Piezas iniciales:
     tablero[3][3] = 'X'
     tablero[3][4] = 'O'
     tablero[4][3] = 'O'
@@ -34,7 +34,7 @@ def blanquearTablero(tablero):
 
 
 def obtenerNuevoTablero():
-    # Crea un tablero nuevo, blanqueado.
+    # Crea un tablero nuevo, vacío.
     tablero = []
     for i in range(8):
         tablero.append([' '] * 8)
@@ -42,79 +42,79 @@ def obtenerNuevoTablero():
     return tablero
 
 
-def esJugadaValida(tablero, baldosa, comienzox, comienzoy):
+def esJugadaVálida(tablero, baldosa, comienzox, comienzoy):
     # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida
-    # Si es una jugada válida, devuelve una lista de espacios al que el jugador se podría mover.
-    if tablero[comienzox][comienzoy] != ' ' or not estaEnTablero(comienzox, comienzoy):
+    # Si es una jugada válida, devuelve una lista de espacios que pasarían a ser del jugador si moviera aquí.
+    if tablero[comienzox][comienzoy] != ' ' or not estáEnTablero(comienzox, comienzoy):
         return False
 
-    tablero[comienzox][comienzoy] = baldosa # establece temporalmente la baldosa en el tablero.
+    tablero[comienzox][comienzoy] = baldosa # coloca temporariamente la baldosa sobre el tablero.
 
     if baldosa == 'X':
         otraBaldosa = 'O'
     else:
         otraBaldosa = 'X'
 
-    baldosasAGirar = []
-    for direccionx, direcciony in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
+    baldosasAConvertir = []
+    for direcciónx, direccióny in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
         x, y = comienzox, comienzoy
-        x += direccionx # primer paso en la dirección
-        y += direcciony # primer paso en la dirección
-        if estaEnTablero(x, y) and tablero[x][y] == otraBaldosa:
-            # Hay una piza perteneciente al otro jugador al lado de nustra pieza
-            x += direccionx
-            y += direcciony
-            if not estaEnTablero(x, y):
+        x += direcciónx # primer paso en la dirección
+        y += direccióny # primer paso en la dirección
+        if estáEnTablero(x, y) and tablero[x][y] == otraBaldosa:
+            # Hay una pieza perteneciente al otro jugador al lado de nustra pieza
+            x += direcciónx
+            y += direccióny
+            if not estáEnTablero(x, y):
                 continue
             while tablero[x][y] == otraBaldosa:
-                x += direccionx
-                y += direcciony
-                if not estaEnTablero(x, y): # rompe el ciclo while y continua en el ciclo for.
+                x += direcciónx
+                y += direccióny
+                if not estáEnTablero(x, y): # sale del bucle while y continua en el bucle for.
                     break
-            if not estaEnTablero(x, y):
+            if not estáEnTablero(x, y):
                 continue
             if tablero[x][y] == baldosa:
-                # Hay piezas a girar. Ve en aquella dirección hasta que lleguemos al espacio original, observando todas las baldosas.
+                # Hay fichas a convertir. Caminar en dirección opuesta hasta llegar al casillero original, registrando todas las posiciones en el camino.
                 while True:
-                    x -= direccionx
-                    y -= direcciony
+                    x -= direcciónx
+                    y -= direccióny
                     if x == comienzox and y == comienzoy:
                         break
-                    baldosasAGirar.append([x, y])
+                    baldosasAConvertir.append([x, y])
 
-    tablero[comienzox][comienzoy] = ' ' # Restaura el espacio vacio.
-    if len(baldosasAGirar) == 0: # Si ninguna baldosa fue girada, no fue una jugada válida.
+    tablero[comienzox][comienzoy] = ' ' # restablecer el espacio vacío
+    if len(baldosasAConvertir) == 0: # Si no se convirtió ninguna baldosa, la jugada no es válida.
         return False
-    return baldosasAGirar
+    return baldosasAConvertir
 
 
-def estaEnTablero(x, y):
+def estáEnTablero(x, y):
     # Devuelve True si las coordenadas se encuentran dentro del tablero
     return x >= 0 and x <= 7 and y >= 0 and y <=7
 
 
-def obtenerTableroConJugadasValidas(tablero, baldosa):
-    # Devuelve un nuevo tablero, marcando las jugadas válidas que el jugador puede realizar.
-    dupTablero = obtenerCopiaTablero(tablero)
+def obtenerTableroConJugadasVálidas(tablero, baldosa):
+    # Devuelve un nuevo tablero, marcando con "." las jugadas válidas que el jugador puede realizar.
+    réplicaTablero = obtenerCopiaTablero(tablero)
 
-    for x, y in obtenerJugadasValidas(dupTablero, baldosa):
-        dupTablero[x][y] = '.'
-    return dupTablero
+    for x, y in obtenerJugadasVálidas(réplicaTablero, baldosa):
+        réplicaTablero[x][y] = '.'
+    return réplicaTablero
 
 
-def obtenerJugadasValidas(tablero, baldosa):
-    # Devuelve una lista de [x,y] listas de jugadas válidas para el jugador en el tablero dado.
-    jugadasValidas = []
+def obtenerJugadasVálidas(tablero, baldosa):
+    # Devuelve una lista de listas [x,y] de jugadas válidas para el jugador en el tablero dado.
+    jugadasVálidas = []
 
     for x in range(8):
         for y in range(8):
-            if esJugadaValida(tablero, baldosa, x, y) != False:
-                jugadasValidas.append([x, y])
-    return jugadasValidas
+            if esJugadaVálida(tablero, baldosa, x, y) != False:
+                jugadasVálidas.append([x, y])
+    return jugadasVálidas
 
 
 def obtenerPuntajeTablero(tablero):
-    # Determina el puntaje contando las baldosas. Devuelve un diccionario con las claves 'X' y 'O'.
+    # Determina el puntaje contando las piezas. Devuelve un diccionario con claves 'X' y 'O'.
     puntajex = 0
     puntajeo = 0
     for x in range(8):
@@ -126,58 +126,58 @@ def obtenerPuntajeTablero(tablero):
     return {'X':puntajex, 'O':puntajeo}
 
 
-def ingresarBalsodaJugador():
+def ingresarBaldosaJugador():
     # Permite al jugador elegir que baldosa desea ser.
     # Devuelve una lista con la baldosa del jugador como primer elemento y el de la computadora como segundo.
     baldosa = ''
     while not (baldosa == 'X' or baldosa == 'O'):
-        print('¿Deseas ser X u O?')
+        print('¿Deseas ser X ó O?')
         baldosa = input().upper()
 
-    #  El primer elemento en la lista es la baldosa del juegador, la segunda la de la computadora.
+    #  El primer elemento en la lista es la baldosa del juegador, el segundo es la de la computadora.
     if baldosa == 'X':
         return ['X', 'O']
     else:
         return ['O', 'X']
 
 
-def quienComienza():
-    # Elije al azar que jugador comienza.
+def quiénComienza():
+    # Elije al azar qué jugador comienza.
     if random.randint(0, 1) == 0:
         return 'computadora'
     else:
         return 'jugador'
 
 
-def volverAJugar():
-    # Esta funcion devuelve True si el jugador desea volver a jugar, de lo contrario False.
-    print('¿Deseas volver a jugar? (si o no)')
+def jugarDeNuevo():
+    # Esta función devuelve True si el jugador quiere jugar de nuevo, de lo contrario devuelve False.
+    print('¿Quieres jugar de nuevo? (sí o no)')
     return input().lower().startswith('s')
 
 
 def hacerJugada(tablero, baldosa, comienzox, comienzoy):
-    # Posiciona la baldosa en el tablero en comienzox, comienzoy y gira cualquiera de las pizas del oponente.
-    # Devuelve False si es una jugada inválida, True si es válida
-    baldosasAGirar = esJugadaValida(tablero, baldosa, comienzox, comienzoy)
+    # Coloca la baldosa sobre el tablero en comienzox, comienzoy, y convierte cualquier baldosa del oponente.
+    # Devuelve False si la jugada es inválida, True si es válida.
+    baldosasAConvertir = esJugadaVálida(tablero, baldosa, comienzox, comienzoy)
 
-    if baldosasAGirar == False:
+    if baldosasAConvertir == False:
         return False
 
     tablero[comienzox][comienzoy] = baldosa
-    for x, y in baldosasAGirar:
+    for x, y in baldosasAConvertir:
         tablero[x][y] = baldosa
     return True
 
 
 def obtenerCopiaTablero(tablero):
     # Duplica la lista del tablero y devuelve el duplicado.
-    dupTablero = obtenerNuevoTablero()
+    réplicaTablero = obtenerNuevoTablero()
 
     for x in range(8):
         for y in range(8):
-            dupTablero[x][y] = tablero[x][y]
+            réplicaTablero[x][y] = tablero[x][y]
 
-    return dupTablero
+    return réplicaTablero
 
 
 def esEsquina(x, y):
@@ -187,73 +187,73 @@ def esEsquina(x, y):
 
 def obtenerJugadaJugador(tablero, baldosaJugador):
     # Permite al jugador tipear su jugada.
-    # Revuelve una jugada como [x,y] (o devuelve las palabras 'pistas' o 'quitar')
-    DIGITOS1A8 = '1 2 3 4 5 6 7 8'.split()
+    # Devuelve la jugada como [x, y] (o devuelve las cadenas 'pistas' o 'salir')
+    CIFRAS1A8 = '1 2 3 4 5 6 7 8'.split()
     while True:
-        print('Ingresa tu jugada, quitar para terminar el juego, o pistas para activar/desactivar pistas.')
+        print('Ingresa tu jugada, salir para terminar el juego, o pistas para activar/desactivar las pistas.')
         jugada = input().lower()
-        if jugada == 'quitar':
-            return 'quitar'
+        if jugada == 'salir':
+            return 'salir'
         if jugada == 'pistas':
             return 'pistas'
 
-        if len(jugada) == 2 and jugada[0] in DIGITOS1A8 and jugada[1] in DIGITOS1A8:
+        if len(jugada) == 2 and jugada[0] in CIFRAS1A8 and jugada[1] in CIFRAS1A8:
             x = int(jugada[0]) - 1
             y = int(jugada[1]) - 1
-            if esJugadaValida(tablero, baldosaJugador, x, y) == False:
+            if esJugadaVálida(tablero, baldosaJugador, x, y) == False:
                 continue
             else:
                 break
         else:
-            print('Esta no es una jugada válida. Presiona el digito x (1-8), luego el digoto y (1-8).')
-            print('Por ejemplo, 81 será la esquina superior derecha.')
+            print('Esta no es una jugada válida. Ingresa la coordenada x (1-8), luego la coordenada y (1-8).')
+            print('Por ejemplo, 81 corresponde a la esquina superior derecha.')
 
     return [x, y]
 
 
 def obtenerJugadaComputadora(tablero, baldosaComputadora):
-    # Dado un tablero y la bandosa de la computadora, determinar donde
-    # realizar la jugada y devuelve esa jugada como una lista [x,y].
-    jugadasPosibles = obtenerJugadasValidas(tablero, baldosaComputadora)
+    # Dado un tablero y la baldosa de la computadora, determinar dónde
+    # jugar y devolver esa jugada como una lista [x, y].
+    jugadasPosibles = obtenerJugadasVálidas(tablero, baldosaComputadora)
 
     # ordena al azar el orden de las jugadas posibles
     random.shuffle(jugadasPosibles)
 
-    # siempre elegir una esquina de estar disponible.
+    # siempre jugar en una esquina si está disponible.
     for x, y in jugadasPosibles:
         if esEsquina(x, y):
             return [x, y]
 
-    # Recorrer todas las jugadas posibles y elegir la de mejor puntaje.
-    puntajeMaximo = -1
+    # Recorrer la lista de jugadas posibles y recordar la que da el mejor puntaje
+    mejorPuntaje = -1
     for x, y in jugadasPosibles:
-        dupTablero = obtenerCopiaTablero(tablero)
-        hacerJugada(dupTablero, baldosaComputadora, x, y)
-        puntaje = obtenerPuntajeTablero(dupTablero)[baldosaComputadora]
-        if puntaje > puntajeMaximo:
+        réplicaTablero = obtenerCopiaTablero(tablero)
+        hacerJugada(réplicaTablero, baldosaComputadora, x, y)
+        puntaje = obtenerPuntajeTablero(réplicaTablero)[baldosaComputadora]
+        if puntaje > mejorPuntaje:
             mejorJugada = [x, y]
-            puntajeMaximo = puntaje
+            mejorPuntaje = puntaje
     return mejorJugada
 
 
 def mostrarPuntajes(baldosaJugador, baldosaComputadora):
-    # Imprime en pantalla el mejor puntaje.
+    # Imprime el puntaje actual.
     puntajes = obtenerPuntajeTablero(tableroPrincipal)
     print('Tienes %s puntos. La computadora tiene %s puntos.' % (puntajes[baldosaJugador], puntajes[baldosaComputadora]))
 
 
-def obtenerJugadaAzar(tablero, baldosa):
+def obtenerJugadaAleatoria(tablero, baldosa):
     # Devuelve una jugada al azar.
-    return random.choice( obtenerJugadasValidas(tablero, baldosa) )
+    return random.choice(obtenerJugadasVálidas(tablero, baldosa))
 
 
-def estaEnBorde(x, y):
+def esBorde(x, y):
     return x == 0 or x == 7 or y == 0 or y ==7
 
 
-def obtenerJugadaEsquinaBordeMejor(tablero, baldosa):
-    # Devuelve una jugada a una esquina, lado o la mejor jugada.
-    jugadasPosibles = obtenerJugadasValidas(tablero, baldosa)
+def obtenerEsquinaBordeMejorJugada(tablero, baldosa):
+    # Devuelve una jugada sobre una esquina, lado o la mejor jugada.
+    jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
 
     # Ordena al azar las jugadas posibles.
     random.shuffle(jugadasPosibles)
@@ -263,9 +263,9 @@ def obtenerJugadaEsquinaBordeMejor(tablero, baldosa):
         if esEsquina(x, y):
             return [x, y]
 
-    # Si no hay ninguna esquina, devuelve una jugada de lado.
+    # Si no hay ninguna esquina, devuelve una jugada sobre un borde.
     for x, y in jugadasPosibles:
-        if estaEnBorde(x, y):
+        if esBorde(x, y):
             return [x, y]
 
     return obtenerJugadaComputadora(tablero, baldosa)
@@ -273,22 +273,22 @@ def obtenerJugadaEsquinaBordeMejor(tablero, baldosa):
 
 def obtenerBordeMejorJugada(tablero, baldosa):
     # Devuelve una jugada a una esquina, un lado o la mejor jugada posible.
-    jugadasPosibles = obtenerJugadasValidas(tablero, baldosa)
+    jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
 
     # Ordena al azar las jugadas posibles.
     random.shuffle(jugadasPosibles)
 
-    # Devuelve una jugada hacia un lado, de estar disponible.
+    # Devuelve una jugada sobre un borde de ser posible.
     for x, y in jugadasPosibles:
-        if estaEnBorde(x, y):
+        if esBorde(x, y):
             return [x, y]
 
     return obtenerJugadaComputadora(tablero, baldosa)
 
 
 def obtenerPeorJugada(tablero, baldosa):
-    # Devuelve la jugada que que voltea la menor cantidad de baldosas.
-    jugadasPosibles = obtenerJugadasValidas(tablero, baldosa)
+    # Devuelve la jugada que que convierta la menor cantidad de baldosas.
+    jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
 
     # Ordena al azar las jugadas posibles.
     random.shuffle(jugadasPosibles)
@@ -296,9 +296,9 @@ def obtenerPeorJugada(tablero, baldosa):
     # Recorre todas las jugadas posibles y recuerda la de mejor puntaje.
     peorPuntaje = 64
     for x, y in jugadasPosibles:
-        dupTablero = getBoardCopy(tablero)
-        hacerJugada(dupTablero, baldosa, x, y)
-        puntaje = getScoreOfBoard(dupTablero)[baldosa]
+        réplicaTablero = obtenerCopiaTablero(tablero)
+        hacerJugada(réplicaTablero, baldosa, x, y)
+        puntaje = obtenerPuntajeTablero(réplicaTablero)[baldosa]
         if puntaje < peorPuntaje:
             peorJugada = [x, y]
             peorPuntaje = puntaje
@@ -307,13 +307,13 @@ def obtenerPeorJugada(tablero, baldosa):
 
 
 def obtenerEsquinaPeorJugada(tablero, baldosa):
-    # Devuelve la esquina, el especio o la jugada que voltea la menor cantidad de baldosas.
-    jugadasPosibles = obtenerJugadasValidas(tablero, baldosa)
+    # Devuelve la esquina, el especio o la jugada que convierta la menor cantidad de baldosas.
+    jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
 
     # Ordena al azar las jugadas posibles.
     random.shuffle(jugadasPosibles)
 
-    # Siempre ir hacia una esquina de ser posible.
+    # Siempre jugar sobre una esquina de ser posible.
     for x, y in jugadasPosibles:
         if esEsquina(x, y):
             return [x, y]
@@ -324,51 +324,51 @@ def obtenerEsquinaPeorJugada(tablero, baldosa):
 
 print('¡Bienvenido a Reversi!')
 
-ganadasx = 0
-ganadaso = 0
+victoriasx = 0
+victoriaso = 0
 empates = 0
-numJuegos = int(input('Ingrese la cantidad de juegos a simular: '))
+numPartidas = int(input('Ingresa el número de partidas a jugar: '))
 
-for juego in range(numJuegos):
-    print('juego #%s:' % (juego), end=' ')
-    # Blanquea el tablero y el juego
+for partida in range(numPartidas):
+    print('Partida #%s:' % (partida), end=' ')
+    # Reiniciar el tablero y la partida.
     tableroPrincipal = obtenerNuevoTablero()
-    blanquearTablero(tableroPrincipal)
-    if quienComienza() == 'jugador':
+    reiniciarTablero(tableroPrincipal)
+    if quiénComienza() == 'jugador':
         turno = 'X'
     else:
         turno = 'O'
 
     while True:
         if turno == 'X':
-            # Turno de X
+            # Turno de X.
             otraBaldosa = 'O'
             x, y = obtenerJugadaComputadora(tableroPrincipal, 'X')
             hacerJugada(tableroPrincipal, 'X', x, y)
         else:
-            # Turno de O
+            # Turno de O.
             otraBaldosa = 'X'
             x, y = obtenerJugadaComputadora(tableroPrincipal, 'O')
             hacerJugada(tableroPrincipal, 'O', x, y)
 
-        if obtenerJugadasValidas(tableroPrincipal, otraBaldosa) == []:
+        if obtenerJugadasVálidas(tableroPrincipal, otraBaldosa) == []:
             break
         else:
             turno = otraBaldosa
 
-    # Muestra el puntaje final
+    # Mostrar el puntaje final.
     puntajes = obtenerPuntajeTablero(tableroPrincipal)
-    print('X obtuvo %s puntos. O obtuvo %s puntos.' % (puntajes['X'], puntajes['O']))
+    print('X ha obtenido %s puntos. O ha obtenido %s puntos.' % (puntajes['X'], puntajes['O']))
 
     if puntajes['X'] > puntajes['O']:
-        ganadasx += 1
+        victoriasx += 1
     elif puntajes['X'] < puntajes['O']:
-        ganadaso += 1
+        victoriaso += 1
     else:
         empates += 1
 
-numJuegos = float(numJuegos)
-porcientox = round(((ganadasx / numJuegos) * 100), 2)
-porcientoo = round(((ganadaso / numJuegos) * 100), 2)
-porcientoempate = round(((empates / numJuegos) * 100), 2)
-print('X ganó %s juegos (%s%%), O ganó %s juegos (%s%%), y hubo %s juegos empatados (%s%%) of %s juegos total.' % (ganadasx, porcientox, ganadaso, porcientoo, empates, porcientoempate, numJuegos))
+numPartidas = float(numPartidas)
+porcentajex = round(((victoriasx / numPartidas) * 100), 2)
+porcentajeo = round(((victoriaso / numPartidas) * 100), 2)
+porcentajeempate = round(((empates / numPartidas) * 100), 2)
+print('X ha ganado %s partidas (%s%%), O ha ganado %s partidas (%s%%), empates en %s partidas (%s%%) sobre un total de %s partidas.' % (victoriasx, porcentajex, victoriaso, porcentajeo, empates, porcentajeempate, numPartidas))

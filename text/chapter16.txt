@@ -12,7 +12,7 @@ Topics Covered In This Chapter:
 
 The Reversi AI algorithm was simple, but it beats me almost every time I play it. This is because the computer can process instructions fast, so checking each possible position on the board and selecting the highest scoring move is easy for the computer. It would take a long time for me to find the best move this way.
 
-The Reversi program in Chapter 14 had two functions, getPlayerMove() and getComputerMove() which both returned the move selected as a two-item list like [x, y]. The both also had the same parameters, the game board data structure and which tile they were. getPlayerMove() decided which [x, y] move to return by letting the player type in the coordinates. getComputerMove() decided which [x, y] move to return by running the Reversi AI algorithm.
+The Reversi program in Chapter 14 had two functions, getPlayerMove() and getComputerMove() which both returned the move selected as a two-item list like [x, y]. They both also had the same parameters, the game board data structure and which tile they were. getPlayerMove() decided which [x, y] move to return by letting the player type in the coordinates. getComputerMove() decided which [x, y] move to return by running the Reversi AI algorithm.
 
 What happens when we replace the call to getPlayerMove() with a call to getComputerMove()? Then the player never types in a move, it is decided for them! The computer is playing against itself!
 
@@ -26,7 +26,7 @@ You can either type these changes in yourself, or download them from the book’
 
 Making the Computer Play Against Itself
 
-Save the old reversi.py file as AISim1.py by clicking on File ► Save As, and then entering AISim1.py for the file name and clicking Ok. This will create a copy of our Reversi source code as a new file that you can make changes to, while leaving the original Reversi game the same (you may want to play it again). Change the following code in AISim1.py:
+Save the old reversi.py file as AISim1.py by clicking on File ► Save As, and then entering AISim1.py for the file name and clicking Save. This will create a copy of our Reversi source code as a new file that you can make changes to, while leaving the original Reversi game the same (you may want to play it again). Change the following code in AISim1.py:
 
 266. move = getPlayerMove(mainBoard, playerTile)
 
@@ -235,7 +235,7 @@ Displaying the Statistics
 294. tiepercent = round(((ties / numGames) * 100), 2)
 295. print('X wins %s games (%s%%), O wins %s games (%s%%), ties for %s games (%s%%) of %s games total.' % (xwins, xpercent, owins, opercent, ties, tiepercent, numGames))
 
-The code at the bottom of the program will show the user how many wins X and O had, how many ties there were, and how what percentages these make up. Statistically, the more games you run, the more accurate your percentages will be for finding the best AI algorithm. If you only ran ten games, and X won three of them, then it would seem that X’s algorithm only wins 30% of the time. However, if you run a hundred, or even a thousand games, then you may find that X’s algorithm wins closer to 50% (that is, half) of the games.
+The code at the bottom of the program will show the user how many wins X and O had, how many ties there were, and what percentages these make up. Statistically, the more games you run, the more accurate your percentages will be for finding the best AI algorithm. If you only ran ten games, and X won three of them, then it would seem that X’s algorithm only wins 30% of the time. However, if you run a hundred, or even a thousand games, then you may find that X’s algorithm wins closer to 50% (that is, half) of the games.
 
 To find the percentages, divide the number of wins or ties by the total number of games. Then multiply the result by 100. However, you may end up with a number like 66.66666666666667. So pass this number to the round() function with the second parameter of 2 to limit the precision to two decimal places, so it will return a float like 66.67 instead (which is much more readable).
 
@@ -365,7 +365,7 @@ getCornerWorstMove()    Take a corner space, if available. If not, use the getWo
 
 Comparing the Random Algorithm Against the Regular Algorithm
 
-Now the only thing to do is replace one of the getComputerMove() calls in the main part of the program with one of the new functions. Then you can run several games and see how often one algorithm wins over the other. First, let’s replace O’s algorithm with the one in getComputerMove() with getRandomMove() on line 351:
+Now the only thing to do is replace one of the getComputerMove() calls in the main part of the program with one of the new functions. Then you can run several games and see how often one algorithm wins over the other. First, let’s replace O’s algorithm with the one in getRandomMove() on line 351:
 
 351.            x, y = getRandomMove(mainBoard, 'O')
 
@@ -388,7 +388,7 @@ Wow! X won far more often than O did. That means that the algorithm in getComput
 
 Comparing the Random Algorithm Against Itself
 
-What if we changed O’s algorithm to also use the algorithm in getRandomMove()? Let’s find out by changing O’s function call on line 351 from getComputerMove() to getRandomMove() and running the program again.
+What if we changed X’s algorithm to also use the algorithm in getRandomMove()? Let’s find out by changing X’s function call on line 346 from getComputerMove() to getRandomMove() and running the program again.
 
 Welcome to Reversi!
 Enter number of games to run: 100
