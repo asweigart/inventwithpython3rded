@@ -242,12 +242,12 @@ Rysunek 7-6: Ustawiona trzy punkty zatrzymania.
 
 Po ustawieniu punktów zatrzymania kliknij Go w oknie Debug Control. Program zadziała z normalną prędkością aż dotrze do następnego punktu zatrzymania. Kiedy flip ma wartość 100, warunek dla dyrektywy if w linii 13 jest spełniony. To sprawia, że wykonana zostanie linia 14  (gdzie ustawiliśmy punkt zatrzymania), co sprawi, że odpluskwiacz zatrzyma program i przejmie kontrolę. Spójrz w okno Debug Control w sekcję Globals i sprawdź warości w zmiennych flips i heads.
 
-Click Go again and the program will continue until it reaches the next break point on line 16. Again, see how the values in flips and heads have changed.
+Ponownie kliknij Go i program wznowi pracę do momentu dotarcia do następnego punktu zatrzymania w linii 16. Ponownie sprawdź jak zmieniły się wartości w zmienneych flips i heads.
 
-If you click Go again, the execution will continue until the next break point is reached, which is on line 12.
+Jeśli pownownie klikniesz Go, wykonanie będzie kontynuowane do osiągnięcia kolejnego punktu zatrzymania, który jest w linii 12.
 
-Summary
+Podsumowanie
 
-Writing programs is only the first part of programming. The next part is making sure the code you wrote actually works. Debuggers let you step through the code one line at a time. You can examine which lines execute in what order, and what values the variables contain. When this is too slow, you can set break points to stop the debugger only at the lines you want.
+Pisanie programów to tylko pierwszy krok w programowaniu. Kolejnym krokiem jest upewnienie się, że napisany kod poprawnie działa. Odpluskwiacze pozwalają na krokowe przechodzenie kodu linia po linii. Możesz sprawdzać kolejność wykonywania linii kodu i wartości zapisane w zmiennych. Gdy jest to zbyt wolne możesz ustawiać punkty zatrzymania, by odpluskwiacz zatrzymywał się tylko w liniach które chcesz sprawdzić.
 
-Using the debugger is a great way to understand what a program is doing. While this book provides explanations of all the game code in it, the debugger can help you find out more on your own.
+Użycie odpluskwiacza jest też dobrym sposobem na zrozumienie tego, co robi program. Choć w książce tej każdy kod gry jest wytłumaczony, to odpluskwiacz może pomóc w samodzielnym, głębszym zrozumieniu kodu.
