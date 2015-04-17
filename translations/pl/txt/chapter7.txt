@@ -1,0 +1,253 @@
+    Rozdział 7
+    UŻYCIE ODPLUSKIWACZA (ang. DEBUGGER)
+
+Tematy omówione w tym rozdziale:
+
+•   3 różne typy błędów
+•   Odpluskiwacz w IDLE
+•   Praca krokowa
+•   Naprzód i Wyjdź
+•   Punkty zatrzymania (ang. Break Points)
+
+Pluskwy!
+
+Uwaga od tłumacza: po angielsku błąd w programie jest slangowo nazywany "bug", co oznacza pluskwę, robaka.
+
+“Dwukrotnie już zapytanie mnie: 'Niech pan powie panie Babbage, czy jeśli dostaczymy maszynie złe dane, to da ona prawidłową odpowiedź?' Nie jestem w stanie zrozumieć jakie pomieszanie pomysłów może prowadzić do takiego pytania.”
+-Charles Babbage, XIX wieczny pomysłodawaca programowalnych komputerów.
+
+Jeśli wprowadzisz zły kod, to komputer nie da co prawidłowego programu. Program komputerowy zawsze zrobi co mu kazałeś, ale to co mu kazałeś nie zawsze jest tym, co chciałeś, by program robił. Te błędy nazywamy pluskwami (ang. bug). Pluskwy zdarzają się kiedy programista nie dość uważnie przemyślał co dokładnie ma robić program. Mamy trzy typy takich błędów jakie mogą zdarzyć się w twoim programie:
+
+•   Błędy składniowe (Syntax Errors) są błędami wynikającymi z pomyłek w trakcie pisania. Kiedy intepreter Pythona stwierdzi błąd składni, to oznacza, że twój kod nie jest napisany w prawidłowym języku Python. Programu takiego, nawet z jednym błędem składni nie da się uruchomić.
+•   Błędy czasu wykonanie (ang. Runtime Errors) są błędami które zachodzą w czasie pracy programu. Program będzie pracował do czasu, aż napotka linię kody z błędem, a wtedy program zakończy się z komunikatem o błędzie (nazywamy to padem, ang. crashing). Interpreter Pythona wyświetli stos wywołań zwany z angielska “traceback” and pokaże linię w której wystąpił problem.
+•   Błędy semantyczne (ang. Semantic Errors) są najtrudniejsze do naprawienia. Te błędy nie powodują padu programu, ale program robi co innego niż chciał programista. Przykładowo programista chce, by zmienna total była sumą wartości w zmiennych a, b i c, ale zamiast napisał total = a * b * c, co sprawi, że wartość w total będzie nieprawidłowa. To może doprowadzić do padu programu w przyszłości, ale na pierwszy rzut oka błąd semantyczny nie jest oczywisty.
+
+Znalezienie błędu w programie może być trudne, o ile w ogóle go zauważysz! Kiedy uruchamiasz swój program, możesz odkryć, że czasem funkcje nie są wywoływane kiedy się tego spodziewasz, albo są wywoływane zbyt wiele razy. Mogłeś podać zły warunek w pętli while, więc wykona się ona nie tyle razy, ile zamierzałeś. Pętla z której nie ma wyjścia jest znanan pod nazwą nieskonczonej pętli (ang. infinite loop). Aby zatrzymać ten program możesz w interaktywnej powłoce nacisnąć Ctrl-C. Każda z tych rzeczy może przez pomyłkę znaleźć się w twoim kodzie jeśli nie będziesz uważny.
+
+Sprawdźmy tworzenie nieskończonej pętli w interaktywnej powłoce przez wpisane poniższego kodu (musisz dwukrotnie nacisnąć ENTER, aby dać znać interaktywnej powłoce, że zakończyłeś wpisywanie bloku while):
+
+>>> while True:
+...     print('Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!')
+...
+
+Teraz wciśnij i przytrzymaj klawisz Ctrl i jednocześnie wciśnij C, by zatrzymać program. Interaktywna powłoka będzie wyglądała tak:
+
+Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!
+Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!
+Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!
+Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!
+Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!
+Traceback (most recent call last):
+  File "<pyshell#1>", line 1, in <module>
+    while True: print('Naciśnij Ctrl-C by zatrzymać tą nieskończoną pętlę!!!')
+KeyboardInterrupt
+
+Odpluskwiacz (ang. debugger)
+
+Znalezienie kodu który powoduje błąd może być bardzo trudne. Linie kodu wykonują się szybko a wartości w zmiennych często ulegają zmianom. Odpluskiwacz jest programem który pozwala na krokowe wykonywanie programu linia po linii w takiej samej kolejności jak robi to Python. Odpluskwiacz na każdym kroku pokazuje także wartości zmiennych.
+
+Uruchomienie odpluskwiacza
+
+W IDLE, otwórz grę Królestwo smoków którą stworzyłeś w ostatnim rozdziale. Po otwarciu pliku dragon.py, kliknij na Debug ► Debugger aby pojawiło się okno Debug Control (Rysunek 7-1).
+
+Rysunek 7-1: Okno Debug Control.
+
+Rysunek 7-2: uruchomienie Królestwa smoków w odpluskwiaczu.
+
+Kiedy uruchomisz Królestwo smoków przez naciśnięcie F5, odpluswiacz IDLE zostanie uaktywniony. Nazywamy to uruchomieniem programu “w odpluskwiaczu” (czasem mówimy "w debuggerze"). W oknie Debug Control, sprawdź checkboksy Source i Globals.
+
+Kiedy uruchamiasz program w odpluskwiaczu, program zatrzyma się nim wykonana zostanie pierwsza instrukcja. Gdy klikniesz w tytułowe okno edytora (i zaznaczyłeś wcześniej checkboks Source w oknie Debug Control), pierwsza instrukcja będzie podświetlona na szaro. Okno Debug Controlpokazuje, że wykonanie jest w linii 1, czyli linii z import random.
+
+Praca krokowa
+
+Odpluskwiacz pozwala na wykonanie pojedynczych instrukcji. Nazywamy to pracą krokową. Aby wykonać pojedynczą instrukcję kliknij przycisk Step w oknie Debug Window. Zrób to proszę. Python wykona instrukcję import random i zatrzyma się przed wykonaniem kolejnej instrukcji. Okno Debug Control pokaże, że wyknanie jest obecnie w linii 2 z import time. Kliknij przycisk Quit by zakończyć działanie programu.
+
+Mamy tu podsumowanie tego, co dzieje się gdy klikniejsz przycisk Step z grą Królestwo smoków uruchomioną w odpluskwiaczu. Naciśnij F5 by ponownie uruchomić Królestwo smoków i wykonaj następujące polecenia:
+
+1. import random
+2. print('Rzucę monetą 1000 razy. Zgadnij ile razy wypadnie orzeł. (Naciśnij enter by rozpocząć)')
+3. input()
+4. flips = 0
+
+Okno Debug Control będzie pokazywało jaka linia zostanie wykonanan po naciśnięciu przycisku Stepw oknie Debug Control. Odpluskwiacz ominie linię 3, ponieważ jest to pusta linia. Zauważ, że w odpluskwiaczu można tylko iść naprzód, nie można wrócić.
+
+Obszar globalny (Globals Area)
+
+Obbszar globalny w oknie Debug Control pozwala na oglądanie zmiennych globalnych. Pamiętaj, że zmienne globalne są tworzone poza funkcjami (to znaczy w zakresie globalnym).
+
+Jako, że zostały wykonane trzy dyrektywy def które zdefiniowały funkcje, pojawią się one w oknie Debug Control w obszarze globalnym.
+
+Napis obok nazw funkcji w obszarze globalnym wygląda jak: “<function checkCave at 0x012859B0>“. Także nazwy modułów mają tajemniczo wyglądający napis jak “<module 'random' from 'C:\\Python31\\lib\\random.pyc'>“. Nie potrzebujesz wiedzieć co to znaczy gdy odpluskwiasz swoje programy. To, że funkcje i moduły są w obszarze globalnym mówi, czy te funkcje zostały zdefiniowane, albo czy zaimportowano moduł.
+
+Możesz także zignorować linie __builtins__, __doc__ i __name__ w obszarze globalnym. Są to zmienne jakie pojawiają się w każdym programie w Pythonie,
+
+Kiedy zostanie stworzona zmienna playAgain, to pojawi się ona w obszarze globalnym. Obok nazwy zmiennej będzie napis 'tak'. Odpluskwiacz pozwala ci oglądać wartości wszystkich zmiennych w programie w trakcie jego wykonania. To jest bardzo użyteczne gdy naprawia się błędy.
+
+Obszar lokalny
+
+Mamy także obszar lokalny, gdzie pokazywane są zmienne z zasięgu lokalnego. Obszar lokalny zawiera jedynie zmienne w czasie, gdy wykonanie jest we wnętrzu funkcji. Gdy wykonanie przejdzie do zasięgu globalnego, to ten obszar jest pusty.
+
+Przycisk Naprzód (ang. Go) i Wyjdź (ang. Quit)
+
+Jeśli zmęczyłeś się klikając wciąż przycisk Krok (ang. Step) i chcesz by program działał normalnie, kliknij przycisk Naprzód (ang. Go)na górze okna Debug Control. Sprawi to, że program zadziała normalnie, a nie krokowo.
+
+Aby zakończyć pracę programu po prostu kliknij przycisk Wyjdź (ang. Quit) na górze okna Debug Control. Program natychmiast się zakończy. Jest to pomocne gdy musisz rozpocząć odpluskwianie od początku programu.
+
+Wchodzenie do, Przekraczanie i Zstępowanie
+
+Uruchom Królestwo smoków w odpluskwiaczu. Przejdź krokowo do momentu, gdy odpluskiwacz będzie w linii 38. Jak pokazano na rysunku 7-3, jest to linia z displayIntro(). Kiedy znowu klikniesz Krok (ang. Step), to odpluskwiacz przeskosczy do tej funkcji i pokawi się w linii 5, pierwszej linii funkcji displayIntro(). Ten rodzaj pracy krokowej nazywamy wchodzeniem do. Różni się to od przechodzenia, które zaraz omówimy.
+
+Rysunek 7-3: Przejdź krokowo, aż dotrzesz do linii 38.
+
+Kiedy wykonanie zatrzyma się w linii 5, jeszcze jedno kliknięcie w Krok (ang. Step) spowoduje wejście do funkcji print(). Funkcja print() jest jedną z wbudowanych funkcji Pythona, więc wejście do niech przez odpluskiwacza nie jest zbyt użyteczne. Wbudowane w Pythona funkcje takie jak print(), input(), str(), lub random.randint() zostały dokłądanie sprawdzone. Możesz przyjąć, że nie powodują one błędów w twoim programie.
+
+Nie chcesz tracić czasu na krokowe wykonywanie funkcji print(). Zamiast klikać Step by wkroczyć do wnętrza funkcji print() kliknij Over (Przekrocz). To spowoduje przejście przez funkcję print(). Kod we wnętrzu print() będzie wykonany ze zwykłą prędkością, po czym odpluskwiacz zatrzyma się jak tylko wykonanie opuści print().
+
+Przekraczanie jest wygodnym sposobem na uniknięcie krokowego wykonania kodu w funkcji. Odpluskwiacz zatrzyma się teraz na linii 40, caveNumber = chooseCave().
+
+Ponownie kliknij Step, by wejść do funkcji chooseCave(). Przejdź kod krokowo do linii 15, do wywołania input(). Program zaczeka aż coś wpiszesz w interakcyjnej powłoce, tak jak przy normalnym uruchomieniu programu. Jeśli spróbujesz kliknąć Step, nic się nie stanie ponieważ program czeka na odpowiedź z klawiatury.
+
+Przejdz do okna interaktywnej powłoki i wpis do której z jaskiń chcesz wejść. Mrugając kursor musi być w dolnej linii interaktywnej powłoki byś mógł w niej coś wpisać. Jeśli go nie ma, to tekst który wpisujesz nie pojawi się.
+
+Jak tylko wciśniesz ENTER, odpluskwiacz przejdzie do krokowej pracy z kodem. Kliknij przycisk Out w oknie Debug Control. Nazywamy to zstępowaniem (ang. stepping out), ponieważ spowoduje, że odpluskiwacz przejdzie tyle linii, ile potrzebuje by opuścić funkcję w której jest. Jak tylko wyskoczy na zewnątrz, wykonanie będzie na linii po linii wywołującej funkcję.
+
+Przykładowo klikając Out w środku funkcji displayIntro() w linii 6 spowoduje pracę krokową aż funkcja wróci do linii za wywołaniem displayIntro(). Zstępowanie może oszczędzić ci klikanie w Step by wyjść z funkcji.
+
+Jeśli nie jesteś wewnątrz funkcji, kliknięcie Out spowoduje, że odpluskiwacz wykonana wszystkie pozostałe linie programu. Cyzli zachowa jię tak, jakbyś kliknął przycisk Go (Naprzód).
+
+Małe przypomnienie co robią poszczególne przyciski:
+
+•   Go - Wykonuje resztę kodu tak, jak w normalnej pracy, lub do osiągnięcia punkti krytycznego (ang. break point). Punkty krytyczne zostaną omówione później.
+•   Step - Wykona krokowo jedną instrukcję. Jeśli linia jest wywołaniem funkcji, odpluskiwacz do niej wejdzie.
+•   Over - Wykona krokowo jedną instrukcję. Jeśli linia jest wywołaniem funkcji, odpluskiwacz do nie nie wejdzie, ale przez nią przejdzie.
+•   Out - Przechodzi przez linie kodu aż odpluskiacz opuści funkcję w której był w momencie kliknięcie Out. Powoduje wyjście z funkcji.
+•   Quit - Natychmiast kończy działanie programu.
+
+Znajdź błąd
+
+Odpluskiwacz może pomóc w znalezieniu przyczyny błędu w programie. Jako przykład mamy tu mały program z błędem. Program ma lowosy problem z dodawaniem który należy rozwiązać. W oknie interaktywnej powłoki kliknij File, potem New Window by otworzyć nowe okno edytora. Wpisz ten program i zapisz jako buggy.py.
+
+buggy.py
+
+1. import random
+2. number1 = random.randint(1, 10)
+3. number2 = random.randint(1, 10)
+4. print('Jaki jest wynik ' + str(number1) + ' + ' + str(number2) + '?')
+5. answer = input()
+6. if answer == number1 + number2:
+7.     print('Bardzo dobrze!')
+8. else:
+9.     print('Niestety! Prawidłowa odpowiedź to ' + str(number1 + number2))
+
+Wpisz ten program w tej postaci nawet, jesli jusz wiesz gdzie jest błąd. Uruchom program naciskając F5. To prosty quiz arytmetyczny który pokazuje dwie losowe liczby i pyta cię o ich sumę. Oto jak może wyglądać uruchomienie programu:
+
+Jaki jest wynik 5 + 1?
+6
+Niestety! Prawidłowa odpowiedź to 6
+
+Mamy błąd! Program nie zgłasza problemu, ale też nie działa prawidłowo. Program twierdzi, że użytkownik podał złą odpowiedź nawet, jeśli odpowiedź była prawidłowa.
+
+Urchomienie programu w odpluskiwaczu pomoże w znalezieniu przyczyny błędu. Na górze okna interaktywnej powłoki kliknij Debug ► Debugger by wyświetlić okno Debug Control. W oknie tym włącz wszystkie 4 opcje (Stack, Source, Locals i Globals). Sprawi to, że w oknie tym pojawi się większość informacji. Teraz oknie edytora uruchom program wciskając F5. Tym razem program uruchomi się w odpluskwiaczu.
+
+1. import random
+
+Odpluswiacz rozpoczyna od linii import random. Nie dzieje sie tu nic specjalnego, więc kliknij Step by to wykonać. Zobaczysz, że moduł random został dodany do obszaru gloalnego (ang. Globals area).
+
+2. print('Rzucę monetą 1000 razy. Zgadnij ile razy wypadnie orzeł. (Naciśnij enter by rozpocząć)')
+
+Ponownie kliknij Step by uruchomić linię 2. Zostanie otwarte nowe okno edytora z plikiem random.py. Wkroczyłeś do wnętrza funkcji randint() z modułu random. Wbudowane funkcje Pythona nie są źródłem problemów, więc kliknij Out, by ją opuścići wrócić do swojego programu. Zamknij też okno z plikiem random.py.
+
+3. input()
+
+Następnym razem możesz kliknąć Over by przekroczyć funkcję randint() zamiast do niej wkraczać. Linia 3 to także wywołanie funkcji randint(). Omiń ją klikając Over.
+
+4. flips = 0
+
+Linia 4 to tylko wywołanie print(), by pokazać graczowi losowe liczby. Wiesz już jakie liczby zostaną wypisane, nim program je wypisze! Zerknij do obszaru glablnego (ang. Globals area) w oknie Debug Control. Zobaczysz zmienne number1 i number2, a obok nich wartości całkowite jakie są w nich zapisane.
+
+Zmienna number1 ma wartość 4, a number2 ma wartość 8. Kiedy klikniesz Step, program pokaże tekst z tymi wartościami przy wywołaniu funkcji print(). Funkcja str() połączy napisowe wartości tych liczb całkowitych. Kiedy uruchomiłem odpluskwiacz, wyglądało to jak na rysunku 7-4. (Twoje liczby losowe prawdopodobnie będą inne.)
+
+Rysunek 7-4: number1 ma wartość 4, a number2 wartość 8.
+
+5. heads = 0
+
+Kliknięcie na Step z linii 5 wykona input(). Odpluskwiacz zaczeka aż gracz wprowadzi odpowiedź. Wpisz prawidłową odpowiedź (w moim wypadku 12) w oknie intraktywnej powłoki. Odpluskiwacz wznowi prawcę i przejdzie do linii 6:
+
+6. while flips < 1000:
+7.     if random.randint(0, 1) == 1:
+
+Linia 6 jest dykrektywą if. Sprawdzanie jest, czy wartość podana w odpowiedzi użytkownika jest równa sumie number1 i number2. Jeśli warunek jest spełniony (True), to odpluskiwacz przejdzie do linii 7. Jeśli nie jest spełniony (False), to odpluskwiacz przejdzie do linii 9. Ponownie naciśnij Step by zobaczyć dokąd przejdzie.
+
+8.         heads = heads + 1
+9.     flips = flips + 1
+
+Odpluskwiacz przeszedł do linii 9! Co się stało? Warunek w dyrektywie if musiał dać False. Zerknijmy na wartości dla number1, number2 i answer. Zwróć uwagę, że number1 i number2 są liczbami całkowitymi, więc ich suma też będzie wartością całkowitą. Jednak answer jest napisem.
+
+To oznacza, że answer == number1 + number2 zostaną wyliczone do '12' == 12. Wartość napisowa i całkowita nigdy nię będą sobie równe, więc sprawdzenie to daje False.
+
+To jest nasz błąd (ang. bug) w programie. Błąd polega na tym, że w kodzie użyliśmy answer, a powinniśmy int(answer). Zmień linię 6 na  int(answer) == number1 + number2 i ponownie uruchom program.
+
+Jaki jest wynik 2 + 3?
+5
+Bardzo dobrze!
+
+Tym razem program zadziałał prawidłowo. Uruchom go ponownie i celowo wprowadź złą odpwowiedź. W ten sposób dogłębnie prztestowałeś program. Udało ci się go odpluskwić! Pamiętaj, że komputer wykona twój program dokładnie jak go wpisałeś, nawet jeśli wpisałeś nie to, co zamierzałeś.
+
+Punkty zatrzymania (ang. Break Points)
+
+Przechodzenie krokowe linia po linii może być zbyt powolne. Często chcesz wykonać program z normalną szybkością do momentu dojścia do pewnej linii. Punkt zatrzymania to linia w której chcesz, by odpluskwiacz zatrzymał wykonanie programu i wziął kontrolę nad dalszym jego wykonaniem. Jeśli uważasz, że problem z twoim kodem jest, przykładowo, w linii 17, ustaw tam punk zatrzymania (można taki punkt ustawić kilka linii wcześniej).
+
+Kiedy wykonanie dotrze do tej linii odpluskwiacz “przejdzie do odpluskiwacza”. Możesz teraz krokowo przechodzić przez linie by zobaczyć co się stanie. Kliknięcie Go (Naprzód) wykona program normalnie, aż do kolejnego punktu zatrzymania, lub zakończenia programu.
+
+Aby ustawić punkt zatrzymania, kliknij prawym przyciskiem w linii w edytorze i z menu jakie się pojawi wybierz Set Breakpoint. Edytor podświetli wybraną linię na żółto. Możesz ustawić tyle punktów zatrzymania, ile chcesz. Aby usunąć punkt zatrzymania kliknij na taką linię i z menu jakie się pojawi wybierz Clear Breakpoint.
+
+Rysunek 7-5: Edytor z ustawionymi dwoma punktami zatrzymania.
+
+Przykład użycia punktów zatrzymania
+
+Mamy tu program który symuluje rzucanie monetą przez wywoływanie random.randint(0, 1). Jak funkcja zwróci 1, to będzie oznaczało "orła", a jak 0, to będzie "reszka". Zmienna flips będzie oznaczała liczbę wykonanych rzutów. Zmienna heads będzie zliczała ile razy wypadł orzeł.
+
+Program wykona tysiąć “rzutów monetą”. Człowiekowi zajęłoby to ponad godzinę, ale komputer może to zrobić w sekundę! Wpisz nen kod w edytorze plikowym i zapisz jako coinFlips.py. Jeśli dostaniesz błędy po wpisaniu tego kodu, to porównaj kod jaki wwpisałeś z kodem z książki za pomocą narzędzia porównującego z http://invpy.com/diff/coinflips.
+
+coinFlips.py
+
+ 1. import random
+ 2. print('Rzucę monetą 1000 razy. Zgadnij ile razy wypadnie orzeł. (Naciśnij enter by rozpocząć)')
+ 3. input()
+ 4. flips = 0
+ 5. heads = 0
+ 6. while flips < 1000:
+ 7.     if random.randint(0, 1) == 1:
+ 8.         heads = heads + 1
+ 9.     flips = flips + 1
+10.
+11.     if flips == 900:
+12.         print('900 rzutów i orzeł wypadł ' + str(heads) + ' razy.')
+13.     if flips == 100:
+14.         print('Mamy 100 rzutów, jak na razie orzeł wypadł ' + str(heads) + ' razy.')
+15.     if flips == 500:
+16.         print('Połowa za nami, a orzeł wypadł ' + str(heads) + ' razy.')
+17.
+18. print()
+19. print('Na 1000 rzutów, orzeł wypadł ' + str(heads) + ' razy!')
+20. print('Byłeś bliski?')
+
+Program działa całkiem szybko. Więcej czasu spędził czekając, aż użytkownik wciśnie ENTER, niż na wykonywanie rzutów monetą. Powiedzmy że chcesz zobaczyć rzuty monetą jeden po drugim. W oknie interaktywnej powłoki kliknij na Debug ► Debugger by uruchomić okno Debug Control. Teraz wciśnij F5, by uruchomić program.
+
+Program startuje w odpliskwiaczu na linii 1. W oknie Debug Control naciśnij Step trzy razy by wykonać pierwsze trzy linie (czyki linie 1, 2 i 3). Zauważysz, że przyciski zostały wyłączone ponieważ wywołano input() i powłoka interaktywna czaka, że użytkownik coś wpisze. Kliknij na oknie interaktywnej powłoki i wciśnij ENTER. (Upewnij się, że kliknąłeś pod tekstem w oknie insteraktywnej powłoki, bo inaczej IDLE może nie otrzymać tego, co wpisujesz na klawiaturze.)
+
+Możesz kliknąć Step parę razy, ale zobaczysz, że przejście przez cały program potrwa dosyć długo. Zamiast tego ustaw punkt zatrzymania na liniach 12, 14 i 16. Edytor plikowy podświetli je jak pokazano na rysunku 7-6.
+
+Rysunek 7-6: Ustawiona trzy punkty zatrzymania.
+
+Po ustawieniu punktów zatrzymania kliknij Go w oknie Debug Control. Program zadziała z normalną prędkością aż dotrze do następnego punktu zatrzymania. Kiedy flip ma wartość 100, warunek dla dyrektywy if w linii 13 jest spełniony. To sprawia, że wykonana zostanie linia 14  (gdzie ustawiliśmy punkt zatrzymania), co sprawi, że odpluskwiacz zatrzyma program i przejmie kontrolę. Spójrz w okno Debug Control w sekcję Globals i sprawdź warości w zmiennych flips i heads.
+
+Ponownie kliknij Go i program wznowi pracę do momentu dotarcia do następnego punktu zatrzymania w linii 16. Ponownie sprawdź jak zmieniły się wartości w zmienneych flips i heads.
+
+Jeśli pownownie klikniesz Go, wykonanie będzie kontynuowane do osiągnięcia kolejnego punktu zatrzymania, który jest w linii 12.
+
+Podsumowanie
+
+Pisanie programów to tylko pierwszy krok w programowaniu. Kolejnym krokiem jest upewnienie się, że napisany kod poprawnie działa. Odpluskwiacze pozwalają na krokowe przechodzenie kodu linia po linii. Możesz sprawdzać kolejność wykonywania linii kodu i wartości zapisane w zmiennych. Gdy jest to zbyt wolne możesz ustawiać punkty zatrzymania, by odpluskwiacz zatrzymywał się tylko w liniach które chcesz sprawdzić.
+
+Użycie odpluskwiacza jest też dobrym sposobem na zrozumienie tego, co robi program. Choć w książce tej każdy kod gry jest wytłumaczony, to odpluskwiacz może pomóc w samodzielnym, głębszym zrozumieniu kodu.

@@ -2,13 +2,16 @@ Python, odmieniamy: Pythona, Pythonem, Pythonie itd
 
 backslash, odwrócony ukośnik
 click, kliknij
+debugger, odpluskiwacz
 download, pobranie
 Evaluation, Obliczanie, wyliczanie
 expression, wyrażenie
 Figure, Rysunek
 file, plik
 run, uruchom
+scope, zasięg
 shell, powłoka
 slash, ukośnik
 statement, dyrektywa
+stepping into, wchodzenie do (debugger)
 string, napis
