@@ -1,0 +1,162 @@
+    Rozdział 5
+    ŻARCIKI
+
+Tematy omówione w tym rozdziale:
+
+•   Użycie słowa kluczowego end jako argumentu print(), by nie robić nowych linii
+•   Znaki cytowania
+•   Użycie pojedynczych i podwójnych apostrofów dla napisów
+
+Więcej o funkcji print()
+
+Większość gier w tej książce używa prostych napisów jako danych wejściowych i wyjściowych. Dane wejściowe są wpisywane przez użytkownika na klawiaturze. Dane wyjściowe są wyświetlane na monitorze. W Pythonie do wyświetlania danych tekstowych używana jest funkcja print(). Ale jest jeszcze trochę rzeczy do poznania w zakresie tego jak w Pythonie działają napisy i funkcja print().
+
+Ten rozdział opowie użytkownikowi kilka żarcików.
+
+Przykładowe uruchomienie Żarcików
+
+Co kłótliwy człowiek robi w pralce?
+Spiera się.
+Co powiedział chemik jak zjadł zimny brom??
+Chemik powiedział 'Br'!
+Puk, puk.
+Kto tam?
+Przerywająca krowa.
+Przerywająca krowa? O co-Muu!
+
+Kody źródłowe żarcików (jokes.py)
+
+Wpisz następujący kod w edytorze tekstowym i zapisz to jako jokes.py.
+
+WAŻNE! Programy w tej książce uruchamiają się tylko z Pythonem 3, a nie z Pythonem 2. Kiedy uruchomi się okno IDLE, to w belce tytułowej pojawi się napis w stylu “Python 3.4.0”. Jeśli masz zainstalowanego Pythona 2, to możesz także zainstalować Pythona 3. Aby go pobrać odwiedź https://python.org/download/.
+
+Jeśli po wpisaniu tych kodów dostaniesz komunikaty o błędach, to porównaj to z kodem z książki za pomocą narzędzia pokazującego różnice na stronie http://invpy.com/diff/jokes.
+
+jokes.py
+
+ 1. print('Co kłótliwy człowiek robi w pralce?')
+ 2. input()
+ 3. print('Spiera się.')
+ 4. print()
+ 5. print('Co powiedział chemik jak zjadł zimny brom??')
+ 6. input()
+ 7. print('Chemik powiedział \'Br\'!')
+ 8. print()
+ 9. print('Puk, puk.')
+10. input()
+11. print("Kto tam?")
+12. input()
+13. print('Przerywająca krowa.')
+14. input()
+15. print('Przerywająca krowa? O co', end='')
+16. print('-Muu!')
+
+Nie martw się jeśli nie rozumiesz całego kodu. Po prostu zapisz i uruchom program. Pamiętaj, że jeśli twój program ma błędy, to możesz użyć narzędzia do porównywania kodu ze strony http://invpy.com/chap5.
+
+Jak ten kod działa
+
+ 1. print('Co kłótliwy człowiek robi w pralce?')
+ 2. input()
+ 3. print('Spiera się.')
+ 4. print()
+
+Linie od 1 do 4 trzykrotnie wywołują funkcję print(). Nie chcesz, by gracz od razu poznał odpowiedź na żartobliwe pytania, więc po pierwszym print() jest wywołanie funkcji input(). Gracz może odczytać pierwszą linię, nacisnąć Enter i odczytać odpowiedź.
+
+Użytkownik nadal może wpisać coś i nacisnąć Enter, ale zwrócony napis nie jest zapisywany do żadnej zmiennej. Program po prostu o tym zapomni i przejdzie do kolejnej linii kodu.
+
+Ostatnie wywołanie funkcji print() nie ma żadnego argumentu. To oznacza, by program wypisał pustą linię. Puste linie są przydatne by napisy nie zlewały się na ekranie.
+
+Znaki cytowania
+
+ 5. print('Co powiedział chemik jak zjadł zimny brom??')
+ 6. input()
+ 7. print('Chemik powiedział \'Br\'!')
+ 8. print()
+
+W drugim wywołaniu print() znajdziemy znak odwróconego ukośnika (ang. backslash) przez znakiem oznaczającym początek napisu (to jest pojedynczego apostrofu). Zwróć uwagę, że \ jest odwróconym ukośnikiem, a / jest ukośnikiem (ang. forward slash). Odrócony ukośnik oznacza, że litera za nim jest znakiem cytowania (ang. escape character). Znak cytowania pozwala wypisywać znaki które są trudne do wpowadzenia w kodach źródłowych. W tym wywołaniu print() znakiem cytowania jest pojedynczy apostrof.
+
+Znak cytowania (odwrócony ukośnik) przed znakiem pojedynczego apostrofu jest, by Python nie traktował pojedynczego apostrofu jako zakończenia napisu. Ten apostrof jest częścią napisu. Zacytowany pojedynczy apostrof mówi Pythonowi by ten apostrof potraktować dosłownie jako część nappisu, a nie oznaczenie końca wartości napisowej.
+
+Inne znaki cytowania
+
+Co zrobić jeśli chcesz wyświetlić odwrócony ukośnik? Ta linia kody nie zadziała:
+
+>>> print('Odleciał zielono\turkusowym śmigłowcem.')
+
+Te wywołanie funkcji print() function powinno dać:
+
+Odleciał zielono    urkusowym śmigłowcem.
+
+Dzieje się tak ponieważ “t” w “turkusowym” zostało potraktowane jako znak cytowania, ponieważ było poprzedzone odwróconym ukosnikiem. Cytowany znak t symuluje naciśnięcie klawisza Tab na twojej klawiaturze. Cytowanie jest tu potrzebne, gdyż w napisach są znaki jakich nie można wprowadzić z klawiatury.
+
+Zamiast tego spróbuj z linią:
+
+>>> print('Odleciał zielono\\turkusowym śmigłowcem.')
+Odleciał zielono\turkusowym śmigłowcem.
+
+Tabela 5-1 pokazuje listę znaków cytowania w Pythonie.
+
+Table 5-1: Znaki cytowania
+Znak cytowania          Co zostanie wypisane
+\\                      Odwrócony ukośnik (\)
+\'                      Pojedynczy apostrof (')
+\"                      Podwójny apostrof (")
+\n                      Nowa linia
+\t                      Tabulacja
+
+
+
+Pojedyncze i podwójne apostrofy
+
+W Pythonie napisy nie muszą być ograniczone pojedynczymi apostrofami. Można także użyć podwójnych apostrofów. Te dwie linie wypisują ten sam napis:
+
+>>> print('Witaj świecie')
+Witaj świecie
+>>> print("Witaj świecie")
+Witaj świecie
+
+Nie można jednak mieszać róznych typów apostrofów. Próba wykonania tej linii skutkuje błędem:
+
+>>> print('Witaj świecie")
+SyntaxError: EOL while scanning single-quoted string
+(Błąd składni: koniec linii podczas szukania końca napisu w pojedynczych apostrofach)
+
+Lubię używać pojedynczych apostrofów, bo nie trzeba naciskać Shift by go uzyskać. Łatwiej go napisać, a Pythonowi to i tak wszystko jedno.
+
+Tak jak trzeba używać znakóœ cytowania \' by uzyskać pojedynczy apostrof w napisie otoczonym pojedynczymi aostrofami, taj potrzebujesz znaku cytowania \" by uzyskać podwójny apotrof w napisie ograniczonym podwójnymi apostrofami. Spójrz na te dwie linie:
+
+>>> print('Poprosiłem kolegę, by pożyczył mi swojego \'Mustanga\' na tydzień. Odpowiedział: "Jasne".')
+
+Poprosiłem kolegę, by pożyczył mi swojego 'Mustanga' na tydzień. Odpowiedział: "Jasne".
+
+>>> print("A ja na to: \"Nie mogę uwierzyć, że pożyczyłeś mi swoją bryczkę\".")
+
+A ja na to: "Nie mogę uwierzyć, że pożyczyłeś mi swoją bryczkę".
+
+W napisach ograniczonych pojedynczymi apostrofami nie musisz cytować podwójnych apostroów, a w napisach w podwójnych apostrofach nie musisz cytować pojedynczych apostrofów. Interpreter Pythona jest wystarczająco sprytny by wiedzieć, że jeśli napis zaczyna sie od danego typu apostrofu, to inny typ apostrofu nie oznacza koca napisu.
+
+Agrument kluczowy end
+
+ 9. print('Puk, puk.')
+10. input()
+11. print("Kto tam?")
+12. input()
+13. print('Przerywająca krowa.')
+14. input()
+15. print('Przerywająca krowa? O co', end='')
+16. print('-Muu!')
+
+Zauważyłęś drugi parametr w funkcji print() w linii 15? Normalnie pront() dodaje znak nowej linii po napisie jaki wypisuje. Dlatego też wywołanie samego print() wypisze jedynie nową linię. Ale funkcja print() może mieć drugi, opcjonalny parametr (którego nazwa to  “end”.)
+
+Pusty napis jaki przekazaliśmy jest nazywany argumentem kluczowym. Ten parametr ma swoją nazwę: "end" i aby go przekazać trzeba wpisać end=.
+
+Przekazując pusty napis jako end do funkcji print() sprawiamy, że funkcja ta ne doda na końcy napisu znaku nowej linii, ale zamiast tego doda pusty napis. Dlatego właśnie '-Muu!' pojawia się w poprzedniej linii, a nie w swojej własnej, nowej linii. Nie było znaku końca linii po napisie 'Przerywająca krowa? O co'.
+
+Podsumowanie
+
+Ten rozdział pokazał różne warianty użycia funkcji print(). Znaki cytowania są używane dla znaków któ©e są trudne, lub niemożliwe do wpisania za pomocą klawiatury. Znaki cytowania są wstawiane do napisów za pomocą odwróconego ukośnika (ang. backslash) \ po którym wpisujemy pojedynczą literę znaku cytowanego. Przykładowo \n oznacza znak nowj linii. Aby do napisu wstawić odwrócony ukośnik należy go zacytować używając \\.
+
+Funkcja print() automatycznie dodaje znak nowej linii do końca napisu jaki wypisuje na ekranie. W większości przypadków jest to pomocny skrót. Ale czasem nie chcesz tej nowej linii. Aby to zmienić możesz przekazać argument kluczowy end z pustym napisem. Przykładowo by wypisać “spam” bez znaku nowej linii należy wywołać print('spam', end='').
+
+Dodając ten poziom kontroli do napisów wyświetlanych na ekranie możesz łatwiej przystosowywać ich wyświetlania do potrzeb
+

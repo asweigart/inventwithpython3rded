@@ -17,11 +17,11 @@ Ejecución de Muestra de Chistes
 
 ¿Qué sale de la cruza entre un mono y un pato?
 ¡Un monopatín!
-¿Qué le dijo un pez a otro pez?
-¡Nada!
+¿Porqué vuelan los pájaros pa'l sur?
+¡Porque caminando tardarían muchísimo!
 ¿En qué se parecen una familia, un bombero y un barco?
 No sé... ¿en qué se parecen?
-'En que el bombero y el barco tienen casco.'
+En que el bombero y el barco tienen casco.
 ¿Y la familia? -Bien, gracias.
 
 
@@ -61,7 +61,7 @@ Cómo Funciona el Código
  3. print('¡Un monopatín!')
  4. print()
 
-Las líneas de la 1 a la 4 tienen tres llamadas a la función print(). No quieres que el jugador lea de inmediato el remate del chiste, así que hay una llamada a la función print() después del primer print(). El jugador puede leer la primera línea, presionar Intro, y entonces leer el remate del chiste.
+Las líneas de la 1 a la 4 tienen tres llamadas a la función print(). No quieres que el jugador lea de inmediato el remate del chiste, así que hay una llamada a la función input() después del primer print(). El jugador puede leer la primera línea, presionar Intro, y entonces leer el remate del chiste.
 
 El usuario todavía puede escribir una cadena y pulsar Intro, pero esta cadena devuelta no está siendo almacenada en ninguna variable. El programa tan solo lo olvidará y se moverá a la siguiente línea de código.
 

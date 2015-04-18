@@ -1,0 +1,491 @@
+  Kapitel 6
+  DRACHENREICH
+
+In diesem Kapitel behandelte Themen:
+
+• Die Funktion time.sleep()
+• Das Schlüsselwort return
+• Eigene Funktionen mit dem Schlüsselwort def schreiben
+• Die logischen Operatoren and, or und not
+• Wahrheitstabellen
+• Geltungsbereich von Variablen (global und lokal)
+• Parameter und Argumente
+• Flussdiagramme
+
+Funktionen
+
+Wir haben bereits einige Funktionen benutzt: print(), input(), random.randint(), str(), und int(). In diesem Kapitel werden wir unsere eigenen Funktionen schreiben. Funktionen sind eine Art Mini-Programme innerhalb von Programmen.
+
+Funktionen erlauben es, eine Befehlsabfolge wiederzuverwenden, ohne den dazugehörigen Quellcode mehrmals zu tippen. Da eine Funktion nur einmal definiert werden braucht und anschließend beliebig oft aufgerufen werden kann, spart sie einem nicht nur Tipp-Arbeit, sondern erleichtert auch das Ändern von Programmen/Beseitigen von Fehlern (der Code braucht nur an einer Stelle geändert werden).
+
+Das Spiel, das wir in diesem Kapitel erschaffen, heißt “Drachenreich”. Der Spieler muss sich zwischen zwei Höhlen entscheiden, in denen entweder Schätze oder Verderben warten.
+
+So spielt man Drachenreich
+
+In diesem Spiel findet sich der Spieler in einem Reich voller Drachen wieder. Die Drachen leben in Höhlen und behüten große Schätze. Einige Drachen sind freundlich und teilen ihre Beute mit dem Spieler. Andere Drachen fressen jeden, der ihre Höhle betritt, auf. Der Spieler steht vor zwei Höhleneingängen; einer führt zu einem freundlichen Drachen, der andere zu einem hungrigen. Er muss sich für eine der Höhlen entscheiden.
+
+Öffne ein neues, leeres Editor-Fenster, indem du auf File ► New Window klickst. Tippe den Quellcode ab und speichere ihn unter drachen.py ab. Dann führe das Programm durch einen Druck auf F5 aus.
+
+Probelauf von Drachenreich
+
+Du bist ein einem Land voller Drachen. Vor dir
+siehst du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,
+der seine Schätze mit dir teilt. Der andere Drache
+ist gierig und hungrig, und wird dich bei Sichtkontakt auffressen.
+In welche Höhle wirst du gehen? (1 oder 2)
+1
+Du näherst dich der Höhle...
+Es ist dunkel und gruselig...
+Ein großer Drache springt vor deine Füße! Er öffnet sein Maul und...
+Verschlingt dich in einem Mal!
+Möchtest du noch einmal spielen? (ja oder nein)
+nein
+
+Der Quellcode zu Drachenreich
+
+WICHTIGER HINWEIS! Die Programme in diesem Buch laufen nur mit Python 3, nicht Python 2. Die Titelleiste des IDLE-Fensters verrät dir, welche Version installiert ist. Falls es Python 2 ist, kannst du Python 3 nebenher installieren. Um Python 3 herunterzuladen, besuche https://python.org/download/.
+
+Falls du Fehler nach dem Abtippen des Codes erhältst, vergleiche ihn mit dem Code im Buch mit Hilfe des Diff-Werkzeuges unter http://invpy.com/de/diff/dragon.
+
+drachen.py
+
+ 1. import random
+ 2. import time
+ 3.
+ 4. def zeigeEinfuehrungAn():
+ 5.     print('Du bist ein einem Land voller Drachen. Vor dir')
+ 6.     print('siehst du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,')
+ 7.     print('der seine Schätze mit dir teilt. Der andere Drache')
+ 8.     print('ist gierig und hungrig, und wird dich bei Sichtkontakt auffressen.')
+ 9.     print()
+10.
+11. def sucheHoehleAus():
+12.     hoehle = ''
+13.     while hoehle != '1' and hoehle != '2':
+14.         print('In welche Höhle wirst du gehen? (1 oder 2)')
+15.         hoehle = input()
+16.
+17.     return hoehle
+18.
+19. def ueberpruefeHoehle(ausgewaehlteHoehle):
+20.     print('Du näherst dich der Höhle...')
+21.     time.sleep(2)
+22.     print('Es ist dunkel und gruselig...')
+23.     time.sleep(2)
+24.     print('Ein großer Drache spring vor deine Füße! Er öffnet sein Maul und...')
+25.     print()
+26.     time.sleep(2)
+27.
+28.     freundlicheHoehle = random.randint(1, 2)
+29.
+30.     if ausgewaehlteHoehle == str(freundlicheHoehle):
+31.         print('Gibt dir seinen Schatz!')
+32.     else:
+33.         print('Verschlingt dich in einem Mal!')
+34.
+35. spieleNochEinmal = 'ja'
+36. while spieleNochEinmal == 'ja' or spieleNochEinmal == 'j':
+37.
+38.     zeigeEinfuehrungAn()
+39.
+40.     hoehlenNummer = sucheHoehleAus()
+41.
+42.     ueberpruefeHoehle(hoehlenNummer)
+43.
+44.     print('Möchtest du noch einmal spielen? (ja oder nein)')
+45.     spieleNochEinmal = input()
+
+Wie der Code funktioniert
+
+Schauen wir uns den Quellcode genauer an.
+
+ 1. import random
+ 2. import time
+
+Dieses Programm importiert zwei Module. Das Modul random beinhaltet die Funktion random.randint(), wie sie schon im Spiel “Rate die Zahl” verwendet wurde. Wir benötigen außerdem Funktionen zur zeitabhängigen Programmsteuerung, weshalb wir in Zeile 2 das Modul time importieren.
+
+Der def-Ausdruck
+
+ 4. def zeigeEinfuehrungAn():
+ 5.     print('Du bist ein einem Land voller Drachen. Vor dir')
+ 6.     print('siehst du zwei Höhlen. In einer Höhle haust ein freundlicher Drache,')
+ 7.     print('der seine Schätze mit dir teilt. Der andere Drache')
+ 8.     print('ist gierig und hungrig, und wird dich bei Sichtkontakt auffressen.')
+ 9.     print()
+
+Zeile 4 ist ein def-Ausdruck. Der def-Ausdruck definiert eine neue Funktion, die später im Programm aufgerufen werden kann. Eine Funktion zu definieren heißt, die Anweisungen, aus denen sie besteht, in ihrem def-Block zu definieren. Eine Funktion aufzurufen heißt, die Anweisungen in ihrem def-Block auszuführen.
+
+Abbildung 6-1 zeigt die Bestandteile eines def-Ausdrucks. Er besteht aus dem Schlüsselwort def, gefolgt vom Funktionsnamen, Klammern, und einem Doppelpunkt. Der Block nach dem def-Ausdruck wird als def-Block bezeichnet.
+
+Abbildung 6-1: Bestandteile eines def-Ausdrucks.
+
+Der def-Ausdruck selbst weist Python nicht an, Code auszuführen. Er definiert lediglich, welcher Code im Falle eines Funktionsaufrufes ausgeführt werden soll. Wenn die Programm-Ausführung auf einen def-Ausdruck trifft, überspringt sie den gesamten def-Block und fährt in der Zeile darunter fort.
+
+Wenn aber zeigeEinfuehrungAn() aufgerufen wird (wie dies z.B. in Zeile 38 der Fall ist), springt die Programm-Ausführung zur ersten Zeile in der Funktion zeigeEinfuehrungAn().
+
+38.     zeigeEinfuehrungAn()
+
+Dann werden alle print()-Aufrufe ausgeführt und die Einführung “Du bist ein einem Land voller Drachen...” dargestellt.
+
+Wo Funktionsdefinitionen platziert werden sollten
+
+Eine Funktionsdefinition muss vor ihrem Aufruf stehen. Genauso wie einer Variablen ein Wert zugewiesen werden muss, bevor diese verwendet werden kann. Steht die Funktionsdefinition nach dem Aufruf, führt dies zu einem Fehler. Schauen wir uns z.B. folgenden Code an:
+
+sagAufWiedersehen()
+
+def sagAufWiedersehen():
+    print('Auf Wiedersehen!')
+Beim Versuch dieses Programm auszuführen, gibt Python eine Fehlermeldung ähnlich der folgenden aus:
+Traceback (most recent call last):
+  File "C:\Python34\spam.py", line 1, in <module>
+sagAufWiedersehen()
+NameError: name 'sagAufWiedersehen' is not defined
+
+Dieser Fehler kann einfach behoben werden, indem man die Funktionsdefinition vor den Aufruf schreibt:
+
+def sagAufWiedersehen():
+    print('Auf Wiedersehen!')
+
+sagAufWiedersehen()
+
+Definition der sucheHoehleAus()-Funktion
+
+11. def sucheHoehleAus():
+
+Zeile 11 definiert eine weitere Funktion, genannt sucheHoehleAus(). Diese Funktion fragt den Spieler, in welche Höhle er gehen möchte (entweder 1 oder 2).
+
+12.     hoehle = ''
+13.     while hoehle != '1' and hoehle != '2':
+
+Diese Funktion muss sicherstellen, dass der Spieler 1 oder 2 eintippt und nichts anderes. Eine Schleife fragt den Spieler immer wieder, bis dieser eine der zwei gültigen Antworten eingibt. Diesen Vorgang bezeichnet man als Eingabe-Validierung.
+
+Zeile 12 deklariert eine neue Variable namens hoehle und weist ihr eine leere Zeichenkette zu. In Zeile 13 beginnt eine while-Schleife. Die Bedingung enthält einen uns bisher unbekannten Operator namens and. Genauso wie - oder * mathematische Operatoren sind, und == oder != Vergleichsoperatoren, ist and ein boolescher Operator (manchmal auch logischer Operator oder Logikoperator genannt).
+
+Boolesche Operatoren
+
+Boolesche Algebra beschäftigt sich mit Dingen, die wahr oder falsch (auf Englisch “true” und “false”) sind. Boolesche Operatoren vergleichen Werte und werten sie zu einem einzigen Wahrheitswert aus.
+
+Denken wir an den Satz “Katzen haben Schnurrhaare und Hunde haben Schwänze.” “Katzen haben Schnurrhaare” ist wahr und “Hunde haben Schwänze” ist auch wahr, also ist der gesamte Satz “Katzen haben Schnurrhaare und Hunde haben Schwänze” ebenfalls wahr.
+
+Aber der Satz “Katzen haben Schnurrhaare und Hunde haben Flügel” ist falsch. Obwohl “Katzen haben Schnurrhaare” wahr ist, ist “Hunde haben Flügel” falsch. In der Booleschen Algebra ist eine Aussage, die sich aus zwei durch den and-Operator verknüpften Teilaussagen zusammensetzt, nur dann wahr, wenn beide Teilaussagen ebenfalls wahr sind. Ist eine oder sind beide Teilaussagen falsch, so ist die gesamte Aussage ebenfalls falsch.
+
+Die Operatoren and und or
+
+Der Operator and in Python entspricht dem Operator and in der Booleschen Algebra, wie er oben beschrieben ist: Wenn die Wahrheitswerte auf beiden Seiten des and-Operators wahr sind, dann wird der gesamte Ausdruck zu wahr ausgewertet. Ist einer oder sind beide Wahrheitswerte falsch, wird der gesamte Ausdruck zu falsch ausgewertet.
+
+Versuche die folgenden Ausdrücke, die den Operator and enthalten, in den interaktiven Kommandozeileninterpreter einzugeben:
+
+>>> True and True
+True
+>>> True and False
+False
+>>> False and True
+False
+>>> False and False
+False
+>>> spam = "Hallo"
+>>> 10 < 20 and spam == 'Hallo'
+True
+
+Der Operator or vergleicht zwei Wahrheitswerte und wertet diese genau dann zu wahr aus, wenn mindestens einer der beiden Werte wahr ist, falsch sonst.
+
+Versuche folgende Ausdrücke in den interaktiven Kommandozeileninterpreter einzugeben:
+
+>>> True or True
+True
+>>> True or False
+True
+>>> False or True
+True
+>>> False or False
+False
+>>> 10 > 20 or 20 > 10
+True
+
+Der Operator not
+
+Der Operator not arbeitet auf nur einem Wahrheitswert, anstatt zwei zu einem zu kombinieren. Der not-Operator kehrt einen Wahrheitswert in sein Gegenteil um. Der Ausdruck not True wird zu False ausgewertet und not False wird zu True ausgewertet.
+
+Versuche folgende Ausdrücke in den interaktiven Kommandozeileninterpreter einzugeben:
+
+>>> not True
+False
+>>> not False
+True
+>>> not ('schwarz' == 'weiss')
+True
+
+Wahrheitstabellen
+
+Solltest du jemals vergessen, wie die booleschen Operatoren funktionieren, kannst du diese Wahrheitstabellen zurate ziehen:
+
+Tabelle 6-1: Die Wahrheitstabelle des Operators and
+A and B ist  Gesamter Ausdruck
+True  and True  ist  True
+True  and False ist  False
+False and True  ist  False
+False and False ist  False
+
+Tabelle 6-2: Die Wahrheitstabelle des Operators or.
+A or  B ist  Gesamter Ausdruck
+True  or  True  ist  True
+True  or  False ist  True
+False or  True  ist  True
+False or  False ist  False
+
+Tabelle 6-3: Die Wahrheitstabelle des Operators not.
+not A ist  Gesamter Ausdruck
+not True  ist  False
+not False ist  True
+
+Boolesche Operatoren auswerten
+
+Sehen wir uns noch einmal Zeile 13 an:
+
+13.     while hoehle != '1' and hoehle != '2':
+
+Die gesamte Bedingung besteht aus zwei durch den and-Operator verknüpften Teilbedingungen. Damit ist die gesamte Bedingung nur dann wahr, wenn beide Teilbedingungen wahr sind.
+
+Wenn die Bedingung in der while-Anweisung das erste Mal überprüft wird, hat hoehle noch seinen Initialwert ''. Dieser ist ungleich '1' und ungleich '2', sodass beide Teilbedingungen zu True ausgewertet werden.
+
+True and True ergibt dann unseren Wahrheitstabellen zufolge True. Die Programm-Ausführung begibt sich in den while-Block.
+
+Hier ist die Auswertung der while-Bedingung Schritt für Schritt veranschaulicht (unter der Annahme, dass der Wert von hoehle die leere Zeichenkette ist):
+
+while hoehle != '1' and hoehle != '2':
+					 ▼
+while   ''   != '1' and hoehle != '2':
+					 ▼
+while       True    and hoehle != '2':
+					 ▼
+while       True    and   ''   != '2':
+					 ▼
+while       True    and       True:
+					 ▼
+while              True:
+
+Benutzereingaben abfragen
+
+13.     while hoehle != '1' and hoehle != '2':
+14.         print('In welche Höhle wirst du gehen? (1 oder 2)')
+15.         hoehle = input()
+
+Zeile 14 fragt den Spieler, in welche Höhle er gehen möchte. Zeile 15 lässt den Spieler eine Antwort eingeben und ENTER drücken. Diese Antwort wird in hoehle gespeichert. Die Programm-Ausführung springt zurück zur while-Anweisung und überprüft die Bedingung erneut.
+
+Falls der Spieler 1 oder 2 eingegeben hat, dann wird hoehle entweder den Wert '1' oder '2' haben (da input() immer Zeichenketten zurückgibt). Dies macht die Bedingung falsch und die Programm-Ausführung fährt nach der while-Schleife fort. Hier ist die Auswertung der while-Bedingung, unter der Annahme, dass der Benutzer '1' eingegeben hat, Schritt für Schritt veranschaulicht:
+
+while hoehle != '1' and hoehle != '2':
+					 ▼
+while  '1'   != '1' and hoehle != '2':
+					 ▼
+while      False    and hoehle != '2':
+					 ▼
+while      False    and  '1'   != '2':
+					 ▼
+while      False    and       True:
+					 ▼
+while              False:
+
+Hätte der Spieler hingegen 3, 4, HALLO oder einen anderen ungültigen Wert eingegeben, dann wäre die Bedingung wahr. Das Programm fragt den Spieler so lange, bis dieser 1 oder 2 eintippt. Dies stellt sicher, dass wenn die Programm-Ausführung nach dem while-Block fortfährt, hoehle einen gültigen Wert besitzt.
+
+Rückgabe-Werte
+
+17.     return hoehle
+
+Dies ist ein return-Ausdruck. Er tritt nur innerhalb von def-Blöcken auf. Genauso wie die input()-Funktion eine Zeichenkette zurückgibt, die der Spieler eingetippt hat, gibt die sucheHoehleAus()-Funktion den in hoehle gespeicherten Wert zurück (entweder '1' oder '2').
+
+Wird eine return-Anweisung ausgeführt, springt die Programm-Ausführung sofort aus dem def-Block (ähnlich wie sie bei break aus einem while-Block springt) heraus und fährt an Stelle des Funktionsaufrufes fort. Der Funktionsaufruf selbst nimmt den Wert des Rückgabe-Wertes an.
+
+Schauen wir uns Zeile 40 an:
+
+40.     hoehlenNummer = sucheHoehleAus()
+
+Wenn die Funktion sucheHoehleAus() in Zeile 40 aufgerufen wird, wird ihr Rückgabe-Wert in der Variablen hoehlenNummer gespeichert. Die while-Schleife garantiert, dass sucheHoehleAus() nur die Werte '1' oder '2' zurückgibt.
+
+Wenn also Zeile 17 eine Zeichenkette zurückgibt, dann nimmt der Funktionsaufruf in Zeile 40 diese Zeichenkette als Wert an, der dann in hoehlenNummer gespeichert wird. Dies ist mit “Der Funktionsaufruf selbst nimmt den Wert des Rückgabe-Wertes an” gemeint.
+
+Globale und lokale Geltungsbereiche
+
+Globale Variablen verlieren ihre Gültigkeit nach Beendigung eines Programms. Genauso verhält es sich mit lokalen Variablen und den Funktionen, in denen sie deklariert sind: Die Variablen werden mit dem Funktionsaufruf initialisiert und mit der Funktionsrückkehr zerstört. Vergiss nicht: Funktionen sind eine Art Mini-Programme innerhalb von Programmen.
+
+Wenn sich die Programm-Ausführung innerhalb einer Funktion befindet, können nur die lokalen Variablen dieser Funktion verändert werden, nicht aber globale Variablen oder lokale Variablen anderer Funktionen. Diese existieren nämlich in einem anderen Geltungsbereich. Jede Variable gehört entweder zum globalen Geltungsbereich, oder zum lokalen Geltungsbereich einer Funktion.
+
+Der Geltungsbereich außerhalb aller Funktionen heißt globaler Geltungsbereich. Der Geltungsbereich innerhalb einer Funktion (während sich die Programm-Ausführung in ihr befindet) heißt lokaler Geltungsbereich.
+
+Das gesamte Programm hat nur einen globalen Geltungsbereich. Variablen, die im globalen Geltungsbereich definiert sind, können außerhalb und innerhalb von Funktionen gelesen werden, sie können aber nur außerhalb von Funktionen verändert werden. Variablen, die innerhalb einer Funktion deklariert sind, können nur in dieser gelesen und verändert werden.
+
+Man kann globale Variablen in lokalen Geltungsbereichen lesen, sie jedoch nicht verändern. Versucht man es trotzdem, dann führt dies nicht zum gewünschten Effekt: Python erzeugt eine lokale Variable mit demselben Namen, anstatt den Wert der globalen Variable zu ändern. Es ist z.B. möglich, zwei Variablen namens spam gleichzeitig definiert zu haben, eine global, die andere lokal. In Python sind dies zwei verschiedene Variablen.
+
+Dieses Beispiel veranschaulicht, was passiert, wenn man versucht den Wert einer globalen Variablen innerhalb eines lokalen Geltungsbereiches zu ändern. Die Kommentare beschreiben, was im Detail passiert:
+
+def speck():
+    # Wir deklarieren eine lokale Variable names "spam"
+	# anstelle den Wert der globalen Variablen "spam"
+	# zu ändern:
+    spam = 99
+    # Der Name "spam" bezieht sich nun auf die lokale
+    # Variable bis zum Ende dieser
+    # Funktion:
+    print(spam)    # 99
+
+spam = 42 # Eine globale Variable namens "spam":
+print(spam) # 42
+speck() # Aufruf der speck()-Funktion:
+# Die globale Variable wurde in speck() nicht verändert:
+print(spam)    # 42
+
+Dieser Code produziert die folgende Ausgabe:
+
+42
+99
+42
+
+Der Ort, an dem eine Variable deklariert wird, bestimmt ihren Geltungsbereich. Wenn Drachenreich folgende Zeile ausführt:
+
+12.     hoehle = ''
+
+...ist die Variable hoehle innerhalb der sucheHoehleAus()-Funktion deklariert. Das bedeutet, sie ist nur innerhalb dieser Funktion gültig. Sie wird vergessen, wenn sucheHoehleAus() endet, und wird beim nächsten Aufruf von sucheHoehleAus() neu deklariert. Der Wert von lokalen Variablen bleibt zwischen Funktionsaufrufen nicht erhalten.
+
+Parameter
+
+19. def ueberpruefeHoehle(ausgewaehlteHoehle):
+
+Die nächste Funktion, die das Programm definiert, heißt ueberpruefeHoehle(). Beachte den Text ausgewaehlteHoehle zwischen den Klammern. Diest ist ein Parameter: eine lokale Variable, an die das beim Funktionsaufruf übergebene Argument gebunden wird.
+
+Vielleicht erinnerst du dich, dass du bei einigen Funktionsaufrufen wie str() oder randint() Argumente zwischen den Klammern übergeben hast:
+
+>>> str(5)
+'5'
+>>> random.randint(1, 20)
+14
+
+Das gleiche wirst du beim Funktionsaufruf von ueberpruefeHoehle() tun. Das Argument wird in einer neuen Variablen namens ausgewaehlteHoehle gespeichert. Diese Variablen nennt man Parameter.
+
+Als Beispiel folgt ein kurzes Programm, das die Definition von Funktionen mit Parametern veranschaulicht:
+
+def sagHallo(name):
+    print('Hallo, ' + name + '. Dein Name hat ' + str(len(name)) + ' Buchstaben.')
+
+sagHallo('Alice')
+sagHallo('Bob')
+spam = 'Carol'
+sagHallo(spam)
+
+Wenn du dieses Programm ausführst, sieht die Ausgabe wie folgt aus:
+
+Hallo, Alice. Dein Name hat 5 Buchstaben.
+Hallo, Bob. Dein Name hat 3 Buchstaben.
+Hallo, Carol. Dein Name hat 5 Buchstaben.
+
+Wenn du sagHallo() aufrufst, wird das Argument an den Parameter name gebunden. Parameter sind herkömmliche, lokale Variablen. Wie alle lokalen Variablen, werden sie zerstört, sobald die Funktion zurückkehrt.
+
+Den Spielausgang anzeigen
+
+Zurück zum Quellcode des Spiels:
+
+20.     print('Du näherst dich der Höhle...')
+21.     time.sleep(2)
+
+Das Modul time beinhaltet eine Funktion namens sleep(), die das Programm pausiert. Zeile 21 übergibt die Ganzzahl 2, sodass time.sleep() das Programm für 2 Sekunden pausiert.
+
+22.     print('Es ist dunkel und gruselig...')
+23.     time.sleep(2)
+
+Das Programm gibt weiteren Text aus und wartet erneut 2 Sekunden. Diese kurzen Pausen erzeugen Spannung um Spiel, was den ganzen Text auf einmal anzuzeigen nicht tun würde. Im Programm aus dem vorherigen Kapitel, Witze, hast du die input()-Funktion aufgerufen, um das Programm zu pausieren, bis der Spieler die ENTER-Taste drückt. In diesem Fall braucht der Spieler nichts zu drücken, außer ein paar Sekunden zu warten.
+24.     print('Ein großer Drache spring vor deine Füße! Er öffnet sein Maul und...')
+25.     print()
+26.     time.sleep(2)
+
+Was passiert als Nächstes? Und wie entscheidet das Programm, ob der Drache freundlich oder bösartig ist? Dies wird im nächsten Abschnitt erklärt.
+
+Entscheiden, welche Höhle den freundlichen Drachen beherbergt
+
+28.     freundlicheHoehle = random.randint(1, 2)
+
+Zeile 28 ruft die random.randint()-Funktion auf, die entweder 1 oder 2 zurückgibt. Dieser Ganzzahlwert wird in freundlicheHoehle gespeichert und repräsentiert die Höhle mit dem freundlichen Drachen.
+
+30.     if ausgewaehlteHoehle == str(freundlicheHoehle):
+31.          print('Gibt dir seinen Schatz!')
+
+Zeile 30 überprüft, ob die vom Spieler ausgewählte Höhle in der ausgewaehlteHoehle-Variablen ('1' oder '2') gleich der freundlichen Drachen-Höhle ist.
+
+Jedoch ist der Wert von freundlicheHoehle eine Ganzzahl, weil random.randint() Ganzzahlen zurückgibt. Man kann Zeichenketten und Ganzzahlen nicht mit dem ==-Operator vergleichen, weil dieser immer falsch zurückgeben würde. '1' ist ungleich 1 und '2' ist ungleich 2.
+
+Deswegen wird freundlicheHoehle and die str()-Funktion übergeben, die sie in eine Zeichenkette umwandelt. Nun haben beide Werte den gleichen Typ und können miteinander verglichen werden. Man hätte genauso gut folgenden Code verwenden können, um ausgewaehlteHoehle in eine Ganzzahl zu konvertieren:
+
+    if int(ausgewaehlteHoehle) == freundlicheHoehle:
+
+Falls die Bedingung wahr ist, informiert Zeile 31 den Spieler, dass er den Schatz gewonnen hat.
+
+32.     else:
+33.          print('Verschlingt dich in einem Mal!')
+
+Zeile 32 ist ein else-Ausdruck (zu Deutsch “sonst”). Der else-Ausdruck kann nur auf einen if-Block folgen. Der else-Block wird ausgeführt, falls die Bedingung des if-Ausdrucks falsch ist. Dies kann man sich wie folgt veranschaulichen: “Wenn diese Bedingung wahr ist, dann führe den if-Block aus, sonst führe den else-Block aus.”
+
+Merke dir, nach dem else-Schlüsselwort einen Doppelpunkt : zu schreiben.
+
+Wo der Hauptteil beginnt
+
+35. spieleNochEinmal = 'ja'
+36. while spieleNochEinmal == 'ja' or spieleNochEinmal == 'j':
+
+Zeile 35 ist die erste Zeile, die weder ein def-Ausdruck ist noch innerhalb eines def-Blocks steht. Hier beginnt der Hauptabschnitt unseres Programms. Die vorherigen def-Ausdrücke haben Funktionen lediglich definiert, sie jedoch nicht ausgeführt.
+
+Die Zeilen 35 und 36 definieren eine Schleife, die den Rest des Spielcodes enthält. Am Ende des Spiels kann der Spieler entscheiden, ob er nochmal spielen möchte. Falls ja, begibt sich die Programm-Ausführung zur Schleife und das gesamte Spiel läuft erneut ab. Falls nicht, wird die Bedingung der while-Schleife zu falsch ausgewertet und das Programm terminiert.
+
+Wenn die Programm-Ausführung den while-Ausdruck das erste Mal erreicht, hat die Variable spieleNochEinmal den Wert 'ja'. Das bedeutet, dass die Bedingung zu wahr ausgewertet wird. Das Spiel wird also mindestens einmal ausgeführt.
+
+Die Funktionen im Programm aufrufen
+
+38.     zeigeEinfuehrungAn()
+
+Zeile 38 ruft die zeigeEinfuehrungAn()-Funktion auf. Dies ist keine Python-Funktion, sondern unsere eigene, die wir in Zeile 4 definiert haben. Wenn diese Funktion aufgerufen wird, springt die Programm-Ausführung in die erste Zeile in der zeigeEinfuehrungAn()-Funktion in Zeile 5. Nachdem alle Zeilen innerhalb der Funktion abgearbeitet wurden, springt die Programm-Ausführung zurück zu Zeile 38 und fährt fort.
+
+40.     hoehlenNummer = sucheHoehleAus()
+
+Zeile 40 ruft ebenso eine Funktion auf, die wir definiert haben. Die Funktion sucheHoehleAus erlaubt dem Spieler die Höhle einzugeben, in die er gehen möchte.
+
+42.     ueberpruefeHoehle(hoehlenNummer)
+
+Zeile 42 ruft die Funktion ueberpruefeHoehle() auf und übergibt den in hoehlenNummer gespeicherten Wert als Argument. Die Programm-Ausführung springt in Zeile 20 und der in hoehlenNummer gespeicherte Wert wird in den Parameter ausgewaehlteHoehle innerhalb der ueberpruefeHoehle()-Funktion kopiert. Diese Funktion ist dafür verantwortlich entweder 'Gibt dir seinen Schatz!' oder 'Verschlingt dich in einem Mal!' anzuzeigen, je nachdem für welche Höhle sich der Spieler entschieden hat.
+
+Den Spieler fragen, ob er erneut spielen möchte
+
+44.     print('Möchtest du noch einmal spielen? (ja oder nein)')
+45.     spieleNochEinmal = input()
+
+Unabhängig davon, ob der Spieler gewinnt oder verliert, wird er gefragt, ob er nochmal spielen möchte. Die Variable spieleNochEinmal speichert die Auswahl des Spielers. Zeile 45 ist die letzte Zeile des while-Blocks. Das Programm springt zurück zu Zeile 36, um die Schleifen-Bedingung zu überprüfen: spieleNochEinmal == 'ja' or spieleNochEinmal == 'j'
+
+Gibt der Spieler 'ja' oder 'j' ein, dann wird die Schleife in Zeile 38 wieder betreten.
+
+Gibt der Spieler 'nein', 'n' oder etwas Unsinniges, wie 'Abraham Linconl' ein, dann wird die Bedingung falsch. Die Programm-Ausführung würde normalerweise nach dem while-Block fortfahren. Da es jedoch keine weiteren Zeilen nach dem while-Block gibt, terminiert das Programm stattdessen.
+
+Zu beachten: die Zeichenkette 'JA' ist ungleich der Zeichenkette 'ja'. Gibt der Spieler 'JA' ein, dann wird die Bedingung im while-Ausdruck falsch und das Programm terminiert trotzdem. Die Programme, die wir später im Buch kennen lernen werden, wissen dieses Problem zu vermeiden.
+
+du hast gerade dein zweites Spiel fertiggestellt! In Drachenreich hast du viel des Wissens aus dem Rate die Zahl-Spiel angewandt und ein paar neue Tricks dazugelernt. Falls du nicht alle Konzepte in diesem Programm verstanden hast, dann gehe noch einmal jede Codezeile durch und versuche den Quellcode zu verändern, um zu sehen, wie sich das Verhalten des Programms ändert.
+
+Im nächsten Kapitel werden wir kein Spiel erschaffen, sondern lernen, wie man IDLEs Debugger verwendet.
+
+Programmentwurf
+
+Drachenreich ist ein einfaches Spiel. Die anderen Spiele in diesem Buch fallen ein wenig komplexer aus. Oft hilft es, alles, was das Spiel oder Programm tun soll, niederzuschreiben, bevor man mit dem Schreiben des Codes beginnt. Diesen Vorgang nennt man “Programmentwurft”.
+
+Zum Beispiel kann es hilfreich sein ein Flussdiagramm zu zeichnen. Ein Flussdiagramm ist ein Bild, das jede mögliche Aktion zeigt, die in einem Spiel passieren kann und welche Aktionen zu welchen anderen Aktionen führen. Abbildung 6-2 ist ein Flussdiagramm zu Drachenreich.
+
+Um zu sehen, was im Spiel passiert, lege deinen Finger auf den “Start”-Kasten. Dann folge den Pfeilen von einem Kasten zum Nächsten. Dein Finger symbolisiert die Programm-Ausführung. Das Programm terminiert, wenn dein Finger den “Ende”-Kasten erreicht.
+
+Wenn du in den Kasten “Auf freundlichen oder hungrigen Drachen überprüfen” gelangst, kannst du zum Kasten “Spieler gewinnt” oder “Spieler verliert” gehen. Diese Gabelung bedeutet, dass das Programm verschiedene Dinge tun kann. Beide Pfade führen zum “Frage Spieler, ob er nochmal spielen möchte”-Kasten.
+
+Zusammenfassung
+
+Im Spiel Drachenreich hast du deine eigenen Funktionen geschrieben. Funktionen sind Mini-Programme innerhalb von Programmen. Der Code innerhalb einer Funktion wird ausgeführt, wenn diese aufgerufen wird. Das Aufteilen in Funktionen gliedert ein Programm in kleinere und einfacher zu verstehende Abschnitte.
+
+Argumente sind Werte, die in die Parameter einer Funktion zum Zeitpunkt ihres Aufrufs kopiert werden. Der Funktionsaufruf selbst nimmt den Wert des Rückgabe-Wertes an.
+
+Abbildung 6-2: Flussdiagramm zum Spiel Drachenreich.
+
+du hast ebenso vom Geltungsbereich von Variablen gelernt. Variablen, die innerhalb einer Funktion deklariert sind, existieren im lokalen Geltungsbereich, während Variablen, die außerhalb aller Funktionen deklariert sind, im globalen Geltungsbereich existieren. Auf lokale Variablen kann vom globalen Geltungsbereich aus nicht zugegriffen werden. Hat eine lokale Variable denselben Namen, wie eine globale Variable, so behandelt Python beide als separate Variablen. Änderungen an der lokalen Variablen haben keine Auswirkungen auf die globale.
+
+Variablen-Geltungsbereiche mögen kompliziert erscheinen, sind jedoch nützlich, um Programme in unabhängige Abschnitte zu gliedern. Da jede Funktion ihren eigenen lokalen Geltungsbereich besitzt, kannst du dir sicher sein, dass der Code in einer Funktion keine Fehler in anderen Funktionen verursacht.
+
+Fast jedes Programm benutzt Funktionen aufgrund ihrer Nützlichkeit. Indem du verstehst, wie Funktionen funktionieren, kannst du dir viel Tipparbeit ersparen und Fehler einfacher beheben.

@@ -1,0 +1,177 @@
+  Kapitel 8
+  Flussdiagramme
+
+In diesem Kapitel behandelte Themen:
+
+• Wie wird Galgenmann gespielt?
+• ASCII-Kunst
+• Programmentwurf mit Hilfe von Flussdiagrammen
+
+In diesem Kapitel werden wir gemeinsam eine Variante des Spiels “Galgenmann” entwickeln. Dieses Spiel ist ein bisschen schwieriger als das Vorherige, aber es wird auch mehr Spaß bereiten. Da wir für Galgenmann mehr programmieren müssen, sollten wir uns vorab Gedanken machen, wie wir es in Python umsetzen wollen. Dazu werden wir sogenannte Fluss- oder Flussdiagramme verwenden. Die Programmierung nehmen wir uns dann im nächsten Kapitel vor.
+
+Wie wird Galgenmann gespielt?
+
+Galgenmann wird normalerweise zu zweit mit Stift und Papier gespielt. Der Ablauf ist so: Spieler 1 denkt sich ein Wort aus und zeichnet einen waagerechten Strich für jeden Buchstaben des Wortes auf ein Blatt Papier. Spieler 2 rät die Buchstaben aus denen das Wort besteht.
+
+Hat Spieler 2 richtig geraten, schreibt Spieler 1 den entsprechenden Buchstaben an die richtigen Stellen über den Strich. Sollte Spieler 2 falsch geraten haben, zeichnet Spieler 1 einen Teil des Galgenmannes. Spieler 2 gewinnt, wenn er es schafft das Wort zu erraten, bevor der Galgenmann komplett gezeichnet wurde. Anderenfalls gewinnt Spieler 1.
+
+Probelauf von Galgenmann
+
+Um dir eine bessere Vorstellung davon zu geben, was die Spieler später im Spiel sehen, folgen ein paar beispielhafte Abbildungen. Der Text für den Spieler, der jeweils am Zug ist, ist in fetter Schrift dargestellt.
+
+G A L G E N M A N N
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+Falsche Buchstaben:
+_ _ _
+Rate einen Buchstaben.
+o
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+Falsche Buchstaben:
+_ o _
+Rate einen Buchstaben.
+t
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+Falsche Buchstaben: t
+_ o _
+Rate einen Buchstaben.
+p
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+Falsche Buchstaben: tp
+_ o _
+Rate einen Buchstaben.
+r
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+Falsche Buchstaben: tp
+r o _
+Rate einen Buchstaben.
+o
+Du hast diesen Buchstaben bereits probiert. Rate noch einmal.
+Rate einen Buchstaben.
+m
+Ja! Das geheime Wort ist "rom"! Du hast gewonnen!
+Möchtest du noch einmal spielen? (ja oder nein)
+nein
+
+ASCII-Kunst
+
+Die Darstellung des Galgenmanns ist eigentlich kein Bild, sondern besteht aus Buchstaben und Sonderzeichen. In diesen Grafiken, oft ASCII-Kunst genannt, wird versucht mit Buchstaben, Ziffern und Sonderzeichen kleine Piktogramme oder ganze Bilder darzustellen. Sie waren, in einfacher Form, der Vorgänger der heute üblichen Emoji. Hier ein Bild einer schlafenden Katze als kleines ASCII-Kunstwerk:
+                               __________________
+                         _____/   xx      xxx    \_____
+                       _/xxx       xx      xxx   xxx   \__
+                    __/     xxx     xxx     xx    xxx     \__
+                   /xxxxxxxxx   xx     xx      xx    xx    xxx\
+                  /          xx  /\                    xx     xx\
+                 /              /  \                   x      xx \
+                 |    /\       |    \                        xx  x\
+                 |   |  \      |     \____        Z            x   \
+                 |   |   \____/           \     z            xxx   |
+                 |   |                     \  z                    |
+                  \/                        \                       \
+                  /                 ____/    |                      |
+               __|        \____              |                   xxx|
+              /  |               ___   ___-------          __/     x|
+             /   |              |   |   _______       ____/         |
+             |  o\    --------   \_/       _/     ___/          xx /
+             |oo  \      _____/          _/______/              xx/
+             \     \__                __/                    xx  /
+              \       \______________/                        x_/
+                \____                                 _______/
+                     \_______________________________/
+
+Programmentwurf mit Hilfe von Flussdiagrammen
+
+Weil dieses Spiel ein bisschen schwieriger als die Vorherigen ist, sollten wir uns einen Moment Zeit nehmen, um darüber nachzudenken, wie wir Galgenmann programmieren wollen. Lass uns zunächst ein Flussdiagramm entwerfen (so wie Das am Ende des Kapitels "Drachenreich"), damit wir sehen können, was das Programm tut. In diesem Kapitel werden wir kurz darstellen, was Flussdiagramme sind und wozu sie nützlich sind. Im nächsten Kapitel schauen wir uns dann den Quellcode zu Galgenmann an.
+
+In Flussdiagrammen werden Tätigkeiten und Ereignisse in mehrere Schritte aufgeteilt (jeder Schritt ist in einer Art Kiste dargestellt) und durch Pfeile verbunden. Die Pfeile zeigen den Ablauf - also in welcher Reihenfolge die einzelnen Schritte abgearbeitet werden. Du kannst dem Diagramm folgen, indem du mit einem Finger auf “Start” zeigst und dann den Pfeilen folgst bis du in der “Ende”-Kiste angelangt bist.
+
+Abbildung 8-1 zeigt das komplette Flussdiagramm für Galgenmann. Wie oben schon gesagt, kannst du nur von einem Schritt zum nächsten kommen, indem du der Richtung des Pfeils folgst. Zurück geht's nicht - außer wenn es einen zweiten Pfeil gibt, der auf einen früheren Schritt verweist. Ein Beispiel dafür ist die Kiste “Spieler hat diesen Buchstaben bereits geraten” hier:
+
+Abbildung 8-1: Das komplette Flussdiagramm für Galgenmann
+
+Natürlich müssen wir kein Flussdiagramm zeichnen bevor wir anfangen zu programmieren. Allerdings fallen dir während des Programmierens oft Dinge ein, die du noch hinzufügen oder ändern musst - und dann ist oft Code zu ändern und erneut zu testen. Um diese extra Arbeit zu vermeiden, ist es besser, dir vor dem Programmieren zu überlegen, wie das Programm funktionieren wird.
+
+Erstellung des Flussdiagramms
+
+Dein Flussdiagramm kann auch ganz anders aussehen als unser Beispiel. So lange du dein Flussdiagramm verstehst, ist alles in Ordnung und es wird dir helfen, wenn du beginnst zu programmieren. Ganz allgemein beginnen Flussdiagramme aber mit “Start” und hören bei “Ende” auf, wie in Abbildung 8-2 dargestellt.
+
+Abbildung 8-2: Dein Flussdiagramm bestehend aus “Start” und “Ende”
+ 
+Lass uns kurz überlegen, was passiert, wenn du Galgenmann spielst. Zunächst denkt sich der Computer ein geheimes Wort aus, anschließend rät der Spieler Buchstaben. Deshalb müssen wir für diese zwei Schritte Kisten in unser Diagramm hinzufügen, wie in Abbildung 8-3 dargestellt. Die neuen Kisten sind umrandet von einer gestrichelten Linie. Die Pfeile zeigen die Reihenfolge, in der das Programm abgearbeitet wird. Also: Erst das geheime Wort ausdenken und dann den Spieler bitten, einen Buchstaben zu raten.
+
+Abbildung 8-3: Unser Flussdiagramm enthält die ersten zwei Schritte von Galgenmann in der richtigen Reihenfolge und mit Beschreibung.
+
+Das Spiel ist noch nicht zu Ende, wenn ein Buchstabe geraten wurde: Nun muss das Programm kontrollieren, ob der Buchstabe im geheimen Wort vorkommt.
+ 
+Verzweigungen einzelner Schritte
+
+Hier gibt es zwei Möglichkeiten: Entweder der vom Spieler geratene Buchstabe ist im geheimen Wort enthalten - oder nicht. Lass uns deshalb für jedes Ereignis jeweils eine Kiste mit dem entsprechenden Ereignis ergänzen. Damit hast du eine sogenannte Verzweigung erzeugt, und dein Flussdiagramm sollte jetzt so ähnlich aussehen wie das in Abbildung 8-4:
+
+Abbildung 8-4: Zwei verzweigte Pfeile, die auf verschiedene Ereignisse/Schritte zeigen.
+
+Falls der geratene Buchstabe im geheimen Wort enthalten ist, muss das Programm überprüfen, ob der Spieler alle Buchstaben richtig geraten und damit das Spiel gewonnen hat. Falls nicht, wird ein weiterer Körperteil des "Galgenmanns" gezeichnet. Füge dafür dem Flussdiagramm zwei weitere Kisten hinzu.
+
+Für den Schritt “Buchstabe ist in Geheimwort enthalten” benötigen wir keinen Pfeil zu “Galgenmann komplett: Leider verloren.”, denn so lange der Spieler den richtigen Buchstaben rät, ist es unmöglich zu verlieren. Es ist auch unmöglich zu gewinnen, so lange der Spieler falsch rät. Deshalb muss diese Verbindung ebenfalls nicht gezeichnet werden. Wenn du alles wie beschrieben gezeichnet hast, sollte dein Flussdiagramm jetzt wie Abbildung 8-5 aussehen.
+
+Abbildung 8-5: Nach der Verzweigung gibt es zwei verschiedene Pfade, die das Spiel nehmen kann.
+ 
+Spiel beenden oder erneut starten
+
+Sobald der Spieler gewonnen oder verloren hat, soll das Programm ihn fragen, ob er erneut spielen möchte. Falls der Spieler nicht mehr spielen möchte, soll das Programm beendet werden. Wenn das Programm nicht beendet wird, soll es sich ein neues Geheimwort ausdenken. Diese Entscheidungsschritte sind in Abbildung 8-6 dargestellt.
+
+Abbildung 8-6: Verzweigung im Flussdiagramm, um den Spieler zu fragen, ob er erneut spielen möchte
+ 
+Erneut Raten
+
+Der Spieler rät solange Buchstaben, bis er gewonnen oder verloren hat. Wie sich dieser Vorgang in unserem Flussdiagramm darstellen lässt, kannst du in Abbildung 8-7 sehen.
+
+Abbildung 8-7: Die neuen Pfeile (markiert) zeigen, dass der Spieler erneut raten darf.
+
+Aber was passiert, wenn der Spieler einen bereits zuvor geratenen Buchstaben erneut eingibt? Anstatt zu gewinnen oder zu verlieren, soll der Spieler erneut einen Buchstaben raten. Dafür brauchen wir eine neue Kiste. Das Flussdiagramm sieht dann aus wie in Abbildung 8-8.
+
+Abbildung 8-8: Ein weiterer Schritt für den Fall, dass der Spieler einen Buchstaben rät, den er bereits zuvor eingegeben hat.
+
+Rückmeldung an den Spieler
+
+Um dem Spieler zu zeigen, wie gut er spielt, sollte das Programm sowohl den Galgenmann, als auch das geheime Wort (mit Unterstrichen für die noch nicht geratenen Buchstaben) anzeigen. Mit dieser Hilfe ist es einfacher zu erkennen, ob er am Gewinnen ist oder kurz davor steht zu verlieren.
+
+Die Darstellung des Galgenmanns und des Wortes wird jedes Mal aktualisiert, wenn der Spieler einen Buchstaben rät. Füge deshalb dem Flussdiagramm den Schritt “Zeige dem Spieler den Galgenmann und die richtig-geratenen Buchstaben” hinzu. Die entsprechende Kiste sollte zwischen den Schritten “Geheimes Wort ausdenken” und “Frage Spieler nach Buchstabe” befinden. Wie das gesamte Diagramm jetzt aussieht, ist in Abbildung 8-9 zu sehen:
+
+Abbildung 8-9: Flussdiagramm mit dem neuen Schritt “Zeige dem Spieler den Galgenmann und die richtig-geratenen Buchstaben”, um dem Spieler Rückmeldung zu geben.
+
+Das sieht gut aus! Unser Flussdiagramm ist jetzt komplett und enthält alle Ereignisse, die im Laufe eines Spiels auftreten können und auch ihre Reihenfolge. Wenn du später deine eigenen Spiele entwickelst, können dir Flussdiagramme helfen, beim Programmieren nichts zu vergessen.
+ 
+Zusammenfassung
+
+Es sieht nach viel Arbeit aus, ein Flussdiagramm zu entwerfen und natürlich wollen die Leute spielen und keine Flussdiagramme ansehen! Aber mit Hilfe eines solchen Plans ist es viel einfacher, Veränderungen vorzunehmen und Probleme zu erkennen, bevor du Zeit beim Programmieren verschwendest.
+
+Wenn du direkt damit beginnst Code zu schreiben, kann es passieren, dass Probleme auftreten und du bereits geschriebenen Code ändern musst. Und jedes Mal wenn du Code änderst, besteht die Gefahr, dass sich neue Fehler einschleichen. Deshalb ist es viel besser zu wissen, was dein Programm alles können muss, bevor du beginnst, es in Python umzusetzen.

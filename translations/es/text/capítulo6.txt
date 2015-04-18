@@ -2,25 +2,29 @@
     REINO DE DRAGONES
 
 Temas Tratados En Este Capítulo:
-•   El módulo time.
-•   La función time.sleep().
-•   La palabra reservada return.
-•   Creando nuestras propias funciones con la palabra reservada def.
-•   Los operadores Booleanos and, or y not.
-•   Tablas de verdad
-•   Entorno de variables (Global y Local)
-•   Parámetros y Argumentos
-•   Diagramas de Flujo
 
-Introducción a las Funciones
+• La función time.sleep().
+• Crea tus propias funciones con la palabra reservada def.
+• La palabra reservada return.
+• Los operadores Booleanos and, or y not.
+• Tablas de verdad
+• Entornos de variables global y local
+• Parámetros y Argumentos
+• Diagramas de Flujo
 
-Ya hemos usado dos funciones en nuestros programas anteriores: input() y print(). En los programas anteriores, hemos llamado a estas funciones para ejecutar el código dentro de ellas. En este capítulo, escribiremos nuestras propias funciones para que sean llamadas por programas. Una función es como un mini-programa dentro de nuestro programa. Muchas veces en un programa queremos ejecutar exactamente el mismo código múltiples veces. En lugar de escribir el código varias veces, podemos poner el código dentro de una función y llamar a la función varias veces. Esto tiene el beneficio adicional de que si cometemos un error, sólo tendremos que corregirlo en un lugar del código.
-El juego que crearemos para presentar las funciones se llama "Reino de Dragones", y permite al jugador elegir entre dos cuevas, en una de las cuales encontrará un tesoro y en la otra su perdición.
+Funciones
+
+Ya has usado unas cuantas funciones: print(), input(), random.randint(), str() e int(). Has llamado a estas funciones para ejecutar el código dentro de ellas. En este capítulo, escribiremos nuestras propias funciones para que sean llamadas por programas. Una función es como un mini-programa dentro de nuestro programa.
+
+Las funciones te permiten ejecutar el mismo código múltiples veces sin necesidad de duplicar el código fuente. En lugar de esto, podemos poner el código dentro de una función y llamar a la función varias veces. Esto tiene el beneficio adicional de que si cometemos un error, sólo tendremos que corregirlo en un lugar del código.
+
+El juego que crearemos en este capítulo se llama "Reino de Dragones". El jugador elige entre dos cuevas, una de las cuales alberga un tesoro y la otra la perdición.
 
 Cómo Jugar a "Reino de Dragones"
 
 En este juego, el jugador está en una tierra llena de dragones. Todos los dragones viven en cuevas junto a sus grandes montones de tesoros encontrados. Algunos dragones son amigables, y compartirán sus tesoros contigo. Otros son codiciosos y hambrientos, y se comerán a cualquiera que entre a su cueva. El jugador se encuentra frente a dos cuevas, una con un dragón amigable y la otra con un dragón hambriento. El jugador tiene que elegir entre las dos.
-Abre una nueva ventana del editor de archivos haciendo clic en el menú Archivo, luego haz clic en Nueva Ventana. En la ventana vacía que aparece escribe el código fuente y guárdalo como dragon.py. Luego ejecuta el programa pulsando F5.
+
+Abre una nueva ventana del editor de archivos haciendo clic en Archivo ► Nueva Ventana. En la ventana vacía que aparece escribe el código fuente y guárdalo como dragon.py. Luego ejecuta el programa pulsando F5.
 
 Prueba de Ejecución de Reino de Dragones
 
@@ -39,12 +43,12 @@ no
 
 El Código Fuente de Reino de Dragones
 
-Algo a tener en cuenta mientras lees el código a continuación: Los bloques debajo de las líneas def definen una función, pero el código en ese bloque no se ejecuta hasta que la función es llamada. El código no ejecuta cada línea de este programa en orden descendente. Esto será explicado en detalle más adelante en este capítulo.
+¡NOTA IMPORTANTE! Los programas de este libro sólo podrán ejecutarse sobre Python 3, no Python 2. Al iniciar la ventana IDLE, dirá algo como “Python 3.4.2” en la parte superior. Si tienes Python 2 instalado, es posible instalar también Python 3 a la vez. Para descargar Python 3, dirígete a https://python.org/download/.
 
-¡NOTA IMPORTANTE! Los programas de este libro sólo podrán ejecutarse sobre Python 3, no Python 2. Al iniciar la ventana IDLE, dirá algo como “Python 3.4.0” en la parte superior. Si tienes Python 2 instalado, es posible instalar también Python 3 a la vez. Para descargar Python 3, dirígete a https://python.org/download/.
 Si obtienes errores luego de copiar este código, compáralo con el código del libro usando la herramienta diff online en http://invpy.com/es/diff/dragón.
 
 dragón.py
+
  1. import random
  2. import time
  3.
@@ -98,7 +102,7 @@ Veamos el código fuente en más detalle.
  1. import random
  2. import time
 
-El programa importa dos módulos. El módulo random proveerá la función random.randint() como lo hizo en el juego “Adivina el Número”. También precisarás funciones relacionadas con tiempo, que están incluidas en el módulo time, de modo que también importaremos este módulo.
+El programa importa dos módulos. El módulo random proveerá la función random.randint() como lo hizo en el juego “Adivina el Número”. También precisarás funciones relacionadas con tiempo, que están incluidas en el módulo time, de modo que también importamos este módulo en la línea 2.
 
 Sentencias def
 
@@ -109,32 +113,32 @@ Sentencias def
  8.     print('es codicioso y está hambriento, y te devorará inmediatamente.')
  9.     print()
 
-La línea 4 es una sentencia def. La sentencia def crea, es decir, define, una nueva función que puede ser llamada más adelante en el programa. Luego de haber definido esta función, puedes llamarla de la misma forma en que llamas a otras funciones. Cuando llamas a esta función, el código dentro del bloque def se ejecuta.
+La línea 4 es una sentencia def. La sentencia def define una nueva función que puedes llamar más adelante en el programa. Cuando defines esta función, especificas las instrucciones en su bloque def. Cuando llamas a esta función, el código dentro del bloque def se ejecuta.
+
 La Figura 6-1 muestra las partes de una sentencia def. Comienza con la palabra reservada def seguida por un nombre de función con paréntesis y luego dos puntos. El bloque a continuación de la sentencia def se llama el bloque def.
 
 Figura 6-1: Las partes de una sentencia def.
 
 Recuerda, la sentencia def no ejecuta el código. Sólo define qué código se ejecutará cuando llames a la función. Cuando la ejecución llega a una sentencia def, omite lo que sigue hasta la primera línea a continuación del bloque def.
+
 Pero cuando la función mostrarIntroducción() es llamada (como en la línea 38), la ejecución entra a la función mostrarIntroducción()  y se posiciona en la primera línea del bloque def.
 
 38.     mostrarIntroducción()
 
-Todas las llamadas a print() se ejecutan, y se muestra la introducción “Estás en una tierra llena de dragones...”.
+Entonces todas las llamadas a print() se ejecutan, y se muestra la introducción “Estás en una tierra llena de dragones...”.
 
 Dónde Colocar las Definiciones de Funciones
 
-La sentencia def y el bloque def de una función deben aparecer antes de llamar a la función. Esto es igual que cuando tienes que asignarle un valor a una variable antes de usar la variable. Si colocas la llamada a la función antes que la definición de la función, obtendrás un error. Mira este código:
+La sentencia def y el bloque def de una función deben aparecer antes de llamar a la función. Esto es igual que cuando tienes que asignarle un valor a una variable antes de usar la variable. Si colocas la llamada a la función antes que la definición de la función, obtendrás un error. Por ejemplo, mira este código:
 
 decirAdios()
 
 def decirAdios():
     print('¡Adios!')
-
 Si tratas de ejecutarlo, Python te dará un mensaje de error como este:
-
 Traceback (most recent call last):
   File "C:\Python34\spam.py", line 1, in <module>
-sayGoodbye()
+decirAdios()
 NameError: name 'decirAdios' is not defined
 
 Para arreglar esto, coloca la definición de la función antes de llamar a la función:
@@ -148,23 +152,27 @@ Definiendo la Función elegirCueva()
 
 11. def elegirCueva():
 
-Aquí estás definiendo otra función llamada elegirCueva(). El código de esta función pregunta al jugador a qué cueva quiere entrar, 1 ó 2.
+La línea 11 define otra función llamada elegirCueva(). El código de esta función pregunta al jugador a qué cueva quiere entrar, 1 ó 2.
 
 12.     cueva = ''
 13.     while cueva != '1' and cueva != '2':
 
-Este código necesita asegurar que el jugador haya respondido 1 ó 2, y no otra cosa. Un bucle aquí seguirá preguntando al jugador hasta que escriba alguna de estas dos respuestas válidas.
+Esta función necesita asegurar que el jugador haya respondido 1 ó 2, y no otra cosa. Un bucle aquí seguirá preguntando al jugador hasta que escriba alguna de estas dos respuestas válidas. Esto se llama validación de entrada.
+
 La línea 12 crea una nueva variable llamada cueva y guarda en ella una cadena vacía. Luego un bucle while comienza en la línea 13. La condición contiene un nuevo operador que no has visto antes llamado and. Igual que los signos - o * son operadores matemáticos y los signos == o != son operadores de comparación, el operador and es un operador Booleano.
 
 Operadores Booleanos
 
-La lógica Booleana se ocupa de enunciados que son verdaderas (True) o falsos (False). Los operadores Booleanos comparan dos valores Booleanos y se evalúan a un único valor Booleano. El operador Booleano and combina dos valores Booleanos para producir un nuevo valor Booleano.
+La lógica Booleana se ocupa de enunciados que son verdaderas (True) o falsos (False). Los operadores Booleanos comparan dos valores Booleanos y se evalúan a un único valor Booleano.
+
 Piensa en este enunciado, “Los gatos tienen bigotes y los perros tienen colas.” “Los gatos tienen bigotes” es verdadero y “los perros tienen colas” también es verdadero, luego el enunciado completo “Los gatos tienen bigotes y los perros tienen colas” es verdadero.
+
 Pero el enunciado “Los gatos tienen bigotes y los perros tienen alas” sería falso. Incluso si “los gatos tienen bigotes” es verdadero, los perros no tienen alas, luego “los perros tienen alas” es falso. En lógica Booleana, los enunciados sólo pueden ser completamente verdaderos o completamente falsos. Debido a la conjunción “y”, el enunciado completo es verdadero sólo si ambas partes son verdaderas. Si una o ambas partes son falsas, entonces el enunciado completo es falso.
 
-The and and or Operators
+Los operadores and y or
 
-El operador and en Python es igual que la conjunción "y". Si los valores Booleanos a ambos lados de la palabra reservada and son True, entonces la expresión con el operador and se evalúa a True. Si cualquiera de los valores Booleanos es False, o ambos valores Booleanos son False, entonces la expresión se evalúa a False.
+El operador and en Python es igual que la conjunción "y". Si los valores Booleanos a ambos lados de la palabra reservada and son True, entonces la expresión se evalúa a True. Si alguno o ambos valores Booleanos es False, la expresión se evalúa a False.
+
 Prueba escribir las siguientes expresiones con el operador and en la consola interactiva:
 
 >>> True and True
@@ -175,10 +183,12 @@ False
 False
 >>> False and False
 False
->>> 10 < 20 and 'Hola' == 'Hola'
+spam = 'Hola'
+>>> 10 < 20 and spam == 'Hola'
 True
 
 El operador or es similar al operador and, excepto que se evaluará a True si cualquiera de los dos valores Booleanos es True. La única vez en que el operador or se evalúa a False es si los dos valores Booleanos son False.
+
 Prueba escribir lo siguiente en la consola interactiva:
 
 >>> True or True
@@ -195,18 +205,19 @@ True
 El Operador not
 
 El operador not sólo actúa sobre un valor, en lugar de combinar dos valores. El operador not se evalúa al valor Booleano opuesto. La expresión not True se evaluará a False y not False se evaluará a True.
+
 Prueba escribir lo siguiente en la consola interactiva:
 
 >>> not True
 False
 >>> not False
 True
->>> not 'negro' == 'blanco'
+>>> not ('negro' == 'blanco')
 True
 
 Tablas de Verdad
 
-Si alguna vez te olvidas cóno funcionan los operadores Booleanos, puedes mirar estas tablas, llamadas tablas de verdad:
+Si alguna vez te olvidas cóno funcionan los operadores Booleanos, puedes mirar estas tablas de verdad:
 
 Tabla 6-1: La tabla de verdad del operador and.
 A       and B       es  Enunciado completo
@@ -216,11 +227,11 @@ False   and True    es  False
 False   and False   es  False
 
 Tabla 6-2: La tabla de verdad del operador or.
-A       and B       es  Enunciado completo
-True    and True    es  True
-True    and False   es  False
-False   and True    es  False
-False   and False   es  False
+A       or B       es  Enunciado completo
+True    or True    es  True
+True    or False   es  True
+False   or True    es  True
+False   or False   es  False
 
 Table 6-3: La tabla de verdad del operador not.
 not A       es  Enunciado completo
@@ -234,8 +245,11 @@ Miremos otra vez la línea 13:
 13.     while cueva != '1' and cueva != '2':
 
 La condición tiene dos partes conectadas por el operador Booleano and. La condición es True sólo si ambas partes son True.
+
 La primera vez que se comprueba la condición de la sentencia while, cueva está definida como la cadena vacía, ''. La cadena vacía no es igual a la cadena '1', luego el lado izquierdo se evalúa a True. La cadena vacía tampoco es igual a la cadena '2', por lo que el lado derecho se evalúa a True.
+
 Entonces la condición se transforma en True and True. Como ambos valores Booleanos son True, la condición finalmente se evalúa a True. Luego la ejecución del programa entra al bloque while.
+
 Así es como se ve la evaluación de la condición (si el valor de cueva es la cadena vacía):
 
 while cueva != '1' and cueva != '2':
@@ -257,7 +271,8 @@ Obteniendo la Entrada de Datos del Jugador
 15.         cueva = input()
 
 La línea 14 pregunta al jugador qué cueva quiere elegir. La línea 15 permite al jugador escribir la respuesta y pulsar INTRO. Esta respuesta es almacenada en cueva. Después de ejecutar este código, la ejecución vuelve a la parte superior de la sentencia while y vuelve a comprobar la condición.
-Si el jugador ha ingresado 1 ó 2, entonces cueva será '1' or '2'. Esto hace que la condición sea False, y la ejecución del programa continuará debajo del bucle while. Por ejemplo, si el usuario escribiese '1' la evaluación se vería así:
+
+Si el jugador ha ingresado 1 ó 2, entonces cueva será '1' or '2' (ya que input() siempre devuelve cadenas). Esto hace que la condición sea False, y la ejecución del programa continuará debajo del bucle while. Por ejemplo, si el usuario escribiese '1' la evaluación se vería así:
 
 while cueva != '1' and cueva != '2':
                     ▼
@@ -278,21 +293,29 @@ Retorno de Valores
 17.     return cueva
 
 Esta es una sentencia return, la cual sólo aparece dentro de bloques def. ¿Recuerdas como la función input() devuelve un valor de cadena que el jugador ha ingresado? La función elegirCueva() también devuelve un valor. La línea 17 devuelve la cadena almacenada en cueva, sea '1' o '2'.
+
 Una vez ejecutada la sentencia return, la ejecución del programa sale inmediatamente del bloque def. (Esto es como cuando la sentencia break hace que la ejecución salga de un bloque while.) La ejecución del programa vuelve a la línea que contiene la llamada a la función. La llamada a la función será entonces evaluada al valor de retorno.
+
 Ve ahora hacia abajo y observa la línea 40 por un momento:
 
 40.     númeroDeCueva = elegirCueva()
 
-Cuando la función elegirCueva() es llamada más adelante por el programa en la línea 40, el valor de retorno es almacenado en la variable númeroDeCueva. El bucle while garantiza que elegirCueva() devolverá sólo '1' o '2' como valor de retorno.
+Cuando elegirCueva() es llamada más adelante por el programa en la línea 40, el valor de retorno es almacenado en la variable númeroDeCueva. El bucle while garantiza que elegirCueva() devolverá sólo '1' o '2' como valor de retorno.
+
 Entonces cuando la línea 17 devuelve una cadena, la llamada a la función en la línea 40 es evaluada a esa cadena, la cual se almacena en númeroDeCueva.
 
 Entorno Global y Entorno Local
 
-Las variables de tu programa son olvidadas en cuanto el programa termina. Lo mismo ocure con estas variables creadas mientras la ejecución está dentro de la llamada a una función. Las variables se crean cuando la función es llamada y se olvidan cuando la función devuelve un valor.
-No sólo eso sino que además, cuando la ejecución está dentro de una función, no puedes modificar las variables fuera de la función, incluidas variables de otras funciones. Esto es porque esas variables existen en un “entorno” diferente. todas las variables existen en el entorno global o en el entorno local de la llamada a una función.
-El entorno exterior a todas las funciones se llama entorno global. El entorno dentro de una función (por la duración de una llamada específica a la función) se llama entorno local. El programa entero tiene un solo entorno global, y cada función tiene su propio entorno local.
-Las variables definidas en el entorno global puede ser leídas fuera y dentro de las funciones, pero sólo pueden ser modificadas fuera de todas las funciones. Las variables creadas en la llamada a una función sólo pueden ser leídas o modificadas durante esa llamada a la función.
+Las variables de tu programa son olvidadas en cuanto el programa termina. Lo mismo ocure con estas variables creadas mientras la ejecución está dentro de la llamada a una función. Las variables se crean cuando la función es llamada y se olvidan cuando la función devuelve un valor. Recuerda, las funciones son como mini-programas dentro de tu programa.
+
+Cuando la ejecución está dentro de una función, no puedes modificar las variables fuera de la función, incluidas variables de otras funciones. Esto es porque esas variables existen en un “entorno” diferente. todas las variables existen en el entorno global o en el entorno local de la llamada a una función.
+
+El entorno exterior a todas las funciones se llama entorno global. El entorno dentro de una función (por la duración de una llamada específica a la función) se llama entorno local.
+
+El programa entero tiene un solo entorno global. Las variables definidas en el entorno global puede ser leídas fuera y dentro de las funciones, pero sólo pueden ser modificadas fuera de todas las funciones. Las variables creadas en la llamada a una función sólo pueden ser leídas o modificadas durante esa llamada a la función.
+
 Puedes leer el valor de las variables globales desde el entorno local, pero intentar modificar una variable global desde el entorno local no funcionará. Lo que Python hace en ese caso es crear una variable local con el mismo nombre que la variable global. Sería posible, por ejemplo, tener una variable local llamada spam al mismo tienpo que existe una variable global llamada spam. Python las considerará dos variables distintas.
+
 Mira el siguiente ejemplo para ver qué pasa cuando intentas modificar una variable global desde dentro de un entorno local. Los comentarios explican qué es lo que está ocurriendo:
 
 def bacon():
@@ -323,11 +346,12 @@ Dónde se crea una variables determina en qué entorno se encuentra. Cuando el p
 
 ...la variable cueva se crea dentro de la función elegirCueva(). Esto significa que es creada en el entorno local de la función elegirCueva(). Será olvidada cuando elegirCueva() finalice, y será recreada si elegirCueva() es llamada por segunda vez. El valor de una variable local no es recordado entre una llamada a una función local y otra.
 
-Definiendo la función explorarCueva()
+Parámetros
 
 19. def explorarCueva(cuevaElegida):
 
 La siguiente función que el programa define se llama explorarCueva(). Nota el texto cuevaElegida entre paréntesis. Esto es un parámetro: una variable local a la que se asigna el argumento pasado cuando esta función es llamada.
+
 Recuerda cómo para algunas llamadas a funciones como str() o randint(), pasarías un argumento entre paréntesis:
 
 >>> str(5)
@@ -337,9 +361,7 @@ Recuerda cómo para algunas llamadas a funciones como str() o randint(), pasarí
 
 También pasarás un argumento al llamar a explorarCueva(). Este argumento es almacenado en una nueva variable llamada cuevaElegida. Estas variables también se denominan parámetros.
 
-Parámetros
-
-Los parámetros son variables locales creadas cuando una función es llamada. Por ejemplo, aquí hay un pequeño programa que demuestra cómo se define una función con un parámetro:
+Por ejemplo, aquí hay un pequeño programa que demuestra cómo se define una función con un parámetro:
 
 def decirHola(nombre):
     print('Hola, ' + nombre + '. Tu nombre tiene ' + str(len(nombre)) + 'letras.')
@@ -364,13 +386,12 @@ Volviendo al código fuente del juego:
 20.     print('Te aproximas a la cueva...')
 21.     time.sleep(2)
 
-¿Recuerdas cómo la llamada a la función random.randint() requería que ejecutaras import random primero? En el juego Reino de Dragones, has importado el módulo time en la línea 2. El módulo time tiene una función llamada sleep() que pone al programa en pausa. Esta función pondrá al programa en pausa por unos segundos. La línea 21 pasa el valor entero 2 de modo que time.sleep() pondrá al programa en pausa por 2 segundos.
+El módulo time tiene una función llamada sleep() que pone al programa en pausa. La línea 21 pasa el valor entero 2 de modo que time.sleep() pondrá al programa en pausa por 2 segundos.
 
 22.     print('Es oscura y espeluznante...')
 23.     time.sleep(2)
 
 Aquí el código imprime algo más de texto y espera por otros 2 segundos. Estas pequeñas pausas agregan suspenso al juego, en lugar de mostrar todo el texto a la vez. En el programa Chistes del capítulo anterior, has llamado a la función input() para poner el juego en pausa hasta que el jugador pulsara la tecla INTRO. Aquí, el jugador no tiene que hacer nada excepto esperar un par de segundos.
-
 24.     print('¡Un gran dragon aparece súbitamente frente a tí! Abre sus fauces y...')
 25.     print()
 26.     time.sleep(2)
@@ -381,34 +402,38 @@ Decidiendo Qué Cueva tiene el Dragón Amigable
 
 28.     cuevaAmigable = random.randint(1, 2)
 
-El programa elige aleatoriamente qué cueva alberga al dragón amigable. La línea 28 llama a la función random.randint() que devolverá 1 ó 2. Este valor entero se almacena en cuevaAmigable.
+La línea 28 llama a la función random.randint() que devolverá 1 ó 2. Este valor entero se almacena en cuevaAmigable y representa la cueva con el dragón amigable.
 
 30.     if cuevaElegida == str(cuevaAmigable):
 31.          print('¡Te regala su tesoro!')
 
 La línea 30 comprueba si la cueva elegida por el jugador en la variable cuevaElegida ('1' or '2') es igual a la cueva del dragón amistoso.
-El valor en cuevaElegida es una cadena porque input() devuelve cadenas. Pero el valor en cuevaAmigable es un entero porque random.randint() devuelve enteros. No puedes comparar cadenas y enteros con el signo ==, porque siempre resultarán distintas. '1' no es igual a 1 y '2' no es igual a 2.
-Entonces se pasa cuevaAmigable a la función str(), la cual devuelve el valor de cadena de cuevaAmigable. De esta manera los valores serán el mismo tipo de datos y pueden ser comparados en forma relevante. También podríamos haber usado este código:
+
+Pero el valor en cuevaAmigable es un entero porque random.randint() devuelve enteros. No puedes comparar cadenas y enteros con el signo ==, porque siempre resultarán distintas. '1' no es igual a 1 y '2' no es igual a 2.
+
+Entonces se pasa cuevaAmigable a la función str(), la cual devuelve el valor de cadena de cuevaAmigable. De esta manera los valores serán el mismo tipo de datos y pueden ser comparados en forma relevante. También podríamos haber usado el siguiente código para convertir cuevaElegida a un valor entero:
 
     if int(cuevaElegida) == cuevaAmigable:
 
-La condición de esta última sentencia if compararía el valor entero devuelto por la función int() con el valor entero en cuevaAmigable. Este código también habría funcionado.
 Si la condición es True, la línea 31 comunica al jugador que ha ganado el tesoro.
 
 32.     else:
 33.          print('¡Te engulle de un bocado!')
 
 La línea 32 es una sentencia else. La palabra reservada else siempre viene a continuación del bloque if. El bloque else se ejecuta si la condición de la sentencia if fue False. Piensa en esto como la forma del programa de decir, “Si esta condición es verdadera entonces ejecuta el bloque if, en caso contrario ejecuta el bloque else.”
+
 Recuerda colocar los dos puntos (el signo : ) luego de la palabra reservada else.
 
-Dónde Comienza la Parte Principal
+Donde Comienza la Parte Principal
 
 35. jugarDeNuevo = 'sí'
 36. while jugarDeNuevo == 'sí' or jugarDeNuevo == 's':
 
-La línea 35 es la primera línea que no es una sentencia def ni pertenece a un bloque def. Esta línea es donde la parte principal del programa comienza. Las sentencias def anteriores sólo definen las funciones. El código dentro de las funciones no se ejecutaba.
+La línea 35 es la primera línea que no es una sentencia def ni pertenece a un bloque def. Esta línea es donde la parte principal del programa comienza. Las sentencias def anteriores sólo definen las funciones, pero sin ejecutarlas.
+
 Las líneas 35 y 36 configuran un bucle que contiene al resto del juego. Al final del juego, el jugador puede escribir si desea jugar de nuevo. Si es así, la ejecución vuelve a entrar al bucle while para ejecutar todo el juego otra vez. En caso contrario, la condición de la sentencia while será False y la ejecución continuará hasta el final del programa y terminará.
-La primera vez que la ejecución llega a esta sentencia while, la línea 35 ha acabado de asignar 'sí' a la variable jugarDeNuevo. Esto significa que la condición será True.
+
+La primera vez que la ejecución llega a esta sentencia while, la línea 35 ha acabado de asignar 'sí' a la variable jugarDeNuevo. Esto significa que la condición será True. De esta forma se garantiza que la ejecución entrará al bucle al menos una vez.
 
 Llamando a las Funciones en el Programa
 
@@ -422,34 +447,45 @@ La línea 40 también llama a una función que tú has definido. Recuerda que la
 
 42.     explorarCueva(númeroDeCueva)
 
-Esta línea llama a tu función explorarCueva(), pasándole el valor en númeroDeCueva como argument. No sólo la ejecución salta a la línea 20, sino que el valor en númeroDeCueva se copia al parámetro cuevaElegida dentro de la función explorarCueva(). Esta es la función que mostrará '¡Te regala su tesoro!' o '¡Te engulle de un bocado!' dependiendo de la cueva que el jugador elija.
+La línea 42 llama a tu función explorarCueva(), pasándole el valor en númeroDeCueva como argument. No sólo la ejecución salta a la línea 20, sino que el valor en númeroDeCueva se copia al parámetro cuevaElegida dentro de la función explorarCueva(). Esta es la función que mostrará '¡Te regala su tesoro!' o '¡Te engulle de un bocado!' dependiendo de la cueva que el jugador elija.
 
 Preguntando al Jugador si quiere Jugar de Nuevo
 
 44.     print('¿Quieres jugar de nuevo? (sí o no)')
 45.     jugarDeNuevo = input()
 
-Sin importar que el jugador gane o pierda, se le pregunta si quiere jugar de nuevo. La variable jugarDeNuevo almacena la cadena ingresada por el jugador. La línea 45 es la última línea del bloque while, de modo que el programa vuelve a la línea 36 para comprobar la condición: jugarDeNuevo == 'sí' or jugarDeNuevo == 's'
+Sin importar si el jugador gana o pierde, se le pregunta si quiere jugar de nuevo. La variable jugarDeNuevo almacena lo que haya ingresado el jugador. La línea 45 es la última línea del bloque while, de modo que el programa vuelve a la línea 36 para comprobar la condición del bucle while: jugarDeNuevo == 'sí' or jugarDeNuevo == 's'
+
 Si el jugador ingresa la cadena 'sí' o 's', la ejecución entrará nuevamente al bucle en la línea 38.
+
 Si el jugador ingresa 'no' o 'n', o una tontería como 'Abraham Lincoln', entonces la condición será False. La ejecución del programa continúa a la línea a continuación del bloque while. Pero dado que no hay más líneas después del bloque while, el programa termina.
+
 Una cosa a tener en cuenta: la cadena 'SÍ' no es igual a la cadena 'sí'. Si el jugador ingresa la cadena 'SÍ', entonces la condición de la sentencia while se evaluará a False y el programa terminará igualmente. Otros programas más adelante en este libro te mostrarán cómo evitar este problema.
-¡Acabas de completar tu segundo juego! En Reino de Dragones, has usado mucho de cuanto aprendiste en el juego “Adivina el Número” y has aprendido unos cuantos trucos nuevos. Si no entendiste algunos de los conceptos en este programa, puedes leer el resumen al final de este capítulo. O recorrer cada línea del código fuente otra vez, y tratar de cambiar el código fuente y ver cómo cambia el programa.
+
+¡Acabas de completar tu segundo juego! En Reino de Dragones, has usado mucho de cuanto aprendiste en el juego “Adivina el Número” y has aprendido unos cuantos trucos nuevos. Si no entendiste algunos de los conceptos en este programa, recorre cada línea del código fuente otra vez e intenta modificar el código fuente viendo cómo cambia el programa.
+
 En el siguiente capítulo no crearás un juego, pero aprenderás cómo usar una funcionalidad de IDLE llamada depurador.
 
 Diseñando el Programa
 
 Reino de Dragones es un juego simple. El resto de los juegos en este libro serán un poco más complicados. A veces ayuda escribir en papel todo lo que quieres que tu juego o programa haga antes de comenzar a escribir el código. Esto se llama “diseñar el programa”.
+
 Por ejemplo, puede ayudar dibujar un diagrama de flujo. Un diagrama de flujo es una ilustración que muestra cada posible acción que puede ocurrir en el juego, y qué acciones llevan a qué otras acciones. La Figura 6-2 es un diagrama de flujo para Reino de Dragones.
 
-Figura 6-2: Diagrama de flujo para el juego Reino de Dragones.
-
 Para ver qué pasa en el juego, coloca tu dedo sobre el recuadro “Inicio”. Luego sigue una flecha desde ese recuadro hasta otro recuadro. Tu dedo es como la ejecución del programa. El programa termina cuando tu dedo llega al recuadro “Fin”.
+
 Cuando llegas al recuadro “Comprobar dragón amistoso o hambriento”, puedes ir al recuadro “Jugador gana” o al recuadro “Jugador pierde”. Esta bifurcación muestra cómo el programa puede hacer diferentes cosas. De cualquier forma, ambos caminos conducirán al recuadro “Ofrece jugar de nuevo”.
 
 Resumen
 
 En el juego “Reino de Dragones”, has creado tus propias funciones. Las funciones son un mini-programa dentro de tu programa. El código dentro de la función se ejecuta cuando la función es llamada. Al descomponer tu código en funciones, puedes organizar tu código en secciones más pequeñas y fáciles de entender.
-Los argumentos son valores pasados al código de la función cuando la función es llamada. La propia llamada a la función se evalúa a un valor llamado el valor de retorno.
+
+Los argumentos son valores pasados al código de la función cuando la función es llamada. La propia llamada a la función se evalúa al valor de retorno.
+
+Figura 6-2: Diagrama de flujo para el juego Reino de Dragones.
+
 También has aprendido acerca de entornos de variables. Las variables creadas dentro de una función existen en el entorno local, y las variables creadas fuera de todas las funciones existen en el entorno global. El código en el entorno global no puede usar las variables locales. Si una variable local tiene el mismo nombre que una variable en el entorno global, Python la considera una variables separada y asignar nuevos valores a la variable local no cambiará el valor de la variable global.
+
 Los entornos de variables pueden parecer complicados, pero son útiles para organizar funciones como fragmentos de código separados del resto del programa. Dado que cada función tiene su propio entorno local, puedes estar seguro de que el código en una función no ocasionará errores en otras funciones.
+
 Las funciones son tan útiles que casi todos los programas las usan. Entendiendo cómo funcionan las funciones, podemos ahorrarnos escribir muchas líneas de código y hacer que los errores sean más fáciles de arreglar.

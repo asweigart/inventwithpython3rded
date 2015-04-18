@@ -246,13 +246,13 @@ def mostrarPuntajes(baldosaJugador, baldosaComputadora):
 print('¡Bienvenido a Reversi!')
 
 while True:
-    # Reiniciar el tablero y el juego.
+    # Reiniciar el tablero y la partida.
     tableroPrincipal = obtenerNuevoTablero()
     reiniciarTablero(tableroPrincipal)
     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
     mostrarPistas = False
     turno = quiénComienza()
-    print(("El " if turno == "jugador" else "La ") + turno + ' will go first.')
+    print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
 
     while True:
         if turno == 'jugador':

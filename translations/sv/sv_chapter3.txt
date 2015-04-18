@@ -1,131 +1,121 @@
-    Chapter 3
+    Kapitel 3
+    ATT SKRIVA PROGRAM
 
-    WRITING PROGRAMS
+Ämnen som behandlas i detta kapitel:
 
-Topics Covered In This Chapter:
+•   Exekveringsflödet
+•   Strängar
+•   Sammanslagning av strängar
+•   Datatyper (såsom strängar och heltal)
+•   Att använda fileditorn för att skriva program
+•   Att spara och köra program i IDLE
+•   Funktionen print()
+•   Funktionen input()
+•   Kommentarer
+•   Skiftlägeskänslighet
 
-•   Flow of execution
-•   Strings
-•   String concatenation
-•   Data types (such as strings or integers)
-•   Using IDLE to write source code
-•   Saving and running programs in IDLE
-•   The print() function
-•   The input() function
-•   Comments
-•   Capitalizing variables
-•   Case-sensitivity
+Nu räcker det med matte för ett tag. Python är mer än bara en kalkylator. Låt oss nu titta på vad Python kan göra med text. I det här kapitlet får du lära dig att lagra text i variabler, att kombinera ihop texter och att visa text på skärmen. 
 
-That’s enough math for now. Python is more than just a calculator. Now let’s see what Python can do with text. In this chapter, you’ll learn how to store text in variables, combine text together, and display text on the screen. Almost all programs display text to the user, and the user enters text into your programs through the keyboard. You’ll also make your first program. This program displays the greeting, “Hello World!” and asks for your name.
+Nästan alla program visar text för användaren, och användaren matar in text i programmen med hjälp av tangentbordet. Du kommer också att skapa ditt första program. Det här programmet skriver ut hälsningen “Hejsan världen!” och frågar efter ditt namn.
 
-Strings
+Strängar
 
-In Python, text values are called strings. Strings values can be used just like integer or float values. You can store strings in variables. In code, string values start and end with a single quote ('). Try entering this code into the interactive shells:
+I Python så kallas textvärden för strängar. Strängvärden kan användas på samma sätt som heltals- eller flyttalsvärden. Du kan lagra strängar i variabler. I kod så börjar och slutar strängvärden med enkla citattecken ('). Testa att skriva in den här koden i den interaktiva kommandotolken:
 
->>> spam = 'hello'
+>>> skräp = 'hejsan'
 
-The single quotes tell Python where the string begins and ends. They are not part of the string value. Now, if you type spam into the interactive shell, you will see the contents of the spam variable (the 'hello' string.) Remember, Python evaluates variables to the value stored inside the variable. In this case, this is the string 'Hello':
+De enkla citattecknen talar om för Python var strängen börjar och slutar. De ingår inte i själva strängvärdets text. Om du nu skriver in skräp i den interaktiva tolken så kommer du att se innehållet i skräp-variabeln. Du kanske minns att Python utvärderar variabler till de värden som är lagrade i dem. I det här fallet så är värdet strängen 'hejsan':
 
->>> spam = 'hello'
->>> spam
-'hello'
+>>> skräp = 'hejsan'
+>>> skräp
+'hejsan'
 
-Strings can have any keyboard character in them. These are all examples of strings:
+Strängar kan innehålla alla tecken som finns på tangentbordet och kan vara nästan hur långa som helst. Här är några exempel på strängar:
 
-'hello'
-'Hi there!'
-'KITTENS'
-'7 apples, 14 oranges, 3 lemons'
-'Anything not pertaining to elephants is irrelephant.'
-'A long time ago in a galaxy far, far away...'
+'hejsan'
+'Hallå där!'
+'KATTUNGAR'
+'7 äpplen, 14 apelsiner, 3 citroner'
+'Allt som inte hänför sig till elefanter är irrelevant.'
+'För länge sedan, i en galax långt, långt borta...'
 'O*&#wY%*&OCfsdYO*&gfC%YO*&%3yc8r2'
 
-String values can combine with operators to make expressions, just like integers and floats do.
+Sammanslagning av strängar
 
-String Concatenation
+Precis som heltal och flyttal kan strängvärden, med hjälp av operatorer, sättas ihop till uttryck. Du kan slå ihop två strängar med operatorn +. Det här kallas för konkatenering, eller sammanslagning, av strängar. Testa att skriva in 'Hejsan' + 'världen!' i den interaktiva kommandotolken:
 
-Try combining two strings with the + operator. This is string concatenation. Try entering 'Hello' + 'World!' into the interactive shell:
+>>> 'Hejsan' + 'världen!'
+'Hejsanvärlden!'
 
->>> 'Hello' + 'World!'
-'HelloWorld!'
+Uttrycket utvärderades till ett enda strängvärde, 'Hejsanvärlden!'. Det finns inget mellanslag mellan orden eftersom det inte fanns något mellanslag i de strängar som slogs ihop, till skillnad från i detta exempel:
 
-The expression evaluates to a single string value, 'HelloWorld!'. To keep the words separate, put a space at the end of the 'Hello' string, before the single quote, like this:
+>>> 'Hejsan ' + 'världen!'
+'Hejsan världen!'
 
->>> 'Hello ' + 'World!'
-'Hello World!'
+Operatorn + funkar på olika sätt med sträng- och heltalsvärden eftersom det är olika datatyper. Alla värden har en datatyp. Värdet 'Hejsan' har datatypen sträng. Värdet 5 har datatypen heltal. Datatypen talar om för Python vad operatorer ska göra när uttryck utvärderas. Operatorn + slår ihop strängvärden men adderar heltalsvärden och flyttalsvärden.
 
-The + operator works differently on string and integer values because they are different data types. All values have a data type. The data type of the value 'Hello' is a string. The data type of the value 5 is an integer. The data type tells Python what operators should do when evaluating expressions. The + operator will concatenate two string values but add two integer (or float) values.
+Att skriva program i IDLE:s fileditor
 
-Writing Programs in IDLE’s File Editor
+Fram tills nu har du skrivit in en instruktion åt gången i IDLE:s interaktiva tolk. Men när du skriver program så skriver du flera instruktioner och kör dem alla på en och samma gång. Nu ska du få skriva ditt första program!
 
-Until now, you’ve been typing instructions into IDLE’s interactive shell one at a time. When you write programs though, you type in several instructions and have them run all at once. Let’s write your first program!
+IDLE har en annan del som kallas för fileditorn. Klicka på File i överkanten av fönstret med Pythontolken. Välj sedan New File. Ett tomt fönster kommer att öppnas och det är där du ska skriva in programmets kod, som i Figur 3-1.
 
-IDLE has another part called the file editor. Click on the File menu at the top of the Python Shell window. Then select New Window. A blank window will appear for you to type your program’s code into.
+Figur 3-1: Fileditorns fönster (till vänster) och den interaktiva kommandotolken (till höger).
 
+De två fönstren liknar varandra, men kom ihåg: Den interaktiva tolken har en prompt som börjar med >>>. Det har inte fileditorns fönster.
 
+Hejsan världen!
 
-Figure 3-1: The file editor window.
+Enligt traditionen ska det första programmet man skapar skriva ut texten ”Hello world!”, eller ”Hejsan världen!”, på skärmen. Nu ska du få skapa ditt eget Hello world-program.
 
-The two windows look similar, but just remember this: The interactive shell window will have the >>> prompt. The file editor window will not.
+När du matar in ditt program, skriv inte in siffrorna till vänster om koden. De finns bara där för att boken ska kunna referera till radnummer i koden. Längst ner till höger i fileditorn ser du på vilken rad den blinkande markören befinner sig. Figur 3-2 visar att markören är på rad 1 och kolumn 0.
 
-Hello World!
+Figur 3-2: I det nedre högra hörnet av fileditorn ser du på vilken rad markören befinner sig.
 
-It’s traditional for programmers to make their first program display “Hello world!” on the screen. You’ll create your own Hello World program now.
+hejsan.py
 
-When you enter your program, don’t enter the numbers at the left side of the code. They’re there so this book can refer to code by line number. The bottom-right corner of the file editor window will tell you where the blinking cursor is. Figure 3-2 shows an example of where the cursor is according to the text in the corner.
+Skriv in följande text i det nya fileditor-fönstret. Det här är programmets källkod. Den innehåller de instruktioner som Python kommer att följa när programmet körs.
 
+OBS, VIKTIGT! Programmen i den här boken kan bara köras med Python 3, inte med Python 2. När IDLE-fönstret öppnas, så ska det stå något i stil med “Python 3.4.2” längst upp. Du kan ha både Python 2 och Python 3 installerat samtidigt. För att ladda ner Python 3, gå till https://python.org/download/.
 
+1. # Det här programmet säger hej och frågar efter ett namn.
+2. print('Hejsan världen!')
+3. print('Vad heter du?')
+4. namn = input()
+5. print('Trevligt att träffas, ' + namn)
 
-Figure 3-2: The bottom right of the file editor window tells you what line the cursor is on.
+IDLE-programmet markerar olika typer av instruktioner med olika färger. När du har skrivit in koden ska fönstret se ut så här:
 
-hello.py
+Figur 3-3: Fileditorns fönster ska se ut så här när du har skrivit in koden.
 
-Enter the following text into the new file editor window. This is the program’s source code. It contains the instructions Python will follow when the program is run. (Remember, don’t type in the line numbers!)
+Att spara ditt program
 
-IMPORTANT NOTE! The programs in this book will only run on Python 3, not Python 2. When the IDLE window starts, it will say something like “Python 3.4.0” at the top. If you have Python 2 installed, you can have Python 3 installed at the same time. To download Python 3, go to https://python.org/download/.
+När du väl har matat in källkoden, spara den genom att klicka på File ► Save As. Eller tryck Ctrl-S för att spara med ett snabbkommando. Figur 3-4 visar Spara som-fönstret som kommer att öppnas. Skriv hejsan.py i textfältet för filnamn och klicka sedan på Spara.
 
-1. # This program says hello and asks for my name.
-2. print('Hello world!')
-3. print('What is your name?')
-4. myName = input()
-5. print('It is good to meet you, ' + myName)
+Figur 3-4: Spara programmet.
 
-The IDLE program will write different types of instructions with different colors. After you’re done typing the code, the window should look like this:
+Du bör spara dina program ofta medan du skriver dem. På det sättet så förlorar du inte så mycket arbete ifall datorn krascher, eller om du råkar avsluta IDLE av misstag.
 
+Att öppna program som du har sparat
 
+För att öppna ett program som du tidigare har sparat, välj File ► Open. Välj filen i det fönster som öppnas och klicka på Öppna-knappen. Ditt sparade program kommer att öppnas i fileditorns fönster.
 
-Figure 3-3: The file editor window will look like this after you type in the code.
+Nu är det dags att köra programmet. Välj File ► Run ► Run Module, eller så trycker du bara på F5 medan du står i fileditorns fönster. Ditt program kommer att köras i den interaktiva tolken.
 
-Saving Your Program
+Skriv in ditt namn när programmet frågar efter det. Det kommer att se ut som i Figur 3-5:
 
-Once you’ve entered your source code, save it by clicking the File menu at the top of the File Editor window. Then click on Save As. Figure 3-4 shows the Save As window that will open. Enter hello.py in the File name text field then click Save. Or press Ctrl-S to save with a keyboard shortcut.
+Figur 3-5: Den interaktiva tolken när hejsan.py har körts.
 
+När du skriver in ditt namn och trycker på ENTER, så kommer programmet att hälsa på dig. Grattis! Du skrivit ditt första program och är nu en datorprogrammerare. Tryck F5 igen för att köra programmet en andra gång och skriv in ett annat namn.
 
+Om du fick ett felmeddelande, jämför din kod med bokens kod med hjälp av verktyget på http://invpy.com/diff. Kopiera och klistra in din kod från fileditorn på webbsidan och klicka på knappen Compare. Det här verktyget kommer att markera skillnader mellan din kod och koden i boken, som i Figur 3-6.
 
-Figure 3-4: Saving the program.
+Figur 3-6: Diff-verktyget på http://invpy.com/diff
 
-You should save your programs while you type them. That way, if the computer crashes or you accidentally exit from IDLE you won’t lose much work.
+Ifall du under programmeringen får ett fel av typen NameError som ser ut så här:
 
-Opening The Programs You’ve Saved
-
-To load a saved program, click File ► Open. Choose hello.py in the window that appears and click the Open button. Your saved hello.py program will open in the File Editor window.
-
-Now it’s time to run the program. Click File ► Run ► Run Module or just press F5 from the file editor window. Your program will run in the interactive shell window.
-
-Enter your name when the program asks for it. This will look like Figure 3-5:
-
-
-
-Figure 3-5: The interactive shell after running hello.py.
-
-When you type your name and push ENTER, the program will greet you by name. Congratulations! You’ve written your first program and are now a computer programmer. Press F5 again and enter another name.
-
-If you got an error, compare your code to this book’s code with the online diff tool at http://invpy.com/diff/hello.
-
-If you get an error that looks like this:
-
-Hello world!
-What is your name?
+Hejsan världen!
+Vad heter du?
 Albert
 Traceback (most recent call last):
   File "C:/Python26/test1.py", line 4, in <module>
@@ -133,104 +123,105 @@ Traceback (most recent call last):
   File "<string>", line 1, in <module>
 NameError: name 'Albert' is not defined
 
-...then this means you are using Python 2, instead of Python 3. Install a version of Python 3 from http://python.org. Then, re-run the program with Python 3.
+... så betyder det att du använder Python 2 i stället för Python 3. Installera en version av Python 3 från http://python.org/download. Kör sedan programmet med Python 3.
 
-How the “Hello World” Program Works
+Hur "Hejsan världen"-programmet fungerar
 
-Each line of code is an instruction interpreted by Python. These instructions make up the program. A computer program’s instructions is like the steps in a cake recipe. Each instruction executes in order, beginning from the top of the program and working down the list of instructions.
+Varje rad med kod är en instruktion som tolkas av Python. Tillsammans så utgör de här instruktionerna programmet. Instruktionerna i ett datorprogram är som stegen i ett kokboksrecept. Varje instruktion utförs i tur och ordning, med start längst upp i programmet och nedåt genom listan med instruktioner.
 
-What step Python is in the program’s recipe is called the flow of execution, or just the execution for short. When the program starts, the execution is at the first line. Then it goes down to the next instruction.
+Steget som Python befinner sig på i programmet kallas för exekveringssteget. När programmet startas exekveras den första instruktionen. Därefter fortsätter exekveringen nedåt till nästa instruktion.
 
-Let’s look at each line of code to see what it’s doing. We’ll begin with line number 1.
+Låt oss titta på varje kodrad för att se vad den betyder. Vi börjar med rad 1.
 
-Comments
+Kommentarer
 
-1. # This program says hello and asks for my name.
+1. # Det här programmet säger hej och frågar efter ett namn.
 
-This line is a comment. Any text following a # sign (called the pound sign) is a comment. Comments are not for the Python, but for you, the programmer. Python ignores comments. Comments are notes about what the code does for you or any other programmer who is examining the source code. To make it easier to read the source code, this book prints comments in a light gray-colored text.
+Den här instruktionen är en kommentar. Varje textrad som inleds med tecknet # (nummertecknet) är en kommentar. Kommentarerna är inte till för Python, utan för den som ska läsa programmet, det vill säga du. Python ignorerar kommentarer. Kommentarer är programmerarens anteckningar om vad koden gör. Du kan skriva vad som helst i en kommentar. För att det ska bli lättare att läsa källkoden så har kommentarerna i den här boken en ljusgrå färg.
 
-Programmers usually put a comment at the top of their code to give their program a title. The IDLE program displays comments in red text to help them stand out.
+Det är vanligt att programmerare skriver en kommentar med programmets namn längst upp i källkoden.
 
-Functions
+Funktioner
 
-A function is kind of like a mini-program inside your program. It contains instructions to execute when the function is called. Python provides some built-in functions already. Two functions, print() and input(), are described next. The great thing about functions is that you only need to know what the function does, but not how it does it.
+En funktion är som ett mini-program inuti ditt program. Funktioner innehåller flera instruktioner som ska utföras när funtionen anropas. Det finns en hel del inbyggda funktioner i Python. Två av dessa funktioner, print() and input(), kommer att beskrivas här näst. En bra grej med funktioner är att du bara behöver veta vad de gör, inte hur de gör det.
 
-A function call is a piece of code that tells Python to run the code inside a function. For example, your program calls the print() function to display a string on the screen. The print() function takes the string you type in between the parentheses as input and displays the text on the screen. In order to display Hello world! on the screen, type the print function name, followed by an opening parenthesis, followed by the 'Hello world!' string and a closing parenthesis.
+Ett funktionsanrop är en instruktion som talar om för Python att koden inuti funktionen ska köras. Till exempel så anropar ditt program funktionen print() för att en sträng ska skrivas ut på skärmen. Funktionen print() tar den sträng som anges mellan parenteserna som indata och visar texten på skärmen.
 
-The print() function
+För att skriva Hejsan världen! på skärmen, skriv in funktionsnamnet print, följt av en vänsterparentes, strängen 'Hejsan världen!' och till sist en högerparentes.
 
-2. print('Hello world!')
-3. print('What is your name?')
+Funktionen print()
 
-Lines 2 and 3 are calls to the print() function. A value between the parentheses in a function call is an argument. The argument on line 2’s print() function call is 'Hello world!'. The argument on line 3’s print() function call is 'What is your name?'. This is called passing the argument to the print() function.
+2. print('Hejsan världen!')
+3. print('Vad heter du?')
 
-In this book function names have parentheses at the end. This makes it clear that the book means a function named print(), not a variable named print. This is like the quotes around the number '42' tell Python that you are talking about the string '42' and not the integer 42.
+Raderna 2 och 3 är anrop till print()-funktionen. Ett värde mellan parenteserna i ett funktionsanrop kallas för ett argument. Argumentet i anropet till print()-funktionen på rad 2 är 'Hejsan världen!'. Argumentet i funktionsanropet på rad 3 är 'Vad heter du?'. Det här kallas för att man skickar argument till print()-funktionen.
 
-The input() function
+I den här boken så följs alla funktionsnamn av parenteser. På så vis är det tydligt att när det står print() så talar vi om en funktion med namnet print(), inte en variabel kallad print. Det här är som att de enkla citattecknen kring talet '42' talar om för Python att du menar strängen '42' och inte heltalet 42.
 
-4. myName = input()
+Funktionen input()
 
-This line has an assignment statement with a variable (myName) and a function call (input()). When input() is called, the program waits for the user to enter text. The text string that the user enters becomes the value that the function call evaluates to. Function calls can be used in expressions anywhere a value can be used.
+4. namn = input()
 
-The value that the function call evaluates to is the return value. (In fact, “the value a function call returns” means the same thing as “the value a function call evaluates to”.) In this case, the return value of the input() function is the string that the user typed in-their name. If the user typed in “Albert”, the input() function call evaluates to the string 'Albert'. This evaluation looks like this:
+Rad 4 är en tilldelningssats med en variabel (namn) och ett funktionsanrop (input()). När input() anropas så väntar programmet på att användaren ska mata in text. Textsträngen som användaren matar in blir det värde som funktionsanropet utvärderas till. Funktionsanrop kan användas i uttryck på samma ställen där värden kan användas.
 
-myName = input()
+Värdet som funktionsanropet utvärderas till kallas för returvärdet. (Faktum är att "värdet som returneras vid ett funktionsanrop" betyder samma sak som "värdet ett funktionsanrop utvärderas till".) I det här fallet så är returvärdet från input()-funktionen den sträng - namnet - som användaren skrev in. Om användaren skrev in "Albert" så utvärderas anropet till funktionen input() till strängen 'Albert'. Utvärderingen ser ut såhär:
+
+namn = input()
             ▼
-myName = 'Albert'
+namn = 'Albert'
 
-This is how the string value 'Albert' gets stored in the myName variable.
+På det här sättet sparas strängvärdet 'Albert' i variabeln namn.
 
-Using Expressions in Function Calls
+Använda uttryck i funktionsanrop
 
-5. print('It is good to meet you, ' + myName)
+5. print('Trevligt att träffas, ' + namn)
 
-The last line is another print() function call. The expression 'It is good to meet you, ' + myName is passed to print(). However, arguments are always single values. Python will first evaluate this expression and then pass the value as the argument. If 'Albert' is stored in myName, the evaluation looks like this:
+Sista raden består av ett annat anrop till funktionen print(). Uttrycket 'Trevligt att träffas, ' + namn står mellan parenteserna i funktionsanropet. Men argument består alltid av enskilda värden, så Python kommer först att utvärdera det här uttrycket och sedan skicka värdet som argumentet. Om 'Albert' har lagrats i namn, så kommer utvärderingen att se ut såhär:
 
-print('It is good to meet you, ' + myName)
+print('Trevligt att träffas, ' + namn)
                          ▼
-print('It is good to meet you, ' + 'Albert')
+print('Trevligt att träffas, ' + 'Albert')
                          ▼
-print('It is good to meet you, Albert')
+print('Trevligt att träffas, Albert')
 
-This is how the program greets the user by name.
+Det är så det går till när programmet hälsar på användaren med hans eller hennes namn.
 
-Ending the Program
+Avsluta programmet
 
-Once the program executes the last line, it terminates or exits. This means the program stops running. Python forgets all of the variables, including the string stored in myName. If you run the program again with a different name, the program will think that different string is your name.
+När sista raden i programmet har exekverats så terminerar, eller avslutas, det. Det betyder att körningen av programmet upphör, och Python glömmer alla värden som lagrats i variabler, inklusive strängen som sparats i namn. Om du kör programmet igen och matar in ett annat namn så kommer programmet att använda det namnet.
 
-Hello world!
-What is your name?
-Carolyn
-It is good to meet you, Carolyn
+Hejsan världen!
+Vad heter du?
+Carolina
+Trevligt att träffas, Carolina
 
-Remember, the computer does exactly what you program it to do. Computers are dumb. The computer doesn’t care if you type in your name, someone else’s name, or just something silly. Type in anything you want. The computer will treat it the same way:
+Kom igåg, datorn gör exakt det som du programmerar den att göra. Datorer är dumma och följer bara de instruktioner du ger dem. Datorn bryr sig inte om du matar in ditt eget namn, någon annans namn, eller för den delen något larvigt. Skriv in vad du vill. Datorn kommer att göra på precis samma sätt:
 
-Hello world!
-What is your name?
-poop
-It is good to meet you, poop
+Hejsan världen!
+Vad heter du?
+bajs
+Trevligt att träffas, bajs
 
-Variable Names
+Variabelnamn
 
-Giving variables descriptive names makes it easier to understand what a program does. Imagine if you were moving to a new house and you labeled every moving box “Stuff”. That wouldn’t be helpful at all!
+Om man ger variabler beskrivande namn så blir det lättare att förstå vad ett program gör. Föreställ dig att du har flyttat till ett nytt hus, och du har märkt alla flyttkartonger med "Grejer". Det skulle inte vara till mycket hjälp!
 
-Instead of myName, you could have called this variable abrahamLincoln or nAmE. Python doesn’t care. It will run the program just the same.
+I stället för namn hade du kunnat kalla den här variabeln för gustavVasa eller nAmN. Python hade inte brytt sig. Programmet hade körts på samma sätt.
 
-Variable names are case-sensitive. Case-sensitive means the same variable name in a different case is a different variable. So spam, SPAM, Spam, and sPAM are four different variables in Python. They each contain their own separate values.
+Variabelnamn är skiftlägeskänsliga. Det betyder att samma variabelnamn skrivet i olika skiftlägen betraktas som olika variabler. Så skräp, SKRÄP, Skräp, och sKRÄP är fyra olika variabler i Python. De innehåller alla sina egna, separata värden. Det är en dålig idé att ha variabelnamn av det här slaget i ditt program. Använd beskrivande namn på dina variabler i stället.
 
-It’s a bad idea to have differently cased variables in your program. If you stored your first name in the variable name and your last name in the variable NAME, it would be confusing when you read your code weeks after you first wrote it. Did name mean first and NAME mean last, or the other way around?
+Variabelnamn skrivs oftast med små bokstäver. Om flera ord ingår i variabelnamnet, inled varje ord efter det första med stor bokstav. Det här gör koden lättare att läsa. Till exempel så är variabelnamnet vadJagÅtTillFrukostIMorse  mycket lättare att läsa än vadjagåttillfrukostimorse. Det här är en konvention: man brukar göra så vid programmering i Python, även om det är frivilligt.
 
-Variable names are usually lowercase. If there is more than one word in the variable name, capitalize each word after the first. This makes your code more readable. For example, the variable name whatIHadForBreakfastThisMorning is much easier to read than whatihadforbreakfastthismorning. This is a convention: an optional but standard way of doing things) in Python programming.
+Korta variabelnamn är bättre än långa: frukost eller matIMorse är mer läsbara namn än vadJagÅtTillFrukostIMorse.
 
-This book’s interactive shell examples use variable names like spam, eggs, ham, and bacon. This is because the variable names in these examples don’t matter. However, this book’s programs all use descriptive names. Your programs should also use descriptive variable names.
+I bokens exempel med den interaktiva kommandotolken används variabelnamn som skräp, ägg, skinka och bacon. Det är för att variabelnamnen i dessa exempel inte är särskilt viktiga. Men programmen i boken använder beskrivande namn. Det bör dina program också göra.
 
-Summary
+Sammanfattning
 
-Once you learn about strings and functions, you can start making programs that interact with users. This is important because text is the main way the user and the computer will communicate with each other. The user enters text through the keyboard with the input() function, and the computer will display text on the screen with the print() function.
+När du har lärt dig om strängar och funktioner, så kan du börja skapa program som interagerar med användaren. Det här är viktigt eftersom användare och datorer ofta kommunicerar med hjälp av text. Användare matar in text via tangentbordet till input()-funktionen. Datorn visar text på skärmen med print()-funktionen.
 
-Strings are just values of a new data type. All values have a data type, and there are many data types in Python. The + operator can concatenate strings together.
+Strängar är bara värden av en viss datatyp. Alla värden har en datatyp och det finns många datatyper i Python. Operatorn + kan användas för att slå ihop strängar.
 
-Variables let you remember values to use in later parts of the program. Functions are used to carry out some complicated instruction as part of your program. Python has many built-in functions that you’ll learn about in this book. Variables and function calls can be used in expressions anywhere a value is used.
+Funktioner används för att utföra mer komplicerade instruktioner i ditt program. Python har många inbyggda funktioner som du kommer att få veta mer om i den här boken. Funktionsanrop kan användas i uttryck på samma ställen som värden kan användas.
 
-The instruction in your program that Python is currently following is the execution. In the next chapter, you’ll learn more about making the execution move in ways other than just straight down the program. Once you learn this, you’ll be ready to create games.
-
+Den instruktion i ditt program där Python befinner sig för närvarande kallas för exekveringssteget. I nästa kapitel får du lära dig mer om hur man får exekveringen att ta andra vägar än bara rakt nedåt genom programmet. När du har lärt dig det så är du redo att börja skapa spel.

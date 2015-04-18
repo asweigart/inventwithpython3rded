@@ -16,9 +16,9 @@ NEGRO = (0, 0, 0)
 
 # configurar la estructura de bloque de datos
 jugador = pygame.Rect(300, 100, 40, 40)
-imágenJugador = pygame.image.load('jugador.png')
-imágenEstiradaJugador = pygame.transform.scale(imágenJugador, (40, 40))
-imágenComida = pygame.image.load('cereza.png')
+imagenJugador = pygame.image.load('jugador.png')
+imagenEstiradaJugador = pygame.transform.scale(imagenJugador, (40, 40))
+imagenComida = pygame.image.load('cereza.png')
 comidas = []
 for i in range(20):
     comidas.append(pygame.Rect(random.randint(0, ANCHOVENTANA - 20), random.randint(0, ALTOVENTANA - 20), 20, 20))
@@ -107,20 +107,20 @@ while True:
 
 
     # dibujar el bloque sobre la superficie
-    superficieVentana.blit(imágenEstiradaJugador, jugador)
+    superficieVentana.blit(imagenEstiradaJugador, jugador)
 
     # comprobar si el jugador ha intersectado alguno de los cuadrados de comida
     for comida in comidas[:]:
         if jugador.colliderect(comida):
             comidas.remove(comida)
             jugador = pygame.Rect(jugador.left, jugador.top, jugador.width + 2, jugador.height + 2)
-            imágenEstiradaJugador = pygame.transform.scale(imágenJugador, (jugador.width, jugador.height))
+            imagenEstiradaJugador = pygame.transform.scale(imagenJugador, (jugador.width, jugador.height))
             if músicaSonando:
                 sonidoRecolección.play()
 
     # dibujar la comida
     for comida in comidas:
-        superficieVentana.blit(imágenComida, comida)
+        superficieVentana.blit(imagenComida, comida)
 
     # dibujar la ventana sobre la pantalla
     pygame.display.update()

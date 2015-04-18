@@ -1,0 +1,923 @@
+  Kapitel 9
+  GALGENMANN
+
+In diesem Kapitel behandelte Themen:
+
+• Mehrzeilige Zeichenketten
+• Methoden
+• Listen
+• Die Listen-Methoden append() und reverse()
+• Die Zeichenketten-Methoden lower(), upper(), split(), startswith() und endswith()
+• Die Operatoren in und not in
+• Die Funktionen range() und list()
+• del-Anweisungen
+• for-Schleifen
+• elif-Anweisungen
+
+Diese Kapitel führt viele neue Konzepte ein, aber keine Sorge! Wir werden mit diesen Konzepten zuerst in der interaktiven Konsole experimentieren und uns mit ihnen vertraut machen. Danach lernen wir Methoden kennen; das sind an Werte gebundene Funktionen. Wir beschäftigen uns außerdem mit einem neuen Schleifen-Typen namens for-Schleife und einem neuen Daten-Typen namens Liste. Wenn du diese Konzepte verinnerlicht hast, gestaltet sich die Programmierung von Galgenmann gleich viel einfacher.
+
+Quellcode zu Galgenmann
+
+Das Spiel in diesem Kapitel ist um einiges länger als vorherige Spiele, aber vieles davon ist ASCII-Kunst für die Galgenmann-Animation. Gib folgenden Code in den Datei-Editor ein und speichere ihn als galgenmann.py ab.
+
+galgenmann.py
+
+  1. import random
+  2. GALGENMANNBILDER = ['''
+  3.
+  4.   +---+
+  5.   |   |
+  6.       |
+  7.       |
+  8.       |
+  9.       |
+ 10. =========''', '''
+ 11.
+ 12.   +---+
+ 13.   |   |
+ 14.   O   |
+ 15.       |
+ 16.       |
+ 17.       |
+ 18. =========''', '''
+ 19.
+ 20.   +---+
+ 21.   |   |
+ 22.   O   |
+ 23.   |   |
+ 24.       |
+ 25.       |
+ 26. =========''', '''
+ 27.
+ 28.   +---+
+ 29.   |   |
+ 30.   O   |
+ 31.  /|   |
+ 32.       |
+ 33.       |
+ 34. =========''', '''
+ 35.
+ 36.   +---+
+ 37.   |   |
+ 38.   O   |
+ 39.  /|\  |
+ 40.       |
+ 41.       |
+ 42. =========''', '''
+ 43.
+ 44.   +---+
+ 45.   |   |
+ 46.   O   |
+ 47.  /|\  |
+ 48.  /    |
+ 49.       |
+ 50. =========''', '''
+ 51.
+ 52.   +---+
+ 53.   |   |
+ 54.   O   |
+ 55.  /|\  |
+ 56.  / \  |
+ 57.       |
+ 58. =========''']
+ 59. worte = 'aal adler alligator ameise amsel bär biber bussard chamäleon dachs delfin eichhörnchen eidechse elch elefant faultier fledermaus fuchs gans gepard gorilla hai hamster hase hirsch huhn igel jaguar kamel känguru koala leopard libelle marienkäfer maulwurf meerschweinchen möwe nachtigal nilpferd panda pfau qualle ratte regenwurm schaf schimpanse schwan schwein strauß tausendfüßer tintenfisch wachtel wal wolf zebra ziege'.split()
+ 60.
+ 61. def zufallsWort(wortListe):
+ 62.     # Diese Funktion gibt eine zufällige Zeichenkette aus der übergebenen Zeichenketten-Liste zurück.
+ 63.     wortIndex = random.randint(0, len(wortListe) - 1)
+ 64.     return wortListe[wortIndex]
+ 65.
+ 66. def zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort):
+ 67.     print(GALGENMANNBILDER[len(falscheBuchstaben)])
+ 68.     print()
+ 69.
+ 70.     print('Falsche Buchstaben:', end=' ')
+ 71.     for buchstabe in falscheBuchstaben:
+ 72.         print(buchstabe, end=' ')
+ 73.     print()
+ 74.
+ 75.     luecken = '_' * len(geheimWort)
+ 76.
+ 77.     for i in range(len(geheimWort)): # Ersetze Lücken mit korrekt geratenen Buchstaben
+ 78.         if geheimWort[i] in richtigeBuchstaben:
+ 79.             luecken = luecken[:i] + geheimWort[i] + luecken[i+1:]
+ 80.
+ 81.     for buchstabe in luecken: # Zeige das Geheimwort mit Leerzeichen zwischen den Buchstaben
+ 82.         print(buchstabe, end=' ')
+ 83.     print()
+ 84.
+ 85. def rateBuchstabe(bereitsGeraten):
+ 86.     # Stellt sicher, dass der Spieler nur einen einzelnen Buchstaben eintippt und gibt ihn zurück.
+ 87.     while True:
+ 88.         print('Rate einen Buchstaben.')
+ 89.         eingabe = input()
+ 90.         eingabe = eingabe.lower()
+ 91.         if len(eingabe) != 1:
+ 92.             print('Bitte gib einen einzelnen Buchstaben ein.')
+ 93.         elif eingabe in bereitsGeraten:
+ 94.             print('du hast diesen Buchstaben bereits probiert. Rate noch einmal.')
+ 95.         elif eingabe not in 'abcdefghijklmnopqrstuvwxyz':
+ 96.             print('Bitte gib einen BUCHSTABEN ein.')
+ 97.         else:
+ 98.             return eingabe
+ 99.
+100. def spieleNochEinmal():
+101.     # Diese Funktion True zurück, falls der Spieler noch einmal spielen möchte, False sonst.
+102.     print('Möchtest du noch einmal spielen? (ja oder nein)')
+103.     return input().lower().startswith('j')
+104.
+105.
+106. print('G A L G E N M A N N')
+107. falscheBuchstaben = ''
+108. richtigeBuchstaben = ''
+109. geheimWort = zufallsWort(worte)
+110. spielIstBeendet = False
+111.
+112. while True:
+113.     zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort)
+114.
+115.     # Lass den Spieler einen Buchstaben eingeben.
+116.     buchstabe = rateBuchstabe(falscheBuchstaben + richtigeBuchstaben)
+117.
+118.     if buchstabe in geheimWort:
+119.         richtigeBuchstaben = richtigeBuchstaben + buchstabe
+120.
+121.         # Überprüfe, ob der Spieler gewonnen hat
+122.         alleBuchstabenGeraten = True
+123.         for i in range(len(geheimWort)):
+124.             if geheimWort[i] not in richtigeBuchstaben:
+125.                 alleBuchstabenGeraten = False
+126.                 break
+127.         if alleBuchstabenGeraten:
+128.             print('Ja! Das geheime Wort ist "' + geheimWort + '"! du hast gewonnen!')
+129.             spielIstBeendet = True
+130.     else:
+131.         falscheBuchstaben = falscheBuchstaben + buchstabe
+132.
+133.         # Überprüfe, ob der Spieler zu viele Rateversuche verbraucht und damit verloren hat
+134.         if len(falscheBuchstaben) == len(GALGENMANNBILDER) - 1:
+135.             zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort)
+136.             print('du hast zu viele Versuche gebraucht!\nNach ' + str(len(falscheBuchstaben)) + ' falsch und ' + str(len(richtigeBuchstaben)) + ' richtig geratenen Buchstaben lautet das Wort "' + geheimWort + '"')
+137.             spielIstBeendet = True
+138.
+139.     # Frage den Spieler, ob er noch einmal spielen möchte (aber nur, wenn das Spiel zu Ende ist).
+140.     if spielIstBeendet:
+141.         if spieleNochEinmal():
+142.             falscheBuchstaben = ''
+143.             richtigeBuchstaben = ''
+144.             spielIstBeendet = False
+145.             geheimWort = zufallsWort(worte)
+146.         else:
+147.             break
+
+Wie der Code funktioniert
+
+  1. import random
+
+Das Galgenmann-Programm sucht zufällig ein geheimes Wort aus einer Liste von geheimen Worten aus. Dafür benötigen wir die Funktionen des random-Moduls, also importieren wir es.
+
+  2. GALGENMANNBILDER = ['''
+  3.
+  4.   +---+
+  5.   |   |
+  6.       |
+  7.       |
+  8.       |
+  9.       |
+ 10. =========''', '''
+
+...der Rest des Codes ist zu lang, um ihn hier zu zeigen...
+
+Diese eine Zuweisung erstreckt sich über die Zeilen 2 bis 58 im Code. Die Bedeutung dieses Codes wird ersichtlich, sobald wir uns mit mehrzeiligen Zeichenketten vertraut gemacht haben.
+
+Mehrzeilige Zeichenketten
+
+Bis jetzt waren Zeichenketten immer von einfachen Anführungszeichen umschlossen und standen in einer Zeile. Wird eine Zeichenkette jedoch von jeweils drei einfachen Anführungszeichen umschlossen, so kann sie sich über mehrere Zeilen erstrecken:
+
+>>> fizz = '''Liebe Alice,
+Ich komme am Ende des Monats zu Carols Haus zurück. Wir sehen uns dann.
+dein Freund,
+Bob'''
+>>> print(fizz)
+Liebe Alice,
+Ich komme am Ende des Monats zu Carols Haus zurück. Wir sehen uns dann.
+dein Freund,
+Bob
+
+Dies sind mehrzeilige Zeichenketten. In mehrzeiligen Zeichenketten sind Zeilenumbrüche Teil der Zeichenkette. Sie brauchen nicht durch das Escape-Zeichen \n extra kenntlich gemacht werden. Dies macht es einfacher, große Text-Abschnitte zu lesen.
+
+Konstante Variablen
+
+Der Name der Variablen GALGENMANN ist in Großbuchstaben geschrieben. Dies ist Konvention bei konstanten Variablen. Konstanten sind Variablen, deren Wert sich nach der ersten Zuweisung nie mehr ändert. Obwohl man den Wert von GALGENMANN, genauso wie den von jeder anderen Variable, ändern könnte, erinnert uns der Name daran, dies nicht zu tun. Die Großschreibung ist ein stilles Abkommen unter Programmierern, nur lesend auf solche Variablen zuzugreifen.
+
+Wie alle Konventionen, braucht auch diese nicht befolgt zu werden. Es ist jedoch ratsam, weil es anderen Programmierern erleichtert, deinen Code zu lesen. Sie können sich darauf verlassen, dass GALGENMANN immer den Wert haben wird, der ihr in Zeile 2 zugewiesen wurde.
+
+Listen
+
+Eine Liste kann mehrere Werte enthalten. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> spam = ['Leben', 'Das Universum', 'Alles', 42]
+>>> spam
+['Leben', 'Das Universum', 'Alles', 42]
+
+Die Liste spam enthält vier Werte. Die Definition beginnt mit einer öffnenden eckigen Klammer [ und endet mit einer schließenden eckigen Klammer ], ähnlich wie Zeichenketten mit einfachen Anführungszeichen beginnen und enden.
+
+Kommata trennen die einzelnen Werte innerhalb einer Liste. Diese Werte bezeichnet man als Einträge.
+
+Indizes
+
+Probiere tiere = ['Affe', 'Alpaka', 'Ameise', 'Antilope'] in die interaktive Konsole einzugeben, um eine Liste in der Variablen tiere zu speichern. Die eckigen Klammern werden auch verwendet, um auf Elemente in der Liste zuzugreifen. Probiere tiere[0], tiere[1], tiere[2] und tiere[3] in die interaktive Konsole einzugeben, um zu sehen, wie diese Ausdrücke ausgewertet werden:
+
+>>> tiere = ['Affe', 'Alpaka', 'Ameise', 'Antilope']
+>>> tiere[0]
+'Affe'
+>>> tiere[1]
+'Alpaka'
+>>> tiere[2]
+'Ameise'
+>>> tiere[3]
+'Antilope'
+
+Die Zahl zwischen den eckigen Klammern ist der Index. In Python hat das erste Element in einer Liste den Index 0. Das zweite Element hat den Index 1, das dritte den Index 2, und so weiter. Weil die Indizes bei 0 und nicht bei 1 beginnen, sagt man Python sei 0-indiziert.
+
+Listen eignen sich dazu, mehrere Werte zu speichern, ohne mehrere Variablen zu verwenden. Andererseits würde der Code wie folgt aussehen:
+
+>>> tiere1 = 'Affe'
+>>> tiere2 = 'Alpaka'
+>>> tiere3 = 'Ameise'
+>>> tiere4 = 'Antilope'
+
+Solcher Code wäre schwierig zu verwalten, wenn er aus hunderten oder gar tausenden von Zeichenketten bestünde. Eine Liste hingegen, kann eine beliebige Anzahl von Werten enthalten. Über die eckigen Klammern kann auf diese Werte zugegriffen werden. Probiere tiere[0] + tiere[2] in die interaktive Konsole einzugeben:
+
+>>> tiere[0] + tiere[2]
+'AffeAmeise'
+
+Die Auswertung läuft wie folgt ab:
+
+tiere[0] + tiere[2]
+         ▼
+'Affe'   + tiere[2]
+         ▼
+'Affe'   + 'Ameise'
+         ▼
+   'AffeAmeise'
+
+Indizierungs-Fehler
+
+Der Versuch auf einen Index zuzugreifen, der zu groß ist, resultiert in einem IndexError (auf Deutsch Indizierungs-Fehler) und das Programm stürzt ab. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> tiere = ['Affe', 'Alpaka', 'Ameise', 'Antilope']
+>>> tiere[9999]
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+
+Werte von Listen-Einträgen ändern
+
+Die eckigen Klammern können auch verwendet werden, um den Wert eines Elements in der Liste zu ändern. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> tiere = ['Affe', 'Alpaka', 'Ameise', 'Antilope']
+>>> tiere[1] = 'AMEISE'
+>>> tiere
+['Affe', 'Alpaka', 'AMEISE', 'Antilope']
+
+Die neue Zeichenkette 'AMEISE' überschreibt den zweiten Eintrag in der Liste tiere. tiere[1] wird also in Ausdrücken zum zweiten Listen-Eintrag ausgewertet, kann aber auch auf der linken Seite von Zuweisungen verwendet werden, um Werte zum zweiten Listen-Eintrag zuzuweisen. 
+
+Listen-Verknüpfung
+
+Listen können mit Hilfe des Operators + zu einer Liste verknüpft werden, genauso wie Zeichenketten. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> [1, 2, 3, 4] + ['Äpfel', 'Orangen'] + ['Alice', 'Bob']
+[1, 2, 3, 4, 'Äpfel', 'Orangen', 'Alice', 'Bob']
+['Äpfel'] + ['Orangen'] evaluiert zu ['Äpfel', 'Orangen']. ['Äpfel'] + 'Orangen' jedoch resultiert ein einem Fehler. Eine Liste kann nicht mit einer Zeichenkette verknüpft werden. Sollen Nicht-Listen-Elemente zu einer Liste hinzugefügt werden, so verwendet man die Methode append() (später beschrieben).
+
+Der Operator in
+
+Der Operator in verrät dir, ob sich ein Wert in einer Liste befindet. Der in-Operator gibt einen booleschen Wert zurück: True, falls sich der Wert in der Liste befindet, False sonst. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> tiere = ['Affe', 'Alpaka', 'Ameise', 'Antilope']
+>>> 'Antilope' in tiere
+True
+
+Der Ausdruck 'Antilope' in tiere gibt True zurück, weil sich die Zeichenkette 'Antilope' in der Liste tiere befindet. Ihre Position ist Index 2.
+
+Gibst du jedoch den Ausdruck 'Aal' in tiere ein, so ergibt dies False, weil die Zeichenkette 'Aal' nicht in der Liste vorkommt.
+
+>>> tiere = ['Affe', 'Alpaka', 'Ameise', 'Antilope']
+>>> 'Antilope' in tiere
+True
+>>> 'Aal' in tiere
+False
+
+Der Operator in funktioniert auch mit Zeichenketten. Er überprüft, ob eine Zeichenkette Teil einer anderen Zeichenkette ist. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> 'Hallo' in 'Alice sagt Hallo zu Bob.'
+True
+
+Einträge aus Listen mit der del-Anweisung löschen
+
+Die del-Anweisung löscht einen Eintrag an einem bestimmten Index aus einer Liste. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> spam = [2, 4, 6, 8, 10]
+>>> del spam[1]
+>>> spam
+[2, 6, 8, 10]
+
+Beachte, dass, als du den Eintrag an Index 1 gelöscht hast, alle folgenden Einträge aufgerückt sind und ihr Index sich um eins verringert hat. Der Eintrag, der sich vorher an Index 2 befand, befindet sich nun an Index 1. Der Eintrag, der sich vorher an Index 3 befand, befindet sich nun an Index 2, usw.
+
+Du kannst den Befehl del spam[1] erneut eingeben, um weitere Einträge aus der Liste zu löschen.
+
+>>> spam = [2, 4, 6, 8, 10]
+>>> del spam[1]
+>>> spam
+[2, 6, 8, 10]
+>>> del spam[1]
+>>> spam
+[2, 8, 10]
+>>> del spam[1]
+>>> spam
+[2, 10]
+
+Die del-Anweisung ist eine Anweisung, er ist keine Funktion und kein Operator. Er beinhaltet keine Klammern und gibt auch keinen Wert zurück.
+
+Listen von Listen
+
+Listen können selbst Listen enthalten. Nehmen wir an du hättest eine Einkaufsliste, eine Aufgabenliste und eine Liste deiner Lieblingskuchen. Du kannst all diese Listen in eine andere Liste einfügen. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> einkaeufe = ['Eier', 'Milch', 'Suppe', 'Äpfel', 'Brot']
+>>> aufgaben = ['Sauber machen', 'Rasen mähen', 'Einkäufe erledigen']
+>>> lieblingsKuchen = ['Apfel', 'Brombeere']
+>>> listeVonListen = [einkaeufe, aufgaben, lieblingsKuchen]
+>>> listeVonListen
+[['Eier', 'Milch', 'Suppe', 'Äpfel', 'Brot'], ['Sauber machen', 'Rasen mähen', Einkäufe erledigen'], ['Apfel', 'Brombeere']]
+
+Um einen Eintrag aus einer Liste von Listen abzufragen, benutzt man zwei Klammern-Paare: listeVonListen[1][2] würde zu 'Einkaeufe erledigen' ausgewertet werden.
+
+Dies liegt daran, dass listeVonListen[1][2] zu ['Sauber machen', 'Rasen mähen', Einkäufe erledigen'][2] ausgewertet wird, was schlussendlich zu 'Einkäufe erledigen' ausgewertet wird:
+
+listeVonListen[1][2]
+         ▼
+[['Eier', 'Milch', 'Suppe', 'Äpfel', 'Brot'], ['Sauber machen', 'Rasen mähen', Einkäufe erledigen'], ['Apfel', 'Brombeere']][1][2]
+         ▼
+['Sauber machen', 'Rasen mähen', 'Einkäufe erledigen'][2]
+         ▼
+'Einkaeufe erledigen'
+
+Abbildung 9-1 ist ein weiteres Beispiel für eine Liste von Listen, zusammen mit einigen Beispiel-Indizes, die auf die Elemente verweisen. Die Pfeile verweisen auf die Indizes der inneren Listen. Die Abbildung ist für eine bessere Lesbarkeit rotiert.
+
+Methoden
+
+Methoden sind an Werte gebundene Funktionen. Zum Beispiel besitzen alle Zeichenketten eine lower()-Methode, die eine Kopie der Zeichenkette in Kleinbuchstaben zurückgibt. So gibt 'Hallo'.lower() 'hallo' zurück. lower() kann nicht alleine aufgerufen werden und man kann auch keine Argumente an lower() übergebenen (wie etwa lower('Hallo')). Der Methoden-Aufruf muss an eine bestimmte Zeichenkette gebunden sein. Der nächste Abschnitt geht tiefer auf Zeichenketten-Methoden ein.
+
+Abbildung 9-1: Die Indizes von einer Liste von Listen.
+
+Die Zeichenketten-Methoden lower() und upper()
+
+Probiere 'Hallo Welt!'.lower() in die interaktive Konsole einzugeben, um sich diese Methode zu veranschaulichen:
+
+>>> 'Hallo Welt!'.lower()
+'hallo welt!'
+
+Es gibt auch eine upper()-Methode für Zeichenketten, die eine Zeichenkette in Großbuchstaben umwandelt. Probiere 'Hallo Welt!'.upper() in die interaktive Konsole einzugeben:
+
+>>> 'Hallo Welt!'.upper()
+'HALLO WELT!'
+
+Da die upper()-Methode eine Zeichenkette zurückgibt, kann man an ihr ebenfalls eine Methode aufrufen. Probiere 'Hallo Welt!'.upper().lower() in die interaktive Konsole einzugeben:
+
+>>> 'Hallo Welt!'.upper().lower()
+'hallo welt!'
+'Hallo Welt!'.upper() wird zu 'HALLO WELT!' ausgewertet. Auf dieser Zeichenkette wird die Methode lower() aufgerufen, was zu 'hallo welt!' ausgewertet wird.
+
+'Hallo Welt!'.upper().lower()
+                    ▼
+       'HALLO WELT!'.lower()
+                    ▼
+                'hallo welt!'
+
+Die Reihenfolge ist wichtig. 'Hallo Welt!'.lower().upper() ist nicht dasselbe wie 'Hallo Welt!'.upper().lower():
+
+>>> 'Hallo Welt!'.lower().upper()
+'HALLO WELT!'
+
+Diese Auswertung sähe wie folgt aus:
+
+'Hallo Welt!'.lower().upper()
+                    ▼
+        'hallo welt!'.lower()
+                    ▼
+               'HALLO WELT!'
+
+Wenn eine Zeichenkette in einer Variablen gespeichert ist, kann man eine Zeichenketten-Methode an dieser Variablen aufrufen. Schaue dir folgendes Beispiel an:
+
+>>> spam = 'Hallo Welt!'
+>>> spam.upper()
+'HALLO WELT!'
+
+Dieser Code ändert den Wert in spam nicht. spam hat immer noch den Wert 'Hallo Welt!'.
+
+Beachte, dass Ganz-und Fließkommazahlen keine Methoden besitzen.
+
+Die Listen-Methoden reverse() und append()
+
+Listen besitzen ebenfalls Methoden. Die Methode reverse() kehrt die Reihenfolge der Elemente in einer Liste um. Probiere spam = [1, 2, 3, 4, 5, 6, 'miau', 'wuff'] gefolgt von spam.reverse() in die interaktive Konsole einzugeben:
+
+>>> spam = [1, 2, 3, 4, 5, 6, 'miau', 'wuff']
+>>> spam.reverse()
+>>> spam
+['wuff', 'miau', 6, 5, 4, 3, 2, 1]
+
+Die gängigste Listen-Methode, die du verwendenf wirst, ist append(). Diese Methode fügt den ihr übergebenen Wert an das Ende der Liste hinzu. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> eier = []
+>>> eier.append('Luftkissenboot')
+>>> eier
+['Luftkissenboot']
+>>> eier.append('Aale')
+>>> eier
+['Luftkissenboot', 'Aale']
+>>> eier.append(42)
+>>> eier
+['Luftkissenboot', 'Aale', 42]
+
+Diese Methoden geben keine neue Liste zurück, sondern verändern die Liste, an der sie aufgerufen werden. Man sagt diese Methoden verändern die Liste “in-place” (zu Deutsch “auf der Stelle”).
+
+Die Listen-Methode split()
+
+Zeile 59 mag eine lange Zeile Code sein, aber es handelt sich lediglich um eine einfache Zuweisung. Diese Zeile verwendet die Zeichenketten-Methode split().
+
+59. worte = 'aal adler alligator ameise amsel bär biber bussard chamäleon dachs delfin eichhörnchen eidechse elch elefant faultier fledermaus fuchs gans gepard gorilla hai hamster hase hirsch huhn igel jaguar kamel känguru koala leopard libelle marienkäfer maulwurf meerschweinchen möwe nachtigal nilpferd panda pfau qualle ratte regenwurm schaf schimpanse schwan schwein strauß tausendfüßer tintenfisch wachtel wal wolf zebra ziege'.split()
+
+Diese Zuweisung besteht aus einer einzigen, langen Zeichenkette, voll von Worten, die durch Leerzeichen getrennt sind. Am Ende der Zeichenkette steht ein Aufruf der split()-Methode. Diese gibt eine Liste zurück, in der jedes Wort aus der Zeichenkette einem Eintrag entspricht. Der split (zu Deutsch “Spaltung”) tritt an den Leerzeichen in der Zeichenkette auf.
+
+split() erleichtert uns das Tippen. Hätten wir von Anfang an eine Liste erstellt, so müssten wir ['aal', 'adler', 'alligator', ... eingeben, mit Anführungszeichen und Kommata für jedes Wort.
+
+Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> satz = input()
+Meine sehr energische Mutter hat uns gerade Nachos serviert.
+>>> satz.split()
+['Meine', 'sehr', 'energische', 'Mutter', hat', uns', gerade', Nachos', serviert.']
+
+Das Ergebnis ist eine Liste mit neun Zeichenketten, eine für jedes Wort im ursprünglichen Satz. Die Leerzeichen sind in keinen Einträgen der Liste enthalten.
+
+Du kannst gerne deine eigenen Worte zur Zeichenkette in Zeile 59 hinzufügen, oder Worte entfernen, die du nicht im Spiel haben möchtest. Stelle dabei sicher, dass die Worte von Leerzeichen getrennt sind.
+
+Wie der Code funktioniert
+
+Zeile 61 definiert die zufallsWort()-Funktion. Ein Listen-Argument wird an ihren wortListe-Parameter übergeben. Diese Funktion gibt ein einzelnes, geheimes Wort aus wortListe zurück.
+
+ 61. def zufallsWort(wortListe):
+ 62.     # Diese Funktion gibt eine zufällige Zeichenkette aus der übergebenen Zeichenketten-Liste zurück.
+ 63.     wortIndex = random.randint(0, len(wortListe) - 1)
+ 64.     return wortListe[wortIndex]
+
+Zeile 63 speichert einen zufälligen Index für diese Liste in der Variable wortIndex ab. Dies geschieht, indem die randint()-Funktion mit zwei Argumenten aufgerufen wird. Das erste Argument ist 0 (der erste gültige Index) und das zweite Argument ist der Wert, zu dem der Ausdruck len(wortListe) - 1 ausgewertet wird (der letzte gültige Index).
+
+Listen-Indizes beginnen bei 0, nicht bei 1. In einer Liste mit drei Einträgen, befindet sich der erste Eintrag an Index 0, der zweite Eintrag an Index 1 und der dritte Eintrag an Index 2. Die Länge dieser Liste ist 3, aber der Index 3 würde hinter den letzten Eintrag verweisen. Deswegen subtrahiert Zeile 63 1 von der Länge. Der Code in Zeile 63 funktioniert unabhängig von der Länge von wortListe. Jetzt kannst du beliebig Wörter zu wortListe hinzufügen oder von ihr entfernen.
+
+Die wortIndex-Variable wird auf einen zufälligen Index in der per wortListe übergebenen Liste gesetzt. Zeile 64 gibt den Eintrag an Index wortIndex aus wortListe zurück.
+
+Nehmen wir an ['Apfel', 'Orange', 'Weintraube'] wurde als Argument an zufallsWort() übergeben und randint(0, 2) gab 2 zurück. Dies würde bedeuten, dass Zeile 64 zu wortListe[2] ausgewertet wird, was zu 'Weintraube' ausgewertet wird, was zurückgegeben wird. Auf diese Weise gibt zufallsWort() zufällige Zeichenketten aus Listen zurück.
+
+zufallsWort() akzeptiert also eine Liste von Zeichenketten und gibt eine zufällig ausgewählte Zeichenkette aus dieser Liste zurück. Dies ist nützlich, um im Spiel Galgenmann ein geheimes, zu erratendes Wort für den Spieler auszuwählen.
+
+Das Spielbrett anzeigen
+
+Als Nächstes benötigen wir eine Funktion, um das Galgenmann-Spielbrett auf dem Bildschirm darzustellen. Es wird auch anzeigen, wie viele Buchstaben der Spieler richtig (bzw. falsch) geraten hat.
+
+ 66. def zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort):
+ 67.     print(GALGENMANNBILDER[len(falscheBuchstaben)])
+ 68.     print()
+
+Dieser Code definiert eine neue Funktion namens zeigeSpielbrettAn(). Diese Funktion erwartet vier Parameter:
+
+• GALGENMANNBILDER - Eine Liste von mehrzeiligen Zeichenketten, die das Spielbrett als ASCII-Kunst enthalten. (Die globale Variable GALGENMANNBILDER wird als Argument an diesen Parameter übergeben werden.) 
+• falscheBuchstaben - Eine Zeichenkette bestehend aus Rateversuchen, die nicht Teil des Geheimwortes sind.
+• richtigeBuchstaben - Eine Zeichenkette bestehend Rateversuchen, die Teil des Geheimwortes sind.
+• geheimWort – Eine Zeichenkette, die das geheime Wort representiert, das der Spieler erraten muss..
+
+Der erste print()-Aufruf zeigt das Spielbrett an. GALGENMANNBILDER ist eine Liste mit Zeichenketten für jedes mögliche Spielbrett. GALGENMANNBILDER[0] zeigt einen leeren Galgen, GALGENMANNBILDER[1] zeigt den Kopf (wenn der Spieler einen Buchstaben falsch rät), GALGENMANNBILDER[2] zeigt den Kopf und Körper (wenn der Spieler zwei Buchstaben falsch rät), und so weiter bis GALGENMANNBILDER[6] schließlich den kompletten Henker zeigt.
+
+Die Anzahl der Buchstaben in falscheBuchstaben ist gleich der Anzahl der falschen Rateversuche des Spielers. Ein Aufruf von len(falscheBuchstaben) verrät uns diese Zahl. D.h., falls falscheBuchstaben den Wert 'aetr' enthält, gibt len('aetr') 4 zurück. GALGENMANNBILDER[4] auf dem Bildschirm auszugeben, zeigt das Spielbrett für vier falsche Rateversuche an. Dies ist genau das, was GALGENMANNBILDER[len(falscheBuchstaben)] in Zeile 67 tut.
+
+ 70.     print('Falsche Buchstaben:', end=' ')
+ 71.     for buchstabe in falscheBuchstaben:
+ 72.         print(buchstabe, end=' ')
+ 73.     print()
+
+Zeile 70 gibt die Zeichenkette 'Falsche Buchstaben:' auf dem Bildschirm aus, mit einem Leerzeichen am Ende, anstatt einer neuen Zeile. Wir erinnern uns, dass das Schlüsselwort-Argument end=' ' nur ein Gleichheitszeichen (=) verwendet, nicht zwei (==).
+
+Zeile 71 führt eine neue Art von Schleife ein, genannt for-Schleife. Eine for-Schleife benutzt die range()-Funktion. Beide Konstrukte werden in den nächsten zwei Abschnitten erklärt.
+
+Die Funktionen range() und list()
+
+Wird range() mit einem Argument aufgerufen, so gibt die Funktion ein Wertebereich-Objekt bestehend aus Ganzzahlen von 0 bis (ausschließlich) zum Argument. Dieses Wertebereich-Objekt kann mit Hilfe der list()-Funktion in den uns vertrauten Listen-Typen konvertiert werden. Probiere list(range(10)) in die interaktive Konsole einzugeben:
+
+>>> list(range(10))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> list('Hallo')
+['H', 'a', 'l', 'l', 'o']
+Die list()-Funktion ähnelt den Funktionen str() und int(), insofern als sie das ihr übergebene Objekt in eine Liste konvertiert. Es ist einfach, riesige Listen mit der range()-Funktion zu generieren. Probiere list(range(10000)) in die interaktive Konsole einzugeben:
+>>> list(range(10000))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
+      ...der Kürze halber ausgelassen...
+...9989, 9990, 9991, 9992, 9993, 9994, 9995, 9996, 9997, 9998, 9999]
+
+Diese Liste ist so groß, dass sie nicht einmal auf den Bildschirm passt. Aber man kann sie in einer Variablen speichern:
+
+>>> spam = list(range(10000))
+
+Übergibt man zwei Ganzzahlen an range(), gibt die Funktion ein Wertebereich-Objekt zurück, das von der ersten Ganzzahl (einschließlich) bis zu der zweiten Ganzzahl (ausschließlich) reicht. Probiere list(range(10, 20)) in die interaktive Konsole einzugeben:
+
+>>> list(range(10, 20))
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+
+range() wird häufig in for-Schleifen benutzt, die den uns bereits bekannten while-Schleifen sehr ähneln.
+
+for-Schleifen
+
+Die for-Schleife ist nützlich, um über eine Liste von Werten zu iterieren. Dies unterscheidet sie von while-Schleifen, welche solange iterieren, wie eine Bedingung erfüllt ist. Eine for-Anweisung beginnt mit dem Schlüsselwort for, gefolgt von einem neuen Variablen-Namen, gefolgt vom Schlüsselwort in, gefolgt von einem iterierbaren Wert, und endet schließlich mit einem Doppelpunkt.
+
+Ein iterierbarer Wert ist ein Wert des Typs Liste (list), Wertebereich (range) oder Zeichenkette (string). Es gibt einige weitere iterierbare Datentypen, auf die wir später zurückkommen.
+
+Bei jeder Schleifen-Iteration wird der neuen Variable in der for-Anweisung ein weiterer Eintrag aus der Liste zugewiesen.
+
+>>> for i in range(5):
+...     print('i ist gleich ' + str(i))
+...
+i ist gleich 0
+i ist gleich 1
+i ist gleich 2
+i ist gleich 3
+i ist gleich 4
+
+Das von range(5) zurückgegebene Wertebereich-Objekt ist äquivalent zu der Liste [0, 1, 2, 3, 4] in einer for-Anweisung. Wenn sich die Programmausführung das erste Mal im for-Block befindet, hat i den Wert 0. Bei der nächsten Iteration, hat i den Wert 1, und so weiter.
+
+Der for-Ausdruck konvertiert das von range() zurückgegebene Wertebereich-Objekt automatisch in eine Liste, so dass man nicht extra list(range(5)) aufrufen braucht. range(5) genügt.
+
+Listen und Zeichenketten können ebenfalls iteriert werden. Man kann sie in for-Ausdrücken verwenden. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> for ding in ['Katzen', 'Pasta', 'Programmierung', 'Spam']:
+...     print('Ich mag ' + ding + ' sehr')
+...
+Ich mag Katzen sehr
+Ich mag Pasta sehr
+Ich mag Programmierung sehr
+Ich mag Spam sehr
+
+>>> for i in 'Hallo':
+...     print(i)
+...
+H
+a
+l
+l
+o
+
+Eine zur for-Schleife äquivalente while-Schleife
+
+Die for-Schleife ähnelt der while-Schleife sehr, aber wenn man nur über Einträge einer Liste iterieren braucht, führt die for-Schleife zu weniger Tipparbeit. So, würde das vorherige Codebeispiel mit Verwendung einer while-Schleife aussehen:
+
+>>> iterierbarerWert = ['Katzen', 'Pasta', 'Programmierung', 'Spam']
+>>> index = 0
+>>> while (index < len(iterierbarerWert)):
+...     ding = iterierbarerWert[index]
+...     print('Ich mag ' + ding ' sehr')
+...     index = index + 1
+...
+Ich mag Katzen sehr
+Ich mag Pasta sehr
+Ich mag Programmierung sehr
+Ich mag Spam sehr
+
+Die Verwendung der for-Anweisung erübrigt die Einführung des Extra-Codes und erspart uns Tipparbeit.
+
+Der Rest der zeigeSpielbrettAn()-Funktion zeigt die falschen Buchstaben an und erstellt eine Zeichenkette, in der die noch nicht erratenen Buchstaben im Geheimwort durch Unterstriche ersetzt sind.
+
+ 70.     print('Falsche Buchstaben:', end=' ')
+ 71.     for buchstabe in falscheBuchstaben:
+ 72.         print(buchstabe, end=' ')
+ 73.     print()
+
+Die for-Schleife in Zeile 71 iteriert über jedes Zeichen in falscheBuchstaben und gibt es auf dem Bildschirm aus. Vergiss nicht, dass end=' ' die neue Zeile, die normalerweise nach einer Zeichenkette ausgegeben wird, durch ein Leerzeichen ersetzt.
+
+Falls zum Beispiel falscheBuchstaben den Wert 'ajtw' hätte, würde die for-Schleife a j t w ausgeben.
+
+Slicing
+
+Das englische Verb “to slice” bedeutet in Deutsch “schneiden” oder auch “in Scheiben schneiden”. Letztere Bedeutung entspricht dem Slicing in Python. Dieses erlaubt es, neue Listen aus Teilmengen anderer Listen zu erstellen. Hierzu spezifiziert man im Code zwei durch einen Doppelpunkt getrennte Indizes (Anfang und Ende) in den eckigen Klammern hinter einer Liste. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> spam = ['Äpfel', 'Bananen', 'Karotten', 'Daten']
+>>> spam[1:3]
+['Bananen', 'Karotten']
+
+Der Ausdruck spam[1:3] wird zu einer Liste mit den Einträgen von Index 1 (einschließlich) bis Index 3 (ausschließlich) aus spam ausgewertet.
+
+Lässt man den ersten Index aus, nimmt Python automatisch 0 an:
+
+>>> spam = ['Äpfel', 'Bananen', 'Karotten', 'Daten']
+>>> spam[:2]
+['Äpfel', 'Bananen']
+
+Lässt man den zweiten Index aus, nimmt Python automatisch die Länge der Liste an:
+
+>>> spam = ['Äpfel', 'Bananen', 'Karotten', 'Daten']
+>>> spam[2:]
+['Karotten', 'Daten']
+
+Slicing erlaubt es uns auf einfache Weise, Teilmengen aus Listen zu extrahieren. Slices funktionieren mit Zeichenketten genauso wie mit Listen. Jedes Zeichen in der Zeichenkette wird wie ein Eintrag aus einer Liste behandelt. Probiere Folgendes in die interaktive Konsole einzugeben:
+
+>>> meinName = 'Sofie die dicke Katze'
+>>> meinName[4:12]
+'e die di'
+>>> meinName[:10]
+'Sofie die '
+>>> meinName[7:]
+'ie dicke Katze'
+
+Der nächste Teil des Codes in Galgenmann verwendet Slicing.
+
+Das Geheimwort mit Unterstrichen darstellen
+
+Als Nächstes wollen wir das Geheimwort ausgeben, jedoch mit Unterstrichen (_) an Stelle der nicht erratenen Buchstaben. Zuerst erstellen wir eine Zeichenkette, die genauso lang ist wie das Geheimwort und nur aus Unterstrichen besteht. Danach ersetzen wir Unterstriche mit Buchstaben aus richtigeBuchstaben.
+
+Wäre das Geheimwort 'bieber', dann bestünde die redigierte Zeichenkette aus sechs Unterstrichen '______'. Beinhaltete richtigeBuchstaben nun die Zeichenkette 'be', so würde die redigierte Zeichenkette zu 'b_ebe_' geändert. Die Zeilen 75 bis 79 sind dafür zuständig.
+
+ 75.     luecken = '_' * len(geheimWort)
+
+Zeile 75 erstellt die redigierte Variable mittels Zeichenketten-Replikation. Der Operator * kann auf eine Zeichenkette und eine Ganzzahl angewandt werden; der Ausdruck '_' * 6 evaluiert zu '______'. Dies stellt sicher, dass luecken genauso viele Unterstriche enthält, wie geheimWort Buchstaben.
+
+ 77.  for i in range(len(geheimWort)): # Ersetze Lücken mit korrekt geratenen Buchstaben
+ 78.         if geheimWort[i] in richtigeBuchstaben:
+ 79.             luecken = luecken[:i] + geheimWort[i] + luecken[i+1:]
+
+Zeile 77 definiert eine for-Schleife, die durch alle Buchstaben in geheimWort iteriert und Unterstriche durch die tatsächlichen Buchstaben ersetzt, falls sie in richtigeBuchstaben enthalten sind.
+
+Nehmen wir an, geheimWort habe den Wert 'bieber' und richtigeBuchstaben habe den Wert 'be'. Dann sollte dem Spieler der Text 'b_ebe_' angezeigt werden. Finden wir heraus, wie man diese Zeichenkette erstellt.
+
+Der Aufruf len(geheimWort) in Zeile 77 würde 6 zurückgeben. range(len(geheimWort)) wird zu range(6), sodass die for-Schleife über die Werte 0, 1, 2, 3, 4 und 5 iteriert.
+
+Da i jeden der Werte in [0, 1, 2, 3, 4, 5] annehmen wird, ist die for-Schleife äquivalent zu folgendem Code:
+
+if geheimWort[0] in richtigeBuchstaben:
+    luecken = luecken[:0] + geheimWort[0] + luecken[1:]
+
+if geheimWort[1] in richtigeBuchstaben:
+    luecken = luecken[:1] + geheimWort[1] + luecken[2:]
+    
+if geheimWort[2] in richtigeBuchstaben:
+    luecken = luecken[:2] + geheimWort[2] + luecken[3:]
+    
+if geheimWort[3] in richtigeBuchstaben:
+    luecken = luecken[:3] + geheimWort[3] + luecken[4:]
+    
+if geheimWort[4] in richtigeBuchstaben:
+    luecken = luecken[:4] + geheimWort[4] + luecken[5:]
+    
+if geheimWort[5] in richtigeBuchstaben:
+    luecken = luecken[:5] + geheimWort[5] + luecken[6:]
+
+Falls du nicht sicher bist, was Ausdrücke wie geheimWort[0] oder luecken[3:] repräsentieren, dann schaue dir Abbildung 9-2 an. Sie zeigt die Werte der Variablen geheimWort und luecken mit den dazugehörigen Indizes.
+
+Abbildung 9-2: Die Indizes der Zeichenketten luecken und geheimWort.
+
+Ersetzten wir die Listen-Slices- und Indizes mit den Werten, die sie repräsentieren, dann würde die Schleife wie folgt aussehen:
+
+if 'b' in 'be': # True
+    luecken = '' + 'b' + '_____' # Diese Zeile wird ausgeführt.
+
+if 'i' in 'be': # False
+    luecken = 'b' + 'i' + '____' # Diese Zeile wird übersprungen.
+
+if 'e' in 'be': # True
+    luecken = 'b_' + 'e' + '___' # Diese Zeile wird ausgeführt.
+
+if 'b' in 'be': # True
+    luecken = 'b_e' + 'b' + '__' # Diese Zeile wird ausgeführt.
+
+if 'e' in 'be': # True
+    luecken = 'b_eb' + 'e' + '_' # Diese Zeile wird ausgeführt.
+    
+if 'r' in 'be': # False
+    luecken = 'b_ebe' + 'r' + '' # Diese Zeile wird übersprungen.
+
+# luecken hat jetzt den Wert 'b_ebe_'
+
+Die obigen Code-Beispiele verhalten sich alle gleich, wenn geheimWort den Wert 'bieber' und richtigeBuchstaben den Wert 'be' haben. Die folgenden Zeilen geben den neuen Wert von luecken mit Leerzeichen zwischen jedem Buchstaben auf dem Bildschirm aus.
+
+ 81.     for buchstabe in luecken: # Zeige das Geheimwort mit Leerzeichen zwischen den Buchstaben
+ 82.         print(buchstabe, end=' ')
+ 83.     print()
+
+Spielereingaben lesen
+
+Die rateBuchstabe()-Funktion wird aufgerufen, damit der Spieler einen Buchstaben eingeben kann. Die Funktion gibt die Eingabe des Spielers als Zeichenkette zurück. Darüber hinaus stellt sie sicher, dass der Spieler einen gültigen Buchstaben eingegeben hat, bevor sie zurückkehrt.
+
+ 85. def rateBuchstabe(bereitsGeraten):
+ 86.     # Stellt sicher, dass der Spieler nur einen einzelnen Buchstaben eintippt und gibt ihn zurück.
+
+Eine Zeichenkette mit den vom Spieler bereits geratenen Buchstaben wird als Argument an den Parameter bereitsGeraten übergeben. Danach bittet die rateBuchstabe()-Funktion den Spieler, einen einzelnen Buchstaben zu raten. Dieser wird zum Rückgabewert von rateBuchstabe().
+
+ 87.     while True:
+ 88.         print('Rate einen Buchstaben.')
+ 89.         eingabe = input()
+ 90.         eingabe = eingabe.lower()
+
+Die while-Schleife in Zeile 87 fragt den Spieler solange nach seiner Eingabe, bis dieser einen Text eingibt, der folgenden Kriterien entspricht:
+
+1.  Es handelt sich um einen einzelnen Buchstaben.
+2.  Der Spieler hat den Buchstaben noch nicht geraten.
+
+Als Abbruch-Bedingung an die while-Schleife wird der Wert True übergeben. Das bedeutet, dass die Programmausführung die Schleife nur dann verlassen wird, wenn sie auf eine break-Anweisung (, die die Schleife verlässt,) oder auf eine return-Anweisung (, die nicht nur die Schleife, sondern die gesamte Funktion verlässt,) trifft.
+
+Der obige Code bittet den Spieler einen Buchstaben einzugeben, der in der Variablen eingabe gespeichert wird. Falls der Spieler einen Großbuchstaben eingibt, wird dieser vor dem Speichern in eingabe in einen Kleinbuchstaben umgewandelt.
+
+elif (“Else If”)-Anweisungen
+
+Der nächste Abschnitt des Galgenmann-Programms benutzt elif-Anweisungen. elif-Anweisungen (kurz für “else if”, zu Deutsch “sonst, falls”) kann man sich wie die Formulierung “Falls dies wahr ist, tue dies. Sonst, falls die nächste Bedingung wahr ist, tue das” vorstellen.
+
+Schauen wir uns folgenden Code an:
+
+if katzenName == 'Struppi':
+    print('deine Katze ist struppig.')
+elif katzenName == 'Flecki':
+        print('deine Katze ist gefleckt.')
+else:
+    print('deine Katze ist weder struppig noch gefleckt.')
+
+Falls die katzenName-Variable gleich der Zeichenkette 'Struppi' ist, dann ist die Bedingung der ersten if-Anweisung wahr und der if-Block sagt dem Benutzer, er habe eine struppige Katze. Falls (und nur falls(!)) jedoch die Bedingung falsch ist, testet Python die Bedingung der elif-Anweisung als Nächstes. Ist katzenName gleich 'Flecki', so wird 'deine Katze ist gefleckt.' ausgegeben. Falls (und nur falls(!)) jedoch beide Bedingungen falsch sind, sagt das Programm dem Benutzer, seine Katze sei weder struppig, noch gefleckt.
+
+Es können beliebig viele elif-Anweisungen hintereinander stehen:
+
+if katzenName == 'Struppi':
+    print('deine Katze ist struppig.')
+elif katzenName == 'Flecki':
+    print('deine Katze ist gefleckt.')
+elif katzenName == 'Smoky':
+    print('deine Katze hat schwarze Augen.')
+else:
+    print('deine Katze ist weder struppig, noch gefleckt, noch hat sie schwarze Augen.')
+
+Ist eine der elif-Bedingungen wahr, so wird ihr Code ausgeführt und die Programmausführung springt zur ersten Zeile nach dem else-Block. D.h., in einer if-elif-else-Anweisung wird nur ein einziger Block ausgeführt. Außerdem ist der else-Block am Ende optional.
+
+Die Gültigkeit von Rateversuchen garantieren
+
+ 91.         if len(eingabe) != 1:
+ 92.             print('Bitte gib einen einzelnen Buchstaben ein.')
+ 93.         elif eingabe in bereitsGeraten:
+ 94.             print('du hast diesen Buchstaben bereits probiert. Rate noch einmal.')
+ 95.         elif eingabe not in 'abcdefghijklmnopqrstuvwxyz':
+ 96.             print('Bitte gib einen BUCHSTABEN ein.')
+ 97.         else:
+ 98.             return eingabe
+
+Die Variable eingabe beinhaltet den vom Spieler eingegebenen Text. Das Programm muss sicherstellen, dass dieser gültig ist: Er darf nur aus einem einzelnen Kleinbuchstaben bestehen. Hat der Spieler etwas anderes eingegeben, so sollte das Programm ihn zu einer erneuten Eingabe auffordern.
+
+Die Bedingung in Zeile 91 prüft, ob die Eingabe eine andere Länge als eins hat. Zeile 93 überprüft, ob der Spieler den Buchstaben bereits probiert hat (ob dieser in der bereitsGeraten-Variablen enthalten ist). Zeile 95 prüft, ob es sich um ein ungültiges Zeichen (ein Zeichen, dass kein Kleinbuchstabe ist (z.B. Großbuchstaben oder andere Zeichen)) handelt.
+
+Sind alle Bedingungen falsch, wird der else-Block ausgeführt und rateBuchstabe() gibt den Wert von eingabe in Zeile 98 zurück.
+
+Wir erinnern uns daran, dass nur einer der Blöcke in einer if-elif-else-Anweisung ausgeführt wird.
+
+Den Spieler nach einer weiteren Partie fragen
+
+100. def spieleNochEinmal():
+101.     # Diese Funktion True zurück, falls der Spieler noch einmal spielen möchte, False sonst.
+102.     print('Möchtest du noch einmal spielen? (ja oder nein)')
+103.     return input().lower().startswith('j')
+
+Die Funktion spieleNochEinmal() besteht nur aus einem print()-Aufruf und einer return-Anweisung. Der Ausdruck in der return-Anweisung mag zunächst kompliziert erscheinen, aber man kann ihn leicht in seine Einzelteile zerlegen. Hier ist eine Schritt-für-Schritt-Veranschaulichung, wie Python den Ausdruck interpretiert (unter der Annahme, der Spieler habe JA eingegeben):
+
+input().lower().startswith('j')
+            ▼
+   'JA'.lower().startswith('j')
+            ▼
+           'ja'.startswith('j')
+            ▼
+           True
+
+Die spieleNochEinmal()-Funktion erlaubt dem Spieler, “ja” oder “nein” einzugeben, je nachdem ob dieser weiterspielen möchte oder nicht. Dabei sollte es dem Spieler möglich sein, “JA”, “ja”, “j” oder irgendetwas anderes, das mit “j” beginnt, einzugeben. Gibt der Spieler “JA” ein, so ist der Rückgabewert von input() 'JA'. 'JA'.lower() gibt 'ja' zurück.
+
+Schließlich folgt der Methoden-Aufruf startswith('j'). Diese Funktion gibt True zurück, falls die Zeichenkette, an der sie aufgerufen wird, mit dem als Argument übergebenen Präfix beginnt, False sonst. Der Rückgabewert von 'ja'.startswith('j') ist True.
+
+Damit ist die Analyse dieses Ausdrucks abgeschlossen! Er lässt den Spieler etwas eingeben, wandelt die Eingabe in Kleinbuchstaben um und testet, ob sie mit 'j' beginnt. Ist dies der Fall, so wird True zurückgegeben, False sonst.
+
+Der Vollständigkeit halber sei hier erwähnt, dass es auch eine endswith()-Methode gibt, die True zurückgibt, falls die Zeichenkette, an der sie aufgerufen wird, mit dem als Argument übergebenen Suffix endet.
+
+Zusammenfassung der Funktionen in Galgenmann
+
+Dies waren alle Funktionen, die wir für dieses Spiel geschrieben haben. Hier die Zusammenfassung:
+
+• geheimWort(wortListe) akzeptiert eine Liste von Zeichenketten und gibt eine (zufällig ausgewählte) davon zurück. Auf diese Weise wird das zu erratende Wort für den Spieler ausgesucht.
+• zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort) malt das Spielbrett inklusive des (teilweise erratenen) Geheim-Wortes und den falschen Rateversuchen auf den Bildschirm. Diese Funktion akzeptiert vier Parameter. GALGENMANNBILDER ist eine Liste von Zeichenketten, die das Spielbrett in verschiedenen Etappen als ASCII-Kunst repräsentieren. richtigeBuchstaben und falscheBuchstaben sind Zeichenketten, die aus den richtigen und falschen Rateversuchen des Spielers bestehen. geheimWort ist das geheime Wort, das der Spieler erraten muss. Diese Funktion hat keinen Rückgabewert.
+• rateBuchstabe(bereitsGeraten) akzeptiert eine Zeichenkette aus Buchstaben, die der Spieler bereits getippt hat. Die Funktion fragt den Spieler solange nach einer Eingabe, bis dieser einen einzelnen Kleinbuchstaben eingibt, der noch nicht in bereitsGeraten enthalten ist. Die Eingabe des Spielers wird zurückgegeben.
+• spieleNochEinmal() fragt den Spieler, ob er eine weitere Partie Galgenmann spielen möchte. Ist dies der Fall, so gibt die Funktion True zurück, False sonst.
+
+Nach den Funktionen folgt in Zeile 106 der Code für das Haupt-Programm. Alles zuvor waren nur Funktions-Definitionen und eine große Zuweisung an die Variable GALGENMANNBILDER.
+
+Die Variablen initialisieren
+
+106. print('G A L G E N M A N N')
+107. falscheBuchstaben = ''
+108. richtigeBuchstaben = ''
+109. geheimWort = zufallsWort(worte)
+111. spielIstBeendet = False
+
+Zeile 106 beinhaltet den ersten print()-Aufruf des gesamten Spiels. Dieser zeigt den Spieletitel an. Als Nächstes werden falscheBuchstaben und richtigeBuchstaben leere Zeichenketten zugewiesen (da der Spieler noch keine Rateversuche unternommen hat).
+
+Der zufallsWort(worte)-Aufruf evaluiert zu einem zufällig ausgewählten Wort aus der Liste worte.
+
+Zeile 110 setzt spielIstBeendet auf False. Der Code wird diese Variable dann auf True setzen, wenn eine Runde von Galgenmann vorbei ist und der Spieler gefragt werden sollte, ob er noch eine spielen möchte.
+
+Das Spielbrett anzeigen
+
+112. while True:
+113.     zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort)
+
+Die Bedingung der while-Schleife ist immer True. D.h. sie wird solange iterieren, bis eine break-Anweisung ausgeführt wird. (Dies passiert später in Zeile 147.)
+
+Zeile 113 ruft die zeigeSpielbrettAn()-Funktion auf und übergibt ihr eine Liste mit ASCII-Kunst-Galgenmann-Bildern, sowie den drei in den Zeilen 107, 108 und 109 initialisierten Variablen. Abhängig von den korrekten und falschen Rateversuchen des Spielers, zeigt diese Funktion das entsprechende Spielbrett an.
+
+Benutzereingabe abfragen
+
+115.     # Lass den Spieler einen Buchstaben eingeben.
+116.     buchstabe = rateBuchstabe(falscheBuchstaben + richtigeBuchstaben)
+
+Die rateBuchstabe()-Funktion benötigt die Buchstaben in falscheBuchstaben und richtigeBuchstaben, weshalb Zeile 116 beide Variablen verknüpft und das Ergebnis als Argument übergibt. Das Argument wird benötigt, weil rateBuchstabe() überprüfen muss, ob der Spieler einen Buchstaben bereits entweder erraten oder getippt hat.
+
+Überprüfen, ob der geratene Buchstabe im geheimen Wort enthalten ist
+
+118.     if buchstabe in geheimWort:
+119.         richtigeBuchstaben = richtigeBuchstaben + buchstabe
+
+Falls das geheime Wort den geratenen Buchstaben enthält, so wird dieser an das Ende von richtigeBuchstaben angehängt.
+
+Überprüfen, ob der Spieler gewonnen hat
+
+121.         # Überprüfe, ob der Spieler gewonnen hat
+122.         alleBuchstabenGeraten = True
+123.         for i in range(len(geheimWort)):
+124.             if geheimWort[i] not in richtigeBuchstaben:
+125.                 alleBuchstabenGeraten = False
+126.                 break
+
+Wie kann das Programm wissen, dass der Spieler jeden Buchstaben des Geheimwortes richtig geraten hat? Da richtigeBuchstaben alle korrekten Rateversuche des Spielers enthält und geheimWort das geheime Wort selbst ist, liegt der Gedanke nahe, beide Variablen zu vergleichen: richtigeBuchstaben == geheimWort. Dies wäre jedoch falsch. Nehmen wir an, das geheime Wort sei 'bieber' und richtigeBuchstaben habe den Wert 'eibr'. In dem Fall würde geheimWort == richtigeBuchstaben zu False evaluieren, obwohl der Spieler jeden Buchstaben des Geheimwortes erraten hat.
+
+Die korrekte Lösung lautet, über jeden Buchstaben in geheimWort zu iterieren und zu testen, ob er in richtigeBuchstaben enthalten ist. Dann, und nur dann, hat der Spieler gewonnen.
+
+Stoßen wir auf einen Buchstaben in geheimWort, der nicht in richtigeBuchstaben enthalten ist, so wissen wir, dass der Spieler noch nicht alle Buchstaben erraten hat. Die neue Variable alleBuchstabenGeraten wird in Zeile 122 auf True gesetzt. Die Schleife beginnt also mit der Annahme, der Spieler habe gewonnen. Stößt die Schleife jedoch auf einen noch nicht erratenen Buchstaben, so setzt sie alleBuchstabenGeraten auf False.
+
+127.         if alleBuchstabenGeraten:
+128.             print('Ja! Das geheime Wort ist "' + geheimWort + '"! du hast gewonnen!')
+129.             spielIstBeendet = True
+
+Sind alle Buchstaben des Geheimwortes erraten, wird der Spieler über seinen Sieg benachrichtigt.
+
+Wenn der Spieler falsch tippt
+
+130.     else:
+131.         falscheBuchstaben = falscheBuchstaben + buchstabe
+
+Hier beginnt der else-Block. Der Code in diesem Block wird dann ausgeführt, wenn die Bedingung in Zeile 118 falsch war.
+
+Abbildung 9-3: Der else-Ausdruck gehört zum if-Ausdruck mit derselben Einrückung.
+
+Falsch geratene Buchstaben werden in Zeile 131 an falscheBuchstaben angehängt, genauso wie dies in Zeile 119 für die richtig geratenen Buchstaben passiert.
+
+133.         # Überprüfe, ob der Spieler zu viele Rateversuche verbraucht und damit verloren hat
+134.         if len(falscheBuchstaben) == len(GALGENMANNBILDER) - 1:
+135.             zeigeSpielbrettAn(GALGENMANNBILDER, falscheBuchstaben, richtigeBuchstaben, geheimWort)
+136.             print('du hast zu viele Versuche gebraucht!\nNach ' + str(len(falscheBuchstaben)) + ' falsch und ' + str(len(richtigeBuchstaben)) + ' richtig geratenen Buchstaben lautet das Wort "' + geheimWort + '"')
+137.             spielIstBeendet = True
+
+Jedes Mal, wenn der Spieler einen Buchstaben falsch rät, wird dieser an die Zeichenkette falscheBuchstaben angehängt. D.h. die Länge von falscheBuchstaben (in Python len(falscheBuchstaben)) ist gleich der Anzahl der falschen Rateversuche.
+
+Die GALGENMANNBILDER-Liste beinhaltet 7 ASCII-Kunst-Zeichenketten. Ist also len(falscheBuchstaben) gleich 6, dann hat der Spieler verloren, denn das Galgenmann-Bild ist fertig. GALGENMANNBILDER[0] bezieht sich auf den ersten Eintrag, GALGENMANNBILDER[6] auf den letzten.
+
+Ist also len(falscheBuchstaben) gleich len(GALGENMANNBILDER) - 1 (was 6 entspricht), sind dem Spieler die Rateversuche ausgegangen. Zeile 136 gibt das Geheimwort aus und Zeile 137 setzt die spielIstBeendet-Variable auf True.
+
+139.     # Frage den Spieler, ob er noch einmal spielen möchte (aber nur, wenn das Spiel zu Ende ist).
+140.     if spielIstBeendet:
+141.         if spieleNochEinmal():
+142.             falscheBuchstaben = ''
+143.             richtigeBuchstaben = ''
+144.             spielIstBeendet = False
+145.             geheimWort = zufallsWort(worte)
+
+Hat der Spieler entweder gewonnen oder verloren, so sollte das Spiel ihn fragen, ob er noch einmal spielen möchte. Danach erkundigt sich die spieleNochEinmal()-Funktion. Sie wird in Zeile 141 aufgerufen.
+
+Möchte der Spieler noch einmal spielen, müssen die Variablen falscheBuchstaben, richtigeBuchstaben und spielIstBeendet auf ihre Ausgangswerte zurückgesetzt und ein neues Geheimwort ausgewählt werden. Anschließend springt die Programmausführung zurück zum Anfang der while-Schleife in Zeile 112.
+
+146.         else:
+147.             break
+
+Entscheidet sich der Spieler gegen eine neue Partie, so ist die Bedingung in Zeile 141 falsch und der else-Block wird ausgeführt. Die break-Anweisung führt zum Sprung in die erste Zeile außerhalb der Schleife. Da jedoch nach der Schleife keine Anweisungen folgen, terminiert das Programm.
+
+Zusammenfassung
+
+In diesem langen Kapitel wurden zahlreiche neue Konzepte eingeführt. Galgenmann ist unser bisher ambitioniertestes Spiel. Mit der Zeit werden deine Programme immer komplexer. Da macht es Sinn, die Programmabläufe mit Hilfe eines Flussdiagramms zu skizieren, bevor du dich an die eigentliche Programmierung machst.
+
+Listen sind Werte, die andere Werte enthalten können. Methoden sind an Typen gebundene Funktionen. Listen verfügen über die Methoden append() und reverse(). Zeichenketten verfügen über die Methoden lower(), upper(), split(), startswith() und endswith(). Du wirst viele weitere Methoden im Rest dieses Buches kennenlernen.
+
+Die for-Schleife wird dazu verwendet, über die Einträge in einer Liste zu iterieren, wohingegen die while-Schleife iteriert, solange eine Bedingung erfüllt ist. Die del-Anweisung kann Einträge aus Listen löschen.

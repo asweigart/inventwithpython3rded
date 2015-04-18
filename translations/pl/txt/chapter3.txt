@@ -121,7 +121,7 @@ Rysunek 3-5: Interaktywna powłoka po uruchomieniu hello.py.
 
 Kiedy wpiszesz swoje imię i naciśniesz ENTER origram cię pozdrowi używając twojego imienia. Gratulacje! Właśnie napisałeś swój pierwszy program i teraz jesteś programistą. Ponownie naciśnij F5 i podaj inne imię.
 
-Jeśli uzyskasz błąd, to porównaj swój kod z kodem z książki za pomocą narzędzia do porównywania ze strony http://invpy.com/diff/hello.
+Jeśli uzyskasz błąd, to porównaj swój kod z kodem z książki za pomocą narzędzia do porównywania ze strony http://invpy.com/pl/diff/hello.
 
 Jeśli błąd wygląda jak:
 

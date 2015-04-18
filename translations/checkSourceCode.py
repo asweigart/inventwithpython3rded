@@ -77,7 +77,7 @@ def getAspects(filename):
 ORIG = {}
 for pythonScript in ('AISim1', 'AISim2', 'AISim3', 'animation', 'bagels',
                      'buggy', 'bugs', 'cipher', 'coinFlips', 'collisionDetection',
-                     'dodger', 'dodgerfullscreen', 'dragon', 'gorilla', 'guess',
+                     'dodger', 'dodgerfullscreen', 'dragon', 'guess',
                      'hangman', 'hangman2', 'hello', 'jokes', 'pygameHelloWorld',
                      'pygameInput', 'reversi', 'reversi_mini', 'sonar',
                      'spritesAndSounds', 'tictactoe'):
@@ -117,8 +117,8 @@ class TestPrograms(unittest.TestCase):
         self._check('es', 'dragon', 'dragón')
         self._check('es', 'hangman', 'ahorcado')
         self._check('es', 'hangman2', 'ahorcado2')
-        self._check('es', 'AISim2', 'es_AISim2')
-        self._check('es', 'AISim3', 'es_AISim3')
+        #self._check('es', 'AISim2', 'es_AISim2')
+        #self._check('es', 'AISim3', 'es_AISim3')
         self._check('es', 'jokes', 'chistes')
         self._check('es', 'animation', 'animacion')
         self._check('es', 'cipher', 'cifrado')
@@ -130,7 +130,7 @@ class TestPrograms(unittest.TestCase):
         self._check('es', 'pygameInput', 'pygameEntrada')
         self._check('es', 'spritesAndSounds', 'spritesYsonidos')
 
-    def test_sv_programs(self):
+    """def test_sv_programs(self):
         self._check('sv', 'hello', 'hello')
         self._check('sv', 'sonar', 'sonar')
         self._check('sv', 'coinFlips', 'coinFlips')
@@ -145,7 +145,7 @@ class TestPrograms(unittest.TestCase):
         self._check('sv', 'hangman', 'hangman')
         self._check('sv', 'tictactoe', 'tictactoe')
         self._check('sv', 'jokes', 'jokes')
-        self._check('sv', 'reversi_mini', 'reversi_mini')
+        self._check('sv', 'reversi_mini', 'reversi_mini')"""
 
 
     def test_id_programs(self):
@@ -165,6 +165,12 @@ class TestPrograms(unittest.TestCase):
 
     def test_fr_programs(self):
         self._check('fr', 'hello', 'bonjour')
+
+
+    def test_de_programs(self):
+        self._check('de', 'guess', 'zahlenRaten')
+        self._check('de', 'jokes', 'witze')
+        self._check('de', 'dragon', 'drachen') 
 
 
 if __name__ == '__main__':
