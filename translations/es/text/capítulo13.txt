@@ -1,4 +1,4 @@
-Capítulo 13 - BÚSQUEDA DEL TESORO CON SONAR
+Capítulo 13 - Búsqueda del Tesoro con Sonar
 
 Temas Tratados En Este Capítulo:
 
@@ -11,7 +11,7 @@ El juego en este capítulo es el primero en hacer uso de las Coordenadas Cartesi
 
 En este juego, el juego coloca dispositivos de sonar en varios lugares en el océano para localizar cofres de tesoros hundidos. El sonar es una tecnología que utilizan los barcos para localizar objetos debajo del mar. Los dispositivos de sonar (en este juego) le dirán al jugador que tan lejos están del tesoro más cercano, pero no en que dirección. Pero al colocar diversos sonares, el jugador puede deducir donde se encuentra el tesoro.
 
-Hay tres cofres a recuperar, pero el jugador sólo tiene dieciséis dispositivos de sonar para encontrarlos. Imagina que no puedes ver el cofre de tosoro en la siguiente imágen. Debido a que cada sonar puede sólo encontrar distancia, no dirección, los posibles lugares en el que se podríra encontrar el tesoro es un cuadrado alrededor del dispositivo (ver Figura 13-1).  
+Hay tres cofres a recuperar, pero el jugador sólo tiene dieciséis dispositivos de sonar para encontrarlos. Imagina que no puedes ver el cofre de tosoro en la siguiente imágen. Debido a que cada sonar puede sólo encontrar distancia, no dirección, los posibles lugares en el que se podríra encontrar el tesoro es un cuadrado alrededor del dispositivo (ver Figura 13-1).
 
 Figura 13-1: El área cuadrada del sonar toca el (oculto) cofre del tesoro.
 
@@ -20,7 +20,7 @@ Figura 13-2: Combinando múltiples áreas cuadradas se muestra donde el tesoro p
 Pero múltiples dispositivos de sonar trabajando en conjunto pueden reducir el área a un punto exacto donde las áreas se intersecten. Ver Figura 13-2. (Normalmente estas áreas serían circulares, pero en este juego utilizaremos cuadrados para facilitar la programación.)
 
 Ejecución de prueba de Búsqueda del Tesoro con Sonar
-S O N A R !
+¡ S O N A R !
 ¿Te gustaría ver las instrucciones? (sí/no)
 no
              1         2         3         4         5
@@ -145,27 +145,27 @@ no
 
 Código Fuente de Búsqueda del Tesoro con Sonar
 
-Debajo se encuentra el código fuente del juego. Escríbelo en un nuevo archivo, luego guárdalo como sonar.py y córrelo presionando la tecla F5. Si obtienes errores luego de escribir este código, compara tu código con el código del libro con la herramienta online diff en http://invpy.com/diff/sonar.
+Debajo se encuentra el código fuente del juego. Escríbelo en un nuevo archivo, luego guárdalo como sonar.py y córrelo presionando la tecla F5. Si obtienes errores luego de escribir este código, compara tu código con el código del libro con la herramienta online diff en http://invpy.com/es/diff/sonar.
 
 sonar.py
 
 1. # Sonar
-2. 
+2.
 3. import random
 4. import sys
-5. 
+5.
 6. def dibujarTablero(tablero):
 7.     # Dibuja la estructura de datos del tablero.
-8. 
+8.
 9.     líneah = '    ' # espacio inicial para los números a lo largo del lado izquierdo del tablero
 10.     for i in range(1, 6):
 11.         líneah += (' ' * 9) + str(i)
-12. 
+12.
 13.     # imprimir los números a lo largo del borde superior
 14.     print(líneah)
 15.     print('   ' + ('0123456789' * 6))
 16.     print()
-17. 
+17.
 18.     # imprimir cada una de las 15 filas
 19.     for i in range(15):
 20.         # los números de una sola cifra deben ser precedidos por un espacio extra
@@ -174,20 +174,20 @@ sonar.py
 23.         else:
 24.             espacioExtra = ''
 25.         print('%s%s %s %s' % (espacioExtra, i, obtenerFila(tablero, i), i))
-26. 
+26.
 27.     # imprimir los números a lo largo del borde inferior
 28.     print()
 29.     print('   ' + ('0123456789' * 6))
 30.     print(líneah)
-31. 
-32. 
+31.
+32.
 33. def obtenerFila(tablero, fila):
 34.     # Devuelve una cadena con la estructura de datos de un tablero para una fila determinada.
 35.     filaTablero = ''
 36.     for i in range(60):
 37.         filaTablero += tablero[i][fila]
 38.     return filaTablero
-39. 
+39.
 40. def obtenerNuevoTablero():
 41.     # Crear una nueva estructura de datos para un tablero de 60x15.
 42.     tablero = []
@@ -200,35 +200,35 @@ sonar.py
 49.             else:
 50.                 tablero[x].append('`')
 51.     return tablero
-52. 
+52.
 53. def obtenerCofresAleatorios(númCofres):
 54.     # Crear una lista de estructuras de datos cofre (listas de dos ítems con coordenadas x, y)
 55.     cofres = []
 56.     for i in range(númCofres):
 57.         cofres.append([random.randint(0, 59), random.randint(0, 14)])
 58.     return cofres
-59. 
+59.
 60. def esMovidaVálida(x, y):
 61.     # Devuelve True si las coordenadas pertenecen al tablero, de lo contrario False.
 62.     return x >= 0 and x <= 59 and y >= 0 and y <= 14
-63. 
+63.
 64. def realizarMovida(tablero, cofres, x, y):
 65.     # Cambia la estructura de datos del tablero agregando un caracter de dispositivo sonar. Elimina los cofres
 66.     # de la lista de cofres a medida que son encontrados. Devuelve False si la movida no es válida.
 67.     # En caso contrario, devuelve una cadena con el resultado de esa movida.
 68.     if not esMovidaVálida(x, y):
 69.         return False
-70. 
+70.
 71.     menorDistancia = 100 # cualquier cofre estará a una distancia menor que 100.
 72.     for cx, cy in cofres:
 73.         if abs(cx - x) > abs(cy - y):
 74.             distancia = abs(cx - x)
 75.         else:
 76.             distancia = abs(cy - y)
-77. 
+77.
 78.         if distancia < menorDistancia: # queremos el cofre más cercano.
 79.             menorDistancia = distancia
-80. 
+80.
 81.     if menorDistancia == 0:
 82.         # ¡xy está directamente sobre un cofre!
 83.         cofres.remove([x, y])
@@ -240,8 +240,8 @@ sonar.py
 89.         else:
 90.             tablero[x][y] = 'O'
 91.             return 'El sonar no ha detectado nada. Todos los cofres están fuera del alcance del dispositivo.'
-92. 
-93. 
+92.
+93.
 94. def ingresarMovidaJugador():
 95.     # Permite al jugador teclear su movida. Devuelve una lista de dos ítems con coordenadas xy.
 96.     print('¿Dónde quieres dejar caer el siguiente dispositivo sonar? (0-59 0-14) (o teclea salir)')
@@ -250,31 +250,31 @@ sonar.py
 99.         if movida.lower() == 'salir':
 100.             print('¡Gracias por jugar!')
 101.             sys.exit()
-102. 
+102.
 103.         movida = movida.split()
 104.         if len(movida) == 2 and movida[0].isdigit() and movida[1].isdigit() and esMovidaVálida(int(movida[0]), int(movida[1])):
 105.             return [int(movida[0]), int(movida[1])]
 106.         print('Ingresa un número de 0 a 59, un espacio, y luego un número de 0 a 14.')
-107. 
-108. 
+107.
+108.
 109. def jugarDeNuevo():
 110.     # Esta función devuelve True si el jugador quiere jugar de nuevo, de lo contrario devuelve False.
 111.     print('¿Quieres jugar de nuevo? (sí o no)')
 112.     return input().lower().startswith('s')
-113. 
-114. 
+113.
+114.
 115. def mostrarInstrucciones():
 116.     print('''Instrucciones:
 117. Eres el capitán de Simón, un buque cazador de tesoros. Tu misión actual
 118. es encontrar los tres cofres con tesoros perdidos que se hallan ocultos en la parte del
 119. océano en que te encuentras y recogerlos.
-120. 
+120.
 121. Para jugar, ingresa las coordenadas del punto del océano en que quieres colocar un
 122. dispositivo sonar. El sonar puede detectar cuál es la distancia al cofre más cercano.
 123. Por ejemplo, la d abajo indica dónde se ha colocado el dispositivo, y los números 2
 124. representan los sitios a una distancia 2 del dispositivo. Los números 4 representan
 125. los sitios a una distancia 4 del dispositivo.
-126. 
+126.
 127.     444444444
 128.     4       4
 129.     4 22222 4
@@ -286,39 +286,39 @@ sonar.py
 135.     444444444
 136. Pulsa enter para continuar...''')
 137.     input()
-138. 
+138.
 139.     print('''Por ejemplo, aquí hay un cofre del tesoro (la c) ubicado a una distancia 2
 140. del dispositivo sonar (la d):
-141. 
+141.
 142.     22222
 143.     c   2
 144.     2 d 2
 145.     2   2
 146.     22222
-147. 
+147.
 148. El punto donde el dispositivo fue colocado se indicará con un 2.
-149. 
+149.
 150. Los cofres del tesoro no se mueven. Los dispositivos sonar pueden detectar
 151. cofres hasta una distancia 9. Si todos los cofres están fuera del alcance, el punto
 152. se indicará con un O.
-153. 
+153.
 154. Si un dispositivo es colocado directamente sobre un cofre del tesoro, has descubierto
 155. la ubicación del cofre, y este será recogido. El dispositivo sonar
 156. permanecerá allí.
-157. 
+157.
 158. Cuando recojas un cofre, todos los dispositivos sonar se actualizarán para localizar el próximo
 159. cofre hundido más cercano.
 160. Pulsa enter para continuar...''')
 161.     input()
 162.     print()
-163. 
-164. 
+163.
+164.
 165. print('¡ S O N A R !')
 166. print()
 167. print('¿Te gustaría ver las instrucciones? (sí/no)')
 168. if input().lower().startswith('s'):
 169.     mostrarInstrucciones()
-170. 
+170.
 171. while True:
 172.     # configuración del juego
 173.     dispositivosSonar = 16
@@ -326,20 +326,20 @@ sonar.py
 175.     losCofres = obtenerCofresAleatorios(3)
 176.     dibujarTablero(elTablero)
 177.     movidasPrevias = []
-178. 
+178.
 179.     while dispositivosSonar > 0:
 180.         # Comienzo de un turno:
-181. 
+181.
 182.         # mostrar el estado de los dispositivos sonar / cofres
 183.         if dispositivosSonar > 1: extraSsonar = 's'
 184.         else: extraSsonar = ''
 185.         if len(losCofres) > 1: extraScofre = 's'
 186.         else: extraScofre = ''
 187.         print('Aún tienes %s dispositivos%s  sonar. Falta encontrar %s cofre%s.' % (dispositivosSonar, extraSsonar, len(losCofres), extraScofre))
-188. 
+188.
 189.         x, y = ingresarMovidaJugador()
 190.         movidasPrevias.append([x, y]) # debemos registrar todas las movidas para que los dispositivos sonar puedan ser actualizados.
-191. 
+191.
 192.         resultadoMovida = realizarMovida(elTablero, losCofres, x, y)
 193.         if resultadoMovida == False:
 194.             continue
@@ -350,20 +350,20 @@ sonar.py
 199.                     realizarMovida(elTablero, losCofres, x, y)
 200.             dibujarTablero(elTablero)
 201.             print(resultadoMovida)
-202. 
+202.
 203.         if len(losCofres) == 0:
 204.             print('¡Has encontrado todos los cofres del tesoro! ¡Felicitaciones y buena partida!')
 205.             break
-206. 
+206.
 207.         dispositivosSonar -= 1
-208. 
+208.
 209.     if dispositivosSonar == 0:
 210.         print('¡Nos hemos quedado sin dispositivos sonar! ¡Ahora tenemos que dar la vuelta y dirigirnos')
 211.         print('de regreso a casa dejando tesoros en el mar! Juego terminado.')
 212.         print('    Los cofres restantes estaban aquí:')
 213.         for x, y in losCofres:
 214.             print('    %s, %s' % (x, y))
-215. 
+215.
 216.     if not jugarDeNuevo():
 217.         sys.exit()
 
@@ -384,7 +384,7 @@ Dibujando el Tablero de Juego
 
   6. def dibujarTablero(tablero):
 
-El tablero del Sonar es un océano de arte ASCII con los ejes X e Y a su alrededor. La tilde invertida (`) y la virguilla (~) serán utulizadas para las olas del océano. Se verá así:  
+El tablero del Sonar es un océano de arte ASCII con los ejes X e Y a su alrededor. La tilde invertida (`) y la virguilla (~) serán utulizadas para las olas del océano. Se verá así:
 
              1         2         3         4         5
    012345678901234567890123456789012345678901234567890123456789
@@ -409,14 +409,14 @@ El tablero del Sonar es un océano de arte ASCII con los ejes X e Y a su alreded
 El dibujo en la función dibujarTablero() tiene cuatro pasos.
 
 • Primero, crea una variable de cadena con 1, 2, 3, 4 y 5 espaciados con espacios anchos (para marcar las coordenadas 10, 20, 30, 50 y 50 del eje X).
-• Segundo, utiliza esa cadena para mostrar las coordenadas del eje X en la parte superior de la pantalla. 
+• Segundo, utiliza esa cadena para mostrar las coordenadas del eje X en la parte superior de la pantalla.
 • Tercero, imprime cada fila del océano así como también las coordenadas del eje Y a ambos lados de la pantalla.
 • Cuarto, vuelve a imprimir el eje X en el margen inferior. Las coordenadas alrededor de la pantalla hace más facil localizar los dispositivos de sonar.
 
 Dibujar las coordenadas X
 
   7.     # Dibuja la estructura de datos del tablero.
-  8. 
+  8.
   9.     líneah = '    ' # espacio inicial para los números a lo largo del lado izquierdo del tablero
  10.     for i in range(1, 6):
  11.         líneah += (' ' * 9) + str(i)
@@ -476,7 +476,7 @@ Obteniendo el Estado de una Fila en el Océano
  37.         filaTablero += tablero[i][fila]
  38.     return filaTablero
 
-Mientras el parámetro talbero es una estructura de datos para todo el océano, la función obtenerFila crea una cadena para una sóla línea.
+Mientras el parámetro talbero es una estructura de datos para todo el océano, la función obtenerFila() crea una cadena para una sóla línea.
 
 Primero, establece filaTablero a una cadena vacía. Las coordenadas Y son pasadas como el parámetro fila. La cadena se consigue de concatenar tablero[0][fila], tablero[2][fila] y así sucesivamente hasta talbero[59][fila]. Esto se debe a que la fila contiene 60 carácteres, desde índice 0 al 59.
 
@@ -522,7 +522,7 @@ El juego también decide aleatoriamente donde se encuentran los cofres ocultos. 
 
 Por ejemplo, si la estructura de datos del cofre es [[2, 2], [2, 4], [10, 0]], significará que hay tres cofres, uno en 2,2, otro en 2,4 y un tercero en 10,0.
 
-EL parámetro númCofres le dice a la función cuantos cofres generar. La línea 56 itera un númCofres cantidad de veces, y cada una de esas iteraciones la línea 57 agregará una lista de dos números enteros aleatorios. La coordenada X puede ser cualquiera de 0 a 59, y la Y cualquiera de 0 a 14. La expresión [random.randint(0, 59), random.randint(0, 14)] que es pasada al método append se evaluará a una lista [2, 2] o [2, 4] o [10, 0]. Esta lista se agregará a cofres. 
+El parámetro númCofres le dice a la función cuantos cofres generar. La línea 56 itera un númCofres cantidad de veces, y cada una de esas iteraciones la línea 57 agregará una lista de dos números enteros aleatorios. La coordenada X puede ser cualquiera de 0 a 59, y la Y cualquiera de 0 a 14. La expresión [random.randint(0, 59), random.randint(0, 14)] que es pasada al método append se evaluará a una lista [2, 2] o [2, 4] o [10, 0]. Esta lista se agregará a cofres.
 
 Determinando si una Movida es Válida
 
@@ -532,7 +532,7 @@ Determinando si una Movida es Válida
 
 Cuando el jugador escribe las coorneadas X e Y donde quiere colocar un sonar, pueden no ser coordenadas válidas. Las coordenadas X deben ser de 0 a 59 y las coordenadas Y deben ser de 0 a 14.
 
-La función esMovidaVálida() utiliza una simple expresión con operadoras para asegurar que cada parte del a condición sea True (Verdadera). Aún con sólo una expresión False (Falsa), toda la expresión se evalúa como False. Esta función devuelve un valor Booleano. 
+La función esMovidaVálida() utiliza una simple expresión con operadoras para asegurar que cada parte del a condición sea True (Verdadera). Aún con sólo una expresión False (Falsa), toda la expresión se evalúa como False. Esta función devuelve un valor Booleano.
 
 Realizar una Movida en el Tablero
 
@@ -545,12 +545,12 @@ Realizar una Movida en el Tablero
 
 En el juego Sonar, el tablero es actualizado para mostrar un número por cada uno de los dispositivos empleados para mostrar que tan lejos se encuentra del cofre más cercano. Cuando el jugador realize una movida dándole al programa unas coordenadas X e Y, el tablero cambia en base a las posiciones de los cofres.
 
-La función realizarMovida() requiere cuatro parámetros: las estructuras de datos correspondiente al tablero y cofres, y coordenadas X e Y. La línea 69 devuelve Falso si las coordenadas X e Y dadas no existen dentro del tablero. Si esMovidaVálida() retorna Falso, entonces realizarMovida() devolverá Falso.
+La función realizarMovida() requiere cuatro parámetros: las estructuras de datos correspondiente al tablero y cofres, y coordenadas X e Y. La línea 69 devuelve False si las coordenadas X e Y dadas no existen dentro del tablero. Si esMovidaVálida() retorna False, entonces realizarMovida() devolverá False.
 
 En otro caso, realizarMovida() devuelve un string describiendo que sucedió en respuesta a la movida:
 
 • Si la coordenada cae directamente en un tesoro, realizarMovida() devuelve '¡Has encontrado un cofre del tesoro hundido!'.
-• Si las coordenadas se encuentran a una distancia de 9 o menos de un cofre, realizarMovida devuelve Tesoro detectado a una distancia %s del dispositivo sonar.' (donde %s es reemplazado por el valor entero de la distancia).
+• Si las coordenadas se encuentran a una distancia de 9 o menos de un cofre, realizarMovida() devuelve 'Tesoro detectado a una distancia %s del dispositivo sonar.' (donde %s es reemplazado por el valor entero de la distancia).
 • En última instancia, realizarMovida() devuelve 'El sonar no ha detectado nada. Todos los cofres están fuera del alcance del dispositivo.'.
 
  71.     menorDistancia = 100 # cualquier cofre estará a una distancia menor que 100.
@@ -559,7 +559,7 @@ En otro caso, realizarMovida() devuelve un string describiendo que sucedió en r
  74.             distancia = abs(cx - x)
  75.         else:
  76.             distancia = abs(cy - y)
- 77. 
+ 77.
  78.         if distancia < menorDistancia: # queremos el cofre más cercano.
  79.             menorDistancia = distancia
 
@@ -587,19 +587,17 @@ Podemos ver en el tablero en la Fiugra 13-4 y ver que este algoritmo funciona, p
 
 Hallemos la distancia desde el sonar en 3, 2 y el tesoro en 0, 2:
 
-1.  abs(3 - 0) evalúa to 3.
-2.  abs(2 - 2) evalúa to 0.
+1.  abs(3 - 0) evalúa a 3.
+2.  abs(2 - 2) evalúa a 0.
 3.  3 es mayor a 0, entonces la distancia entre el sonar en 3, 2 y el tesoro en 0, 2 es 3.
 
 Hallemos la distancia entre el sonar en 3, 2 y el último cofre en 4, 2:
 
-1.  abs(3 - 4) evalúa to 1.
-2.  abs(2 - 2) evalúa to 0.
+1.  abs(3 - 4) evalúa a 1.
+2.  abs(2 - 2) evalúa a 0.
 3.  1 es mayor a 0, entonces su distancia es 1.
 
-Viendo la Figura 13-4 puedes ver que las tres distancias funcionaron. Parecería que el algoritmo funciona. Las distancias del sonar a los tres cofres de tesoro hundidos son 2, 3 y 1. En cada intento, sabrás cuál es la distancia del sonar al cofre de tesoro más cercano. Para realizar esto, usa una variable lamada 
-
-Looking at Figure 13-4 you can see all three distances worked out correctly. It seems this algorithm works. The distances from the sonar device to the three sunken treasure chests are 2, 3, and 1. On each guess, you want to know the distance from the sonar device to the closest of the three treasure chest distances. To do this, use a variable called smallestDistance. Let’s look at the code again:
+Viendo la Figura 13-4 puedes ver que las tres distancias funcionaron. Parecería que el algoritmo funciona. Las distancias del sonar a los tres cofres de tesoro hundidos son 2, 3 y 1. En cada intento, sabrás cuál es la distancia del sonar al cofre de tesoro más cercano. Para realizar esto, usa una variable lamada menorDistancia. Veamos el código de nuevo:
 
  71.     menorDistancia = 100 # cualquier cofre estará a una distancia menor que 100.
  72.     for cx, cy in cofres:
@@ -607,7 +605,7 @@ Looking at Figure 13-4 you can see all three distances worked out correctly. It 
  74.             distancia = abs(cx - x)
  75.         else:
  76.             distancia = abs(cy - y)
- 77. 
+ 77.
  78.         if distancia < menorDistancia: # queremos el cofre más cercano.
  79.             menorDistancia = distancia
 
@@ -682,9 +680,9 @@ La función ingresarMovidaJugador() obtiene las coordenadas XY de la siguiente j
 
 Asumiendo que el jugador no ha ingresado 'salir', el juego debe asegurarse de que sea una jugada válida: dos enteros separados por un espacio. La línea 103 llama el método split() (separar) en movida como el nuevo valor de movida.
 
-Si el jugador ingresó un valor como '1 2 3', entonces la lista que retorna split() será ['1', '2', '3']. En dicho caso, la expresión len(movida) == 2 será Falsa y toda la expresión se evaluará como Falsa. Python no evalúa al resto de la expresión debido a cortocircuito(explicado en el Capítulo 10)
+Si el jugador ingresó un valor como '1 2 3', entonces la lista que retorna split() será ['1', '2', '3']. En dicho caso, la expresión len(movida) == 2 será False y toda la expresión se evaluará como False. Python no evalúa al resto de la expresión debido a cortocircuito (explicado en el Capítulo 10).
 
-Si la longitud de la lista es 2, entonces ambos valores se encuentran en los índices movida[0] y movida[1]. Para verificar que esos valores seran numéricos (como '2' o '17'), puedes usar una función como esSoloDigitos() del capítulo 11. Pero Python ya posee una función que hace esto.
+Si la longitud de la lista es 2, entonces ambos valores se encuentran en los índices movida[0] y movida[1]. Para verificar que esos valores seran numéricos (como '2' o '17'), puedes usar una función como esSoloDigitos() del Capítulo 11. Pero Python ya posee una función que hace esto.
 
 El método de string isdigit() devolverá True si la cadena consiste únicamente de números. Caso contraro devuelve False. Prueba ingresando lo siguiente en la consola interactiva:
 
@@ -706,8 +704,6 @@ Si todal a condición es True, la línea 105 devuelve una lista de dos enteros d
 
 Preguntándole al Jugador a Jugar de Nuevo
 
-Asking the Player to Play Again
-
 109. def jugarDeNuevo():
 110.     # Esta función devuelve True si el jugador quiere jugar de nuevo, de lo contrario devuelve False.
 111.     print('¿Quieres jugar de nuevo? (sí o no)')
@@ -722,13 +718,13 @@ Imprimiendo las Instrucciones de Juego para el Jugador
 117. Eres el capitán de Simón, un buque cazador de tesoros. Tu misión actual
 118. es encontrar los tres cofres con tesoros perdidos que se hallan ocultos en la parte del
 119. océano en que te encuentras y recogerlos.
-120. 
+120.
 121. Para jugar, ingresa las coordenadas del punto del océano en que quieres colocar un
 122. dispositivo sonar. El sonar puede detectar cuál es la distancia al cofre más cercano.
 123. Por ejemplo, la d abajo indica dónde se ha colocado el dispositivo, y los números 2
 124. representan los sitios a una distancia 2 del dispositivo. Los números 4 representan
 125. los sitios a una distancia 4 del dispositivo.
-126. 
+126.
 127.     444444444
 128.     4       4
 129.     4 22222 4
@@ -747,23 +743,23 @@ The showInstructions() is a couple of print() calls that print multi-line string
 
 139.     print('''Por ejemplo, aquí hay un cofre del tesoro (la c) ubicado a una distancia 2
 140. del dispositivo sonar (la d):
-141. 
+141.
 142.     22222
 143.     c   2
 144.     2 d 2
 145.     2   2
 146.     22222
-147. 
+147.
 148. El punto donde el dispositivo fue colocado se indicará con un 2.
-149. 
+149.
 150. Los cofres del tesoro no se mueven. Los dispositivos sonar pueden detectar
 151. cofres hasta una distancia 9. Si todos los cofres están fuera del alcance, el punto
 152. se indicará con un O.
-153. 
+153.
 154. Si un dispositivo es colocado directamente sobre un cofre del tesoro, has descubierto
 155. la ubicación del cofre, y este será recogido. El dispositivo sonar
 156. permanecerá allí.
-157. 
+157.
 158. Cuando recojas un cofre, todos los dispositivos sonar se actualizarán para localizar el próximo
 159. cofre hundido más cercano.
 160. Pulsa enter para continuar...''')
@@ -802,11 +798,9 @@ movidasPrevias  Una lista de todas las movidas XY que el jugador haya realizado 
 
 Mostrar el Estado del Juego al Jugador
 
-Displaying the Game Status for the Player
-
 179.     while dispositivosSonar > 0:
 180.         # Comienzo de un turno:
-181. 
+181.
 182.         # mostrar el estado de los dispositivos sonar / cofres
 183.         if dispositivosSonar > 1: extraSsonar = 's'
 184.         else: extraSsonar = ''
@@ -822,11 +816,11 @@ Las líneas 183 a 186 poseen el código luego de los dos puntos de las sentencia
 
 Las dos variables llamadas extraSspmar y extraScofre son establecidas a 's' si hay múltiples dispositivos de sonar o cofres de tesoro. Caso contrario, serán cadenas vacías. Estas variables son utilizdas en la línea 187.
 
-Obteniendo la jugada del jugador
+Obteniendo La Jugada Del Jugador
 
 189.         x, y = ingresarMovidaJugador()
 190.         movidasPrevias.append([x, y]) # debemos registrar todas las movidas para que los dispositivos sonar puedan ser actualizados.
-191. 
+191.
 192.         resultadoMovida = realizarMovida(elTablero, losCofres, x, y)
 193.         if resultadoMovida == False:
 194.             continue
@@ -837,11 +831,9 @@ Luego son ingresados al final de la lista movidasPrevias. Esto significa que mov
 
 Las variables x, y, elTablero, y losCofres son pasadas a la función realizarMovida(). Esta función realizará las modificaciones necesarias al tablero para colocar un dispositivo de sonar en el tablero.
 
-Si realizarMovida() devuelve Falso, entonces hubo un problema con las coordenadas x e y pasadas. La sentencia continue enviará la ejecución devuelta al comienzo del ciclo while de la línea 179 para pedirle al jugador las coordenadas XY otra vez.
+Si realizarMovida() devuelve False, entonces hubo un problema con las coordenadas x e y pasadas. La sentencia continue enviará la ejecución devuelta al comienzo del ciclo while de la línea 179 para pedirle al jugador las coordenadas XY otra vez.
 
 Encontrando un Cofre de Tesoro Hundido
-
-Finding a Sunken Treasure Chest
 
 195.         else:
 196.             if resultadoMovida == '¡Has encontrado uno de los cofres del tesoro!':
@@ -851,7 +843,7 @@ Finding a Sunken Treasure Chest
 200.             dibujarTablero(elTablero)
 201.             print(resultadoMovida)
 
-Si realizarMovida() no retornó False, habrá retornado una cadena con los resultados de dicha movida. Si la cadena es '¡Has encontrado uno de los cofres del tesoro!', entonces todos los dispositivos de sonar deben ser actualizados para detectar el próximo sonar más cercano en el tablero. Las coordenadas XY de todos los sonares se encuentran en movidasPrevias. Al iterar sobre movidasPrevias en la línea 198, puedes pasarle estas coordenadas XY denuevo a realizarMovida() para redibujar los valores en el tablero. 
+Si realizarMovida() no retornó False, habrá retornado una cadena con los resultados de dicha movida. Si la cadena es '¡Has encontrado uno de los cofres del tesoro!', entonces todos los dispositivos de sonar deben ser actualizados para detectar el próximo sonar más cercano en el tablero. Las coordenadas XY de todos los sonares se encuentran en movidasPrevias. Al iterar sobre movidasPrevias en la línea 198, puedes pasarle estas coordenadas XY denuevo a realizarMovida() para redibujar los valores en el tablero.
 
 Como el programa no muestra nada aquí, el jugador no sabe que el programa está rehaciendo todas las movidas previas. Sólo se vé que el tablero se actualiza a sí mismo.
 
@@ -871,7 +863,7 @@ Verificando si el Jugador ha Perdido
 
 La línea 207 es la última línea del ciclo while que comenzó en la línea 179. Decrementa la variable dispositivosSonar porque el jugador ha utilizado uno. Si el jugador contínua errando los cofres de tesoro, eventualmente dispositivosSonar se reducirá a 0. Luego de esta línea, la ejecución salta atrás hacia la línea 179 para re'evaluar la condición del ciclo while (que era dispositivosSonar > 0).
 
-Si dispositivosSonar es 0, entonces la condición será Falsa y la ejecución continuará afuera del bloque while en la línea 209. Pero hasta entonces, la condición continuará siendo True y el jugador podrá continuar realizando intentos.
+Si dispositivosSonar es 0, entonces la condición será False y la ejecución continuará afuera del bloque while en la línea 209. Pero hasta entonces, la condición continuará siendo True y el jugador podrá continuar realizando intentos.
 
 209.     if dispositivosSonar == 0:
 210.         print('¡Nos hemos quedado sin dispositivos sonar! ¡Ahora tenemos que dar la vuelta y dirigirnos')
@@ -884,14 +876,12 @@ La línea 209 es la primer línea fuera del ciclo while. Cuando la ejecución al
 
 Las líneas 210 a 212 le dirán al jugador que ha perdido. Luego el ciclo for en la línea 213 recorrerá los cofres de tesoro restantes en losCofres y mostrando su posición al jugador para que pueda saber donde se encontraban.
 
-Lines 210 to 212 will tell the player they’ve lost. The for loop on line 213 will go through the treasure chests remaining in theChests and show their location to the player so that they can know where the treasure chests had been lurking.
-
 La función sys.exit()
 
 216.     if not jugarDeNuevo():
 217.         sys.exit()
 
-Pierda o gane, jugarDeNuevo() se vuelve a llamar para permitirle al jugador decidir si desea volver a jugar o no. Si no, jugarDeNuevo() retornará False. El operador 'not' en la línea 216 cambia esto a True, haciendo la condición de la sentencia if True, por lo que sys.exit() será ejecutado. Esto causará que el programa finalice.
+Pierda o gane, jugarDeNuevo() se vuelve a llamar para permitirle al jugador decidir si desea volver a jugar o no. Si no, jugarDeNuevo() retornará False. El operador not en la línea 216 cambia esto a True, haciendo la condición de la sentencia if True, por lo que sys.exit() será ejecutado. Esto causará que el programa finalice.
 
 Si el jugador desea volver a jugar, la ejécución volverá al principio del ciclo while en la línea 171 donde el juego comienza.
 
