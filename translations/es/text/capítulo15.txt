@@ -793,7 +793,7 @@ True
 
 Imagina que la condición de cualquier sentencia se colocase dentro de la llamada a bool(). Es decir, las condiciones son automáticamente interpretadas como valores Booleanos. Es por esto que la condición en la línea 111 funciona correctamente. La llamada a la función esJugadaVálida() devuelve el valor Booleano False o una lista no vacía.
 
-Si te imaginas que la condición entera se coloca dentro de una llamada a bool(), entonces la condición False de la línea 111 se convierte en bool(False) (lo cuál, por supuesto, se evalúa a False). Y una condición de una lista no vacía colocada como el parámetro de bool devolverá True.
+Si te imaginas que la condición entera se coloca dentro de una llamada a bool(), entonces la condición False de la línea 111 se convierte en bool(False) (lo cuál, por supuesto, se evalúa a False). Y una condición de una lista no vacía colocada como el parámetro de bool() devolverá True.
 
 Obteniendo el Puntaje del Tablero de Juego
 
@@ -809,7 +809,7 @@ Obteniendo el Puntaje del Tablero de Juego
 125.                 puntajeo += 1
 126.     return {'X':puntajex, 'O':puntajeo}
 
-La función obtenerPuntajeTablero() usa bucles for anidados para comprobar los 64 espacios del tablero (8 filas multiplicadas por 8 columnas nos dan 64 espacios) y ver qué baldosas (si es que hay alguna) están sobre ellos. Por cada baldosa 'X', el código aumenta puntajex en la línea 123. Por cada baldosa 'X', el código incrementa puntajeo en la línea 125.
+La función obtenerPuntajeTablero() usa bucles for anidados para comprobar los 64 espacios del tablero (8 filas multiplicadas por 8 columnas nos dan 64 espacios) y ver qué baldosas (si es que hay alguna) están sobre ellos. Por cada baldosa 'X', el código aumenta puntajex en la línea 123. Por cada baldosa 'O', el código incrementa puntajeo en la línea 125.
 
 Obteniendo la Opción de Baldosa del Jugador
 
