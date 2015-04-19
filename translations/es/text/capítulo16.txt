@@ -26,7 +26,7 @@ Puedes introducir los cambios tú mismo, o descargarlos del sitio web del libro 
 
 Haciendo que la Computadora Juegue contra sí Misma
 
-Para guardar el archivo reversi.py como AISim1.py haz clic en Archivo ► Guardar Como, y luego ingresa AISim1.py como nombre de archivo y haz clic en Guardar. Esto creará una copia del código fuente de Reversi en un nuevo archivo que podrás modificar sin que los cambios afecten al juego Reversi original (tal vez quieras volver a jugarlo). Cambia la siguiente línea en AISim1.py:
+Para guardar el archivo reversi.py como AISim1.py haz clic en File (Archivo) ► Save As (Guardar Como), y luego ingresa AISim1.py como nombre de archivo y haz clic en Guardar. Esto creará una copia del código fuente de Reversi en un nuevo archivo que podrás modificar sin que los cambios afecten al juego Reversi original (tal vez quieras volver a jugarlo). Cambia la siguiente línea en AISim1.py:
 
 266. jugada = obtenerJugadaJugador(tableroPrincipal, baldosaJugador)
 
@@ -52,7 +52,7 @@ AISim1.py
 253.         turno = 'X'
 254.     else:
 255.         turno = 'O'
-256.     print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
+256.     print("La " + turno + ' comenzará.')
 257.
 258.     while True:
 259.         dibujarTablero(tableroPrincipal)
@@ -271,54 +271,54 @@ AISim3.py
 245. def obtenerJugadaAleatoria(tablero, baldosa):
 246.     # Devuelve una jugada al azar.
 247.     return random.choice(obtenerJugadasVálidas(tablero, baldosa))
-248. 
-249. 
+248.
+249.
 250. def esBorde(x, y):
-251.     return x == 0 or x == 7 or y == 0 or y ==7
-252. 
-253. 
+251.     return x == 0 or x == 7 or y == 0 or y == 7
+252.
+253.
 254. def obtenerEsquinaBordeMejorJugada(tablero, baldosa):
 255.     # Devuelve una jugada sobre una esquina, lado o la mejor jugada.
 256.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
-257. 
+257.
 258.     # Ordena al azar las jugadas posibles.
 259.     random.shuffle(jugadasPosibles)
-260. 
+260.
 261.     # Siempre ir por una esquina de ser posible.
 262.     for x, y in jugadasPosibles:
 263.         if esEsquina(x, y):
 264.             return [x, y]
-265. 
+265.
 266.     # Si no hay ninguna esquina, devuelve una jugada sobre un borde.
 267.     for x, y in jugadasPosibles:
 268.         if esBorde(x, y):
 269.             return [x, y]
-270. 
+270.
 271.     return obtenerJugadaComputadora(tablero, baldosa)
-272. 
-273. 
+272.
+273.
 274. def obtenerBordeMejorJugada(tablero, baldosa):
 275.     # Devuelve una jugada a una esquina, un lado o la mejor jugada posible.
 276.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
-277. 
+277.
 278.     # Ordena al azar las jugadas posibles.
 279.     random.shuffle(jugadasPosibles)
-280. 
+280.
 281.     # Devuelve una jugada sobre un borde de ser posible.
 282.     for x, y in jugadasPosibles:
 283.         if esBorde(x, y):
 284.             return [x, y]
-285. 
+285.
 286.     return obtenerJugadaComputadora(tablero, baldosa)
-287. 
-288. 
+287.
+288.
 289. def obtenerPeorJugada(tablero, baldosa):
 290.     # Devuelve la jugada que que convierta la menor cantidad de baldosas.
 291.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
-292. 
+292.
 293.     # Ordena al azar las jugadas posibles.
 294.     random.shuffle(jugadasPosibles)
-295. 
+295.
 296.     # Recorre todas las jugadas posibles y recuerda la de mejor puntaje.
 297.     peorPuntaje = 64
 298.     for x, y in jugadasPosibles:
@@ -328,26 +328,26 @@ AISim3.py
 302.         if puntaje < peorPuntaje:
 303.             peorJugada = [x, y]
 304.             peorPuntaje = puntaje
-305. 
+305.
 306.     return peorJugada
-307. 
-308. 
+307.
+308.
 309. def obtenerEsquinaPeorJugada(tablero, baldosa):
 310.     # Devuelve la esquina, el especio o la jugada que convierta la menor cantidad de baldosas.
 311.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosa)
-312. 
+312.
 313.     # Ordena al azar las jugadas posibles.
 314.     random.shuffle(jugadasPosibles)
-315. 
+315.
 316.     # Siempre jugar sobre una esquina de ser posible.
 317.     for x, y in jugadasPosibles:
 318.         if esEsquina(x, y):
 319.             return [x, y]
-320. 
+320.
 321.     return obtenerPeorJugada(tablero, baldosa)
-322. 
-323. 
-324. 
+322.
+323.
+324.
 325. print('¡Bienvenido a Reversi!')
 
 Cómo Funciona el Código de AISim3.py
@@ -407,7 +407,7 @@ Así como jugar en las esquinas es una buena idea porque estas fichas no pueden 
 
 Comparando el Algoritmo Regular contra el Algoritmo EsquinaBordeMejor
 
-Cambiemos el algoritmo de X en la línea 346 por la función obtenerJugadaComputadora (el algoritmo original) y el algoritmo de O en la línea 351 por obtenerEsquinaBordeMejorJugada() (que primero intenta jugar en una esquina, luego sobre un lado y finalmente toma la mejor jugada restante), y simulemos cien juegos para ver cuál es mejor. Prueba cambiar las llamadas a las funciones y ejecutar el programa de nuevo.
+Cambiemos el algoritmo de X en la línea 346 por la función obtenerJugadaComputadora() (el algoritmo original) y el algoritmo de O en la línea 351 por obtenerEsquinaBordeMejorJugada() (que primero intenta jugar en una esquina, luego sobre un lado y finalmente toma la mejor jugada restante), y simulemos cien juegos para ver cuál es mejor. Prueba cambiar las llamadas a las funciones y ejecutar el programa de nuevo.
 
 ¡Bienvenido a Reversi!
 Ingresa el número de partidas a jugar: 100
@@ -443,7 +443,9 @@ Ahora usemos obtenerJugadaComputadora() en la línea 346 para el algoritmo del j
 Ingresa el número de partidas a jugar: 100
 Partida #0: X ha obtenido 50 puntos. O ha obtenido 14 puntos.
 Partida #1: X ha obtenido 38 puntos. O ha obtenido 8 puntos.
+
 ...omitido por brevedad...
+
 Partida #98: X ha obtenido 36 puntos. O ha obtenido 16 puntos.
 Partida #99: X ha obtenido 19 puntos. O ha obtenido 0 puntos.
 
@@ -466,7 +468,7 @@ Partida #98: X ha obtenido 47 puntos. O ha obtenido 17 puntos.
 Partida #99: X ha obtenido 36 puntos. O ha obtenido 18 puntos.
 X ha ganado 94 partidas (94.0%), O ha ganado 6 partidas (6.0%), empates en 0 partidas (0.0%) sobre un total de 100.0 partidas.
 
-El algoritmo obtenerEsquinaPeorJugada() aún pierde la mayoría de las partidas, pero parece ganar algunas más que obtenerPeorJugada() (6% comparado con un 2% del anterior). ¿Hace realmente una diferencia el jugar sobre las esquinas cuando están disponibles? 
+El algoritmo obtenerEsquinaPeorJugada() aún pierde la mayoría de las partidas, pero parece ganar algunas más que obtenerPeorJugada() (6% comparado con un 2% del anterior). ¿Hace realmente una diferencia el jugar sobre las esquinas cuando están disponibles?
 
 Comparando el Algoritmo Peor contra el Algoritmo EsquinaPeor
 

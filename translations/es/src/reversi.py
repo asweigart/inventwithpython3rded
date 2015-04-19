@@ -4,7 +4,7 @@ import random
 import sys
 
 def dibujarTablero(tablero):
-    # Esta funcion dibuja el tablero recibido. Devuelve None
+    # Esta funcion dibuja el tablero recibido. Devuelve None.
     LÍNEAH = '  +---+---+---+---+---+---+---+---+'
     LÍNEAV = '  |   |   |   |   |   |   |   |   |'
 
@@ -21,7 +21,7 @@ def dibujarTablero(tablero):
 
 
 def reiniciarTablero(tablero):
-    # Deja en blanco el tablero recibido como argumento, excepto la posición inicial
+    # Deja en blanco el tablero recibido como argumento, excepto la posición inicial.
     for x in range(8):
         for y in range(8):
             tablero[x][y] = ' '
@@ -43,7 +43,7 @@ def obtenerNuevoTablero():
 
 
 def esJugadaVálida(tablero, baldosa, comienzox, comienzoy):
-    # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida
+    # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida.
     # Si es una jugada válida, devuelve una lista de espacios que pasarían a ser del jugador si moviera aquí.
     if tablero[comienzox][comienzoy] != ' ' or not estáEnTablero(comienzox, comienzoy):
         return False
@@ -144,9 +144,9 @@ def ingresarBaldosaJugador():
 def quiénComienza():
     # Elije al azar qué jugador comienza.
     if random.randint(0, 1) == 0:
-        return 'computadora'
+        return 'La computadora'
     else:
-        return 'jugador'
+        return 'El jugador'
 
 
 def jugarDeNuevo():
@@ -252,10 +252,10 @@ while True:
     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
     mostrarPistas = False
     turno = quiénComienza()
-    print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
+    print(turno + ' comenzará.')
 
     while True:
-        if turno == 'jugador':
+        if turno == 'El jugador':
             # Turno del jugador
             if mostrarPistas:
                 tableroConJugadasVálidas = obtenerTableroConJugadasVálidas(tableroPrincipal, baldosaJugador)
@@ -276,7 +276,7 @@ while True:
             if obtenerJugadasVálidas(tableroPrincipal, baldosaComputadora) == []:
                 break
             else:
-                turno = 'computadora'
+                turno = 'La computadora'
 
         else:
             # Turno de la computadora
@@ -289,7 +289,7 @@ while True:
             if obtenerJugadasVálidas(tableroPrincipal, baldosaJugador) == []:
                 break
             else:
-                turno = 'jugador'
+                turno = 'El jugador'
 
     # Mostrar el puntaje final.
     dibujarTablero(tableroPrincipal)

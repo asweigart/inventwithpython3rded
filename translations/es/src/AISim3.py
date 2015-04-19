@@ -248,7 +248,7 @@ def obtenerJugadaAleatoria(tablero, baldosa):
 
 
 def esBorde(x, y):
-    return x == 0 or x == 7 or y == 0 or y ==7
+    return x == 0 or x == 7 or y == 0 or y == 7
 
 
 def obtenerEsquinaBordeMejorJugada(tablero, baldosa):

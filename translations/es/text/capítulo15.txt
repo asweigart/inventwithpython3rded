@@ -840,7 +840,7 @@ Determinando Quién Comienza
 148.     else:
 149.         return 'jugador'
 
-La función quiénComienza() decide aleatoriamente quién tomará el primer turno, y devuelve la cadena 'computadora' o la cadena 'jugador'.
+La función quiénComienza() decide aleatoriamente quién tomará el primer turno, y devuelve la cadena 'La computadora' o la cadena 'El jugador'.
 
 Preguntando al Jugador si Quiere Jugar de Nuevo
 
@@ -905,7 +905,7 @@ Obteniendo la Movida del Jugador
 190.     # Devuelve la jugada como [x, y] (o devuelve las cadenas 'pistas' o 'salir')
 191.     CIFRAS1A8 = '1 2 3 4 5 6 7 8'.split()
 
-La función obtenerJugadaJugador es llamada para permitir al jugador escribir las coordenadas de su próxima jugada (y comprobar si la jugada es válida). El jugador también puede escribir 'pistas' para activar el modo pistas (si está desactivado) o desactivarlo (si está activado). El jugador también puede escribir 'salir' para salir del juego.
+La función obtenerJugadaJugador() es llamada para permitir al jugador escribir las coordenadas de su próxima jugada (y comprobar si la jugada es válida). El jugador también puede escribir 'pistas' para activar el modo pistas (si está desactivado) o desactivarlo (si está activado). El jugador también puede escribir 'salir' para salir del juego.
 
 La variable constante CIFRAS1A8 es la lista ['1', '2', '3', '4', '5', '6', '7', '8']. La constante CIFRAS1A8 se usa porque es más fácil que escribir la lista entera. No podemos usar el método isdigit() porque de esta forma aceptaríamos los valores 0 y 9, los cuales no son coordenadas válidas en un tablero de 8 x 8.
 
@@ -1037,7 +1037,7 @@ El bucle while de la línea 248 es el bucle principal del juego. El programa vol
 
 mostrarPistas es un valor Booleano que determina si el modo pistas está activado o no. Se inicializa como False en la línea 253.
 
-La variable turno es una cadena que puede tener alguno de los valores 'jugador' o 'computadora'. Esta variable lleva un registro de a quién le toca jugar. Se inicializa con el valor de retorno de la función quiénComienza(), la cual decide en forma aleatoria quien comenzará.
+La variable turno es una cadena que puede tener alguno de los valores 'El jugador' o 'La computadora'. Esta variable lleva un registro de a quién le toca jugar. Se inicializa con el valor de retorno de la función quiénComienza(), la cual decide en forma aleatoria quien comenzará.
 
 Ejecutando el Turno del Jugador
 

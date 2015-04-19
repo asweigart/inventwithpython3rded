@@ -115,14 +115,14 @@ def jugarDeNuevo():
 def mostrarInstrucciones():
     print('''Instrucciones:
 Eres el capitán de Simón, un buque cazador de tesoros. Tu misión actual
-es encontrar los tres cofres con tesoros perdidos que se hallan ocultos en la parte del
+la parte del es encontrar los tres cofres con tesoros perdidos que se hallan ocultos en
 océano en que te encuentras y recogerlos.
 
-Para jugar, ingresa las coordenadas del punto del océano en que quieres colocar un
-dispositivo sonar. El sonar puede detectar cuál es la distancia al cofre más cercano.
-Por ejemplo, la d abajo indica dónde se ha colocado el dispositivo, y los números 2
-representan los sitios a una distancia 2 del dispositivo. Los números 4 representan
-los sitios a una distancia 4 del dispositivo.
+Para jugar, ingresa las coordenadas del punto del océano en que quieres
+colocar un dispositivo sonar. El sonar puede detectar cuál es la distancia al cofre más cercano.
+Por ejemplo, la d abajo indica dónde se ha colocado el dispositivo, y los
+números 2 representan los sitios a una distancia 2 del dispositivo. Los
+números 4 representan los sitios a una distancia 4 del dispositivo.
 
     444444444
     4       4
@@ -136,8 +136,8 @@ los sitios a una distancia 4 del dispositivo.
 Pulsa enter para continuar...''')
     input()
 
-    print('''Por ejemplo, aquí hay un cofre del tesoro (la c) ubicado a una distancia 2
-del dispositivo sonar (la d):
+    print('''Por ejemplo, aquí hay un cofre del tesoro (la c) ubicado a una distancia
+2 del dispositivo sonar (la d):
 
     22222
     c   2
@@ -148,15 +148,15 @@ del dispositivo sonar (la d):
 El punto donde el dispositivo fue colocado se indicará con un 2.
 
 Los cofres del tesoro no se mueven. Los dispositivos sonar pueden detectar
-cofres hasta una distancia 9. Si todos los cofres están fuera del alcance, el punto
-se indicará con un O.
+cofres hasta una distancia 9. Si todos los cofres están fuera del alcance,
+el punto se indicará con un O.
 
-Si un dispositivo es colocado directamente sobre un cofre del tesoro, has descubierto
-la ubicación del cofre, y este será recogido. El dispositivo sonar
-permanecerá allí.
+Si un dispositivo es colocado directamente sobre un cofre del tesoro, has
+descubierto la ubicación del cofre, y este será recogido. El dispositivo
+sonar permanecerá allí.
 
-Cuando recojas un cofre, todos los dispositivos sonar se actualizarán para localizar el próximo
-cofre hundido más cercano.
+Cuando recojas un cofre, todos los dispositivos sonar se actualizarán para
+localizar el próximo cofre hundido más cercano.
 Pulsa enter para continuar...''')
     input()
     print()

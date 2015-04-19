@@ -274,7 +274,7 @@ AISim3.py
 248.
 249.
 250. def isOnSide(x, y):
-251.     return x == 0 or x == 7 or y == 0 or y ==7
+251.     return x == 0 or x == 7 or y == 0 or y == 7
 252.
 253.
 254. def getCornerSideBestMove(board, tile):

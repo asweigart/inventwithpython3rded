@@ -140,9 +140,9 @@ def ingresarBaldosaJugador():
 def quiénComienza():
     # Elije al azar qué jugador comienza.
     if random.randint(0, 1) == 0:
-        return 'computadora'
+        return 'La computadora'
     else:
-        return 'jugador'
+        return 'El jugador'
 
 
 def jugarDeNuevo():
@@ -248,10 +248,10 @@ while True:
     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
     mostrarPistas = False
     turno = quiénComienza()
-    print(("El " if turno == "jugador" else "La ") + turno + ' will go first.')
+    print(turno + ' will go first.')
 
     while True:
-        if turno == 'jugador':
+        if turno == 'El jugador':
             # Turno del jugador.
             if mostrarPistas:
                 tableroConJugadasVálidas = obtenerTableroConJugadasVálidas(tableroPrincipal, baldosaJugador)
@@ -272,7 +272,7 @@ while True:
             if obtenerJugadasVálidas(tableroPrincipal, baldosaComputadora) == []:
                 break
             else:
-                turno = 'computadora'
+                turno = 'La computadora'
 
         else:
             # Turno de la computadora.
@@ -285,7 +285,7 @@ while True:
             if obtenerJugadasVálidas(tableroPrincipal, baldosaJugador) == []:
                 break
             else:
-                turno = 'jugador'
+                turno = 'El jugador'
 
     # Mostrar el puntaje final.
     dibujarTablero(tableroPrincipal)

@@ -253,7 +253,7 @@ while True:
         turno = 'X'
     else:
         turno = 'O'
-    print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
+    print('La ' + turno + ' comenzará.')
 
     while True:
         dibujarTablero(tableroPrincipal)
