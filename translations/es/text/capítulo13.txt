@@ -816,7 +816,7 @@ Las líneas 183 a 186 poseen el código luego de los dos puntos de las sentencia
 
 Las dos variables llamadas extraSspmar y extraScofre son establecidas a 's' si hay múltiples dispositivos de sonar o cofres de tesoro. Caso contrario, serán cadenas vacías. Estas variables son utilizdas en la línea 187.
 
-Obteniendo La Jugada Del Jugador
+Obteniendo la Jugada del Jugador
 
 189.         x, y = ingresarMovidaJugador()
 190.         movidasPrevias.append([x, y]) # debemos registrar todas las movidas para que los dispositivos sonar puedan ser actualizados.

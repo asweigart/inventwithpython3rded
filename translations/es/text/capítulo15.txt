@@ -147,7 +147,7 @@ Has perdido. La computadora te ha vencido por 31 puntos.
 ¿Quieres jugar de nuevo? (sí o no)
 no
 
-Como puedes ver, la IA hizo un buen trabajo y me venció 46 a 15. Para ayudar al jugador, programaremos el juego de modo que ofrezca pistas. Si el jugador escribe 'pistas' como su jugada, se activarán o desactivarán las pistas. Cuando el modo pistas está activado, se verán marcas '.' en el tablero para todas las jugadas posibles, como se muestra a continuación: 
+Como puedes ver, la IA hizo un buen trabajo y me venció 46 a 15. Para ayudar al jugador, programaremos el juego de modo que ofrezca pistas. Si el jugador escribe 'pistas' como su jugada, se activarán o desactivarán las pistas. Cuando el modo pistas está activado, se verán marcas '.' en el tablero para todas las jugadas posibles, como se muestra a continuación:
 
     1   2   3   4   5   6   7   8
   +---+---+---+---+---+---+---+---+
@@ -195,15 +195,15 @@ Si obtienes errores luego de escribir este código, compara el código que has e
 reversi.py
 
   1. # Reversi
-  2. 
+  2.
   3. import random
   4. import sys
-  5. 
+  5.
   6. def dibujarTablero(tablero):
-  7.     # Esta funcion dibuja el tablero recibido. Devuelve None
+  7.     # Esta funcion dibuja el tablero recibido. Devuelve None.
   8.     LÍNEAH = '  +---+---+---+---+---+---+---+---+'
   9.     LÍNEAV = '  |   |   |   |   |   |   |   |   |'
- 10. 
+ 10.
  11.     print('    1   2   3   4   5   6   7   8')
  12.     print(LÍNEAH)
  13.     for y in range(8):
@@ -214,43 +214,43 @@ reversi.py
  18.         print('|')
  19.         print(LÍNEAV)
  20.         print(LÍNEAH)
- 21. 
- 22. 
+ 21.
+ 22.
  23. def reiniciarTablero(tablero):
- 24.     # Deja en blanco el tablero recibido como argumento, excepto la posición inicial
+ 24.     # Deja en blanco el tablero recibido como argumento, excepto la posición inicial.
  25.     for x in range(8):
  26.         for y in range(8):
  27.             tablero[x][y] = ' '
- 28. 
+ 28.
  29.     # Piezas iniciales:
  30.     tablero[3][3] = 'X'
  31.     tablero[3][4] = 'O'
  32.     tablero[4][3] = 'O'
  33.     tablero[4][4] = 'X'
- 34. 
- 35. 
+ 34.
+ 35.
  36. def obtenerNuevoTablero():
  37.     # Crea un tablero nuevo, vacío.
  38.     tablero = []
  39.     for i in range(8):
  40.         tablero.append([' '] * 8)
- 41. 
+ 41.
  42.     return tablero
- 43. 
- 44. 
+ 43.
+ 44.
  45. def esJugadaVálida(tablero, baldosa, comienzox, comienzoy):
- 46.     # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida
+ 46.     # Devuelve False si la jugada del jugador en comienzox, comienzoy es invalida.
  47.     # Si es una jugada válida, devuelve una lista de espacios que pasarían a ser del jugador si moviera aquí.
  48.     if tablero[comienzox][comienzoy] != ' ' or not estáEnTablero(comienzox, comienzoy):
  49.         return False
- 50. 
+ 50.
  51.     tablero[comienzox][comienzoy] = baldosa # coloca temporariamente la baldosa sobre el tablero.
- 52. 
+ 52.
  53.     if baldosa == 'X':
  54.         otraBaldosa = 'O'
  55.     else:
  56.         otraBaldosa = 'X'
- 57. 
+ 57.
  58.     baldosasAConvertir = []
  59.     for direcciónx, direccióny in [[0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1], [-1, 0], [-1, 1]]:
  60.         x, y = comienzox, comienzoy
@@ -277,38 +277,38 @@ reversi.py
  81.                     if x == comienzox and y == comienzoy:
  82.                         break
  83.                     baldosasAConvertir.append([x, y])
- 84. 
+ 84.
  85.     tablero[comienzox][comienzoy] = ' ' # restablecer el espacio vacío
  86.     if len(baldosasAConvertir) == 0: # Si no se convirtió ninguna baldosa, la jugada no es válida.
  87.         return False
  88.     return baldosasAConvertir
- 89. 
- 90. 
+ 89.
+ 90.
  91. def estáEnTablero(x, y):
  92.     # Devuelve True si las coordenadas se encuentran dentro del tablero
  93.     return x >= 0 and x <= 7 and y >= 0 and y <=7
- 94. 
- 95. 
+ 94.
+ 95.
  96. def obtenerTableroConJugadasVálidas(tablero, baldosa):
  97.     # Devuelve un nuevo tablero, marcando con "." las jugadas válidas que el jugador puede realizar.
  98.     réplicaTablero = obtenerCopiaTablero(tablero)
- 99. 
+ 99.
 100.     for x, y in obtenerJugadasVálidas(réplicaTablero, baldosa):
 101.         réplicaTablero[x][y] = '.'
 102.     return réplicaTablero
-103. 
-104. 
+103.
+104.
 105. def obtenerJugadasVálidas(tablero, baldosa):
 106.     # Devuelve una lista de listas [x,y] de jugadas válidas para el jugador en el tablero dado.
 107.     jugadasVálidas = []
-108. 
+108.
 109.     for x in range(8):
 110.         for y in range(8):
 111.             if esJugadaVálida(tablero, baldosa, x, y) != False:
 112.                 jugadasVálidas.append([x, y])
 113.     return jugadasVálidas
-114. 
-115. 
+114.
+115.
 116. def obtenerPuntajeTablero(tablero):
 117.     # Determina el puntaje contando las piezas. Devuelve un diccionario con claves 'X' y 'O'.
 118.     puntajex = 0
@@ -320,8 +320,8 @@ reversi.py
 124.             if tablero[x][y] == 'O':
 125.                 puntajeo += 1
 126.     return {'X':puntajex, 'O':puntajeo}
-127. 
-128. 
+127.
+128.
 129. def ingresarBaldosaJugador():
 130.     # Permite al jugador elegir que baldosa desea ser.
 131.     # Devuelve una lista con la baldosa del jugador como primer elemento y el de la computadora como segundo.
@@ -329,58 +329,58 @@ reversi.py
 133.     while not (baldosa == 'X' or baldosa == 'O'):
 134.         print('¿Deseas ser X ó O?')
 135.         baldosa = input().upper()
-136. 
+136.
 137.     #  El primer elemento en la lista es la baldosa del juegador, el segundo es la de la computadora.
 138.     if baldosa == 'X':
 139.         return ['X', 'O']
 140.     else:
 141.         return ['O', 'X']
-142. 
-143. 
+142.
+143.
 144. def quiénComienza():
 145.     # Elije al azar qué jugador comienza.
 146.     if random.randint(0, 1) == 0:
-147.         return 'computadora'
+147.         return 'La computadora'
 148.     else:
-149.         return 'jugador'
-150. 
-151. 
+149.         return 'El jugador'
+150.
+151.
 152. def jugarDeNuevo():
 153.     # Esta función devuelve True si el jugador quiere jugar de nuevo, de lo contrario devuelve False.
 154.     print('¿Quieres jugar de nuevo? (sí o no)')
 155.     return input().lower().startswith('s')
-156. 
-157. 
+156.
+157.
 158. def hacerJugada(tablero, baldosa, comienzox, comienzoy):
 159.     # Coloca la baldosa sobre el tablero en comienzox, comienzoy, y convierte cualquier baldosa del oponente.
 160.     # Devuelve False si la jugada es inválida, True si es válida.
 161.     baldosasAConvertir = esJugadaVálida(tablero, baldosa, comienzox, comienzoy)
-162. 
+162.
 163.     if baldosasAConvertir == False:
 164.         return False
-165. 
+165.
 166.     tablero[comienzox][comienzoy] = baldosa
 167.     for x, y in baldosasAConvertir:
 168.         tablero[x][y] = baldosa
 169.     return True
-170. 
-171. 
+170.
+171.
 172. def obtenerCopiaTablero(tablero):
 173.     # Duplica la lista del tablero y devuelve el duplicado.
 174.     réplicaTablero = obtenerNuevoTablero()
-175. 
+175.
 176.     for x in range(8):
 177.         for y in range(8):
 178.             réplicaTablero[x][y] = tablero[x][y]
-179. 
+179.
 180.     return réplicaTablero
-181. 
-182. 
+181.
+182.
 183. def esEsquina(x, y):
 184.     # Devuelve True si la posicion es una de las esquinas.
 185.     return (x == 0 and y == 0) or (x == 7 and y == 0) or (x == 0 and y == 7) or (x == 7 and y == 7)
-186. 
-187. 
+186.
+187.
 188. def obtenerJugadaJugador(tablero, baldosaJugador):
 189.     # Permite al jugador tipear su jugada.
 190.     # Devuelve la jugada como [x, y] (o devuelve las cadenas 'pistas' o 'salir')
@@ -392,7 +392,7 @@ reversi.py
 196.             return 'salir'
 197.         if jugada == 'pistas':
 198.             return 'pistas'
-199. 
+199.
 200.         if len(jugada) == 2 and jugada[0] in CIFRAS1A8 and jugada[1] in CIFRAS1A8:
 201.             x = int(jugada[0]) - 1
 202.             y = int(jugada[1]) - 1
@@ -403,23 +403,23 @@ reversi.py
 207.         else:
 208.             print('Esta no es una jugada válida. Ingresa la coordenada x (1-8), luego la coordenada y (1-8).')
 209.             print('Por ejemplo, 81 corresponde a la esquina superior derecha.')
-210. 
+210.
 211.     return [x, y]
-212. 
-213. 
+212.
+213.
 214. def obtenerJugadaComputadora(tablero, baldosaComputadora):
 215.     # Dado un tablero y la baldosa de la computadora, determinar dónde
 216.     # jugar y devolver esa jugada como una lista [x, y].
 217.     jugadasPosibles = obtenerJugadasVálidas(tablero, baldosaComputadora)
-218. 
+218.
 219.     # ordena al azar el orden de las jugadas posibles
 220.     random.shuffle(jugadasPosibles)
-221. 
+221.
 222.     # siempre jugar en una esquina si está disponible.
 223.     for x, y in jugadasPosibles:
 224.         if esEsquina(x, y):
 225.             return [x, y]
-226. 
+226.
 227.     # Recorrer la lista de jugadas posibles y recordar la que da el mejor puntaje
 228.     mejorPuntaje = -1
 229.     for x, y in jugadasPosibles:
@@ -430,17 +430,17 @@ reversi.py
 234.             mejorJugada = [x, y]
 235.             mejorPuntaje = puntaje
 236.     return mejorJugada
-237. 
-238. 
+237.
+238.
 239. def mostrarPuntajes(baldosaJugador, baldosaComputadora):
 240.     # Imprime el puntaje actual.
 241.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
 242.     print('Tienes %s puntos. La computadora tiene %s puntos.' % (puntajes[baldosaJugador], puntajes[baldosaComputadora]))
-243. 
-244. 
-245. 
+243.
+244.
+245.
 246. print('¡Bienvenido a Reversi!')
-247. 
+247.
 248. while True:
 249.     # Reiniciar el tablero y la partida.
 250.     tableroPrincipal = obtenerNuevoTablero()
@@ -448,10 +448,10 @@ reversi.py
 252.     baldosaJugador, baldosaComputadora = ingresarBaldosaJugador()
 253.     mostrarPistas = False
 254.     turno = quiénComienza()
-255.     print(("El " if turno == "jugador" else "La ") + turno + ' comenzará.')
-256. 
+255.     print(turno + ' comenzará.')
+256.
 257.     while True:
-258.         if turno == 'jugador':
+258.         if turno == 'El jugador':
 259.             # Turno del jugador
 260.             if mostrarPistas:
 261.                 tableroConJugadasVálidas = obtenerTableroConJugadasVálidas(tableroPrincipal, baldosaJugador)
@@ -468,12 +468,12 @@ reversi.py
 272.                 continue
 273.             else:
 274.                 hacerJugada(tableroPrincipal, baldosaJugador, jugada[0], jugada[1])
-275. 
+275.
 276.             if obtenerJugadasVálidas(tableroPrincipal, baldosaComputadora) == []:
 277.                 break
 278.             else:
-279.                 turno = 'computadora'
-280. 
+279.                 turno = 'La computadora'
+280.
 281.         else:
 282.             # Turno de la computadora
 283.             dibujarTablero(tableroPrincipal)
@@ -481,12 +481,12 @@ reversi.py
 285.             input('Presiona enter para ver la jugada de la computadora.')
 286.             x, y = obtenerJugadaComputadora(tableroPrincipal, baldosaComputadora)
 287.             hacerJugada(tableroPrincipal, baldosaComputadora, x, y)
-288. 
+288.
 289.             if obtenerJugadasVálidas(tableroPrincipal, baldosaJugador) == []:
 290.                 break
 291.             else:
-292.                 turno = 'jugador'
-293. 
+292.                 turno = 'El jugador'
+293.
 294.     # Mostrar el puntaje final.
 295.     dibujarTablero(tableroPrincipal)
 296.     puntajes = obtenerPuntajeTablero(tableroPrincipal)
@@ -497,7 +497,7 @@ reversi.py
 301.         print('Has perdido. La computadora te ha vencido por %s puntos.' % (puntajes[baldosaComputadora] - puntajes[baldosaJugador]))
 302.     else:
 303.         print('¡Ha sido un empate!')
-304. 
+304.
 305.     if not jugarDeNuevo():
 306.         break
 
@@ -507,7 +507,7 @@ La Estructura de Datos del Tablero de Juego
 
 Antes de meternos en el código, entendamos la estructura de datos del tablero. Esta estructura de datos es una lista de listas, igual que la de nuestro juego anterior Sonar. La lista de listas se crea para que tablero[x][y] represente al caracter en la posición x sobre el eje X (de izquierda a derecha) y la posición y sobre el eje Y (de arriba hacia abajo).
 
-Este caracter puede ser un espacio ' ' en blanco (para representar un casillero vacío), un punto'.' (para representar una jugada posible en el modo de pistas), o un caracter 'X' o 'O' (para representar las baldosas de los jugadores). Cada vez que veas un parámetro llamado tablero, se tratará de esta especie de lista de listas.
+Este caracter puede ser un espacio ' ' en blanco (para representar un casillero vacío), un punto '.' (para representar una jugada posible en el modo de pistas), o un caracter 'X' o 'O' (para representar las baldosas de los jugadores). Cada vez que veas un parámetro llamado tablero, se tratará de esta especie de lista de listas.
 
 Importando Otros Módulos
 
@@ -523,7 +523,7 @@ Dibujando la Estructura de Datos del Tablero sobre la Pantalla
   7.     # Esta funcion dibuja el tablero recibido. Devuelve None
   8.     LÍNEAH = '  +---+---+---+---+---+---+---+---+'
   9.     LÍNEAV = '  |   |   |   |   |   |   |   |   |'
- 10. 
+ 10.
  11.     print('    1   2   3   4   5   6   7   8')
  12.     print(LÍNEAH)
 
@@ -627,7 +627,7 @@ Creando una Nueva Estructura de Datos Tablero
  38.     tablero = []
  39.     for i in range(8):
  40.         tablero.append([' '] * 8)
- 41. 
+ 41.
  42.     return tablero
 
 La función obtenerNuevoTablero() crea una nueva estructura de datos tablero y la devuelve. La línea 38 crea la lista exterior y guarda una referencia a esta lista en tablero. La línea 40 crea las listas interiores usando replicación de listas. ([' ']) * 8 se evalúa al mismo valor que [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '], pero hay que escribir menos.)
@@ -679,7 +679,7 @@ Figura 15-7: Cada lista de dos elementos representa una de las ocho direcciones.
  61.         x += direcciónx # primer paso en la dirección
  62.         y += direccióny # primer paso en la dirección
 
-La línea 60 asigna a las variables x e y el mismo valor que comienzos y comienzoy, respectivamente, utilizando asignación múltiple. A continuación se modifican las variables x e y para "moverse" en la dirección determinada por direcciónx y direccióny. Las variables comienzox y comienzoy no se modificarán de modo que el programa pueda recordar desde qué espacio comenzó el movimiento.
+La línea 60 asigna a las variables x e y el mismo valor que comienzox y comienzoy, respectivamente, utilizando asignación múltiple. A continuación se modifican las variables x e y para "moverse" en la dirección determinada por direcciónx y direccióny. Las variables comienzox y comienzoy no se modificarán de modo que el programa pueda recordar desde qué espacio comenzó el movimiento.
 
  63.         if estáEnTablero(x, y) and tablero[x][y] == otraBaldosa:
  64.             # Hay una pieza perteneciente al otro jugador al lado de nustra pieza
@@ -743,7 +743,7 @@ Obteniendo una Lista con Todas las Jugadas Válidas
  96. def obtenerTableroConJugadasVálidas(tablero, baldosa):
  97.     # Devuelve un nuevo tablero, marcando con "." las jugadas válidas que el jugador puede realizar.
  98.     réplicaTablero = obtenerCopiaTablero(tablero)
- 99. 
+ 99.
 100.     for x, y in obtenerJugadasVálidas(réplicaTablero, baldosa):
 101.         réplicaTablero[x][y] = '.'
 102.     return réplicaTablero
@@ -755,7 +755,7 @@ Esta función crea un duplicado de la estructura de datos tablero (devuelto por 
 105. def obtenerJugadasVálidas(tablero, baldosa):
 106.     # Devuelve una lista de listas [x,y] de jugadas válidas para el jugador en el tablero dado.
 107.     jugadasVálidas = []
-108. 
+108.
 109.     for x in range(8):
 110.         for y in range(8):
 111.             if esJugadaVálida(tablero, baldosa, x, y) != False:
@@ -864,7 +864,7 @@ La mayor parte del trabajo es realizado por esJugadaVálida(), que devuelve una 
 
 163.     if baldosasAConvertir == False:
 164.         return False
-165. 
+165.
 166.     tablero[comienzox][comienzoy] = baldosa
 167.     for x, y in baldosasAConvertir:
 168.         tablero[x][y] = baldosa
@@ -879,11 +879,11 @@ Copiando la Estructura de Datos Tablero
 172. def obtenerCopiaTablero(tablero):
 173.     # Duplica la lista del tablero y devuelve el duplicado.
 174.     réplicaTablero = obtenerNuevoTablero()
-175. 
+175.
 176.     for x in range(8):
 177.         for y in range(8):
 178.             réplicaTablero[x][y] = tablero[x][y]
-179. 
+179.
 180.     return réplicaTablero
 
 obtenerCopiaTablero() es diferente de obtenerNuevoTablero(). obtenerNuevoTablero() creará una estructura de datos tablero nueva, con sólo espacios vacíos y las cuatro baldosas iniciales. obtenerCopiaTablero() creará también una estructura de datos vacía, pero luego copiará todos los espacios del parámetro tablero. Esta función es usada por la IA para obtener un tablero de juego sobre el que pueda hacer cambios sin modificar el tablero real. Esta técnica es la misma que hemos usado en nuestro programa anterior Ta Te Ti.
@@ -1023,7 +1023,7 @@ Estas son todas las funciones para el juego Reversi. El código que comienza en 
 El Comienzo del Juego
 
 246. print('¡Bienvenido a Reversi!')
-247. 
+247.
 248. while True:
 249.     # Reiniciar el tablero y la partida.
 250.     tableroPrincipal = obtenerNuevoTablero()
