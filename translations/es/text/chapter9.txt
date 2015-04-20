@@ -206,25 +206,25 @@ Bob
 
 Estas son cadenas multi-línea. En una cadena multi-línea, los caracteres de nueva línea son incluidos como parte de la cadena. No tienes que utilizar el caracter de escape \n, o las comillas de escape siempre que no utilices tres comillas juntas. Esto hace que el código sea fácil de leer para largas cantidades de texto.
 
-Constant Variables
+Variables Constantes
 
-The HANGMANPICS variable’s name is in all capitals. This is the programming convention for constant variables. Constants are variables meant to have values that never changes from their first assignment statement. Although you can change the value in HANGMANPICS just like any other variable, the all-caps name reminds you to not do so. Since the HANGMANPICS variable never needs to change, it’s marked as a constant.
+El nombre de variable IMÁGENES_AHORCADO está todo en mayúsculas. Esta es una convención en programación para variables constantes. Las constantes son variables que tienen por finalidad almacenar valores que nunca cambian desde la primera sentencia de asignación.  Aunque puedes cambiar el valor de IMÁGENES_AHORCADO como con cualquier otra variable, un nombre con todas las mayúsculas te recuerda no hacerlo. Dado que la variable IMÁGENES_AHORCADO nunca necesita ser cambiada, es marcada como constante.
 
-Like all conventions, you don’t have to follow it. But following this convention makes it easier for other programmers to read your code. They’ll know that HANGMANPICS will always have the value it was assigned on line 2.
+Como todas las convenciones, es tu decisión seguirla. Pero siguiendo esta convención le haces mas fácil a otras y otros programadores leer tu código. Sabrán que IMÁGENES_AHORCADO siempre tendrá el valor que se le asignó en la línea 2.
 
-Lists
+Listas
 
-A list value can contain several other values inside it. Try entering this into the interactive shell:.
+Un valor de lista puede contener otros valores dentro. Intenta introducir esto en el terminal interactivo:
 
->>> spam = ['Life', 'The Universe', 'Everything', 42]
+>>> spam = ['Vida', 'El Universo', 'Todo', 42]
 >>> spam
-['Life', 'The Universe', 'Everything', 42]
+['Vida', 'El Universo', 'Todo', 42]
 
-This list value in spam contains four values. When typing the list value into your code, it begins with a [ square bracket and ends with a ] square bracket. This is like how strings begin and end with a quote character.
+Este valor lista en spam contiene cuatro valores. Cuando escribes el valor lista en tu código, comienza con un [ corchete y termina con otro corchete. Esto es igual a las cadenas que terminan y empiezan con un caracter de comillas.
 
-Commas separate the individual values inside of a list. These values are also called items.
+Se separan con comas los valores individuales dentro de una lista. Estos valores son llamados elementos o ítems.
 
-Indexes
+Índices
 
 Try entering animals = ['aardvark', 'anteater', 'antelope', 'albert'] into the interactive shell to store a list in the variable animals. The square brackets are also used to access an item inside a list. Try entering animals[0], animals[1], animals[2], and animals[3] into the interactive shell to see how they evaluate:
 
