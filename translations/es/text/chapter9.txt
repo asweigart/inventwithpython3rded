@@ -226,74 +226,75 @@ Se separan con comas los valores individuales dentro de una lista. Estos valores
 
 Índices
 
-Try entering animals = ['aardvark', 'anteater', 'antelope', 'albert'] into the interactive shell to store a list in the variable animals. The square brackets are also used to access an item inside a list. Try entering animals[0], animals[1], animals[2], and animals[3] into the interactive shell to see how they evaluate:
+Intente introducir animales = ['águila', 'alce', 'antílope', 'albert'] en el terminal interactivo para alamcenar una lista en la variable animales. Los corchetes son usados también para acceder al elemento dentro de una lista. Intente introducir animales[0], animales[1], animales[2], animales[3] en un terminal interactivo para ver que devuelven:
 
->>> animals = ['aardvark', 'anteater', 'antelope', 'albert']
+>>> animales = ['águila', 'alce', 'antílope', 'albert']
 >>> animals[0]
-'aardvark'
+'águila'
 >>> animals[1]
-'anteater'
+'alce'
 >>> animals[2]
-'antelope'
->>> animals[3]
+'antílope'
+>>> animals[3] # ¡el autor de este libro!
 'albert'
 
-The number between the square brackets is the index. In Python, the index of the first item in a list is 0. The second item is at index 1, the third item is at index 2, and so on. Because the indexes begin at 0, not 1, we say that Python lists are zero-indexed.
+El número entre los corchetes es el índice. En Python, el índice del primer elemento en una lista es 0. El segundo elemento está en el índice 1, el tercer elemento está en el índice 2 y así. Debido a que los índices comienzan en 0 y no en 1, decimos que las listas de Python tiene índices de base cero.
 
-Lists are good for storing several values without using a variable for each one. Otherwise, the code would look like this:
+Las listas son buenas para almacenar varios valores sin usar una variable para cada uno. En otro caso, el código se vería como esto:
 
->>> animals1 = 'aardvark'
->>> animals2 = 'anteater'
->>> animals3 = 'antelope'
->>> animals4 = 'albert'
+>>> animales1 = 'águila'
+>>> animales2 = 'alce'
+>>> animales3 = 'antílope'
+>>> animales4 = 'albert'
 
-This code would be hard to manage if you have hundreds or thousands of strings. But a list can easily contain any number of values. Using the square brackets, you can treat items in the list just like any other value. Try entering animals[0] + animals[2] into the interactive shell:
+Este código podría ser difícil de manejar si tiene ciento o miles de cadenas. Pero una lista puede fácilmente contener cualquier número de valores. Utilizando corchetes, puedes tratar los elementos en la lista como cualquie rotro valor. Intenta introducir animales[0] + animales[2] en el intérprete interactivo:
 
->>> animals[0] + animals[2]
-'aardvarkantelope'
+>>> animales[0] + animales[2]
+'águilaantílope'
 
-The evaluation looks like this:
+La evaluación sería como esto:
 
-animals[0] + animals[2]
+animales[0] + animales[2]
            ▼
-'aardvark' + animals[2]
+  'águila' + animals[2]
            ▼
-'aardvark' + 'antelope'
+  'águila' + 'antílope'
            ▼
-  'aardvarkantelope'
+   'águilaantílope'
 
 IndexError
 
-If you try accessing an index that is too large, you’ll get an IndexError that will crash your program. Try entering the following into the interactive shell:
+Si intentas acceder a un índice que es demasiado grande, obtendrás un IndexError que colgará tu programa. Intenta introducir lo siguiente en el intérprete interactivo:
 
->>> animals = ['aardvark', 'anteater', 'antelope', 'albert']
->>> animals[9999]
+>>> animales = ['águila', 'alce', 'antílope', 'albert']
+>>> animales[9999]
 Traceback (most recent call last):
 File "", line 1, in
-animals[9999]
+animales[9999]
 IndexError: list index out of range
 
-Changing the Values of List Items with Index Assignment
+Cambiando los Valores de los Elementos de una Lista con asignación por Índice
 
-You can also use the square brackets to change the value of an item in a list. Try entering the following into the interactive shell:
+También puedes usar los corchetes para cambiar el valor de un elemento en una lista. Intenta introducir lo siguiente en el intérprete interactivo:
 
->>> animals = ['aardvark', 'anteater', 'antelope', 'albert']
->>> animals[1] = 'ANTEATER'
->>> animals
-['aardvark', 'ANTEATER', 'antelope', 'albert']
+>>> animales = ['águila', 'alce', 'antílope', 'albert']
+>>> animales[1] = 'ALCE'
+>>> animales
+['águila', 'ALCE', 'antílope', 'albert']
 
-The new 'ANTEATER' string overwrites the second item in the animals list. So animals[1] will evaluate to the list’s second item in expressions, but you can also use it on the left side of an assignment statement to assign a value as the list’s second item.
+La nueva cadena 'ALCE' sobreescribe el segundo elemento en la lista animales. De manera que animales[1] devolverá el segundo elemento de la lista en las expresiones, pero también puedes usarlo en el lado izquierdo de una sentencia de asignación para asignar un valor como el segundo elemento de la lista.
 
-List Concatenation
+Concatenación de listas
 
-You can join lists into one list with the + operator, just like you can join strings. Joining lists with the + operator is list concatenation. Try entering the following into the interactive shell:
+Puedes unir listas en una sola lista con el operador +, del mismo modo como puedes unir cadenas. Unir listas con el operador + es una concatenación de listas. Intente introducir lo siguiente en el intérprete interactivo:
 
->>> [1, 2, 3, 4] + ['apples', 'oranges'] + ['Alice', 'Bob']
-[1, 2, 3, 4, 'apples', 'oranges', 'Alice', 'Bob']
+>>> [1, 2, 3, 4] + ['manzanas', 'naranjas'] + ['Alicia', 'Bob']
+[1, 2, 3, 4, 'manzanas', 'naranjas', 'Alicia', 'Bob']
 
-['apples'] + ['oranges'] will evaluate to ['apples', 'oranges']. But ['apples'] + 'oranges' will result in an error. You cannot add a list value and string value instead of two list values. If you want to add non-list values to a list, use the append() method (described later).
+['manzanas'] + ['naranjas'] devolverá ['manzanas', 'naranjas']. Pero ['manzanas'] + 'naranjas' resultará en un error. No puedes sumarun valor de lista y un valor de cadena en lugar de dos valores de lista. Si quieres sumar valores que no son lista a una lista, utiliza el método append() (descrito más adelante).
 
-The in Operator
+El Operador in
+
 
 The in operator can tell you if a value is in a list or not. Expressions that use the in operator return a Boolean value: True if the value is in the list and False if it isn’t. Try entering the following into the interactive shell:
 
