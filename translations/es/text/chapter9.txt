@@ -226,7 +226,7 @@ Se separan con comas los valores individuales dentro de una lista. Estos valores
 
 Índices
 
-Intente introducir animales = ['águila', 'alce', 'antílope', 'albert'] en el terminal interactivo para alamcenar una lista en la variable animales. Los corchetes son usados también para acceder al elemento dentro de una lista. Intente introducir animales[0], animales[1], animales[2], animales[3] en un terminal interactivo para ver que devuelven:
+Intenta introducir animales = ['águila', 'alce', 'antílope', 'albert'] en el terminal interactivo para alamcenar una lista en la variable animales. Los corchetes son usados también para acceder al elemento dentro de una lista. Intenta introducir animales[0], animales[1], animales[2], animales[3] en un terminal interactivo para ver que devuelven:
 
 >>> animales = ['águila', 'alce', 'antílope', 'albert']
 >>> animals[0]
@@ -286,49 +286,48 @@ La nueva cadena 'ALCE' sobreescribe el segundo elemento en la lista animales. De
 
 Concatenación de listas
 
-Puedes unir listas en una sola lista con el operador +, del mismo modo como puedes unir cadenas. Unir listas con el operador + es una concatenación de listas. Intente introducir lo siguiente en el intérprete interactivo:
+Puedes unir listas en una sola lista con el operador +, del mismo modo como puedes unir cadenas. Unir listas con el operador + es una concatenación de listas. Intenta introducir lo siguiente en el intérprete interactivo:
 
->>> [1, 2, 3, 4] + ['manzanas', 'naranjas'] + ['Alicia', 'Bob']
-[1, 2, 3, 4, 'manzanas', 'naranjas', 'Alicia', 'Bob']
+>>> [1, 2, 3, 4] + ['manzanas', 'naranjas'] + ['Alicia', 'Beto']
+[1, 2, 3, 4, 'manzanas', 'naranjas', 'Alicia', 'Beto']
 
 ['manzanas'] + ['naranjas'] devolverá ['manzanas', 'naranjas']. Pero ['manzanas'] + 'naranjas' resultará en un error. No puedes sumarun valor de lista y un valor de cadena en lugar de dos valores de lista. Si quieres sumar valores que no son lista a una lista, utiliza el método append() (descrito más adelante).
 
 El Operador in
 
+El operador in te puede decir si un valor está en una lista o no. Las expresiones que usan el operador in devuelven un valor lógico: True si el valor está en la lista y False si no está. Intenta introducir lo siguiente en el intérprete interactivo:
 
-The in operator can tell you if a value is in a list or not. Expressions that use the in operator return a Boolean value: True if the value is in the list and False if it isn’t. Try entering the following into the interactive shell:
-
->>> animals = ['aardvark', 'anteater', 'antelope', 'albert']
->>> 'antelope' in animals
+>>> animales = ['águila', 'alce', 'antílope', 'albert']
+>>> 'antílope' in animales
 True
 
-The expression 'antelope' in animals returns True because the string 'antelope' is one of the values in the animals list. It is located at index 2.
+La expresión 'antílope' en animales devuelve True porque la cadena 'antílope' es uno de los valores en la lista animales. Estña localizado en el índice 2.
 
-But if you type the expression 'ant' in animals, this will return False because the string 'ant' doesn’t exist in the list.
+Pero si escribes la expresión 'atún' in animales, esto devolverá False porque la cadena 'atún' no existe en la lista.
 
->>> animals = ['aardvark', 'anteater', 'antelope', 'albert']
->>> 'antelope' in animals
+>>> animales = ['águila', 'alce', 'antílope', 'albert']
+>>> 'antílope' in animales
 True
->>> 'ant' in animals
+>>> 'atún' in animales
 False
 
-The in operator also works for strings. It checks if one string exists in another. Try entering the following into the interactive shell:
+El operador in también trabaja para las cadenas. Verifica si una cadena existe en otra. Intenta introducir lo siguiente en el intérprete interactivo:
 
->>> 'hello' in 'Alice said hello to Bob.'
+>>> 'hola' in 'Alicia le dice hola a Beto.'
 True
 
-Deleting Items from Lists with del Statements
+Eliminando Elementos de Listas con Sentencias del
 
-A del statement will delete an item at a certain index from a list. Try entering the following into the interactive shell:
+Una sentencia del eliminará un elemento en un índice determinado de una lista. Intenta introducir lo siguiente en el intérprete interactivo:
 
 >>> spam = [2, 4, 6, 8, 10]
 >>> del spam[1]
 >>> spam
 [2, 6, 8, 10]
 
-Notice that when you deleted the item at index 1, the item that used to be at index 2 became the new value at index 1. The item that used to be at index 3 moved to be the new value at index 2. Everything above the deleted item moved down one index.
+Nota que cuando eliminas un elemento en el índice 1, el elemento que estaba en el índice 2 ahora es el nuevo valor en el índice 1. El elemento que estaba en el índice 3 pasa a ser el nuevo valor en el índice 2. Todo lo que estaba por encima del elemento eliminado se mueve un índice hacia abajo.
 
-You can type del spam[1] again and again to keep deleting items from the list:
+Puedes escribir del spam[1] una y otra vez para seguir eliminando elementos de la lista:
 
 >>> spam = [2, 4, 6, 8, 10]
 >>> del spam[1]
@@ -341,32 +340,32 @@ You can type del spam[1] again and again to keep deleting items from the list:
 >>> spam
 [2, 10]
 
-The del statement is a statement, not a function or an operator. It doesn’t have parentheses or evaluate to a return value.
+La sentencia del es una sentencia, no una función ni un operador. No tiene paréntesis ni devuelve un valor.
 
-Lists of Lists
+Listas de Listas
 
-Lists can contain other values, including other lists. Let’s say you have a list of groceries, a list of chores, and a list of your favorite pies. You can put all three lists into another list. Try entering the following into the interactive shell:
+Las listas pueden contener otros valores, incluyendo otras listas. Digamos que tienes una lista de comestibles, una lista de tareas domesticas, y una lista de tus pasteles favoritos. Puedes poner las tres listas en una sola lista. Intenta introducir lo siguiente en el intérprete interactivo:
 
->>> groceries = ['eggs', 'milk', 'soup', 'apples', 'bread']
->>> chores = ['clean', 'mow the lawn', 'go grocery shopping']
->>> favoritePies = ['apple', 'frumbleberry']
->>> listOfLists = [groceries, chores, favoritePies]
+>>> comestibles = ['huevos', 'leche', 'sopa', 'manzanas', 'pan']
+>>> tareas = ['limpiar', 'cortar el césped', 'ir al supermercado']
+>>> pastelesFavoritos = ['manzanas', 'zarzamora']
+>>> listaDeListas = [comestibles, tareas, pastelesFavoritos]
 >>> listOfLists
-[['eggs', 'milk', 'soup', 'apples', 'bread'], ['clean', 'mow the lawn', 'go grocery shopping'], ['apple', 'frumbleberry']]
+[['huevos', 'leche', 'sopa', 'manzanas', 'pan'], ['limpiar', 'cortar el césped', 'ir al supermercado'], ['manzanas', 'zarzamora']]
 
-To get an item inside the list of lists, you would use two sets of square brackets like this: listOfLists[1][2] which would evaluate to the string 'go grocery shopping'.
+Para obtener un elemento dentro de una lista de listas, usarías dos conjuntos de corchetes como este: listaDeLIstas[1][2] que devolvería la cadena 'ir al supermercado'.
 
-This is because listOfLists[1][2] evaluates to ['clean', 'mow the lawn', 'go grocery shopping'][2]. That finally evaluates to 'go grocery shopping':
+Esto es porque listaDeListas[1][2] devuelve ['limpiar', 'cortar el césped', 'ir al supermercado'][2]. Lo que finalmente devuelve 'ir al supermercado':
 
 listOfLists[1][2]
          ▼
-[['eggs', 'milk', 'soup', 'apples', 'bread'], ['clean', 'mow the lawn', 'go grocery shopping'], ['apple', 'frumbleberry']][1][2]
+[['huevos', 'leche', 'sopa', 'manzanas', 'pan'], ['limpiar', 'cortar el césped', 'ir al supermercado'], ['manzanas', 'zarzamora']][1][2]
          ▼
-['clean', 'mow the lawn', 'go grocery shopping'][2]
+['limpiar', 'cortar el césped', 'ir al supermercado'][2]
          ▼
-'go grocery shopping'
+'ir al supermercado'
 
-Figure 9-1 is another example of a list of lists, along with some of the indexes that point to the items. The arrows point to indexes of the inner lists themselves. The image is also flipped on its side to make it easier to read.
+La Figura 9-1 es otro ejemplo de una lista de listas, a lo largo de alguno de los índices que apuntan a los elementos. Las flechas apuntan a índices de las propias listas internas. La imagen está invertida lateralmente para facilitar su lectura.
 
 Methods
 
