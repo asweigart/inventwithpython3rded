@@ -367,60 +367,61 @@ listOfLists[1][2]
 
 La Figura 9-1 es otro ejemplo de una lista de listas, a lo largo de alguno de los índices que apuntan a los elementos. Las flechas apuntan a índices de las propias listas internas. La imagen está invertida lateralmente para facilitar su lectura.
 
-Methods
+Métodos
 
-Methods are functions attached to a value. For example, all string values have a lower() method, which returns a copy of the string value in lowercase. You can call it like 'Hello'.lower(), which returns 'hello'. You cannot call lower() by itself and you do not pass a string argument to lower() (as in lower('Hello')). You must attach the method call to a specific string value using a period. The next section describes string methods further.
+Los métodos son funciones adjuntas a un valor. Por ejemplo, todos los valores de cadena tienen el método lower(), el cuál devuelve una copia de la cadena en minúsculas. Lo puedes llamarlo como 'Hola.lower()', lo cual devuelve 'hola'. No puedes llamar a lower() por sí mismo y no puedes pasar un argumento a lower() (como en lower('Hola')). Debes añadir el método a una cadena especifica usando un punto. La siguiente sección describe en mayor profundidad los métodos de cadena.
 
-Figure 9-1: The indexes of a list of lists.
+Figura 9-1: Los índices de una Lista de listas
 
-The lower() and upper() String Methods
+Los métodos de cadena lower() y upper()
 
-Try entering 'Hello world!'.lower() into the interactive shell to see an example of this method:
+Intenta introducir '¡Hola mundo!'.lower() en el intérprete interactivo para ver un ejemplo de este método:
 
->>> 'Hello world!'.lower()
-'hello world!'
+>>> '¡Hola mundo!'.lower()
+'¡hola mundo!'
 
-There is also an upper() method for strings, which returns a string with all the characters in uppercase. Try entering 'Hello world!'.upper() into the interactive shell:
+También hay un método upper() para cadenas, el cual devuelve una cadena con todos los caracteres en mayúsculas. Intenta introducir '¡Hola mundo!.upper() en el intérprete interactivo:
 
->>> 'Hello world!'.upper()
-'HELLO WORLD! '
+>>> '!Hola mundo!'.upper()
+'!HOLA MUNDO!'
 
-Because the upper() method returns a string, you can call a method on that string also. Try entering 'Hello world!'.upper().lower() into the interactive shell:
+Ya que el método upper() devuelve una cadena, también puedes llamar un método en esa cadena también. Intenta introducir '¡Hola mundo!'.upper().lower() en el intérprete interactivo:
 
->>> 'Hello world!'.upper().lower()
-'hello world!'
-'Hello world!'.upper() evaluates to the string 'HELLO WORLD!', and then string's lower() method is called. This returns the string 'hello world!', which is the final value in the evaluation.
+>>> '¡Hola mundo!'.upper().lower()
+'¡hola mundo!'
 
-'Hello world!'.upper().lower()
+'¡Hola mundo!'.upper() devuelve la cadena '¡HOAL MUNDO!', y entonces se llama el método lower() de esta cadena. Esto devuelve la cadena '¡hola mundo!', que es el valor final de la evaluación.
+
+'¡Hola mundo!'.upper().lower()
                     ▼
-       'HELLO WORLD!'.lower()
+        '¡HOLA MUNDO!'.lower()
                     ▼
-                'hello world!'
+                '¡hola mundo!'
 
-The order is important. 'Hello world!'.lower().upper() isn’t the same as 'Hello world!'.upper().lower():
+El orden es importante. '¡Hola mundo!'.lower().upper() no es lo mismo que '¡Hola mundo!'.upper().lower():
 
->>> 'Hello world!'.lower().upper()
-'HELLO WORLD!'
+>>> '!Hola mundo!'.lower().upper()
+'!HOLA MUNDO!'
 
-That evaluation looks like this:
+Esta evaluación sería:
 
-'Hello world!'.lower().upper()
+'¡Hola mundo!'.upper().lower()
                     ▼
-        'hello world!'.upper()
+        '¡hola mundo!'.upper()
                     ▼
-               'HELLO WORLD!'
+                '!HOLA MUNDO!'
 
-If a string is stored in a variable, you can call a string method on that variable. Look at this example:
+Si se almacena una cadena en una variable, puedes llamar un método de cadena en esa variable. Mira este ejemplo:
 
->>> spam = 'Hello world!'
+>>> spam = '¡Hola mundo!'
 >>> spam.upper()
-'HELLO WORLD!'
+'!HOLA MUNDO!'
 
-This does not change the value in spam. The spam variable will still contain 'Hello world!'.
+Esto no cambia el valor en spam. La variable spam seguirá conteniendo '¡Hola mundo!'.
 
-Note that the integer and float data types don’t have any methods.
+Note que los tipos de dato integer y float no tienen ningún método.
 
-The reverse() and append() List Methods
+Los métodos de lista reverse() y append()
 
 The list data type also has methods. The reverse() method will reverse the order of the items in the list. Try entering spam = [1, 2, 3, 4, 5, 6, 'meow', 'woof'], and then spam.reverse() to reverse the list. Then enter spam to view the contents of the variable.
 
