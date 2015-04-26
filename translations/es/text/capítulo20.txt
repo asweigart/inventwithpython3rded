@@ -34,7 +34,7 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
 
   1. import pygame, random, sys
   2. from pygame.locals import *
-  3. 
+  3.
   4. ANCHOVENTANA = 600
   5. ALTOVENTANA = 600
   6. COLORVENTANA = (255, 255, 255)
@@ -46,11 +46,11 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
  12. VELOCIDADMAXVILLANO = 8
  13. TASANUEVOVILLANO = 6
  14. TASAMOVIMIENTOJUGADOR = 5
- 15. 
+ 15.
  16. def terminar():
  17.     pygame.quit()
  18.     sys.exit()
- 19. 
+ 19.
  20. def esperarTeclaJugador():
  21.     while True:
  22.         for evento in pygame.event.get():
@@ -60,45 +60,45 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
  26.                 if evento.key == K_ESCAPE:  # Sale del juego al presionar ESCAPE
  27.                     terminar()
  28.                 return
- 29. 
+ 29.
  30. def jugadorGolpeaVillano(rectanguloJugador, villanos):
  31.     for v in villanos:
  32.         if rectanguloJugador.colliderect(v['rect']):
  33.             return True
  34.     return False
- 35. 
+ 35.
  36. def dibujarTexto(texto, fuente, superficie, x, y):
  37.     objetotexto = fuente.render(texto, 1, COLORVENTANA)
  38.     rectangulotexto = objetotexto.get_rect()
  39.     rectangulotexto.topleft = (x, y)
  40.     superficie.blit(objetotexto, rectangulotexto)
- 41. 
+ 41.
  42. # establece un pygame, la ventana y el cursor del ratón
  43. pygame.init()
  44. relojPrincipal = pygame.time.Clock()
  45. superficieVentana = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA))
  46. pygame.display.set_caption('Esquivador')
  47. pygame.mouse.set_visible(False)
- 48. 
+ 48.
  49. # establece las fuentes
  50. fuente = pygame.font.SysFont(None, 48)
- 51. 
+ 51.
  52. # establece los sonidos
  53. sonidoJuegoTerminado = pygame.mixer.Sound('juegoterminado.wav')
  54. pygame.mixer.music.load('músicaDeFondo.mid')
- 55. 
+ 55.
  56. # establece las imagenes
  57. imagenJugador = pygame.image.load('jugador.png')
  58. rectanguloJugador = imagenJugador.get_rect()
  59. imagenVillano = pygame.image.load('villano.png')
- 60. 
+ 60.
  61. # Muestra la pantalla inicial
  62. dibujarTexto('Evasor', fuente, superficieVentana, (ANCHOVENTANA / 3)+40, (ALTOVENTANA / 3))
  63. dibujarTexto('Presione una tecla para comenzar.', fuente, superficieVentana, (ANCHOVENTANA / 3) - 180, (ALTOVENTANA / 3) + 50)
  64. pygame.display.update()
  65. esperarTeclaJugador()
- 66. 
- 67. 
+ 66.
+ 67.
  68. puntajeMax = 0
  69. while True:
  70.     # establece el comienzo del juego
@@ -109,14 +109,14 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
  75.     trucoReversa = trucoLento = False
  76.     contadorAgregarVillano = 0
  77.     pygame.mixer.music.play(-1, 0.0)
- 78. 
+ 78.
  79.     while True: # el ciclo del juego se mantiene mientras se este jugando
  80.         puntaje += 1 # incrementa el puntaje
- 81. 
+ 81.
  82.         for evento in pygame.event.get():
  83.             if evento.type == QUIT:
  84.                 terminar()
- 85. 
+ 85.
  86.             if evento.type == KEYDOWN:
  87.                 if evento.key == ord('z'):
  88.                     trucoReversa = True
@@ -134,7 +134,7 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
 100.                 if evento.key == K_DOWN or evento.key == ord('s'):
 101.                     moverArriba = False
 102.                     moverAbajo = True
-103. 
+103.
 104.             if evento.type == KEYUP:
 105.                 if evento.key == ord('z'):
 106.                     trucoReversa = False
@@ -144,7 +144,7 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
 110.                     puntaje = 0
 111.                 if evento.key == K_ESCAPE:
 112.                         terminar()
-113. 
+113.
 114.                 if evento.key == K_LEFT or evento.key == ord('a'):
 115.                     moverIzquierda = False
 116.                 if evento.key == K_RIGHT or evento.key == ord('d'):
@@ -153,11 +153,11 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
 119.                     moverArriba = False
 120.                 if evento.key == K_DOWN or evento.key == ord('s'):
 121.                     moverAbajo = False
-122. 
+122.
 123.             if evento.type == MOUSEMOTION:
 124.                 # Si se mueve el ratón, este se mueve al lugar donde esté el cursor.
 125.                 rectanguloJugador.move_ip(evento.pos[0] - rectanguloJugador.centerx, evento.pos[1] - rectanguloJugador.centery)
-126. 
+126.
 127.         # Añade villanos en la parte superior de la pantalla, de ser necesarios.
 128.         if not trucoReversa and not trucoLento:
 129.             contadorAgregarVillano += 1
@@ -168,9 +168,9 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
 134.                         'velocidad': random.randint(VELOCIDADMINVILLANO, VELOCIDADMAXVILLANO),
 135.                         'superficie':pygame.transform.scale(imagenVillano, (tamañoVillano, tamañoVillano)),
 136.                         }
-137. 
+137.
 138.             villanos.append(nuevoVillano)
-139. 
+139.
 140.         # Mueve el jugador.
 141.         if moverIzquierda and rectanguloJugador.left > 0:
 142.             rectanguloJugador.move_ip(-1 * TASAMOVIMIENTOJUGADOR, 0)
@@ -180,57 +180,57 @@ Puedes descargar este código de la URL http://invpy.com/chap20. Si obtienes err
 146.             rectanguloJugador.move_ip(0, -1 * TASAMOVIMIENTOJUGADOR)
 147.         if moverAbajo and rectanguloJugador.bottom < ALTOVENTANA:
 148.             rectanguloJugador.move_ip(0, TASAMOVIMIENTOJUGADOR)
-149. 
+149.
 150.         # Mueve el cursor del ratón hacia el jugador.
 151.         pygame.mouse.set_pos(rectanguloJugador.centerx, rectanguloJugador.centery)
-152. 
+152.
 153.         # Mueve los villanos hacia abajo.
-154.         for b in villanos:
+154.         for v in villanos:
 155.             if not trucoReversa and not trucoLento:
-156.                 b['rect'].move_ip(0, b['velocidad'])
+156.                 v['rect'].move_ip(0, v['velocidad'])
 157.             elif trucoReversa:
-158.                 b['rect'].move_ip(0, -5)
+158.                 v['rect'].move_ip(0, -5)
 159.             elif trucoLento:
-160.                 b['rect'].move_ip(0, 1)
-161. 
+160.                 v['rect'].move_ip(0, 1)
+161.
 162.         # Elimina los villanos que han caido por debajo.
-163.         for b in villanos[:]:
-164.             if b['rect'].top > ALTOVENTANA:
-165.                 villanos.remove(b)
-166. 
+163.         for v in villanos[:]:
+164.             if v['rect'].top > ALTOVENTANA:
+165.                 villanos.remove(v)
+166.
 167.         # Dibuja el mundo del juego en la ventana.
 168.         superficieVentana.fill(COLORFONDO)
-169. 
+169.
 170.         # Dibuja el puntaje y el puntaje máximo
 171.         dibujarTexto('Puntaje: %s' % (puntaje), fuente, superficieVentana, 10, 0)
 172.         dibujarTexto('Puntaje Máximo: %s' % (puntajeMax), fuente, superficieVentana, 10, 40)
-173. 
+173.
 174.         # Dibuja el rectángulo del jugador
 175.         superficieVentana.blit(imagenJugador, rectanguloJugador)
-176. 
+176.
 177.         # Dibuja cada villano
-178.         for b in villanos:
-179.             superficieVentana.blit(b['superficie'], b['rect'])
-180. 
+178.         for v in villanos:
+179.             superficieVentana.blit(v['superficie'], v['rect'])
+180.
 181.         pygame.display.update()
-182. 
+182.
 183.         # Verifica si algún villano impactó en el jugador.
 184.         if jugadorGolpeaVillano(rectanguloJugador, villanos):
 185.             if puntaje > puntajeMax:
 186.                 puntajeMax = puntaje # Establece nuevo puntaje máximo
 187.             break
-188. 
+188.
 189.         relojPrincipal.tick(FPS)
-190. 
+190.
 191.     # Detiene el juego y muestra "Juego Terminado"
 192.     pygame.mixer.music.stop()
 193.     sonidoJuegoTerminado.play()
-194. 
+194.
 195.     dibujarTexto('Juego Terminado', fuente, superficieVentana, (ANCHOVENTANA / 3)-40, (ALTOVENTANA / 3))
 196.     dibujarTexto('Presione una tecla jugar de nuevo.', fuente, superficieVentana, (ANCHOVENTANA / 3) - 150, (ALTOVENTANA / 3) + 50)
 197.     pygame.display.update()
 198.     esperarTeclaJugador()
-199. 
+199.
 200.     sonidoJuegoTerminado.stop()
 
 Cuando ejecutes este programa, el juego se verá como en la Figura 20-1.

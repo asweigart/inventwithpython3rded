@@ -3,7 +3,7 @@ from pygame.locals import *
 
 # configurar pygame
 pygame.init()
-mainClock = pygame.time.Clock()
+relojPrincipal = pygame.time.Clock()
 
 # configurar la ventana
 ANCHOVENTANA = 400
@@ -124,4 +124,4 @@ while True:
 
     # dibujar la ventana sobre la pantalla
     pygame.display.update()
-    mainClock.tick(40)
+    relojPrincipal.tick(40)

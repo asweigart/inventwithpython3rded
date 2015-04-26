@@ -48,61 +48,61 @@ pygameHolaMundo.py
 
  1. import pygame, sys
  2. from pygame.locals import *
- 3. 
+ 3.
  4. # configurar pygame
  5. pygame.init()
- 6. 
+ 6.
  7. # configurar la ventana
  8. superficieVentana = pygame.display.set_mode((500, 400), 0, 32)
  9. pygame.display.set_caption('¡Hola mundo!')
-10. 
+10.
 11. # configurar los colores
 12. NEGRO = (0, 0, 0)
 13. BLANCO = (255, 255, 255)
 14. ROJO = (255, 0, 0)
 15. VERDE = (0, 255, 0)
 16. AZUL = (0, 0, 255)
-17. 
+17.
 18. # configurar fuentes
 19. fuenteBásica = pygame.font.SysFont(None, 48)
-20. 
+20.
 21. # configurar el texto
 22. texto = fuenteBásica.render('¡Hola mundo!', True, BLANCO, AZUL)
 23. textRect = texto.get_rect()
 24. textRect.centerx = superficieVentana.get_rect().centerx
 25. textRect.centery = superficieVentana.get_rect().centery
-26. 
+26.
 27. # pintar un fondo blanco sobre la ventana
 28. superficieVentana.fill(BLANCO)
-29. 
+29.
 30. # dibujar un polígono verde sobre la superficie
 31. pygame.draw.polygon(superficieVentana, VERDE, ((146, 0), (291, 106), (236, 277), (56, 277), (0, 106)))
-32. 
+32.
 33. # dibujar algunas líneas azules sobre la superficie
 34. pygame.draw.line(superficieVentana, AZUL, (60, 60), (120, 60), 4)
 35. pygame.draw.line(superficieVentana, AZUL, (120, 60), (60, 120))
 36. pygame.draw.line(superficieVentana, AZUL, (60, 120), (120, 120), 4)
-37. 
+37.
 38. # dibujar un círculo azul sobre la superficie
 39. pygame.draw.circle(superficieVentana, AZUL, (300, 50), 20, 0)
-40. 
+40.
 41. # dibujar una elipse roja sobre la superficie
 42. pygame.draw.ellipse(superficieVentana, ROJO, (300, 250, 40, 80), 1)
-43. 
+43.
 44. # dibujar el rectángulo de fondo para el texto sobre la superficie
 45. pygame.draw.rect(superficieVentana, ROJO, (textRect.left - 20, textRect.top - 20, textRect.width + 40, textRect.height + 40))
-46. 
+46.
 47. # obtener un arreglo de píxeles de la superficie
 48. arregloDePíxeles = pygame.PixelArray(superficieVentana)
 49. arregloDePíxeles[480][380] = NEGRO
 50. del arregloDePíxeles
-51. 
+51.
 52. # dibujar el texto sobre la superficie
 53. superficieVentana.blit(texto, textRect)
-54. 
+54.
 55. # dibujar la ventana sobre la pantalla
 56. pygame.display.update()
-57. 
+57.
 58. # ejecutar el bucle del juego
 59. while True:
 60.     for event in pygame.event.get():
@@ -429,36 +429,36 @@ animación.py
 
  1. import pygame, sys, time
  2. from pygame.locals import *
- 3. 
+ 3.
  4. # Establece pygame
  5. pygame.init()
- 6. 
+ 6.
  7. # Establece la ventana
  8. ANCHOVENTANA = 400
  9. ALTOVENTANA = 400
-10. windowSurface = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA), 0, 32)
+10. superficieVentana = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA), 0, 32)
 11. pygame.display.set_caption('Animación')
-12. 
+12.
 13. # Establece las variables de dirección
 14. ABAJOIZQUIERDA = 1
 15. ABAJODERECHA = 3
 16. ARRIBAIZQUIERDA = 7
 17. ARRIBADERECHA = 9
-18. 
+18.
 19. VELOCIDADMOVIMIENTO = 4
-20. 
+20.
 21. # Establece los colores
 22. NEGRO = (0, 0, 0)
 23. ROJO = (255, 0, 0)
 24. VERDE = (0, 255, 0)
 25. AZUL = (0, 0, 255)
-26. 
+26.
 27. # Establece la estructura de datos de los bloques.
 28. b1 = {'rect':pygame.Rect(300, 80, 50, 100), 'color':ROJO, 'dir':ARRIBADERECHA}
 29. b2 = {'rect':pygame.Rect(200, 200, 20, 20), 'color':VERDE, 'dir':ARRIBAIZQUIERDA}
 30. b3 = {'rect':pygame.Rect(100, 150, 60, 60), 'color':AZUL, 'dir':ABAJOIZQUIERDA}
 31. bloques = [b1, b2, b3]
-32. 
+32.
 33. # Corre el ciclo de juego
 34. while True:
 35.     # Busca un evento QUIT.
@@ -466,10 +466,10 @@ animación.py
 37.         if evento.type == QUIT:
 38.             pygame.quit()
 39.             sys.exit()
-40. 
+40.
 41.     # Dibuja el fondo negro sobre la superficie
-42.     windowSurface.fill(NEGRO)
-43. 
+42.     superficieVentana.fill(NEGRO)
+43.
 44.     for b in bloques:
 45.         # mueve la estructura de datos de bloques
 46.         if b['dir'] == ABAJOIZQUIERDA:
@@ -484,7 +484,7 @@ animación.py
 55.         if b['dir'] == ARRIBADERECHA:
 56.             b['rect'].left += VELOCIDADMOVIMIENTO
 57.             b['rect'].top -= VELOCIDADMOVIMIENTO
-58. 
+58.
 59.         # Verifica si el bloque se movió fuera de la ventana
 60.         if b['rect'].top < 0:
 61.             # el bloque se movió por arriba de la ventana
@@ -510,10 +510,10 @@ animación.py
 81.                 b['dir'] = ABAJOIZQUIERDA
 82.             if b['dir'] == ARRIBADERECHA:
 83.                 b['dir'] = ARRIBAIZQUIERDA
-84. 
+84.
 85.         # Dibuja el bloque en la superficie
-86.         pygame.draw.rect(windowSurface, b['color'], b['rect'])
-87. 
+86.         pygame.draw.rect(superficieVentana, b['color'], b['rect'])
+87.
 88.     # Dibuja la ventana en la pantalla
 89.     pygame.display.update()
 90.     time.sleep(0.02)
@@ -542,14 +542,14 @@ Creando y Configurando Pygame y la Ventana Principal
 
  1. import pygame, sys, time
  2. from pygame.locals import *
- 3. 
+ 3.
  4. # Establece pygame
  5. pygame.init()
- 6. 
+ 6.
  7. # Establece la ventana
  8. ANCHOVENTANA = 400
  9. ALTOVENTANA = 400
-10. windowSurface = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA), 0, 32)
+10. superficieVentana = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA), 0, 32)
 
 En este programa verás que el alto y el ancho de la ventana son usados para más que sólo la llamada a set_mode(). Usaremos variables constantes de modo que si alguna vez quieres cambiar el tamaño de la ventana sólo tengas que cambiar las líneas 8 y 9. Dado que el ancho y la altura nunca cambian durante la ejecución del programa, una variable constante es una buena idea.
 
@@ -622,7 +622,7 @@ Dentro del bucle del juego, los bloques se moverán alrededor de la pantalla en 
 El bucle for para comprobar todos los eventos en la lista devuelta por pygame.event.get() es el mismo que en nuestro programa “!Hola mundo!” program.
 
 41.     # Dibuja el fondo negro sobre la superficie
-42.     windowSurface.fill(NEGRO)
+42.     superficieVentana.fill(NEGRO)
 
 Primero, la línea 42 rellena toda la superficie con negro de modo que todo lo que ha sido dibujado anteriormente sea borrado.
 
@@ -699,7 +699,7 @@ Las líneas 78 a 83 son similares a las líneas 72 a 77, pero comprueban si el l
 Dibujando los Bloques en la Ventana en Sus Nuevas Posiciones
 
 85.         # Dibuja el bloque en la superficie
-86.         pygame.draw.rect(windowSurface, b['color'], b['rect'])
+86.         pygame.draw.rect(superficieVentana, b['color'], b['rect'])
 
 Ahora que los bloques se han movido, deberían ser dibujados en sus nuevas posiciones en la superficie superficieVentana llamando a la función pygame.draw.rect(). Pasamos superficieVentana porque es el objeto Surface sobre el cual dibujaremos el rectángulo. Pasamos b['color'] porque es el color del rectángulo. Pasamos b['rect'] porque es el objeto Rect que contiene la posición y el tamaño del rectángulo a dibujar.
 

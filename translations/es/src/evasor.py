@@ -151,18 +151,18 @@ while True:
         pygame.mouse.set_pos(rectanguloJugador.centerx, rectanguloJugador.centery)
 
         # Mueve los villanos hacia abajo.
-        for b in villanos:
+        for v in villanos:
             if not trucoReversa and not trucoLento:
-                b['rect'].move_ip(0, b['velocidad'])
+                v['rect'].move_ip(0, v['velocidad'])
             elif trucoReversa:
-                b['rect'].move_ip(0, -5)
+                v['rect'].move_ip(0, -5)
             elif trucoLento:
-                b['rect'].move_ip(0, 1)
+                v['rect'].move_ip(0, 1)
 
         # Elimina los villanos que han caido por debajo.
-        for b in villanos[:]:
-            if b['rect'].top > ALTOVENTANA:
-                villanos.remove(b)
+        for v in villanos[:]:
+            if v['rect'].top > ALTOVENTANA:
+                villanos.remove(v)
 
         # Dibuja el mundo del juego en la ventana.
         superficieVentana.fill(COLORFONDO)
@@ -175,8 +175,8 @@ while True:
         superficieVentana.blit(imagenJugador, rectanguloJugador)
 
         # Dibuja cada villano
-        for b in villanos:
-            superficieVentana.blit(b['superficie'], b['rect'])
+        for v in villanos:
+            superficieVentana.blit(v['superficie'], v['rect'])
 
         pygame.display.update()
 
@@ -198,4 +198,3 @@ while True:
     esperarTeclaJugador()
 
     sonidoJuegoTerminado.stop()
-    

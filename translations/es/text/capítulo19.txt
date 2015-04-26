@@ -45,20 +45,20 @@ spritesYsonidos.py
 
   1. import pygame, sys, time, random
   2. from pygame.locals import *
-  3. 
+  3.
   4. # configurar pygame
   5. pygame.init()
-  6. mainClock = pygame.time.Clock()
-  7. 
+  6. relojPrincipal = pygame.time.Clock()
+  7.
   8. # configurar la ventana
   9. ANCHOVENTANA = 400
  10. ALTOVENTANA = 400
  11. superficieVentana = pygame.display.set_mode((ANCHOVENTANA, ALTOVENTANA), 0, 32)
  12. pygame.display.set_caption('Sprites y Sonido')
- 13. 
+ 13.
  14. # configurar los colores
  15. NEGRO = (0, 0, 0)
- 16. 
+ 16.
  17. # configurar la estructura de bloque de datos
  18. jugador = pygame.Rect(300, 100, 40, 40)
  19. imagenJugador = pygame.image.load('jugador.png')
@@ -67,24 +67,24 @@ spritesYsonidos.py
  22. comidas = []
  23. for i in range(20):
  24.     comidas.append(pygame.Rect(random.randint(0, ANCHOVENTANA - 20), random.randint(0, ALTOVENTANA - 20), 20, 20))
- 25. 
+ 25.
  26. contadorComida = 0
  27. NUEVACOMIDA = 40
- 28. 
+ 28.
  29. # configurar variables del teclado
  30. moverseIzquierda = False
  31. moverseDerecha = False
  32. moverseArriba = False
  33. moverseAbajo = False
- 34. 
+ 34.
  35. VELOCIDADMOVIMIENTO = 6
- 36. 
+ 36.
  37. # configurar música
  38. sonidoRecolección = pygame.mixer.Sound('recolección.wav')
  39. pygame.mixer.music.load('músicaDeFondo.mid')
  40. pygame.mixer.music.play(-1, 0.0)
  41. músicaSonando = True
- 42. 
+ 42.
  43. # ejecutar el bucle del juego
  44. while True:
  45.     # comprobar si se ha disparado el evento QUIT (salir)
@@ -127,19 +127,19 @@ spritesYsonidos.py
  82.                 else:
  83.                     pygame.mixer.music.play(-1, 0.0)
  84.                 músicaSonando = not músicaSonando
- 85. 
+ 85.
  86.         if evento.type == MOUSEBUTTONUP:
  87.             comidas.append(pygame.Rect(evento.pos[0] - 10, evento.pos[1] - 10, 20, 20))
- 88. 
+ 88.
  89.     contadorComida += 1
  90.     if contadorComida >= NUEVACOMIDA:
  91.         # agregar nueva comida
  92.         contadorComida = 0
  93.         comidas.append(pygame.Rect(random.randint(0, ANCHOVENTANA - 20), random.randint(0, ALTOVENTANA - 20), 20, 20))
- 94. 
+ 94.
  95.     # pintar el fondo negro sobre la superficie
  96.     superficieVentana.fill(NEGRO)
- 97. 
+ 97.
  98.     # mover el jugador
  99.     if moverseAbajo and jugador.bottom < ALTOVENTANA:
 100.         jugador.top += VELOCIDADMOVIMIENTO
@@ -149,11 +149,11 @@ spritesYsonidos.py
 104.         jugador.left -= VELOCIDADMOVIMIENTO
 105.     if moverseDerecha and jugador.right < ANCHOVENTANA:
 106.         jugador.right += VELOCIDADMOVIMIENTO
-107. 
-108. 
+107.
+108.
 109.     # dibujar el bloque sobre la superficie
 110.     superficieVentana.blit(imagenEstiradaJugador, jugador)
-111. 
+111.
 112.     # comprobar si el jugador ha intersectado alguno de los cuadrados de comida
 113.     for comida in comidas[:]:
 114.         if jugador.colliderect(comida):
@@ -162,14 +162,14 @@ spritesYsonidos.py
 117.             imagenEstiradaJugador = pygame.transform.scale(imagenJugador, (jugador.width, jugador.height))
 118.             if músicaSonando:
 119.                 sonidoRecolección.play()
-120. 
+120.
 121.     # dibujar la comida
 122.     for comida in comidas:
 123.         superficieVentana.blit(imagenComida, comida)
-124. 
+124.
 125.     # dibujar la ventana sobre la pantalla
 126.     pygame.display.update()
-127.     mainClock.tick(40)
+127.     relojPrincipal.tick(40)
 
 Figura 19-3: Una captura de pantalla modificada del juego Sprites y Sonidos.
 

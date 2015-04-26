@@ -97,9 +97,9 @@ while True:
     pygame.draw.rect(superficieVentana, BLANCO, jugador)
 
     # comprobar si el jugador ha intersectado alguno de los cuadrados de comida
-    for food in comidas[:]:
-        if jugador.colliderect(food):
-            comidas.remove(food)
+    for comida in comidas[:]:
+        if jugador.colliderect(comida):
+            comidas.remove(comida)
 
     # dibujar la comida
     for i in range(len(comidas)):
