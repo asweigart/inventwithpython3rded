@@ -1,0 +1,74 @@
+Capítulo 1
+Instalando Python
+Tópicos abordados neste capítulo:
+•	Baixando e instalando o interpretador de Python
+•	Como usar este livro
+•	O site do livro http://inventwithpython.com
+
+Olá! Este livro ensina a programar fazendo vídeo games. Uma vez que você aprenda como os jogo deste livro funcionam, você será capaz de criar seus próprios jogos. Tudo que você precisa é um computador, um programa chamado Interpretador de Python , e este livro. O interpretador de Python pode ser baixado gratuitamente na internet.
+Quando eu era criança, um livro parecido com este me ensinou como programar meus primeiros jogos. Era divertido e fácil. Agora que sou adulto, eu ainda me divirto programando e sou pago pra isso. Mas mesmo que você não se torne um programador profissional, saber programar é muito útil e é uma habilidade divertida para se ter.
+Computadores são máquinas incríveis, e aprender a programa-los não tão difícil como as pessoas pensam. Se você pode ler este livro, você pode programar um computador. Um programa de computador nada mais é do que um monte de instruções que o computador consegue entender,  igual um livro de histórias que muitas frases que serão entendidas pelo leitor. E como vídeo games são programas de computador, eles também são feitos de instruções.
+Para dizer a um computador o que fazer, escrevemos um programa em uma linguagem que o computador consegue entender. Esse livro ensina a linguagem de programação chamada Python.  Mas é bom saber que existem muitas outras linguagens incluindo BASIC, Java, JavaScript, PHP, e C++.
+Na época da minha infância, BASIC era comumente a primeira linguagem que aprendíamos. Entretanto, novas linguagens como  Python foram inventadas desde então. Python é ainda mais fácil de se aprender que BASIC! Mas não entendam mal, ela ainda é uma linguagem muito séria que é usada por programadores profissionais. Muitos adultos usam Python no trabalho e quando querem programar por diversão.
+Os jogos que você criará a partir deste livro parecem simples quando compadorados com jogos de Xbox, Playstation, ou Nintendo. Eles  não têm gráficos bonitos porque foram feitos para ensinar a programar. São simples de propósito para que você posso focar em aprender a programar. Jogos não precisam ser complicados para serem divertidos.
+Baixando e instalando Python
+Você vai precisar instalar o programa chamado interpretador de Python. O interpretador entende as instrução que você vai escrever na linguagem Python. Daqui pra frente eu me referirei ao “interpretador Python” apenas como “Python”.
+Nota importante! Tenha certeza de instalar Python 3, e não Python 2. Os programas deste livro foram escritos em Python 3, e não vão funcionar corretamente se você tentar executá-los com o Python 2. Isso é tão importante que eu adicionei um pinguim de cartoon na Figura 1-1 te lembrar de instalar Python 3.
+ 
+Figura 1-1: Um pinguim inconveniente manda uma mensagem
+No Windows, download o interpretador Python (o nome do arquivo termina com .msi) e dê um clique duplo nele. Siga as seguintes instruções para terminar a instalação:
+•	Selecione “Install for All Users“ e depois clique em Next.
+•	A pasta de instalação deve ser “C:\Python34”, lembrando que isso pode variar dependendo do local de instalação do seu Windows. O padrão é “C:\”, mas também pode ser “D:”, “E:” e etc. Cliquem em “Next” após selecionar a pasta.
+•	Cliquem em “Next” novamente para pular a seção de customização do Python.
+No Mac OS X, baixe o arquivo “.dmg” relativo à sua versão do OS X e e dê um clique duplo nele. Siga as instruções listadas:
+•	Quando o pacote DMG abrir em uma nova janela, dê um clique duplo no  arquivo Python.mpkg. Você pode precisar digitar a senha de administrador.
+•	Clique “continue” na tela de boas vindas e depois cliquem em “Agree” para aceitar a licença.
+•	Selecione HD Macintosh ( ou qualquer que seja o nome do seu HD) e clique em “Install”.
+Se você usa Ubuntu, poderá instalar Python pelo Ubuntu Software Center seguindo as seguintes instruções:
+•	Abra o Ubuntu Software Center.
+•	Digite “python” na caixa de busca no canto superior direito da tela.
+•	Selecione “IDLE (using Python 3.4), ou qualquer que seja a última versão.
+•	Clique em “Install”. Você pode precisar digitar a senha de administrador do computador para terminar a instalação
+Iniciando o IDLE
+IDLE é uma sigla que significa “Interactive DeveLopment Environment” (Ambiente de Desenvolvimento Interativo). Ele é como um programa de processamento de texto como o Word, só que serve pra escrever programas. Para abrí-lo sigua as instruções:
+No Windows, clique no menu iniciar no canto inferior esquerdo e escreva “IDLE” no campo de busca. Abra o “IDLE (Python GUI)”.
+No Mac OS X, abra a janela de buscas e cliquem em “Applications”. Depois clique em Python 3.4. Depois clique no ícone do IDLE.
+No Ubuntu ou Linux, abra uma janela terminal e digite “idle3”. Você talvez precise clicar em “Applications” no top da tela. Depois em Programming e IDLE 3.
+A janela que aparece na primeira vez que você executa o IDLE é a “interactive shell”, como mostrado na Figura 1-2. Você pode digitar instruções em Python na “interactive shell” e o interpretador vai executá-las. Depois de uma instrução uma nova linha “ >>>” vai aparecer pedindo uma nova instrução.
+ 
+Figura 1-2: A “interactive shell” do IDLE no Windows, OS X e Ubuntu Linux.
+Como usar este livro
+A maioria dos parágrafos começa com um exemplo de execução do programa apresentado no capítulo. Esse exemplo mostra como o programa vai parecer quando você executá-lo. As partes que o usuário digita são mostradas em negrito.
+Digite o código do programa no editor de arquivo do IDLE você mesmo, não copie e cole. Você vai pegar o jeito da programação mais rápido se separar um tempo para escrever todo o código.
+Número das linhas e espaços
+Quando você for digitar o código deste livro, não digite o número da linha no começa de cada uma. Por exemplo, se você vir isso no livro:
+9. number = random.randint(1, 20)
+
+Não digite o “9.” do lado esquerdo nem  o espaço que está na frente. Digite assim:
+Number = random.randint(1, 20)
+Esses números estão lá para podermos dividir o código quando o livro estiver explicando parte por parte. Eles não são parte do código do programa.
+Fora os números, você precisa digitar o código exatamente como está. Note que algumas linhas de código começam com espaços quatro ou oito espaços. Cada caractere no IDLE tem o mesmo tamanho, para que possamos contar o número de espaços olhando os caracteres acima ou abaixo daquela linha.
+Por exemplo, os espaços abaixo  são marcados com um sinal de mais (+) para que você os possa ver.
+While guesses  < 10 :
+++++if number ==42:
+++++++++print(‘hello’)
+
+Wrapping de texto 
+Algums instruções são muito longas para caber em apenas uma linha no livro e vão continuar a serem escritas na linha seguinte. Quando você for digitar esse código, não pressione ENTER. Você pode poderá perceber que uma nova linha de instrução começa olhando no número a esquerda. O exemplo abaixo tem duas instruções:
+1.	Print(‘Esta é a primeira instrução! Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx’)
+2.	Print(‘Está é a segunda instrução, não a terceira.’)
+A primeira instrução teve que mandar o que não coube um uma linha para a próxima fazendo com que pareça que temos três instruções no total. Isso só acontece porque as páginas do livro não são grandes o suficiente para exibir algumas das instruções.
+
+Encontrando Ajuda Online
+O site deste livro é http://inventwithpython.com. Onde vários recursos relacionados a este livro podem ser encontrados. Alguns links neste livro usam o domínio invpy.com para URLs mais curtas.
+Para postar algumas perguntas relativas ao livro que você possa ter, use o site http://reddit.com/r/inventwithpython. Para perguntas gerais sobre Python use os sites reddit.com/r/learnprogramming e reddit.com/r/learnpython.
+Você também pode me enviar um e-mail:  al@inventwithpython.com 
+Tenha em mente que existem métodos inteligentes de se fazer uma pergunta sobre programação para que os outros possam te ajudar mais facilmente. Leia as seções de perguntas frequentes e regras do site antes de fazer uma pergunta. Quando for perguntar, faça o seguinte:
+Se você está tendo problemas com os códigos deste livro, primeiramente verifique se não há erros de digitação usando minha ferramenta online em http://invpy.com/diff. Copie e cola seu código na diff tool para ver se há diferenças entre o seu código e o código do livro.
+Explique o que você está tentando fazer quando postar a pergunta. Isso ajudará seu ajudante a saber se você está no caminho certo.
+Copie e cole a mensagem de erro e seu código inteiramente.
+Procure na internet para ver se alguém já teve o mesmo problema e foi ajudado.
+Explique o que você já tentou fazer para solucionar o problema. Isso mostra as pessoas que você está interessado e já tentou resolver o problema sozinho.
+Seja educado. Não pressione as pessoas a responderem rapidamente.
+Perguntar a alguém, “Por que meu programa não funciona?” não ajuda ninguém a te ajudar. Diga a eles o que você quer fazer, o erro que está recebendo  e seu sistema operacional e a versão.
+
