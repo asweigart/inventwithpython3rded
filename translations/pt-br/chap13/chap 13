@@ -1,0 +1,704 @@
+Capítulo 13
+Caça ao tesouro sonar
+
+Tópicos abordados nesse capítulo:
+
+O método remove() de lista
+O métido isdigit() de strings
+A função sys.exit()
+
+O jogo nesse capítulo é o primeiro a fazer uso de Coordenadas cartesianas que vocÊ aprendeu
+no capítulo 12. O jogo também tem estruturas de dados (data structures, o que é só um jeito bonito de  dizer variáveis complexas que contém listas de listas). Conforme seus jogos se tornam
+mais complexos, você vai precisar organizar seus dados em estruturas de dados.
+
+No jogo desse capítulo, colocaremos aperalhos sonar em varios lugares no oceano para achar
+baús de tesouro submersos. Sonar é uma tecnologia que navios usam para localizar objetos embaixo d'agua.
+Os aparelhos sonar (nesse jogo) dirão ao jogador quão distante os baús estão, mas não
+em que direção. Porém colocando múltiplos aparelhos poderemos descobrir onde o tesouro está.
+
+Existem 3 baús para coletar e o jogador só tem 16 aparelhos de sonar para achá-los. Imagine
+que você não pode ver o tesouro na Figura 13-1. Levando em consideração que o dispositivo só pode indicar a distância e
+não a direção, os possíveis lugares onde o tesouro poderia estar são os limites do quadrado.
+
+[imagem]
+Figura 13-1: O tesouro encontra-se em uma das coordenadas representadas pelo quadrado.
+
+[imagem]
+Figura 13-2: Combinando multiplos aparelhos sonar, a intersecção das bordas dos quadrados indica onde o tesouro pode estar.
+
+É importante lembrar que multiplos aparelhos sonar trabalhando juntos podem limitar a posição dos baús para as intersecções
+das bordas de alcance. Veja a Figura 13-2. (Normalmente essas bordas seriam círculos, esse jogo usará quadrados para tornar a programação mais fácil.)
+
+Exemplo de uma partida em Caça ao tesouro sonar.
+
+[exemplo 01.txt]
+
+
+Código fonte de caça ao tesouro sonar
+
+Abaixo está o código fonte para o jogo. Digite isso em um novo arquivo e depois salve como sonar.py e o execute pressionando f5. Se você receber algum erro depois de digitar, compare seu código com o código do livro com a "online diff tool" at http://invpy.com/diff/sonar
+	
+	[fullSourceCode.txt]
+
+Criando o programa.
+
+Antes de tentar entender o código fonte, jogo o jogo algumas vezes para entender o que é acontecendo.
+O jogo do Sonar usa listas de listas e outras variáveis complicadas, chamadas estruturas de dados.
+Estruturas de dados são variáveis que guardam arranjos de valores para representar alguma coisa.
+Por exemplo, no capítulo do jogo da velha (Tic Tac Toe), a estrutura de dados era a lista de strings. A string representada em X,O, ou espaço vazio e a index da string representava o espaço no tabuleiro.
+O jogo do Sonar vai ter estrutura de dados similares para posicionar os baús do tesouro e  aparelhos sonar.
+
+Como o Código funciona:
+----
+1. #Sonar
+2.
+3.import random
+4.import sys
+----
+As linhas 3 e 4 importam os módulos random e sys. O módulo sys contém a função exit(), que
+faz o programa terminar imediatamente quando chamada. Ela será usada mais tarde.
+
+Desenhando o tabuleiro do jogo:
+----
+6. def drawBoard(board):
+----
+O tabuleiro do jogo do Sonar é um oceano ASCII com coordenadas dos eixos X e Y em volta.
+O sinal de crase ( ` ) e o til ( ~ ) são usados para representar as ondas no jogo. Vai ficar assim:
+----
+			 1 		   2         3         4         5
+   012345678901234567890123456789012345678901234567890123456789
+0  `~~~`~~~`~`~~`~~~~~`~``~~~~`~`~~~`~``~``~~````~`~```~`~~~~`` 0
+1  ~`~~~```~~~~`~`~~`~``~`~~```~`~`~~`~`~~~~~~`~`````~`~~`~~~~` 1
+2  `~``~``~~~`~``~`~`~``~`````~~~~~~~~~`~`~~`~``~~~~~```~~`~``` 2
+3  ``~`~~``~`~``~`~`~`~~`~`~~`~`~``~~~`~``~````~``````~~~~``~`` 3
+4  ``~~`~~~``~``~~````~`~`~`~``~~~``~~```~`~~`~~`~`~`~~`~~~~``` 4
+5  ~~```~~~`~`~~``~`~``~```~`~~`~~~~~`~~``~`~`~~~`~~`~`~`~`~~~` 5
+6  ``~~`````~~~~`~`~~~```~~~~`~~`~~`~~```~~`~~~`~~~``~`~~~``~~~ 6
+7  `~`````````~```~``~``~~`~~~~`~~``~``~~~```~`~~`~``~``~~```~~ 7
+8  `~````~```~`~~`~~~`~~``~~~``~`~``~~~``~`~`````~`~~```~`~~~~` 8
+9  ~```~~`~`~``~``~~``~``~```~`~``~~~~`~`~`~~~`~`~`~`~~~``~~``` 9
+10 ```~`~```~``~``~`~~`~``~````~``~~~`~~`~~``~~~~`~~~`~`~~````~ 10
+11 ```~```~~~`~```~~`~~~`~`````~`~~`~`~~`~~`~`~~`~~~````~````~` 11
+12 ~~~`~`~~~``~~~~~~`~~~``~`~`~~`~`~~`~```~~~```~~`~~`~``~``~`~ 12
+13 `~~````~~``~```~~~`~```~`~~~~~~~~~`~~``~~~~~`````~`~`~``~~~~ 13
+14 `~~`~`~````~```~`~`~```~~`~~~~`~```~``~``~``~~~````~~``````~ 14
+   012345678901234567890123456789012345678901234567890123456789
+		  	 1 		   2         3         4         5
+---- 	 
+
+A função draBoard tem 4 passos:
+
+	Primeiro, criar uma variável string da linha com 1, 2,3,4 e 5 para marcar as coordenadas
+para 10, 20, 30 ,40 e50 no eixo X.
+	Segundo, usar esse string para mostrar as coordenadas do eixo X no topo da tela.
+	Terceiro, print cada linha de oceano com os valores do eixo-Y em ambos os lados da tela.
+	Quarto, print o eixo-X de novo embaixo. Coordenadas em todos os lados facilitam a vida do jogador.
+
+Desenhando as coordenadas do eixo-X no topo da tela.
+----
+ 7. # Desenha a estrutura do "tabuleiro"
+ 8.
+ 9. hline = ' ' # espaço inicial para os números abaixo do lado esquerdo do tabuleiro
+10. for i in range(1, 6):
+11. hline += (' ' * 9) + str(i)
+----
+Olhe de novo no topo do tabuleiro na figura 13-3. Lá tem um sinal + em cada espaço vazio 
+para que você contar mais facilmente:
+
+	[imagem]
+Figura 13-3:  O espaçamento usado no topo do tabuleiro.
+
+Os números na primeira linha que marcam as dezenas têm 9 espaço entre eles, e possuem 13 espaços na frende no número 1. As linhas 9 até 11 criam essa string com essa lina e a guardam numa variável chamada hline.
+----
+13. # print os número ao longo do topo
+14. print(hline)
+15. print(' ' + ('0123456789' * 6))
+16. print()
+----
+
+Para exibir os números no topo do tabuleiro sonar, primeiro exiba o conteúdo da variável hline. Depois na próxima linha, exiba 3 espaços(para enfileiras os números corretamente), e depois exiba
+a string '012345678901234567890123456789012345678901234567890123456789'. Como atalho vocÊ pode usar ('0123456789' *6), que é a mesma coisa.
+
+Desenhando as linhas do oceano.
+----
+18. # print cada uma das 15 linhas
+19. for i in range(15):
+20. # número de apenas um dígito necessitam de um espaço extra.
+21. if i < 10:
+22. extraSpace = ' '
+23. else:
+24. extraSpace = ''
+25. print('%s%s %s %s' % (extraSpace, i, getRow(board, i), i))
+----
+As linhas 19 até 25 exibem cada linha de ondas do oceano, incluindo os números do eixo-Y. 
+O loop for exibe as linhas de 0 até 14, com suas respectivas coordenadas.
+
+Tem um pequeno problema. Número com apenas um dígito (como 0, 1, 2 e assim por diante) ocupam apenas um espaço quando exibidos, mas números com 2 dígitos ocupam 2 espaços.
+As linhas não se alinharão se as coordenadas têm tamanhos diferentes. Ficaria parecido com isso:
+----
+8 ~~`~`~~```~``~~``~~~``~~`~`~~`~`~```~```~~~```~~~~~~`~`~~~~` 8
+9 ```~``~`~~~`~~```~``~``~~~```~````~```~`~~`~~~~~`~``~~~~~``` 9
+10 `~~~~```~`~````~`~`~~``~`~~~~`~``~``~```~~```````~`~``~````` 10
+11 ~~`~`~~`~``~`~~~````````````````~~`````~`~~``~`~~~~`~~~`~~`~ 11
+----
+
+A solução é fácil, Adicione um espaço somente na frente dos números de apenas um dígito. Linhas
+21 até 24 estabelecem que para um espaço ou string vazia. A variável extraSpace sempre é exibida, mas somente tem um espaço se estiver na frente de um número de um só dígito. 
+Caso contrário exibe a string vazia. Desse modo todas as linha ficarão alinhadas com você as exibir.
+
+A função getRow() pega o número de uma coluna e retorna a string que representa aquela coluna. Seus 2 parâmetros são a estrutura de dados armazenada na variável board e um número de linha. Vamos olhar como essa função funciona a seguir.
+
+Desenhando as coordenadas do eixo-X ao longo da parte de baixo.
+----
+27. #print os número ao longo da parte de baixo
+28. print()
+29. print(' ' + ('0123456789' * 6))
+30. print(hline)
+----
+
+As linhas 27 até 30 são similares às linhas 13 até 16. Elas exibem as coordenadas do eixo-X 
+na parte de baixo da tela.
+
+Obtendo o estado de uma linha no oceano.
+----
+33. def getRow(board, row):
+34. #Retorna uma string da estrutura do tabuleiro em uma linha específica.
+35. boardRow = ''
+36. for i in range(60):
+37. boardRow += board[i][row]
+38. return boardRow
+----
+
+Enquanto o parametro board é uma estrutura de dados para todas as ondas do oceano, a função getRow() cria uma string para um única linha.
+
+Primeiro iguale boardRow a uma string vazia. A coordenada do eixo-Y é passada como parâmetro de linha. A string é feita pela concatenação de board[0][row], board[1][row], board[2][row], e assim 
+por diante até board[59][row]. Isso porque a linha contém 60 caractéres de 0 até 59.
+
+O loop for na linha 36 ITERATES OVER integes 0 até 59. A cada loop, o próximo caractere na 
+estrutura de dados é copiado no fim de boardRow. QUando o loop é terminado, boardRow tem a
+onda completa em ASCII da linha completa e é retornada.
+
+Criando um novo jogo
+----
+40. def getNewBoard():
+41. 	# Cria uma nova estrutura de dados 60x15
+42. 	board = []
+43. 	for x in range(60): # A lista principal é uma lista de 60 listas
+44. 		board.append([])
+----
+A cada novo jogo uma nova estrutura para exibir dados é necessária. Ela é uma lista de lista
+de strings. A primeira lista representa a coordenada X. Pelo fato do tabuleiro ter 60 caracteres
+de largura, a primeira lista precisa conter 60 listas. Cria um "for" loop que adiciona 60 listas
+brancas a essa lista.
+----
+45. for y in range(15): # cada lista na lista principal tem 15 caracteres únicos
+46. 	# Use caracteres diferentes para o oceano para torná-lo de mais fácil leitura
+47. 	if random.randint(0, 1) == 0:
+48. 		board[x].append('~')
+49. 	else:
+50. 		board[x].append('`')
+----
+Mas o tabuleiro é mais do que 60 listas vazias. Cada uma das listas representam uma coordenada X
+do tabuleiro. Existem 15 linhas no tabuleiro, então cada uma das 60 listas precisam ter uma 
+string de 15 caracteres. A linha 45 é outro "for" loop que adiciona 15 caractéres únicos que
+representam o oceano.
+
+O "oceano" será um monte de strings "~" e "`" escolhidos randomicamente. Se o valor de 
+random.randint() for 0, adiciona a string "~". Caso contrário adicione a string "`". Isso dará
+ao oceano uma aparencia diferente a cada jogo.
+
+Lembre-se que a variável "board" é uma lista de 60 lists, cada uma tenho 15 strings. Isso significa
+que para acessar a string na coordenada 26, 12, você precisaria ler board[26][12], e não board[12][26]. 
+A coordenada X vem primeiro e depois a Y.
+----
+51. 	return board
+----
+Finalmente, a função retorna o valor da variável "board"
+
+Criando baús de tesouro em lugares randômicos.
+----
+53. def getRandomChests(numChests):
+54. 	# Cria uma lista da estrutura de dados dos baús ( listas de 2 itens com coordenadas int x e y)
+55. 	chests = []
+56. 	for i in range(numChests):
+57. 		chests.append([random.randint(0, 59), random.randint(0, 14)])
+58. 	return chests
+----
+O jogo também decide randomicamente onde esconder os baús de tesouro. Eles são representados
+como uma lista de listas de 2 números inteiros. Esses números serão as coordenada X e Y
+de um baú.
+
+Por exemplo, se a estrutura de dados dos baús fosse [[2,2],[2,4],[10,0]], isso significaria
+que existem 2 baús, um em 2,2, outro em 2,4 e o terceiro em 10,0.
+
+O parâmetro numChests diz à função quantos baús gerar. O loop da linha 56 executado numChests vezes, e a cada vez a linha 57 adiciona 2 números randômicos à lista. A coordenada X pode variar de
+0 a 59, e a Y pode ir de 0 até 14. A expressão [random.randint(0,59),random.randint(0,14)] vai criar
+uma lista semelhante a [2,2] ou [2,4] ou [10,0]. No fim ela será adicionada a chests.
+
+Determinando se uma jogada é válida.
+----
+60. def isValidMove(x, y):
+	61. # Retorna True se as coordenadas estão no tabuleiro, senão False.
+	62. return x >= 0 and x <= 59 and y >= 0 and y <= 14
+----
+Quando o jogador digita as coordenada X e Y do lugar onde deseja jogar o aparelho sonar,
+ele não poderá digitar coordenada inválidas. A X deve ser um número inteiro entre 0 e 59 e a Y 
+tem que ser entao 0 e 14.
+
+A função "isValidMove()" usa uma simples expressão que usa operadores "and" pra garante que
+cada parte da condição é True. Se uma parte da expressão for False, então o valor retornado
+será False. Essa função retorna um valor Booleano.
+
+Fazendo uma jogada.
+----
+64. def makeMove(board, chests, x, y):
+65. 	# Muda a estrutura de dados com um aparelho sonar. Remove baús com tesouro
+66. 	# da lista de baús quando eles são encontrados. Retorna False se este for uma jogada inválida
+67. 	# caso contrário, retorna a string do resultado da jogada. 
+68. 	if not isValidMove(x, y):
+69. 		return False
+----
+No jogo sonar, o tabuleiro é atualizado para mostrar um número para da aparelho jogado que mostra
+quão distante o baú mais próximo está. entao quando o jogador faz uma jogada dando o valor X e Y, o tabuleiro muda baseado na posição dos baús de tesouro.
+
+A função makeMove() pega quatro parâmetros: a estrutura de dados do tabuleiro, a estrutura de
+dados dos baús, e as coordenadas X e Y. A linha 69 retornará False se as coordenadas X e Y passadas não existirem no tabuleiro. 
+Se isValidMove() retornar False, então makeMove() vai retornar False.
+
+Mas se as coordenadas baterem, makeMove() retornará uma string descrevendo o que aconteceu
+em resposta à jogada.
+
+	Se as coordenadas forem iguais a de um baú, makeMove() retornará "Você encontrou um bau do tesouro!"
+	Se as coordenadas estáo a uma distância de 9 ou menos caracteres de um baú, makeMove()
+	retornará "Tesouro detectado a uma distância de %s do aparelho sonar." (onde %s é
+trocada por um número inteiro representando a distância).
+	Se nenhuma das opção anteriores forem possíveis, makeMove() retornará "O aparelho não dectou nada, todos os tesouros estão fora de alcance."
+
+----
+71. 	smallestDistance = 100 # qualquer baú estará mais próximo que 100.
+72. 	for cx, cy in chests:
+73. 		if abs(cx - x) > abs(cy - y):
+74. 			distance = abs(cx - x)
+75. 		else:
+76. 			distance = abs(cy - y)
+77.
+78. 		if distance < smallestDistance: # queremos o baú mais próximo
+79. 			smallestDistance = distance
+	
+----
+
+Dadas as coordenadas de onde o jogador quer jogar um aparelho e uma lista de XY para os baús,
+você precisará ainda de um algorítimo que acha qual baú está mais próximo.
+
+Um algoritimo para encontrar o baú mais próximo.
+
+Os parâmetros X e y são números inteiros (digamos 3 e 2), e juntos eles representam o local
+no tabuleiro on o jogador deixo o aparelho sonar. A variável "chests" terá um valor parecido com
+[[5,0],[0,2],[4,2]]. Esses valores representam as localizações dos três baús do tesouro. Você
+pode visualizar isso na Figura 13-3. As distâncias formam "anéis" ao redor do aparelho sonar
+localizado em 3,2 como na figura 13-4.
+[imagem]
+Figura 13-3: Os baús que [[5,0],[0,2],[4,2]] representam.
+[imagem]
+Figura 13-4: Tabuleiro marcado com as distâncias dos baús em relação a posição 3,2.
+
+Mas como traduzir em código para o jogo? Precisamos de um jeito de representar a distância do
+limite do anel como uma expressão. Note que a distância de uma coordenada XY é sempre o maior
+dos dois valores: o valor absoluto da diferença das duas coordenadas X e o valor absoluto da
+diferença das duas coordenadas Y.
+
+Isso significa que devemos subtrair a coordenada X do aparelho e a coordenada X do baú, para então
+obter o valor absoluto desse número. O mesmo deve ser feito com as coordenada Y. O maior número
+obtido dessas subtrações é a distância do aparelho sonar até o baú do tesouro.
+
+Por exemplo, considere que as coordenadas X e Y do aparelho sonar são 3 e 2, como na Figura 13-4. O báu mais próximo (isto é, mais próximo desta lista [[5,0],0,2],[4,2]) está nas coordenadas 5, 0.
+
+	1. paras as coordenadas do eixo X, 3 - 5 é igual a -2, e valor absoluto de -2 é 2.
+	2. paras as coordenadas do eixo Y, 2 - 1 é igual a 1, e valor absoluto de 1 é 1.
+	3. Comparando os dois valor absolutos 2 e 1, o maior é 2, então 2 é a distância entre o aparelho
+	sonar e o baú.
+Podemos olhar no tabuleiro na Figura 13-4 e ver que esse algoritmo funciona, porque o baú em 5,1 está no segundo anel do aparelho sonar. Vamos rapidamente comparar as distâncias dos outros baús para ver se também funcionam corretamente.
+
+Vamos achar a distância do aparelho em 3,2, e o baú em 0,2:
+	1.abs(3-0) é igual a 3
+	2.abs(2-2) é igual a 0
+	3. 3 é maior que 0, então a distância dos dois é 3.
+Vamos achar a distância do aparelho em 3,2, e o baú em 4,2:
+	1. abs(3-4) é igual a 1
+	2.abs(2-2) é igual a 0
+	3.1 é maior que 0, então a distância dos dois é 1.
+
+Olhando a Figura 13-4 podemos ver que as três distância funcionaram. Parece que o algoritmo realmente funciona.
+As distâncias do aparelho sonar até o baú são 2,3 e 1. Em casa tentativa, queremos saber a distância do aparelho sonar até o
+baú mais próximo. Para fazer isso, usamos a variável smallestDistance. Vamos dar uma olhada no código
+mais uma vez:
+----
+71. 	smallestDistance = 100 # qualquer baú estará mais próximo que 100.
+72. 	for cx, cy in chests:
+73. 		if abs(cx - x) > abs(cy - y):
+74. 			distance = abs(cx - x)
+75. 		else:
+76. 			distance = abs(cy - y)
+77.
+78. 		if distance < smallestDistance: # queremos o baú mais próximo
+79. 			smallestDistance = distance
+----
+
+A linha 72 usa o truque de múltipla atribuição em um "for" loop. Por exemplo, a atribuição
+spam, eggs = [5,10] vai fazer com que spam seja igual a 5 e eggs igual a 10.
+
+Pelo fato de "chests" ser uma lista onde cada item do lista é uma lista de 2 número inteiros,
+o primeiro desses valores é atribuido a "cx" e o segundo a "cy". Então se "chests" tem o valor
+[[5, 0], [0, 2], [4,2]], "cx" será o valor 5 e cy será 0 na primeiro volta do loop.
+
+A linha 73 determina qual é maior: o valor absoluto da diferença das coordenadas de X ou de Y. 
+abs(cx - x) > abs(cy-y) é um jeito muito mais curto de dizer isso, certo? As 73 até 76 atribuem
+o maior valor à variável "distance".
+
+Então em cada volta do "for" loop, a variável "distance" obtém a distância do aparelho até o baú.
+Mas queremos apenas a distância do baú mais próximo. É aí que a variável "smallestDistance" entra
+em jogo. Sempre que "distance" for menor que "smallestDistance", o valor de "distance" se torna a nova "smallestDistance".
+
+Damos à "smallestDistance" o alto valor de 100 no começo para que pelo menos um dos valores das
+distâncias seja atribuido a "smallestDistance". Quando o "for" loop terminar, saberemos que a distância do aparelho até o baú mais próximo vai estar em "smallestDistance" .
+
+O método remove()
+
+O método de listas remove() apaga a primeira ocorrência de um valor que é passado como argumento.
+Por exemplo, digite o seguinte em sua interactive shell:
+----
+>>> x =[42,  5, 10, 42, 15, 42]
+>>> x.remove(10)
+>>> x
+[42, 5, 42, 15, 42]
+----
+
+O valor 10 for apagado da lista x. O método remove() remove a primeira ocorrência do valor
+que você especificar, e somente a primeira. Por exemplo, digite o segunte em sua interactive shell:
+----
+>>> x = [42, 5, 10, 42, 15, 42]
+>>> x.remove(42)
+>>> x
+[5, 10, 42, 15, 42]
+----
+Note que somente o primeiro valor 42 foi apagado, o segundo e terceiro continuam lá. O método remove() vai causar um erro caso você tente remover um valor que não exista na lista:
+----
+>>> x = [5, 42]
+>>> x.remove(10)
+Traceback (most recent call last):
+	File "<stdin>", line 1, in <module>
+ValueError: list.remove(x): x not in list
+----
+
+----
+81. 	if smallestDistance == 0:
+82. 		# xy está diretamente em um baú do tesouro!
+83. 		chests.remove([x, y])
+84. 		return 'Você encontrou um baú do tesouro!'
+----
+O único caso onde "smallestDistance" é igual a 0 é quando as coordenadas do aparelho e do
+bau são as mesmas. Isso significa que o jogador acertou a posição correta de um baú. Quando isso
+aconteceu, removemos de "chests" o valor das coordenadas do baú encontrado usando o método
+remove().
+No fim, a função retorna "Você encontrou um baú do tesouro!"
+----
+85. 	else:
+86. 		if smallestDistance < 10:
+87. 			board[x][y] = str(smallestDistance)
+88. 			return 'Tesouro dectado a uma distancia %s do aparelho sonar.' % (smallestDistance)
+89. 			else:
+90. 				board[x][y] = 'O'
+91. 				return 'O aparelho não dectou nada, todos os tesouros estão fora de alcance.'
+----
+O bloco "else" começando na linha 86 é executado se "smallestDistance" não for 0, o que significa que o jogador
+não acertou a localização exata de um baú. Se a distância do aparelho sonar for menor que 10, a linha 87 marca o
+tabuleiro com uma versão string de "smallestDistance". Se não, marca com um "0".
+
+Recebendo a jogada.
+----
+ 94. def enterPlayerMove():
+ 95. 	# Pede para o jogador digitar a jogada.Retorna uma lista de 2 itens com 2 coordenadas int xy.
+ 96. 	print('Onde você quer jogar o próximo aparelho sonar? (0-59 0-14) (ou digite quit)')
+ 97. 	while True:
+ 98. 		move = input()
+ 99. 		if move.lower() == 'quit':
+100. 			print('Obrigado por jogar!')
+101. 			sys.exit()
+----
+A função "enterPlayerMove()" coleta as coordenadas XY do lugar onde o jogador que posicionar seu próximo aparelho. 
+O "while" loop continuar pedindo que o jogador digite coordenadas até que ele faça uma jogada válida. O jogador também 
+pode digitar "quit" para sair do jogo. Nesse caso, a linha 101 chama a função sys.exit() para terminar o programa
+imediatamente.
+----
+103. 		move = move.split()
+104. 		if len(move) == 2 and move[0].isdigit() and move[1].isdigit() and isValidMove(int(move[0]), int(move[1])):
+105. 			return [int(move[0]), int(move[1])]
+106. 		print('Digite um numero de 0 a 59,um espaço, depois um numero de 0 a 14.')
+----
+Se o jogador não digitar "quit", o código precisa verificar se ele fez uma jogada válida: 2 número inteiros separados
+por um espaço. A linha 103 chama o método split() em "move" para se tornar o novo valor de "move".
+
+Se o jogador digitar um valor do tipo "1 2 3", a lista retornada por split() seria ['1','2','3']. Nesse caso, a 
+expressão len(move) == 1 seria False e a expressão inteira seria avaliada como False imediatamente. Python não
+verifica o resto da expressão por causa do "short-circuiting" (que foi tratado no Capítlo 10).
+
+Se o tamanho da lista é 2, entao os 2 valores estaram em indexes move[0] e move[1]. Para verificar se os valores são 
+números (como '2' e '7'), poderíamos usar uma função como "isOnlyDigits()" do Capítulo 11. Mas Python já tem uma função
+que faz isso.
+
+O método de string isdigit() retorna True se a string consiste apenas de números. Caso contrário ela retorna False. 
+Digite o seguinte na interactive shell:
+----
+>>> '42'.isdigit()
+True
+>>> 'forty'.isdigit()
+False
+>>> ''.isdigit()
+False
+>>> 'hello'.isdigit()
+False
+>>> x = '10'
+>>> x.isdigit()
+True
+----
+Ambos move[0].isdigit() e move[1].isdigit() devem ser True para a condição inteira seja True. A parte final
+da condição da linha 104 chama a função isValidMove() para checar se as coordenadas XY existem no tabuleiro.
+
+Se todo a condição for True, linha 105 retorna uma lista de 2 números inteiros das coordenadas XY. Caso contrário,
+a execução dá um loop e pede para o jogador digitar novas coordenadas.
+
+Verificando se o jogador quer jogar de novo
+----
+109. def playAgain():
+110. 	# Essa função retorna True se o jogador quiser jogar de novo, caso contrário
+returna False.
+111. 	print('Quer jogar de novo? (sim ou nao)')
+112. 	return input().lower().startswith('s')
+----
+A função playAgain() é simitar às funções playAgain() usadas em capítulos anteriores.
+
+Exibindo as instruções do jogo para o jogador
+----
+115. def showInstructions():
+116. 	print('''Instruções:
+117. Voce é o capitao do Simon, um navio caçador de tesouros. Sua missao
+118. e achar os tres tesouros submersos  que estão no oceano
+119. e coleta-los.
+120.
+121. Para jogar, digite as coordenadas de um ponto no oceano onde voce deseja jogar um
+122. aparelho sonar. O sonar pode mostrar a distancia até o bau mais proximo.
+123. Por exemplo, o d abaixo mostra onde o aparelho foi jogado, o os 2's
+124. representam uma distancia de 2 do aparelho. Os 4's representam
+125. distancia de 4 do aparelho.
+126.
+127. 	444444444
+128. 	4       4
+129. 	4 22222 4
+130. 	4 2   2 4
+131. 	4 2 d 2 4
+132. 	4 2   2 4
+133. 	4 22222 4
+134. 	4       4
+135. 	444444444
+136. Aperte enter para continuar...''')
+137. 	input()
+----
+A função showInstructions() são alguns chamadas de print() que exibem string multi-linha. A função input()
+dá ao jogador a chance de apertar ENTER antes de exibir a próxima string. Isso porque a janela do IDLE não pode
+mostrar muito texto de uma só vez.
+
+
+página 16
+----
+
+139. 	print('''Por exemplo, este e o bau do tesouro (o "c") localizado a 2
+de distancia
+140. do aparelho sonar (o "d"):
+141.
+142. 	22222
+143. 	c   2
+144. 	2 d 2
+145. 	2   2
+146. 	22222
+147.
+148. O ponto onde o aparelho foi jogado será marcado com o número 2.
+149.
+150. Os baus de tesouro nao se movem. Os aparalhos sonar pode detectar baus
+151. ate uma distancia de 9. Se todos os baus estiverem fora de alcance, o ponto
+152. sera marcado com um "O"
+153.
+154. Se um aparelho for jogado diretamente em cima de um bau, voce descobrira
+155. a localizacao exata do bau e ele sera coletado. O aparelho sonar permacera
+156. onde for jogado.
+157.
+158. Quando voce coletar um bau, os aparelhos irao atualizar para mostrar o proximo
+159. bau que estiver mais perto.
+160. Pressione enter para continuar...''')
+161. 	input()
+162. 	print()
+----
+Depois que o jogador pressionar ENTER, a função retorna.
+
+O início do jogo
+----
+165. print('S O N A R !')
+166. print()
+167. print('Voce gostaria de ler as instrucoes? (sim/nao)')
+168. if input().lower().startswith('s'):
+169. 	showInstructions()
+----
+A expressão input().lower().starswith('s') pergunta se o jogador quer ler as instruções, e se igual a True
+se o jogador digitou uma palavra que inicia com 'S' ou 's'. Se sim, showInstructions() é chamada. Se não, o jogo começa.
+----
+171. while True:
+172. 	# configuracoes do jogo
+173. 	sonarDevices = 16
+174. 	theBoard = getNewBoard()
+175. 	theChests = getRandomChests(3)
+176. 	drawBoard(theBoard)
+177. 	previousMoves = []
+----
+O "while" loop da linha 171 é o principal loop do jogo. Múltiplas variáveis são criadas nas linhas 173 até 177 e
+são descritas na Tabela 13-1
+
+		Tabela 13-1: variáveis usados no principal loop do jogo
+-------------------------------------------------------------------------------
+	Variável						Descrição
+
+	theBoard		O número de aparelhos sonar (tentativas) que jogados ainda tem.
+	theChests		A estrutura de dados do tabuleiro usado no jogo.
+	previousMoves	Uma lista de todos as coordenadas XY que o jogador tentou no jogo
+
+---------------------------------------------------------------------------------
+
+Exibindo o status do jogo para o jogador
+----
+179. 	while sonarDevices > 0:
+180. 		# Inicio de um turno:
+181.
+182. 		# mostra bau/aparelho status
+183. 		if sonarDevices > 1: extraSsonar = 's'
+184. 		else: extraSsonar = ''
+185. 		if len(theChests) > 1: extraSchest = 's'
+186. 		else: extraSchest = ''
+187. 		print('Voce tem %s aparelhos sonar %s sobrando. %s baus do tesouro%s sobrando.' % (sonarDevices, extraSsonar, len(theChests), extraSchest))
+----
+O "while" loop da linha 179 é exucutado somente se o jogador ainda tiver aparalhos sonar sobrando. A linha 187 exibe uma
+mensagem dizendo ao jogando quantos aparelhos e tesouros ainda estão sobrando. Mas tem um probleminha.
+
+Se sobraram 2 aparelhos sonar, você precisa exibir "2 aparelhos sonar". Mas se tem apenas um sobrando, você precisa
+exibir "1 aparelho sonar". Só queremos o plural de aparelhos se mais de 1 estiver sobrando. O mesmo serve para o baú.
+
+As linhas 183 até 186 tem código depois dos dois pontos do "if" e "else". Isso é válido em Python. Em vez de tem um 
+bloco de código depois dos instruções, podemos usar o resto da mesma linha para tormar o código mais conciso.
+
+As duas variáveis chamadas extraSsonar e extraSchest são igualadas à 's' (space) se existem múltiplos aparelhos ou
+baús. Do contrário, eles viram string vazias. Essas variáveis são usadas na linha 187.
+
+Recebendo a jogada do jogador
+----
+189.		 x, y = enterPlayerMove()
+190. 		previousMoves.append([x, y]) # we must track all moves so that sonar
+devices can be updated.
+191.
+192. 		moveResult = makeMove(theBoard, theChests, x, y)
+193. 		if moveResult == False:
+194. 			continue
+----
+A linha 189 usa atribuições múltiplas já que enterPlayerMove() retorna uma lista de 2 itens. O primeiro item
+retornado da lista é atribuido à variável x. O segundo à variável y.
+
+Eles serão adicionados ao fim da lista "previousMoves". Isto é, "previousMoves" é uma lista de coordenadas XY
+de cada jogada que o jogador fizer. A será usada mais tarde na linha 198.
+
+As variáveis x,y, theBoard, e theChests são todas passadas para função "makeMove()". Essa função fará as modificações
+necessárias no tabuleiro para posicionar um aparelho sonar em um ponto.
+
+Se "makeMove()" retornar o valor False, então há um problema com os valores x e y que vocÊ passou. A instrução "continue" fará o "while" loop ser executado novamente na linha 179 para perdir novas coordenadas XY.
+
+Encontando um bau submerso.
+----
+
+195. 		else:
+196. 			if moveResult == 'Voce encontou um bau do tesouso!':
+197. 				# atualiza os aparelhos atualmente no mapa.
+198. 				for x, y in previousMoves:
+199. 					makeMove(theBoard, theChests, x, y)
+200. 			drawBoard(theBoard)
+201. 			print(moveResult)
+----
+Se "makeMove()" não retornar o valor False, ela terá retornado a string de resultados da jogada. Se esse string
+for "Voce encontrou um bau do tesouro", então os aparelhos que estão no mapa devem ser atualizados para exibir o
+próximo baú mais próximo. As coordenadas XY de todos os aparelhos estão em "previousMoves". Iterando "previousMoves" na
+linha 198, você poderá passar todas as coordenadas para a função "makeMove()" para redesenhar o mapa.
+
+Como o programa não exibe nada novo aqui, o jogador não percebe que ele está refazendo todos as jogadas passadas.
+Parece que o tabuleiro se atualiza sozinho.
+
+Checando se o jogador ganhou
+----
+203. 			if len(theChests) == 0:
+204. 				print('You have found all the sunken treasure chests! Congratulations
+and good game!')
+205. 				break
+----
+Lembre-se que a função "makeMove()" mofica a lista "theChests" que você enviou. Pelo fato de "theChests" ser uma lista,
+qualquer mudança feita nela vai persistir depois que a execução retornar da função. "makeMove()" remote itens de 
+"theChests" quando baús do tesouro são encontrados, ao fim(se o jogador continuar acertando) todos os baús serão 
+removidos da lista. Lembra-se, por "baús" queremos dizer um dos intens dentro da lista de duas coordenadas XY que estão
+dentro da lista "theChests".
+
+Quando todos os baús forem encontrados no mapa e removidos de "theChests", a lista "theChests" vai ter 0 itens ( len(theChests) == 0). Então o jogador o jogador receberá congratulações pela vitória e sairá do "while" loop. O programa
+então pulará para a linha 209, a primeira linha depois do bloco do "while" loop.
+
+Checando de o jogador perdeu
+----
+207. 		sonarDevices -= 1
+----
+A linha 207 é a última linha do "while" loop the começou na linha 179. Ela substraia 1, ou decrementa, do total da variável "sonarDevices", afinal o jogador a cada rodada usa um sonar. Se o jogar errar muitas vezes, essa variável será
+reduzida para 0. Depois disso a execução do programa retorna para a linha 179 onde não se encaixará na condição 
+sonarDevices > 0.
+----
+
+209. 		if sonarDevices == 0:
+210. 			print('Todos os aparelho sonar acabaram! Voce tem que virar o navio voltar pra casa')
+211. 			print('sabendo que ainda existem baus no mar! Game Over.')
+212. 			print(' Eles estavam nas seguintes coordenadas:')
+213. 			for x, y in theChests:
+214. 				print(' %s, %s' % (x, y))
+215.
+----
+
+A linha 209 é a primeira fora do "while" loop. Quando a execução do pragrama chega nesse ponto, o jogo acabou.
+Se "sonarDevices" é 0, sabemos que o jogador está sem aparelhos para jogar no mar.
+
+As linhas 210 até 212 dirão ao jogador que ele perdeu. O "for" loop da linha 213 vai buscar as coordenadas dos baús
+que sobraram em "theChests".
+
+A função "sys.exit()"
+----
+216. 		if not playAgain():
+217. 			sys.exit()
+----
+Perdendo ou ganhando, "playAgain()" é chamada novamente para deixar o jogador decidir se quer continuar jogando.
+Se ele não quiser, "playAgain()" retornará False. O operador "not" na linha 216 muda isso para True, quando isso
+acontece a função "sys.exit" é executada. Isso fará o programa terminar.
+
+Caso contrário, a execução volta ao começo do "while" loop na linha 171 para que um novo joga comece.
+
+Sumário
+
+Lembra de como nosso Jogo da velha (TicTacToe) numerava os espaços no tabuleiro de 1 até 9? Isso funcionava
+para um tabuleiro com menos de 10 espaços. Mas o jogo desse capítulo tinha 900 espaços! O plano cartesiano de coordenadas
+faz com todos esses espaços sejam administráveis, especialmente se o jogo precisa encontrar a distância entre
+dois pontos no tabuleiro.
+
+Lugares em jogos que usam o sistema de coordenadas cartesiano podem ser guardados em uma lista de listas para o primeiro
+'index' dela seja a coordenada X e a segunda a Y. Isso faz acessar coordenadas parecer com isso lista[x][y].
+
+Essas estruturas de dados (como as que usamos para o oceano e as localizações dos baús) tornam possível que 
+conceitos complicados sejam armazenados como dados, e seu o jogo nada mais é do que um modificador dessas estruturas.
+
+No próximo capítulo, nós representaremos letras como números usando seus números ASCII. (Sim, é a mesma "ASCII" que 
+usamos em "Arte ASCII" anteriormente). Representando texto como números, podemos fazer operações matemáticas neles
+para encriptar ou decriptar mensagens secretas.
