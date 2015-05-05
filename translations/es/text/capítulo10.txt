@@ -685,7 +685,7 @@ True or <<<cualquierCosa>>> siempre se evalúa a True
 
 Entonces Python no comprueba el resto de la expresión y ni siquiera se molesta en evaluar la parte not hayEspacioLibre(tablero, int(jugada)). Esto significa las funciones int() y hayEspacioLibre() nunca son llamadas mientras jugada not in '1 2 3 4 5 6 7 8 9'.split() sea True.
 
-Esto funciona bien para el programa, pues si la expresión del lado derecho es True entonces jugada no es una cadena en forma de número. Esto hace que int() devuelva un error. Las únicas veces que jugada not in '1 2 3 4 5 6 7 8 9'.split() se evalúa a False son cuando jugada no es una cadena compuesta por un único dígito. En ese caso, la llamada a int() no nos daría un error.
+Esto funciona bien para el programa, pues si la expresión del lado izquierda es True entonces jugada no es una cadena en forma de número. Esto hace que int() devuelva un error. Las únicas veces que jugada not in '1 2 3 4 5 6 7 8 9'.split() se evalúa a False son cuando jugada no es una cadena compuesta por un único dígito. En ese caso, la llamada a int() no nos daría un error.
 
 Un Ejemplo de Evaluación en Cortocircuito
 

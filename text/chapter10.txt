@@ -685,7 +685,7 @@ True or <<<anything>>> always evaluates to True
 
 So Python stops checking the rest of the expression and doesn’t even bother evaluating the not isSpaceFree(board, int(move)) part. This means the int() and the isSpaceFree() functions are never called as long as move not in '1 2 3 4 5 6 7 8 9'.split() is True.
 
-This works out well for the program, because if the right side is True then move isn’t a string in number form. That would cause int() to give us an error. The only times move not in '1 2 3 4 5 6 7 8 9'.split() evaluates to False are when move isn’t a single-digit string. In that case, the call to int() would not give us an error.
+This works out well for the program, because if the left side is True then move isn’t a string in number form. That would cause int() to give us an error. The only times move not in '1 2 3 4 5 6 7 8 9'.split() evaluates to False are when move isn’t a single-digit string. In that case, the call to int() would not give us an error.
 
 An Example of Short-Circuit Evaluation
 

@@ -242,7 +242,7 @@ Importando los módulos
   1. import pygame, random, sys
   2. from pygame.locals import *
 
-El juego Evasor importa los mismos módulos que nuestros programas anteriores de Pygame: pygame, random, sys, y pygame.locals. El módulo pygame.locals contiene unas cuantas variables constantes que Pygame usa, tales como tipos de eventos (QUIT, KEYDOWN, etc.) y botones del teclado (K_ESCAPE, K_LEFT, etc.). Usando la sintáxis from pygame.locals import *, podemos escribir QUIT en el código fuente en lugar de pygame.locals.QUIT.
+El juego Evasor importa los mismos módulos que nuestros programas anteriores de Pygame: pygame, random, sys y pygame.locals. El módulo pygame.locals contiene unas cuantas variables constantes que Pygame usa, tales como tipos de eventos (QUIT, KEYDOWN, etc.) y botones del teclado (K_ESCAPE, K_LEFT, etc.). Usando la sintáxis from pygame.locals import *, podemos escribir QUIT en el código fuente en lugar de pygame.locals.QUIT.
 
 Configurando las Variables Constantes
 
@@ -370,11 +370,11 @@ La línea 49 crea un objeto Font a utilizar llamando a pygame.font.SysFont(). El
 
 A continuación, creamos los objetos Sound y establecemos la música de fondo. La música de fondo se reproducirá constantemente durante el juego, pero los objetos Sound se reproducirán sólo cuando el jugador pierda.
 
-Puedes usar cualquier archivo .wav o .mid para este juego. Algunos archivos de sonido están disponibles en el sitio web de este libro en http://invpy.com/downloads. O también puedes usar tus propios archivos de sonido para este programa, siempre que los nombres de archivo sean juegoterminado.wav y músicaDeFondo.mid. (Puedes cambiar las cadenas usadas en las líneas 53 y 54 para que coincidan con los nombres de los archivos.)
+Puedes usar cualquier archivo .wav o .mid para este juego. Algunos archivos de sonido están disponibles en el sitio web de este libro en http://invpy.com/es/downloads. O también puedes usar tus propios archivos de sonido para este programa, siempre que los nombres de archivo sean juegoterminado.wav y músicaDeFondo.mid. (Puedes cambiar las cadenas usadas en las líneas 53 y 54 para que coincidan con los nombres de los archivos.)
 
 La función constructor pygame.mixer.Sound() crea un nuevo objeto Sound y guarda una referencia a este objeto en la variable sonidoJuegoTerminado. Puedes crear tantos objetos Sound como quieras en tus juegos, cada uno con un archivo de sonido diferente.
 
-La función pygame.mixer.music.load() carga un archivo de sonido para que sea reproducido como música de fondo. Esta función no devuelve ningún objeto, y sólo puede cargarse un archivo de música de fondo a la vez
+La función pygame.mixer.music.load() carga un archivo de sonido para que sea reproducido como música de fondo. Esta función no devuelve ningún objeto, y sólo puede cargarse un archivo de música de fondo a la vez.
 
  56. # establece las imagenes
  57. imagenJugador = pygame.image.load('jugador.png')
@@ -434,7 +434,7 @@ La ubicación inicial del jugador es en el centro de la pantalla y 50 píxeles a
  75.     trucoReversa = trucoLento = False
  76.     contadorAgregarVillano = 0
 
-Se asigna False a las variables de movimiento moverIzquierda, moverDerecha, moverArriba y moverAbajo. Tamién se asigna falso a las variables trucoReversa y trucoLento. Estas últimas recibirán el valor True sólo cuando el jugador active estos trucos manteniendo presionadas las teclas "z" y "x", respectivamente.
+Se asigna False a las variables de movimiento moverIzquierda, moverDerecha, moverArriba y moverAbajo. Tamién se asigna False a las variables trucoReversa y trucoLento. Estas últimas recibirán el valor True sólo cuando el jugador active estos trucos manteniendo presionadas las teclas "z" y "x", respectivamente.
 
 La variable contadorAgregarVillano es un contador para indicar al programa cuándo añadir un nuevo villano en el borde superior de la pantalla. El valor en contadorAgregarVillano se incrementa en uno cada vez que el bucle del juego itera.
 
@@ -457,7 +457,7 @@ La línea 79 es el inicio del principal bucle del juego. La línea 80 incrementa
 
 Gestión de Eventos
 
-Hay cuatro tipos diferentes de eventos que el programa gestionará: QUIT, KEYDOWN, KEYUP, y MOUSEMOTION.
+Hay cuatro tipos diferentes de eventos que el programa gestionará: QUIT, KEYDOWN, KEYUP y MOUSEMOTION.
 
  82.         for evento in pygame.event.get():
  83.             if evento.type == QUIT:
@@ -475,9 +475,9 @@ Si el atributo type del objeto Event es igual a QUIT, significa que el usuario h
 
 Si el tipo de evento es KEYDOWN, el jugador ha pulsado una tecla. El objeto Event para eventos del teclado tiene un atributo key que corresponde al valor ordinal entero de la tecla pulsada. La función ord() devuelve el valor ordinal de la letra pasada como argumento.
 
-Por ejemplo, la línea 87 comprueba si el evento corresponde a la tecla "z" mediante event.key == ord('z'). Si esta condición es True, se asigna True a trucoReversa para indicar que este truco ha sido activado. La línea 89 comprueba si la tecla "x" ha sido pulsada para activar el truco lento.
+Por ejemplo, la línea 87 comprueba si el evento corresponde a la tecla "z" mediante evento.key == ord('z'). Si esta condición es True, se asigna True a trucoReversa para indicar que este truco ha sido activado. La línea 89 comprueba si la tecla "x" ha sido pulsada para activar el truco lento.
 
-Los eventos de teclado de Pygame siempre usan los valores ordinales de teclas minúsculas, no mayúsculas. Siempre se usa event.key == ord('z') en lugar de event.key == ord('Z'). De otra forma, el programa no registrará que la tecla ha sido pulsada.
+Los eventos de teclado de Pygame siempre usan los valores ordinales de teclas minúsculas, no mayúsculas. Siempre se usa evento.key == ord('z') en lugar de evento.key == ord('Z'). De otra forma, el programa no registrará que la tecla ha sido pulsada.
 
  91.                 if evento.key == K_LEFT or evento.key == ord('a'):
  92.                     moverDerecha = False

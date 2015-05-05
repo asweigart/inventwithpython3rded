@@ -423,7 +423,7 @@ En este programa tenemos varios bloques diferentes rebotando contra los bordes d
 
 Código Fuente del Programa Animación
 
-Type the following program into the file editor and save it as animation.py. If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/animation.
+Escriba el siguiente programa en el editor de archivo y guardarlo como animation.py. Si obtiene errores después de escribir este código en, compare el código que ha escrito para el código del libro con la herramienta de diferencias en línea en http://invpy.com/diff/animation.
 
 animación.py
 
@@ -583,9 +583,9 @@ Estableciendo Variables Constantes para los Colores
 24. VERDE = (0, 255, 0)
 25. AZUL = (0, 0, 255)
 
-Las líneas 22 a 25 establecen variables constantes para los colores. Recuerda que Python usa una tupla de tres valores enteros para las cantidades de rojo, verde y azul, a la cual llamamos valor RGB. Los enteros van desde 0 hasta 255.
+Las líneas 22 a 25 establecen variables constantes para los colores. Recuerda que Python usa una tupla de tres valores enteros para las cantidades de rojo, verde y azul, a la cual llamamos valor RVA. Los enteros van desde 0 hasta 255.
 
-Las variables constantes se usan por legibilidad. A la computadora no le preocupa si usas una variable llamada VERDE para el color verde. Simplemente es más fácil recordar que VERDE corresponde al color verde, en lugar de (0, 255, 0)
+Las variables constantes se usan por legibilidad. A la computadora no le preocupa si usas una variable llamada VERDE para el color verde. Simplemente es más fácil recordar que VERDE corresponde al color verde, en lugar de (0, 255, 0).
 
 Estableciendo la Estructura de Datos del Bloque
 
