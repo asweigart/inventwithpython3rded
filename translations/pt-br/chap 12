@@ -1,0 +1,141 @@
+Capítulo 12
+Coordenadas cartesianas
+
+Tópicos abordados nesse capítulo:
+	O eixo-X e o eixo-Y
+	A propriedade comutativa da adição
+	Valores absolutos e a função abs()
+
+		Esse capítulo não introduz um novo jogo. Em vez disso aborda algums simples conceitos matemáticos que você usará no resto do livro. 
+Em  jogos 2D os gráficos na tela podem mover-se para a direita ou esquerda e para cima ou para baixo. Essas 2 direções compoem o espaço bidimencional 
+(ou apenas 2D). Jogos com objetos se movendo em uma tela bidimencional de computador precisam de um jeito 
+de traduzir lugares na tela em números que o programa pode processar.
+
+	É aí que o plano cartesiano entra. As coodenadas são numeros para um ponto específico
+na tela.
+Esses números podem ser armazenados como Integers nas variáveis do seu programa.
+
+Grades e coordenadas Cartesianas
+
+[imagem]
+Figura 12-1: Um exemplo de tabuleiro de xadrez com um cavalo preto no a,4 e um cavalo branco no e,6.
+
+Um jeito comum de se referir a lugares específicos num tabuleiro de xadrez é marcando cada linha e coluna com letras e números. A figura 12-1 é um tabuleiro que tem cada linha e coluna marcadas.
+
+Uma coordenada para um espaço no tabuleiro é a combinação de uma linha e coluna. O cavalo branco na Figura 12-1 está localizado no ponto e,6 e o cavalo preto está localizado no ponto a,4.
+
+Esse rotulado tabuleiro de xadrez é um plano cartesiano. Usando um rótulo de linha e de coluna, você pode dar a coordenada é única para cada possível ponto no espaço do tabuleiro. Se você aprendeu sobre o plano cartesiano nas aulas de matemática, você deve saber que os números são usados para ambas as linhas e colunas.  Este tabuleiro seria parecido com a Figura 12-2.
+
+[imagem]
+Figura 12-2: O mesmo tabuleiro mas agora com números para as linhas e colunas.
+
+O números que partem da esquerda para a direita representando as colunas são parte do eixo-X. Os números que vão de baixo até em cima representando as linhas são o eixo-Y. As coordenadas são sempre representadas com o eixo-X primeiro, seguido do eixo-Y. Na figura 12-2, o cavalo branco está localizado na coordenada 5,6 e não 6,5. O cavalo preto está localizado na coordenada 1,4, o que não pode ser confuncido com 4,1.
+
+Note que para o cavalo preto se mover até a posição do cavalo branco, ele precisa se mover 2 espaços para cima e para a direita 4 espaçõs. Mas vocês não precisa olhar no tabuleiro para saber disso. Se você sabe que o cavalo branco está localizado em 5,6 e o preto em 1,4, então você pode usar a subtração para descobrir esse informação.
+
+Subtraia a coordenada do eixo-X do cavalo preto pela do cavalo branco: 5-1 = 4. Ele precisa se mover 4 espaços no eixo-x para chegar ao branco.
+
+Subtraia a coordenada do eixo-Y do cavalo prelo pela do branco: 6-4 = 2. Eles precisa se nover 2 espaços no eixo Y.
+Usando a matemática podemos descobrir as distâncias entra duas coordenadas.
+
+Números negativos
+
+Planos cartesianos usam números negativos. Números negativos são números que são menores que zero.
+O sinal de menos na frente de um número mostra que ele é negativo. -1 é menor que zero. And -2 é menor que -1. Se você pensa em números regulares começando por 1 e aumentando, you pode pensar em negativos começando em -1 e diminuindo. 0 por si só não é negativo nem positivo. Na figura 12-3,
+pode-se ver os números positivos aumentando na direita e os negativos dimuinuindo na esquerda da linha.
+[imagem]
+12-3: Uma linha de números.
+
+A linha de números é útil para ver a subtração e adição feitas com números negativos. A expressão
+4+3 pode ser pensada como o cavalo branco começando na posição 4 e se movendo 3 espaços para a
+direita( adição significa aumentar, o que significa ir para a direita da linha).
+
+[imagem]
+Figura 12-4: Mover o cavalo branco para a direita soma as coordenadas.
+
+Como você pode ver na Figura 12-4, o cavalo branco vai para a posição 7. Isso faz sentido, porque que 4+3 é 7.
+
+A subtração é feita movendo o cavalo branco para a esquerda. Subtração significa diminuir, o que é o mesmo que ir para a esquerda. 4-6 seria o cavalo branco saindo da posição 4 e se movendo 6 espaços para a esquerda, como na Figura 12-5.
+
+[imagem]
+Figura 12-5: Movendo o cavalo branco para a esquerda subtrai das coordenadas.
+
+O cavalo branco terminada na posição -2. Isto é, 4 - 6 = -2.
+
+Se você soma ou subtrai um número negativo, o cavalo se move na direção oposta. Se você soma um número negativo, o cavalo se move para a esquerda. Se você subtrai um número negativo, o cavalo se move para a direita. A expressão -6 - (-4) seria -2. O cavalo começa na posição -6 e se da esquerda para a direita 4 espaços. Note que -6 -(-4) tem o mesmo valor de -6+4.
+
+[imagem]
+12-6: Mesmo que o cavalo comece numa coordenada negativa, move-se para a direita ainda aumenta a coordenada.
+
+[imagem]
+12-7: Colocar duas linhas de números junto perpendicularmente gera um plano cartesiano.
+
+Você pode pensar no eixo-X como um linhas de números que tem outra linha de números perpendicular que é o eixo-Y. Se vocÊ põe essas duas linhas de números junto, terá um plano cartesiano como na Figura 12-7.
+
+Somando um número positivo moveria o cavalo para cima, e subtraindo para baixo.
+
+A coordenada 0,0 é chamada de Origem.
+
+Truques matemáticos.
+
+Subtrair e somar números negativos é fácil quando você uma linha de números na sua frente.
+Mas existem 3 truques para te ajudar a fazer essa operação sozinho.
+
+Truque 1: "Um menos come o sinal de Mais a sua esquerda" 
+
+Quando você vê um sinal de menos com um sinal de mais a esqueda, troque o sinal de mais por um sinal de menos. Imagine o sinal de menos comendo o de mais. A resposta ainda é a mesma, porque adicionar um valor negativo é o mesmo que subtrair. As expressões 4 +(-2) e 4-2 são ambas iguais a 2.
+
+[imagem]
+12-8: Trick 1 - Somando números positivos e negativos.
+
+Truque 2: "2 menos se tornam um mais."
+
+Quando você vir 2 sinais de menos sem nenhum número entre eles, eles podem se combinar para formar um sinal
+de mais. Subtrair um número negativo é o mesmo que somar.
+[imagem]
+Figura 12-9: Truque 2 - Subtraindo um número negativo de outro.
+
+Truque 3: A propriedade comutativa da adição
+
+Você pode mudar a posição dos números em uma expressão de soma sem alterar o seu resultado.
+As expressões 6 + 4 e 4 + 6 são ambas iguais a 10.
+
+Se você contar a caixinhas na Figura 12-10, você pode ver que não importa se você trocar os números de lugar.
+
+[imagem]
+Figura 12-10: Trick 3 - A propriedade comutativa da adição.
+
+Digamos que vocÊ está somando um número negativo e um positivo, -6 +8. Por causa da propriedade comutativa, você pode inverter os números sem alterar a resposta. 
+
+Então quando você olha para 8+ -6, você poderá ver que o sinal de menos pode comer o sinal de mais à esquerda, e o problema se torna 8 -6= 2. Mas -6 +8 também é 2! Você realocou os números para facilitar o cálculo sem perda alguma.
+
+[imagem]
+Figura 12-11: Usando os truques
+
+Valores absolutos e a Função abs()
+O valor absoluto de um número é o número sem o sinal negativo na frente. Os positivos continuam iguais. Por exemplo, o valor absoluto de -4 é 4. O valor absoluto de -7 é 7. O valor absoluto de 5 (que é positivo) é 5.
+
+Você pode descobrir a distancia entre 2 objetos pela subtração de suas posições e pegando o valor absoluto desse número. Imagine que o cavalo branco está na posição 4 e o preto está na posição -2. A distância seria 6, já que 4 - (-2) é 6, e o valor absoluto de 6 também é 6.
+Isso funciona independente da ordem dos números. -2-4(isto é, menos 2 menos 4) é -6, e o valor absoluto de -6 é 6 também.
+
+A Função abs() de Python returna o valor absoluto de uma Integer. Tente digitar o seguinte código
+na interactive shell:
+
+[code 1]
+[imagem]
+Figura 12-12: O plano cartesiando na tela do computador
+
+É comum os computadores usarem um plano cartesiano que começa no topo esquerda da tela como origem( 0, 0),
+que aumenta indo para a direita e para baixo. Isso é mostrado na Figura 12-12. Não há coordenada negativas. A maioria dos gráficos de computador usam o sistema de coordenadas,  e você o usará no resto desse livro também.
+
+Sumário.
+
+A maior parte da programação não exige muita proficiencia em matemática. Até esse capítulo nós usando adição simples e alguma multiplicação.
+
+O plano cartesiano é necessário para descrever onde em uma área bidimencional um certo ponto está. Coordenadas têm 2 números: a coordenada do eixo-X e a do eixo-Y. O eixo-X vai da esquerda para a direita e o eixo-Y de cima para baixo. 
+No computadores, a origem é no canto superior esquerdo e as coordenadas aumentam indo para direita e para baixo.
+
+Os 3 truques que você aprendeu nesse capítulo facilitam a tarefa de comar número negativos e positivos. O primeiro Truque é que o sinal negativo come o sinal positivo à esquerda. O segundo truque é que 2 menos próximos se combinarão formando um sinal de mais. O terceiro truque é que você pode inverter os números que você está somando.
+
+No resto do livro usaremos coceitos deste capítulo em nossos jogos porque eles têm areas bidimencionais. Todos os jogos gráficos exigem conhecimento de como o plano cartesiano funciona.
+

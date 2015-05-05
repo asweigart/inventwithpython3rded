@@ -1,0 +1,226 @@
+  1. # Sonar
+  2.
+  3. import random
+  4. import sys
+  5.
+  6. def drawBoard(board):
+  7. 	# Desenha a estrutura do "tabuleiro"
+  8.
+  9. 	hline = ' ' # espaço inicial para os números abaixo do lado esquerdo do tabuleiro
+ 10. 	for i in range(1, 6):
+ 11. 	hline += (' ' * 9) + str(i)
+ 12.
+ 13. 	# print os número ao longo do topo
+ 14. 	print(hline)
+ 15. 	print(' ' + ('0123456789' * 6))
+ 16. 	print()
+ 17.
+ 18. 	# print cada uma das 15 linhas
+ 19. 	for i in range(15):
+ 20. 		# número de apenas um dígito necessitam de um espaço extra.
+ 21. 		if i < 10:
+ 22. 			extraSpace = ' '
+ 23. 		else:
+ 24. 			extraSpace = ''
+ 25. 		print('%s%s %s %s' % (extraSpace, i, getRow(board, i), i))
+ 26.
+ 27. 	#print os número ao longo da parte de baixo
+ 28. 	print()
+ 29. 	print(' ' + ('0123456789' * 6))
+ 30. 	print(hline)
+ 31.
+ 32.
+ 33. def getRow(board, row):
+ 34. 	#Retorna uma string da estrutura do tabuleiro em uma linha específica.
+ 35. 	boardRow = ''
+ 36. 	for i in range(60):
+ 37. 		boardRow += board[i][row]
+ 38. 	return boardRow
+ 39.
+ 40. def getNewBoard():
+ 41. 	# Cria uma nova estrutura de dados 60x15
+ 42. 	board = []
+ 43. 	for x in range(60): # A lista principal é uma lista de 60 listas
+ 44. 		board.append([])
+ 45. 		for y in range(15): # cada lista na lista principal tem 15 caracteres únicos
+ 46. 			# Use caracteres diferentes para o oceano para torná-lo de mais fácil leitura
+ 47. 			if random.randint(0, 1) == 0:
+ 48. 				board[x].append('~')
+ 49. 			else:
+ 50. 				board[x].append('`')
+ 51. 	return board
+ 52.
+ 53. def getRandomChests(numChests):
+ 54. 	# Cria uma lista da estrutura de dados dos baús ( listas de 2 itens com coordenadas int x e y)
+ 55. 	chests = []
+ 56. 	for i in range(numChests):
+ 57. 		chests.append([random.randint(0, 59), random.randint(0, 14)])
+ 58. 	return chests
+ 59.
+ 60. def isValidMove(x, y):
+ 61. 	# Retorna True se as coordenadas estão no tabuleiro, senão False.
+ 62. 	return x >= 0 and x <= 59 and y >= 0 and y <= 14
+ 63.
+ 64. def makeMove(board, chests, x, y):
+ 65. 	# Muda a estrutura de dados com um aparelho sonar. Remove baús com tesouro
+ 66. 	# da lista de baús quando eles são encontrados. Retorna False se este for uma jogada inválida
+ 67. 	# caso contrário, retorna a string do resultado da jogada. 
+ 68. 	if not isValidMove(x, y):
+ 69. 		return False
+ 70.
+ 71. 	smallestDistance = 100 # qualquer baú estará mais próximo que 100.
+ 72. 	for cx, cy in chests:
+ 73. 		if abs(cx - x) > abs(cy - y):
+ 74. 			distance = abs(cx - x)
+ 75. 		else:
+ 76. 			distance = abs(cy - y)
+ 77.
+ 78. 		if distance < smallestDistance: # queremos o baú mais próximo
+ 79. 			smallestDistance = distance
+ 80.
+ 81. 	if smallestDistance == 0:
+ 82. 		# xy está diretamente em um baú do tesouro!
+ 83. 		chests.remove([x, y])
+ 84. 		return 'Você encontrou um baú do tesouro!'
+ 85. 	else:
+ 86. 		if smallestDistance < 10:
+ 87. 			board[x][y] = str(smallestDistance)
+ 88. 			return 'Tesouro dectado a uma distancia %s do aparelho sonar.' %
+(smallestDistance)
+ 89. 		else:
+ 90. 			board[x][y] = 'O'
+ 91. 			return 'O aparelho não dectou nada, todos os tesouros estão fora de alcance.'
+ 92.
+ 93.
+ 94. def enterPlayerMove():
+ 95. 	# Pede para o jogador digitar a jogada.Retorna uma lista de 2 itens com 
+ 2 coordenadas int xy.
+ 96. 	print('Onde você quer jogar o próximo aparelho sonar? (0-59 0-14) 
+ (ou digite quit)')
+ 97. 	while True:
+ 98. 		move = input()
+ 99. 		if move.lower() == 'quit':
+100. 			print('Obrigado por jogar!')
+101. 			sys.exit()
+102.
+103. 		move = move.split()
+104. 		if len(move) == 2 and move[0].isdigit() and move[1].isdigit() and
+isValidMove(int(move[0]), int(move[1])):
+105. 			return [int(move[0]), int(move[1])]
+106. 		print('Digite um numero de 0 a 59,um espaço, depois um numero de 0 a 14.')
+107.
+108.
+109. def playAgain():
+110. 	# Essa função retorna True se o jogador quiser jogar de novo, caso contrário
+returna False.
+111. 	print('Quer jogar de novo? (sim ou nao)')
+112. 	return input().lower().startswith('s')
+113.
+114.
+115. def showInstructions():
+116. 	print('''Instruções:
+117. Voce é o capitao do Simon, um navio caçador de tesouros. Sua missao
+118. e achar os tres tesouros submersos  que estão no oceano
+119. e coleta-los.
+120.
+121. Para jogar, digite as coordenadas de um ponto no oceano onde voce deseja jogar um
+122. aparelho sonar. O sonar pode mostrar a distancia até o bau mais proximo.
+123. Por exemplo, o d abaixo mostra onde o aparelho foi jogado, o os 2's
+124. representam uma distancia de 2 do aparelho. Os 4's representam
+125. distancia de 4 do aparelho.
+126.
+127. 444444444
+128. 4       4
+129. 4 22222 4
+130. 4 2   2 4
+131. 4 2 d 2 4
+132. 4 2   2 4
+133. 4 22222 4
+134. 4       4
+135. 444444444
+136. Aperte enter para continuar...''')
+137. 	input()
+138.
+139. 	print('''Por exemplo, este e o bau do tesouro (o "c") localizado a 2
+de distancia
+140. do aparelho sonar (o "d"):
+141.
+142. 	22222
+143. 	c   2
+144. 	2 d 2
+145. 	2   2
+146. 	22222
+147.
+148. O ponto onde o aparelho foi jogado será marcado com o número 2.
+149.
+150. Os baus de tesouro nao se movem. Os aparalhos sonar pode detectar baus
+151. ate uma distancia de 9. Se todos os baus estiverem fora de alcance, o ponto
+152. sera marcado com um "O"
+153.
+154. Se um aparelho for jogado diretamente em cima de um bau, voce descobrira
+155. a localizacao exata do bau e ele sera coletado. O aparelho sonar permacera
+156. onde for jogado.
+157.
+158. Quando voce coletar um bau, os aparelhos irao atualizar para mostrar o proximo
+159. bau que estiver mais perto.
+160. Pressione enter para continuar...''')
+161. 	input()
+162. 	print()
+163.
+164.
+165. print('S O N A R !')
+166. print()
+167. print('Voce gostaria de ler as instrucoes? (sim/nao)')
+168. if input().lower().startswith('s'):
+169. 	showInstructions()
+170.
+171. while True:
+172. 	# configuracoes do jogo
+173. 	sonarDevices = 16
+174. 	theBoard = getNewBoard()
+175. 	theChests = getRandomChests(3)
+176. 	drawBoard(theBoard)
+177. 	previousMoves = []
+178.
+179. 	while sonarDevices > 0:
+180. 		# Inicio de um turno:
+181.
+182. 		# mostra bau/aparelho status
+183. 		if sonarDevices > 1: extraSsonar = 's'
+184. 		else: extraSsonar = ''
+185. 		if len(theChests) > 1: extraSchest = 's'
+186. 		else: extraSchest = ''
+187. 		print('Voce tem %s aparelhos sonar %s sobrando. %s baus do tesouro%s sobrando.' %
+(sonarDevices, extraSsonar, len(theChests), extraSchest))
+188.
+189. 		x, y = enterPlayerMove()
+190. 		previousMoves.append([x, y]) # we must track all moves so that sonar
+devices can be updated.
+191.
+192. 		moveResult = makeMove(theBoard, theChests, x, y)
+193. 		if moveResult == False:
+194. 			continue
+195. 		else:
+196. 			if moveResult == 'Voce encontou um bau do tesouso!':
+197. 				# atualiza os aparelhos atualmente no mapa.
+198. 				for x, y in previousMoves:
+199. 				makeMove(theBoard, theChests, x, y)
+200. 			drawBoard(theBoard)
+201. 			print(moveResult)
+202.
+203. 		if len(theChests) == 0:
+204. 			print('You have found all the sunken treasure chests! Congratulations
+and good game!')
+205. 			break
+206.
+207. 		sonarDevices -= 1
+208.
+209. 	if sonarDevices == 0:
+210. 		print('Todos os aparelho sonar acabaram! Voce tem que virar o navio voltar pra casa')
+211. 		print('sabendo que ainda existem baus no mar! Game Over.')
+212. 		print(' Eles estavam nas seguintes coordenadas:')
+213. 		for x, y in theChests:
+214. 			print(' %s, %s' % (x, y))
+215.
+216. 	if not playAgain():
+217. 		sys.exit()
