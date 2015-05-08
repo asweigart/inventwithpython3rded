@@ -350,14 +350,14 @@ Las listas pueden contener otros valores, incluyendo otras listas. Digamos que t
 >>> tareas = ['limpiar', 'cortar el césped', 'ir al supermercado']
 >>> pastelesFavoritos = ['manzanas', 'zarzamora']
 >>> listaDeListas = [comestibles, tareas, pastelesFavoritos]
->>> listOfLists
+>>> listaDeListas
 [['huevos', 'leche', 'sopa', 'manzanas', 'pan'], ['limpiar', 'cortar el césped', 'ir al supermercado'], ['manzanas', 'zarzamora']]
 
-Para obtener un elemento dentro de una lista de listas, usarías dos conjuntos de corchetes como este: listaDeLIstas[1][2] que devolvería la cadena 'ir al supermercado'.
+Para obtener un elemento dentro de una lista de listas, usarías dos conjuntos de corchetes como este: listaDeListas[1][2] que devolvería la cadena 'ir al supermercado'.
 
 Esto es porque listaDeListas[1][2] devuelve ['limpiar', 'cortar el césped', 'ir al supermercado'][2]. Lo que finalmente devuelve 'ir al supermercado':
 
-listOfLists[1][2]
+listaDeListas[1][2]
          ▼
 [['huevos', 'leche', 'sopa', 'manzanas', 'pan'], ['limpiar', 'cortar el césped', 'ir al supermercado'], ['manzanas', 'zarzamora']][1][2]
          ▼
@@ -423,25 +423,26 @@ Note que los tipos de dato integer y float no tienen ningún método.
 
 Los métodos de lista reverse() y append()
 
-The list data type also has methods. The reverse() method will reverse the order of the items in the list. Try entering spam = [1, 2, 3, 4, 5, 6, 'meow', 'woof'], and then spam.reverse() to reverse the list. Then enter spam to view the contents of the variable.
+El tipo de datos list también tiene métodos. El método reverse() invertirá el orden de los elementos en la lista. Intenta introducir spam = [1, 2, 3, 4, 5, 6, 'miau', 'guau'], y después spam.reverse() para invertir la lista. Entonces, introduce spam para ver los contenidos de la variable.
 
->>> spam = [1, 2, 3, 4, 5, 6, 'meow', 'woof']
+>>> spam = [1, 2, 3, 4, 5, 6, 'miau', 'guau']
 >>> spam.reverse()
 >>> spam
-['woof', 'meow', 6, 5, 4, 3, 2, 1]
+['guau', 'miau', 6, 5, 4, 3, 2, 1]
 
-The most common list method you’ll use is append(). This method will add the value you pass as an argument to the end of the list. Try entering the following into the interactive shell:
+El método mas común de lista que usarás es append(). Este método añadirá el valor que pasas como argumento al final de la lista- Intenta introducir lo siguiente en el intérprete interactivo:
 
->>> eggs = []
->>> eggs.append('hovercraft')
->>> eggs
-['hovercraft']
->>> eggs.append('eels')
->>> eggs
-['hovercraft', 'eels']
->>> eggs.append(42)
->>> eggs
-['hovercraft', 'eels', 42]
+>>> huevos = []
+>>> huevos.append('aerodeslizador')
+>>> huevos
+['aerodeslizador']
+>>> huevos.append('anguilas')
+>>> huevos
+['aerodeslizador', 'anguilas']
+>>> huevos.append(42)
+>>> huevos
+['aerodeslizador', 'anguilas', 42]
+
 
 These methods do change the lists they are called on. They don’t return a new list. We say that these methods change the list in-place.
 
