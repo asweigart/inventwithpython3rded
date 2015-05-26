@@ -389,7 +389,6 @@ Ya que el método upper() devuelve una cadena, también puedes llamar un método
 
 >>> '¡Hola mundo!'.upper().lower()
 '¡hola mundo!'
-
 '¡Hola mundo!'.upper() devuelve la cadena '¡HOAL MUNDO!', y entonces se llama el método lower() de esta cadena. Esto devuelve la cadena '¡hola mundo!', que es el valor final de la evaluación.
 
 '¡Hola mundo!'.upper().lower()
@@ -443,31 +442,30 @@ El método mas común de lista que usarás es append(). Este método añadirá e
 >>> huevos
 ['aerodeslizador', 'anguilas', 42]
 
+Estos métodos cambian las listas que los llaman. No devuelven una nueva lista. Decimos que esos métodos cambian la lista "en el sitio".
 
-These methods do change the lists they are called on. They don’t return a new list. We say that these methods change the list in-place.
+El método de lista split()
 
-The split() List Method
+La línea 59 es una larga línea de código, pero en realidad es solamente una simple sentencia de asignación. Esta línea utiliza el método split(), que es un método del tipo de dato string, al igual que los métodos lower() y upper().
 
-Line 59 is a long line of code, but it is really just a simple assignment statement. This line also uses the split() method, which is a method for the string data type like the lower() and upper() methods.
+ 59. palabras = 'hormiga babuino tejon murcielago oso castor camello gato almeja cobra pantera coyote cuervo ciervo perro burro pato aguila huron zorro rana cabra ganso halcon leon lagarto llama topo mono alce raton mula salamandra nutria buho panda loro paloma piton conejo carnero rata cuervo rinoceronte salmon foca tiburon oveja mofeta perezoso serpiente araña cigüeña cisne tigre sapo trucha pavo tortuga comadreja ballena lobo wombat cebra'.split()
 
-59. words = 'ant baboon badger bat bear beaver camel cat clam cobra cougar coyote crow deer dog donkey duck eagle ferret fox frog goat goose hawk lion lizard llama mole monkey moose mouse mule newt otter owl panda parrot pigeon python rabbit ram rat raven rhino salmon seal shark sheep skunk sloth snake spider stork swan tiger toad trout turkey turtle weasel whale wolf wombat zebra'.split()
+Esta sentencia de asignación tiene solamente una larga cadena, llena de palabras separadas por espacios. Al final de la cadena hay una llamada al método split(). El método split() devuelve una lista en la que cada palabra en la cadena es un elemento aparte. La separación ocurre en cualquier lugar donde haya un espacio en la cadena.
 
-This assignment statement has just one long string, full of words separated by spaces. And at the end of the string is a split() method call. The split() method evaluates to a list with each word in the string as a single list item. The “split” occurs wherever a space occurs in the string.
+Es fácil escribir código utilizando split(). Si lo hubieses creado desde el principio como lista, tendrías que haber escrito: ['hormiga', 'babuino', 'tejon',... y así, con comillas y comas para cada palabra.
 
-It is easier to type the code using split(). If you created it as a list to begin with, you would have to type: ['ant', 'baboon', 'badger',... and so on, with quotes and commas for every word.
+Por ejemplo, intenta introducir lo siguiente en el intérprete interactivo:
 
-For example, try entering the following into the interactive shell:
+>>> oracion = input()
+Mi muy enérgica madre tan sólo nos sirvió nachos.
+>>> oracion.split()
+['Mi', 'muy', 'enérgica', 'madre', 'tan', 'sólo', 'nos', 'sirvió', 'nachos.']
 
->>> sentence = input()
-My very energetic mother just served us nachos.
->>> sentence.split()
-['My', 'very', 'energetic', 'mother', 'just', 'served', 'us', 'nachos.']
+El resultado es una lista de nueve cadenas, una cadena para una de las palabras de la cadena original, Los espacios no están incluidos en ningún elemento de la lista.
 
-The result is a list of nine strings, one string for each of the words in the original string. The spaces are not included in any of the items in the list.
+También puedes añadir tus propias palabras a la cadena en la línea 59, o eliminar cualquiera que no quieres que esté en el juego. Solamente asegurate que los espacios separan las palabras.
 
-You can also add your own words to the string on line 59, or remove any you don’t want to be in the game. Just make sure that spaces separate the words.
-
-How the Code Works
+Cómo Funciona el Código
 
 Line 61 defines the getRandomWord() function. A list argument will be passed for its wordList parameter. This function will return a single secret word from the list in wordList.
 
