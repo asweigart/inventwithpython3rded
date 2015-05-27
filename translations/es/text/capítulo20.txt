@@ -529,7 +529,7 @@ K_RALT  Alt derecha   K_F12 F12
 
 El evento KEYUP se crea cuando el jugador libera una tecla que estaba pulsando. Los objetos Event de tipo KEYUP también tienen un atributo key, igual que los eventos KEYDOWN.
 
-La línea 105 comprueba si el jugador ha liberado la tecla "z", lo que desactivará el truco reversa. En ese caso, la línea 106 asignaFalse a trucoReversa y la línea 107 reinicia el puntaje a 0. Reiniciamos el puntaje para desalentar al jugador de usar los trucos.
+La línea 105 comprueba si el jugador ha liberado la tecla "z", lo que desactivará el truco reversa. En ese caso, la línea 106 asigna False a trucoReversa y la línea 107 reinicia el puntaje a 0. Reiniciamos el puntaje para desalentar al jugador de usar los trucos.
 
 Las líneas 108 a 110 hacen lo mismo para la tecla "x" y el truco lento. Cuando la tecla "x" es liberada, se asigna False a trucoLento y el puntaje del jugador se reinicia a 0.
 
@@ -559,7 +559,7 @@ El Método move_ip()
 
 Ahora que hemos manipulado los eventos del teclado, vamos a manipular los eventos del ratón que se hayan generado. El juego Evasor no hace nada si el jugador ha pulsado un botón del ratón, pero responde al mover el ratón. Esto da al jugador dos formas de controlar al personaje del jugador en el juego: el teclado o el ratón.
 
-El evento MOUSEMOTION se genera cuando el ratón se mueve. Los objetos Event cuyo atributo type es MOUSEMOTION también tienen un atributo llamado pos para la posición del evento. Este atributo pos almacena una tupla de coordenadas X e Y que indican a qué parte de la ventana se ha movido el cursor del ratón. Si el tipo del evento es MOUSEMOTION, el personaje del jugador se mueve a la posición del cursor del ratón.
+El evento MOUSEMOTION (movimiento del ratón) se genera cuando el ratón se mueve. Los objetos Event cuyo atributo type es MOUSEMOTION también tienen un atributo llamado pos para la posición del evento. Este atributo pos almacena una tupla de coordenadas X e Y que indican a qué parte de la ventana se ha movido el cursor del ratón. Si el tipo del evento es MOUSEMOTION, el personaje del jugador se mueve a la posición del cursor del ratón.
 
 El método move_ip() para objetos Rect modificará horizontal o verticalmente la posición del objeto Rect en un número de píxeles. Por ejemplo, rectanguloJugador.move_ip(10, 20) desplaza al objeto Rect 10 píxeles a la derecha y 20 píxeles hacia abajo. Para mover al objeto Rect hacia la izquierda o hacia arriba, debes pasar valores negativos. Por ejemplo, rectanguloJugador.move_ip(-5, -15) mueve al objeto Rect 5 píxeles hacia la izquierda y 15 píxeles hacia arriba.
 
@@ -634,42 +634,42 @@ La línea 151 mueve el cursor a la misma posición que el personaje del jugador.
 Específicamente, el cursor estará justo en el medio del objeto Rect del personaje ya que recibe como coordenadas los atributos centerx y centery de rectanguloJugador. El cursor del ratón sigue existiendo y puede ser desplazado, a pesar de que sea invisible a causa de la llamada a pygame.mouse.set_visible(False) en la línea 47.
 
 153.         # Mueve los villanos hacia abajo.
-154.         for b in villanos:
+154.         for v in villanos:
 
 Ahora recorre cada estructura villano en la lista de villanos para desplazarlos ligeramente hacia abajo.
 
 155.             if not trucoReversa and not trucoLento:
-156.                 b['rect'].move_ip(0, b['velocidad'])
+156.                 v['rect'].move_ip(0, v['velocidad'])
 
 Si ninguno de los trucos ha sido activado, cada villano se desplaza hacia abajo en un número de píxeles igual a su velocidad, la cual se almacena en la clave 'velocidad'.
 
 Implementando los Trucos
 
 157.             elif trucoReversa:
-158.                 b['rect'].move_ip(0, -5)
+158.                 v['rect'].move_ip(0, -5)
 
 Si se activa el truco reversa, el villano se moverá cinco píxeles hacia arriba. Para lograr este desplazamiento del objeto Rect, pasamos -5 como segundo argumento a la función move_ip().
 
 159.             elif trucoLento:
-160.                 b['rect'].move_ip(0, 1)
+160.                 v['rect'].move_ip(0, 1)
 
 Si el truco lento ha sido activado, los villanos seguirán moviéndose hacia abajo pero su velocidad se reducirá a un píxel por iteración del bucle del juego. La velocidad normal del villano (almacenada en la clave 'velocidad' de la estructura de datos del villano) es ignorada mientras el truco lento está activado.
 
-Quitando los villanos
+Quitando los Villanos
 
 162.         # Elimina los villanos que han caido por debajo.
-163.         for b in villanos[:]:
+163.         for v in villanos[:]:
 
 Cada villano que caiga por debajo del borde inferior de la ventana debe ser quitado de la lista de villanos. Recuerda que mientras iteramos sobre una lista no debemos modificar su contenido agregando o quitando elementos. Entonces en lugar de iterar sobre la lista de villanos con el bucle for, iteramos sobre una copia de la misma. Esta copia se crea usando una rebanada sin argumentos [:].
 
-El bucle for de la línea 163 usa una variable b para el elemento actual en la iteración sobre villanos[:].
+El bucle for de la línea 163 usa una variable v para el elemento actual en la iteración sobre villanos[:].
 
-164.             if b['rect'].top > ALTOVENTANA:
+164.             if v['rect'].top > ALTOVENTANA:
 165.                 villanos.remove(b)
 
-Evaluemos la expresión b['rect'].top. b es la estructura de datos actual de la lista villanos[:]. Cada estructura de datos villano en la lista es un diccionario con una clave 'rect', que almacena un objeto Rect. Entonces b['rect'] es el objeto Rect correspondiente al villano.
+Evaluemos la expresión v['rect'].top. v es la estructura de datos actual de la lista villanos[:]. Cada estructura de datos villano en la lista es un diccionario con una clave 'rect', que almacena un objeto Rect. Entonces v['rect'] es el objeto Rect correspondiente al villano.
 
-Finalmente, el atributo top es la coordenada Y del borde superior del área rectangular. Recuerda que las coordenadas Y aumentan cuando vamos hacia abajo. Entonces b['rect'].top > ALTOVENTANA comprobará si el borde superior el villano está por debajo del borde inferior de la ventana.
+Finalmente, el atributo top es la coordenada Y del borde superior del área rectangular. Recuerda que las coordenadas Y aumentan cuando vamos hacia abajo. Entonces v['rect'].top > ALTOVENTANA comprobará si el borde superior el villano está por debajo del borde inferior de la ventana.
 
 Si esta condición es True, entonces la línea 165 quita la estructura de datos villano de la lista de villanos.
 
@@ -706,8 +706,8 @@ La información acerca del jugador se guarda en dos variables diferentes. imagen
 El método blit() dibuja la imagen del personaje del jugador (en imagenJugador) sobre superficieVentana en la ubicación contenida en rectanguloJugador.
 
 177.         # Dibuja cada villano
-178.         for b in villanos:
-179.             superficieVentana.blit(b['superficie'], b['rect'])
+178.         for v in villanos:
+179.             superficieVentana.blit(v['superficie'], v['rect'])
 
 El bucle for de la línea 178 dibuja cada villano en el objeto superficieVentana. Cada elemento en la lista de villanos es un diccionario. Las claves 'superficie' y 'rect' del diccionario contienen al objeto Surface con la imagen del villano y al objeto Rect con información sobre su tamaño y ubicación, respectivamente.
 
@@ -744,7 +744,7 @@ Cuando el jugador pierde, el juego deja de reproducir la música de fondo y repr
 197.     pygame.display.update()
 198.     esperarTeclaJugador()
 
-Las líneas 195 y 196 llaman a la función dibujarTexto para dibujar el texto "Juego Terminado" sobre el objeto superficieVentana. La línea 197 llama a pygame.display.update() para dibujar este objeto Surface sobre la pantalla. Después de mostrar el texto, el juego se detiene mediante la función esperarTeclaJugador() hasta que el jugador presione una tecla.
+Las líneas 195 y 196 llaman a la función dibujarTexto() para dibujar el texto "Juego Terminado" sobre el objeto superficieVentana. La línea 197 llama a pygame.display.update() para dibujar este objeto Surface sobre la pantalla. Después de mostrar el texto, el juego se detiene mediante la función esperarTeclaJugador() hasta que el jugador presione una tecla.
 
 200.     sonidoJuegoTerminado.stop()
 
@@ -770,14 +770,8 @@ Y todo esto es posible gracias a que sabes cómo dar instrucciones paso a paso, 
 
 Aquí hay una lista de sitios web que pueden enseñarte más sobre programación en Python:
 
-• http://reddit.com/r/inventwithpython – En este sitio hay varios usuarios que pueden ayudarte con el material de este libro.
-• http://inventwithpython.com - El sitio web de este libro, que incluye todo el código fuente de estos programas e información adicional. Este sitio también tiene los archivos de imagen y sonido usados en nuestros programas Pygame.
+• http://inventwithpython.com/es - El sitio web de este libro, que incluye todo el código fuente de estos programas e información adicional. Este sitio también tiene los archivos de imagen y sonido usados en nuestros programas Pygame.
 • http://inventwithpython.com/pygame – Mi segundo libro, Making Games with Python & Pygame (Creando Juegos con Python & Pygame), que cubre Pygame en mayor detalle. Es gratis descargarlo e incluye el código fuente de muchos más juegos.
-• http://inventwithpython.com/hacking – Mi tercer libro, Hacking Secret Ciphers with Python (Descifrando Códigos Secretos con Python), que cubre temas de criptografía e incluye programas de descifrado de códigos. También puedes descargarlo gratis.
-• http://inventwithpython.com/automate – Mi cuarto libro, Automate the Boring Stuff with Python (Automatiza las Cosas Aburridas con Python), que te enseña habilidades prácticas de programación. También es gratis para descargar.
-• http://python.org/doc/ - Más tutoriales de Python y la documentación de todos los módulos y funciones de Python.
-• http://pygame.org/docs/ - Documentación completa sobre los módulos y funciones de Pygame.
-• al@inventwithpython.com - Mi dirección de correo electrónico. No dudes en enviarme un email con tus preguntas acerca de este libro o de programación en Python.
 
 O puedes encontrar más información sobre Python buscando en la web. Ve a http://google.com y busca "Programación en Python" o "Tutoriales Python" para encontrar sitios web que te enseñen más acerca de programación en Python.
 
