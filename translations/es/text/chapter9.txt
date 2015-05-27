@@ -465,184 +465,183 @@ El resultado es una lista de nueve cadenas, una cadena para una de las palabras 
 
 También puedes añadir tus propias palabras a la cadena en la línea 59, o eliminar cualquiera que no quieres que esté en el juego. Solamente asegurate que los espacios separan las palabras.
 
-Cómo Funciona el Código
+Como Funciona el Código
 
-Line 61 defines the getRandomWord() function. A list argument will be passed for its wordList parameter. This function will return a single secret word from the list in wordList.
+La línea 61 define la función obtenerPalabraAlAzar(). Se pasará una lista como argumento por su parámetro listaDePalabras. Esta función devolverá una palabra secreta de la lista en listaDePalabras.
 
- 61. def getRandomWord(wordList):
- 62.     # This function returns a random string from the passed list of strings.
- 63.     wordIndex = random.randint(0, len(wordList) - 1)
- 64.     return wordList[wordIndex]
+ 61. def obtenerPalabraAlAzar(listaDePalabras):
+ 62.     # Esta función devuelve una cadena al azar de la lista de cadenas pasada como argumento.
+ 63.     índiceDePalabras = random.randint(0, len(listaDePalabras) - 1)
+ 64.     return listaDePalabras[índiceDePalabras]
 
-Line 63 stores a random index for this list in the wordIndex variable. You do this by calling randint() with two arguments. The first argument is 0 (for the first possible index) and the second argument is the value that the expression len(wordList) - 1 evaluates to (for the last possible index in a wordList).
+La línea 63 almacena un índice aleatorio para esta lista en la variable índiceDePalabras. Lo haces llamando randint() con dos argumentos. El primer argumento es 0 (para el primer índice posible) y el segundo argumento es el valor que devuelve la expresión len(listaDePalabras) - 1 (para el último índice posible en una listaDePalabras).
 
-List indexes start at 0, not 1. If you have a list of three items, the index of the first item is 0, the index of the second item is 1, and the index of the third item is 2. The length of this list is 3, but the index 3 would be after the last index. This is why line 63 subtracts 1 from the length. The code on line 63 will work no matter what the size of wordList is. Now you can add or remove strings to wordList if you like.
+Los índices de lista comienzan en 0 y no en 1. Si tienes una lista de tres elementos, el índice del primer elemento es 0, el índice del segundo elemento es 1, y el índice del tercer elemento es 2. La longitud de este lista es 3, pero el índice 3 estaría después del último índice. Esta es la razón por la que en la línea 63 se resta 1 de la longitud. El código en la línea 63 funcionará sin importar el tamaño de listaDePalabras. Ahora si quieres puedes añadir o quitar cadenas a listaDePalabras.
 
-The wordIndex variable will be set to a random index for the list passed as the wordlist parameter. Line 64 will return the element in wordList at the integer index stored in wordIndex.
+A la variable índiceDePalabras se asignará un índice al azar para la lista pasada como el parámetro listaDePalabras. La línea 64 devolverá el elemento en listaDePalabras almacenado en el índice entero índiceDePalabras.
 
-Let’s pretend ['apple', 'orange', grape'] was passed as the argument to getRandomWord() and that randint(0, 2) returned the integer 2. That would mean that line 64 would evaluate to return wordList[2], and then evaluate to return 'grape'. This is how the getRandomWord() returns a random string in the wordList list.
+Supongamos que ['manzana', 'naranja', 'uva'] se pasa como argumento a obtenerPalabraAlAzar() y que randint(0, 2) devuelve el número entero 2. Eso significaría que la línea 64 devolvería listaDePalabras[2] , y entonces se evaluaría para devolver 'uva'. Así es como obtenerPalabraAlAzar() devuelve una cadena aleatoria de la lista listaDePalabras.
 
-So the input to getRandomWord() is a list of strings, and the return value output is a randomly selected string from that list. This will be useful for the Hangman game to select a secret word for the player to guess.
+Así, la entrada de obtenerPalabraAlAzar() es una lista de cadenas, y la salida que devuelve es una cadena seleccionada al azar de esa lista. Esto será útil en el juego del ahorcado para seleccionar una palabra secreta que adivine el jugador.
 
-Displaying the Board to the Player
+Mostrando el tablero al Jugador
 
-Next, you need a function to print the hangman board on the screen. It will also display how many letters the player has correctly (and incorrectly) guessed.
+A continuación, necesitas una función para imprimir el tablero del ahorcado en pantalla. También mostrará el número de letras que el jugador ha adivinado correctamente (e incorrectamente).
 
- 66. def displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord):
- 67.     print(HANGMANPICS[len(missedLetters)])
+ 66. def mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta):
+ 67.     print(IMÁGENES_AHORCADO[len(letrasIncorrectas)])
  68.     print()
 
-This code defines a new function named displayBoard(). This function has four parameters:
+Este código define una nueva función llamada mostrarTablero(). Esta función tiene cuatro parámetros:
 
-• HANGMANPICS - A list of multi-line strings that will display the board as ASCII art. (The global HANGMANPICS variable will be passed for this parameter.)
-• missedLetters - A string of the letters the player has guessed that are not in the secret word.
-• correctLetters - A string of the letters the player has guessed that are in the secret word.
-• secretWord – A string of the secret word that the player is trying to guess.
+• IMÁGENES_AHORCADO - Una lista de cadenas múlti-línea que mostrarán el tablero como arte ASCII. (La variable global IMÁGENES_AHORCADO será pasado por este parámetro.)
+• letrasIncorrectas - Una cadena de las letras que el jugador ha probado que no están en la palabra secreta.
+• letrasCorrectas - Una cadena de las letras que el jugador ha probado que se encuentran en la palabra secreta.
+• palabraSecreta - Una cadena de la palabra secreta que el jugador está tratando de adivinar.
 
-The first print() function call will display the board. HANGMANPICS will be a list of strings for each possible board. HANGMANPICS[0] shows an empty gallows, HANGMANPICS[1] shows the head (when the player misses one letter), HANGMANPICS[2] shows a head and body (when the player misses two letters), and so on until HANGMANPICS[6] which shows the full hangman.
+La primera llamada a la función print() mostrará el tablero. IMÁGENES_AHORCADO será una lista de cadenas para cada tablero posible. IMÁGENES_AHORCADO[0] muestra una horca vacía, IMÁGENES_AHORCADO[1] muestra la cabeza (cuando el jugador falla una letra), IMÁGENES_AHORCADO[2] muestra una cabeza y el cuerpo (cuando el jugador falla dos letras), y así sucesivamente hasta IMÁGENES_AHORCADO[6] que muestra al ahorcado completo.
 
-The number of letters in missedLetters will reflect how many incorrect guesses the player has made. Call len(missedLetters) to find out this number. So, if missedLetters is 'aetr' then len('aetr') will return 4. Printing HANGMANPICS[4] will display the appropriate hangman board for 4 misses. This is what HANGMANPICS[len(missedLetters)] on line 67 evaluates to.
+El número de letras en letrasIncorrectas reflejará cuantos intentos incorrectos ha hecho el jugador. Llama a len(letrasIncorrectas) para averiguar este número. Así que, si letrasIncorrectas es 'aetr' entonces len ('aetr') devolverá 4. Imprimir IMÁGENES_AHORCADO[4] mostrará el tablero del ahorcado apropiado para 4 fallos. Esto es lo que devuelve IMÁGENES_AHORCADO[len(letrasIncorrectas)] en la línea 67.
 
- 70.     print('Missed letters:', end=' ')
- 71.     for letter in missedLetters:
- 72.         print(letter, end=' ')
+ 70.     print('Letras incorrectas:', end=' ')
+ 71.     for letra in letrasIncorrectas:
+ 72.         print(letra, end=' ')
  73.     print()
 
-Line 70 prints the string 'Missed letters:' with a space character at the end instead of a newline. Remember that the keyword argument end=' ' uses only one = sign (like =), not two (like ==).
+La línea 70 imprime la cadena 'Letras incorrectas:' con un carácter de espacio al final en lugar de un salto de línea. Recuerde que el argumento de palabra clave end=' ' utiliza sólo un signo = (como =), no dos (como ==).
 
-Line 71 is a new type of loop, called a for loop. A for loop often uses the range() function. Both are explained in the next two sections.
+La línea 71 es un nuevo tipo de bucle, llamado bucle for. Un bucle for a menudo utiliza la función range(). Ambos se explican en las dos secciones siguientes.
 
-The range() and list() Functions
+Las Funciones range() y list()
 
-When called with one argument, range() will return a range object of integers from 0 up to (but not including) the argument. This range object can be converted to the more familiar list data type with the list() function. Try entering list(range(10)) into the interactive shell:
+Cuando se llama con un argumento, range() devolverá un objeto range de números enteros desde 0 hasta (pero sin incluir) el argumento. Este objeto range se puede convertir al tipo de datos más común list con la función list(). Intenta introducir list(range(10)) en el intérprete interactivo:
 
 >>> list(range(10))
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
->>> list('Hello')
-['H', 'e', 'l', 'l', 'o']
+>>> list('Hola')
+['H', 'o', 'l', 'a']
 
-The list() function is similar to the str() or int() functions. It takes the value it is passed and returns a list. It’s easy to generate huge lists with the range() function. Try entering in list(range(10000)) into the interactive shell:
+La función list() es similar a las funciones str() o int(). Toma el valor que se pasa y devuelve una lista. Es fácil generar enormes listas con la función range(). Prueba a introducir list(range(10,000)) en el intérprete interactivo:
 
 >>> list(range(10000))
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,...
-      ...skipped for brevity...
-...9989, 9990, 9991, 9992, 9993, 9994, 9995, 9996, 9997, 9998, 9999]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, ...
+      ... se omite por brevedad ...
+... 9989, 9990, 9991, 9992, 9993, 9994, 9995, 9996, 9997, 9998, 9999]
 
-The list is so huge, that it won’t even all fit onto the screen. But you can store the list into a variable:
+La lista es tan grande, que ni siquiera cabrá completa en la pantalla. Pero puedes almacenar la lista en una variable:
 
 >>> spam = list(range(10000))
 
-If you pass two integer arguments to range(), the range object it returns is from the first integer argument up to (but not including) the second integer argument. Try entering list(range(10, 20)) into the interactive shell:
+Si pasa dos argumentos enteros a range(), el objeto range que devuelve va desde el primer argumento entero hasta (pero sin incluir) el segundo argumento entero. Intente introducir lista (range(10, 20)) en el intérprete interactivo:
 
 >>> list(range(10, 20))
 [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
-The range() function is often used in for loops, which are much like the while loops you’ve already seen.
+La función range() se utiliza a menudo en los bucles for, que son muy parecidos a los bucles while que ya has visto.
 
-for Loops
+Los bucles for
 
-The for loop is useful for looping over a list of values. This is different from the while loop, which loops as long as a certain condition is True. A for statement begins with the for keyword, followed by a new variable name, followed by the in keyword, followed by an iterable value, and ending with a colon.
+El bucle for es útil para recorrer una lista de valores. Esto es diferente al bucle while, los bucles while se repiten mientras una determinada condición es True. Una sentencia for comienza con la palabra clave for, seguida por un nuevo nombre de variable, seguido por la palabra clave in, seguido por un valor iterable, y terminando con dos puntos.
 
-An iterable is a value of the list, range, or string data types. There are also other data types that are considered iterables which will be introduced later.
+Un iterable es un valor de los tipos de datos list, range, o cadena. También hay otros tipos de datos que se consideran iterables que serán presentado más adelante.
 
-Each time the program execution iterates through the loop the new variable in the for statement is assigned the value of the next item in the list.
+Cada vez que la ejecución del programa se repite a través del bucle a la nueva variable en la sentencia for se le asigna el valor del siguiente elemento de la lista.
 
 >>> for i in range(5):
-...     print('i is set to ' + str(i))
+...     print('i se establece en ' + str(i))
 ...
-i is set to 0
-i is set to 1
-i is set to 2
-i is set to 3
-i is set to 4
+i se establece en 0
+i se establece en 1
+i se establece en 2
+i se establece en 3
+i se establece en 4
 
-The range object returned by range(5) is equivalent to the list [0, 1, 2, 3, 4] in a for statement. The first time the execution goes through the code in the for-block, the variable i will be set to 0. On the next iteration, i will be set to 1, and so on.
+El objeto range devuelto por range(5) es equivalente a la lista [0, 1, 2, 3, 4] en una instrucción for. La primera vez que la ejecución pasa por el código en el bloque for, se asigna 0 a la variable i. En la siguiente iteración, se asigna 1 a i, y así sucesivamente.
 
-The for statement automatically converts the range object returned by range() into a list, so there’s no need for list(range(5)) in the for statement. Just use range(5).
+La sentencia for convierte automáticamente el objeto range devuelto por range() en una lista, así que no hay necesidad de hacer list(range(5)) en la sentencia for. Es suficiente con range(5).
 
-Lists and strings are also iterable data types. You can use them in for statements. Try entering the following into the interactive shell:
+Las listas y las cadenas son también tipos de datos iterables. Puedes usarlos en las sentencias for. Prueba a introducir lo siguiente en el intérprete interactivo:
 
->>> for thing in ['cats', 'pasta', 'programming', 'spam']:
-...     print('I really like ' + thing)
+>>> for cosa in ['gustan los gatos', 'gusta la pasta', 'gusta la programación', 'gusta el spam']:
+...     print('Realmente me ' + cosa)
 ...
-I really like cats
-I really like pasta
-I really like programming
-I really like spam
+Realmente me gustan los gatos
+Realmente me gusta la pasta
+Realmente me gusta la programación
+Realmente me gusta el spam
 
->>> for i in 'Hello':
+>>> for i in 'Hola':
 ...     print(i)
 ...
 H
-e
-l
-l
 o
+l
+a
 
-A while Loop Equivalent of a for Loop
+Un Bucle while equivalente a un Bucle for
 
-The for loop is similar to the while loop, but when you only need to iterate over items in a list, using a for loop is much less code to type. This is a while loop that acts the same as the previous for loop by adding extra code:
+El bucle for es similar al bucle while, pero sólo cuando necesitas iterar sobre los elementos de una lista, usar un bucle for es mucho menos código que escribir. Este es un bucle while que se comporta igual que el anterior bucle for mediante la adición de código extra:
 
->>> iterableVal = ['cats', 'pasta', 'programming', 'spam']
->>> index = 0
->>> while (index < len(iterableVal)):
-...     thing = iterableVal[index]
-...     print('I really like ' + thing)
-...     index = index + 1
+>>> valorIterable = ['gustan los gatos', 'gusta la pasta', 'gusta la programación', 'gusta el spam']
+>>> índice = 0
+>>> While (índice < len(iterableVal)):
+...     cosa = iterableVal[índice]
+...     print('Realmente me ' + cosa)
+...     índice = índice + 1
 ...
-I really like cats
-I really like pasta
-I really like programming
-I really like spam
+Realmente me gustan los gatos
+Realmente me gusta la pasta
+Realmente me gusta la programación
+Realmente me gusta el spam
 
-But using the for statement automatically does this extra code and makes programming easier since you have less to type.
+Pero el uso de la sentencia for hace automáticamente el código adicional y facilita la programación ya que tienes menos que escribir.
 
-The rest of the displayBoard() function displays the missed letters and creates the string of the secret word with all the not yet guessed letters as blanks.
+El resto de la función mostrarTablero() muestra las letras incorrectas y crea la cadena de la palabra secreta con todas las letras aún no imaginado como espacios en blanco.
 
- 70.     print('Missed letters:', end=' ')
- 71.     for letter in missedLetters:
- 72.         print(letter, end=' ')
+ 70.     print('Letras incorrectas:', end=' ')
+ 71.     for letra in letrasIncorrectas:
+ 72.         print(letra, end=' ')
  73.     print()
 
-The for loop on line 71 will iterate over each character in the missedLetters string and print them on the screen. Remember that the end=' ' will replace the newline character that is printed after the string with a single space character.
+El bucle en la línea 71 iterará sobre cada carácter de la cadena letrasIncorrectas e los imprimirá en pantalla. Recuerde que end=' ' reemplazará el carácter de salto de línea que se imprime después de la cadena con un único carácter de espacio.
 
-For example, if missedLetters was 'ajtw' this for loop would display a j t w.
+Por ejemplo, si letrasIncorrectas era 'ajtw' este bucle for mostraría a j t w.
 
-Slicing
+Cortes
 
-List slicing creates a new list value with a subset of another list’s items. In code, specify two indexes (the beginning and end) with a colon in the square brackets after a list. For example, try entering the following into the interactive shell:
+El corte de lista crea un nuevo valor de lista con un subconjunto de elementos de otra lista. En el código, se especifican dos índices (al inicio y final) separados por dos puntos en los corchetes después de una lista. Por ejemplo, introduce lo siguiente en el intérprete interactivo:
 
->>> spam = ['apples', 'bananas', 'carrots', 'dates']
->>> spam[1:3]
-['bananas', 'carrots']
+>>> spam = ['manzanas', 'bananas', 'zanahorias', 'fechas']
+>>> spam [1: 3]
+['bananas', 'zanahorias']
 
-The expression spam[1:3] evaluates to a list with items from index 1 up to (but not including) index 3 in spam.
+La expresión spam[1: 3] se evalúa a una lista con los elementos desde el índice 1 hasta (pero sin incluir) el índice 3 en spam.
 
-If you leave out the first index, Python will automatically think you want index 0 for the first index:
+Si se omite el primer índice, Python pensará automáticamente que deseas el índice 0 como primer índice:
 
->>> spam = ['apples', 'bananas', 'carrots', 'dates']
->>> spam[:2]
-['apples', 'bananas']
+>>> spam = ['manzanas', 'bananas', 'zanahorias', 'fechas']
+>>> spam[2]
+['manzanas', 'bananas']
 
-If you leave out the second index, Python will automatically think you want the rest of the list:
+Si se omite el segundo índice, Python pensará automáticamente que deseas el resto de la lista:
 
->>> spam = ['apples', 'bananas', 'carrots', 'dates']
->>> spam[2:]
-['carrots', 'dates']
+>>> spam = ['manzanas', 'bananas', 'zanahorias', 'fechas']
+>>> spam [2:]
+['zanahorias', 'fechas']
 
-Slicing is a simple way to get a subset of the items in a list. You use slices with strings in the same way you use them with lists. Each character in the string is like an item in the list. Try entering the following into the interactive shell:
+Cortar es una forma sencilla de obtener un subconjunto de los elementos de una lista. Utiliza cortes con cadenas en la misma forma que los utilizas con listas. Cada carácter de la cadena es como un elemento de la lista. Prueba a introducir lo siguiente en el intérprete interactivo:
 
->>> myName = 'Zophie the Fat Cat'
->>> myName[4:12]
-'ie the F'
->>> myName[:10]
-'Zophie the'
->>> myName[7:]
-'the Fat Cat'
+>>> miNombre = 'Zophie el Gato Gordo'
+>>> miNombre[4:12]
+'ie el Ga'
+>>> miNombre[:10]
+'Zophie el '
+>>> miNombre[7:]
+'el Gato Gordo'
 
-The next part of the code in Hangman uses slicing.
+La siguiente parte del código en el ahorcado utiliza cortes.
 
-Displaying the Secret Word with Blanks
+Mostrando la Palabra Secreta con espacios en blanco
 
 Now you want code to print the secret word, but with blank lines for the letters that have not been guessed. You can use the _ character (called the underscore character) for this. First create a string with nothing but one underscore for each letter in the secret word. Then replace the blanks for each letter in correctLetters.
 
