@@ -20,7 +20,7 @@ Código Fuente de El Ahorcado
 
 El juego de este capítulo es un poco más largo que el de los juegos anteriores, pero una buena parte de este es arte ASCII para las figuras de el ahorcado. Introduzca lo siguiente en el editor de archivos y guárdelo como ahorcado.py.
 
-hangman.py
+ahorcado.py
 
   1. import random
   2. IMÁGENES_AHORCADO = ['''
@@ -176,7 +176,7 @@ Como Funciona el Código
 
 El programa El Ahorcado selecciona aleatoriamente una palabra secreta a partir de una lista secreta de palabras. El módulo random provee está habilidad, por lo que la línea 1 lo importa.
 
-  2. IM\u00c1GENES_AHORCADO = ['''
+  2. IMÁGENES_AHORCADO = ['''
   3.
   4.   +---+
   5.   |   |
@@ -190,7 +190,7 @@ El programa El Ahorcado selecciona aleatoriamente una palabra secreta a partir d
 
 Esta nueva sentencia de asignación se extiende a lo largo de las líneas 2 a la 58 en el código fuente. Para ayudarte a entender los que este código significa, aprendamos acerca de cadenas multi-línea.
 
-Cadenas multi-línea
+Cadenas Multi-Línea
 
 Hasta ahora todas las cadenas han sido de una sola línea y tenían un carácter de comillas al principio y al final. Sin embargo, si utiliza comillas triples al comienzo y al final entonces la cadena puede ir a lo largo de varias líneas:
 
@@ -284,7 +284,7 @@ También puedes usar los corchetes para cambiar el valor de un elemento en una l
 
 La nueva cadena 'ALCE' sobreescribe el segundo elemento en la lista animales. De manera que animales[1] devolverá el segundo elemento de la lista en las expresiones, pero también puedes usarlo en el lado izquierdo de una sentencia de asignación para asignar un valor como el segundo elemento de la lista.
 
-Concatenación de listas
+Concatenación de Listas
 
 Puedes unir listas en una sola lista con el operador +, del mismo modo como puedes unir cadenas. Unir listas con el operador + es una concatenación de listas. Intenta introducir lo siguiente en el intérprete interactivo:
 
@@ -371,7 +371,7 @@ Métodos
 
 Los métodos son funciones adjuntas a un valor. Por ejemplo, todos los valores de cadena tienen el método lower(), el cuál devuelve una copia de la cadena en minúsculas. Lo puedes llamarlo como 'Hola.lower()', lo cual devuelve 'hola'. No puedes llamar a lower() por sí mismo y no puedes pasar un argumento a lower() (como en lower('Hola')). Debes añadir el método a una cadena especifica usando un punto. La siguiente sección describe en mayor profundidad los métodos de cadena.
 
-Figura 9-1: Los índices de una Lista de listas
+Figura 9-1: Los índices de una Lista de listas.
 
 Los métodos de cadena lower() y upper()
 
@@ -389,6 +389,7 @@ Ya que el método upper() devuelve una cadena, también puedes llamar un método
 
 >>> '¡Hola mundo!'.upper().lower()
 '¡hola mundo!'
+
 '¡Hola mundo!'.upper() devuelve la cadena '¡HOAL MUNDO!', y entonces se llama el método lower() de esta cadena. Esto devuelve la cadena '¡hola mundo!', que es el valor final de la evaluación.
 
 '¡Hola mundo!'.upper().lower()
