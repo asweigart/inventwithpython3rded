@@ -502,7 +502,7 @@ Este código define una nueva función llamada mostrarTablero(). Esta función t
 
 La primera llamada a la función print() mostrará el tablero. IMÁGENES_AHORCADO será una lista de cadenas para cada tablero posible. IMÁGENES_AHORCADO[0] muestra una horca vacía, IMÁGENES_AHORCADO[1] muestra la cabeza (cuando el jugador falla una letra), IMÁGENES_AHORCADO[2] muestra una cabeza y el cuerpo (cuando el jugador falla dos letras), y así sucesivamente hasta IMÁGENES_AHORCADO[6] que muestra al ahorcado completo.
 
-El número de letras en letrasIncorrectas reflejará cuantos intentos incorrectos ha hecho el jugador. Llama a len(letrasIncorrectas) para averiguar este número. Así que, si letrasIncorrectas es 'aetr' entonces len ('aetr') devolverá 4. Imprimir IMÁGENES_AHORCADO[4] mostrará el tablero del ahorcado apropiado para 4 fallos. Esto es lo que devuelve IMÁGENES_AHORCADO[len(letrasIncorrectas)] en la línea 67.
+El número de letras en letrasIncorrectas reflejará cuantos intentos incorrectos ha hecho el jugador. Llama a len(letrasIncorrectas) para averiguar este número. Así que, si letrasIncorrectas es 'aetr' entonces len('aetr') devolverá 4. Imprimir IMÁGENES_AHORCADO[4] mostrará el tablero del ahorcado apropiado para 4 fallos. Esto es lo que devuelve IMÁGENES_AHORCADO[len(letrasIncorrectas)] en la línea 67.
 
  70.     print('Letras incorrectas:', end=' ')
  71.     for letra in letrasIncorrectas:
@@ -533,7 +533,7 @@ La lista es tan grande, que ni siquiera cabrá completa en la pantalla. Pero pue
 
 >>> spam = list(range(10000))
 
-Si pasa dos argumentos enteros a range(), el objeto range que devuelve va desde el primer argumento entero hasta (pero sin incluir) el segundo argumento entero. Intente introducir lista (range(10, 20)) en el intérprete interactivo:
+Si pasa dos argumentos enteros a range(), el objeto range que devuelve va desde el primer argumento entero hasta (pero sin incluir) el segundo argumento entero. Intenta introducir list(range(10, 20)) en el intérprete interactivo:
 
 >>> list(range(10, 20))
 [10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
@@ -644,282 +644,285 @@ La siguiente parte del código en el ahorcado utiliza cortes.
 
 Mostrando la Palabra Secreta con espacios en blanco
 
-Now you want code to print the secret word, but with blank lines for the letters that have not been guessed. You can use the _ character (called the underscore character) for this. First create a string with nothing but one underscore for each letter in the secret word. Then replace the blanks for each letter in correctLetters.
+Ahora quieres código que imprima la palabra secreta, pero con líneas en blanco para las letras que no se han adivinado. Puedes utilizar el carácter _ (llamado carácter de subrayado) para esto. En primer lugar, crea una cadena con nada más que un subrayado para cada letra de la palabra secreta. A continuación, reemplaza los espaciosVacíos para cada letra en letrasCorrectas.
 
-So if the secret word was 'otter' then the blanked out string would be '_____' (five _ characters). If correctLetters was the string 'rt' you would change the string to '_tt_r'. Line 75 to 79 is the code that does that.
+Así que, si la palabra secreta era "nutria" entonces la cadena en blanco sería "_____" (cinco caracteres _). Si letrasCorrectas era la cadena 'rt' tendrías que cambiar la cadena a '__tr__'. Es lo que hacen las líneas 75 a 79 del código.
 
- 75.     blanks = '_' * len(secretWord)
+ 75.     espaciosVacíos = '_' * len(palabraSecreta)
 
-Line 75 creates the blanks variable full of _ underscores using string replication. Remember that the * operator can also be used on a string and an integer, so the expression '_' * 5 evaluates to '_____'. This will make sure that blanks has the same number of underscores as secretWord has letters.
+La línea 75 crea la variable espaciosVacíos llena de subrayados _ mediante la replicación de cadenas. Recuerda que el operador * también se puede aplicar a una cadena y un entero, por lo que la expresión '_' * 5 devuelve '_____'. Esto nos asegurará que espaciosVacíos tenga tantos subrayados como letras haya en palabraSecreta.
 
- 77.     for i in range(len(secretWord)): # replace blanks with correctly guessed letters
- 78.         if secretWord[i] in correctLetters:
- 79.             blanks = blanks[:i] + secretWord[i] + blanks[i+1:]
+ 77.     for i in range(len(palabraSecreta)): # completar los espacios vacíos con las letras adivinadas
+ 78.         if palabraSecreta[i] in letrasCorrectas:
+ 79.             espaciosVacíos = espaciosVacíos[:i] + palabraSecreta[i] + espaciosVacíos[i+1:]
 
-Line 77 has a for loop to go through each letter in secretWord and replace the underscore with the actual letter if it exists in correctLetters.
+La línea 77 tiene un bucle for que pasa por cada letra de palabraSecreta y reemplaza el subrayado con la letra actual si existe en letrasCorrectas.
 
-For example, pretend the value of secretWord is 'otter' and the value in correctLetters is 'tr'. You would want the string '_tt_r' displayed to the player. Let’s figure out how to create this string.
+Por ejemplo, suponga que el valor de palabraSecreta es "nutria" y el valor en letrasCorrectas es 'tr'. Querrías que la cadena '__tr__' sea mostrada al jugador. Vamos a averiguar cómo crear esta cadena.
 
-Line 77’s len(secretWord) call would return 5. The range(len(secretWord)) call becomes range(5), which makes the for loop iterate over 0, 1, 2, 3, and 4.
+La llamada a len(palabraSecreta) devolvería 5. La llamada a range(len(palabraSecreta)) se convierte en range(5), lo que hace que el bucle itere sobre 0, 1, 2, 3 y 4.
 
-Because the value of i will take on each value in [0, 1, 2, 3, 4], the code in the for loop is the same as this:
+Debido a que el valor de i se enfrentará a cada valor en [0, 1, 2, 3, 4], el código en el bucle for es lo mismo que:
 
-if secretWord[0] in correctLetters:
-    blanks = blanks[:0] + secretWord[0] + blanks[1:]
+if palabraSecreta[0] in letrasCorrectas:
+    espaciosVacíos = espaciosVacíos[:0] + palabraSecreta[0] + espaciosVacíos[1:]
 
-if secretWord[1] in correctLetters:
-    blanks = blanks[:1] + secretWord[1] + blanks[2:]
+if palabraSecreta[1] in letrasCorrectas:
+    espaciosVacíos = espaciosVacíos[:1] + palabraSecreta[1] + espaciosVacíos[2:]
 
-if secretWord[2] in correctLetters:
-    blanks = blanks[:2] + secretWord[2] + blanks[3:]
+if palabraSecreta[2] in letrasCorrectas:
+    espaciosVacíos = espaciosVacíos[:2] + palabraSecreta[2] + espaciosVacíos[3:]
 
-if secretWord[3] in correctLetters:
-    blanks = blanks[:3] + secretWord[3] + blanks[4:]
+if palabraSecreta[3] in letrasCorrectas:
+    espaciosVacíos = espaciosVacíos[:3] + palabraSecreta[3] + espaciosVacíos[4:]
 
-if secretWord[4] in correctLetters:
-    blanks = blanks[:4] + secretWord[4] + blanks[5:]
+if palabraSecreta[4] in letrasCorrectas:
+    espaciosVacíos = espaciosVacíos[:4] + palabraSecreta[4] + espaciosVacíos[5:]
 
-If you are confused as to what the value of something like secretWord[0] or blanks[3:] is, then look at Figure 9-2. It shows the value of the secretWord and blanks variables, and the index for each letter in the string.
+Si estás confundido respecto a cual es el valor de algo como palabraSecreta[0] o espaciosVacíos[3:], entonces mira la Figura 9-2. Muestra el valor de las variables palabraSecreta y espaciosVacíos, y el índice para cada letra en la cadena.
 
-Figure 9-2: The indexes of the blanks and secretWord strings.
+Figura 9-2: Los índices de las cadenas espaciosVacíos y palabraSecreta.
 
-If you replace the list slices and the list indexes with the values that they represent, the loop code would be the same as this:
+Si reemplazas las cortes de lista y los índices de lista con los valores que representan, el código del bucle sería algo como:
 
-if 'o' in 'tr': # False
-    blanks = '' + 'o' + '____' # This line is skipped.
+if 'n' in 'tr': # Falso
+    espaciosVacíos = '' + 'n' + '_____' # Esta línea se salta.
 
-if 't' in 'tr': # True
-    blanks = '_' + 't' + '___' # This line is executed.
+if 'u' in 'tr': # Falso
+    espaciosVacíos = '_' + 'u' + '____' # Esta línea se salta.
 
-if 't' in 'tr': # True
-    blanks = '_t' + 't' + '__' # This line is executed.
+if 't' in 'tr': # Verdadero
+    espaciosVacíos = '__' + 't' + '___' # Esta línea se ejecuta.
 
-if 'e' in 'tr': # False
-    blanks = '_tt' + 'e' + '_' # This line is skipped.
+if 'r' in 'tr': # Verdadero
+    espaciosVacíos = '__t' + 'r' + '__' # Esta línea se ejecuta.
 
-if 'r' in 'tr': # True
-    blanks = '_tt_' + 'r' + '' # This line is executed.
+if 'i' in 'tr': # Falso
+    espaciosVacíos = '__tr' + 'i' + '_' # Esta línea se salta.
 
-# blanks now has the value '_tt_r'
+if 'a' in 'tr': # Falso
+    espaciosVacíos = '__tr_' + 'a' + '' # Esta línea se salta.
 
-The above code examples all do the same thing when secretWord is 'otter' and correctLetters is 'tr'. The next few lines of code print the new value of blanks with spaces between each letter.
+# espaciosVacíos ahora tiene el valor '__tr__'
 
- 81.     for letter in blanks: # show the secret word with spaces in between each letter
- 82.         print(letter, end=' ')
+Los ejemplos de código anteriores todos hacen lo mismo cuando palabraSecreta es "nutria" y letrasCorrectas es 'tr'. Las siguientes líneas de código imprimen el nuevo valor de los espaciosVacíos con espacios entre cada letra.
+
+ 81.     for letra in espaciosVacíos: # mostrar la palabra secreta con espacios entre cada letra
+ 82.         print(letra, end=' ')
  83.     print()
 
-Get the Player’s Guess
+Obtener el intento del Jugador
 
-The getGuess() function will be called so that the player can enter a letter to guess. The function returns the letter the player guessed as a string. Further, getGuess() will make sure that the player types a valid letter before returning from the function.
+La función obtenerIntento() será llamada para que el jugador pueda introducir una letra como intento. La función devuelve la letra que el jugador ha intentado como cadena. Además, obtenerIntento() se asegurará que el jugador escriba una letra válida antes de salir de la función.
 
- 85. def getGuess(alreadyGuessed):
- 86.     # Returns the letter the player entered. This function makes sure the player entered a single letter, and not something else.
+ 85. def obtenerIntento(letrasProbadas):
+ 86.     # Devuelve la letra ingresada por el jugador. Verifica que el jugador ha ingresado sólo una letra, y no otra cosa.
 
-A string of the letters the player has guessed is passed as the argument for the alreadyGuessed parameter. Then the getGuess() function asks the player to guess a single letter. This single letter will be getGuess()’s return value.
+Se pasa como argumento una cadena de las letras que el jugador ha intentado para el parámetro letrasProbadas. Entonces la función obtenerIntento() pide al jugador que adivine una sola letra. Esta letra será el valor que devolverá obtenerIntento().
 
  87.     while True:
- 88.         print('Guess a letter.')
- 89.         guess = input()
- 90.         guess = guess.lower()
+ 88.         print('Adivina una letra.')
+ 89.         intento = input()
+ 90.         intento = intento.lower()
 
-Line 87’s while loop will keep asking the player for a letter until they enter text that is:
+El bucle while de la línea 87 se mantendrá pidiendo al jugador una letra hasta que introduzca texto que sea:
 
-1.  A single letter.
-2.  A letter they have not guessed previously.
+1. Una sola letra.
+2. Una letra que no haya intentado previamente.
 
-The condition for the while loop is simply the Boolean value True. That means the only way execution will ever leave this loop is by executing a break statement (which leaves the loop) or a return statement (which leaves not just the loop but the entire function).
+La condición para el bucle while es simplemente el valor booleano True. Eso significa que la única forma de salir de la ejecución de este bucle es mediante la ejecución de una sentencia break (que sale del bucle) o una sentencia return (que sale no sólo del bucle sino de toda la función).
 
-The code inside the loop asks the player to enter a letter, which is stored in the variable guess. If the player entered a capitalized letter, it will be overwritten with a to lowercase letter on line 90.
+El código dentro del bucle pide al jugador que introduzca una letra, que se almacena en la variable intento. Si el jugador introduce una letra mayúscula, se sobrescribe con una letra minúscula en la línea 90.
 
-elif (“Else If”) Statements
+Sentencias elif ("Else If")
 
-The next part of the Hangman program uses elif statements. You can think of elif “else if” statements as saying “If this is true, do this. Or else if this next condition is true, do that. Or else if none of them are true, do this last thing.”
+La siguiente parte del programa Ahorcado utiliza sentencias elif. Puedes pensar las sentencias elif "else if" como diciendo "Si esto es verdad, hacer esto. O bien, si esta próxima condición es verdadera, hacer aquello. O bien, si ninguno de ellos es verdadero, hacer esto último".
 
-Take a look at the following code:
+Echa un vistazo al siguiente código:
 
-if catName == 'Fuzzball':
-    print('Your cat is fuzzy.')
-elif catName == 'Spots':
-        print('Your cat is spotted.')
+if gatoNombre == 'Boladepelo':
+    print('Tu gato es peludo.')
+elif gatoNombre == 'Manchas':
+    print('Tu gato está manchado.')
 else:
-    print('Your cat is not fuzzy or spotted.')
+    print('Tu gato no es peludo ni manchado.')
 
-If the catName variable is equal to the string 'Fuzzball', then the if statement’s condition is True and the if-block tells the user that their cat is fuzzy. However, if this condition is False, then Python tries the elif (“else if”) statement’s condition next. If catName is 'Spots', then the 'Your cat is spotted.' string is printed to the screen. If both are False, then the code tells the user their cat isn’t fuzzy or spotted.
+Si la variable gatoNombre es igual a la cadena 'Boladepelo', entonces la condición de la sentencia if es verdadera y el bloque if le dice al usuario que su gato es peludo. Sin embargo, si esta condición es falsa, entonces Python intenta a continuación la condición de la sentencia elif ("else if"). Si gatoNombre es 'Manchas', entonces se imprime en la pantalla 'Tu gato está manchado'. Si ambos son falsos, el código le dice al usuario su gato no es peludo ni manchada.
 
-You can have as many elif statements as you want:
+Puedes tener tantas sentencias elif como quieras:
 
-if catName == 'Fuzzball':
-    print('Your cat is fuzzy.')
-elif catName == 'Spots':
-    print('Your cat is spotted.')
-elif catName == 'Chubs':
-    print('Your cat is chubby.')
-elif catName == 'Puff':
-    print('Your cat is puffy.')
+if gatoNombre == 'Boladepelo':
+    print('Tu gato es peludo.')
+elif gatoNombre == 'Machas':
+    print('Tu gato está manchado.')
+elif gatoNombre == 'Gordito':
+    print('Tu gato es gordito.')
+elif gatoNombre == 'Esponjoso':
+    print('Tu gato es esponjoso.')
 else:
-    print('Your cat is neither fuzzy nor spotted nor chubby nor puffy.')
+    print('Tu gato no es peludo ni manchado ni gordito ni esponjoso.')
 
-When one of the elif conditions is True, its code is executed and then execution jumps to the first line past the else-block. So one and only one of the blocks in the if-elif-else statements will be executed. You can also leave off the else-block if you don’t need one, and just have if-elif statements.
+Cuando una de las condiciones elif es True, se ejecuta su código y después que es ejecutado salta a la primera línea después del bloque else. Así que uno y sólo uno de los bloques en las declaraciones if-elif-else se ejecutará. También puedes obviar el bloque else si no necesitas uno, y dejar tan sólo sentencias if-elif.
 
-Making Sure the Player Entered a Valid Guess
+Cómo Comprobar que el Jugador Introdujo un Intento Válido
 
- 91.         if len(guess) != 1:
- 92.             print('Please enter a single letter.')
- 93.         elif guess in alreadyGuessed:
- 94.             print('You have already guessed that letter. Choose again.')
- 95.         elif guess not in 'abcdefghijklmnopqrstuvwxyz':
- 96.             print('Please enter a LETTER.')
+ 91.         if len(intento) != 1:
+ 92.             print('Por favor, introduce una letra.')
+ 93.         elif intento in letrasProbadas:
+ 94.             print('Ya has probado esa letra. Elige otra.')
+ 95.         elif intento not in 'abcdefghijklmnñopqrstuvwxyz':
+ 96.             print('Por favor ingresa una LETRA.')
  97.         else:
- 98.             return guess
+ 98.             return intento
 
-The guess variable contains player’s letter guess. The program needs to make sure they typed in a valid guess: one and only one lowercase letter. If they didn't, the execution should loop back and ask them for a letter again.
+La variable intento contiene la letra del intento del jugador. El programa necesita asegurarse que escribió un intento válido: una y sólo una letra minúscula. Si no lo hizo, la ejecución debe regresar al bucle y pedirle de nuevo una letra.
 
-Line 91’s condition checks if guess is not one character long. Line 93’s condition checks if guess already exists inside the alreadyGuessed variable. Line 95’s condition checks if guess is not a lowercase letter.
+La condición de la línea 91 verifica si el intento no tiene longitud de un carácter. La condición de la línea 93 verifica si el intento ya existe en la variable letrasProbadas. Línea de 95 condición comprueba si el intento no es una letra minúscula.
 
-If all of these conditions are False, then the else statement’s block executes and getGuess() returns the value in guess on line 98.
+Si todas estas condiciones son falsas, entonces el bloque de la sentencia else se ejecuta y obtenerIntento() devuelve el valor del intento en la línea 98.
 
-Remember, only one of the blocks in if-elif-else statements will be executed.
+Recuerda, sólo se ejecutará uno de los bloques en las sentencias if-elif-else.
 
-Asking the Player to Play Again
+Pedir al jugador que Juegue Otra Vez
 
-100. def playAgain():
-101.     # This function returns True if the player wants to play again, otherwise it returns False.
-102.     print('Do you want to play again? (yes or no)')
-103.     return input().lower().startswith('y')
+100. def jugarDeNuevo():
+101.     # Esta función devuelve True si el jugador quiere volver a jugar, en caso contrario devuelve False.
+102.     print('¿Quieres jugar de nuevo? (sí o no)')
+103.     return input().lower().startswith('s')
 
-The playAgain() function has just a print() function call and a return statement. The return statement has an expression that looks complicated, but you can break it down. Here’s a step by step look at how Python evaluates this expression if the user types in YES.
+La función jugarDeNuevo() tiene sólo una llamada a la función print() y una sentencia return. La sentencia return tiene una expresión que parece complicada, pero se puede separar por partes. Aquí hay una revisión paso a paso de cómo Python evalúa esta expresión, si el usuario escribe SI.
 
-input().lower().startswith('y')
+input().lower().startswith('s')
             ▼
-  'YES'.lower().startswith('y')
+   'SI'.lower().startswith('s')
             ▼
-          'yes'.startswith('y')
+           'SI'.startswith('s')
             ▼
            True
 
-The point of the playAgain() function is to let the player type in yes or no to tell the program if they want to play another round of Hangman. The player should be able to type YES, yes, Y, or anything else that begins with a “Y” in order to mean “yes”. If the player types in YES, then the return value of input() is the string 'YES'. And 'YES'.lower() returns the lowercase version of the attached string. So the return value of 'YES'.lower() is 'yes'.
+El objetivo de la función jugarDeNuevo() es dejar que el jugador escriba sí o no para indicar al programa si quiere jugar otra ronda de Ahorcado. El jugador debe ser capaz de escribir SI, si, S, o cualquier otra cosa que comienza con una "S" para decir "si". Si el jugador escribe SI, entonces el valor que devuelve input() es la cadena 'SI'. Y 'SI'.lower() devuelve la versión en minúsculas de la cadena adjunta. Así que el valor que devuelve 'SI'.lower() es "si".
 
-But there’s the second method call, startswith('y'). This function returns True if the associated string begins with the string parameter between the parentheses, and False if it doesn’t. The return value of 'yes'.startswith('y') is True.
+Pero ahí está la segunda llamada al método startswith('s'). Esta función devuelve True si la cadena asociada comienza con la cadena dada como parámetro entre paréntesis, y False si no lo hace. El valor que devuelve 'si'.startswith('s') es True.
 
-Now you have evaluated this expression! What it does is let the player type in a response, lowercases the response, checks if it begins with the letter 'y', then returns True if it does and False if it doesn’t.
+¡Ahora has evaluado esta expresión! Lo que hace es permitir que el jugador escriba una respuesta, convierte la respuesta a minúsculas, comprueba si se empieza con la letra 's', a continuación, devuelve True si lo cumple y False si no.
 
-On a side note, there’s also an endswith(someString) string method that will return True if the string ends with the string in someString and False if it doesn’t. endswith() is sort of like the opposite of startswith().
+En una nota aparte, también existe un método de cadena endswith(algunaCadena) que devolverá True si la cadena termina con la cadena en algunaCadena y False si no lo hace. endswith() es algo así como lo contrario de startswith().
 
-Review of the Hangman Functions
+Revisión de las Funciones del Ahorcado
 
-That’s all the functions we are creating for this game! Let’s review them:
+¡Estas son todas las funciones que estamos creando para este juego! Vamos a repasarlas :
 
-• getRandomWord(wordList) will take a list of strings passed to it, and return one string from it. That is how a word is chosen for the player to guess.
-• displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord) will show the current state of the board, including how much of the secret word the player has guessed so far and the wrong letters the player has guessed. This function needs four parameters passed to work correctly. HANGMANPICS is a list of strings that hold the ASCII art for each possible hangman board. correctLetters and missedLetters are strings made up of the letters that the player has guessed that are in and not in the secret word, respectively. And secretWord is the secret word the player is trying to guess. This function has no return value.
-• getGuess(alreadyGuessed) takes a string of letters the player has already guessed and will keep asking the player for a letter that isn’t in alreadyGuessed.) This function returns the string of the valid letter the player guessed.
-• playAgain() is a function that asks if the player wants to play another round of Hangman. This function returns True if the player does and False if the player doesn’t.
+• obtenerPalabraAlAzar(listaDePalabras) tomará una lista de cadenas que se le pasan, y devuelve una cadena de ahí. Es como se elige una palabra para que el jugador adivine.
+• mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta) mostrarán el estado actual del tablero, incluyendo cuanto ha adivinado el jugador de la palabra secreta hasta el momento, y las letras equivocadas que el jugador ha intentado. Esta función necesita que se le pasen cuatro parámetros ​​para que funcione correctamente. IMÁGENES_AHORCADO es una lista de cadenas que contiene el arte ASCII para cada posible tablero del ahorcado. letrasCorrectas y letrasIncorrectas son cadenas formadas por las letras que el jugador ha intentado que están y no están en la palabra secreta, respectivamente. Y palabraSecreta es la palabra secreta que el jugador está tratando de adivinar. Esta función no tiene valor de retorno.
+• obtenerIntento(letrasProbadas) toma una cadena con las letras que el jugador ya ha adivinado y se mantiene pidiendo al jugador por una letra que no está en letrasProbadas. Esta función devuelve la cadena de la letra valida que el jugador intentó.
+• jugarDeNuevo() es una función que pregunta si el jugador quiere jugar otra ronda de Ahorcado. Esta función devuelve True si el jugador lo hace y False si el jugador no lo hace.
 
-After the functions is the code for the main part of the program at line 106. Everything previous was just function definitions and a large assignment statement for HANGMANPICS.
+Después de las funciones está el código de la parte principal del programa en la línea 106. Todo lo anterior fueron solamente definiciones de función y una larga sentencia de asignación para IMÁGENES_AHORCADO.
 
-Setting Up the Variables
+Configuración de las variables
 
-106. print('H A N G M A N')
-107. missedLetters = ''
-108. correctLetters = ''
-109. secretWord = getRandomWord(words)
-110. gameIsDone = False
+106. print('A H O R C A D O')
+107. letrasIncorrectas = ''
+108. letrasCorrectas = ''
+109. palabraSecreta = obtenerPalabraAlAzar(palabras)
+110. juegoTerminado = False
 
-Line 106 is the first print() call that executes when the game is run. It displays the title of the game. Next is assigning blank strings for missedLetters and correctLetters since the player hasn’t guessed any missed or correct letters yet.
+La línea 106 es la primera llamada a print() que se ejecuta cuando inicia el juego. Muestra el título del juego. A continuación, se asignan cadenas en blanco para letrasIncorrectas y letrasCorrectas ya que el jugador no ha intentado aún ninguna letra falla o correcta.
 
-The getRandomWord(words) call will evaluate to a randomly selected word from the words list.
+La llamada a obtenerPalabraAlAzar(palabras) devolverá una palabra seleccionada al azar entre la lista de palabras.
 
-Line 110 sets gameIsDone to False. The code will set gameIsDone to True when it wants to signal that the game is over and should ask the player if they want to play again.
+La línea 110 establece juegoTerminado como False. El código establecerá gameIsDone True cuando quiera indicar que el juego ha terminado y debería preguntar al jugador si quiere volver a jugar.
 
-Displaying the Board to the Player
+Mostrando el Tablero al Jugador
 
 112. while True:
-113.     displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
+113.     mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta)
 
-The while loop’s condition is always True, which means it will loop forever until a break statement is encountered. (This happens later on line 147.)
+La condición del bucle while siempre es True, lo que significa que se repetirá indefinidamente hasta que se encuentre una sentencia break. (Esto sucede más adelante en la línea 147.)
 
-Line 113 calls the displayBoard() function, passing it the list of hangman ASCII art pictures and the three variables set on lines 107, 108, and 109. Based on how many letters the player has correctly guessed and missed, this function displays the appropriate hangman board to the player.
+La línea 113 llama a la función mostrarTablero(), pasándole la lista de imágenes de arte ASCII del ahorcado y las tres variables creadas en las líneas 107, 108 y 109. En base al número de letras que el jugador ha intentado correctamente y ha fallado, esta función muestra el tablero del ahorcado adecuado al jugador.
 
-Letting the Player Enter Their Guess
+Dejar que el Jugador Introduzca un Intento
 
-115.     # Let the player type in a letter.
-116.     guess = getGuess(missedLetters + correctLetters)
+115.     # Permite al jugador escribir una letra.
+116.     intento = obtenerIntento(letrasIncorrectas + letrasCorrectas)
 
-The getGuess() function needs all the letters in missedLetters and correctLetters combined, so line 116 concatenates the strings in these variables and passes the result as the argument. This argument is needed by getGuess() because the function has to check if the player types in a letter that they have already guessed.
+La función obtenerIntento() necesita todas las letras en letrasIncorrectas y letrasCorrectas combinadas, así que la línea 116 concatena las cadenas en estas variables y pasa el resultado como argumento. Este argumento es necesario para obtenerIntento() ya que la función tiene que comprobar si el jugador escribe una letra que ya ha adivinado.
 
-Checking if the Letter is in the Secret Word
+Verificando si la Letra está en la Palabra Secreta
 
-118.     if guess in secretWord:
-119.         correctLetters = correctLetters + guess
+118.     if intento in palabraSecreta:
+119.         letrasCorrectas = letrasCorrectas + intento
 
-If the guess string exists in secretWord, then concatenate guess to the end of the correctLetters string. This string will be the new value of correctLetters.
+Si la cadena del intento existe en palabraSecreta, concatena entonces el intento el final de la cadena letrasCorrectas. Esta cadena será el nuevo valor de letrasCorrectas.
 
-Checking if the Player has Won
+Verificando si el Jugador ha Ganado
 
-121.         # Check if the player has won
-122.         foundAllLetters = True
-123.         for i in range(len(secretWord)):
-124.             if secretWord[i] not in correctLetters:
-125.                 foundAllLetters = False
+121.         # Verifica si el jugador ha ganado.
+122.         encontradoTodasLasLetras = True
+123.         for i in range(len(palabraSecreta)):
+124.             if palabraSecreta[i] not in letrasCorrectas:
+125.                 encontradoTodasLasLetras = False
 126.                 break
 
-How can the program know if the player has guessed every letter in the secret word? Well, correctLetters has each letter that the player correctly guessed and secretWord is the secret word itself. But you can’t just check if correctLetters == secretWord because consider this case: if secretWord was the string 'otter' and correctLetters was the string 'orte', then correctLetters == secretWord would be False even though the player has guessed each letter in the secret word.
+¿Cómo puede el programa de saber si el jugador ha adivinado todas las letras de la palabra secreta? Bueno, letrasCorrectas tiene cada letra que el jugador ha intentado correctamente y palabraSecreta es la propia palabra secreta. Pero uno no puede comprobar si letrasCorrectas == palabraSecreta ya que considera este caso: si palabraSecreta fue la cadena 'nutria' y letrasCorrectas es la cadena 'tiranu', entonces letrasCorrectas == palabraSecreta sería False aunque que el jugador ha adivinado todas las letras en la palabra secreta.
 
-The only way you can be sure the player won is to iterate over each letter in secretWord and see if it exists in correctLetters. If, and only if, every letter in secretWord exists in correctLetters will the player have won.
+La única manera en la que puedes estar seguro que el jugador ganó es iterar sobre cada letra en palabraSecreta y ver si existe en letrasCorrectas. Si, y sólo si, existe cada letra de palabraSecreta en letrasCorrectas el jugador habrá ganado.
 
-If you find a letter in secretWord that doesn’t exist in correctLetters, you know that the player has not guessed all the letters. The new variable foundAllLetters is set to True on line 122 before the loop begins. The loop starts out assuming that all the letters in the secret word have been found. But the loop’s code on line 125 will change foundAllLetters to False the first time it finds a letter in secretWord that isn’t in correctLetters.
+Si encuentras una letra en palabraSecreta que no existe en letrasCorrectas, sabes que el jugador no ha adivinado todas las letras. La nueva variable encontradoTodasLasLetras se establece en True en la línea 122 antes de que empiece el bucle. El bucle comienza asumiendo que se han encontrado todas las letras de la palabra secreta. Pero el código del bucle en la línea 125 va a cambiar encontradoTodasLasLetras a False la primera vez que encuentre una letra en palabraSecreta que no está en letrasCorrectas.
 
-127.         if foundAllLetters:
-128.             print('Yes! The secret word is "' + secretWord + '"! You have won!')
-129.             gameIsDone = True
+127.         if encontradoTodasLasLetras:
+128.             print('¡Sí! ¡La palabra secreta es "' + palabraSecreta + '"! ¡Has ganado!')
+129.             juegoTerminado = True
 
-If all letters in the secret word have been found, the player is told they have won and gameIsDone is set to True.
+Si se han encontrado todas las letras de la palabra secreta, se le dice al jugador que ha ganado y juegoTerminado se establece en True.
 
-When the Player Guesses Incorrectly
+Cuando el Jugador Realiza un Intento Incorrecto
 
 130.     else:
-131.         missedLetters = missedLetters + guess
+131.         letrasIncorrectas = letrasIncorrectas + intento
 
-This is the start of the else-block. Remember, the code in this block will execute if the condition was False. But which condition? To find out, point your finger at the start of the else keyword and move it straight up like in Figure 9-3. You’ll see that the else keyword's indentation is the same as the if keyword's indentation on line 118.
+Este es el inicio del bloque else. Recuerda que el código de este bloque se ejecutará si la condición era False. ¿Pero cuál condición? Para averiguarlo, apunta el dedo al principio de la palabra clave else y muévelo hacia arriba, como en la Figura 9-3. Verás que la indentación de la palabra clave else es la mismo que la indentación de la palabra clave if en la línea 118.
 
-Figure 9-3: The else statement is matched with the if statement at the same indentation.
+Figura 9-3: La sentencia else coincide en la misma indentación que la sentencia if
 
-So if the condition on line 118 (guess in secretWord) was False, then the execution moves into this else-block.
+Así que si la condición en la línea 118 (intento in palabraSecreta) era False, entonces la ejecución se mueve a este bloque else.
 
-Wrongly guessed letters are concatenated to the missedLetters string on line 131. This is like what line 119 did for letters the player guessed correctly.
+Las letras que se han intentado erróneamente se concatenan a la cadena letrasIncorrectas en la línea 131. Esto es como lo que se hizo en la línea 119 para las letras que el jugador ha adivinado correctamente.
 
-133.         # Check if player has guessed too many times and lost
-134.         if len(missedLetters) == len(HANGMANPICS) - 1:
-135.             displayBoard(HANGMANPICS, missedLetters, correctLetters, secretWord)
-136.             print('You have run out of guesses!\nAfter ' + str(len(missedLetters)) + ' missed guesses and ' + str(len(correctLetters)) + ' correct guesses, the word was "' + secretWord + '"')
-137.             gameIsDone = True
+133.         # Comprobar si el jugador ha agotado sus intentos y ha perdido.
+134.         if len(letrasIncorrectas) == len(IMÁGENES_AHORCADO) - 1:
+135.             mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta)
+136.             print('¡Te has quedado sin intentos!\nDespués de ' + str(len(letrasIncorrectas)) + ' intentos fallidos y ' + str(len(letrasCorrectas)) + ' aciertos, la palabra era "' + palabraSecreta + '"')
+137.             juegoTerminado = True
 
-Each time the player guesses wrong, the code concatenates the wrong letter to the string in missedLetters. So the length of missedLetters (or, in code, len(missedLetters)) is also the number of wrong guesses.
+Cada vez que el jugador falla un intento, el código concatena la letra incorrecta con la cadena en letrasIncorrectas. Así, la longitud de letrasIncorrectas (o, en código, len(letrasIncorrectas)) es también el número de intentos equivocados.
 
-The HANGMANPICS list has 7 ASCII art strings. So when len(missedLetters) equals 6, you know the player has lost because the hangman picture will be finished. Remember, HANGMANPICS[0] is the first item in the list, and HANGMANPICS[6] is the last one.
+La lista IMÁGENES_AHORCADO tiene 7 cadenas de arte ASCII. Así que cuando len(letrasIncorrectas) sea igual a 6, ya sabes que el jugador ha perdido porque se habrá terminado la imagen del ahorcado. Recuerda, IMÁGENES_AHORCADO[0] es el primer elemento de la lista, e IMÁGENES_AHORCADO[6] es la última.
 
-So, when the length of the missedLetters string is equal to len(HANGMANPICS) - 1 (that is, 6), the player has run out of guesses. Line 136 prints the secret word and line 137 sets the gameIsDone variable is set to True.
+Así que, cuando la longitud de la cadena letrasIncorrectas es igual a len(IMÁGENES_AHORCADO) - 1 (es decir, 6), el jugador se ha quedado sin intentos. La línea 136 imprime la palabra secreta y la línea 137 asigna True a la variable juegoTerminado.
 
-139.     # Ask the player if they want to play again (but only if the game is done).
-140.     if gameIsDone:
-141.         if playAgain():
-142.             missedLetters = ''
-143.             correctLetters = ''
-144.             gameIsDone = False
-145.             secretWord = getRandomWord(words)
+139.     # Preguntar al jugador si quiere volver a jugar(pero sólo si el juego ha terminado).
+140.     if juegoTerminado:
+141.         if jugarDeNuevo():
+142.             letrasIncorrectas = ''
+143.             letrasCorrectas = ''
+144.             juegoTerminado = False
+145.             palabraSecreta = obtenerPalabraAlAzar(palabras
 
-If the player won or lost after guessing their letter, the game should ask the player if they want to play again. The playAgain() function handles getting a yes or no from the player, so it is called on line 141.
+Si el jugador gana o pierde después de intentar una letra, el juego debe preguntar al jugador si quiere volver a jugar. La función jugarDeNuevo() se encarga de obtener un si o no del jugador, por lo que se llama en la línea 141.
 
-If the player does want to play again, the values in missedLetters and correctLetters must be reset to blank strings, gameIsDone to False, and a new secret word stored in secretWord. This way when the execution loops back to the beginning of the while loop on line 112, the board will be back to a fresh game.
+Si el jugador quiere jugar otra vez, los valores de letrasIncorrectas y letrasCorrectas deben restablecerse a cadenas en blanco, juegoTerminado en False, y se almacena una nueva palabra secreta en palabraSecreta. De esta manera, cuando la ejecución vuelve al inicio del bucle while en la línea 112, el tablero volverá a un nuevo juego.
 
 146.         else:
 147.             break
 
-If the player did not type in something that began with “y” when asked if they wanted to play again, then line 141’s condition would be False and the else-block executes. The break statement causes the execution to jump to the first instruction after the loop. But because there are no more instructions after the loop, the program terminates.
+Si el jugador no escribe algo que comienza con "s" cuando se le pregunta si quería volver a jugar, entonces la condición en la línea 141 sería False y se ejecuta el bloque else. La sentencia break hace que la ejecución salte a la primera instrucción después del bucle. Pero debido a que no hay más instrucciones después del bucle, el programa termina.
 
-Summary
+Resumen
 
-This has been a long chapter, and you’ve been introduced to several new concepts. But Hangman has been our most advanced game yet. As your games get more and more complex, it’ll be a good idea to sketch out a flow chart on paper of what happens in your program.
+Este ha sido un capítulo largo, y has sido introducido a varios conceptos nuevos. Pero Ahorcado ha sido nuestro juego más avanzado hasta el momento. A medida que los juegos se vuelven más y más complejos, va a ser una buena idea esbozar un diagrama de flujo en el papel sobre lo que sucede en tu programa.
 
-Lists are values that can contain other values. Methods are functions specific to a data type. Lists have append() and reverse() methods. Strings have lower(), upper(), split(), startswith(), and endswith() methods. You’ll learn about many more data types and methods in the rest of this book.
+Las listas son valores que pueden contener otros valores. Los métodos son funciones específicas a un tipo de datos. Las listas tienen los métodos append() y reverse(). Las cadenas tienen los métodos lower(), upper(), split(), startswith(), y endsWith(). Aprenderá sobre muchos más tipos de datos y métodos en lo que queda de este libro.
 
-The for loop is a loop that iterates over the items in a list, unlike a while loop which iterates as long as a condition is True. The elif statement lets you add an “or else if” clause to the middle of your if-else statements. The del statement can delete variables or items inside lists.
+El bucle for es un bucle que itera sobre los elementos de una lista, a diferencia de un bucle while que itera mientras una condición es True. La declaración elif te permite añadir una cláusula  "o de lo contrario, si" en el medio de tus sentencias if-else. La sentencia del puede eliminar variables o elementos dentro de las listas.
