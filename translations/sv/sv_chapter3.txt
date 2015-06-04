@@ -6,7 +6,7 @@
 •   Exekveringsflödet
 •   Strängar
 •   Sammanslagning av strängar
-•   Datatyper (såsom strängar och heltal)
+•   Datatyper (så som strängar och heltal)
 •   Att använda fileditorn för att skriva program
 •   Att spara och köra program i IDLE
 •   Funktionen print()
@@ -106,7 +106,7 @@ Skriv in ditt namn när programmet frågar efter det. Det kommer att se ut som i
 
 Figur 3-5: Den interaktiva tolken när hejsan.py har körts.
 
-När du skriver in ditt namn och trycker på ENTER, så kommer programmet att hälsa på dig. Grattis! Du skrivit ditt första program och är nu en datorprogrammerare. Tryck F5 igen för att köra programmet en andra gång och skriv in ett annat namn.
+När du skriver in ditt namn och trycker på ENTER, så kommer programmet att hälsa på dig. Grattis! Du har skrivit ditt första program och är nu en datorprogrammerare. Tryck F5 igen för att köra programmet en andra gång och skriv in ett annat namn.
 
 Om du fick ett felmeddelande, jämför din kod med bokens kod med hjälp av verktyget på http://invpy.com/diff. Kopiera och klistra in din kod från fileditorn på webbsidan och klicka på knappen Compare. Det här verktyget kommer att markera skillnader mellan din kod och koden i boken, som i Figur 3-6.
 
@@ -143,7 +143,7 @@ Det är vanligt att programmerare skriver en kommentar med programmets namn län
 
 Funktioner
 
-En funktion är som ett mini-program inuti ditt program. Funktioner innehåller flera instruktioner som ska utföras när funtionen anropas. Det finns en hel del inbyggda funktioner i Python. Två av dessa funktioner, print() and input(), kommer att beskrivas här näst. En bra grej med funktioner är att du bara behöver veta vad de gör, inte hur de gör det.
+En funktion är som ett mini-program inuti ditt program. Funktioner innehåller flera instruktioner som ska utföras när funtionen anropas. Det finns en hel del inbyggda funktioner i Python. Två av dessa funktioner, print() and input(), kommer att beskrivas härnäst. En bra grej med funktioner är att du bara behöver veta vad de gör, inte hur de gör det.
 
 Ett funktionsanrop är en instruktion som talar om för Python att koden inuti funktionen ska köras. Till exempel så anropar ditt program funktionen print() för att en sträng ska skrivas ut på skärmen. Funktionen print() tar den sträng som anges mellan parenteserna som indata och visar texten på skärmen.
 

@@ -141,7 +141,7 @@ Lade du märke till den andra parametern i anropet till print() på rad 15? Norm
 
 Den tomma strängen som skickas med kallas för nyckelordsargument. Parametern end har ett specifikt namn, och för att kunna skicka ett nyckelordsargument till denna specifika parameter så måste du skriva end= före argumentet.
 
-När man sätter parametern end till en tom sträng som lägger print()-funktionen inte till något ny rad-tecken i slutet av strängen. I stället är det den tomma strängen som läggs till. Det är därför som '-MUUU!' visas direkt efter föregående rad, i stället för på en ny, egen rad. Det lades inte till något ny rad-tecken efter strängen 'Vadå avbrytan'.
+När man sätter parametern end till en tom sträng så lägger print()-funktionen inte till något ny rad-tecken i slutet av strängen. I stället är det den tomma strängen som läggs till. Det är därför som '-MUUU!' visas direkt efter föregående rad, i stället för på en ny, egen rad. Det lades inte till något ny rad-tecken efter strängen 'Vadå avbrytan'.
 
 Sammanfattning
 

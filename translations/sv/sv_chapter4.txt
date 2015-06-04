@@ -118,7 +118,7 @@ Funktionen randint() ingår i modulen random, så du måste skriva random. (glö
 
 Funktionen randint() returnerar ett slumpmässigt heltal mellan (och inklusive) de två heltal du skickar med som argument. På rad 9 skickas 1 och 20, med komma emellan, med mellan de parenteser som följer efter funktionsnamnet. Det slumpmässiga heltalet som randint() returnerar sparas i en variabel kallad tal; detta är det hemliga tal som spelaren ska försöka gissa.
 
-För ett ögonblick, gå tillbaka till den interaktiva kommandotolken och skriv in import random för att importera random-modulen. Skriv sedan in random.randint(1, 20) för att se vad funktionsanropet utvärderas till. Funktionen kommer att returnerar ett heltal mellan 1 och 20. Upprepa koden igen och funktionsanropet kommer att returnera ett annat heltal. Funktionen randint() returnerar ett slumpmässigt heltal varje gång, ungefär som när du kastar en tärning:
+För ett ögonblick, gå tillbaka till den interaktiva kommandotolken och skriv in import random för att importera random-modulen. Skriv sedan in random.randint(1, 20) för att se vad funktionsanropet utvärderas till. Funktionen kommer att returnera ett heltal mellan 1 och 20. Upprepa koden igen och funktionsanropet kommer att returnera ett annat heltal. Funktionen randint() returnerar ett slumpmässigt heltal varje gång, ungefär som när du kastar en tärning:
 
 >>> import random
 >>> random.randint(1, 20)

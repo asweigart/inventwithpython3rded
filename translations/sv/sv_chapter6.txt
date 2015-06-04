@@ -18,7 +18,7 @@ Du har redan använt ett antal funktioner: print(), input(), random.randint(), s
 
 Funktioner ger dig möjlighet att köra samma kod flera gånger utan att källkoden behöver dupliceras. I stället så placerar du koden inuti en funktion och anropar funktionen flera gånger. En ytterligare fördel med funktioner är att om koden i funktionen innehåller ett fel så behöver du bara ändra på ett enda ställe.
 
-Det spel som du kommer att skapa i det här kapitlet kallas för "Drakriket". Spelarn väljer mellan två grottor och hittar antingen en skatt eller går mot en säker död.
+Det spel som du kommer att skapa i det här kapitlet kallas för "Drakriket". Spelaren väljer mellan två grottor och hittar antingen en skatt eller går mot en säker död.
 
 Hur man spelar Drakriket
 
@@ -113,7 +113,7 @@ def-satser
  8.     print('är girig och hungrig, och kommer att äta upp dig på fläcken.')
  9.     print()
 
-Rad 4 är en def-sats. Def-satsen definierar en ny funktion som du senare kan anropa i ditt program. När du definierar funktionen så specifierar du instruktionerna i dess def-block. När du anropar funktionen så exekveras koden inuti def-blocket.
+Rad 4 är en def-sats. Def-satsen definierar en ny funktion som du senare kan anropa i ditt program. När du definierar funktionen så specificerar du instruktionerna i dess def-block. När du anropar funktionen så exekveras koden inuti def-blocket.
 
 Figur 6-1 visar de delar som ingår i en def-sats, nyckelordet def följt av ett funktionsnamn med parenteser och sist ett kolon (tecknet :). Blocket som följer efter def-satsen kallas för def-blocket.
 
@@ -138,8 +138,8 @@ def sägHejdå():
 Om du försöker köra koden så kommer Python att ge dig ett felmeddelande i stil med detta:
 Traceback (most recent call last):
   File "C:\Python34\spam.py", line 1, in <module>
-sayGoodbye()
-NameError: name 'sayGoodbye' is not defined
+sägHejdå()
+NameError: name 'sägHejdå' is not defined
 
 För att fixa felet, placera funktionsdefinitionen före funktionsanropet:
 
@@ -187,7 +187,7 @@ False
 >>> 10 < 20 and skräp == 'Hejsan'
 True
 
-Operatorn or liknar and-operatorn, men ett uttryck med or-operatorn evalueras till True både om bara det ena eller båda de booleska värdena är True. Den enda gången när ett or-uttryck evalueras till False är när båda de booleska värdena är False.
+Operatorn or liknar and-operatorn, men ett uttryck med or-operatorn evalueras till True både om bara det ena eller båda de booleska värdena är True. Den enda gången som ett or-uttryck evalueras till False är när båda de booleska värdena är False.
 
 Prova att mata in följande i den interaktiva tolken:
 
@@ -306,7 +306,7 @@ Så när rad 17 returnerar en sträng så evalueras funktionsanropet på rad 40 
 
 Global och lokal räckvidd
 
-Variablerna i ditt program glöms bort när programmet avslutas. De variabler som skapas under exekveringen inuti en funktion fungerar på samma sätt. Dessa variabler skapas när funktionen anropas av glöms bort när funktionen returnerar. Funktioner är ju som miniprogram inuti ditt program.
+Variablerna i ditt program glöms bort när programmet avslutas. De variabler som skapas under exekveringen inuti en funktion fungerar på samma sätt. Dessa variabler skapas när funktionen anropas och glöms bort när funktionen returnerar. Funktioner är ju som miniprogram inuti ditt program.
 
 När exekveringen befinner sig inuti en funktion så kan du inte ändra värdena på variabler som ligger utanför funktionen, inklusive variabler inuti andra funktioner. Det beror på att de här variablerna har olika synlighet, eller räckvidd. Alla variabler har antingen global synlighet eller lokal synlighet.
 
@@ -314,7 +314,7 @@ Variabler som definieras utanför alla funktioner har global synlighet. Variable
 
 Ett program har bara en global synlighetsnivå, eller "scope" som det heter på engelska. Variabler som definieras på den globala nivån kan läsas av både utanför och inuti funktioner, men de kan bara modifieras utanför funktioner. Variabler som skapas under ett funktionsanrop kan bara läsas eller modifieras under det funktionsanropet.
 
-Du kan alltså läsa av värdena på globala variabler från den lokala synlighetsnivån. Men alla försök att ändra värdet på en global variable från lokal nivå kommer att misslyckas. Vad som händer i de fallen är att Python skapar en lokal variabel med samma namn som den globala. Du kan, till exempel, ha en lokal variabel kallad skinka samtidigt som du har en global variabel med samma namn. Python kommer att betrakta dem som två olika variabler.
+Du kan alltså läsa av värdena på globala variabler från den lokala synlighetsnivån. Men alla försök att ändra värdet på en global variabel från lokal nivå kommer att misslyckas. Vad som händer i de fallen är att Python skapar en lokal variabel med samma namn som den globala. Du kan, till exempel, ha en lokal variabel kallad skinka samtidigt som du har en global variabel med samma namn. Python kommer att betrakta dem som två olika variabler.
 
 Titta på det här exemplet för att se vad som händer när du försöker ändra på en global variabel från den lokala nivån. Kommentarerna förklarar vad som pågår:
 
@@ -366,10 +366,10 @@ Här är ett exempel på ett kort program som demonstrerar hur en funktion med e
 def sägHej(namn):
     print('Hejsan, ' + namn + '. Ditt namn har ' + str(len(namn)) + ' bokstäver.')
 
-sayHello('Alice')
-sayHello('Bo')
+sägHej('Alice')
+sägHej('Bo')
 skinka = 'Carin'
-sayHello(skinka)
+sägHej(skinka)
 
 Om du kör det här programmet så får du följande utskrift:
 
@@ -377,7 +377,7 @@ Hejsan, Alice. Ditt namn har 5 bokstäver.
 Hejsan, Bo. Ditt namn har 2 bokstäver.
 Hejsan, Carin. Ditt namn har 5 bokstäver.
 
-När du anropar sägHej() så tilldelas parametern namn argumentet som skickas med. Parametrar är bara vanliga lokala variabler. Precis som med andra lokala variabler som glöms värdena på parametrar bort när funktionen returnerar.
+När du anropar sägHej() så tilldelas parametern namn argumentet som skickas med. Parametrar är bara vanliga lokala variabler. Precis som med andra lokala variabler så glöms värdena på parametrar bort när funktionen returnerar.
 
 Visa resultatet av spelet
 
@@ -422,7 +422,7 @@ Om villkoret är True så talar rad 31 om för spelaren att hon/han har vunnit s
 
 Rad 32 är en else-sats. En else-sats kan bara följa direkt efter ett if-block. Else-blocket exekveras om if-satsens villkor evalueras till False. Du kan tänka att koden säger till datorn "Om villkoret är sant, exekvera if-blocket, annars exekvera else-blocket".
 
-Kom igår att sätta ett kolon (tecknet :) efter nyckelordet else.
+Kom ihåg att sätta ett kolon (tecknet :) efter nyckelordet else.
 
 Startpunkten för spelet
 
@@ -433,7 +433,7 @@ Rad 35 är den första raden som inte är en def-sats eller ligger i ett def-blo
 
 Raderna 35 och 36 startar en loop som resten av spelkoden ligger i. När spelet är över kan spelaren ange om denne vill spela igen. Om svaret är ja så hoppar exekveringen till början av while-loopen och spelet körs ännu en gång. Om svaret är nej så blir while-satsens villkor False, exekveringen hoppar till slutet och programmet avslutas.
 
-Första gången som exekveringen når while-satsen så har rad 35 just tilldelar variabeln spelaIgen värdet 'ja'. Det här betyder att villkoret blir True. På så sätt garanteras att exekveringen går in i loopen åtminstone en gång.
+Första gången som exekveringen når while-satsen så har rad 35 just tilldelat variabeln spelaIgen värdet 'ja'. Det här betyder att villkoret blir True. På så sätt garanteras att exekveringen går in i loopen åtminstone en gång.
 
 Anropa funktionerna i programmet
 
@@ -480,7 +480,7 @@ Sammanfattning
 
 I spelet Drakriket så skapade du dina egna funktioner. Funktioner är som miniprogram inuti ditt program. Koden inuti en funktion körs när funktionen anropas. Genom att bryta upp din kod i funktioner, så kan du organisera den i mindre och mer lättbegripliga sektioner.
 
-Argument är värden som kopieras til en funktions parametrar när funktionen anropas. Själva funktionsanropet evalueras till funktionen returvärde.
+Argument är värden som kopieras til en funktions parametrar när funktionen anropas. Själva funktionsanropet evalueras till funktionens returvärde.
 
 Figur 6-2: Flödesschema för spelet Drakriket.
 
