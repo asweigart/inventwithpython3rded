@@ -7,20 +7,20 @@
 •   IDLE:s debugger
 •   Stepping Into, Over, and Out
 •   Go and Quit
-•   Break Points
+•   Brytpunkter
 
-Bugs!
+Buggar!
 
-“On two occasions I have been asked, 'Pray, Mr. Babbage, if you put into the machine wrong figures, will the right answers come out?' I am not able rightly to apprehend the kind of confusion of ideas that could provoke such a question.”
--Charles Babbage, 19th century originator the concept of a programmable computer.
+“Vid två tillfällen har jag fått frågan 'Herr Babbage, om du matar in fel siffror i maskinen, kommer ändå rätt svar ut?' Jag kan inte fullt ut begripa den förvirring som måste ligga bakom att en sådan fråga ställs.”
+-Charles Babbage, 1800-talets upphovsman till konceptet programmerbara datorer (citatet fritt översatt).
 
-If you enter the wrong code, the computer won’t give you the right program. A computer program will always do what you tell it to, but what you tell the program to do might not be the same as what you wanted the program to do. These errors are bugs in a computer program. Bugs happen when the programmer has not carefully thought about what exactly the program is doing. There are three types of bugs that can happen with your program:
+Om du fatar in fel kod så kommer inte datorn fixa så att programmet blir korrekt. Ett datorprogram gör bara vad du har sagt åt det att göra, men det du säger åt programmet att göra kanske inte är samma sak som det du egentligen vill att det ska göra. Den här typen av fel i ett datorprogram kallas för buggar. Buggar uppstår när programmeraren inte noga har tänkt igenom exakt vad programmet ska göra. Det finns tre typer av buggar som kan uppstå i dina program:
 
-•   Syntax Errors are a type of bug that comes from typos. When the Python interpreter sees a syntax error, it is because your code isn’t written in proper Python language. A Python program with even a single syntax error won’t run.
-•   Runtime Errors are bugs that happen while the program is running. The program will work up until it reaches the line of code with the error, and then the program terminates with an error message (this is called crashing). The Python interpreter will display a “traceback” and show the line where the problem happens.
-•   Semantic Errors are the trickiest to fix. These bugs don’t crash the program, but it isn’t doing what the programmer intended for the program to do. For example, if the programmer wants the variable total to be the sum of the values in variables a, b, and c but writes total = a * b * c, then the value in total will be wrong. This could crash the program later on, but it is not immediately obvious where the semantic bug happened.
+•   Syntaxfel är en typ av buggar som beror på skrivfel. När Python-tolken hittar ett syntaxfel, så beror det på din kod inte följer Pythons språkregler. Även om ditt Python-program bara innehåller ett enda syntaxfel så kan det inte köras.
+•   Körningsfel är buggar som uppstår medan programmet körs. Programmet fungerar ända tills exekveringen når raden där felet uppstår, därefter avbryts det och du får ett felmeddelande (det här kallas för att programmet kraschar). Python-tolken kommer att visa en "spårutskrift" och ange på vilken rad problemet uppstod.
+•   Semantiska fel är den typ av fel som är svårast att åtgärda. De här buggarna kraschar inte ditt program, men de gör så att programmet inte fungerar så som du har tänkt att det ska fungera. Om en programmerare till exempel vill att variabeln total ska innehålla summan av värdena i variablerna a, b och c men skriver total = a * b * c, så blir värdet i total helt fel. Det här skulle kunna leda till att programmet kraschar längre fram, men det skulle inte vara omedelbart uppenbart var det semantisk felet fanns.
 
-Finding bugs in a program can be hard, if you even notice them at all! When running your program, you may discover that sometimes functions are not called when they are supposed to be, or maybe they are called too many times. You may code the condition for a while loop wrong, so that it loops the wrong number of times. (A loop in your program that never exits is a kind of bug called an infinite loop. To stop this program, you can press Ctrl-C in the interactive shell to terminate the program.) Any of these things could mistakenly happen in your code if you are not careful.
+Att hitta buggar i ett program kan vara svårt, eller rent av omöjligt! Men när du kör ditt program så kanske du upptäcker att funktioner ibland inte anropas när de ska anropas, eller att de anropas för många gånger. Du kanske utformade villkoret i en while-loop på fel sätt, så att den loopar ett felaktigt antal gånger. (En loop i ett program som aldrig avbryts kallas för en evig loop. För att avbryta en sådan loop kan du trycka Ctrl-C i den interaktiva kommandotolken, så kommer programmet att avslutas.) Alla de här felen kan uppså av misstag, om du inte är noggrann.
 
 In fact, from the interactive shell, go ahead and create an infinite loop by typing this code in (you have to press ENTER twice to let the interactive shell know you are done typing in the while-block:
 
