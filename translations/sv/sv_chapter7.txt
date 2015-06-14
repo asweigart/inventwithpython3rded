@@ -5,8 +5,8 @@
 
 •   Tre olika typer av fel
 •   IDLE:s debugger
-•   Stepping Into, Over, and Out
-•   Go and Quit
+•   Hoppa in, över och ut
+•   Go och Quit
 •   Brytpunkter
 
 Buggar!
@@ -14,100 +14,100 @@ Buggar!
 “Vid två tillfällen har jag fått frågan 'Herr Babbage, om du matar in fel siffror i maskinen, kommer ändå rätt svar ut?' Jag kan inte fullt ut begripa den förvirring som måste ligga bakom att en sådan fråga ställs.”
 -Charles Babbage, 1800-talets upphovsman till konceptet programmerbara datorer (citatet fritt översatt).
 
-Om du fatar in fel kod så kommer inte datorn fixa så att programmet blir korrekt. Ett datorprogram gör bara vad du har sagt åt det att göra, men det du säger åt programmet att göra kanske inte är samma sak som det du egentligen vill att det ska göra. Den här typen av fel i ett datorprogram kallas för buggar. Buggar uppstår när programmeraren inte noga har tänkt igenom exakt vad programmet ska göra. Det finns tre typer av buggar som kan uppstå i dina program:
+Om du matar in fel kod så kommer inte datorn fixa så att programmet blir korrekt. Ett datorprogram gör bara vad du har sagt åt det att göra, men det du säger åt programmet att göra kanske inte är samma sak som det du egentligen vill att det ska göra. Den här typen av fel i ett datorprogram kallas för buggar. Buggar uppstår när programmeraren inte noga har tänkt igenom exakt vad programmet ska göra. Det finns tre typer av buggar som kan uppstå i dina program:
 
 •   Syntaxfel är en typ av buggar som beror på skrivfel. När Python-tolken hittar ett syntaxfel, så beror det på din kod inte följer Pythons språkregler. Även om ditt Python-program bara innehåller ett enda syntaxfel så kan det inte köras.
 •   Körningsfel är buggar som uppstår medan programmet körs. Programmet fungerar ända tills exekveringen når raden där felet uppstår, därefter avbryts det och du får ett felmeddelande (det här kallas för att programmet kraschar). Python-tolken kommer att visa en "spårutskrift" och ange på vilken rad problemet uppstod.
-•   Semantiska fel är den typ av fel som är svårast att åtgärda. De här buggarna kraschar inte ditt program, men de gör så att programmet inte fungerar så som du har tänkt att det ska fungera. Om en programmerare till exempel vill att variabeln total ska innehålla summan av värdena i variablerna a, b och c men skriver total = a * b * c, så blir värdet i total helt fel. Det här skulle kunna leda till att programmet kraschar längre fram, men det skulle inte vara omedelbart uppenbart var det semantisk felet fanns.
+•   Semantiska fel är den typ av fel som är svårast att åtgärda. De här buggarna kraschar inte ditt program, men de gör så att programmet inte fungerar så som du har tänkt att det ska fungera. Om en programmerare till exempel vill att variabeln total ska innehålla summan av värdena i variablerna a, b och c men skriver total = a * b * c, så blir värdet i total helt fel. Det här skulle kunna leda till att programmet kraschar längre fram, men det skulle inte vara omedelbart uppenbart var det semantiska felet fanns.
 
-Att hitta buggar i ett program kan vara svårt, eller rent av omöjligt! Men när du kör ditt program så kanske du upptäcker att funktioner ibland inte anropas när de ska anropas, eller att de anropas för många gånger. Du kanske utformade villkoret i en while-loop på fel sätt, så att den loopar ett felaktigt antal gånger. (En loop i ett program som aldrig avbryts kallas för en evig loop. För att avbryta en sådan loop kan du trycka Ctrl-C i den interaktiva kommandotolken, så kommer programmet att avslutas.) Alla de här felen kan uppså av misstag, om du inte är noggrann.
+Att hitta buggar i ett program kan vara svårt, eller rent av omöjligt! Men när du kör ditt program så kanske du upptäcker att funktioner ibland inte anropas när de ska anropas, eller att de anropas för många gånger. Du kanske utformade villkoret i en while-loop på fel sätt, så att den loopar ett felaktigt antal gånger. (En loop i ett program som aldrig avbryts kallas för en evig loop. För att avbryta en sådan loop kan du trycka Ctrl-C i den interaktiva kommandotolken, så kommer programmet att avslutas.) Alla de här felen kan uppstå av misstag, om du inte är noggrann.
 
-In fact, from the interactive shell, go ahead and create an infinite loop by typing this code in (you have to press ENTER twice to let the interactive shell know you are done typing in the while-block:
+Ta och testa att skapa en evig loop genom att skriva in den här koden i den interaktiva kommandotolken (du måste trycka på ENTER två gånger så att den interaktiva tolken förstår att du är klar med while-blocket):
 
 >>> while True:
-...     print('Press Ctrl-C to stop this infinite loop!!!')
+...     print('Tryck Ctrl-C för att stoppa den här eviga loopen!!!')
 ...
 
-Now press and hold down the Ctrl key and press the C key to stop the program. The interactive shell will look like this:
+Tryck nu och håll nere Ctrl-tangenten och tryck sedan på C för att stoppa programmet. Den interaktiva tolken kommer att se ut så här:
 
-Press Ctrl-C to stop this infinite loop!!!
-Press Ctrl-C to stop this infinite loop!!!
-Press Ctrl-C to stop this infinite loop!!!
-Press Ctrl-C to stop this infinite loop!!!
-Press Ctrl-C to stop this infinite loop!!!
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
 Traceback (most recent call last):
   File "<pyshell#1>", line 1, in <module>
-    while True: print('Press Ctrl-C to stop this infinite loop!!!')
+    while True: print('Tryck Ctrl-C för att stoppa den här eviga loopen!!!')
 KeyboardInterrupt
 
-The Debugger
+Debuggern
 
-It can be hard to figure out how your code could be causing a bug.  The lines of code get executed quickly and the values in variables change so often. A debugger is a program that lets you step through your code one line at a time in the same order that Python executes them. The debugger also shows you what values are stored in variables at each step.
+Det kan vara svårt att klura ut hur din kod kunde orsaka en bugg. Raderna med kod exekveras snabbt och värdena i variabler ändras ofta. En debugger är ett program som låter dig gå igenom ett program en rad i taget, i samma ordning som Python exekverar dem. Debuggern visar dig även vilka värden som olika variabler innehåller vid varje steg.
 
-Starting the Debugger
+Starta debuggern
 
-In IDLE, open the Dragon Realm game you made in the last chapter. After opening the dragon.py file, click on the Debug ► Debugger to make the Debug Control window appear (Figure 7-1).
+Öppna spelet Drakriket som du skrev i förra kapitlet i IDLE. När du har öppnat filen drakriket.py, välj Debug ► Debugger så att fönstret Debug Control öppnas (Figur 7-1).
 
-Figure 7-1: The Debug Control window.
+Figur 7-1: Fönstret Debug Control.
 
-Figure 7-2: Running the Dragon Realm game under the debugger.
+Figure 7-2: Att köra spelet Drakriket med debuggern.
 
-Now when you run the Dragon Realm game by pressing F5, IDLE’s debugger will activate. This is called running a program “under a debugger”. In the Debug Control window, check the Source and Globals checkboxes.
+När du nu kör Drakriket genom att trycka på F5 så kommer IDLE:s debugger att aktiveras. Det här kallas för att man kör programmet med debuggern, eller i felsökningsläge. Kryssa irutorna Source och Globals i fönstret Debug Control.
 
-When you run Python programs under the debugger, the program will stop before it executes the first instruction. If you click on the file editor window's title bar (and you’ve checked the Source checkbox in the Debug Control window), the first instruction is highlighted in gray. The Debug Control window shows the execution is on line 1, which is the import random line.
+När du kör Pythonprogram i felsökningsläge så kommer programmet att pausas innan den första instruktionen exekveras. Om du klickar på titelraden i fönstret med fileditorn (och om du har kryssat i rutan Source i fönstret Debug Control) så kommer den första instruktionen att markeras med grått. I fönstret Debug Control kan man se att exekveringen befinner sig på rad 1, vilket är raden med import random.
 
-Stepping
+Stega igenom program
 
-The debugger lets you execute one instruction at a time. This is called stepping. To execute a single instruction, click the Step button in the Debug Window. Go ahead and do this now. Python will execute the import random instruction, and then stop before it executes the next instruction. The Debug Control window will show the execution is now on line 2, the import time line. Click the Quit button to terminate the program for now.
+Debuggern låter dig exekvera en instruktion åt gången. Det här kallas för att stega igenom ett program (eller för att gå igenom det steg för steg). Tryck på knappen Step i fönstret Debug Control för att exekvera en enskild instruktion. Prova nu att göra detta. Python kommer att exekvera instruktionen import random, och pausar därefter exekveringen innan nästa instruktion körs. I fönstret Debug Control ser man nu att exekveringen befinner sig på rad 2, som är raden med import time. Klicka nu på knappen Quit för att avbryta körningen av programmet tills vidare.
 
-Here is a summary of what happens when you click the Step button when you run the Dragon Realm game under a debugger. Press F5 to start running Dragon Realm again, then follow these instructions:
+Här är en sammanfattning av vad som sker när du klickar på knappen Step när du kör Drakriket med debuggern. Tryck på F5 för att starta Drakriket igen, följ sedan dessa instruktioner:
 
-1.  Click the Step button twice to run the two import lines.
-2.  Click the Step button three more times to execute the three def statements.
-3.  Click the Step button again to define the playAgain variable.
-4.  Click Go to run the rest of the program, or click Quit to terminate the program.
+1.  Klicka på knappen Step två gånger om för att köra de två import-satserna.
+2.  Klicka på Step ytterligare tre gånger för att exekvera de tre def-satserna.
+3.  Klicka på Step ännu en gång för att definiera variabeln spelaIgen.
+4.  Klicka på Go för att köra resten av programmet, eller på Quit för att avbryta exekveringen.
 
-The Debug Control window will show you what line is about to be executed when you click the Step button in the Debug Control window. The debugger skipped line 3 because it’s a blank line. Notice you can only step forward with the debugger, you cannot go backwards.
+I fönstret Debug Control kan du se vilken rad som kommer att exekveras när du trycker på knappen Step. Debuggern hoppade över rad 3 eftersom den är tom. Notera att du bara kan gå framåt, inte bakåt, med debuggern.
 
-Globals Area
+Området Globals
 
-The Globals area in the Debug Control window is where all the global variables can be seen. Remember, global variables are the variables that are created outside of any functions (that is, in the global scope).
+I ytan under rubriken Globals i fönstret Debug Control så listas alla globala variabler. Som du kanske minns så är globala variabler de variabler som skapas utanför alla funktioner (det vill säga i den globala synlighetsnivån).
 
-As the three def statements execute and define functions, they will appear in the Globals area of the Debug Control window.
+Eftersom de tre def-satserna definierar och exekverar funktioner så kommer de att visas i området Globals i fönstret Debug Control.
 
-The text next to the function names in the Globals area will look like “<function checkCave at 0x012859B0>“. The module names also have confusing looking text next to them, such as “<module 'random' from 'C:\\Python31\\lib\\random.pyc'>“. You don’t need to know what it means to debug your programs. Just seeing that the functions and modules are there in the Global area will tell you if the function has been defined or the module has been imported.
+Texten intill funktionernas namn kommer att se ut ungefär såhär: “<function kollaGrotta at 0x012859B0>“. Även intill modulernas namn står det märkliga saker, så som “<module 'random' from 'C:\\Python31\\lib\\random.pyc'>“. Du behöver inte veta vad det här betyder för att kunna använda debuggern. Bara genom att se om funktioner och moduler visas i området Globals så vet du om funktionen har definierats eller om modulen har importerats. 
 
-You can also ignore the __builtins__, __doc__, and __name__ lines in the Global area. (Those are variables that appear in every Python program.)
+Du kan också strunta i raderna i området Globals där det står __builtins__, __doc__, och __name__. (Det här är variabler som finns i alla Pythonprogram.)
 
-When the playAgain variable is created it will show up in the Global area. Next to the variable name will be the string 'yes'. The debugger lets you see the values of all the variables in the program as the program runs. This is useful for fixing bugs.
+När variabeln spelaIgen skapas så kommer den att dyka upp under Globals. Intill variabelnamnet så kommer strängen 'ja' att visas. Debuggern låter dig se värdena i alla variabler i programmet medan programmet körs. Det här är användbart när man försöker fixa buggar.
 
-Locals Area
+Området Locals
 
-There is also a Locals area, which shows you the local scope variables and their values. The local area will only have variables in it when the program execution is inside of a function. When the execution is in the global scope, this area is blank.
+Det finns också ett område med rubriken Locals, som visar de lokala variablerna och de värden som de innehåller. De lokala variablerna visas bara när exekveringen befinner sig inuti en funktion. När exekveringen är på den globala nivån så är denna yta tom.
 
-The Go and Quit Buttons
+Knapparna Go och Quit
 
-If you get tired of clicking the Step button repeatedly and just want the program to run normally, click the Go button at the top of the Debug Control window. This will tell the program to run normally instead of stepping.
+Om du tröttnar på att hela tiden behöva klicka på Step och vill att programmet ska köras på det vanliga viset så kan du trycka på Go i övre delen av fönstret Debug Control. Programmet exekveras då på det normala sättet i stället för steg för steg.
 
-To terminate the program entirely, just click the Quit button at the top of the Debug Control window. The program will exit immediately. This is helpful if you must start debugging again from the beginning of the program.
+För att avbryta programmet helt och hållet, klicka på Quit längst upp i fönstret Debug Control. Programmett avslutas omedelbart. Det här kan vara till hjälp om du behöver starta om felsökningen från början av programmet.
 
-Stepping Into, Over, and Out
+Hoppa in, över och ut
 
-Start the Dragon Realm program with the debugger. Keep stepping until the debugger is at line 38. As shown in Figure 7-3, this is the line with displayIntro(). When you click Step again, the debugger will jump into this function call and appear on line 5, the first line in the displayIntro() function. The kind of stepping you have been doing is called stepping into. This is different from stepping over, explained next.
+Starta nu Drakriket med debuggern igång. Tryck på Step tills debuggern befinner sig på rad 38. Som du ser i Figur 7-3 så är detta raden med visaIntro(). När du klickar på Step ännu en gång så kommer debuggern att hoppa in i denna funktion och ställa sig på rad 5, den första raden i funktionen visaIntro(). När du stegar på det här viset så hoppar du alltså in i funktioner. Men det går också att hoppa över dem, vilket förklaras härnäst.
 
-Figure 7-3: Keep stepping until you reach line 38.
+Figur 7-3: Fortsätt att trycka på Step tills du är på rad 38.
 
-When the execution is paused at line 5, clicking Step one more time will step into the print() function. The print() function is one of Python’s built-in functions, so it isn’t useful to step through with the debugger. Python’s own functions such as print(), input(), str(), or random.randint() have been carefully checked for errors. You can assume they’re not the parts causing bugs in your program.
+Om du nu, när exekveringen har pausats på rad 5, trycker på Step en gång till så kommer du att hoppa in i print()-funktionen. Funktionen print() är en av Pythons inbyggda funktioner, så det är inte någon vits med att stega igenom den med debuggern. Pythons egna funktioner så som print(), input(), str() och random.randint() har noga kontrollerats så att de inte innehåller några fel. Du kan utgå ifrån att de inte orsakar några buggar i dina program.
 
-So you don’t want to waste time stepping through the internals of the print() function. So instead of clicking Step to step into the print() function’s code, click Over. This will step over the code inside the print() function. The code inside print() will be executed at normal speed, and then the debugger will pause once the execution returns from print().
+Du vill alltså inte slösa tid genom att stega igenom den kod som print()-funktionen innehåller. Så i stället för Step, som gör så att debuggern hoppar in i koden i print(), klicka på Over. På detta vis hoppar du över koden inuti print()-funktionen. Koden i print() kommer att exekveras i normal hastighet och debuggern kommer att pausa exekveringen först när print() har returnerat.
 
-Stepping over is a convenient way to skip stepping through code inside a function. The debugger will now be paused at line 40, caveNumber = chooseCave().
+Att hoppa över funktionsanrop är ett smidigt sätt att slippa stega igenom kod inuti funktioner. Debuggern kommer nu att pausa på rad 40, grottnummer = väljGrotta().
 
-Click Step one more time to step into the chooseCave() function. Keep stepping through the code until line 15, the input() call. The program will wait until you type a response into the interactive shell, just like when you run the program normally. If you try clicking the Step button now, nothing will happen because the program is waiting for a keyboard response.
+Tryck på Step ytterligare en gång för att hoppa in i funktionen väljGrotta(). Fortsätt att stega igenom koden tills du kommer till rad 15, anropet till input(). Programmet kommer att vänta tills du har skrivit in ett svar i den interaktiva kommandotolken, precis som när du kör programmet på det normala sättet. Om du nu trycker på Step så kommer inget att hända, eftersom programmet väntar på en inmatning från tangentbordet. 
 
-Click back on the interactive shell window and type which cave you want to enter. The blinking cursor must be on the bottom line in the interactive shell before you can type. Otherwise the text you type will not appear.
+Klicka dig tillbaka till fönstret med den interaktiva kommandotolken och mata in numret på den grotta du vill gå in i. Den blinkande markören måste stå på nedersta raden i den interaktiva tolken innan du kan skriva, annars kommer den text du skriver in inte att synas.
 
-Once you press ENTER, the debugger will continue to step lines of code again. Click the Out button on the Debug Control window. This is called stepping out, because it will cause the debugger to step over as many lines as it needs to until execution has returned from the function it is in. After it jumps out, the execution will be on the line after the line that called the function.
+När du trycker på ENTER så kommer debuggern att fortsätta att stega igenom kodraderna. Click the Out button on the Debug Control window. This is called stepping out, because it will cause the debugger to step over as many lines as it needs to until execution has returned from the function it is in. After it jumps out, the execution will be on the line after the line that called the function.
 
 For example, clicking Out inside the displayIntro() function on line 6 would step until the function returned to the line after the call to displayIntro(). Stepping out can save you from having to click Step repeatedly to jump out of the function.
 
