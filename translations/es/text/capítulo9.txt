@@ -646,7 +646,7 @@ Mostrando la Palabra Secreta con espacios en blanco
 
 Ahora quieres código que imprima la palabra secreta, pero con líneas en blanco para las letras que no se han adivinado. Puedes utilizar el carácter _ (llamado carácter de subrayado) para esto. En primer lugar, crea una cadena con nada más que un subrayado para cada letra de la palabra secreta. A continuación, reemplaza los espaciosVacíos para cada letra en letrasCorrectas.
 
-Así que, si la palabra secreta era "nutria" entonces la cadena en blanco sería "_____" (cinco caracteres _). Si letrasCorrectas era la cadena 'rt' tendrías que cambiar la cadena a '__tr__'. Es lo que hacen las líneas 75 a 79 del código.
+Así que, si la palabra secreta era 'nutria' entonces la cadena en blanco sería '_____' (cinco caracteres _). Si letrasCorrectas era la cadena 'rt' tendrías que cambiar la cadena a '__tr__'. Es lo que hacen las líneas 75 a 79 del código.
 
  75.     espaciosVacíos = '_' * len(palabraSecreta)
 
@@ -658,7 +658,7 @@ La línea 75 crea la variable espaciosVacíos llena de subrayados _ mediante la 
 
 La línea 77 tiene un bucle for que pasa por cada letra de palabraSecreta y reemplaza el subrayado con la letra actual si existe en letrasCorrectas.
 
-Por ejemplo, suponga que el valor de palabraSecreta es "nutria" y el valor en letrasCorrectas es 'tr'. Querrías que la cadena '__tr__' sea mostrada al jugador. Vamos a averiguar cómo crear esta cadena.
+Por ejemplo, suponga que el valor de palabraSecreta es 'nutria' y el valor en letrasCorrectas es 'tr'. Querrías que la cadena '__tr__' sea mostrada al jugador. Vamos a averiguar cómo crear esta cadena.
 
 La llamada a len(palabraSecreta) devolvería 5. La llamada a range(len(palabraSecreta)) se convierte en range(5), lo que hace que el bucle itere sobre 0, 1, 2, 3 y 4.
 
@@ -705,7 +705,7 @@ if 'a' in 'tr': # Falso
 
 # espaciosVacíos ahora tiene el valor '__tr__'
 
-Los ejemplos de código anteriores todos hacen lo mismo cuando palabraSecreta es "nutria" y letrasCorrectas es 'tr'. Las siguientes líneas de código imprimen el nuevo valor de los espaciosVacíos con espacios entre cada letra.
+Los ejemplos de código anteriores todos hacen lo mismo cuando palabraSecreta es 'nutria' y letrasCorrectas es 'tr'. Las siguientes líneas de código imprimen el nuevo valor de los espaciosVacíos con espacios entre cada letra.
 
  81.     for letra in espaciosVacíos: # mostrar la palabra secreta con espacios entre cada letra
  82.         print(letra, end=' ')
@@ -800,7 +800,7 @@ input().lower().startswith('s')
             ▼
            True
 
-El objetivo de la función jugarDeNuevo() es dejar que el jugador escriba sí o no para indicar al programa si quiere jugar otra ronda de Ahorcado. El jugador debe ser capaz de escribir SI, si, S, o cualquier otra cosa que comienza con una "S" para decir "si". Si el jugador escribe SI, entonces el valor que devuelve input() es la cadena 'SI'. Y 'SI'.lower() devuelve la versión en minúsculas de la cadena adjunta. Así que el valor que devuelve 'SI'.lower() es "si".
+El objetivo de la función jugarDeNuevo() es dejar que el jugador escriba sí o no para indicar al programa si quiere jugar otra ronda de Ahorcado. El jugador debe ser capaz de escribir SI, si, S, o cualquier otra cosa que comienza con una "S" para decir "si". Si el jugador escribe SI, entonces el valor que devuelve input() es la cadena 'SI'. Y 'SI'.lower() devuelve la versión en minúsculas de la cadena adjunta. Así que el valor que devuelve 'SI'.lower() es 'si'.
 
 Pero ahí está la segunda llamada al método startswith('s'). Esta función devuelve True si la cadena asociada comienza con la cadena dada como parámetro entre paréntesis, y False si no lo hace. El valor que devuelve 'si'.startswith('s') es True.
 
@@ -819,7 +819,7 @@ Revisión de las Funciones del Ahorcado
 
 Después de las funciones está el código de la parte principal del programa en la línea 106. Todo lo anterior fueron solamente definiciones de función y una larga sentencia de asignación para IMÁGENES_AHORCADO.
 
-Configuración de las variables
+Configuración de las Variables
 
 106. print('A H O R C A D O')
 107. letrasIncorrectas = ''
@@ -831,7 +831,7 @@ La línea 106 es la primera llamada a print() que se ejecuta cuando inicia el ju
 
 La llamada a obtenerPalabraAlAzar(palabras) devolverá una palabra seleccionada al azar entre la lista de palabras.
 
-La línea 110 establece juegoTerminado como False. El código establecerá gameIsDone True cuando quiera indicar que el juego ha terminado y debería preguntar al jugador si quiere volver a jugar.
+La línea 110 establece juegoTerminado como False. El código establecerá juegoTerminado True cuando quiera indicar que el juego ha terminado y debería preguntar al jugador si quiere volver a jugar.
 
 Mostrando el Tablero al Jugador
 
