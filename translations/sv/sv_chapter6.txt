@@ -1,0 +1,491 @@
+  Kapitel 6
+  DRAKRIKET
+
+Ämnen som behandlas i detta kapitel:
+
+• Funktionen time.sleep()
+• Skapa dina egna funktioner med nyckelordet def
+• Nyckelordet return 
+• De booleska operatorerna and, or och not
+• Sanningstabeller
+• Globala och lokala variablers synlighet
+• Parametrar och argument
+• Flödesscheman
+
+Funktioner
+
+Du har redan använt ett antal funktioner: print(), input(), random.randint(), str(), och int(). Du har anropat dessa funktioner för att exekvera koden inuti dem. I det här kapitlet så kommer du att skriva egna funktioner som dina program kan anropa. En funktion är som ett miniprogram inuti ett annat program.
+
+Funktioner ger dig möjlighet att köra samma kod flera gånger utan att källkoden behöver dupliceras. I stället så placerar du koden inuti en funktion och anropar funktionen flera gånger. En ytterligare fördel med funktioner är att om koden i funktionen innehåller ett fel så behöver du bara ändra på ett enda ställe.
+
+Det spel som du kommer att skapa i det här kapitlet kallas för "Drakriket". Spelaren väljer mellan två grottor och hittar antingen en skatt eller går mot en säker död.
+
+Hur man spelar Drakriket
+
+I det här spelet så befinner sig spelaren i ett land fullt av drakar. Drakarna bor i grottor där de förvarar de rikedomar som de samlat på sig. En del drakar är snälla och delar gärna med sig av sina skatter. Andra drakar är hungriga och äter upp dem som sätter sin fot i grottan. Spelaren befinner sig framför två grottor, varav den ena bebos av en snäll drake och den andra av en hungrig drake. Spelaren måste välja mellan dessa båda grottor.
+
+Öppna ett nytt fönster i fileditorn genom att välja File ► New File. Skriv in källkoden i det tomma fönstret och spara filen som dragon.py. Kör sedan programmet genom att trycka på F5.
+
+Provkörning av Drakriket
+
+Du befinner dig i ett land fullt av drakar. Framför dig
+ser du två grottor. I en av grottorna bor en snäll drake
+som kommer att dela sin skatt med dig. Den andra draken
+är girig och hungrig, och kommer att äta upp dig på fläcken.
+Vilken grotta går du in i? (1 eller 2)
+1
+Du närmar dig grottan...
+Det är mörkt och kusligt...
+En stor drake hoppar ut framför dig! Han öppnar sina käftar och...
+Slukar dig hel!
+Vill du spela igen? (ja eller nej)
+nej
+
+Drakrikets källkod
+
+OBS, VIKTIGT! Programmen i den här boken kan bara köras med Python 3, inte med Python 2. När IDLE-fönstret öppnas, så ska det stå något i stil med “Python 3.4.2” längst upp. Du kan ha både Python 2 och Python 3 installerat samtidigt. För att ladda ner Python 3, gå till https://python.org/download/.
+
+Om du får felmeddelanden när du försöker köra koden, så jämför den kod du skrivit in med bokens kod med diff-verktyget på adressen http://invpy.com/diff/drakriket.
+
+drakriket.py
+
+ 1. import random
+ 2. import time
+ 3. 
+ 4. def visaIntro():
+ 5.     print('Du befinner dig i ett land fullt av drakar. Framför dig')
+ 6.     print('ser du två grottor. I en av grottorna bor en snäll drake')
+ 7.     print('som kommer att dela sin skatt med dig. Den andra draken')
+ 8.     print('är girig och hungrig, och kommer att äta upp dig på fläcken.')
+ 9.     print()
+10.
+11. def väljGrotta():
+12.     grotta = ''
+13.     while grotta != '1' and grotta != '2':
+14.         print('Vilken grotta går du in i? (1 eller 2)')
+15.         grotta = input()
+16. 
+17.     return grotta
+18. 
+19. def kollaGrotta(valdGrotta):
+20.     print('Du närmar dig grottan...')
+21.     time.sleep(2)
+22.     print('Det är mörkt och kusligt...')
+23.     time.sleep(2)
+24.     print('En stor drake hoppar ut framför dig! Han öppnar sina käftar och...')
+25.     print()
+26.     time.sleep(2)
+27. 
+28.     snällGrotta = random.randint(1, 2)
+29. 
+30.     if valdGrotta == str(snällGrotta):
+31.          print('Ger dig sin skatt!')
+32.     else:
+33.          print('Slukar dig hel!')
+34. 
+35. spelaIgen = 'ja'
+36. while spelaIgen == 'ja' or spelaIgen == 'j':
+37. 
+38.     visaIntro()
+39. 
+40.     grottnummer = väljGrotta()
+41. 
+42.     kollaGrotta(grottnummer)
+43. 
+44.     print('Vill du spela igen? (ja eller nej)')
+45.     spelaIgen = input()
+
+Så fungerar koden
+
+Låt oss titta på källkoden mer i detalj.
+
+ 1. import random
+ 2. import time
+
+Det här programmet importerar två moduler. Modulen random ger tillgång till funktionen random.randint() som även användes i spelet "Gissa talet". Du behöver även ha tillgång till tidsrelaterade funktioner som ingår i modulen time, så den importeras på rad 2.
+
+def-satser
+
+ 4. def visaIntro():
+ 5.     print('Du befinner dig i ett land fullt av drakar. Framför dig')
+ 6.     print('ser du två grottor. I en av grottorna bor en snäll drake')
+ 7.     print('som kommer att dela sin skatt med dig. Den andra draken')
+ 8.     print('är girig och hungrig, och kommer att äta upp dig på fläcken.')
+ 9.     print()
+
+Rad 4 är en def-sats. Def-satsen definierar en ny funktion som du senare kan anropa i ditt program. När du definierar funktionen så specificerar du instruktionerna i dess def-block. När du anropar funktionen så exekveras koden inuti def-blocket.
+
+Figur 6-1 visar de delar som ingår i en def-sats, nyckelordet def följt av ett funktionsnamn med parenteser och sist ett kolon (tecknet :). Blocket som följer efter def-satsen kallas för def-blocket.
+
+Figur 6-1: En def-sats beståndsdelar.
+
+Kom ihåg att def-satsen inte exekverar koden. Den bara definierar vilken kod som ska exekveras när du anropar funktionen. När exekveringen kommer till en def-sats så hoppar den ner till första raden efter def-blocket.
+
+Men när funktionen visaIntro() anropas (som på rad 38) så går exekveringen in i funktionen, till def-blockets första rad.
+
+38.     visaIntro()
+
+Sedan körs alla anrop till print() och introduktionen som börjar med "Du befinner dig i ett land fullt av drakar..." visas.
+
+Placering av funktionsdefinitioner
+
+En funktions def-sats och def-block måste komma före anropet av funktionen. På samma sätt måste du tilldela en variabel ett värde innan du kan använda variabeln. Om du placerar funktionsanropet före funktionsdefinitionen så får du ett felmeddelande. Titta till exempel på den här koden:
+
+sägHejdå()
+
+def sägHejdå():
+    print('Hejdå!')
+Om du försöker köra koden så kommer Python att ge dig ett felmeddelande i stil med detta:
+Traceback (most recent call last):
+  File "C:\Python34\spam.py", line 1, in <module>
+sägHejdå()
+NameError: name 'sägHejdå' is not defined
+
+För att fixa felet, placera funktionsdefinitionen före funktionsanropet:
+
+def sägHejdå():
+    print('Hejdå!')
+
+sägHejdå()
+
+Definiera funktionen väljGrotta()
+
+11. def väljGrotta():
+
+På rad 11 definieras en annan funktion kallad väljGrotta(). Koden i funktionen frågar spelaren om denne vill gå in i grotta 1 eller 2.
+
+12.     grotta = ''
+13.     while grotta != '1' and grotta != '2':
+
+Funktionen måste kontrollera så att spelaren verkligen skrev 1 eller 2 och inte något helt annat. Loopen kommer att fortsätta fråga spelaren tills ett giltigt svar har matats in. Det här kallas för kontroll, eller validering, av indata.
+
+Rad 12 skapar en ny variabel kallad grotta och lagrar en tom sträng i den. Sedan börjar en while-loop på rad 13. Villkoret innehåller en ny operator som du inte har sett tidigare som heter and. Precis som - eller * är matematiska operatorer och == och != är jämförelseoperatorer så är operatorn and en boolesk operator.
+
+Booleska operatorer
+
+Boolesk logik har att göra med saker som antingen är sanna eller falska, True eller False. Booleska operatorer jämför värden och evalueras till enskilda booleska värden. 
+
+Tänk på meningen "Katter har morrhår och hundar har svansar". Både "Katter har morrhår" och "hundar har svansar" är sanna påståenden, så hela meningen "Katter har morrhår och hundar har svansar" är sann.
+
+Å andra sidan är meningen "Katter har morrhår och hundar har vingar" falsk. Även om det är sant att katter har morrhår så har hundar inga svansar, så påståendet "hundar har svansar" är falskt. I boolesk logik kan saker bara vara antingen helt sanna eller helt falska. På grund av ordet "och" så är hela meningen bara sann om båda delarna är sanna. Om den ena eller båda delarna är falska, så blir hela meningen falsk.
+
+Operatorerna and och or
+
+Pythons operator and funkar på samma sätt. Om de booleska värdena på båda sidorna av operatorn är True, så evalueras hela uttrycket till True. Om det ena, eller båda, booleska värdena är False så evalueras uttrycket till False.
+
+Prova att mata in följande uttryck i den interaktiva kommandotolken:
+
+>>> True and True
+True
+>>> True and False
+False
+>>> False and True
+False
+>>> False and False
+False
+>>> skräp = 'Hejsan'
+>>> 10 < 20 and skräp == 'Hejsan'
+True
+
+Operatorn or liknar and-operatorn, men ett uttryck med or-operatorn evalueras till True både om bara det ena eller båda de booleska värdena är True. Den enda gången som ett or-uttryck evalueras till False är när båda de booleska värdena är False.
+
+Prova att mata in följande i den interaktiva tolken:
+
+>>> True or True
+True
+>>> True or False
+True
+>>> False or True
+True
+>>> False or False
+False
+>>> 10 > 20 or 20 > 10
+True
+
+Operatorn not
+
+Operatorn not opererar på ett enda värde i stället för att kombinera två värden. Ett uttryck med not-operatorn evalueras till det motsatta booleska värdet. Uttrycket not True evalueras till False och not False evalueras till True.
+
+Prova att mata in detta i den interaktiva tolken:
+
+>>> not True
+False
+>>> not False
+True
+>>> not ('svart' == 'vitt')
+True
+
+Sanningstabeller
+
+Om du någon gång glömmer bort hur de booleska operatorerna fungerar så kan du titta på dessa sanningstabeller:
+
+Tabell 6-1: And-operatorns sanningstabell.
+A and B är  Hela uttrycket
+True  and True  är  True
+True  and False är  False
+False and True  är  False
+False and False är  False
+
+Tabell 6-2: Or-operatorns sanningstabell.
+A or B är  Hela uttrycket
+True  or  True  är  True
+True  or  False är  True
+False or  True  är  True
+False or  False är  False
+
+Tabell 6-3: Not-operatorns sanningstabell.
+not A är  Hela uttrycket
+not True  är  False
+not False är  True
+
+Evaluera booleska operatorer
+
+Titta på rad 13 igen:
+
+13.     while grotta != '1' and grotta != '2':
+
+Villkoret har två delar som förbinds med den booleska operatorn and. Därför blir villkoret bara True om båda delarna är True.
+
+Första gången som while-satsens villkor kontrolleras så har grotta satts till en tom sträng, ''. Den tomma strängen skiljer sig från strängen '1', så den vänstra sidan evalueras till True. Den tomma strängen skiljer sig även från strängen '2', så även den högra sidan evalueras till True.
+
+Så villkoret kokar alltså ner till True and True. Eftersom båda värdena är True så evalueras uttrycket slutligen till True. Därmed så går exekveringen in i while-blocket.
+
+Så här går evalueringen till steg för steg (om värdet på grotta är en tom sträng):
+
+while grotta != '1' and grotta != '2':
+                   ▼
+while  ''  != '1' and grotta != '2':
+                   ▼
+while     True    and grotta != '2':
+                   ▼
+while     True    and  ''  != '2':
+                   ▼
+while     True    and     True:
+                   ▼
+while             True:
+
+Hämta indata från spelaren
+
+13.     while grotta != '1' and grotta != '2':
+14.         print('Vilken grotta går du in i? (1 eller 2)')
+15.         grotta = input()
+
+På rad 14 ber programmet spelaren att välja en grotta. Rad 15 låter spelaren mata in sitt svar och trycka ENTER. Svaret lagras i variabeln grotta. Efter att den här koden har körts så hoppar exekveringen tillbaka till början av while-loopen och kontrollerar villkoret på nytt.
+
+Om spelaren har matat in 1 eller 2 så innehåller grotta antingen '1' eller '2' (eftersom input() alltid returnerar strängar). Det här gör att villkoret blir False, och exekveringen hoppar förbi koden i while-blocket, dvs loopen avbryts. Om spelaren till exempel har matat in '1' så ser evalueringen ut så här:
+
+while grotta != '1' and grotta != '2':
+                   ▼
+while  '1' != '1' and grotta != '2':
+                   ▼
+while     False   and grotta != '2':
+                   ▼
+while     False   and  '1' != '2':
+                   ▼
+while     False   and     True:
+                   ▼
+while            False:
+
+Men om spelaren har matat in 3 eller 4 eller HALLÅ, så är svaret inte giltigt. Villkoret blir True och while-blocket där spelaren ombeds välja grotta körs igen. Programmet kommer att fortsätta fråga tills spelaren har matat in 1 eller 2. På så vis kan vi vara säkra på att när exekveringen väl fortsätter så innehåller variabeln grotta ett giltigt värde.
+
+Returvärden
+
+17.     return grotta
+
+Detta är en return-sats, och sådana återfinns bara inuti def-block. Kommer du ihåg att funktionen input() returnerar det strängvärde som spelaren har matat in? Funktionen väljGrotta() returnerar också ett värde. Rad 17 returernar strängen som lagrats i grotta, antingen '1' eller '2'.
+
+När return-satsen exekveras så hoppar programmets exekvering omedelbart ut ur def-blocket (på samma sätt som break-satsen får exekveringen att hoppa ut ur ett while-block). Programmets exekvering hoppar tillbaka till raden med funktionsanropet. Själva funktionsanropet evalueras till returvärdet.
+
+Hoppa ner i koden och ta en titt på rad 40:
+
+40.     grottnummer = väljGrotta()
+
+När funktionen väljGrotta() anropas av programmet på rad 40 så lagras returvärdet i variabeln grottnummer. While-loopen garanterar att väljGrotta() enbart kommer att returnera antingen '1' eller '2' som returvärde.
+
+Så när rad 17 returnerar en sträng så evalueras funktionsanropet på rad 40 till denna sträng, varpå den lagras i grottnummer.
+
+Global och lokal räckvidd
+
+Variablerna i ditt program glöms bort när programmet avslutas. De variabler som skapas under exekveringen inuti en funktion fungerar på samma sätt. Dessa variabler skapas när funktionen anropas och glöms bort när funktionen returnerar. Funktioner är ju som miniprogram inuti ditt program.
+
+När exekveringen befinner sig inuti en funktion så kan du inte ändra värdena på variabler som ligger utanför funktionen, inklusive variabler inuti andra funktioner. Det beror på att de här variablerna har olika synlighet, eller räckvidd. Alla variabler har antingen global synlighet eller lokal synlighet.
+
+Variabler som definieras utanför alla funktioner har global synlighet. Variabler som definieras inuti en funktion (och som bara existerar under exekveringen av funktionen) har lokal synlighet.
+
+Ett program har bara en global synlighetsnivå, eller "scope" som det heter på engelska. Variabler som definieras på den globala nivån kan läsas av både utanför och inuti funktioner, men de kan bara modifieras utanför funktioner. Variabler som skapas under ett funktionsanrop kan bara läsas eller modifieras under det funktionsanropet.
+
+Du kan alltså läsa av värdena på globala variabler från den lokala synlighetsnivån. Men alla försök att ändra värdet på en global variabel från lokal nivå kommer att misslyckas. Vad som händer i de fallen är att Python skapar en lokal variabel med samma namn som den globala. Du kan, till exempel, ha en lokal variabel kallad skinka samtidigt som du har en global variabel med samma namn. Python kommer att betrakta dem som två olika variabler.
+
+Titta på det här exemplet för att se vad som händer när du försöker ändra på en global variabel från den lokala nivån. Kommentarerna förklarar vad som pågår:
+
+def bacon():
+    # Vi skapar en lokal variabel med namnet "skinka"
+    # i stället för att ändra värdet på den globala
+    # variabeln "skinka":
+    skinka = 99
+    # Namnet "skinka" refererar nu till den lokala
+    # variabeln under återstoden av denna
+    # funktion:
+    print(skinka)    # 99
+
+skinka = 42 # En global variabel med namnet "skinka"
+print(skinka) # 42
+bacon() # Anropa funktionen bacon()
+# Den globala variabeln ändrades inte av anropet till bacon():
+print(skinka)    # 42
+
+När den här koden körs så blir resultatet det följande:
+
+42
+99
+42
+
+Det avgörande för vilken synlighet en variabel har är alltså var den skapas. När programmet Drakriket först exekverar raden:
+
+12.     grotta = ''
+
+... så skapas variabeln grotta inuti funktionen väljGrotta(). Det här betyder att den har lokal synlighet i funktionen väljGrotta(). Den kommer att glömmas bort när väljGrotta() returnerar, och skapas på nytt om väljGrotta() anropas en andra gång. Värdet på en lokal variabel bevaras inte mellan funktionsanrop.
+
+Parametrar
+
+19. def kollaGrotta(valdGrotta):
+
+Nästa funktion som definieras i programmet kallas för kollaGrotta(). Notera texten valdGrotta mellan parenteserna. Det här är en parameter: en lokal variabel som tilldelas det värde som skickas med som argument när funktionen anropas.
+
+Du kanske minns att när du anropar funktioner som str() eller randint() så skickar du med ett eller fler argument mellan parenteserna:
+
+>>> str(5)
+'5'
+>>> random.randint(1, 20)
+14
+
+Du skickar också med ett argument när du anropar kollaGrotta(). Detta argument lagras i en ny variabel kallad valdGrotta. Denna typ av variabler kallas även för parametrar.
+
+Här är ett exempel på ett kort program som demonstrerar hur en funktion med en parameter fungerar:
+
+def sägHej(namn):
+    print('Hejsan, ' + namn + '. Ditt namn har ' + str(len(namn)) + ' bokstäver.')
+
+sägHej('Alice')
+sägHej('Bo')
+skinka = 'Carin'
+sägHej(skinka)
+
+Om du kör det här programmet så får du följande utskrift:
+
+Hejsan, Alice. Ditt namn har 5 bokstäver.
+Hejsan, Bo. Ditt namn har 2 bokstäver.
+Hejsan, Carin. Ditt namn har 5 bokstäver.
+
+När du anropar sägHej() så tilldelas parametern namn argumentet som skickas med. Parametrar är bara vanliga lokala variabler. Precis som med andra lokala variabler så glöms värdena på parametrar bort när funktionen returnerar.
+
+Visa resultatet av spelet
+
+Tillbaka till spelets källkod:
+
+20.     print('Du närmar dig grottan...')
+21.     time.sleep(2)
+
+Modulen time har en funktion som heter sleep() som pausar programmet. Rad 21 skickar med heltalsvärdet 2 så att time.sleep() ska pausa programmet i två sekunder.
+
+22.     print('Det är mörkt och kusligt...')
+23.     time.sleep(2)
+
+Här nedan skriver koden ut lite mer text och väntar i ytterligare 2 sekunder. De här korta pauserna gör spelet mer spännande än om all text hade visats på en gång. I programmet Vitsar i det förra kapitlet så anropade du funktionen input() för att pausa programmet tills spelaren tryckte på ENTER. Här behöver spelaren inte göra något, förutom att vänta ett par sekunder.
+24.     print('En stor drake hoppar ut framför dig! Han öppnar sina käftar och...')
+25.     print()
+26.     time.sleep(2)
+
+Vad händer sedan? Och hur avgör programmet vad som ska hända? Det förklaras i nästa sektion.
+
+Bestämma var den snälla draken bor
+
+28.     snällGrotta = random.randint(1, 2)
+
+Rad 28 anropar funktionen random.randint() som kommer att returnera antingen 1 eller 2. Detta heltalsvärde lagras i snällGrotta och är numret på grottan där den snälla draken bor.
+
+30.     if valdGrotta == str(snällGrotta):
+31.          print('Ger dig sin skatt!')
+
+Rad 30 kontrollerar om numret på den grotta som spelaren valt, och som lagrats i valdGrotta ('1' eller '2'), är samma som numret på grottan med den snälla draken.
+
+Men värdet i snällGrotta är ett heltal, eftersom random.randint() returnerar heltal. Du kan inte jämföra strängar och heltal med operatorn ==, eftersom de aldrig kommer att kunna vara lika. '1' är inte lika med 1 och '2' är inte lika med 2.
+
+Så valdGrotta skickas till funktionen str(), som returnerar strängvärdet av variabeln. På det här sättet kommer värdena att ha samma datatyp och därmed blir jämförelsen meningsfull. Man hade också kunnat konvertera valdGrotta till ett heltal på det här sättet:
+
+    if int(valdGrotta) == snällGrotta:
+
+Om villkoret är True så talar rad 31 om för spelaren att hon/han har vunnit skatten.
+
+32.     else:
+33.          print('Slukar dig hel!')
+
+Rad 32 är en else-sats. En else-sats kan bara följa direkt efter ett if-block. Else-blocket exekveras om if-satsens villkor evalueras till False. Du kan tänka att koden säger till datorn "Om villkoret är sant, exekvera if-blocket, annars exekvera else-blocket".
+
+Kom ihåg att sätta ett kolon (tecknet :) efter nyckelordet else.
+
+Startpunkten för spelet
+
+35. spelaIgen = 'ja'
+36. while spelaIgen == 'ja' or spelaIgen == 'j':
+
+Rad 35 är den första raden som inte är en def-sats eller ligger i ett def-block. Det är denna rad som är själva startpunkten för spelet. De föregående def-satserna definierade bara funktionerna. De körde inte koden inuti funktionerna.
+
+Raderna 35 och 36 startar en loop som resten av spelkoden ligger i. När spelet är över kan spelaren ange om denne vill spela igen. Om svaret är ja så hoppar exekveringen till början av while-loopen och spelet körs ännu en gång. Om svaret är nej så blir while-satsens villkor False, exekveringen hoppar till slutet och programmet avslutas.
+
+Första gången som exekveringen når while-satsen så har rad 35 just tilldelat variabeln spelaIgen värdet 'ja'. Det här betyder att villkoret blir True. På så sätt garanteras att exekveringen går in i loopen åtminstone en gång.
+
+Anropa funktionerna i programmet
+
+38.     visaIntro()
+
+På rad 38 anropas funktionen visaIntro(). Det här är ingen Python-funktion, utan det är den funktion som du definierade på rad 4. När den här funktionen anropas så hoppar exekveringen till första raden inuti visaIntro(), det vill säga rad 5. När alla rader inuti funktionen har körts, så hoppar exekveringen tillbaka till rad 38 och fortsätter sedan nedåt.
+
+40.     grottnummer = väljGrotta()
+
+Även rad 40 anropar en funktion som du själv har definierat. Funktionen väljGrotta() låter ju spelaren välja en grotta att gå in i. När koden return grotta på rad 17 exekveras så hoppar programmets exekvering tillbaka till rad 40, och anropet till väljGrotta() evalueras till returvärdet. Det här returvärdet sparas i en ny variabel kallad grottnummer. Sedan fortsätter exekveringen till rad 42.
+
+42.     kollaGrotta(grottnummer)
+
+Rad 42 anropas funktionen kollaGrotta() och skickar med värdet på grottnummer som argument. Förutom att exekveringen hoppar till rad 20 så kopieras alltså värdet i variabeln grottnummer till parametern valdGrotta i funktionen kollaGrotta(). Det är denna funktion som antingen skriver ut 'Ger dig sin skatt!' eller 'Slukar dig hel!' beroende på vilken grotta som spelaren valt att gå in i.
+
+Fråga om spelaren vill spela igen
+
+44.     print('Vill du spela igen? (ja eller nej)')
+45.     spelaIgen = input()
+
+Oavsett om det blev vinst eller förlust så tillfrågas spelaren om hon/han vill spela igen. Variabeln spelaIgen lagrar svaret som spelaren matar in. Rad 45 är den sista raden i while-blocket, så programmet hoppar därefter tillbaka till rad 36 för att kontrollera while-loopens villkor: spelaIgen == 'ja' or spelaIgen == 'j'
+
+Om spelaren har matat in strängen 'ja' eller bara 'j' så kommer exekveringen att gå in i loopen igen och köra rad 38.
+
+Om spelaren har skrivit 'nej' eller 'n' eller bara något fånigt som 'Gustav Vasa' så blir villkoret False. Om det hade funnits några rader efter while-blocket så hade exekveringen, i detta fall, hoppat dit. Men det gör det inte, så programmet avslutas.
+
+Notera en sak: strängen 'JA' betraktas inte som samma värde som 'ja'. Om spelaren matar in strängen 'JA' så kommer while-satsens villkor att evalueras till False och programmet avslutas. Senare i den här boken kommer du att lära dig hur man undviker detta problem.
+
+Du har just slutfört ditt andra spel! I Drakriket så fick du användning av mycket av det som du lärde dig i kapitlet om Gissa talet. Dessutom fick du lära dig några nya trick. Om du inte förstod en del av koncepten i det här programmet, gå igenom källkoden igen rad för rad, prova att ändra i koden och se vad som händer.
+
+I nästa kapitel kommer du inte att skapa något spel. I stället ska du få lära dig att använda den del av IDLE som kallas för debuggern, eller avlusaren.
+
+Design av program
+
+Drakriket är ett simpelt spel. Spelen i resten av den här boken kommer att vara något mer komplicerade. Ibland kan det hjälpa att skriva ned allt som du vill att ditt program ska göra innan du börjar att koda. Det här kallas för att "designa" programmet.
+
+Det kan till exempel underlätta att rita ett flödesschema. Ett flödesschema är en bild som visar alla saker som kan hända i ett spel, och vilka handlingar som leder till vilka händelser. Figur 6-2 visar ett flödesschema för Drakriket.
+
+För att följa vad som händer i spelet, sätt först fingret på "Start". Följ sedan pilarna från en "låda" till en annan. Ditt finger är som programmets exekvering. Programmet avslutas när ditt finger når "Slut".
+
+När du kommer till lådan "Kolla om draken är vänlig eller hungrig" så kan du antingen välja att gå vidare till "Spelaren vinner" eller "Spelaren förlorar". Den här förgreningen visar att programmet kan göra olika saker. Oavsett vilket så når vägen så småningom fram till lådan "Fråga om ny spelomgång".
+
+Sammanfattning
+
+I spelet Drakriket så skapade du dina egna funktioner. Funktioner är som miniprogram inuti ditt program. Koden inuti en funktion körs när funktionen anropas. Genom att bryta upp din kod i funktioner, så kan du organisera den i mindre och mer lättbegripliga sektioner.
+
+Argument är värden som kopieras til en funktions parametrar när funktionen anropas. Själva funktionsanropet evalueras till funktionens returvärde.
+
+Figur 6-2: Flödesschema för spelet Drakriket.
+
+Du fick också lära dig om variablers synlighet. Variabler som skapas inuti en funktion har lokal synlighet, och variabler som skapas utanför funktioner har global synlighet. Kod på den globala nivån kan inte använda lokala variabler. Om en lokal variabel har samma namn som en global variabel, så betraktar Python den som en separat variabel. Tilldelning av värden till den lokala variabeln ändrar inte värdet på den globala variabeln.
+
+Det här med variablers synlighet kan verka komplicerat, men det är detta som möjliggör organisering av program i funktioner vars kod är separerad från resten av programmet. Eftersom varje funktion har sin egen lokala synlighetsnivå så kan du vara säker på att koden i en funktion inte skapar några buggar i en annan funktion.
+
+Eftersom funktioner är så användbara så förekommer de i nästan alla program. Genom att lära dig hur funktioner fungerar så kan du bespara dig själv en hel del skrivande och göra det lättare att hitta buggar i dina program.

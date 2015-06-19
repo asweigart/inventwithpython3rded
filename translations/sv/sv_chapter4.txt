@@ -118,7 +118,7 @@ Funktionen randint() ingår i modulen random, så du måste skriva random. (glö
 
 Funktionen randint() returnerar ett slumpmässigt heltal mellan (och inklusive) de två heltal du skickar med som argument. På rad 9 skickas 1 och 20, med komma emellan, med mellan de parenteser som följer efter funktionsnamnet. Det slumpmässiga heltalet som randint() returnerar sparas i en variabel kallad tal; detta är det hemliga tal som spelaren ska försöka gissa.
 
-För ett ögonblick, gå tillbaka till den interaktiva kommandotolken och skriv in import random för att importera random-modulen. Skriv sedan in random.randint(1, 20) för att se vad funktionsanropet utvärderas till. Funktionen kommer att returnerar ett heltal mellan 1 och 20. Upprepa koden igen och funktionsanropet kommer att returnera ett annat heltal. Funktionen randint() returnerar ett slumpmässigt heltal varje gång, ungefär som när du kastar en tärning:
+För ett ögonblick, gå tillbaka till den interaktiva kommandotolken och skriv in import random för att importera random-modulen. Skriv sedan in random.randint(1, 20) för att se vad funktionsanropet utvärderas till. Funktionen kommer att returnera ett heltal mellan 1 och 20. Upprepa koden igen och funktionsanropet kommer att returnera ett annat heltal. Funktionen randint() returnerar ett slumpmässigt heltal varje gång, ungefär som när du kastar en tärning:
 
 >>> import random
 >>> random.randint(1, 20)
@@ -402,9 +402,9 @@ If-satsen på rad 25 kontrollerar om det gissade talet är lika stort som det he
 
 En break-sats gör så att exekveringen omedelbart hoppar ut ur while-blocket till den rad som följer efter slutet på blocket. Break-satsen bryr sig inte om att kontrollera while-loopens villkor.
 
-Break-satser hittar man bara inuti loopar såsom i ett while-block.
+Break-satser hittar man bara inuti loopar så som i ett while-block.
 
-Om det tal spelaren har gissat på inte är det hemliga talet så når exekveringen slutet av while-blocket. Det betyder att exekveringen kommer att loopa tillbaka till början och återigen kontrollera villkoret på rad 12 (antalGissningar < 6). Kom ihåg att efter det att instruktionen antalGissningar = antalGissningar + 1 instruction har exekverats så är det nya värdet på antalGissningar 1. Eftersom 1 < 6 är True så går exekveringen in i loopen igen.
+Om det tal spelaren har gissat på inte är det hemliga talet så når exekveringen slutet av while-blocket. Det betyder att exekveringen kommer att loopa tillbaka till början och återigen kontrollera villkoret på rad 12 (antalGissningar < 6). Kom ihåg att efter det att instruktionen antalGissningar = antalGissningar + 1 har exekverats så är det nya värdet på antalGissningar 1. Eftersom 1 < 6 är True så går exekveringen in i loopen igen.
 
 Om spelaren fortsätter att gissa på för låga eller för höga tal så kommer värdet på antalGissningar att ändras till 2, sedan 3, sedan 4, sedan 5, sedan 6. När talet 6 har sparats i antalGissningar så kommer while-satsens villkor (antalGissningar < 6) bli False, eftersom 6 inte är mindre än 6. Eftersom while-satsens villkor är False så kommer exekveringen att hoppa till den första raden efter while-blocket, rad 28.
 
@@ -465,6 +465,6 @@ Om någon frågade dig "Vad är egentligen programmering?", vad skulle du svara?
 3.  If-, while- och break-satser är satser för flödeskontroll, som kan få exekveringen att hoppa över instruktioner, upprepa instruktioner i en loop och hoppa ut ur loopar. Även funktionsanrop påverkar exekveringsflödet genom att hoppa till instruktionerna inuti en funktion.
 4.  Funktionerna print() och input(). Dessa funktioner visar text på skärmen och hämtar text från tangentbordet. Det här kallas för I/O eftersom det handlar om indata (Input på engelska) till och utdata (Output) från programmet.
 
-Och det är allt, de här fyra sakerna. Det finns förstås en massa detaljer kring de här fyra typerna av instruktioner. I den här boken kommer du att få lära dig om nya datatyper, nya satser för flödeskontroll och många andra funktioner som är inbyggda i Python. Det finns också andra typer av I/O såsom indata från musen och utdata i form av ljud och grafik i stället för text.
+Och det är allt, de här fyra sakerna. Det finns förstås en massa detaljer kring de här fyra typerna av instruktioner. I den här boken kommer du att få lära dig om nya datatyper, nya satser för flödeskontroll och många andra funktioner som är inbyggda i Python. Det finns också andra typer av I/O så som indata från musen och utdata i form av ljud och grafik i stället för text.
 
 För den person som använder dina program är det bara den sista typen, I/O, som är relevant. Användaren skriver in saker med tangentbordet och ser saker på skärmen eller hör saker från högtalarna. Men för att datorn ska veta vad som ska visas eller vilka ljud som ska spelas upp behövs ett program, och ett program är bara ett gäng instruktioner som du, programmeraren, har skrivit.

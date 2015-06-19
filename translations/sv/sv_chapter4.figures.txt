@@ -1,0 +1,11 @@
+Fig 4-2:
+...hoppa in i while-blocket till denna rad.
+...hoppa förbi while-blocket till denna rad.
+
+Fig 4-3:
+brus
+nyckelordet if
+villkor
+nyckelordet while
+loopar inte
+loopar

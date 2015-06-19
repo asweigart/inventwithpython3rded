@@ -1,0 +1,152 @@
+    Kapitel 5
+    VITSAR
+
+Ämnen som behandlas i detta kapitel:
+
+•   Escape-tecken
+•   Använda enkla och dubbla citattecken med strängar
+•   Använda nyckelordet end som argument till print()
+
+Få ut mer av print()
+
+I de flesta av spelen i den här boken så består både indata och utdata av enkel text. Indatan matas in av användaren via tangentbordet. Utdatan är den text som visas på skärmen. I Python så är det funktionen print() som används för att skriva ut text på skärmen. Men det finns mer att lära om hur strängar och print() fungerar i Python.
+
+Det här kapitlets program drar några olika vitsar för användaren, och demonstrerar samtidigt avancerad användning av strängar och print().
+
+Provkörning av Vitsar
+
+Vad får du om du korsar en snögubbe med en vampyr?
+
+Frostbett!
+
+Vad kallar tandläkare det som 'tandtrollen' gör i astronauters tänder?
+
+Svarta hål!
+
+Knack knack.
+
+Vem där?
+
+Avbrytande kon.
+
+Vadå avbrytan-MUUU!
+
+Källkoden till Vitsar
+
+Öppna ett nytt fönster i fileditorn genom att välja File ► New File. Skriv in källkoden i det tomma fönstret och spara filen som vitsar.py. Kör sedan programmet genom att trycka på F5.
+
+OBS, VIKTIGT! Programmen i den här boken kan bara köras med Python 3, inte med Python 2. När IDLE-fönstret öppnas, så ska det stå något i stil med “Python 3.4.2” längst upp. Du kan ha både Python 2 och Python 3 installerat samtidigt. För att ladda ner Python 3, gå till https://python.org/download/.
+
+Om du får felmeddelanden när du försöker köra koden, så jämför den kod du skrivit in med bokens kod med diff-verktyget på adressen http://invpy.com/diff/vitsar.
+
+vitsar.py
+
+ 1. print('Vad får du om du korsar en snögubbe med en vampyr?')
+ 2. input()
+ 3. print('Frostbett!')
+ 4. print()
+ 5. print('Vad kallar tandläkare det som \'tandtrollen\' gör i astronauters tänder?')
+ 6. input()
+ 7. print('Svarta hål!')
+ 8. print()
+ 9. print('Knack knack.')
+10. input()
+11. print('Vem där?')
+12. input()
+13. print('Avbrytande kon.')
+14. input()
+15. print('Vadå avbrytan', end='')
+16. print('-MUUU!')
+
+Så fungerar koden
+
+ 1. print('Vad får du om du korsar en snögubbe med en vampyr?')
+ 2. input()
+ 3. print('Frostbett!')
+ 4. print()
+
+Raderna 1 till 4 innehåller tre anrop till funktionen print(). Du vill inte att spelaren omedelbart ska få se själva slutklämmen på vitsen, så efter första print()-anropet så anropas funktionen input(). Spelaren kan läsa början på vitsen, trycka ENTER, och sedan läsa poängen.
+
+Användaren kan mata in en sträng innan hon/han trycker på ENTER, men det värde som returneras av input() lagras inte i någon variabel. Programmet struntar bara i returvärdet och hoppar till nästa kodrad.
+
+Vid det sista anropet till print() så skickas ingen sträng med som argument. Vi instruerar bara programmet att skriva ut en tom rad. Med hjälp av tomrader kan man få utskrifterna att bli lite luftigare.
+
+Escape-tecken
+
+ 5. print('Vad kallar tandläkare det som \'tandtrollen\' gör i astronauters tänder?')
+ 6. input()
+ 7. print('Svarta hål!')
+ 8. print()
+
+På rad 5 så kommer det omvända snedstreck före de enkla citattecknen inuti strängen: \'. Notera att \ är just ett omvänt snedstreck, eller "backslash", och / är ett vanligt snedstreck. Det omvända snedstrecket fungerar här som "escape-tecken". Det omvända snedstrecket gör så att det följande tecknet "hoppas över", dvs inte tolkas på vanligt vis. Ett escape-tecken låter dig skriva ut tecken som annars inte kan ingå i strängar. På rad 5 är de tecken som "hoppas över" de enkla citattecknen.
+
+I det här fallet behövs escape-tecknen för att annars skulle Python tro att strängen var slut vid det första, enkla citattecknet. Men 'tandtrollen' ska ju ingå i den sträng som skrivs ut. Escape-tecknen talar om för Python att de enkla citattecknen faktiskt ingår i själva strängvärdet, och inte markerar var strängen slutar.
+
+Några andra escape-sekvenser
+
+Men hur ska du göra om du vill skriva ut ett omvänt snedstreck? Den här instruktionen skulle inte fungera:
+
+>>> print('De flög iväg i en röd\tegelfärgad helikopter.')
+De flög iväg i en röd    egelfärgad helikopter.
+Det blir så här eftersom bokstaven "t" i "tegelröd" tillsammans med det omvända snedstrecket bildar en escape-sekvens. Denna escape-sekvens simulerar en tryckning på tangentbordets Tab-tangent. Prova i stället att skriva så här:
+>>> print('De flög iväg i en röd\\tegelfärgad helikopter.')
+De flög iväg i en röd\tegelfärgad helikopter.
+
+Tabell 5-1 listar olika escape-sekvenser i Python.
+
+Tablell 5-1: Escape-sekvenser
+Escape-sekvens    Vad som faktiskt skrivs ut
+\\  Omvänt snedstreck (\)
+\'  Enkelt citattecken (')
+\"  Dubbelt citattecken (")
+\n  Ny rad
+\t  Tab
+
+Enkla och dubbla citattecken
+
+Strängar behöver inte alltid omgärdas av enkla citattecken i Python. Du kan också använda dubbla citattecken. De här två raderna skriver ut samma sak:
+
+>>> print('Hejsan världen')
+Hejsan världen
+>>> print("Hejsan världen")
+Hejsan världen
+Men du kan inte blanda olika typer av citattecken. Den här instruktionen kommer att ge ett felmeddelande:
+>>> print('Hejsan världen")
+SyntaxError: EOL while scanning single-quoted string
+
+Jag gillar att använda enkla citattecken för att jag inte behöver trycka ner shift-tangenten när jag skriver dem. Det gör det lättare att skriva, och Python bryr sig inte om vilken typ jag använder.
+
+På samma sätt som du behöver använda escape-sekvensen \' för att kunna ha ett enkelt citattecken i en sträng omgärdad av enkla citattecken, så behöver du använda escape-sekvensen \" för att få dubbla citattecken i en sträng omgärdad av dubbla citattecken. Se till exempel på de här två raderna:
+
+>>> print('Jag frågade om jag fick låna \'Abbes\' bil i en vecka. "Visst", svarade han.')
+Jag frågade om jag fick låna 'Abbes' bil i en vecka. "Visst", svarade han.
+
+>>> print("\"Jag kan inte fatta att du lät dem låna din bil\", sade hon.")
+"Jag kan inte fatta att du lät dem låna din bil", sade hon.
+
+I strängar med enkla citattecken så behöver du inte använda escape-sekvenser för att skriva ut dubbla citattecken, och i strängar med dubbla citattecken behövs de inte för att skriva ut enkla citattecken: "'tandtrollen'". Python-tolken är smart nog för att fatta att om en sträng börjar med den ena typen av citattecken, så betyder inte den andra typen av citattecken att strängen är slut.
+
+print()-funktionens nyckelordsargument end
+
+ 9. print('Knack knack.')
+10. input()
+11. print('Vem där?')
+12. input()
+13. print('Avbrytande kon.')
+14. input()
+15. print('Vadå avbrytan', end='')
+16. print('-MUUU!')
+
+Lade du märke till den andra parametern i anropet till print() på rad 15? Normalt så lägger print() till ett tecken för ny rad (\n) efter varje sträng som skrivs ut. Det är därför som ett print()-anrop utan parametrar skriver ut just en tom rad. Men print()-funktionen har en andra, valfri parameter (som har namnet end).
+
+Den tomma strängen som skickas med kallas för nyckelordsargument. Parametern end har ett specifikt namn, och för att kunna skicka ett nyckelordsargument till denna specifika parameter så måste du skriva end= före argumentet.
+
+När man sätter parametern end till en tom sträng så lägger print()-funktionen inte till något ny rad-tecken i slutet av strängen. I stället är det den tomma strängen som läggs till. Det är därför som '-MUUU!' visas direkt efter föregående rad, i stället för på en ny, egen rad. Det lades inte till något ny rad-tecken efter strängen 'Vadå avbrytan'.
+
+Sammanfattning
+
+Det här kapitlet har utforskat olika sätt att använda funktionen print(). Escape-sekvenser används för tecken som annars är svåra eller omöjliga att skriva in i koden med hjälp av tangentbordet. Escape-sekvenser i strängar börjar med escape-tecknet \, omvänt snedstreck eller "backslash", följt av en bokstav som står för tecknet i fråga. Till exempel så står \n för ny rad. För att få in ett omvänt snedstreck i en sträng så måste du använda escape-sekvensen \\.
+
+Funktionen print() lägger automatiskt till tecknet för ny rad i slutet av den sträng som skickas med och som ska skrivas ut på skärmen. Oftast är det här till hjälp. Men ibland vill du inte ha ett ny rad-tecken i slutet. För att slippa radbytet kan du skicka nyckelordsargumentet end med en tom sträng. För att till exempel skriva ut "skinka" på skärmen, utan något radbyte, kan du du skriva så här: print('skinka', end='').
+
+Det finns många flexibla sätt att visa text på skärmen med Python. 

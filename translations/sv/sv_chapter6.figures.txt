@@ -1,0 +1,15 @@
+Fig 6-1:
+nyckelordet def
+parenteser
+funktionens namn
+kolon
+
+Fig 6-2:
+Start
+Visa introduktion
+Spelaren väljer en grotta
+Kolla om draken är vänlig eller hungrig
+Spelaren vinner
+Spelaren förlorar
+Fråga om ny spelomgång
+Slut

@@ -99,7 +99,7 @@ Få hjälp på nätet
 
 Den här bokens webbplats finns på http://inventwithpython.com/sv. Där hittar du flera olika resurser relaterade till boken. Flera länkar i den här boken använder domänen invpy.com/sv för att adresserna ska bli kortare.
 
-Webbsidan på http://reddit.com/r/inventwithpython är ett bra stället att ställa programmeringsfrågor relaterade till boken. Skicka allmänna Python-frågor till webbsidorna LearnProgramming och LearnPython på adresserna http://reddit.com/r/learnprogramming respektive http://reddit.com/r/learnpython.
+Webbsidan på http://reddit.com/r/inventwithpython är ett bra ställe att ställa programmeringsfrågor relaterade till boken. Skicka allmänna Python-frågor till webbsidorna LearnProgramming och LearnPython på adresserna http://reddit.com/r/learnprogramming respektive http://reddit.com/r/learnpython.
 
 Du kan även mejla programmeringsfrågor till mig på adressen al@inventwithpython.com.
 
