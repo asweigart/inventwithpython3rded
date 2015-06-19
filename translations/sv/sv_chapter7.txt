@@ -16,7 +16,7 @@ Buggar!
 
 Om du matar in fel kod så kommer inte datorn fixa så att programmet blir korrekt. Ett datorprogram gör bara vad du har sagt åt det att göra, men det du säger åt programmet att göra kanske inte är samma sak som det du egentligen vill att det ska göra. Den här typen av fel i ett datorprogram kallas för buggar. Buggar uppstår när programmeraren inte noga har tänkt igenom exakt vad programmet ska göra. Det finns tre typer av buggar som kan uppstå i dina program:
 
-•   Syntaxfel är en typ av buggar som beror på skrivfel. När Python-tolken hittar ett syntaxfel, så beror det på din kod inte följer Pythons språkregler. Även om ditt Python-program bara innehåller ett enda syntaxfel så kan det inte köras.
+•   Syntaxfel är en typ av buggar som beror på skrivfel. När Python-tolken hittar ett syntaxfel, så beror det på att din kod inte följer Pythons språkregler. Även om ditt Python-program bara innehåller ett enda syntaxfel så kan det inte köras.
 •   Körningsfel är buggar som uppstår medan programmet körs. Programmet fungerar ända tills exekveringen når raden där felet uppstår, därefter avbryts det och du får ett felmeddelande (det här kallas för att programmet kraschar). Python-tolken kommer att visa en "spårutskrift" och ange på vilken rad problemet uppstod.
 •   Semantiska fel är den typ av fel som är svårast att åtgärda. De här buggarna kraschar inte ditt program, men de gör så att programmet inte fungerar så som du har tänkt att det ska fungera. Om en programmerare till exempel vill att variabeln total ska innehålla summan av värdena i variablerna a, b och c men skriver total = a * b * c, så blir värdet i total helt fel. Det här skulle kunna leda till att programmet kraschar längre fram, men det skulle inte vara omedelbart uppenbart var det semantiska felet fanns.
 
@@ -50,9 +50,9 @@ Starta debuggern
 
 Figur 7-1: Fönstret Debug Control.
 
-Figure 7-2: Att köra spelet Drakriket med debuggern.
+Figur 7-2: Att köra spelet Drakriket med debuggern.
 
-När du nu kör Drakriket genom att trycka på F5 så kommer IDLE:s debugger att aktiveras. Det här kallas för att man kör programmet med debuggern, eller i felsökningsläge. Kryssa irutorna Source och Globals i fönstret Debug Control.
+När du nu kör Drakriket genom att trycka på F5 så kommer IDLE:s debugger att aktiveras. Det här kallas för att man kör programmet med debuggern, eller i felsökningsläge. Kryssa i rutorna Source och Globals i fönstret Debug Control.
 
 När du kör Pythonprogram i felsökningsläge så kommer programmet att pausas innan den första instruktionen exekveras. Om du klickar på titelraden i fönstret med fileditorn (och om du har kryssat i rutan Source i fönstret Debug Control) så kommer den första instruktionen att markeras med grått. I fönstret Debug Control kan man se att exekveringen befinner sig på rad 1, vilket är raden med import random.
 
@@ -89,7 +89,7 @@ Knapparna Go och Quit
 
 Om du tröttnar på att hela tiden behöva klicka på Step och vill att programmet ska köras på det vanliga viset så kan du trycka på Go i övre delen av fönstret Debug Control. Programmet exekveras då på det normala sättet i stället för steg för steg.
 
-För att avbryta programmet helt och hållet, klicka på Quit längst upp i fönstret Debug Control. Programmett avslutas omedelbart. Det här kan vara till hjälp om du behöver starta om felsökningen från början av programmet.
+För att avbryta programmet helt och hållet, klicka på Quit längst upp i fönstret Debug Control. Programmet avslutas omedelbart. Det här kan vara till hjälp om du behöver starta om felsökningen från början av programmet.
 
 Hoppa in, över och ut
 
@@ -107,145 +107,145 @@ Tryck på Step ytterligare en gång för att hoppa in i funktionen väljGrotta()
 
 Klicka dig tillbaka till fönstret med den interaktiva kommandotolken och mata in numret på den grotta du vill gå in i. Den blinkande markören måste stå på nedersta raden i den interaktiva tolken innan du kan skriva, annars kommer den text du skriver in inte att synas.
 
-När du trycker på ENTER så kommer debuggern att fortsätta att stega igenom kodraderna. Click the Out button on the Debug Control window. This is called stepping out, because it will cause the debugger to step over as many lines as it needs to until execution has returned from the function it is in. After it jumps out, the execution will be on the line after the line that called the function.
+När du trycker på ENTER så kommer debuggern att fortsätta att stega igenom kodraderna. Klicka på Out i fönstret Debug Control. Det här kallas för att hoppa ut ur en funktion, eftersom debuggern hoppar över rader ända tills exekveringen har återvänt från funktionen i fråga. Efter hoppet så kommer exekveringen att befinna sig på den rad som kommer efter raden med funktionsanropet.
 
-For example, clicking Out inside the displayIntro() function on line 6 would step until the function returned to the line after the call to displayIntro(). Stepping out can save you from having to click Step repeatedly to jump out of the function.
+Om du till exempel klickar på Out när exekveringen befinner sig på rad 6 inuti funktionen visaIntro() så hoppar debuggern till raden efter anropet till visaIntro(). Genom att använda Out så slipper du alltså klicka på Step upprepade gånger för att komma ut ur en funktion. 
 
-If you are not inside a function, clicking Out will cause the debugger will execute all the remaining lines in the program. This is the same behavior as clicking the Go button.
+Ifall du inte befinner dig inuti en funktion så kommer ett klick på Out att få debuggern att exekvera alla återstående rader i programmet. Samma sak händer om du klickar på knappen Go.
 
-Here’s a recap of what each button does:
+Låt oss repetera vad de olika knapparna är till för:
 
-•   Go - Executes the rest of the code as normal, or until it reaches a break point. (Break points are described later.)
-•   Step - Step one instruction. If the line is a function call, the debugger will step into the function.
-•   Over - Step one instruction. If the line is a function call, the debugger won’t step into the function, but instead step over the call.
-•   Out - Keeps stepping over lines of code until the debugger leaves the function it was in when Out was clicked. This steps out of the function.
-•   Quit - Immediately terminates the program.
+•   Go - Exekverar resten av koden på det normala sättet, eller tills exekveringen når en brytpunkt. (Brytpunkter beskrivs längre fram.)
+•   Step - Hoppa fram en instruktion. Om raden innehåller ett funktionsanrop så kommer debuggern att hoppa in i funktionen.
+•   Over - Hoppa fram en instruktion. Om raden innehåller ett funktionsanrop så kommer debuggern inte att hoppa in i funktionen, utan i stället hoppa förbi den.
+•   Out - Forsätter att stega tills debuggern har kommit ut ur den funktion där du klickade på Out. Med denna knapp hoppar du alltså ut ur en funktion.
+•   Quit - Avslutar omedelbart programmet.
 
-Find the Bug
+Hitta buggen
 
-The debugger can help you find the cause of bugs in your program. As an example, here is a small program with a bug. The program comes up with a random addition problem for the user to solve. In the interactive shell window, click on File, then New Window to open a new file editor window. Type this program into that window, and save the program as buggy.py.
+Debuggern kan hjälpa dig att hitta orsaken till buggar i dina program. Här nedan är ett exempel på ett litet program med en bugg. Programmet hittar på ett slumpmässigt additionsproblem som användaren ska lösa. Öppna ett nytt fileditor-fönster genom att gå till den interaktiva kommandotolken och klicka på File och därefter New File. Skriv in programmet i fönstret och spara det som buggig.py.
 
-buggy.py
+buggig.py
 
 1. import random
-2. number1 = random.randint(1, 10)
-3. number2 = random.randint(1, 10)
-4. print('What is ' + str(number1) + ' + ' + str(number2) + '?')
-5. answer = input()
-6. if answer == number1 + number2:
-7.     print('Correct!')
+2. tal1 = random.randint(1, 10)
+3. tal2 = random.randint(1, 10)
+4. print('Vad blir ' + str(tal1) + ' + ' + str(tal2) + '?')
+5. svar = input()
+6. if svar == tal1 + tal2:
+7.     print('Rätt!')
 8. else:
-9.     print('Nope! The answer is ' + str(number1 + number2))
+9.     print('Nix! Svaret är ' + str(tal1 + tal2))
 
-Type the program as it is above, even if you can already tell what the bug is. Then trying running the program by pressing F5. This is a simple arithmetic quiz that comes up with two random numbers and asks you to add them. Here’s what it might look like when you run the program:
+Skriv in programmet så som det ser ut ovan, även om du redan nu kan se var buggen finns. Prova sedan att köra programmet genom att trycka på F5. Det här är som ett simpelt matteförhör, programmet slumpar fram två tal och ber dig att addera dem. Så här kan det se ut när du kör programmet:
 
-What is 5 + 1?
+Vad blir 5 + 1?
 6
-Nope! The answer is 6
+Nix! Svaret är 6
 
-That’s a bug! The program doesn’t crash but it is not working correctly. The program says the user is wrong even if they type the correct answer.
+Där har vi en bugg! Programmet kraschar inte, men det funkar inte på rätt sätt. Det säger att svaret är fel även om användaren har matat in ett korrekt svar.
 
-Running the program under a debugger will help find the bug’s cause. At the top of the interactive shell window, click on Debug ► Debugger to display the Debug Control window. In the Debug Control window, check all four checkboxes (Stack, Source, Locals, and Globals). This makes the Debug Control window provide the most information. Then press F5 in the file editor window to run the program. This time it will be run under the debugger.
+Genom att köra programmet med debuggern kommer vi lättare att kunna hitta orsaken till buggen. I överkanten av fönstret med den interaktiva kommandotolken, välj Debug ► Debugger för att öppna fönstret Debug Control. Kryssa i samtliga fyra kryssrutor (Stack, Source, Locals och Globals) i fönstret Debug Control. På så vis får vi så mycket information som möjligt. Tryck sedan på F5 i fileditorn för att köra programmet. Den här gången kommer det att köras i felsökningsläge.
 
 1. import random
 
-The debugger starts at the import random line. Nothing special happens here, so just click Step to execute it. You will see the random module added to the Globals area.
+Debuggern startar på raden med import random. Här händer inget särskilt, så klicka bara på Step för att exekvera koden. Du kommer att se att modulen random läggs till under Globals.
 
-2. number1 = random.randint(1, 10)
+2. tal1 = random.randint(1, 10)
 
-Click Step again to run line 2. A new file editor window will appear with the random.py file. You have stepped inside the randint() function inside the random module. Python’s built-in functions won’t be the source of your bugs, so click Out to step out of the randint() function and back to your program. Then close the random.py file's window.
+Klicka på Step igen för att köra rad 2. Ett nytt fileditor-fönster, med filen random.py, öppnas. Du har stegat in i funktionen randint() i modulen random(). Det kommer dock inte vara Pythons inbyggda funktioner som orsakar buggarna i dina program, så klicka på Out för att hoppa ut ur funktionen randint() och tillbaka till ditt program. Stäng sedan fönstret med filen random.py.
 
-3. number2 = random.randint(1, 10)
+3. tal2 = random.randint(1, 10)
 
-Next time, you can click Over to step over the randint() function instead of stepping into it. Line 3 is also a randint() function call. Skip stepping into this code by clicking Over.
+Nästa gång kan du klicka på Over för att hoppa över randint()-funktionen i stället för att hoppa in i den. Även rad 3 innehåller ett anrop till randint(). Skippa att hoppa in i funktionen genom att klicka på Over.
 
-4. print('What is ' + str(number1) + ' + ' + str(number2) + '?')
+4. print('Vad blir ' + str(tal1) + ' + ' + str(tal2) + '?')
 
-Line 4 is a print() call to show the player the random numbers. You know what numbers the program will print even before it prints them! Just look at the Globals area of the Debug Control window. You can see the number1 and number2 variables, and next to them are the integer values stored in those variables.
+Anropet till print() på rad 4 presenterar de framslumpade talen för spelaren. Du vet vilka tal som kommer att visas redan innan de skrivs ut! Titta bara i ytan under Globals i fönstret Debug Control. Där ser du variablerna tal1 och tal2, och intill namnen de heltalsvärden som har lagrats i dessa variabler.
 
-The number1 variable has the value 4 and the number2 variable has the value 8. When you click Step, the program will display the string in the print() call with these values. The str() function will concatenate the string version of these integers. When I ran the debugger, it looked like Figure 7-4. (Your random numbers will probably be different.)
+Variabeln tal1 har värdet 4 och variabeln tal2 har värdet 8. När du klickar på Step så kommer programmet att skriva ut strängen i print()-anropet, med dessa värden infogade. Funktionen str() omvandlar heltalen till strängar innan de slås ihop med resten av strängen. När jag körde debuggern så såg det ut som i Figur 7-4. (Du kommer antagligen ha fått fram andra slumptal.)
 
-Figure 7-4: number1 is set to 4 and number2 is set to 8.
+Figur 7-4: tal1 har satts till 4 och tal2 har satts till 8.
 
-5. answer = input()
+5. svar = input()
 
-Clicking on Step from line 5 will execute input(). The debugger waits until the player enters a response into the program. Enter the correct answer (in my case, 12) into the interactive shell window. The debugger will resume and move down to line 6.
+Om du klickar på Step från rad 5 så exekveras input(). Debuggern väntar tills spelaren har matat in ett svar. Skriv in rätt svar (12 i mitt fall) i den interaktiva kommandotolken. Debuggern kommer att återuppta exekveringen och hoppa ner till rad 6.
 
-6. if answer == number1 + number2:
-7.     print('Correct!')
+6. if svar == tal1 + tal2:
+7.     print('Rätt!')
 
-Line 6 is an if statement. The condition is that the value in answer must match the sum of number1 and number2. If the condition is True, then the debugger will move to line 7. If the condition is False, the debugger will move to line 9. Click Step one more time to find out where it goes.
+Rad 6 är en if-sats. Villkoret är att värdet i svar måste matcha summan av tal1 och tal2. Om villkoret är True (sant) så kommer debuggern att fortsätta till rad 7. Om villkoret är False (falskt) så hoppar debuggern till rad 9. Klicka på Step ännu en gång för att se var debuggern ställer sig.
 
 8. else:
-9.     print('Nope! The answer is ' + str(number1 + number2))
+9.     print('Nix! Svaret är ' + str(tal1 + tal2))
 
-The debugger is now on line 9! What happened? The condition in the if statement must have been False. Take a look at the values for number1, number2, and answer. Notice that number1 and number2 are integers, so their sum would have also been an integer. But answer is a string.
+Debuggern befinner sig nu på rad 9! Vad hände? Villkoret i if-satsen måste ha varit falskt. Ta en titt på värdena i tal1, tal2 och svar. Notera att tal1 och tal2 är heltal, så summan av dem kommer också att bli ett heltal. Men svar är en sträng.
 
-That means that answer == number1 + number2 would have evaluated to '12' == 12. A string value and an integer value will always not equal each other, so the condition evaluated to False.
+Det betyder att svar == tal1 + tal2 har utvärderats till '12' == 12. Ett strängvärde och ett heltalsvärde kan aldrig vara lika, så villkoret utvärderas till False.
 
-That is the bug in the program. The bug is that the code has answer when it should have int(answer). Change line 6 to int(answer) == number1 + number2, and run the program again.
+Det är detta som är buggen i programmet. Felet är att det bara står svar i koden när det borde stå int(svar). Ändra rad 6 så att det står int(svar) == tal1 + tal2 och kör programmet igen.
 
-What is 2 + 3?
+Vad blir 2 + 3?
 5
-Correct!
+Rätt!
 
-This time, the program worked correctly. Run it one more time and enter a wrong answer on purpose. This will completely test the program. You’ve now debugged this program! Remember, the computer will run your programs exactly as you type them, even if what you type isn’t what you intend.
+Den här gången fungerade programmet som det ska. Kör det ytterligare en gång och skriv in ett felaktigt svar, med avsikt. På så vis testar du programmet fullt ut. Du har nu blivit av med buggen i det här programmet! Kom ihåg: Datorn kör dina program precis så som du har skrivit dem, även om det du har skrivit inte är vad du menade att skriva.
 
-Break Points
+Brytpunkter
 
-Stepping through the code one line at a time might still be too slow. Often you’ll want the program to run at normal speed until it reaches a certain line. A break point is set on a line when you want the debugger to take control once execution reaches that line. If you think there’s a problem with your code on, say, line 17, just set a break point on line 17 (or maybe a few lines before that).
+Att stega igenom koden en rad i taget kan ibland ta för lång tid. Ofta vill du köra programmet i normal hastighet tills det når en viss rad. Genom att sätta en brytpunkt på en rad kan du få debuggern att ta kontroll när exekveringen når denna rad. Om du tror att din kod innehåller ett fel på, säg, rad 17, sätt en brytpunkt på rad 17 (eller kanske några rader före den raden).
 
-When execution reaches that line, the debugger will “break into the debugger”. Then you can step through lines one at a time to see what is happening. Clicking Go will execute the program normally until it reaches another break point or the end of the program.
+När exekveringen når den raden så kommer debuggern att "bryta in" i felsökningsläget. Därefter kan du stega igenom raderna en i taget för att se vad som händer. Om du klickar på Go så exekveras programmet på normalt sätt tills det når en annan brytpunkt, eller slutet på koden.
 
-To set a break point, right-click on the line in the file editor and select Set Breakpoint from the menu that appears. The file editor will highlight that line with yellow. You can set break points on as many lines as you want. To remove the break point, click on the line and select Clear Breakpoint from the menu that appears.
+För att sätta en brytpunkt, högerklicka på den aktuella raden i fileditorn och välj Set Breakpoint i den meny som öppnas. Fileditorn kommer att markera raden med gult. Du kan sätta brytpunkter på så många rader som du vill. För att ta bort en brytpunkt, klicka på raden och välj Clear Breakpoint från menyn.
 
-Figure 7-5: The file editor with two break points set.
+Figur 7-5: Ett fileditor-fönster där två brytpunkter har satts.
 
-Example Using Break Points
+Exempel med brytpunkter
 
-Here is a program that simulates coin flips by calling random.randint(0, 1). The function returning the integer 1 will be “heads” and returning the integer 0 will be “tails”. The  flips variable will track how many coin flips have been done. The heads variable will track how many came up heads.
+Här är ett program som simulerar slantsinglingar genom anropet random.randint(0, 1). Om funktionen returnerar heltalet 1 så motsvarar det "krona" och om den returnerar heltalet 0 så motsvarar det "klave". Variabeln singlingar används för att hålla koll på hur många slantsinglingar som har gjorts. Variabeln krona ökas med ett varje gång resultatet av singlingen blir just krona.
 
-The program will do “coin flips” one thousand times. This would take a person over an hour to do, but the computer can do it in one second! Type in the following code into the file editor and save it as coinFlips.py. If you get errors after typing this code in, compare the code you typed to the book’s code with the online diff tool at http://invpy.com/diff/coinflips.
+Programmet "singlar slant" tusen gånger. Det här skulle ta över en timme för en person, men datorn kan göra det på en sekund! Skriv in följande kod i fileditorn och spara programmet som slantsingling.py. Om du får felmeddelanden efter att du har skrivit in koden, jämför den med bokens kod med diff-verktyget på http://invpy.com/diff/slantsingling.
 
-coinFlips.py
+slantsingling.py
 
  1. import random
- 2. print('I will flip a coin 1000 times. Guess how many times it will come up heads. (Press enter to begin)')
+ 2. print('Jag kommer att singla slant 1000 gånger. Gissa hur många gånger det blir krona? (Tryck enter för att börja)')
  3. input()
- 4. flips = 0
- 5. heads = 0
- 6. while flips < 1000:
- 7.     if random.randint(0, 1) == 1:
- 8.         heads = heads + 1
- 9.     flips = flips + 1
+ 4. singlingar = 0
+ 5. krona = 0
+ 6. while singlingar < 1000:
+ 7.    if random.randint(0, 1) == 1:
+ 8.        krona = krona + 1
+ 9.    singlingar = singlingar + 1
 10.
-11.     if flips == 900:
-12.         print('900 flips and there have been ' + str(heads) + ' heads.')
-13.     if flips == 100:
-14.         print('At 100 tosses, heads has come up ' + str(heads) + ' times so far.')
-15.     if flips == 500:
-16.         print('Half way done, and heads has come up ' + str(heads) + ' times.')
+11.    if singlingar == 900:
+12.        print('900 singlingar och det har blivit krona ' + str(krona) + ' gånger.')
+13.    if singlingar == 100:
+14.        print('Vid 100 singlingar så har det blivit krona ' + str(krona) + ' gånger.')
+15.    if singlingar == 500:
+16.        print('Halva jobbet gjort och det har blivit krona ' + str(krona) + ' gånger.')
 17.
 18. print()
-19. print('Out of 1000 coin tosses, heads came up ' + str(heads) + ' times!')
-20. print('Were you close?')
+19. print('Av 1000 slantsinglingar så blev det krona ' + str(krona) + ' gånger!')
+20. print('Var du nära?')
 
-The program runs pretty fast. It spent more time waiting for the user to press ENTER than doing the coin flips. Let’s say you wanted to see it do coin flips one by one. On the interactive shell's window, click on Debug ► Debugger to bring up the Debug Control window. Then press F5 to run the program.
+Det går rätt fort att köra programmet. Det ägnar mer tid åt att vänta på att användaren ska trycka ENTER än att göra själva slantsinglingarna. Säg nu att du skulle vilja se resultatet av varje enskild slantsingling. I den interaktiva kommandotolken, välj Debug ► Debugger för att öppna fönstret Debug Control. Tryck sedan på F5 för att köra programmet.
 
-The program starts in the debugger on line 1. Press Step three times in the Debug Control window to execute the first three lines (that is, lines 1, 2, and 3). You’ll notice the buttons become disabled because input() was called and the interactive shell window is waiting for the user to type something. Click on the interactive shell window and press ENTER. (Be sure to click beneath the text in the interactive shell window, otherwise IDLE might not receive your keystrokes.)
+Debuggern börjar på rad 1 i programmet. Tryck på Step tre gånger om i fönstret Debug Control för att köra de tre första raderna (det vill säga rad 1, 2 och 3). Du kommer att märka att knapparna blir inaktiverade, eftersom funktionen input() anropades och den interaktiva tolken väntar på att användaren ska skriva in något. Klicka på fönstret med den interaktiva tolken och tryck ENTER. (Se till att du klickar under texten i den interaktiva tolken, annars kanske inte IDLE uppfattar dina tangenttryckningar.)
 
-You can click Step a few more times, but you’ll find that it would take quite a while to get through the entire program. Instead, set a break point on lines 12, 14, and 16. The file editor will highlight these lines as shown in Figure 7-6.
+Du kan klicka på Step ytterligare några gånger, men du kommer att inse att det skulle ta rätt lång tid att komma igenom hela programmet. Sätt i stället brytpunkter på raderna 12, 14 och 16. Fileditorn kommer att markera dessa rader så som i Figur 7-6.
 
-Figure 7-6: Three break points set.
+Figur 7-6: Tre brytpunkter har satts.
 
-After setting the breakpoints, click Go in the Debug Control window. The program will run at normal speed until it reaches the next break point. When flip is set to 100, the condition for the if statement on line 13 is True. This causes line 14 (where there’s a break point set) to execute, which tells the debugger to stop the program and take over. Look at the Debug Control window in the Globals section to see what the value of flips and heads are.
+När brytpunkterna har satts, klicka på Go i fönstret Debug Control. Programmet kommer att köras i normal hastighet tills det når nästa brytpunkt. När singlingar har satts till 100 så blir villkoret i if-satsen på rad 13 True. Därmed körs rad 14 (där det finns en brytpunkt), vilket får debuggern att pausa programmet och ta över. Titta i sektionen Globals i fönstret Debug Control för att se värdena i singlingar och krona.
 
-Click Go again and the program will continue until it reaches the next break point on line 16. Again, see how the values in flips and heads have changed.
+Klicka på Go igen och programmet kommer att fortsätta tills det når nästa brytpunkt på rad 16. Återigen kan du se hur värdena i singlingar och krona har förändrats.
 
-If you click Go again, the execution will continue until the next break point is reached, which is on line 12.
+Om du klickar på Go ytterligare en gång så fortsätter exekveringen fram till nästa brytpunkt på rad 12.
 
-Summary
+Sammanfattning
 
-Writing programs is only the first part of programming. The next part is making sure the code you wrote actually works. Debuggers let you step through the code one line at a time. You can examine which lines execute in what order, and what values the variables contain. When this is too slow, you can set break points to stop the debugger only at the lines you want.
+Att skriva själva programmet är bara första steget i programmeringsarbetet. Nästa steg är att se till så koden du skrev faktiskt fungerar. En debugger låter dig stega igenom koden en rad i taget. Du kan undersöka i vilken ordning raderna exekveras och vilka värden som lagras i variablerna. När det här tar för lång tid så kan du sätta brytpunkter för att få debuggern att pausa enbart på de rader där du vill att den ska pausa.
 
-Using the debugger is a great way to understand what a program is doing. While this book provides explanations of all the game code in it, the debugger can help you find out more on your own.
+Att använda debuggern är ett bra sätt att förstå vad ett program gör. Även om den här boken ger förklaringar till all spelkod som ingår så kan du med debuggerns hjälp lära dig mer på egen hand.
