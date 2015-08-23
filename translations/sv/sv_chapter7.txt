@@ -1,0 +1,251 @@
+    Kapitel 7
+    ANVÄNDA DEBUGGERN
+
+Ämnen som behandlas i detta kapitel:
+
+•   Tre olika typer av fel
+•   IDLE:s debugger
+•   Hoppa in, över och ut
+•   Go och Quit
+•   Brytpunkter
+
+Buggar!
+
+“Vid två tillfällen har jag fått frågan 'Herr Babbage, om du matar in fel siffror i maskinen, kommer ändå rätt svar ut?' Jag kan inte fullt ut begripa den förvirring som måste ligga bakom att en sådan fråga ställs.”
+-Charles Babbage, 1800-talets upphovsman till konceptet programmerbara datorer (citatet fritt översatt).
+
+Om du matar in fel kod så kommer inte datorn fixa så att programmet blir korrekt. Ett datorprogram gör bara vad du har sagt åt det att göra, men det du säger åt programmet att göra kanske inte är samma sak som det du egentligen vill att det ska göra. Den här typen av fel i ett datorprogram kallas för buggar. Buggar uppstår när programmeraren inte noga har tänkt igenom exakt vad programmet ska göra. Det finns tre typer av buggar som kan uppstå i dina program:
+
+•   Syntaxfel är en typ av buggar som beror på skrivfel. När Python-tolken hittar ett syntaxfel, så beror det på att din kod inte följer Pythons språkregler. Även om ditt Python-program bara innehåller ett enda syntaxfel så kan det inte köras.
+•   Körningsfel är buggar som uppstår medan programmet körs. Programmet fungerar ända tills exekveringen når raden där felet uppstår, därefter avbryts det och du får ett felmeddelande (det här kallas för att programmet kraschar). Python-tolken kommer att visa en "spårutskrift" och ange på vilken rad problemet uppstod.
+•   Semantiska fel är den typ av fel som är svårast att åtgärda. De här buggarna kraschar inte ditt program, men de gör så att programmet inte fungerar så som du har tänkt att det ska fungera. Om en programmerare till exempel vill att variabeln total ska innehålla summan av värdena i variablerna a, b och c men skriver total = a * b * c, så blir värdet i total helt fel. Det här skulle kunna leda till att programmet kraschar längre fram, men det skulle inte vara omedelbart uppenbart var det semantiska felet fanns.
+
+Att hitta buggar i ett program kan vara svårt, eller rent av omöjligt! Men när du kör ditt program så kanske du upptäcker att funktioner ibland inte anropas när de ska anropas, eller att de anropas för många gånger. Du kanske utformade villkoret i en while-loop på fel sätt, så att den loopar ett felaktigt antal gånger. (En loop i ett program som aldrig avbryts kallas för en evig loop. För att avbryta en sådan loop kan du trycka Ctrl-C i den interaktiva kommandotolken, så kommer programmet att avslutas.) Alla de här felen kan uppstå av misstag, om du inte är noggrann.
+
+Ta och testa att skapa en evig loop genom att skriva in den här koden i den interaktiva kommandotolken (du måste trycka på ENTER två gånger så att den interaktiva tolken förstår att du är klar med while-blocket):
+
+>>> while True:
+...     print('Tryck Ctrl-C för att stoppa den här eviga loopen!!!')
+...
+
+Tryck nu och håll nere Ctrl-tangenten och tryck sedan på C för att stoppa programmet. Den interaktiva tolken kommer att se ut så här:
+
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
+Tryck Ctrl-C för att stoppa den här eviga loopen!!!
+Traceback (most recent call last):
+  File "<pyshell#1>", line 1, in <module>
+    while True: print('Tryck Ctrl-C för att stoppa den här eviga loopen!!!')
+KeyboardInterrupt
+
+Debuggern
+
+Det kan vara svårt att klura ut hur din kod kunde orsaka en bugg. Raderna med kod exekveras snabbt och värdena i variabler ändras ofta. En debugger är ett program som låter dig gå igenom ett program en rad i taget, i samma ordning som Python exekverar dem. Debuggern visar dig även vilka värden som olika variabler innehåller vid varje steg.
+
+Starta debuggern
+
+Öppna spelet Drakriket som du skrev i förra kapitlet i IDLE. När du har öppnat filen drakriket.py, välj Debug ► Debugger så att fönstret Debug Control öppnas (Figur 7-1).
+
+Figur 7-1: Fönstret Debug Control.
+
+Figur 7-2: Att köra spelet Drakriket med debuggern.
+
+När du nu kör Drakriket genom att trycka på F5 så kommer IDLE:s debugger att aktiveras. Det här kallas för att man kör programmet med debuggern, eller i felsökningsläge. Kryssa i rutorna Source och Globals i fönstret Debug Control.
+
+När du kör Pythonprogram i felsökningsläge så kommer programmet att pausas innan den första instruktionen exekveras. Om du klickar på titelraden i fönstret med fileditorn (och om du har kryssat i rutan Source i fönstret Debug Control) så kommer den första instruktionen att markeras med grått. I fönstret Debug Control kan man se att exekveringen befinner sig på rad 1, vilket är raden med import random.
+
+Stega igenom program
+
+Debuggern låter dig exekvera en instruktion åt gången. Det här kallas för att stega igenom ett program (eller för att gå igenom det steg för steg). Tryck på knappen Step i fönstret Debug Control för att exekvera en enskild instruktion. Prova nu att göra detta. Python kommer att exekvera instruktionen import random, och pausar därefter exekveringen innan nästa instruktion körs. I fönstret Debug Control ser man nu att exekveringen befinner sig på rad 2, som är raden med import time. Klicka nu på knappen Quit för att avbryta körningen av programmet tills vidare.
+
+Här är en sammanfattning av vad som sker när du klickar på knappen Step när du kör Drakriket med debuggern. Tryck på F5 för att starta Drakriket igen, följ sedan dessa instruktioner:
+
+1.  Klicka på knappen Step två gånger om för att köra de två import-satserna.
+2.  Klicka på Step ytterligare tre gånger för att exekvera de tre def-satserna.
+3.  Klicka på Step ännu en gång för att definiera variabeln spelaIgen.
+4.  Klicka på Go för att köra resten av programmet, eller på Quit för att avbryta exekveringen.
+
+I fönstret Debug Control kan du se vilken rad som kommer att exekveras när du trycker på knappen Step. Debuggern hoppade över rad 3 eftersom den är tom. Notera att du bara kan gå framåt, inte bakåt, med debuggern.
+
+Området Globals
+
+I ytan under rubriken Globals i fönstret Debug Control så listas alla globala variabler. Som du kanske minns så är globala variabler de variabler som skapas utanför alla funktioner (det vill säga i den globala synlighetsnivån).
+
+Eftersom de tre def-satserna definierar och exekverar funktioner så kommer de att visas i området Globals i fönstret Debug Control.
+
+Texten intill funktionernas namn kommer att se ut ungefär såhär: “<function kollaGrotta at 0x012859B0>“. Även intill modulernas namn står det märkliga saker, så som “<module 'random' from 'C:\\Python31\\lib\\random.pyc'>“. Du behöver inte veta vad det här betyder för att kunna använda debuggern. Bara genom att se om funktioner och moduler visas i området Globals så vet du om funktionen har definierats eller om modulen har importerats. 
+
+Du kan också strunta i raderna i området Globals där det står __builtins__, __doc__, och __name__. (Det här är variabler som finns i alla Pythonprogram.)
+
+När variabeln spelaIgen skapas så kommer den att dyka upp under Globals. Intill variabelnamnet så kommer strängen 'ja' att visas. Debuggern låter dig se värdena i alla variabler i programmet medan programmet körs. Det här är användbart när man försöker fixa buggar.
+
+Området Locals
+
+Det finns också ett område med rubriken Locals, som visar de lokala variablerna och de värden som de innehåller. De lokala variablerna visas bara när exekveringen befinner sig inuti en funktion. När exekveringen är på den globala nivån så är denna yta tom.
+
+Knapparna Go och Quit
+
+Om du tröttnar på att hela tiden behöva klicka på Step och vill att programmet ska köras på det vanliga viset så kan du trycka på Go i övre delen av fönstret Debug Control. Programmet exekveras då på det normala sättet i stället för steg för steg.
+
+För att avbryta programmet helt och hållet, klicka på Quit längst upp i fönstret Debug Control. Programmet avslutas omedelbart. Det här kan vara till hjälp om du behöver starta om felsökningen från början av programmet.
+
+Hoppa in, över och ut
+
+Starta nu Drakriket med debuggern igång. Tryck på Step tills debuggern befinner sig på rad 38. Som du ser i Figur 7-3 så är detta raden med visaIntro(). När du klickar på Step ännu en gång så kommer debuggern att hoppa in i denna funktion och ställa sig på rad 5, den första raden i funktionen visaIntro(). När du stegar på det här viset så hoppar du alltså in i funktioner. Men det går också att hoppa över dem, vilket förklaras härnäst.
+
+Figur 7-3: Fortsätt att trycka på Step tills du är på rad 38.
+
+Om du nu, när exekveringen har pausats på rad 5, trycker på Step en gång till så kommer du att hoppa in i print()-funktionen. Funktionen print() är en av Pythons inbyggda funktioner, så det är inte någon vits med att stega igenom den med debuggern. Pythons egna funktioner så som print(), input(), str() och random.randint() har noga kontrollerats så att de inte innehåller några fel. Du kan utgå ifrån att de inte orsakar några buggar i dina program.
+
+Du vill alltså inte slösa tid genom att stega igenom den kod som print()-funktionen innehåller. Så i stället för Step, som gör så att debuggern hoppar in i koden i print(), klicka på Over. På detta vis hoppar du över koden inuti print()-funktionen. Koden i print() kommer att exekveras i normal hastighet och debuggern kommer att pausa exekveringen först när print() har returnerat.
+
+Att hoppa över funktionsanrop är ett smidigt sätt att slippa stega igenom kod inuti funktioner. Debuggern kommer nu att pausa på rad 40, grottnummer = väljGrotta().
+
+Tryck på Step ytterligare en gång för att hoppa in i funktionen väljGrotta(). Fortsätt att stega igenom koden tills du kommer till rad 15, anropet till input(). Programmet kommer att vänta tills du har skrivit in ett svar i den interaktiva kommandotolken, precis som när du kör programmet på det normala sättet. Om du nu trycker på Step så kommer inget att hända, eftersom programmet väntar på en inmatning från tangentbordet. 
+
+Klicka dig tillbaka till fönstret med den interaktiva kommandotolken och mata in numret på den grotta du vill gå in i. Den blinkande markören måste stå på nedersta raden i den interaktiva tolken innan du kan skriva, annars kommer den text du skriver in inte att synas.
+
+När du trycker på ENTER så kommer debuggern att fortsätta att stega igenom kodraderna. Klicka på Out i fönstret Debug Control. Det här kallas för att hoppa ut ur en funktion, eftersom debuggern hoppar över rader ända tills exekveringen har återvänt från funktionen i fråga. Efter hoppet så kommer exekveringen att befinna sig på den rad som kommer efter raden med funktionsanropet.
+
+Om du till exempel klickar på Out när exekveringen befinner sig på rad 6 inuti funktionen visaIntro() så hoppar debuggern till raden efter anropet till visaIntro(). Genom att använda Out så slipper du alltså klicka på Step upprepade gånger för att komma ut ur en funktion. 
+
+Ifall du inte befinner dig inuti en funktion så kommer ett klick på Out att få debuggern att exekvera alla återstående rader i programmet. Samma sak händer om du klickar på knappen Go.
+
+Låt oss repetera vad de olika knapparna är till för:
+
+•   Go - Exekverar resten av koden på det normala sättet, eller tills exekveringen når en brytpunkt. (Brytpunkter beskrivs längre fram.)
+•   Step - Hoppa fram en instruktion. Om raden innehåller ett funktionsanrop så kommer debuggern att hoppa in i funktionen.
+•   Over - Hoppa fram en instruktion. Om raden innehåller ett funktionsanrop så kommer debuggern inte att hoppa in i funktionen, utan i stället hoppa förbi den.
+•   Out - Forsätter att stega tills debuggern har kommit ut ur den funktion där du klickade på Out. Med denna knapp hoppar du alltså ut ur en funktion.
+•   Quit - Avslutar omedelbart programmet.
+
+Hitta buggen
+
+Debuggern kan hjälpa dig att hitta orsaken till buggar i dina program. Här nedan är ett exempel på ett litet program med en bugg. Programmet hittar på ett slumpmässigt additionsproblem som användaren ska lösa. Öppna ett nytt fileditor-fönster genom att gå till den interaktiva kommandotolken och klicka på File och därefter New File. Skriv in programmet i fönstret och spara det som buggig.py.
+
+buggig.py
+
+1. import random
+2. tal1 = random.randint(1, 10)
+3. tal2 = random.randint(1, 10)
+4. print('Vad blir ' + str(tal1) + ' + ' + str(tal2) + '?')
+5. svar = input()
+6. if svar == tal1 + tal2:
+7.     print('Rätt!')
+8. else:
+9.     print('Nix! Svaret är ' + str(tal1 + tal2))
+
+Skriv in programmet så som det ser ut ovan, även om du redan nu kan se var buggen finns. Prova sedan att köra programmet genom att trycka på F5. Det här är som ett simpelt matteförhör, programmet slumpar fram två tal och ber dig att addera dem. Så här kan det se ut när du kör programmet:
+
+Vad blir 5 + 1?
+6
+Nix! Svaret är 6
+
+Där har vi en bugg! Programmet kraschar inte, men det funkar inte på rätt sätt. Det säger att svaret är fel även om användaren har matat in ett korrekt svar.
+
+Genom att köra programmet med debuggern kommer vi lättare att kunna hitta orsaken till buggen. I överkanten av fönstret med den interaktiva kommandotolken, välj Debug ► Debugger för att öppna fönstret Debug Control. Kryssa i samtliga fyra kryssrutor (Stack, Source, Locals och Globals) i fönstret Debug Control. På så vis får vi så mycket information som möjligt. Tryck sedan på F5 i fileditorn för att köra programmet. Den här gången kommer det att köras i felsökningsläge.
+
+1. import random
+
+Debuggern startar på raden med import random. Här händer inget särskilt, så klicka bara på Step för att exekvera koden. Du kommer att se att modulen random läggs till under Globals.
+
+2. tal1 = random.randint(1, 10)
+
+Klicka på Step igen för att köra rad 2. Ett nytt fileditor-fönster, med filen random.py, öppnas. Du har stegat in i funktionen randint() i modulen random(). Det kommer dock inte vara Pythons inbyggda funktioner som orsakar buggarna i dina program, så klicka på Out för att hoppa ut ur funktionen randint() och tillbaka till ditt program. Stäng sedan fönstret med filen random.py.
+
+3. tal2 = random.randint(1, 10)
+
+Nästa gång kan du klicka på Over för att hoppa över randint()-funktionen i stället för att hoppa in i den. Även rad 3 innehåller ett anrop till randint(). Skippa att hoppa in i funktionen genom att klicka på Over.
+
+4. print('Vad blir ' + str(tal1) + ' + ' + str(tal2) + '?')
+
+Anropet till print() på rad 4 presenterar de framslumpade talen för spelaren. Du vet vilka tal som kommer att visas redan innan de skrivs ut! Titta bara i ytan under Globals i fönstret Debug Control. Där ser du variablerna tal1 och tal2, och intill namnen de heltalsvärden som har lagrats i dessa variabler.
+
+Variabeln tal1 har värdet 4 och variabeln tal2 har värdet 8. När du klickar på Step så kommer programmet att skriva ut strängen i print()-anropet, med dessa värden infogade. Funktionen str() omvandlar heltalen till strängar innan de slås ihop med resten av strängen. När jag körde debuggern så såg det ut som i Figur 7-4. (Du kommer antagligen ha fått fram andra slumptal.)
+
+Figur 7-4: tal1 har satts till 4 och tal2 har satts till 8.
+
+5. svar = input()
+
+Om du klickar på Step från rad 5 så exekveras input(). Debuggern väntar tills spelaren har matat in ett svar. Skriv in rätt svar (12 i mitt fall) i den interaktiva kommandotolken. Debuggern kommer att återuppta exekveringen och hoppa ner till rad 6.
+
+6. if svar == tal1 + tal2:
+7.     print('Rätt!')
+
+Rad 6 är en if-sats. Villkoret är att värdet i svar måste matcha summan av tal1 och tal2. Om villkoret är True (sant) så kommer debuggern att fortsätta till rad 7. Om villkoret är False (falskt) så hoppar debuggern till rad 9. Klicka på Step ännu en gång för att se var debuggern ställer sig.
+
+8. else:
+9.     print('Nix! Svaret är ' + str(tal1 + tal2))
+
+Debuggern befinner sig nu på rad 9! Vad hände? Villkoret i if-satsen måste ha varit falskt. Ta en titt på värdena i tal1, tal2 och svar. Notera att tal1 och tal2 är heltal, så summan av dem kommer också att bli ett heltal. Men svar är en sträng.
+
+Det betyder att svar == tal1 + tal2 har utvärderats till '12' == 12. Ett strängvärde och ett heltalsvärde kan aldrig vara lika, så villkoret utvärderas till False.
+
+Det är detta som är buggen i programmet. Felet är att det bara står svar i koden när det borde stå int(svar). Ändra rad 6 så att det står int(svar) == tal1 + tal2 och kör programmet igen.
+
+Vad blir 2 + 3?
+5
+Rätt!
+
+Den här gången fungerade programmet som det ska. Kör det ytterligare en gång och skriv in ett felaktigt svar, med avsikt. På så vis testar du programmet fullt ut. Du har nu blivit av med buggen i det här programmet! Kom ihåg: Datorn kör dina program precis så som du har skrivit dem, även om det du har skrivit inte är vad du menade att skriva.
+
+Brytpunkter
+
+Att stega igenom koden en rad i taget kan ibland ta för lång tid. Ofta vill du köra programmet i normal hastighet tills det når en viss rad. Genom att sätta en brytpunkt på en rad kan du få debuggern att ta kontroll när exekveringen når denna rad. Om du tror att din kod innehåller ett fel på, säg, rad 17, sätt en brytpunkt på rad 17 (eller kanske några rader före den raden).
+
+När exekveringen når den raden så kommer debuggern att "bryta in" i felsökningsläget. Därefter kan du stega igenom raderna en i taget för att se vad som händer. Om du klickar på Go så exekveras programmet på normalt sätt tills det når en annan brytpunkt, eller slutet på koden.
+
+För att sätta en brytpunkt, högerklicka på den aktuella raden i fileditorn och välj Set Breakpoint i den meny som öppnas. Fileditorn kommer att markera raden med gult. Du kan sätta brytpunkter på så många rader som du vill. För att ta bort en brytpunkt, klicka på raden och välj Clear Breakpoint från menyn.
+
+Figur 7-5: Ett fileditor-fönster där två brytpunkter har satts.
+
+Exempel med brytpunkter
+
+Här är ett program som simulerar slantsinglingar genom anropet random.randint(0, 1). Om funktionen returnerar heltalet 1 så motsvarar det "krona" och om den returnerar heltalet 0 så motsvarar det "klave". Variabeln singlingar används för att hålla koll på hur många slantsinglingar som har gjorts. Variabeln krona ökas med ett varje gång resultatet av singlingen blir just krona.
+
+Programmet "singlar slant" tusen gånger. Det här skulle ta över en timme för en person, men datorn kan göra det på en sekund! Skriv in följande kod i fileditorn och spara programmet som slantsingling.py. Om du får felmeddelanden efter att du har skrivit in koden, jämför den med bokens kod med diff-verktyget på http://invpy.com/diff/slantsingling.
+
+slantsingling.py
+
+ 1. import random
+ 2. print('Jag kommer att singla slant 1000 gånger. Gissa hur många gånger det blir krona? (Tryck enter för att börja)')
+ 3. input()
+ 4. singlingar = 0
+ 5. krona = 0
+ 6. while singlingar < 1000:
+ 7.    if random.randint(0, 1) == 1:
+ 8.        krona = krona + 1
+ 9.    singlingar = singlingar + 1
+10.
+11.    if singlingar == 900:
+12.        print('900 singlingar och det har blivit krona ' + str(krona) + ' gånger.')
+13.    if singlingar == 100:
+14.        print('Vid 100 singlingar så har det blivit krona ' + str(krona) + ' gånger.')
+15.    if singlingar == 500:
+16.        print('Halva jobbet gjort och det har blivit krona ' + str(krona) + ' gånger.')
+17.
+18. print()
+19. print('Av 1000 slantsinglingar så blev det krona ' + str(krona) + ' gånger!')
+20. print('Var du nära?')
+
+Det går rätt fort att köra programmet. Det ägnar mer tid åt att vänta på att användaren ska trycka ENTER än att göra själva slantsinglingarna. Säg nu att du skulle vilja se resultatet av varje enskild slantsingling. I den interaktiva kommandotolken, välj Debug ► Debugger för att öppna fönstret Debug Control. Tryck sedan på F5 för att köra programmet.
+
+Debuggern börjar på rad 1 i programmet. Tryck på Step tre gånger om i fönstret Debug Control för att köra de tre första raderna (det vill säga rad 1, 2 och 3). Du kommer att märka att knapparna blir inaktiverade, eftersom funktionen input() anropades och den interaktiva tolken väntar på att användaren ska skriva in något. Klicka på fönstret med den interaktiva tolken och tryck ENTER. (Se till att du klickar under texten i den interaktiva tolken, annars kanske inte IDLE uppfattar dina tangenttryckningar.)
+
+Du kan klicka på Step ytterligare några gånger, men du kommer att inse att det skulle ta rätt lång tid att komma igenom hela programmet. Sätt i stället brytpunkter på raderna 12, 14 och 16. Fileditorn kommer att markera dessa rader så som i Figur 7-6.
+
+Figur 7-6: Tre brytpunkter har satts.
+
+När brytpunkterna har satts, klicka på Go i fönstret Debug Control. Programmet kommer att köras i normal hastighet tills det når nästa brytpunkt. När singlingar har satts till 100 så blir villkoret i if-satsen på rad 13 True. Därmed körs rad 14 (där det finns en brytpunkt), vilket får debuggern att pausa programmet och ta över. Titta i sektionen Globals i fönstret Debug Control för att se värdena i singlingar och krona.
+
+Klicka på Go igen och programmet kommer att fortsätta tills det når nästa brytpunkt på rad 16. Återigen kan du se hur värdena i singlingar och krona har förändrats.
+
+Om du klickar på Go ytterligare en gång så fortsätter exekveringen fram till nästa brytpunkt på rad 12.
+
+Sammanfattning
+
+Att skriva själva programmet är bara första steget i programmeringsarbetet. Nästa steg är att se till så koden du skrev faktiskt fungerar. En debugger låter dig stega igenom koden en rad i taget. Du kan undersöka i vilken ordning raderna exekveras och vilka värden som lagras i variablerna. När det här tar för lång tid så kan du sätta brytpunkter för att få debuggern att pausa enbart på de rader där du vill att den ska pausa.
+
+Att använda debuggern är ett bra sätt att förstå vad ett program gör. Även om den här boken ger förklaringar till all spelkod som ingår så kan du med debuggerns hjälp lära dig mer på egen hand.

@@ -1,0 +1,2 @@
+Fig 1-1:
+Se till att du installerar Python 3 och inte Python 2!
