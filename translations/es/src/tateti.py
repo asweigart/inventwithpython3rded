@@ -5,7 +5,7 @@ import random
 def dibujarTablero(tablero):
     # Esta función dibuja el tablero recibido como argumento.
 
-    # "tablero" es una lista de 10 strings representando la pizarra (ignora índice 0)
+    # "tablero" es una lista de 10 cadenas representando la pizarra (ignora índice 0)
     print('   |   |')
     print(' ' + tablero[7] + ' | ' + tablero[8] + ' | ' + tablero[9])
     print('   |   |')
