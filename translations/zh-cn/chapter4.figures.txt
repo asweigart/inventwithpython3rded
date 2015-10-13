@@ -1,0 +1,11 @@
+Fig 4-2:
+...go inside the while-block to here.
+...go past the while-block to here.
+
+Fig 4-3:
+fizzy
+if keyword
+condition
+while keyword
+doesn't loop
+loops

@@ -1,2 +1,2 @@
 Fig 1-1:
-确保安装的是Python 3，而不是Python 2！
+确保安装的是 Python 3，而不是 Python 2！
