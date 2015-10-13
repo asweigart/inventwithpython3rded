@@ -98,7 +98,7 @@ Here is an inevitably incomplete list of MUCH-APPRECIATED CONTRIBUTORS -- people
 
 **Simplified Chinese Translation:**
 
-- Bitex Kuang https://github.com/7bitex
+- Beta Kuang https://github.com/beta
 
 **French Translation:**
 
